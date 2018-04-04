@@ -21,7 +21,26 @@
 // Ensure we're in the project directory, so relative paths work as expected
 // no matter where we actually lift from.
 process.chdir(__dirname);
+var mongoose;
+mongoose = require('mongoose');
+var md5 = require('md5');
 
+global.Grid = require('gridfs-stream');
+
+function setupGFS() {
+    global.gfs = Grid(mongoose.connections[0].db, mongoose);
+    global.gfs.mongo = mongoose.mongo;
+}
+
+global["database"] = "pumpkiin";
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/' + database, function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        setupGFS();
+    }
+});
 // Ensure a "sails" can be located:
 (function () {
     var sails;

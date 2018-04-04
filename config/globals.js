@@ -63,10 +63,11 @@ module.exports.globals = {
 };
 
 global.mongoose = require('mongoose');
-global.database = "database";
+global.database = "pumpkiin";
 global.storageBucket = "wohlig";
 mongoose.Promise = global.Promise;
 global.mongourl = "mongodb://localhost:27017/" + database;
+global["Grid"] = require('gridfs-stream');
 mongoose.connect(mongourl, {
     useMongoClient: true
 }, function (err, db) {});
@@ -77,7 +78,7 @@ mongoose.connect(mongourl, {
 global.ObjectId = mongoose.Types.ObjectId;
 global.deepPopulate = require('mongoose-deep-populate')(mongoose);
 global.uniqueValidator = require('mongoose-unique-validator');
-global.timestamps = require('mongoose-timestamp-plugin');
+global.timestamps = require('mongoose-timestamp');
 global.validators = require('mongoose-validators');
 global.monguurl = require('monguurl');
 require('mongoose-middleware').initialize(mongoose);
