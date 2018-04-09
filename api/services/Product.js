@@ -1,6 +1,7 @@
 var schema = new Schema({
     brand: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'Brand'
     },
     productname: {
         type: String
@@ -9,7 +10,8 @@ var schema = new Schema({
         type: Number
     },
     retailer: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'Retailer'
     },
     purchasedate: {
         type: Date
@@ -30,9 +32,11 @@ var schema = new Schema({
         type: String,
         enum: ['pending', 'confirmed']
     },
-    localsupport: {
-        type: String
-    },
+    localsupport: [{
+        name: String,
+        contact: Number,
+        email: String
+    }],
     warrentystatus: {
         type: String
     },
@@ -50,11 +54,20 @@ var schema = new Schema({
 
 });
 
-schema.plugin(deepPopulate, {});
+schema.plugin(deepPopulate, {
+    populate: {
+        'brand': {
+            select: ''
+        },
+        'retailer': {
+            select: ''
+        }
+    }
+});
 schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('Product', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "brand retailer ", "brand retailer "));
 var model = {};
 module.exports = _.assign(module.exports, exports, model);

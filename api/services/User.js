@@ -1,14 +1,18 @@
 var schema = new Schema({
     name: {
-        type: String,
-        required: true,
-        excel: true,
+        type: String
     },
+    balance: {
+        type: String
+    },
+    socialAccount: [{
+        account: String
+    }],
+    relations: [{
+        relation: String
+    }],
     email: {
-        type: String,
-        validate: validators.isEmail(),
-        excel: "User Email",
-        unique: true
+        type: String
     },
     dob: {
         type: Date,
@@ -45,7 +49,7 @@ var schema = new Schema({
         default: ""
     },
     mobile: {
-        type: String,
+        type: Number,
         default: ""
     },
     otp: {

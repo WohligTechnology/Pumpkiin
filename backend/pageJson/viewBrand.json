@@ -1,20 +1,20 @@
 {
-    "title": "Product",
-    "description": "List of Product",
+    "title": "Brand",
+    "description": "List of Brands",
     "pageType": "view",
     "sendIdWithCreate": true,
     "urlFields": ["_id"],
     "fields": [{
-        "name": "Product Name",
+        "name": "Name",
         "isSort": "",
-        "tableRef": "productname"
+        "tableRef": "name"
     }],
     "action": [{
         "name": "edit",
         "icon": "fa-pencil",
         "buttonClass": "btn-primary",
         "type": "page",
-        "action": "editProduct",
+        "action": "editBrand",
         "fieldsToSend": {
             "_id": "_id"
         }
@@ -23,23 +23,37 @@
         "icon": "fa-trash",
         "buttonClass": "btn-danger",
         "type": "apiCallConfirm",
-        "title": "Delete Product",
-        "content": "Are you sure you want to delete Product?",
-        "api": "Product/delete",
+        "title": "Delete Brand",
+        "content": "Are you sure you want to delete Brand?",
+        "api": "Brand/delete",
         "fieldsToSend": {
             "name": "_id",
             "value": "_id"
         }
     }],
     "button": [{
+        "name": "Excel Export",
+        "icon": "print",
+        "class": "btn-danger",
+        "type": "redirect",
+        "action": "Brand/generateExcel",
+        "linkType": "admin"
+    }, {
+        "name": "Upload Excel",
+        "icon": "delete",
+        "class": "btn-warning",
+        "type": "redirect",
+        "action": "excel-upload/Brand",
+        "linkType": "internal"
+    }, {
         "name": "Create",
         "icon": "plus",
         "class": "btn-success",
         "type": "page",
-        "action": "createProduct"
+        "action": "createBrand"
     }],
     "apiCall": {
-        "url": "Product/search",
+        "url": "Brand/search",
         "params": "_id"
     }
 }

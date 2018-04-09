@@ -1,0 +1,57 @@
+{
+    "title": "Create Retailer",
+    "name": "Retailer",
+    "jsonPage": "viewRetailer",
+    "desciption": "",
+    "pageType": "create",
+    "urlFields": ["Retailer"],
+    "fields": [{
+            "name": "Name",
+            "type": "text",
+            "tableRef": "name",
+            "placeholder": "Enter name",
+            "id": "name",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "Username",
+            "type": "text",
+            "tableRef": "username",
+            "placeholder": "Enter Username",
+            "id": "username",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "Brand Name",
+            "type": "text",
+            "tableRef": "brandname",
+            "placeholder": "Enter brand name",
+            "id": "brandname",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }
+    ],
+    "action": [{
+        "name": "submit",
+        "action": "submitRetailer",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewRetailer"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewRetailer"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "Retailer/save"
+    }
+}

@@ -6,13 +6,16 @@
     "pageType": "create",
     "urlFields": ["Product"],
     "fields": [{
-            "name": "Name",
-            "type": "text",
+            "name": "Brand",
+            "type": "tags",
             "tableRef": "brand",
-            "placeholder": "Enter brand",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter brand Name",
             "id": "brand",
             "validation": ["", "trim", ""],
-            "url": ""
+            "url": "Brand/search"
         },
         {
             "name": "Product Name",
@@ -31,13 +34,16 @@
             "validation": ["", "trim", ""],
             "url": ""
         }, {
-            "name": "Retailer",
-            "type": "text",
+            "name": "retailer",
+            "type": "tags",
             "tableRef": "retailer",
-            "placeholder": "Enter retailer",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter Retailer Name",
             "id": "retailer",
             "validation": ["", "trim", ""],
-            "url": ""
+            "url": "Retailer/search"
         }, {
             "name": "Purchase Date ",
             "type": "date",
@@ -89,12 +95,40 @@
             "url": ""
         }, {
             "name": "Local Support",
-            "type": "text",
+            "type": "box",
             "tableRef": "localsupport",
-            "placeholder": "Enter localsupport",
-            "id": "localsupport",
             "validation": ["", "trim", ""],
-            "url": ""
+            "fields": [{
+                    "name": "Name",
+                    "type": "text",
+                    "tableRef": "name",
+                    "placeholder": "Enter  Name",
+                    "id": "name",
+                    "validation": ["", "trim"],
+                    "url": "",
+                    "onView": true
+                },
+                {
+                    "name": "Contact",
+                    "type": "text",
+                    "tableRef": "contact",
+                    "placeholder": "Enter contact Number",
+                    "id": "contact",
+                    "validation": ["", "trim"],
+                    "url": "",
+                    "onView": true
+                },
+                {
+                    "name": "Email",
+                    "type": "text",
+                    "tableRef": "email",
+                    "placeholder": "Enter Email",
+                    "id": "email",
+                    "validation": ["", "trim"],
+                    "url": "",
+                    "onView": true
+                }
+            ]
         }, {
             "name": "Warrenty Status",
             "type": "text",
@@ -120,7 +154,7 @@
             "validation": ["", "trim", ""],
             "url": ""
         }, {
-            "name": "productaccessorymap",
+            "name": "Product Accessory Map",
             "type": "box",
             "tableRef": "productaccessorymap",
             "validation": ["", "trim", ""],

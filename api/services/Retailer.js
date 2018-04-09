@@ -9,6 +9,10 @@ var schema = new Schema({
         type: String,
         default: ""
     },
+    brandname: {
+        type: String,
+        default: ""
+    }
 });
 
 schema.plugin(deepPopulate, {});

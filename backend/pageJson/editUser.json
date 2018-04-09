@@ -6,155 +6,197 @@
     "pageType": "edit",
     "urlFields": ["_id"],
     "fields": [{
-        "name": "Name",
-        "type": "text",
-        "tableRef": "name",
-        "placeholder": "Enter Name",
-        "id": "name",
-        "validation": ["required", "trim", "unique"],
-        "url": ""
-    },{
-        "name": "Email",
-        "type": "text",
-        "tableRef": "email",
-        "placeholder": "Enter Email",
-        "id": "email",
-        "validation": ["", "trim", "unique"],
-        "url": ""
-    },{
-        "name": "DOB",
-        "type": "date",
-        "tableRef": "dob",
-        "placeholder": "Enter DOB",
-        "id": "dob",
-        "validation": ["required", "trim", "unique"],
-        "url": ""
-    }, {
-        "name": "Photo",
-        "type": "image",
-        "tableRef": "photo",
-        "size":"250 x 250",
-        "placeholder": "Upload photo",
-        "id": "photo",
-        "view": true,
-        "disabled": true,
-        "validation": ["required", "trim", "unique"],
-        "url": ""
-    }, {
-        "name": "Password",
-        "type": "password",
-        "tableRef": "password",
-        "placeholder": "Enter password",
-        "id": "password",
-        "validation": ["", "trim", "unique"],
-        "url": ""
-    }, {
-        "name": "Forgot Password",
-        "type": "password",
-        "tableRef": "forgotPassword",
-        "placeholder": "Enter forgot password",
-        "id": "forgotPassword",
-        "validation": ["", "trim", "unique"],
-        "url": ""
-    }, {
-        "name": "Mobile",
-        "type": "text",
-        "tableRef": "mobile",
-        "placeholder": "Enter mobile",
-        "id": "mobile",
-        "validation": ["required", "trim", "unique"],
-        "url": ""
-    }, {
-        "name": "OTP",
-        "type": "text",
-        "tableRef": "otp",
-        "placeholder": "Enter Otp",
-        "id": "otp",
-        "disabled": false,
-        "validation": ["required", "trim", "unique"],
-        "url": ""
-    },{
-        "name": "AccessLevel",
-        "type": "tags",
-        "tableRef": "accessLevel",
-        "placeholder": "Enter Title",
-        "id": "status",
-        "validation": ["", "trim", ""],
-        "url": "",
-        "dropDownField": "",
-        "dropDownType": "single",
-        "onView": true,
-        "dropDown": ["User","Admin"]
-    }, {
-        "name": "All Addresses",
-        "type": "box",
-        "tableRef": "address",
-        "validation": ["required","trim",""],
-        "fields": [{
-            "name": "Line 1",
+            "name": "Name",
             "type": "text",
-            "tableRef": "lineOne",
-            "placeholder": "Enter Address Line One",
-            "id": "lineOne",
-            "validation": ["", "trim"],
-            "url": "",
-            "onView":true
+            "tableRef": "name",
+            "placeholder": "Enter Name",
+            "id": "name",
+            "validation": ["required", "trim", ""],
+            "url": ""
         }, {
-            "name": "Line 2",
+            "name": "Email",
             "type": "text",
-            "tableRef": "lineTwo",
-            "placeholder": "Enter Address Line Two",
-            "id": "lineTwo",
-            "validation": ["", "trim"],
-            "url": "",
-            "onView":true
+            "tableRef": "email",
+            "placeholder": "Enter Email",
+            "id": "email",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "Social Account",
+            "type": "box",
+            "tableRef": "socialAccount",
+            "validation": ["", "trim", ""],
+            "fields": [{
+                "name": "Account",
+                "type": "text",
+                "tableRef": "account",
+                "placeholder": "Enter Social Account Name",
+                "id": "account",
+                "validation": ["", "trim"],
+                "url": "",
+                "onView": true
+            }]
+        },
+        {
+            "name": "Balance",
+            "type": "text",
+            "tableRef": "balance",
+            "placeholder": "Enter Balance",
+            "id": "balance",
+            "validation": ["", "trim", ""],
+            "url": ""
         }, {
-            "name": "Line 3",
-            "type": "text",
-            "tableRef": "lineThree",
-            "placeholder": "Enter Address Line Three",
-            "id": "lineThree",
-            "validation": ["", "trim"],
-            "url": "",
-            "onView":true
+            "name": "DOB",
+            "type": "date",
+            "tableRef": "dob",
+            "placeholder": "Enter DOB",
+            "id": "dob",
+            "validation": ["", "trim", ""],
+            "url": ""
         }, {
-            "name": "City",
-            "type": "text",
-            "tableRef": "city",
-            "placeholder": "Enter City",
-            "id": "city",
-            "validation": ["", "trim"],
-            "url": "",
-            "onView":true
+            "name": "Photo",
+            "type": "image",
+            "tableRef": "photo",
+            "size": "250 x 250",
+            "placeholder": "Upload photo",
+            "id": "photo",
+            "view": true,
+            "disabled": true,
+            "validation": ["", "trim", ""],
+            "url": ""
         }, {
-            "name": "District",
-            "type": "text",
-            "tableRef": "district",
-            "placeholder": "Enter district",
-            "id": "district",
-            "validation": ["", "trim"],
-            "url": "",
-            "onView":true
+            "name": "Password",
+            "type": "password",
+            "tableRef": "password",
+            "placeholder": "Enter password",
+            "id": "password",
+            "validation": ["", "trim", ""],
+            "url": ""
         }, {
-            "name": "State",
-            "type": "text",
-            "tableRef": "state",
-            "placeholder": "Enter state",
-            "id": "state",
-            "validation": ["", "trim"],
-            "url": "",
-            "onView":true
+            "name": "Forgot Password",
+            "type": "password",
+            "tableRef": "forgotPassword",
+            "placeholder": "Enter forgot password",
+            "id": "forgotPassword",
+            "validation": ["", "trim", ""],
+            "url": ""
         }, {
-            "name": "Pincode",
+            "name": "Mobile",
             "type": "text",
-            "tableRef": "pincode",
-            "placeholder": "Enter Pincode",
-            "id": "pincode",
-            "validation": ["", "trim"],
+            "tableRef": "mobile",
+            "placeholder": "Enter mobile",
+            "id": "mobile",
+            "validation": ["reqired", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "Relations",
+            "type": "box",
+            "tableRef": "relations",
+            "validation": ["", "trim", ""],
+            "fields": [{
+                "name": "Relation",
+                "type": "text",
+                "tableRef": "relation",
+                "placeholder": "Enter Relation Name",
+                "id": "relation",
+                "validation": ["", "trim"],
+                "url": "",
+                "onView": true
+            }]
+        }, {
+            "name": "OTP",
+            "type": "text",
+            "tableRef": "otp",
+            "placeholder": "Enter Otp",
+            "id": "otp",
+            "disabled": false,
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "AccessLevel",
+            "type": "tags",
+            "tableRef": "accessLevel",
+            "placeholder": "Enter Title",
+            "id": "status",
+            "validation": ["", "trim", ""],
             "url": "",
-            "onView":true
-        }]
-    }],
+            "dropDownField": "",
+            "dropDownType": "single",
+            "onView": true,
+            "dropDown": ["User", "Admin"]
+        }, {
+            "name": "All Addresses",
+            "type": "box",
+            "tableRef": "address",
+            "validation": ["", "trim", ""],
+            "fields": [{
+                "name": "Line 1",
+                "type": "text",
+                "tableRef": "lineOne",
+                "placeholder": "Enter Address Line One",
+                "id": "lineOne",
+                "validation": ["", "trim"],
+                "url": "",
+                "onView": true
+            }, {
+                "name": "Line 2",
+                "type": "text",
+                "tableRef": "lineTwo",
+                "placeholder": "Enter Address Line Two",
+                "id": "lineTwo",
+                "validation": ["", "trim"],
+                "url": "",
+                "onView": true
+            }, {
+                "name": "Line 3",
+                "type": "text",
+                "tableRef": "lineThree",
+                "placeholder": "Enter Address Line Three",
+                "id": "lineThree",
+                "validation": ["", "trim"],
+                "url": "",
+                "onView": true
+            }, {
+                "name": "City",
+                "type": "text",
+                "tableRef": "city",
+                "placeholder": "Enter City",
+                "id": "city",
+                "validation": ["", "trim"],
+                "url": "",
+                "onView": true
+            }, {
+                "name": "District",
+                "type": "text",
+                "tableRef": "district",
+                "placeholder": "Enter district",
+                "id": "district",
+                "validation": ["", "trim"],
+                "url": "",
+                "onView": true
+            }, {
+                "name": "State",
+                "type": "text",
+                "tableRef": "state",
+                "placeholder": "Enter state",
+                "id": "state",
+                "validation": ["", "trim"],
+                "url": "",
+                "onView": true
+            }, {
+                "name": "Pincode",
+                "type": "text",
+                "tableRef": "pincode",
+                "placeholder": "Enter Pincode",
+                "id": "pincode",
+                "validation": ["", "trim"],
+                "url": "",
+                "onView": true
+            }]
+        }
+    ],
     "action": [{
         "name": "submit",
         "action": "submitUser",
