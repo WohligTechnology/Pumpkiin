@@ -9,8 +9,6 @@ module.exports = [
     'bower_components/jquery-slimscroll/jquery.slimscroll.min.js',
     'bower_components/angular/angular.min.js',
     'bower_components/angular-animate/angular-animate.min.js',
-    'bower_components/ui-bootstrap4/docs/ui-bootstrap.js',
-    'bower_components/ui-bootstrap4/docs/ui-bootstrap-tpls.js',
     'bower_components/angular-ui-select/dist/select.min.js',
     'bower_components/angular-sanitize/angular-sanitize.min.js',
     'bower_components/angular-ui-router/release/angular-ui-router.min.js',
