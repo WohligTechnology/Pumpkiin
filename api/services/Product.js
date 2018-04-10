@@ -30,7 +30,7 @@ var schema = new Schema({
     },
     status: {
         type: String,
-        enum: ['pending', 'confirmed']
+        enum: ['Pending', 'Confirmed']
     },
     localsupport: [{
         name: String,
@@ -43,6 +43,7 @@ var schema = new Schema({
     tags: {
         type: String
     },
+
     type: {
         type: String,
         enum: ['Product', 'Accessory']

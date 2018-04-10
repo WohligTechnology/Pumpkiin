@@ -87,12 +87,15 @@
             "url": ""
         }, {
             "name": "Status",
-            "type": "text",
+            "type": "tags",
             "tableRef": "status",
             "placeholder": "Enter status",
             "id": "status",
-            "validation": ["", "trim", ""],
-            "url": ""
+            "url": "",
+            "dropDownField": "",
+            "dropDownType": "single",
+            "onView": true,
+            "dropDown": ["Pending", "Confirmed"]
         }, {
             "name": "Local Support",
             "type": "box",
@@ -147,12 +150,15 @@
             "url": ""
         }, {
             "name": "Type",
-            "type": "text",
+            "type": "tags",
             "tableRef": "type",
-            "placeholder": "Enter type",
+            "placeholder": "select type",
             "id": "type",
-            "validation": ["", "trim", ""],
-            "url": ""
+            "url": "",
+            "dropDownField": "",
+            "dropDownType": "single",
+            "onView": true,
+            "dropDown": ["Product", "Accessory"]
         }, {
             "name": "Product Accessory Map",
             "type": "box",
