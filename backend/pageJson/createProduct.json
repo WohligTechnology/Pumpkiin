@@ -18,6 +18,18 @@
             "url": "Brand/search"
         },
         {
+            "name": "Status",
+            "type": "tags",
+            "tableRef": "status",
+            "placeholder": "Enter status",
+            "id": "status",
+            "url": "",
+            "dropDownField": "",
+            "dropDownType": "single",
+            "onView": true,
+            "dropDown": ["Pending", "Confirmed"]
+        },
+        {
             "name": "Product Name",
             "type": "text",
             "tableRef": "productname",
@@ -34,7 +46,7 @@
             "validation": ["", "trim", ""],
             "url": ""
         }, {
-            "name": "retailer",
+            "name": "Retailer",
             "type": "tags",
             "tableRef": "retailer",
             "dropDownType": "single",
@@ -53,24 +65,24 @@
             "validation": ["", "trim", ""],
             "url": ""
         }, {
-            "name": "Warrenty Period",
+            "name": "Warranty Period",
             "type": "text",
-            "tableRef": "warrentyperiod",
-            "placeholder": "Enter warrentyperiod",
-            "id": "warrentyperiod",
+            "tableRef": "warrantyperiod",
+            "placeholder": "Enter Warranty Period",
+            "id": "warrantyperiod",
             "validation": ["", "trim", ""],
             "url": ""
         },
         {
-            "name": "Warrenty End Date ",
+            "name": "Warranty End Date ",
             "type": "date",
-            "tableRef": "WarrentyEndDate",
-            "placeholder": "Enter Warrenty End Date",
-            "id": "WarrentyEndDate",
+            "tableRef": "warrantyenddate",
+            "placeholder": "Enter Warranty End Date",
+            "id": "warrantyenddate",
             "validation": ["", "trim", ""],
             "url": ""
         }, {
-            "name": "Purchas Price",
+            "name": "Purchase Price",
             "type": "text",
             "tableRef": "purchasprice",
             "placeholder": "Enter purchasprice",

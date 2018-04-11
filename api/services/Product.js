@@ -16,10 +16,10 @@ var schema = new Schema({
     purchasedate: {
         type: Date
     },
-    warrentyperiod: {
+    warrantyperiod: {
         type: String
     },
-    WarrentyEndDate: {
+    warrantyenddate: {
         type: Date
     },
     purchasprice: {
