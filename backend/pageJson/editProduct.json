@@ -17,18 +17,7 @@
             "validation": ["", "trim", ""],
             "url": "Brand/search"
         },
-        {
-            "name": "Status",
-            "type": "tags",
-            "tableRef": "status",
-            "placeholder": "Enter status",
-            "id": "status",
-            "url": "",
-            "dropDownField": "",
-            "dropDownType": "single",
-            "onView": true,
-            "dropDown": ["Pending", "Confirmed"]
-        },
+
         {
             "name": "Product Name",
             "type": "text",
