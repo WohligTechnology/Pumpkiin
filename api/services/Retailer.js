@@ -9,7 +9,7 @@ var schema = new Schema({
         type: String,
         default: ""
     },
-    brandname: {
+    retailername: {
         type: String,
         default: ""
     }

@@ -23,11 +23,11 @@
             "validation": ["", "trim", ""],
             "url": ""
         }, {
-            "name": "Brand Name",
+            "name": "Retailer Name",
             "type": "text",
-            "tableRef": "brandname",
+            "tableRef": "retailername",
             "placeholder": "Enter brand name",
-            "id": "brandname",
+            "id": "retailername",
             "validation": ["", "trim", ""],
             "url": ""
         }
