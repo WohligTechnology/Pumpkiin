@@ -13,6 +13,42 @@
             "id": "name",
             "validation": ["required", "trim", ""],
             "url": ""
+        },
+        {
+            "name": "AccessLevel",
+            "type": "tags",
+            "tableRef": "accessLevel",
+            "placeholder": "Enter Title",
+            "id": "status",
+            "validation": ["", "trim", ""],
+            "url": "",
+            "dropDownField": "",
+            "dropDownType": "single",
+            "onView": true,
+            "dropDown": ["Retailer", "Admin", "Brand"]
+        },
+        {
+            "name": "Retailer",
+            "type": "tags",
+            "tableRef": "retailer",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter Retailer Name",
+            "id": "retailer",
+            "validation": ["", "trim", ""],
+            "url": "Retailer/search"
+        }, {
+            "name": "Brand",
+            "type": "tags",
+            "tableRef": "brand",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter brand Name",
+            "id": "brand",
+            "validation": ["", "trim", ""],
+            "url": "Brand/search"
         }, {
             "name": "Email",
             "type": "text",
@@ -114,18 +150,6 @@
             "disabled": false,
             "validation": ["", "trim", ""],
             "url": ""
-        }, {
-            "name": "AccessLevel",
-            "type": "tags",
-            "tableRef": "accessLevel",
-            "placeholder": "Enter Title",
-            "id": "status",
-            "validation": ["", "trim", ""],
-            "url": "",
-            "dropDownField": "",
-            "dropDownType": "single",
-            "onView": true,
-            "dropDown": ["User", "Admin"]
         }, {
             "name": "All Addresses",
             "type": "box",

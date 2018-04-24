@@ -125,7 +125,7 @@
             "dropDownField": "",
             "dropDownType": "single",
             "onView": true,
-            "dropDown": ["User", "Admin"]
+            "dropDown": ["Retailer", "Admin", "Brand"]
         }, {
             "name": "All Addresses",
             "type": "box",
