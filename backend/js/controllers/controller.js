@@ -305,12 +305,22 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
 
         $scope.getAllItems = function (keywordChange) {
             $scope.totalItems = undefined;
+            var filter = {};
             if (keywordChange) {
                 $scope.currentPage = 1;
             }
+            var userData = $.jStorage.get("profile")
+            if (userData && userData.accessLevel) {
+                if (userData.accessLevel == "Brand" || userData.accessLevel == "Retailer") {
+
+                    filter[_.lowerCase(userData.accessLevel)] = userData[_.lowerCase(userData.accessLevel)]
+                }
+
+            }
             NavigationService.search($scope.json.json.apiCall.url, {
                     page: $scope.currentPage,
-                    keyword: $scope.search.keyword
+                    keyword: $scope.search.keyword,
+                    filter: filter
                 }, ++i,
                 function (data, ini) {
                     if (ini == i) {

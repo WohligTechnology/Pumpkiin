@@ -10,27 +10,49 @@ myApp.factory('NavigationService', function ($http) {
             name: "Users",
             classis: "active",
             sref: "#!/page/viewUser//",
-            icon: "phone"
+            icon: "phone",
+            access: false
         },
         {
             name: "Product",
             classis: "active",
-            sref: "#!/page/viewProduct//"
+            sref: "#!/page/viewProduct//",
+            access: false
+
         },
         {
             name: "Brands",
             classis: "active",
-            sref: "#!/page/viewBrand//"
+            sref: "#!/page/viewBrand//",
+            access: false
+
         },
         {
             name: "Retailer",
             classis: "active",
-            sref: "#!/page/viewRetailer//"
+            sref: "#!/page/viewRetailer//",
+            access: false
+
         }
     ];
 
     return {
         getnav: function () {
+            console.log("navigationnavigation", navigation[0].name)
+
+            var userData = $.jStorage.get("profile")
+            if (userData && userData.accessLevel) {
+                _.forEach(navigation, function (value) {
+                    console.log("valuevaluevaluevalue", value.access)
+                    if (userData.accessLevel == "Brand" || userData.accessLevel == "Retailer") {
+                        if (value.name == "Product") {
+                            value.access = true;
+                        }
+                    } else if (userData.accessLevel == "Admin") {
+                        value.access = true;
+                    }
+                })
+            }
             return navigation;
         },
 
@@ -49,6 +71,7 @@ myApp.factory('NavigationService', function ($http) {
             };
             $http.post(adminurl + 'user/profile', data).then(function (data) {
                 data = data.data;
+
                 if (data.value === true) {
                     $.jStorage.set("profile", data.data);
                     callback();

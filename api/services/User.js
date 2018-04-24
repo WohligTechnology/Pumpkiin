@@ -14,6 +14,14 @@ var schema = new Schema({
     email: {
         type: String
     },
+    brand: {
+        type: Schema.Types.ObjectId,
+        ref: 'Brand'
+    },
+    retailer: {
+        type: Schema.Types.ObjectId,
+        ref: 'Retailer'
+    },
     dob: {
         type: Date,
         excel: {
@@ -56,6 +64,7 @@ var schema = new Schema({
         type: String,
         default: ""
     },
+
     accessToken: {
         type: [String],
         index: true
@@ -71,8 +80,7 @@ var schema = new Schema({
     },
     accessLevel: {
         type: String,
-        default: "User",
-        enum: ['User', 'Admin']
+        enum: ['Retailer', 'Admin', 'Brand']
     },
     address: [{
         lineOne: String,
@@ -89,6 +97,9 @@ schema.plugin(deepPopulate, {
     populate: {
         'user': {
             select: 'name _id'
+        },
+        'retailer': {
+            select: ''
         }
     }
 });
@@ -97,7 +108,7 @@ schema.plugin(timestamps);
 
 module.exports = mongoose.model('User', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "user", "user"));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "user retailer", "user retailer"));
 var model = {
     add: function () {
         var sum = 0;
@@ -160,13 +171,14 @@ var model = {
         });
     },
     profile: function (data, callback, getGoogle) {
-        var str = "name email photo mobile accessLevel";
+        var str = "name email photo mobile accessLevel brand retailer";
         if (getGoogle) {
             str += " googleAccessToken googleRefreshToken";
         }
         User.findOne({
             accessToken: data.accessToken
         }, str).exec(function (err, data) {
+            console.log("datadatadatadatadata", data)
             if (err) {
                 callback(err);
             } else if (data) {
