@@ -98,6 +98,20 @@ myApp.service('JsonService', function ($http, TemplateService, $state, toastr, $
       }
       if (action && action.type == "page") {
         $state.go("page", sendTo);
+      }
+      if (action && action.type == "userdetail") {
+        if (action.fieldsToSend) {
+          var keyword = {};
+          _.each(action.fieldsToSend, function (n, key) {
+            keyword[key] = value[n];
+          });
+          console.log("consolidated keyword: ", keyword);
+          console.log("consolidated keyword: ", JSON.stringify(keyword));
+          sendTo.keyword = keyword._id;
+          // console.log("consolidated stateparams: ", sendTo);
+          // sendTo.keyword = JSON.stringify(sendTo.keyword);
+        }
+        $state.go("userdetail", sendTo);
       } else if (action && action.type == "apiCallConfirm") {
         globalfunction.confDel(function (value2) {
           if (value2) {

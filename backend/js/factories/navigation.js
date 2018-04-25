@@ -112,6 +112,7 @@ myApp.factory('NavigationService', function ($http) {
         },
 
         apiCall: function (url, formData, callback) {
+            console.log("urlurlurlurl", url)
             $http.post(adminurl + url, formData).then(function (data) {
                 data = data.data;
                 callback(data);

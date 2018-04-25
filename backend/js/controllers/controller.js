@@ -274,6 +274,133 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         // });
 
     })
+    .controller('UserDetailCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, $uibModal) {
+        $scope.json = JsonService;
+        $scope.template = TemplateService.changecontent("userdetail");
+        $scope.menutitle = NavigationService.makeactive("userdetail");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+        // console.log("$stateParams---", JSON.stringify($stateParams.keyword));
+        // var obj = JSON.parse($stateParams.keyword)._id;
+        var jsonData = null;
+        try {
+            jsonData = JSON.parse($stateParams.keyword)._id;
+        } catch (e) {
+            jsonData = $stateParams.keyword;
+        }
+        $scope.data = {};
+
+        $scope.data._id = jsonData;
+        NavigationService.apiCall("User/getOneUser",
+            $scope.data,
+            function (data) {
+
+                if (data.value === true) {
+                    console.log("datadatadatadatadata", data);
+                    $scope.formdata = data.data;
+                    // $scope.formdata.relations ? $scope.formdata.relations : $scope.formdata.relations = [];
+                    if (!_.isEmpty($scope.formdata.relations)) {
+                        console.log("inside if condition");
+                    } else {
+                        console.log("Inside else condition");
+                        $scope.formdata.relations = []
+                    }
+                }
+            });
+
+
+
+        $scope.getallList = function () {
+            console.log("Insied get all reatldusduik");
+        }
+        $scope.disable = function (data) {
+
+            $scope.formdata.isDisable = data;
+            $scope.datavalue = data;
+
+        }
+        $scope.saveUser = function (formdata) {
+            console.log("formdataformdataformdata", formdata);
+            NavigationService.apiCall("User/save", formdata, function (data) {
+                if (data.value === true) {
+                    $scope.formdata = data.data;
+                }
+            });
+
+
+            $state.go("page", {
+                id: "viewUser"
+            });
+
+        };
+        // $scope.allList = function (data) {
+        // console.log("d1111111111111111", data)
+        // if (data == 'Retailer') {
+        NavigationService.apiCall("Retailer/getAllRetailer", {},
+            function (data) {
+                if (data.value === true) {
+                    $scope.retailer = data.data;
+
+                }
+            });
+
+        // } else if (data == 'Brand') {
+        NavigationService.apiCall("Brand/getAllBrand", {},
+            function (data) {
+                if (data.value === true) {
+                    $scope.brand = data.data
+
+                }
+            });
+        //     }
+        // }
+        $scope.cancelEdit = function () {
+            console.log("**********")
+            $state.go("page", {
+                id: "viewUser"
+            });
+        }
+        $scope.editRel = function (index, data) {
+            $scope.relationData = data;
+            $scope.relIndex = index;
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'views/modal/relation.html',
+                size: 'lg',
+                scope: $scope
+            });
+            $scope.close = function (value) {
+                callback(value);
+                modalInstance.close("cancel");
+            };
+        }
+
+        $scope.deleteRel = function (index, data) {
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'views/modal/conf-delete.html',
+                size: 'sm',
+                scope: $scope,
+                backdrop: 'static',
+                keyboard: false
+            });
+            $scope.close = function (value) {
+                if (value) {
+                    data.splice(index, 1);
+                }
+                modalInstance.close("cancel");
+            };
+        };
+        $scope.saveRel = function () {
+            if ($scope.relIndex) {
+                $scope.formdata.relations[$scope.relIndex] = $scope.relationData;
+
+            } else {
+                $scope.formdata.relations.push($scope.relationData);
+            }
+        };
+
+    })
 
     .controller('ViewCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams) {
         $scope.json = JsonService;

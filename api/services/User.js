@@ -100,6 +100,9 @@ schema.plugin(deepPopulate, {
         },
         'retailer': {
             select: ''
+        },
+        'brand': {
+            select: ''
         }
     }
 });
@@ -108,8 +111,22 @@ schema.plugin(timestamps);
 
 module.exports = mongoose.model('User', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "user retailer", "user retailer"));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "user retailer brand", "user retailer brand"));
 var model = {
+    getOneUser: function (data, callback) {
+        User.findOne({
+            _id: data._id
+        }).deepPopulate('retailer brand').exec(function (err, found) {
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(found)) {
+                callback("noDataound", null);
+            } else {
+                callback(null, found);
+            }
+
+        });
+    },
     add: function () {
         var sum = 0;
         _.each(arguments, function (arg) {
