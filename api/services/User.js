@@ -127,6 +127,61 @@ var model = {
 
         });
     },
+    saveUser: function (data, callback) {
+
+        User.findOne({
+            _id: data._id
+        }).exec(function (err, found) {
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(found)) {
+                callback("noDataound", null);
+            } else {
+                if (data.accessLevel == 'Brand') {
+                    if (found.retailer) {
+                        data.retailer = null;
+                        User.saveData(data, function (err, data2) {
+                            if (err) {
+                                callback(err, data2);
+                            } else {
+                                callback(err, data2);
+                            }
+                        });
+                    } else {
+                        User.saveData(data, function (err, data2) {
+                            if (err) {
+                                callback(err, data2);
+                            } else {
+                                callback(err, data2);
+                            }
+                        });
+                    }
+                }
+                if (data.accessLevel == "Retailer") {
+                    if (found.brand) {
+                        data.brand = null;
+                        User.saveData(data, function (err, data2) {
+
+                            if (err) {
+                                callback(err, data2);
+                            } else {
+                                callback(err, data2);
+                            }
+                        });
+                    } else {
+                        User.saveData(data, function (err, data2) {
+                            if (err) {
+                                callback(err, data2);
+                            } else {
+                                callback(err, data2);
+                            }
+                        });
+                    }
+                }
+            }
+
+        });
+    },
     add: function () {
         var sum = 0;
         _.each(arguments, function (arg) {

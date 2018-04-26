@@ -321,7 +321,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         }
         $scope.saveUser = function (formdata) {
             console.log("formdataformdataformdata", formdata);
-            NavigationService.apiCall("User/save", formdata, function (data) {
+            NavigationService.apiCall("User/saveUser", formdata, function (data) {
                 if (data.value === true) {
                     $scope.formdata = data.data;
                 }

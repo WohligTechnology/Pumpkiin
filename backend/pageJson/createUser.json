@@ -126,6 +126,29 @@
             "dropDownType": "single",
             "onView": true,
             "dropDown": ["Retailer", "Admin", "Brand"]
+        },
+        {
+            "name": "Retailer",
+            "type": "tags",
+            "tableRef": "retailer",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter Retailer Name",
+            "id": "retailer",
+            "validation": ["", "trim", ""],
+            "url": "Retailer/search"
+        }, {
+            "name": "Brand",
+            "type": "tags",
+            "tableRef": "brand",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter brand Name",
+            "id": "brand",
+            "validation": ["", "trim", ""],
+            "url": "Brand/search"
         }, {
             "name": "All Addresses",
             "type": "box",
