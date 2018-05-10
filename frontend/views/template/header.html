@@ -1,14 +1,30 @@
 <header hide-on-scroll>
-    <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top">
+    <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top header-bg">
         <a class="navbar-brand" href="#">
-            <img src="img/logo.png" alt="logo" width="20">
+            <img src="img/header/PumpkiinLogo.png" alt="logo" width="100">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto" ng-include="template.menu"></ul>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <div class="product-search">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            </div>
+            <div class=" justify-content-end">
+                <ul class="list-inline nav navbar-nav navbar-right">
+                    <li class="list-inline-item">
+                        <img src="img/header/Ticket_circle-icon.png" alt="Ticket_circle-icon">
+                    </li>
+                    <li class="list-inline-item">
+                        <img src="img/header/Products_circle-icon.png" alt="Products_circle-icon">
+                    </li>
+                    <li class="list-inline-item"><img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon"></li>
+                    <li class="list-inline-item">
+                        <img src="img/header/Ticket_circle-icon.png" alt="Ticket_circle-icon">
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </header>

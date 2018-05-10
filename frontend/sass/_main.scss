@@ -20,6 +20,11 @@ $gray: #464a4c !default;
 $gray-light: #636c72 !default;
 $gray-lighter: #eceeef !default;
 $gray-lightest: #f7f7f9 !default;
+/**************/
+
+$darkblue: #142C5C !default;
+/*******************/
+
 // Reassign color vars to semantic color scheme
 $brand-primary: $blue !default;
 $brand-success: $green !default;
@@ -135,6 +140,26 @@ $dropdown-box-shadow: 0 .5rem 1rem rgba($black, .175) !default;
 // @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../../bower_components/bootstrap/scss/bootstrap";
 @import "other/font-fix";
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url("fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url("fonts/Roboto-Bold.ttf.ttf");
+}
+
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url("fonts/Roboto-Medium.ttf.ttf");
+}
+
+@font-face {
+    font-family: "Roboto-Light";
+    src: url("fonts/Roboto-Light.ttf.ttf");
+}
+
 body {
     padding-top: 70px;
 }
@@ -263,3 +288,5 @@ header {
     width: 100%;
     height: 100%;
 }
+
+/****************common classes*********************/

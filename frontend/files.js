@@ -47,4 +47,7 @@ module.exports = [
   'frontend/js/controllers/controller.js',
   'frontend/js/controllers/header-controller.js',
   'frontend/js/controllers/language-controller.js',
+  'frontend/views/content/landing/landingCtrl.js',
+  'frontend/views/content/productDetailRegistered/registeredCtrl.js',
+  'frontend/views/content/productDetailUnRegistered/unregisteredCtrl.js',
 ];

@@ -23,6 +23,22 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'HomeCtrl'
         })
+        .state('landing', {
+            url: "/landing",
+            templateUrl: tempateURL,
+            controller: 'LandingCtrl'
+        })
+        .state('productdetailregistered', {
+            url: "/productdetailregistered",
+            templateUrl: tempateURL,
+            controller: 'ProductDetailRegisteredCtrl'
+        })
+        .state('productdetailunregistered', {
+            url: "/productdetailunregistered",
+            templateUrl: tempateURL,
+            controller: 'ProductDetailUnRegisteredCtrl'
+        })
+
         .state('links', {
             url: "/links",
             templateUrl: tempateURL,
