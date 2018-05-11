@@ -49,12 +49,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'ProductRegistrationCtrl'
         })
-
-        .state('login', {
-            url: "/login",
-            templateUrl: tempateURL,
-            controller: 'LoginCtrl'
-        })
         .state('links', {
             url: "/links",
             templateUrl: tempateURL,
