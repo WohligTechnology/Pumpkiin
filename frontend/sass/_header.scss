@@ -1,0 +1,36 @@
+.header-bg {
+    background-color: $darkblue;
+}
+
+.user-profile {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.product-search {
+    position: relative;
+    input {
+        width: 500px;
+        border-radius: 20px;
+        height: 29px;
+        border: none;
+        font-size: 13px;
+        padding-left: 36px;
+        font-family: "Roboto-Regular";
+    }
+    input::placeholder {
+        font-size: 12px; // padding-left: 35px;
+        color: $gray;
+        font-family: "Roboto-Regular";
+    }
+    .search-icon {
+        position: absolute;
+        width: 31px;
+        padding: 10px;
+    }
+}
+
+.right-icon-width {
+    width: 23px;
+}

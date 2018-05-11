@@ -1,11 +1,20 @@
 <div class="container">
-    <h1>Form</h1>
+    <!--<h1>Form</h1>-->
+    <div>
+        <ui-select ng-model="superhero.selected">
+            <ui-select-match placeholder="Select or search a superhero in the list...">{{$select.selected}}</ui-select-match>
+            <ui-select-choices repeat="hero in getSuperheroes($select.search) | filter: $select.search">
+                <div ng-bind="hero"></div>
+            </ui-select-choices>
+        </ui-select>
+    </div>
     <!--<pre>{{data|json}}</pre>-->
     <!--<pre style="background: #b0deff;">{{formData.email|json}}</pre>-->
-    <form name="formData" class="form-group">
+    <!--<form name="formData" class="form-group">
         <div class="form-group">
             <label for="name">
-                <i class="far fa-user mr-1"></i>Name</label>
+                <i class="far fa-user mr-1"></i>
+                 Name</label>
             <input type="text" ng-model="data.name" class="form-control" id="name" placeholder="Name" required name="name">
             <div class="pull-right" ng-repeat="(field,value) in formData.name.$error" ng-show="formData.name.$touched">
                 <span class="label label-danger" ng-if="field=='required' && value">Please Enter Name</span>
@@ -45,13 +54,6 @@
             </div>
         </div>
         <button ng-click="submitForm()" class="btn btn-default" ng-disabled="formData.$invalid" promise-btn>Submit</button>
-    </form>
-</div>
+    </form>-->
 
-<h4>Custom icons</h4>
-<div ng-init="x = 5">
-    <span uib-rating ng-model="x" max="15" style="max-width:15px;" state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'"
-        aria-labelledby="custom-icons-1"></span>
-    <b>(
-        <i>Rate:</i> {{x}})</b>
 </div>

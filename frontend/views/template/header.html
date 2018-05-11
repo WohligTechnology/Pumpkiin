@@ -1,31 +1,38 @@
 <header hide-on-scroll>
-    <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top header-bg">
-        <a class="navbar-brand" href="#">
-            <img src="img/header/PumpkiinLogo.png" alt="logo" width="100">
+    <nav class="navbar navbar-expand-lg navbar-primary fixed-top bg-primary">
+        <a class="navbar-brand ml-4">
+            <img src="img/header/PumpkiinLogo.png" alt="logo" width="130">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-            <div class="product-search">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            </div>
-            <div class=" justify-content-end">
-                <ul class="list-inline nav navbar-nav navbar-right">
-                    <li class="list-inline-item">
-                        <img src="img/header/Ticket_circle-icon.png" alt="Ticket_circle-icon">
-                    </li>
-                    <li class="list-inline-item">
-                        <img src="img/header/Products_circle-icon.png" alt="Products_circle-icon">
-                    </li>
-                    <li class="list-inline-item"><img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon"></li>
-                    <li class="list-inline-item">
-                        <img src="img/header/Ticket_circle-icon.png" alt="Ticket_circle-icon">
-                    </li>
-                </ul>
-            </div>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline mr-auto mx-auto">
+                <div class="product-search">
+                    <img src="img/header/Search-icon.png" alt="Search-icon" class="search-icon">
+                    <input class="mr-sm-6" type="text" placeholder="Search for brands of product">
+                </div>
+            </form>
+            <ul class="navbar-nav  my-2 my-lg-0 mr-4">
+                <li class="list-inline-item nav-item right-icon-width mx-2">
+                    <img src="img/header/Ticket_circle-icon.png" alt="Ticket_circle-icon" class="w-100">
+                </li>
+                <li class="list-inline-item nav-item right-icon-width mx-2">
+                    <img src="img/header/Products_circle-icon.png" alt="Products_circle-icon" class="w-100">
+                </li>
+                <li class="list-inline-item nav-item right-icon-width mx-2"><img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon" class="w-100"></li>
+                <li class="list-inline-item nav-item mx-2">
+                    <div class="user-profile rounded-circle">
+                        <img src="img/header/profile.png" alt="Ticket_circle-icon" width="100%">
+                    </div>
+
+                </li>
+                <li class="list-inline-item nav-item ">
+                    <i class="fa fa-chevron-down  text-white pl-1" aria-hidden="true"></i>
+                </li>
+            </ul>
 
         </div>
-    </nav>
 </header>
