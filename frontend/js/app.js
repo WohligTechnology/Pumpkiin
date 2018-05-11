@@ -8,7 +8,8 @@ var myApp = angular.module('myApp', [
     'ngAnimate',
     'ngSanitize',
     'angularPromiseButtons',
-    'toastr'
+    'toastr',
+    'ui.select'
 ]);
 
 // Define all the routes below
@@ -43,7 +44,17 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'ProductDetailUnRegisteredCtrl'
         })
+        .state('productregistration', {
+            url: "/productregistration",
+            templateUrl: tempateURL,
+            controller: 'ProductRegistrationCtrl'
+        })
 
+        .state('login', {
+            url: "/login",
+            templateUrl: tempateURL,
+            controller: 'LoginCtrl'
+        })
         .state('links', {
             url: "/links",
             templateUrl: tempateURL,

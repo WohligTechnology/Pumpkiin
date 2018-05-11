@@ -22,6 +22,7 @@ module.exports = [
   "bower_components/angular-toastr/dist/angular-toastr.js",
   "bower_components/angular-toastr/dist/angular-toastr.tpls.js",
   "bower_components/angular-promise-buttons/dist/angular-promise-buttons.js",
+  "bower_components/angular-ui-select/dist/select.js",
 
   //App.js
   'frontend/js/app.js',
@@ -50,4 +51,6 @@ module.exports = [
   'frontend/views/content/landing/landingCtrl.js',
   'frontend/views/content/productDetailRegistered/registeredCtrl.js',
   'frontend/views/content/productDetailUnRegistered/unregisteredCtrl.js',
+  'frontend/views/content/productRegistration/productRegistrationCtrl.js',
+  'frontend/views/content/login/login.js',
 ];
