@@ -1,0 +1,60 @@
+.bg-image {
+    background: url("../img/bg.jpg");
+    height: 89.7vh;
+    background-size: cover;
+    background-position: top left;
+    .bg_overlay {
+        background-color: rgba(255, 167, 78, 0.37);
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+
+.constant-text {
+    .custom_input {
+        position: relative;
+        padding-left: 17%;
+    }
+    &:before{
+        content: '+91';
+        padding-right: 5px;
+        position: absolute;
+        left: 7%;
+        top: 43%;
+        transform: translate(-50%,-50%);
+        z-index: 1;
+        border-right: solid 1px #333;
+    }
+}
+.login-btn{
+    border-radius: 20px;
+    background: $orange;
+    color: white;
+    border: solid 1px transparent;
+    &:hover{
+        background: white;
+        color: $orange;
+        border: solid 1px $orange;
+    }
+}
+.social{
+    .social_icon{
+        padding: 5px 10px;
+        text-align: center;
+        background-color: #4267B2;
+        border-radius: 50%;
+        border: solid 2px white;
+        color: white;
+    }
+    .socila-text{
+        padding: 0 10px;
+        border-top-left-radius: 60%;
+        border-bottom-left-radius: 60%;
+        color: white;
+        background-color: #4267B2;
+    }
+}

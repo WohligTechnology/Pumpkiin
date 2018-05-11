@@ -7,7 +7,7 @@
 $white: #fff !default;
 $black: #000 !default;
 $red: #d9534f !default;
-$orange: #f0ad4e !default;
+$orange: #FFA345 !default; //changed as per requirement
 $yellow: #ffd500 !default;
 $green: #5cb85c !default;
 $blue: #0275d8 !default;
@@ -77,6 +77,7 @@ Consolas,
 "Courier New",
 monospace !default;
 $font-family-base: $font-family-sans-serif !default;
+$header-text:0.9375rem !default; //added 15px for header
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
 $font-size-lg: 1.25rem !default;
 $font-size-sm: .875rem !default;
@@ -147,17 +148,17 @@ $dropdown-box-shadow: 0 .5rem 1rem rgba($black, .175) !default;
 
 @font-face {
     font-family: "Roboto-Bold";
-    src: url("fonts/Roboto-Bold.ttf.ttf");
+    src: url("../fonts/Roboto-Bold.ttf");
 }
 
 @font-face {
     font-family: "Roboto-Medium";
-    src: url("fonts/Roboto-Medium.ttf.ttf");
+    src: url("fonts/Roboto-Medium.ttf");
 }
 
 @font-face {
     font-family: "Roboto-Light";
-    src: url("fonts/Roboto-Light.ttf.ttf");
+    src: url("fonts/Roboto-Light.ttf");
 }
 
 body {
@@ -240,6 +241,22 @@ footer {
     min-height: 300px;
 }
 
+//custom created classes
+.fontRobotoBold {
+    font-family: Roboto-Bold;
+}
+.fontRobotoRegular {
+    font-family: Roboto-Regular;
+}
+.text-white {
+    color: white;
+}
+
+.background-white{
+    background-color: white;
+}
+
+//end of custom created classes
 //FLEX SLIDER FIXES
 .flex-direction-nav {
     a {
@@ -290,3 +307,15 @@ header {
 }
 
 /****************common classes*********************/
+
+.header-text {
+    font-size: $header-text;
+    a {
+        text-decoration: none;
+        color: #66686E;
+    }
+}
+
+.bg-white {
+    background-color: white;
+}
