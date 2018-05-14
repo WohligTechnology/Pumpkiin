@@ -17,8 +17,9 @@ $purple: #613d7c !default;
 // Create grayscale
 $gray-dark: #292b2c !default;
 $gray: #C1C3C5 !default;
+$dark-gray:#657D95 !default;
 $gray-light: #636c72 !default;
-$gray-lighter: #eceeef !default;
+$gray-lighter: #e3e7eb !default;
 $gray-lightest: #f7f7f9 !default;
 /**************/
 
@@ -143,7 +144,7 @@ $dropdown-box-shadow: 0 .5rem 1rem rgba($black, .175) !default;
 @import "other/font-fix";
 @font-face {
     font-family: "Roboto-Regular";
-    src: url("fonts/Roboto-Regular.ttf");
+    src: url("../fonts/Roboto-Regular.ttf");
 }
 
 @font-face {
@@ -153,16 +154,17 @@ $dropdown-box-shadow: 0 .5rem 1rem rgba($black, .175) !default;
 
 @font-face {
     font-family: "Roboto-Medium";
-    src: url("fonts/Roboto-Medium.ttf");
+    src: url("../fonts/Roboto-Medium.ttf");
 }
 
 @font-face {
     font-family: "Roboto-Light";
-    src: url("fonts/Roboto-Light.ttf");
+    src: url("../fonts/Roboto-Light.ttf");
 }
 
 body {
     padding-top: 70px;
+    background-color: $gray-lighter;
 }
 
 img.loading {
@@ -245,14 +247,16 @@ footer {
 .fontRobotoBold {
     font-family: Roboto-Bold;
 }
+
 .fontRobotoRegular {
     font-family: Roboto-Regular;
 }
+
 .text-white {
     color: white;
 }
 
-.background-white{
+.background-white {
     background-color: white;
 }
 
@@ -307,6 +311,14 @@ header {
 }
 
 /****************common classes*********************/
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
 
 .header-text {
     font-size: $header-text;

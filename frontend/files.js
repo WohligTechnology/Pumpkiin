@@ -53,4 +53,5 @@ module.exports = [
   'frontend/views/content/productDetailUnRegistered/unregisteredCtrl.js',
   'frontend/views/content/productRegistration/productRegistrationCtrl.js',
   'frontend/views/content/login/login.js',
+  'frontend/views/content/openTicket/openTicketCtrl.js',
 ];

@@ -49,6 +49,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'ProductRegistrationCtrl'
         })
+        .state('openticket', {
+            url: "/openticket",
+            templateUrl: tempateURL,
+            controller: 'OpenTicketCtrl'
+        })
         .state('links', {
             url: "/links",
             templateUrl: tempateURL,
