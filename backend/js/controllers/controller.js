@@ -283,30 +283,67 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         // console.log("$stateParams---", JSON.stringify($stateParams.keyword));
         // var obj = JSON.parse($stateParams.keyword)._id;
         var jsonData = null;
+        $scope.showEdit = false;
+        $scope.showCreate = false;
         try {
             jsonData = JSON.parse($stateParams.keyword)._id;
         } catch (e) {
             jsonData = $stateParams.keyword;
         }
         $scope.data = {};
+        if (jsonData) {
+            $scope.showEdit = true;
+            $scope.showCreate = false;
+            $scope.data._id = jsonData;
+            NavigationService.apiCall("User/getOneUser",
+                $scope.data,
+                function (data) {
 
-        $scope.data._id = jsonData;
-        NavigationService.apiCall("User/getOneUser",
-            $scope.data,
-            function (data) {
-
-                if (data.value === true) {
-                    console.log("datadatadatadatadata", data);
-                    $scope.formdata = data.data;
-                    // $scope.formdata.relations ? $scope.formdata.relations : $scope.formdata.relations = [];
-                    if (!_.isEmpty($scope.formdata.relations)) {
-                        console.log("inside if condition");
-                    } else {
-                        console.log("Inside else condition");
-                        $scope.formdata.relations = []
+                    if (data.value === true) {
+                        console.log("datadatadatadatadata", data);
+                        $scope.formdata = data.data;
+                        // $scope.formdata.relations ? $scope.formdata.relations : $scope.formdata.relations = [];
+                        if (!_.isEmpty($scope.formdata.relations)) {
+                            console.log("inside if condition");
+                        } else {
+                            console.log("Inside else condition");
+                            $scope.formdata.relations = []
+                        }
                     }
-                }
-            });
+                });
+            $scope.saveUser = function (formdata) {
+                console.log("00", formdata);
+                NavigationService.apiCall("User/saveUser", formdata, function (data) {
+                    if (data.value === true) {
+                        $scope.formdata = data.data;
+                    }
+                });
+
+
+                $state.go("page", {
+                    id: "viewUser"
+                });
+
+            };
+        } else {
+            $scope.showEdit = false;
+            $scope.showCreate = true;
+            $scope.saveUser = function (formdata) {
+                console.log("11", formdata);
+                NavigationService.apiCall("User/save", formdata, function (data) {
+                    if (data.value === true) {
+                        $scope.formdata = data.data;
+                    }
+                });
+
+
+                $state.go("page", {
+                    id: "viewUser"
+                });
+
+            };
+        }
+
 
 
 
@@ -319,20 +356,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             $scope.datavalue = data;
 
         }
-        $scope.saveUser = function (formdata) {
-            console.log("formdataformdataformdata", formdata);
-            NavigationService.apiCall("User/saveUser", formdata, function (data) {
-                if (data.value === true) {
-                    $scope.formdata = data.data;
-                }
-            });
 
-
-            $state.go("page", {
-                id: "viewUser"
-            });
-
-        };
         // $scope.allList = function (data) {
         // console.log("d1111111111111111", data)
         // if (data == 'Retailer') {

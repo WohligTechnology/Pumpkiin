@@ -191,52 +191,66 @@ var model = {
     },
     existsSocial: function (user, callback) {
         var Model = this;
+        console.log("existsSocial user: ", user);
         Model.findOne({
-            "oauthLogin.socialId": user.id,
-            "oauthLogin.socialProvider": user.provider,
+            "email": user.emails[0].value
         }).exec(function (err, data) {
+            console.log("existsSocial: ", err, data);
             if (err) {
-                console.log(err);
                 callback(err, data);
             } else if (_.isEmpty(data)) {
-                var modelUser = {
-                    name: user.displayName,
-                    accessToken: [uid(16)],
-                    oauthLogin: [{
-                        socialId: user.id,
-                        socialProvider: user.provider,
-                    }]
-                };
-                if (user.emails && user.emails.length > 0) {
+                var envEmailIndex = _.indexOf(env.emails, user.emails[0].value);
+                console.log("envEmailIndexenvEmailIndexenvEmailIndex", envEmailIndex)
+                if (envEmailIndex > 0) {
+                    var modelUser = {
+                        name: user.displayName,
+                        accessToken: [uid(16)],
+                        oauthLogin: [{
+                            socialId: user.id,
+                            socialProvider: user.provider,
+                        }]
+
+                    };
                     modelUser.email = user.emails[0].value;
-                    var envEmailIndex = _.indexOf(env.emails, modelUser.email);
-                    if (envEmailIndex >= 0) {
-                        modelUser.accessLevel = "Admin";
+                    modelUser.accessLevel = "Admin";
+                    modelUser.googleAccessToken = user.googleAccessToken;
+                    modelUser.googleRefreshToken = user.googleRefreshToken;
+                    if (user.image && user.image.url) {
+                        modelUser.photo = user.image.url;
                     }
+                    Model.saveData(modelUser, function (err, data2) {
+                        if (err) {
+                            callback(err, data2);
+                        } else {
+                            data3 = data2.toObject();
+                            delete data3.oauthLogin;
+                            delete data3.password;
+                            delete data3.forgotPassword;
+                            delete data3.otp;
+                            callback(err, data3);
+                        }
+                    });
+                } else {
+                    data = {}
+                    data.accessToken = []
+                    data.name = "noAccess"
+                    callback(err, data)
                 }
-                modelUser.googleAccessToken = user.googleAccessToken;
-                modelUser.googleRefreshToken = user.googleRefreshToken;
-                if (user.image && user.image.url) {
-                    modelUser.photo = user.image.url;
-                }
-                Model.saveData(modelUser, function (err, data2) {
-                    if (err) {
-                        callback(err, data2);
-                    } else {
-                        data3 = data2.toObject();
-                        delete data3.oauthLogin;
-                        delete data3.password;
-                        delete data3.forgotPassword;
-                        delete data3.otp;
-                        callback(err, data3);
-                    }
-                });
+
             } else {
+                console.log("00000000000000000000000000", data)
                 delete data.oauthLogin;
                 delete data.password;
                 delete data.forgotPassword;
                 delete data.otp;
                 data.googleAccessToken = user.googleAccessToken;
+                data.googleRefreshToken = user.googleRefreshToken;
+                data.name = user.displayName,
+                    data.accessToken = [uid(16)],
+                    data.oauthLogin = [{
+                        socialId: user.id,
+                        socialProvider: user.provider,
+                    }]
                 data.save(function () {});
                 callback(err, data);
             }
