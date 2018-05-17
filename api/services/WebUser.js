@@ -9,6 +9,7 @@ var schema = new Schema({
     },
     mobile: {
         type: Number,
+        unique: true
     },
     email: {
         type: String
@@ -58,8 +59,8 @@ var model = {
 
     },
 
-    verifyUserWithOtp: function (mobile, otp, name, email, callback) {
-        var otpNumber = (Math.random() + "").substring(2, 6);
+    verifyUserWithOtpWhileSignUP: function (mobile, otp, name, email, callback) {
+
         WebUser.findOneAndUpdate({
             mobile: mobile,
             otp: otp
@@ -68,6 +69,23 @@ var model = {
             email: email
         }, {
             new: true
+        }).exec(function (err, found) {
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(found)) {
+                callback("noDataFound", null);
+            } else {
+                callback(null, found);
+            }
+
+        });
+
+    },
+    verifyUserWithOtpWhileLogin: function (mobile, otp, callback) {
+
+        WebUser.find({
+            mobile: mobile,
+            otp: otp
         }).exec(function (err, found) {
             if (err) {
                 callback(err, null);
