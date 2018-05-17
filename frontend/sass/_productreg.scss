@@ -1,0 +1,61 @@
+.productreg{
+    &:before{
+        content: "\f0c5";
+        background-color: #ECF0F2;
+        width: 30px;
+        height: 30px;position: absolute;
+        left: 20%;
+        border-radius: 50%;
+        bottom: 0;
+    }
+}
+    .timeline {
+    position: relative;
+    border-bottom: solid 2px white;
+    width: 60%;
+    margin: 0 auto;
+    .circle{
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: -9px;
+        border-radius: 50%;
+        background-color: #CFCFCF;
+        border: solid 3px white;
+        &:before{
+            text-transform: uppercase;
+            font-size: 12px;
+            @extend .fontRobotoBold;
+            position: absolute;
+            bottom: -23px;
+        }
+    }
+    .circle1 {
+        left: 0;      
+        &:before {
+            content: 'product\00a0 details';
+            left: -45px;
+        }
+    }
+    .circle2 {
+        left: 33.33%;
+        &:before {
+            content: 'PURCHASE\00a0 DETAILS';
+            left: -47px;
+        }
+    }
+    .circle3{
+        left: 66.66%;
+        &:before {
+            content: 'PROTECTION\00a0 DETAILS';
+            left: -55px;
+        }
+    }
+    .circle4{
+        left: 99.99%;
+        &:before {
+            content: 'ACCESSORIES';
+            left: -32px;
+        }
+    }
+}
