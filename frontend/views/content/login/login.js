@@ -72,11 +72,16 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
         },
         $scope.sendOtp = function (data) {
             NavigationService.apiCallWithData("WebUser/sendOtp", data, function (res1) {
-                toastr.success('Otp send succefully')
-                $scope.formName.digit1 = "";
-                $scope.formName.digit2 = "";
-                $scope.formName.digit3 = "";
-                $scope.formName.digit4 = "";
+                if (res1.value == true) {
+                    toastr.success('Otp sent succefully')
+                    $scope.formName.digit1 = "";
+                    $scope.formName.digit2 = "";
+                    $scope.formName.digit3 = "";
+                    $scope.formName.digit4 = "";
+                } else {
+                    toastr.warning('Enter valid Mobile Number');
+                }
+
             });
         },
         $scope.checkChange = function (value) {
