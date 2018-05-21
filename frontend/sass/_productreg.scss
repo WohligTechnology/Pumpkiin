@@ -1,20 +1,25 @@
-.productreg{
-    &:before{
-        content: "\f0c5";
+.productreg {
+    position: relative;
+    &:before {
+        content: "";
+        background-image: url(../img/pdf.svg);
         background-color: #ECF0F2;
-        width: 30px;
-        height: 30px;position: absolute;
-        left: 20%;
+        border: solid 4px #ECF0F2;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        left: 7%;
         border-radius: 50%;
-        bottom: 0;
+        top: -20px;
     }
 }
-    .timeline {
+
+.timeline {
     position: relative;
     border-bottom: solid 2px white;
     width: 60%;
     margin: 0 auto;
-    .circle{
+    .circle {
         width: 20px;
         height: 20px;
         position: absolute;
@@ -22,7 +27,7 @@
         border-radius: 50%;
         background-color: #CFCFCF;
         border: solid 3px white;
-        &:before{
+        &:before {
             text-transform: uppercase;
             font-size: 12px;
             @extend .fontRobotoBold;
@@ -31,7 +36,7 @@
         }
     }
     .circle1 {
-        left: 0;      
+        left: 0;
         &:before {
             content: 'product\00a0 details';
             left: -45px;
@@ -44,18 +49,141 @@
             left: -47px;
         }
     }
-    .circle3{
+    .circle3 {
         left: 66.66%;
         &:before {
             content: 'PROTECTION\00a0 DETAILS';
             left: -55px;
         }
     }
-    .circle4{
+    .circle4 {
         left: 99.99%;
         &:before {
             content: 'ACCESSORIES';
             left: -32px;
         }
     }
+}
+
+.product-desc {
+    h6 {
+        color: #404A6E;
+    }
+    label {
+        @extend .fontRobotoRegular;
+        color: #657D95;
+    }
+    span {
+        color: #657D95;
+        font-size: 12px;
+    }
+    input {
+        @extend .fontRobotoLight;
+        border-radius: 3px;
+    }
+    .info-icon {
+        color: #D1D1D1;
+    }
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline;
+        padding: 20px 0;
+        &:hover .btn {
+            background-color: $orange;
+            color: white !important;
+        }
+        .btn {
+            @extend .fontRobotoLight;
+            @extend .orange-color;
+            border: 1px solid #C6CBD9;
+            background-color: white;
+            padding: 5px 22px;
+            border-radius: 5px;
+            font-size: 40px;
+        }
+        input[type=file] {
+            width: 67px;
+            height: 60px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+    }
+    
+}
+
+.save,
+.cancel,
+.add,.remainder {
+    float: right;
+    width: 25%;
+    .social_icon {
+        padding: 0px 5px;
+        border: solid 2px #ecf0f2;
+        background: $orange !important;
+    }
+    .social-text {
+        padding: 3px 0 !important;
+        background: $orange !important;
+    }
+    &:hover {
+        .social_icon {
+            background: white !important;
+            color: $orange !important;
+            border: solid 2px $orange !important;
+        }
+        .social-text {
+            padding: 3px 0 !important;
+            background: white !important;
+            color: $orange !important;
+            border: solid 1px $orange !important;
+        }
+    }
+}
+
+.cancel {
+    width: 10%;
+    position: absolute;
+    top: 15%;
+    right: 5%;
+    .social_icon {
+        padding: 0px 7px;
+        border: solid 2px #142c5b;
+    }
+}
+
+.add,.remainder {
+    width: 17%;
+    .social_icon {
+        padding: 3px 7px !important;
+    }
+}
+.main-users {
+    overflow: auto;
+    .existing-user {
+        background: #EBEDF1;
+        border-radius: 5px;
+        min-width: 19%;
+        color: #657D95;
+        .user-circle {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            border: solid 1px #707070;
+        }
+        .name-rel {
+            line-height: 18px;
+        }
+    }
+}
+
+.border-dashed {
+    border-top: dashed 1px #EBEDF1;
+}
+
+.timeline-active {
+    background-color: #14C177 !important;
 }

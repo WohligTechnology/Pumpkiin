@@ -19,7 +19,7 @@ $gray-dark: #292b2c !default;
 $gray: #C1C3C5 !default;
 $dark-gray:#657D95 !default;
 $gray-light: #636c72 !default;
-$gray-lighter: #e3e7eb !default;
+$gray-lighter: #ECF0F2 !default;
 $gray-lightest: #f7f7f9 !default;
 /**************/
 
@@ -129,7 +129,7 @@ $input-padding-y: .5rem !default;
 $input-line-height: 1.25 !default;
 $input-bg: $white !default;
 $input-bg-disabled: $gray-lighter !default;
-$input-color: $gray !default;
+$input-color: $gray-dark !default;
 // Dropdowns
 //
 // Dropdown menu container and contents.
@@ -246,26 +246,6 @@ footer {
     min-height: 300px;
 }
 
-//custom created classes
-.fontRobotoBold {
-    font-family: Roboto-Bold;
-}
-
-.fontRobotoRegular {
-    font-family: Roboto-Regular;
-}
-.background-blue{
-    background-color: $darkblue;
-}
-
-.text-white {
-    color: white;
-}
-
-.background-white {
-    background-color: white;
-}
-
 //end of custom created classes
 //FLEX SLIDER FIXES
 .flex-direction-nav {
@@ -318,14 +298,6 @@ header {
 
 /****************common classes*********************/
 
-.relative {
-    position: relative;
-}
-
-.absolute {
-    position: absolute;
-}
-
 .header-text {
     font-size: $header-text;
     a {
@@ -334,6 +306,43 @@ header {
     }
 }
 
-.bg-white {
-    background-color: white;
+.fontRobotoBold {
+    font-family: Roboto-Bold;
+}
+
+.fontRobotoRegular {
+    font-family: Roboto-Regular;
+}
+.fontRobotoLight{
+    font-family: Roboto-Light;
+}
+.background-blue{
+    background-color: $darkblue;
+}
+.orange-color{
+    color: $orange !important;
+}
+.border-rounded{
+border-radius: 10px;
+}
+.social {
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    .social_icon {
+        text-align: center;
+        border-radius: 50%;
+        border: solid 2px white;
+        color: white;
+        position: absolute;
+        left: -2px;
+        top: 2px;
+    }
+    .social-text {
+        padding: 8px 10px;
+        color: white;
+        width: 100%;
+        border-radius: 20px;
+        border: solid 1px transparent;
+    }
 }
