@@ -1,3 +1,9 @@
+var imgurl = " http://wohlig.io/api/upload/";
+
+var imgpath = imgurl + "readFile";
+var uploadurl = imgurl;
+
+
 myApp.factory('NavigationService', function ($http) {
     var navigation = [{
         name: "Home",

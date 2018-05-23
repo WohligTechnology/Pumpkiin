@@ -4,6 +4,7 @@ var myApp = angular.module('myApp', [
     'pascalprecht.translate',
     'angulartics',
     'angulartics.google.analytics',
+    'imageupload',
     'ui.bootstrap',
     'ngAnimate',
     'ngSanitize',

@@ -16,6 +16,7 @@ module.exports = [
   'bower_components/ui-bootstrap4/docs/ui-bootstrap.js',
   'bower_components/ui-bootstrap4/docs/ui-bootstrap-tpls.js',
   'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+  'bower_components/angularjs-imageupload-directive/public/javascripts/imageupload.js',
   'bower_components/angular-translate/angular-translate.js',
   'bower_components/lodash/lodash.js',
   'bower_components/angulartics/dist/angulartics.min.js',

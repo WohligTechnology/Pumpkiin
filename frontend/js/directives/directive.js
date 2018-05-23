@@ -101,21 +101,147 @@ myApp.directive('img', function ($compile, $parse) {
             }
         };
     })
+    .directive('uploadImage', function ($http, $filter, $timeout) {
+        return {
+            templateUrl: 'views/directive/uploadFile.html',
+            scope: {
+                model: '=ngModel',
+                type: "@type",
+                callback: "&ngCallback"
+            },
+            link: function ($scope, element, attrs) {
+                console.log("00000000000000", $scope.model);
+                $scope.showImage = function () {};
+                $scope.check = true;
+                if (!$scope.type) {
+                    $scope.type = "image";
+                }
+                $scope.isMultiple = false;
+                $scope.inObject = false;
+                if (attrs.multiple || attrs.multiple === "") {
+                    $scope.isMultiple = true;
+                    $("#inputImage").attr("multiple", "ADD");
+                }
+                if (attrs.noView || attrs.noView === "") {
+                    $scope.noShow = true;
+                }
+                // if (attrs.required) {
+                //     $scope.required = true;
+                // } else {
+                //     $scope.required = false;
+                // }
+                console.log("111111111111");
+                console.log("uploadurl", uploadurl)
+                $scope.$watch("image", function (newVal, oldVal) {
+                    console.log("222222222222");
+                    console.log(newVal, oldVal);
+                    isArr = _.isArray(newVal);
+                    console.log("2333");
+                    console.log("!isArr !isArr !isArr ", !isArr);
+                    console.log("newValnewValnewVal ", newVal);
+                    console.log("newVal.filenewVal.filenewVal.filenewVal.fil", newVal)
+                    if (!isArr && newVal && newVal.file) {
+                        console.log("444");
+                        $scope.uploadNow(newVal);
+                    } else if (isArr && newVal.length > 0 && newVal[0].file) {
 
+                        $timeout(function () {
+                            console.log(oldVal, newVal);
+                            console.log(newVal.length);
+                            _.each(newVal, function (newV, key) {
+                                if (newV && newV.file) {
+                                    $scope.uploadNow(newV);
+                                }
+                            });
+                        }, 100);
+
+                    }
+                });
+
+                if ($scope.model) {
+                    if (_.isArray($scope.model)) {
+                        $scope.image = [];
+                        _.each($scope.model, function (n) {
+                            $scope.image.push({
+                                url: n
+                            });
+                        });
+                    } else {
+                        if (_.endsWith($scope.model, ".pdf")) {
+                            $scope.type = "pdf";
+                        }
+                    }
+
+                }
+                if (attrs.inobj || attrs.inobj === "") {
+                    $scope.inObject = true;
+                }
+                $scope.clearOld = function () {
+                    console.log("inside butoon click000000000");
+                    $scope.model = [];
+                };
+                $scope.uploadNow = function (image) {
+                    $scope.uploadStatus = "uploading";
+
+                    var Template = this;
+                    image.hide = true;
+                    var formData = new FormData();
+                    formData.append('file', image.file, image.name);
+                    console.log("uploadurl", uploadurl)
+
+                    $http.post(uploadurl, formData, {
+                        headers: {
+                            'Content-Type': undefined
+                        },
+                        transformRequest: angular.identity
+                    }).then(function (data) {
+                        data = data.data;
+                        $scope.uploadStatus = "uploaded";
+                        if ($scope.isMultiple) {
+                            if ($scope.inObject) {
+                                $scope.model.push({
+                                    "image": data.data[0]
+                                });
+                            } else {
+                                if (!$scope.model) {
+                                    console.log("inside butoon 11111111");
+                                    $scope.clearOld();
+                                }
+                                $scope.model.push(data.data[0]);
+                            }
+                        } else {
+                            if (_.endsWith(data.data[0], ".pdf")) {
+                                $scope.type = "pdf";
+                            } else {
+                                $scope.type = "image";
+                            }
+                            $scope.model = data.data[0];
+                            console.log($scope.model, 'model means blob');
+
+                        }
+                        $timeout(function () {
+                            $scope.callback();
+                        }, 100);
+
+                    });
+                };
+            }
+        };
+    })
     .directive("moveNextOnMaxlength", function () {
         return {
             restrict: "A",
             link: function ($scope, element) {
                 element.on("input", function (e) {
-                   if (element.val().length == element.attr("maxlength")) {
-                       var $nextElement = element.next();
-                       if ($nextElement.length) {
-                           $nextElement[0].focus();
+                    if (element.val().length == element.attr("maxlength")) {
+                        var $nextElement = element.next();
+                        if ($nextElement.length) {
+                            $nextElement[0].focus();
                         }
                     }
                 });
             }
         }
     })
-    
+
 ;
