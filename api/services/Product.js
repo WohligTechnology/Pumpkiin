@@ -6,13 +6,19 @@ var schema = new Schema({
     productname: {
         type: String
     },
-    serialno: {
+    serialNo: {
+        type: Number
+    },
+    modelNo: {
         type: Number
     },
     retailer: {
         type: Schema.Types.ObjectId,
         ref: 'Retailer'
     },
+    productImages: [{
+        image: String,
+    }],
     purchasedate: {
         type: Date
     },
@@ -70,5 +76,7 @@ schema.plugin(timestamps);
 module.exports = mongoose.model('Product', schema);
 
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "brand retailer ", "brand retailer "));
-var model = {};
+var model = {
+
+};
 module.exports = _.assign(module.exports, exports, model);
