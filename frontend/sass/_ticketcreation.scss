@@ -1,0 +1,61 @@
+.export {
+    position: relative;
+    cursor: pointer;
+    background-color: white;
+    border: solid 2px $orange;
+    color: $orange;
+    border-radius: 20px;
+    padding: 5px 20px;
+    padding-left: 30px;
+    span {
+        border: solid 2px orange;
+        position: absolute;
+        left: -7px;
+        border-radius: 50%;
+        padding: 0 7px;
+        top: 3px;
+        background-color: white;
+    }
+    &:hover {
+        background-color: $orange;
+        color: white;
+        span {
+            border: solid 2px $gray-lighter;
+            background-color: orange;
+        }
+    }
+}
+
+.addpromain {
+    border-bottom: dashed 1px #C3CBD8;
+    .addproduct {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: solid 2px $orange;
+        margin: 20px auto;
+        .small-circle {
+            position: absolute;
+            bottom: -15px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: solid 2px $orange;
+        }
+    }
+    .addproducttext {
+        @extend .fontRobotoLight;
+        color: #657D95;
+    }
+}
+
+.support-btn {
+    cursor: pointer;
+    border: solid 1px #BBBFC1;
+    color: #BBBFC1;
+    @extend .bg-white;
+    font-size: 12px;
+    padding: 5px 25px;
+    border-radius: 20px;
+}

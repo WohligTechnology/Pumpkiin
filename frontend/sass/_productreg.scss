@@ -84,34 +84,33 @@
     .info-icon {
         color: #D1D1D1;
     }
-    .upload-btn-wrapper {
-        position: relative;
-        overflow: hidden;
-        display: inline;
-        padding: 20px 0;
-        &:hover .btn {
-            background-color: $orange;
-            color: white !important;
-        }
-        .btn {
-            @extend .fontRobotoLight;
-            @extend .orange-color;
-            border: 1px solid #C6CBD9;
-            background-color: white;
-            padding: 5px 22px;
-            border-radius: 5px;
-            font-size: 40px;
-        }
-        input[type=file] {
-            width: 67px;
-            height: 60px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-        }
-    }
     
+}
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline;
+    &:hover .btn {
+        background-color: $orange;
+        color: white !important;
+    }
+    .btn {
+        @extend .fontRobotoLight;
+        @extend .orange-color;
+        border: 1px solid #C6CBD9;
+        background-color: white;
+        padding: 5px 22px;
+        border-radius: 5px;
+        font-size: 40px;
+    }
+    input[type=file] {
+        width: 67px;
+        height: 60px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
 }
 
 .save,

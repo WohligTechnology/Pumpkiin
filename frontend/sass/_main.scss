@@ -319,11 +319,35 @@ header {
 .background-blue{
     background-color: $darkblue;
 }
+.orange-border{
+    border: solid 1px $orange;
+}
 .orange-color{
     color: $orange !important;
 }
 .border-rounded{
 border-radius: 10px;
+}
+.button{
+    border: solid 1px transparent;
+    border-radius: 20px;
+    color: white !important;
+}
+.orange-btn{
+background-color: #FFA345;
+&:hover{
+    color: #FFA345 !important;
+    border: solid 1px #FFA345;
+    background-color: white;
+}
+}
+.green-btn{
+    background-color: #14C177;
+    &:hover{
+        color: #14C177 !important;
+        border: solid 1px #14C177;
+        background-color: white;
+    }
 }
 .social {
     position: relative;

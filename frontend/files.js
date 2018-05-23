@@ -1,6 +1,7 @@
 module.exports = [
   //JS & jQuery Libs
   'bower_components/jquery/dist/jquery.min.js',
+  'bower_components/popper.js/dist/umd/popper.min.js',
   'bower_components/bootstrap/dist/js/bootstrap.min.js',
   'bower_components/fancybox/dist/jquery.fancybox.js',
   'bower_components/smart-app-banner/smart-app-banner.js',
@@ -23,7 +24,6 @@ module.exports = [
   "bower_components/angular-toastr/dist/angular-toastr.tpls.js",
   "bower_components/angular-promise-buttons/dist/angular-promise-buttons.js",
   "bower_components/angular-ui-select/dist/select.js",
-  "bower_components/async/dist/async.js",
 
   //App.js
   'frontend/js/app.js',
@@ -53,6 +53,7 @@ module.exports = [
   'frontend/views/content/productDetailRegistered/registeredCtrl.js',
   'frontend/views/content/productDetailUnRegistered/unregisteredCtrl.js',
   'frontend/views/content/productRegistration/productRegistrationCtrl.js',
+  'frontend/views/content/ticketCreation/ticketcreation.js',
   'frontend/views/content/login/login.js',
   'frontend/views/content/openTicket/openTicketCtrl.js',
 ];

@@ -4,10 +4,13 @@
 @import "../../bower_components/angular-promise-buttons/src/styles/style";
 @import "../../bower_components/angular-toastr/dist/angular-toastr";
 @import "../../bower_components/angular-ui-select/dist/select";
+@import "../../bower_components/popper.js/docs/css/popper";
 /****** Please Import Libraries Above This!!!!!! ******/
 
 @import "main";
 @import "productreg";
+@import "openTicket";
+@import "ticketcreation";
 @import "../views/content/login/login";
 @import "other/fancybox-override";
 @import "responsive/xl";

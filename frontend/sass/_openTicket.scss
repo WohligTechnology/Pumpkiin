@@ -1,0 +1,16 @@
+.openticket-circle {
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: solid 5px $orange;
+    background: white;
+    margin: 0 auto;
+    &:hover {
+        background: $orange;
+        border: solid 5px $orange;
+        i{
+            color: white !important;
+        }
+    }
+}
