@@ -19,16 +19,14 @@ var schema = new Schema({
     productImages: [{
         image: String,
     }],
+    purchaseproof: [{
+        proofImage: String,
+    }],
     purchasedate: {
         type: Date
     },
-    warrantyperiod: {
-        type: String
-    },
-    warrantyenddate: {
-        type: Date
-    },
-    purchasprice: {
+
+    purchaseprice: {
         type: String
     },
     confirmationcode: {
@@ -40,8 +38,18 @@ var schema = new Schema({
     },
     localsupport: [{
         name: String,
-        contact: Number,
+        contact: Date,
         email: String
+    }],
+    warrantyDetails: [{
+        warrantyPeriod: String,
+        warrantyExpDate: Date,
+        warrantyProof: String
+    }],
+    insuranceDetails: [{
+        insurancePeriod: String,
+        insuranceExpDate: Date,
+        insuranceProof: String
     }],
     warrentystatus: {
         type: String
@@ -77,6 +85,27 @@ module.exports = mongoose.model('Product', schema);
 
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "brand retailer ", "brand retailer "));
 var model = {
+    saveProduct: function (data, callback) {
+        Product.saveData(data, function (err, created) {
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(created)) {
+                callback(null, "noDatafound");
+            } else {
+                Product.findOne({
+                    _id: data._id
+                }, function (err, created) {
+                    if (err) {
+                        callback(err, null);
+                    } else if (_.isEmpty(created)) {
+                        callback(null, "noDataound");
+                    } else {
 
+                        callback(null, created);
+                    }
+                });
+            }
+        });
+    },
 };
 module.exports = _.assign(module.exports, exports, model);
