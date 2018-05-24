@@ -6,11 +6,23 @@
     border: solid 5px $orange;
     background: white;
     margin: 0 auto;
+    .showdefault{
+        display: block;
+    }
+    .showhover{
+        direction: none;
+    }
     &:hover {
         background: $orange;
         border: solid 5px $orange;
         i{
             color: white !important;
+        }
+        .showdefault{
+            display: none;
+        }
+        .showhover{
+            direction: block;
         }
     }
 }
