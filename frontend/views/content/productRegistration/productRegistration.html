@@ -45,55 +45,48 @@
                             <button class="btn">+</button>
                             <input type="file" name="myfile" />
                         </div>
-                        <div class="upload-btn-wrapper mx-1">
-                            <button class="btn">+</button>
-                            <input type="file" name="myfile" />{{product.$invalid}}
-                        </div>
-                        <div class="upload-btn-wrapper mx-1">
-                            <button class="btn">+</button>
-                            <input type="file" name="myfile" />
-                        </div>
-                        <div class="upload-btn-wrapper mx-1">
-                            <button class="btn">+</button>
-                            <input type="file" name="myfile" />
-                        </div>
-                        <div class="upload-btn-wrapper mx-1">
-                            <button class="btn">+</button>
-                            <input type="file" name="myfile" />
+                        <div ng-if=data.getImages>
+                            <ul class="list-inline" ng-if="data.getImages">
+                                <li class="list-inline-item" ng-repeat="img in data.getImages">
+                                    <img src="{{img.image |uploadpath}}" class="img-fluid" />
+                                </li>
+                            </ul>
+
                         </div>
                         <div class="form-group" fields>
                             <label>Image</label>
-                            <upload-image multiple noView ng-model="data.images"></upload-image>
+                            <upload-image multiple ng-model="data.images"></upload-image>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <fieldset class="d-flex social m-3 save" ng-click="saveProduct(data)" disabled>
+
+        <fieldset class="d-flex social m-3 save" ng-click="saveProduct(data)" ng-disabled='product.$invalid'>
             <span class="social_icon"><i class="fas fa-save"></i></i></span>
-            <div class="social-text">Save and Continue</div>{{product.$invalid}}
+            <div class="social-text">Save and Continue</div>
         </fieldset>
     </form>
 </div>
 
 <div class="container my-1" ng-if="activePage=='circle2'">
-    <form>
+    <form name="purchase">
         <div class="bg-white mx-3 p-4 border-rounded product-desc productreg">
             <h6 class="text-uppercase fontRobotoBold">PURCHASE DETAILS<span class="float-right info-icon"><i class="fas fa-info-circle"></i></span></h6>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Purchase Date</label>
-                    <input class="form-control form-control-sm" type="date">
+                    <input ng-model="data.purchasedate" name="date" class="form-control form-control-sm" type="date" required>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Purchase Price</label>
-                    <input class="form-control form-control-sm" type="text">
+                    <input ng-model="data.purchaseprice" name="price" class="form-control form-control-sm" type="text" required>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Retailer</label>
-                    <input class="form-control form-control-sm" type="text">
+                    <input ng-model="data.retailer" name="retailer" class="form-control form-control-sm" type="text">
                 </div>
             </div>
             <div class="row form-group">
@@ -104,26 +97,19 @@
                             <button class="btn">+</button>
                             <input type="file" name="myfile" />
                         </div>
-                        <div class="upload-btn-wrapper mx-1">
-                            <button class="btn">+</button>
-                            <input type="file" name="myfile" />
-                        </div>
-                        <div class="upload-btn-wrapper mx-1">
-                            <button class="btn">+</button>
-                            <input type="file" name="myfile" />
-                        </div>
-                        <div class="upload-btn-wrapper mx-1">
-                            <button class="btn">+</button>
-                            <input type="file" name="myfile" />
-                        </div>
-                        <div class="upload-btn-wrapper mx-1">
-                            <button class="btn">+</button>
-                            <input type="file" name="myfile" />
+                        <div ng-if=data.getImages>
+                            <ul class="list-inline" ng-if="data.getImages">
+                                <li class="list-inline-item" ng-repeat="img in data.getPurchaseImages">
+                                    <img src="{{img.proofImage |uploadpath}}" class="img-fluid" />
+                                </li>
+                            </ul>
+
                         </div>
                         <div class="form-group" fields>
-                            <label>Image</label> {{formdata}}
-                            <upload-image multiple ng-model="formdata.photo"></upload-image>
+                            <label>Image</label>
+                            <upload-image multiple ng-model="data.images"></upload-image>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -140,8 +126,8 @@
                 <div class="d-flex align-items-center existing-user p-2 mb-3 mr-3" ng-repeat="user in addeduser">
                     <div class="user-circle"></div>
                     <div class="mx-2 fontRobotoRegular name-rel">
-                        <div>{{user.name}}</div><span class="fontRobotoLight">{{user.relation}}</span></div>
-                    <div class="fontRobotoLight"><i class="fas fa-times"></i></div>
+                        <div>{{user.memberId.name}}</div><span class="fontRobotoLight">{{user.memberId.relation}}</span></div>
+                    <div ng-click="removedUser(user.memberId)" class="fontRobotoLight"><i class="fas fa-times"></i></div>
                 </div>
             </div>
             <h6 class="text-uppercase fontRobotoBold pt-3 border-dashed">ADD NEW USER</h6>
@@ -149,39 +135,39 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Name</label>
                     <div class=" d-flex">
-                        <input class="form-control form-control-sm w-50 mr-2" type="text" required>
-                        <input class="form-control form-control-sm w-50" type="text" required>
+                        <input ng-model="userData.name" class="form-control form-control-sm w-50 mr-2" type="text" required>
+                        <input ng-model="userData.lastname" class="form-control form-control-sm w-50" type="text" required>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Email</label>
-                    <input class="form-control form-control-sm" type="email" required>
+                    <input ng-model="userData.email" class="form-control form-control-sm" type="email" required>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Mobile Number</label>
-                    <input class="form-control form-control-sm" type="number" required>
+                    <input ng-model="userData.mobile" class="form-control form-control-sm" type="number" required>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">NickName</label>
-                    <input class="form-control form-control-sm" type="text" required>
+                    <input ng-model="userData.nickName" class="form-control form-control-sm" type="text" required>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Relationship</label>
-                    <input class="form-control form-control-sm" type="text" required>
+                    <input ng-model="userData.relation" class="form-control form-control-sm" type="text" required>
                 </div>
             </div>
-            <div class="row form-group">
+            <div class="row form-group" ng-click="addUser(userData)">
                 <div class="d-flex social m-3 add">
                     <span class="social_icon"><i class="fas fa-plus"></i></span>
                     <div class="social-text">Add User</div>
                 </div>
             </div>
         </div>
-        <fieldset class="d-flex social m-3 save">
+        <fieldset class="d-flex social m-3 save" ng-click="savepurchaseDetails(data)">
             <span class="social_icon"><i class="fas fa-save"></i></i></span>
             <div class="social-text">Save and Continue</div>
         </fieldset>
@@ -196,7 +182,7 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Period</label>
                     <div class="d-flex">
-                        <input class="form-control form-control-sm w-50 mr-2" type="text" required>
+                        <input ng-model="warrantyDetails.warrantyPeriod" class="form-control form-control-sm w-50 mr-2" type="text" required>
                         <input class="form-control form-control-sm w-50" type="text" required>
                     </div>
                 </div>
@@ -204,7 +190,7 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Expiry Date</label>
-                    <input class="form-control form-control-sm" type="date" required>
+                    <input ng-model="warrantyDetails.warrantyExpDate" class="form-control form-control-sm" type="date" required>
                 </div>
             </div>
             <div class="row form-group">
@@ -215,9 +201,13 @@
                             <button class="btn">+</button>
                             <input type="file" name="myfile" />
                         </div>
+                        <div class="form-group" fields>
+                            <label>Image</label>
+                            <upload-image ng-model="warrantyDetails.warrantyProof"></upload-image>
+                        </div>
                         <div class="d-flex social m-3 remainder">
                             <span class="social_icon"><i class="fas fa-plus"></i></span>
-                            <div class="social-text">Add Remainder</div>
+                            <div class="social-text" ng-click="addWarrantyDetails(warrantyDetails)">Add Remainder</div>
                         </div>
                     </div>
                 </div>
@@ -229,7 +219,7 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Period</label>
                     <div class="d-flex">
-                        <input class="form-control form-control-sm w-50 mr-2" type="text" required>
+                        <input ng-model="Insurance.insurancePeriod" class="form-control form-control-sm w-50 mr-2" type="text" required>
                         <input class="form-control form-control-sm w-50" type="text" required>
                     </div>
                 </div>
@@ -237,7 +227,7 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Expiry Date</label>
-                    <input class="form-control form-control-sm" type="date" required>
+                    <input ng-model="Insurance.insuranceExpDate" class="form-control form-control-sm" type="date" required>
                 </div>
             </div>
             <div class="row form-group">
@@ -248,9 +238,13 @@
                             <button class="btn">+</button>
                             <input type="file" name="myfile" />
                         </div>
+                        <div class="form-group" fields>
+                            <label>Image</label>
+                            <upload-image ng-model="Insurance.insuranceProof"></upload-image>
+                        </div>
                         <div class="d-flex social m-3 remainder">
                             <span class="social_icon"><i class="fas fa-plus"></i></span>
-                            <div class="social-text">Add Remainder</div>
+                            <div class="social-text" ng-click="addInsuranceDetails(Insurance)">Add Remainder</div>
                         </div>
                     </div>
                 </div>
@@ -258,7 +252,7 @@
         </div>
         <fieldset role="button" class="d-flex social m-3 save">
             <span class="social_icon"><i class="fas fa-save"></i></i></span>
-            <div class="social-text">Save and Continue</div>
+            <div class="social-text" ng-click="goToNxtTab()">Save and Continue</div>
         </fieldset>
     </form>
 </div>
