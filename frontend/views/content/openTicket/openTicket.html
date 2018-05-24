@@ -9,23 +9,22 @@
     <!--ticket list-->
     <div class="row justify-content-center">
         <div class="col-12 col-md-3 ticket-list">
-            <div ui-sref="productregistration" class="openticket-circle d-flex justify-content-center align-items-center my-3">
+            <div class="openticket-circle d-flex justify-content-center align-items-center my-3">
                 <i class="fas fa-ticket-alt fa-2x"></i>
             </div>
-            <span ui-sref="productregistration">OPEN TICKET</span>
+            <span>OPEN TICKET</span>
         </div>
         <div class="col-12 col-md-3 ticket-list">
-            <div class="openticket-circle d-flex justify-content-center align-items-center my-3">
-                <img src="img/openticket/addorange.png" class="showdefault">
-                <img src="img/openticket/addwhite.png" class="showhover">
+            <div ui-sref="productregistration" class="openticket-circle d-flex justify-content-center align-items-center my-3">
+                <i class="fas fa-plus fa-2x"></i>
             </div>
-            <span>ADD PRODUCT</span>
+            <span ui-sref="productregistration">ADD PRODUCT</span>
         </div>
         <div class="col-12 col-md-3 ticket-list">
-            <div class="openticket-circle d-flex justify-content-center align-items-center my-3">
+            <div class="openticket-circle d-flex justify-content-center align-items-center my-3" ng-click="remainderModalOpen()">
                 <i class="far fa-calendar-alt fa-2x"></i>
             </div>
-            <span>ADD REMINDER</span>
+            <span ng-click="remainderModalOpen()">ADD REMINDER</span>
         </div>
     </div>
     <!--end of list-->
