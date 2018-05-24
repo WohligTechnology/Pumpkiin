@@ -3,6 +3,26 @@ var schema = new Schema({
         type: String,
 
     },
+    nickName: {
+        type: String,
+
+    },
+    relation: {
+        type: String,
+
+    },
+
+    member: [{
+        memberId: {
+            type: Schema.Types.ObjectId,
+            ref: 'WebUser',
+            index: true
+        }
+    }],
+    lastname: {
+        type: String,
+
+    },
     otp: {
         type: String,
 
@@ -15,14 +35,77 @@ var schema = new Schema({
         type: String
     }
 });
+schema.plugin(deepPopulate, {
+    populate: {
+        'member.memberId': {
+            select: ''
+        },
 
-schema.plugin(deepPopulate, {});
+    }
+});
 schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('WebUser', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "member.memberId", "member.memberId"));
 var model = {
+    addUserRelationMember: function (userId, memberId, callback) {
+        WebUser.findOneAndUpdate({
+            _id: mongoose.Types.ObjectId(userId)
+        }, {
+            $push: {
+                'member': {
+                    memberId: memberId
+                }
+            }
+
+        }, {
+            new: true
+        }).deepPopulate('member.memberId').exec(function (err, found) {
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(found)) {
+                callback("noDataound", null);
+            } else {
+                callback(null, found);
+            }
+
+        });
+    },
+    removeUserRelationMember: function (userId, memberId, callback) {
+        WebUser.findOneAndUpdate({
+            _id: mongoose.Types.ObjectId(userId)
+        }, {
+            $pull: {
+                'member': {
+                    memberId: memberId
+                }
+            }
+
+        }, {
+            new: true
+        }).deepPopulate('member.memberId').exec(function (err, found) {
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(found)) {
+                callback("noDataound", null);
+            } else {
+                var user = {}
+                user._id = memberId;
+                WebUser.deleteData(user, function (err, created) {
+                    console.log("afte api response", created);
+                    if (err) {
+                        callback(err, null);
+                    } else if (_.isEmpty(found)) {
+                        callback(null, "noDataound");
+                    } else {
+                        callback(null, found);
+                    }
+                });
+            }
+
+        });
+    },
     verifyUser: function (mobile, callback) {
         WebUser.findOne({
             mobile: mobile

@@ -110,7 +110,6 @@ myApp.directive('img', function ($compile, $parse) {
                 callback: "&ngCallback"
             },
             link: function ($scope, element, attrs) {
-                console.log("00000000000000", $scope.model);
                 $scope.showImage = function () {};
                 $scope.check = true;
                 if (!$scope.type) {
@@ -130,24 +129,16 @@ myApp.directive('img', function ($compile, $parse) {
                 // } else {
                 //     $scope.required = false;
                 // }
-                console.log("111111111111");
-                console.log("uploadurl", uploadurl)
                 $scope.$watch("image", function (newVal, oldVal) {
-                    console.log("222222222222");
-                    console.log(newVal, oldVal);
+
                     isArr = _.isArray(newVal);
-                    console.log("2333");
-                    console.log("!isArr !isArr !isArr ", !isArr);
-                    console.log("newValnewValnewVal ", newVal);
-                    console.log("newVal.filenewVal.filenewVal.filenewVal.fil", newVal)
+
                     if (!isArr && newVal && newVal.file) {
-                        console.log("444");
+
                         $scope.uploadNow(newVal);
                     } else if (isArr && newVal.length > 0 && newVal[0].file) {
 
                         $timeout(function () {
-                            console.log(oldVal, newVal);
-                            console.log(newVal.length);
                             _.each(newVal, function (newV, key) {
                                 if (newV && newV.file) {
                                     $scope.uploadNow(newV);
@@ -177,7 +168,6 @@ myApp.directive('img', function ($compile, $parse) {
                     $scope.inObject = true;
                 }
                 $scope.clearOld = function () {
-                    console.log("inside butoon click000000000");
                     $scope.model = [];
                 };
                 $scope.uploadNow = function (image) {
@@ -187,7 +177,7 @@ myApp.directive('img', function ($compile, $parse) {
                     image.hide = true;
                     var formData = new FormData();
                     formData.append('file', image.file, image.name);
-                    console.log("uploadurl", uploadurl)
+
 
                     $http.post(uploadurl, formData, {
                         headers: {
@@ -204,7 +194,6 @@ myApp.directive('img', function ($compile, $parse) {
                                 });
                             } else {
                                 if (!$scope.model) {
-                                    console.log("inside butoon 11111111");
                                     $scope.clearOld();
                                 }
                                 $scope.model.push(data.data[0]);
