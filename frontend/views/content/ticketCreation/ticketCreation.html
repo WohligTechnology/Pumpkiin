@@ -1,67 +1,6 @@
-<div class="container my-3 product-creation">
-    <div class="filters">
-        <span>Sort : </span>
-        <div class="dropdown d-inline-block">
-            <button class="btn btn-default dropdown-toggle ml-2 pr-5 brandsproducts" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-          Brand<span class="dropdown-icon"><i class="fas fa-angle-down"></i></span>
-        </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </div>
-        <div class="dropdown d-inline-block">
-            <button class="btn btn-default dropdown-toggle ml-2 pr-5 pl-2 brandsproducts" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-          Product<span class="dropdown-icon"><i class="fas fa-angle-down"></i></span>
-        </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </div>
-        <button class="export float-right"><span><i class="far fa-file-pdf"></i></span>Export Product List</button>
-    </div>
-    <div class="row mt-4">
-        <div class="col col-md-9">
-            <div class="row no-gutters">
-                <div class="col-xs-12 col-md-3 mb-3 px-2">
-                    <div class="bg-white orange-border border-rounded text-center effectonhover">
-                        <div class="pb-5 addpromain">
-                            <div class="d-flex align-items-center justify-content-center addproduct">
-                                <i class="fas fa-plus fa-lg orange-color"></i>
-                                <div class="bg-white small-circle"></div>
-                            </div>
-                            <span class="addproducttext">Add New Product</span>
-                        </div>
-                        <button class="my-3 support-btn">SUPPORT</button>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-3 mb-3 px-2" ng-repeat="product in productInfo">
-                    <div class="bg-white border border-rounded text-center effectonhover">
-                        <span class="float-right product-icon"><i class="fas fa-ellipsis-v"></i></span>
-                        <div class="addedpromain">
-                            <div class="d-flex align-items-center justify-content-center addedproduct">
-                                <img src="{{product.largeimage}}" class="img-fluid large-img">
-                                <div class="background-blue small-circle">
-                                    <img src="{{product.smallimage}}">
-                                </div>
-                            </div>
-                            <div class="addedproducttext pb-2">
-                                <span class="product">{{product.productname}}</span><br>
-                                <span class="relation">{{product.relation}}</span><br>
-                                <img src="img/ticketCreation/warranty.png"><span class="expiry">{{product.warranty}}</span>
-                            </div>
-                        </div>
-                        <button class="my-3 addedsupport-btn">SUPPORT</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col col-md-3">
+<div class="container py-5">
+    <div class="row ticket-creation-main">
+        <div class="col col-md-3 openticketremainder">
             <div class="bg-white border-rounded p-3">
                 <div class="d-flex justify-content-between">
                     <div><img src="img/ticketCreation/openTicket.png"></div>
@@ -72,9 +11,10 @@
                 </div>
                 <div class="my-3 open-tickets">
                     <h4 class="d-inline">Open Tickets</h4>
-                    <span class="badge badge-style float-right">14</span>
+                    <span class="badge badge-style">14</span>
+                    <span><img src="img/ticketCreation/search.png"></span>
                 </div>
-                <div class="border-top listed-openTickets">
+                <div class="border-top listed-openTickets openticket">
                     <div class="d-flex py-1 element-list">
                         <div class="bullet"></div>
                         <div class="d-block pl-4 text-truncate">
@@ -108,49 +48,132 @@
                         <span class="float-right caret-style"><i class="fas fa-caret-right"></i></span>
                     </div>
                 </div>
-                <div class="text-right mt-2 view">View All <span class="pl-2"><i class="fas fa-caret-right"></i></span></div>
             </div>
             <div class="bg-white border-rounded p-3 mt-3 productreg">
-                    <div class="d-flex justify-content-between">
-                        <h4 class="orange-color">Remainders</h4>
-                        <div><img src="img/ticketCreation/addButton.png"></div>
-                    </div>
-                    <div class="border-top listed-openTickets">
-                        <div class="d-flex py-1 element-list">
-                            <div class="bullet"></div>
-                            <div class="d-block pl-4">
-                                <div class="product-title">Samsung s7 edge</div>
-                                <div class="date">12/2/2018</div>
-                            </div>
-                            <span class="float-right caret-style"><i class="fas fa-caret-right"></i></span>
-                        </div>
-                        <div class="d-flex py-1 element-list">
-                            <div class="bullet"></div>
-                            <div class="d-block pl-4">
-                                <div class="product-title">Samsung s7 edge</div>
-                                <div class="date">12/2/2018</div>
-                            </div>
-                            <span class="float-right caret-style"><i class="fas fa-caret-right"></i></span>
-                        </div>
-                        <div class="d-flex py-1 element-list">
-                            <div class="bullet"></div>
-                            <div class="d-block pl-4">
-                                <div class="product-title">Samsung s7 edge</div>
-                                <div class="date">12/2/2018</div>
-                            </div>
-                            <span class="float-right caret-style"><i class="fas fa-caret-right"></i></span>
-                        </div>
-                        <div class="d-flex py-1 element-list">
-                            <div class="bullet"></div>
-                            <div class="d-block pl-4">
-                                <div class="product-title">Samsung s7 edge</div>
-                                <div class="date">12/2/2018</div>
-                            </div>
-                            <span class="float-right caret-style"><i class="fas fa-caret-right"></i></span>
-                        </div>
-                    </div>
-                    <div class="text-right mt-2 view">View All <span class="pl-2"><i class="fas fa-caret-right"></i></span></div>
+                <div class="d-flex justify-content-between">
+                    <h4 class="orange-color">Remainders</h4>
+                    <div><img src="img/ticketCreation/addButton.png"></div>
                 </div>
+                <div class="border-top listed-openTickets remainderSection">
+                    <div class="d-flex py-1 element-list">
+                        <div class="bullet"></div>
+                        <div class="d-block pl-4">
+                            <div class="product-title">Samsung s7 edge</div>
+                            <div class="date">12/2/2018</div>
+                        </div>
+                        <span class="float-right caret-style"><i class="fas fa-caret-right"></i></span>
+                    </div>
+                    <div class="d-flex py-1 element-list">
+                        <div class="bullet"></div>
+                        <div class="d-block pl-4">
+                            <div class="product-title">Samsung s7 edge</div>
+                            <div class="date">12/2/2018</div>
+                        </div>
+                        <span class="float-right caret-style"><i class="fas fa-caret-right"></i></span>
+                    </div>
+                    <div class="d-flex py-1 element-list">
+                        <div class="bullet"></div>
+                        <div class="d-block pl-4">
+                            <div class="product-title">Samsung s7 edge</div>
+                            <div class="date">12/2/2018</div>
+                        </div>
+                        <span class="float-right caret-style"><i class="fas fa-caret-right"></i></span>
+                    </div>
+                    <div class="d-flex py-1 element-list">
+                        <div class="bullet"></div>
+                        <div class="d-block pl-4">
+                            <div class="product-title">Samsung s7 edge</div>
+                            <div class="date">12/2/2018</div>
+                        </div>
+                        <span class="float-right caret-style"><i class="fas fa-caret-right"></i></span>
+                    </div>
+                </div>
+                <div class="text-right mt-2 view">View All <span class="pl-2"><i class="fas fa-caret-right"></i></span></div>
+            </div>
+        </div>
+        <div class="col col-md-9">
+            <div class="background-blue border-rounded p-3 pb-5">
+                <div class="media">
+                    <div class="img-div"><img src="img/iphone.jpeg" class="img-fluid large-img">
+                        <div class="d-flex align-items-center justify-content-center small-img "><img src="img/ticketCreation/mobile.png" width="10"></div>
+                    </div>
+                    <div class="media-body pl-4 text-white">
+                        <h5 class="mt-0 fontRobotoMedium font20">Support ID: PSMS 6659<span class="float-right orange-color"><i class="fas fa-angle-up"></i></span></h5>
+                        <span class="fontRobotoBold font14">PRODUCT INFORMATION</span>
+                        <p class="fontRobotoRegular font20">Bose QuietComfort 25 <span class="pl-2 fontRobotoLight"> (Bose)</span></p>
+                        <div class="row fontRobotoRegular font14 info-div">
+                            <div class="col col-md-6">
+                                <p>
+                                    <span class="d-inline-block w-40">Model Number : </span><span class="d-inline-block w-60"> B - HDF 7585</span>
+                                </p>
+                                <p>
+                                    <span class="d-inline-block w-40">Purchase Price : </span><span class="d-inline-block w-60"> INR 18750</span>
+                                </p>
+                                <p class="d-flex align-items-top">
+                                    <span class="d-inline-block w-40">Store : </span><span class="d-inline-block w-60"> Croma Reatils, Malad West</span>
+                                </p>
+                                <p class="d-flex align-items-top">
+                                    <span class="d-inline-block w-40">Attached Files : </span><span class="d-inline-block w-60"><span class="d-inline-block img-uploaded"></span>
+                                    <span class="d-inline-block img-uploaded"></span><span class="d-inline-block img-uploaded"></span>
+                                    <span class="d-inline-block img-uploaded"></span>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="col col-md-6">
+                                <p>
+                                    <span class="d-inline-block w-40">Serial Number : </span><span class="d-inline-block w-60"> 10-0B 24589 265 78</span>
+                                </p>
+                                <p>
+                                    <span class="d-inline-block w-40">Purchase Date : </span><span class="d-inline-block w-60"> 23-11-2017</span>
+                                </p>
+                                <p class="d-flex align-items-top">
+                                    <span class="d-inline-block w-40">Warranty : </span><span class="d-inline-block w-60"> 23-11-2017 - 22-11-2018</span>
+                                </p>
+                                <p class="d-flex align-items-top">
+                                    <span class="d-inline-block w-40">Relation : </span><span class="d-inline-block w-60"><span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-2">Brother <i class="fas fa-times"></i></span>
+                                    <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-3">Mother <i class="fas fa-times"></i></span>
+                                    <button class="border-rounded background-orange border-0 text-white">Add New User <i class="fas fa-plus"></i></button>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white mt-2 p-4 border-rounded productreg">
+                <h6 class="fontRobotoLight d-inline">SUPPORT TIMELINE</h6>
+                <h6 class="fontRobotoLight d-inline orange-color float-right">SUPPORT STATUS: OPEN</h6>
+                <div class="my-5 mr-5 support-timeline">
+                    <div class="circle circle1 timeline-active" ng-click="makeActive('circle1')"></div>
+                    <div class="circle circle2" ng-click="makeActive('circle2')"></div>
+                    <div class="circle circle3" ng-click="makeActive('circle3')"></div>
+                    <div class="circle circle4" ng-click="makeActive('circle4')"></div>
+                    <div class="circle circle5" ng-click="makeActive('circle4')"></div>
+                    <div class="circle moving" ng-click="makeActive('circle4')"></div>
+                </div>
+            </div>
+            <form>
+                <div class="bg-white mt-2 p-4 border-rounded productreg">
+                    <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat">SUPPORT CHAT</h6>
+                    <div class="chat my-2">
+                        <div class="d-flex align-items-center mb-2 you">
+                            <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                            <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                        </div>
+                        <div class="d-flex align-items-center mb-2 flex-row-reverse me">
+                            <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                            <div class="mr-2 px-3 py-1 chat-content">The Charging drains ways in an hour</div>
+                        </div>
+                    </div>
+                    <div class="message-send-input">
+                        <img class="send" src="img/ticketCreation/submit.png">
+                        <img class="attachment" src="img/ticketCreation/attachment.png">
+                        <input class="form-control message" type="text" placeholder="Type your message ...">
+                    </div>
+                </div>
+                <div class="my-4 chat-button"><button class="remainder-btn"><i class="fas fa-calendar-alt mr-3"></i>ADD REMINDER</button><button class="float-right close-btn"><span class="close-icon"><i class="fas fa-times"></i></span>Close</button></div>
+            </form>
         </div>
     </div>
 </div>

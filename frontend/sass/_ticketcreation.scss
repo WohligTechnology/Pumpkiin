@@ -1,250 +1,252 @@
-.filters{
-    color: #8B8B8B;
-    .brandsproducts{
+.ticket-creation-main {
+    .img-div {
         position: relative;
-        border-radius: 20px;
-        color: #8B8B8B;
-        background-color: white;
-        border: solid 2px transparent;
-        padding: 2px;
-        padding-left: 15px;
-        .dropdown-icon{
-            border: solid 2px #ecf0f2;
-            position: absolute;
-            right: -7px;
-            border-radius: 50%;
-            padding: 4px 9px;
-            top: -4px;
-            background-color: white;
-        }
-    }
-    .dropdown-toggle{
-        &:after{
-            display: none;
-        }
-    }
-}
-.export {
-    position: relative;
-    cursor: pointer;
-    background-color: white;
-    border: solid 2px $orange;
-    color: $orange;
-    border-radius: 20px;
-    padding: 5px 20px;
-    padding-left: 30px;
-    span {
-        border: solid 2px orange;
-        position: absolute;
-        left: -7px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
-        padding: 0 7px;
-        top: 3px;
-        background-color: white;
-    }
-    &:hover {
-        background-color: $orange;
-        color: white;
-        span {
-            border: solid 2px $gray-lighter;
-            background-color: orange;
-        }
-    }
-}
-
-.addpromain {
-    border-bottom: dashed 1px #C3CBD8;
-    .addproduct {
-        position: relative;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        border: solid 2px $orange;
-        margin: 20px auto;
-        .small-circle {
-            position: absolute;
-            bottom: -15px;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            border: solid 2px $orange;
-        }
-    }
-    .addproducttext {
-        @extend .fontRobotoLight;
-        color: #657D95;
-    }
-}
-
-.addedpromain {
-    border-bottom: dashed 1px #C3CBD8;
-    .addedproduct {
-        position: relative;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        border: solid 2px #707070;
-        margin: 20px auto;
+        border: solid 2px white;
         .large-img {
             border-radius: 50%;
+            width: 80px;
         }
-        .small-circle {
+        .small-img {
             position: absolute;
-            bottom: -15px;
-            width: 35px;
-            height: 35px;
+            right: -15px;
+            top: 23px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             border: solid 2px white;
-            img {
-                width: 10px;
+            background-color: $darkblue;
+        }
+    }
+    .img-uploaded {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        margin: 0 3px;
+        background-color: white;
+    }
+    .openticketremainder {
+        .productreg {
+            &:before {
+                left: 40%;
+                top: -28px;
             }
         }
     }
-    .addedproducttext {
-        color: #657D95;
-        line-height: 20px;
-        img {
-            width: 12px;
-            margin-right: 3px;
-        }
-        .product {
-            @extend .fontRobotoLight;
-            font-size: 16px;
-        }
-        .relation {
-            font-size: 12px;
-            @extend .fontRobotoRegular;
-        }
-        .expiry {
-            font-size: 10px;
-            color: #14C177;
-            @extend .fontRobotoRegular;
-        }
-    }
-}
-
-.support-btn {
-    cursor: pointer;
-    border: solid 1px #BBBFC1;
-    color: #BBBFC1;
-    @extend .bg-white;
-    font-size: 12px;
-    padding: 5px 25px;
-    border-radius: 20px;
-}
-
-.addedsupport-btn {
-    cursor: pointer;
-    border: solid 1px $orange;
-    color: $orange;
-    @extend .bg-white;
-    font-size: 12px;
-    padding: 5px 25px;
-    border-radius: 20px;
-}
-
-.product-icon {
-    padding: 8px;
-    font-size: 12px;
-    color: #9A9A9A;
-    position: absolute;
-    right: 10px;
-}
-
-.effectonhover {
-    cursor: pointer;
-    &:hover {
-        box-shadow: 0 4px 24px rgba(108, 117, 125, 0.58);
-        .addedsupport-btn {
-            color: white;
-            background-color: $orange !important;
-        }
-    }
-}
-
-.closed-text {
-    position: relative;
-    .notification {
-        position: absolute;
-        top: -6px;
-        right: -4px;
-        width: 20px;
-        height: 20px;
-        font-size: 12px;
-        font-weight: bold;
-        text-align: center;
-        border-radius: 50%;
-        border: solid 2px white;
-        background-color: #14C177;
-        color: white;
-    }
-}
-
-.open-tickets {
-    font-family: Roboto-Regular;
-    color: #657D95;
-    .badge-style {
-        font-size: 10px;
-        background-color: $orange;
-        color: white;
-        padding: 5px 15px;
-        border-radius: 15px;
-    }
-}
-
-.listed-openTickets {
-    height: 148px;
-    overflow: auto;
-    &::-webkit-scrollbar {
-        width: 3px;
-        background: transparent;
-        /* optional: just make scrollbar invisible */
-    }
-    /* optional: show position indicator in red */
-    &::-webkit-scrollbar-thumb {
-        background: #CFD7DB;
-        border-radius: 20px;
-    }
-    .element-list {
-        position: relative;
-        border-bottom: dashed 1px #B9C3C8;
-        .bullet {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: $orange;
-            position: absolute;
-            top: 28px;
-        }
-        .caret-style {
-            color: #B9C3C8;
-            position: absolute;
-            right: 8px;
-            top: 20px;
-        }
-        .product-title,
-        .date {
-            color: #B9C3C8;
-        }
-        .product-title {
-            font-size: 20px;
-        }
-        .date {
-            font-size: 14px;
-        }
-    }
-}
-
-.product-creation {
     .productreg {
         &:before {
-            left: 40%;
-            top: -27px;
-            border: solid 5px #ECF0F2;
-            background-image: url(../img/pdf.svg);
+            left: 4%;
+            top: -23px;
+            border: solid 6px #ECF0F2;
         }
     }
-    .view {
-        color: #B9C3C8;
+    .openticket {
+        height: 500px;
     }
+    .remainderSection {
+        height: 148px;
+    }
+    .info-div{
+        height: 200px;
+        overflow-y: auto;
+    }
+}
+
+.support-timeline {
+    position: relative;
+    border-bottom: solid 2px #CFD7DB;
+    .circle {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: -9px;
+        border-radius: 50%;
+        background-color: #CFD7DB;
+        border: solid 3px #ECF0F2;
+        &:before {
+            font-size: 10px;
+            @extend .fontRobotoRegular;
+            position: absolute;
+            top: 20px;
+        }
+    }
+    .circle1 {
+        left: 0;
+        &:before {
+            content: '12/2/2018 \aTicket\00a0 Opened';
+            left: 0;
+        }
+    }
+    .circle2 {
+        left: 25%;
+        background-color: #14C177;
+        &:before {
+            content: '13/2/2018\aTicket\00a0 Accepted\00a0 by\00a0 brand';
+            left: 0;
+        }
+    }
+    .circle3 {
+        left: 50%;
+        background-color: #14C177;
+        &:before {
+            content: '12/2/2018 \a Brand\00a0 Replied\00a0 to\00a0 your\00a0 issue';
+            left: 0;
+        }
+    }
+    .circle4 {
+        left: 75%;
+        &:before {
+            content: '';
+            left: 0;
+        }
+    }
+    .circle5 {
+        left: 100%;
+        &:before {
+            content: '';
+            left: 0;
+        }
+    }
+    .moving {
+        left: 60%;
+        background-color: #142C5C;
+        &:before {
+            content: 'You\00a0 Replied\a  12/2/2018';
+            left: 0;
+            top: -35px;
+        }
+    }
+}
+
+.support-chat {
+    border-bottom: dashed 1px #CFD7DB;
+}
+
+.chat {
+    height: 70vh;
+    .image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #404A6E;
+        img {
+            border-radius: 50%;
+            width: 40px;
+        }
+    }
+    .chat-content {
+        color: #142C5C;
+        font-size: 14px;
+        border-radius: 20px;
+    }
+    .you {
+        .chat-content {
+            border-top-left-radius: 0;
+            background-color: rgba(255, 167, 77, 0.5);
+        }
+    }
+    .me {
+        .chat-content {
+            border-top-right-radius: 0;
+            background-color: rgba(20, 193, 119, 0.5);
+        }
+    }
+}
+
+.message {
+    background-color: #ECF0F2;
+    border-radius: 30px;
+    padding: 10px 20px;
+    padding-right: 100px;
+}
+
+.message::-webkit-input-placeholder {
+    color: #8EA1B4 !important;
+    font-family: Roboto-Regular;
+    font-size: 14px !important;
+}
+
+.message:-moz-placeholder {
+    /* Firefox 18- */
+    font-family: Roboto-Regular;
+    color: #8EA1B4 !important;
+    font-size: 14px !important;
+}
+
+.message::-moz-placeholder {
+    /* Firefox 19+ */
+    font-family: Roboto-Regular;
+    font-size: 14px !important;
+    color: #8EA1B4 !important;
+}
+
+.message:-ms-input-placeholder {
+    font-family: Roboto-Regular;
+    font-size: 14px !important;
+    color: red !important;
+}
+
+.message-send-input {
+    position: relative;
+    .send {
+        position: absolute;
+        right: 0;
+        width: 30px;
+        margin: 6px;
+    }
+    .attachment {
+        position: absolute;
+        right: 40px;
+        margin: 10px;
+    }
+}
+
+.chat-button {
+    .remainder-btn {
+        cursor: pointer;
+        padding: 5px 10px;
+        color: $orange;
+        background-color: white;
+        border: solid 1px $orange;
+        border-radius: 30px;
+        font-family: Roboto-Medium;
+        &:hover {
+            background-color: $orange;
+            color: white;
+        }
+    }
+    .close-btn {
+        cursor: pointer;
+        position: relative;
+        padding: 5px 30px;
+        padding-left: 40px;
+        color: white;
+        background-color: $orange;
+        border: solid 2px $orange;
+        border-radius: 30px;
+        font-family: Roboto-Medium;
+        .close-icon {
+            position: absolute;
+            left: -5px;
+            top: 2px;
+            padding: 1px 7px;
+            background: $orange;
+            border: solid 2px #ecf0f2;
+            border-radius: 50%;
+        }
+        &:hover {
+            color: $orange;
+            background-color: white;
+            .close-icon {
+                background: white;
+                border: solid 2px $orange;
+            }
+        }
+    }
+}
+
+.view {
+    color: #657D95;
 }

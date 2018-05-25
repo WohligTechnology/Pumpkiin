@@ -305,28 +305,50 @@ header {
         color: #66686E;
     }
 }
-
+.w-40{
+    width: 40%;
+}
+.w-60{
+    width: 60%;
+}
 .fontRobotoBold {
     font-family: Roboto-Bold;
 }
-
+.fontRobotoMedium {
+    font-family: Roboto-Medium;
+}
 .fontRobotoRegular {
     font-family: Roboto-Regular;
 }
 .fontRobotoLight{
     font-family: Roboto-Light;
 }
+.font14{
+    font-size: 14px;
+}
+.font20{
+    font-size: 20px;
+}
 .background-blue{
     background-color: $darkblue;
 }
+.background-orange{
+background-color: $orange;
+}
 .orange-border{
     border: solid 1px $orange;
+}
+.blue-color{
+    color: $darkblue;
 }
 .orange-color{
     color: $orange !important;
 }
 .border-rounded{
 border-radius: 10px;
+}
+.space-letter{
+    letter-spacing: 1px;
 }
 .button{
     border: solid 1px transparent;

@@ -27,7 +27,16 @@
     }
 }
 .reminder-btn{
+    cursor: pointer;
     border-radius: 20px;
     padding: 5px 45px;
     border: 0;
+    background-color: #142C5C;
+    color: white;
+    border: solid 1px transparent;
+    &:hover{
+        background-color: white;
+        color: #142C5C;
+        border: solid 1px #142C5C;
+    }
 }

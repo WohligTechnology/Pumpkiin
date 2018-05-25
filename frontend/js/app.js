@@ -50,6 +50,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'ProductRegistrationCtrl'
         })
+        .state('productListing', {
+            url: "/productListing",
+            templateUrl: tempateURL,
+            controller: 'ProductlistingCtrl'
+        })
         .state('ticketcreation', {
             url: "/ticketcreation",
             templateUrl: tempateURL,
