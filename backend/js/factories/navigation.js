@@ -16,7 +16,7 @@ myApp.factory('NavigationService', function ($http) {
         {
             name: "Product",
             classis: "active",
-            sref: "#!/page/viewProduct//",
+            uiSref: "viewproductpage",
             access: false
 
         },

@@ -10,7 +10,7 @@ var schema = new Schema({
         type: Number
     },
     modelNo: {
-        type: Number
+        type: String
     },
     retailer: {
         type: Schema.Types.ObjectId,
@@ -32,6 +32,12 @@ var schema = new Schema({
     confirmationcode: {
         type: String
     },
+    invoiceImage: {
+        type: String
+    },
+    warrantyCardImage: {
+        type: String
+    },
     status: {
         type: String,
         enum: ['Pending', 'Confirmed']
@@ -41,16 +47,13 @@ var schema = new Schema({
         contact: Date,
         email: String
     }],
-    warrantyDetails: [{
-        warrantyPeriod: String,
-        warrantyExpDate: Date,
-        warrantyProof: String
-    }],
-    insuranceDetails: [{
-        insurancePeriod: String,
-        insuranceExpDate: Date,
-        insuranceProof: String
-    }],
+    warrantyPeriod: String,
+    warrantyExpDate: Date,
+    warrantyProof: String,
+
+    insurancePeriod: String,
+    insuranceExpDate: Date,
+    insuranceProof: String,
     warrentystatus: {
         type: String
     },
@@ -58,9 +61,13 @@ var schema = new Schema({
         type: String
     },
 
-    type: {
+    doneBy: {
         type: String,
-        enum: ['Product', 'Accessory']
+        enum: ['Admin', 'User']
+    },
+    pendingRequest: {
+        type: Boolean,
+        default: false
     },
     productaccessorymap: [{
         product: String,

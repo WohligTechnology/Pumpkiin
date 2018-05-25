@@ -425,6 +425,293 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         };
 
     })
+    .controller('ViewProductPageCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, $uibModal) {
+        $scope.json = JsonService;
+        $scope.template = TemplateService.changecontent("viewproductpage");
+        $scope.menutitle = NavigationService.makeactive("viewproductpage");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+        $scope.changeInput = function () {
+            if ($scope.formData.input != '') {
+                $scope.formData.input = '';
+            } else {
+                $scope.formData.input = $scope.formData.input;
+            }
+        };
+        $scope.changeAll = function () {
+            $scope.formData = {};
+            $scope.formData.page = 1;
+            $scope.formData.type = '';
+            $scope.formData.keyword = '';
+            $scope.viewTable();
+        };
+        $scope.formData = {};
+        $scope.formData.page = 1;
+        $scope.formData.type = '';
+        $scope.formData.keyword = '';
+        // $scope.selectedStatus = 'All';
+        $scope.searchInTable = function (data) {
+            $scope.formData.page = 1;
+            if (data.length >= 2) {
+                $scope.formData.keyword = data;
+                $scope.viewTable();
+            } else if (data.length == '') {
+                $scope.formData.keyword = data;
+                $scope.viewTable();
+            }
+        }
+        $scope.viewTable = function () {
+            $scope.url = "Product/search";
+            $scope.formData.page = $scope.formData.page++;
+            NavigationService.apiCall($scope.url, $scope.formData, function (data) {
+                console.log("data.value", data);
+                if (data.value) {
+                    $scope.items = data.data.results;
+                    console.log(" $scope.items", $scope.items);
+                }
+
+                $scope.totalItems = data.data.total;
+                $scope.maxRow = data.data.options.count;
+            });
+        }
+        $scope.viewTable();
+
+
+
+
+
+
+
+    })
+    .controller('EditProductPageCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, $uibModal) {
+        $scope.json = JsonService;
+        $scope.template = TemplateService.changecontent("userdetail");
+        $scope.menutitle = NavigationService.makeactive("userdetail");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+        // console.log("$stateParams---", JSON.stringify($stateParams.keyword));
+        // var obj = JSON.parse($stateParams.keyword)._id;
+        var jsonData = null;
+        $scope.showEdit = false;
+        $scope.showCreate = false;
+        try {
+            jsonData = JSON.parse($stateParams.keyword)._id;
+        } catch (e) {
+            jsonData = $stateParams.keyword;
+        }
+        $scope.data = {};
+        if (jsonData) {
+            $scope.showEdit = true;
+            $scope.showCreate = false;
+            $scope.data._id = jsonData;
+            NavigationService.apiCall("User/getOneUser",
+                $scope.data,
+                function (data) {
+
+                    if (data.value === true) {
+                        console.log("datadatadatadatadata", data);
+                        $scope.formdata = data.data;
+                        // $scope.formdata.relations ? $scope.formdata.relations : $scope.formdata.relations = [];
+                        if (!_.isEmpty($scope.formdata.relations)) {
+                            console.log("inside if condition");
+                        } else {
+                            console.log("Inside else condition");
+                            $scope.formdata.relations = []
+                        }
+                    }
+                });
+            $scope.saveUser = function (formdata) {
+                console.log("00", formdata);
+                NavigationService.apiCall("User/saveUser", formdata, function (data) {
+                    if (data.value === true) {
+                        $scope.formdata = data.data;
+                    }
+                });
+
+
+                $state.go("page", {
+                    id: "viewUser"
+                });
+
+            };
+        } else {
+            $scope.showEdit = false;
+            $scope.showCreate = true;
+            $scope.saveUser = function (formdata) {
+                console.log("11", formdata);
+                NavigationService.apiCall("User/save", formdata, function (data) {
+                    if (data.value === true) {
+                        $scope.formdata = data.data;
+                    }
+                });
+
+
+                $state.go("page", {
+                    id: "viewUser"
+                });
+
+            };
+        }
+
+
+
+
+        $scope.getallList = function () {
+            console.log("Insied get all reatldusduik");
+        }
+        $scope.disable = function (data) {
+
+            $scope.formdata.isDisable = data;
+            $scope.datavalue = data;
+
+        }
+
+        // $scope.allList = function (data) {
+        // console.log("d1111111111111111", data)
+        // if (data == 'Retailer') {
+        NavigationService.apiCall("Retailer/getAllRetailer", {},
+            function (data) {
+                if (data.value === true) {
+                    $scope.retailer = data.data;
+
+                }
+            });
+
+        // } else if (data == 'Brand') {
+        NavigationService.apiCall("Brand/getAllBrand", {},
+            function (data) {
+                if (data.value === true) {
+                    $scope.brand = data.data
+
+                }
+            });
+        //     }
+        // }
+        $scope.cancelEdit = function () {
+            console.log("**********")
+            $state.go("page", {
+                id: "viewUser"
+            });
+        }
+        $scope.editRel = function (index, data) {
+            $scope.relationData = data;
+            $scope.relIndex = index;
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'views/modal/relation.html',
+                size: 'lg',
+                scope: $scope
+            });
+            $scope.close = function (value) {
+                callback(value);
+                modalInstance.close("cancel");
+            };
+        }
+
+        $scope.deleteRel = function (index, data) {
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'views/modal/conf-delete.html',
+                size: 'sm',
+                scope: $scope,
+                backdrop: 'static',
+                keyboard: false
+            });
+            $scope.close = function (value) {
+                if (value) {
+                    data.splice(index, 1);
+                }
+                modalInstance.close("cancel");
+            };
+        };
+        $scope.saveRel = function () {
+            if ($scope.relIndex) {
+                $scope.formdata.relations[$scope.relIndex] = $scope.relationData;
+
+            } else {
+                $scope.formdata.relations.push($scope.relationData);
+            }
+        };
+
+    })
+    .controller('CreateProductPageCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, $uibModal) {
+        $scope.json = JsonService;
+        $scope.template = TemplateService.changecontent("createproductpage");
+        $scope.menutitle = NavigationService.makeactive("createproductpage");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+        $scope.changeInput = function () {
+            if ($scope.formData.input != '') {
+                $scope.formData.input = '';
+            } else {
+                $scope.formData.input = $scope.formData.input;
+            }
+        };
+        $scope.changeAll = function () {
+            $scope.formData = {};
+            $scope.formData.page = 1;
+            $scope.formData.type = '';
+            $scope.formData.keyword = '';
+            $scope.viewTable();
+        };
+        $scope.formData = {};
+        $scope.formData.page = 1;
+        $scope.formData.type = '';
+        $scope.formData.keyword = '';
+        // $scope.selectedStatus = 'All';
+        $scope.searchInTable = function (data) {
+            $scope.formData.page = 1;
+            if (data.length >= 2) {
+                $scope.formData.keyword = data;
+                $scope.viewTable();
+            } else if (data.length == '') {
+                $scope.formData.keyword = data;
+                $scope.viewTable();
+            }
+        }
+        $scope.viewTable = function () {
+                $scope.url = "Product/search";
+                $scope.formData.page = $scope.formData.page++;
+                NavigationService.apiCall($scope.url, $scope.formData, function (data) {
+                    console.log("data.value", data);
+                    if (data.value) {
+                        $scope.items = data.data.results;
+                        console.log(" $scope.items", $scope.items);
+                    }
+
+                    $scope.totalItems = data.data.total;
+                    $scope.maxRow = data.data.options.count;
+                });
+            },
+            $scope.viewTable();
+        $scope.saveProduct = function (data) {
+            data.productImages = [];
+            _.forEach(data.image, function (img) {
+                data.productImages.push({
+                    image: img,
+                });
+            });
+            data.purchaseproof = [];
+            _.forEach(data.purchaseImage, function (img) {
+                data.purchaseproof.push({
+                    proofImage: img,
+                });
+            });
+            data.doneBy = "Admin";
+            NavigationService.apiCall("Product/save", data, function (data) {
+                if (data.value === true) {
+                    $scope.formdata = data.data;
+                }
+            });
+
+
+            $state.go("viewproductpage");
+        }
+
+
+
+
+    })
 
     .controller('ViewCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams) {
         $scope.json = JsonService;

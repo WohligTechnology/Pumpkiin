@@ -86,6 +86,22 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             url: "/userdetail/:id/{page:.*}/{keyword:.*}",
             controller: 'UserDetailCtrl'
         })
+        .state('viewproductpage', {
+            templateUrl: "views/template.html",
+            url: "/viewproductpage/:id/{page:.*}/{keyword:.*}",
+            controller: 'ViewProductPageCtrl'
+        })
+        .state('editproductpage', {
+            templateUrl: "views/template.html",
+            url: "/editproductpage/:id/{page:.*}/{keyword:.*}",
+            controller: 'EditProductPageCtrl'
+        })
+        .state('createproductpage', {
+            templateUrl: "views/template.html",
+            url: "/createproductpage",
+            controller: 'CreateProductPageCtrl'
+        })
+
 
         .state('jagz', {
             url: "/jagz",
