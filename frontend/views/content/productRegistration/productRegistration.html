@@ -126,8 +126,8 @@
                 <div class="d-flex align-items-center existing-user p-2 mb-3 mr-3" ng-repeat="user in addeduser">
                     <div class="user-circle"></div>
                     <div class="mx-2 fontRobotoRegular name-rel">
-                        <div>{{user.memberId.name}}</div><span class="fontRobotoLight">{{user.memberId.relation}}</span></div>
-                    <div ng-click="removedUser(user.memberId)" class="fontRobotoLight"><i class="fas fa-times"></i></div>
+                        <div>{{user.name}}</div><span class="fontRobotoLight">{{user.relation}}</span></div>
+                    <div ng-click="removedUser(user,$index)" class="fontRobotoLight"><i class="fas fa-times"></i></div>
                 </div>
             </div>
             <h6 class="text-uppercase fontRobotoBold pt-3 border-dashed">ADD NEW USER</h6>
@@ -182,7 +182,7 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Period</label>
                     <div class="d-flex">
-                        <input ng-model="warrantyDetails.warrantyPeriod" class="form-control form-control-sm w-50 mr-2" type="text" required>
+                        <input ng-model="data.warrantyPeriod" class="form-control form-control-sm w-50 mr-2" type="text" required>
                         <input class="form-control form-control-sm w-50" type="text" required>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Expiry Date</label>
-                    <input ng-model="warrantyDetails.warrantyExpDate" class="form-control form-control-sm" type="date" required>
+                    <input ng-model="data.warrantyExpDate" class="form-control form-control-sm" type="date" required>
                 </div>
             </div>
             <div class="row form-group">
@@ -203,11 +203,11 @@
                         </div>
                         <div class="form-group" fields>
                             <label>Image</label>
-                            <upload-image ng-model="warrantyDetails.warrantyProof"></upload-image>
+                            <upload-image ng-model="data.warrantyProof"></upload-image>
                         </div>
                         <div class="d-flex social m-3 remainder">
                             <span class="social_icon"><i class="fas fa-plus"></i></span>
-                            <div class="social-text" ng-click="addWarrantyDetails(warrantyDetails)">Add Remainder</div>
+                            <div class="social-text" ng-click="addWarrantyDetails(data)">Add Remainder</div>
                         </div>
                     </div>
                 </div>
@@ -219,7 +219,7 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Period</label>
                     <div class="d-flex">
-                        <input ng-model="Insurance.insurancePeriod" class="form-control form-control-sm w-50 mr-2" type="text" required>
+                        <input ng-model="data.insurancePeriod" class="form-control form-control-sm w-50 mr-2" type="text" required>
                         <input class="form-control form-control-sm w-50" type="text" required>
                     </div>
                 </div>
@@ -227,7 +227,7 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Expiry Date</label>
-                    <input ng-model="Insurance.insuranceExpDate" class="form-control form-control-sm" type="date" required>
+                    <input ng-model="data.insuranceExpDate" class="form-control form-control-sm" type="date" required>
                 </div>
             </div>
             <div class="row form-group">
@@ -240,11 +240,11 @@
                         </div>
                         <div class="form-group" fields>
                             <label>Image</label>
-                            <upload-image ng-model="Insurance.insuranceProof"></upload-image>
+                            <upload-image ng-model="data.insuranceProof"></upload-image>
                         </div>
                         <div class="d-flex social m-3 remainder">
                             <span class="social_icon"><i class="fas fa-plus"></i></span>
-                            <div class="social-text" ng-click="addInsuranceDetails(Insurance)">Add Remainder</div>
+                            <div class="social-text" ng-click="addInsuranceDetails(data)">Add Remainder</div>
                         </div>
                     </div>
                 </div>

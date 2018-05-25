@@ -14,7 +14,7 @@ var controller = {
     },
     removeUserRelationMember: function (req, res) {
         if (req.body) {
-            WebUser.removeUserRelationMember(req.body.userId, req.body.memberId, res.callback);
+            WebUser.removeUserRelationMember(req.body.userId, req.body.mobile, res.callback);
         } else {
             res.json({
                 value: false,

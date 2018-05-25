@@ -72,40 +72,104 @@ var model = {
 
         });
     },
-    removeUserRelationMember: function (userId, memberId, callback) {
-        WebUser.findOneAndUpdate({
-            _id: mongoose.Types.ObjectId(userId)
-        }, {
-            $pull: {
-                'member': {
-                    memberId: memberId
-                }
-            }
 
-        }, {
-            new: true
-        }).deepPopulate('member.memberId').exec(function (err, found) {
-            if (err) {
-                callback(err, null);
-            } else if (_.isEmpty(found)) {
-                callback("noDataound", null);
-            } else {
-                var user = {}
-                user._id = memberId;
-                WebUser.deleteData(user, function (err, created) {
-                    console.log("afte api response", created);
+    removeUserRelationMember: function (userId, mobile, callback) {
+        console.log("inside api", userId, mobile);
+        async.waterfall([
+            function (callback1) {
+                WebUser.findOne({
+                    mobile: mobile
+                }).exec(function (err, found) {
+                    console.log("found********", found)
                     if (err) {
-                        callback(err, null);
+                        callback1(err, null);
                     } else if (_.isEmpty(found)) {
-                        callback(null, "noDataound");
+                        callback1("noDataound", null);
                     } else {
-                        callback(null, found);
+                        var dataforDelete = {}
+                        dataforDelete._id = found._id;
+                        WebUser.deleteData(found, function (err, created) {
+                            if (err) {
+                                callback1(err, null);
+                            } else if (_.isEmpty(created)) {
+                                callback1(null, "noDataound");
+                            } else {
+
+                                callback1(null, found._id);
+                            }
+                        });
                     }
+
+                })
+            },
+            function (id, callback2) {
+                console.log("idddddddddddddd", id);
+                WebUser.findOneAndUpdate({
+                    _id: mongoose.Types.ObjectId(userId)
+                }, {
+                    $pull: {
+                        'member': {
+                            memberId: id
+                        }
+                    }
+
+                }, {
+                    new: true
+                }).exec(function (err, found) {
+                    if (err) {
+                        callback2(err, null);
+                    } else if (_.isEmpty(found)) {
+                        callback2("noDataound", null);
+                    } else {
+                        callback2(null, found);
+                    }
+
                 });
             }
+        ], function (err, data) {
 
+            if (err || _.isEmpty(data)) {
+                callback(err, [])
+            } else {
+                callback(null, data)
+            }
         });
     },
+    // removeUserRelationMember: function (userId, mobile, callback) {
+    //     console.log("inside USer RElation Memeber", userId, mobile)
+    // WebUser.findOneAndUpdate({
+    //     _id: mongoose.Types.ObjectId(userId)
+    // }, {
+    //     $pull: {
+    //         'member': {
+    //             memberId: memberId
+    //         }
+    //     }
+
+    // }, {
+    //     new: true
+    // }).deepPopulate('member.memberId').exec(function (err, found) {
+    //     if (err) {
+    //         callback(err, null);
+    //     } else if (_.isEmpty(found)) {
+    //         callback("noDataound", null);
+    //     } else {
+    //         var user = {}
+    //         user._id = memberId;
+    //         WebUser.deleteData(user, function (err, created) {
+    //             console.log("afte api response", created);
+    //             if (err) {
+    //                 callback(err, null);
+    //             } else if (_.isEmpty(found)) {
+    //                 callback(null, "noDataound");
+    //             } else {
+    //                 callback(null, found);
+    //             }
+    //         });
+    //     }
+
+    // });
+    // },
     verifyUser: function (mobile, callback) {
         WebUser.findOne({
             mobile: mobile

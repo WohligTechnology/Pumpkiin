@@ -16,25 +16,25 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             }
         },
 
-        //     $scope.registration = $uibModal.open({
-        //         animation: true,
-        //         templateUrl: "views/modal/registration.html",
-        //         scope: $scope,
-        //         windowClass: 'app-modal-window'
-        //     });
-
-        // $scope.pumpkinRegistration = function () {
-        //     $scope.pumpRegistration = $uibModal.open({
-        //         animation: true,
-        //         templateUrl: "views/modal/pumpRegistration.html",
-        //         scope: $scope,
-        //         windowClass: 'app-modal-window'
-        //     });
-        //     $scope.registration.close();
-        // }
-        NavigationService.apiCallWithoutData("Brand/getAllBrand", function (res) {
-
+        $scope.registration = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/registration.html",
+            scope: $scope,
+            windowClass: 'app-modal-window'
         });
+
+    $scope.pumpkinRegistration = function () {
+        $scope.pumpRegistration = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/pumpRegistration.html",
+            scope: $scope,
+            windowClass: 'app-modal-window'
+        });
+        $scope.registration.close();
+    }
+    NavigationService.apiCallWithoutData("Brand/getAllBrand", function (res) {
+
+    });
     NavigationService.apiCallWithoutData("Retailer/getAllRetailer", function (res) {
 
     });
@@ -62,7 +62,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         }
 
     }
-    $scope.data = {}
+    $scope.data = {};
     $scope.callProduct = function () {
         $scope.dataToGet = {};
         $scope.insuranceDetails = {};
@@ -79,20 +79,17 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             if (res.data.purchaseproof) {
                 $scope.data.getPurchaseImages = res.data.purchaseproof;
             }
-            if (!_.isEmpty(res.data.insuranceDetails)) {
-                $scope.Insurance = res.data.insuranceDetails[0];
-                $scope.Insurance.insuranceExpDate = new Date(res.data.insuranceDetails[0].insuranceExpDate);
+            if (res.data.insuranceExpDate) {
+                $scope.data.insuranceExpDate = new Date(res.data.insuranceExpDate);
             }
-            if (!_.isEmpty(res.data.warrantyDetails)) {
-                $scope.warrantyDetails = res.data.warrantyDetails[0];
-                $scope.warrantyDetails.warrantyExpDate = new Date(res.data.warrantyDetails[0].warrantyExpDate);
-
+            if (res.data.warrantyExpDate) {
+                $scope.data.warrantyExpDate = new Date(res.data.warrantyExpDate);
             }
-
         });
     }
 
     $scope.userData = {};
+    $scope.addeduser = [];
     $scope.addUser = function (data) {
             NavigationService.apiCallWithData("WebUser/save", data, function (res) {
                 if (res.value == true) {
@@ -101,19 +98,24 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
                     $scope.updateUser.memberId = res.data._id;
                     NavigationService.apiCallWithData("WebUser/addUserRelationMember", $scope.updateUser, function (response) {
                         $scope.userData = {};
-                        $scope.addeduser = response.data.member;
+                        $scope.addeduser.push({
+                            name: data.name,
+                            relation: data.relation,
+                            mobile: data.mobile
+                        });
 
                     });
                 }
             });
         },
 
-        $scope.removedUser = function (id) {
+        $scope.removedUser = function (id, $index) {
+            $scope.addeduser.splice($index, 1);
             $scope.removeMember = {};
-            $scope.removeMember.memberId = id._id;
+            $scope.removeMember.mobile = id.mobile;
             $scope.removeMember.userId = "5b00213f78dcc437c34cc815";
             NavigationService.apiCallWithData("WebUser/removeUserRelationMember", $scope.removeMember, function (response) {
-                $scope.addeduser = response.data.member;
+
 
             });
         },
@@ -130,27 +132,27 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
                 $scope.makeActive('circle3');
                 $scope.callProduct();
             });
-
         },
 
         $scope.addWarrantyDetails = function (Warranty) {
-            $scope.dataTosave = {};
-            $scope.dataTosave._id = $scope.product_id;
-            $scope.dataTosave.warrantyDetails = Warranty;
-            NavigationService.apiCallWithData("Product/saveProduct", $scope.dataTosave, function (res) {
+            Warranty._id = $scope.product_id;
+            NavigationService.apiCallWithData("Product/saveProduct", Warranty, function (res) {
                 $scope.callProduct();
             });
         },
         $scope.addInsuranceDetails = function (insurance) {
-            $scope.dataTosave = {};
-            $scope.dataTosave._id = $scope.product_id;
-            $scope.dataTosave.insuranceDetails = insurance;
-            NavigationService.apiCallWithData("Product/saveProduct", $scope.dataTosave, function (res) {
+            insurance._id = $scope.product_id;
+            NavigationService.apiCallWithData("Product/saveProduct", insurance, function (res) {
                 $scope.callProduct();
             });
         },
         $scope.goToNxtTab = function () {
-            console.log("iside nxt page");
+            $scope.dataTosave = {};
+            $scope.dataTosave._id = $scope.product_id;
+            $scope.dataTosave.doneBy = "User";
+            NavigationService.apiCallWithData("Product/saveProduct", $scope.dataTosave, function (res) {
+                $scope.callProduct();
+            });
             $scope.makeActive('circle4');
         },
 
