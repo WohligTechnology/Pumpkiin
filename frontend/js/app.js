@@ -40,11 +40,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'ProductDetailRegisteredCtrl'
         })
-        .state('productdetailunregistered', {
-            url: "/productdetailunregistered",
-            templateUrl: tempateURL,
-            controller: 'ProductDetailUnRegisteredCtrl'
-        })
         .state('productregistration', {
             url: "/productregistration",
             templateUrl: tempateURL,

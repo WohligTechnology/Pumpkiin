@@ -127,7 +127,7 @@
                                     <span class="d-inline-block w-40">Purchase Date : </span><span class="d-inline-block w-60"> 23-11-2017</span>
                                 </p>
                                 <p class="d-flex align-items-top">
-                                    <span class="d-inline-block w-40">Warranty : </span><span class="d-inline-block w-60"> 23-11-2017 - 22-11-2018</span>
+                                    <span class="d-inline-block w-40">Warranty : </span><span class="d-inline-block w-60 green-color"> 23-11-2017 - 22-11-2018</span>
                                 </p>
                                 <p class="d-flex align-items-top">
                                     <span class="d-inline-block w-40">Relation : </span><span class="d-inline-block w-60"><span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-2">Brother <i class="fas fa-times"></i></span>
@@ -141,7 +141,7 @@
                 </div>
             </div>
 
-            <div class="bg-white mt-2 p-4 border-rounded productreg">
+            <!-- <div class="bg-white mt-2 p-4 border-rounded productreg">
                 <h6 class="fontRobotoLight d-inline">SUPPORT TIMELINE</h6>
                 <h6 class="fontRobotoLight d-inline orange-color float-right">SUPPORT STATUS: OPEN</h6>
                 <div class="my-5 mr-5 support-timeline">
@@ -154,26 +154,180 @@
                 </div>
             </div>
             <form>
-                <div class="bg-white mt-2 p-4 border-rounded productreg">
-                    <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat">SUPPORT CHAT</h6>
-                    <div class="chat my-2">
-                        <div class="d-flex align-items-center mb-2 you">
-                            <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
-                            <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                <div class="bg-white mt-2 border-rounded productreg">
+                    <div class=" p-4">
+                        <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat">SUPPORT CHAT</h6>
+                        <div class="chat my-2">
+                            <div class="d-flex align-items-center mb-2 you">
+                                <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                            </div>
+                            <div class="d-flex align-items-center mb-2 flex-row-reverse me">
+                                <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                <div class="mr-2 px-3 py-1 chat-content">The Charging drains ways in an hour</div>
+                            </div>
+                            <div class="text-center gray-color font14 mt-3">Message on 15/2/2018</div>
+                            <div class="d-flex align-items-center mb-2 you">
+                                <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                            </div>
                         </div>
-                        <div class="d-flex align-items-center mb-2 flex-row-reverse me">
-                            <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
-                            <div class="mr-2 px-3 py-1 chat-content">The Charging drains ways in an hour</div>
+                        <div class="message-send-input">
+                            <img class="send" src="img/ticketCreation/submit.png">
+                            <img class="attachment" src="img/ticketCreation/attachment.png">
+                            <input class="form-control message mt-5" type="text" placeholder="Type your message ...">
                         </div>
                     </div>
-                    <div class="message-send-input">
-                        <img class="send" src="img/ticketCreation/submit.png">
-                        <img class="attachment" src="img/ticketCreation/attachment.png">
-                        <input class="form-control message" type="text" placeholder="Type your message ...">
+                    <div class="text-center pb-4 border-dashed-bottom">Ticket Closed on 15/2/2018</div>
+                    <div class="p-4 pumpkin-support-feedback">
+                        <form>
+                            <h6 class="fontRobotoBold blue-color pump-support-text">Pumpkiin Support</h6>
+                            <div class="fontRobotoRegular font12 font-color">Dear<br> Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Nullam
+                                quis risus eget urna mollis ornare vel eu leo. Nulla vitae elit libero, a pharetra augue.
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam.<br><br> Thanks you,<br> Pumpkiin
+                                Support
+                            </div><br>
+                            <h6 class="fontRobotoBold blue-color">FEEDBACK</h6><br>
+                            <div class="font14 font-color mb-2">How would you rate your experience on scale of 1 to 5 stars based on the following parameters?</div>
+                            <div class="d-flex font14 fontRobotoRegular font-color my-2">
+                                <div class="mr-3"><span class="mr-2">Ease </span><span uib-rating ng-model="rate" max="max" read-only="isReadonly"
+                                        on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']"
+                                        aria-labelledby="default-rating"></span></div>
+                                <div class="mr-3"><span class="mr-2">Interaction </span><span uib-rating ng-model="rate" max="max" read-only="isReadonly"
+                                        on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']"
+                                        aria-labelledby="default-rating"></span></div>
+                                <div class="mr-3"><span class="mr-2">Resolution </span><span uib-rating ng-model="rate" max="max" read-only="isReadonly"
+                                        on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']"
+                                        aria-labelledby="default-rating"></span></div>
+                            </div>
+                            <div class="font14 font-color my-2">Describe your experience with us</div>
+                            <textarea rows="5" name="feedback" class="form-control"></textarea>
+                            <button class="mt-3 send-btn"><span class="close-icon"><i class="fas fa-times"></i></span>Send</button>
+                        </form>
                     </div>
                 </div>
                 <div class="my-4 chat-button"><button class="remainder-btn"><i class="fas fa-calendar-alt mr-3"></i>ADD REMINDER</button><button class="float-right close-btn"><span class="close-icon"><i class="fas fa-times"></i></span>Close</button></div>
-            </form>
+            </form> -->
+
+            <div class="support-chat-history">
+                <h6 class="fontRobotoBold blue-color my-4">SUPPORT CHAT HISTORY</h6>
+                <uib-accordion close-others="true">
+                    <div uib-accordion-group class="panel-default">
+                        <uib-accordion-heading>
+                            <div class="d-flex align-items-center">
+                                <div class="blue-circle"></div>
+                                <h6 class="fontRobotoBold font14 ml-2 mb-0">BRAND NAME</h6>
+                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
+                                <div class="ml-auto date-supportchat"><span class="font12">17/2/2018, 5:30 pm (4 days )</span></div>
+                            </div>
+                        </uib-accordion-heading>
+                        <div class="pt-0 px-4 pb-4">
+                            <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat">SUPPORT CHAT</h6>
+                            <div class="chat my-2">
+                                <div class="d-flex align-items-center mb-2 you">
+                                    <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                </div>
+                                <div class="d-flex align-items-center mb-2 flex-row-reverse me">
+                                    <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                    <div class="mr-2 px-3 py-1 chat-content">The Charging drains ways in an hour</div>
+                                </div>
+                                <div class="text-center gray-color font14 mt-3">Message on 15/2/2018</div>
+                                <div class="d-flex align-items-center mb-2 you">
+                                    <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div uib-accordion-group class="panel-default">
+                        <uib-accordion-heading>
+                            <div class="d-flex align-items-center">
+                                <div class="blue-circle"></div>
+                                <h6 class="fontRobotoBold font14 ml-2 mb-0">BRAND NAME</h6>
+                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
+                                <div class="ml-auto date-supportchat"><span class="font12">17/2/2018, 5:30 pm (4 days )</span></div>
+                            </div>
+                        </uib-accordion-heading>
+                        <div class="pt-0 px-4 pb-4">
+                            <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat">SUPPORT CHAT</h6>
+                            <div class="chat my-2">
+                                <div class="d-flex align-items-center mb-2 you">
+                                    <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                </div>
+                                <div class="d-flex align-items-center mb-2 flex-row-reverse me">
+                                    <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                    <div class="mr-2 px-3 py-1 chat-content">The Charging drains ways in an hour</div>
+                                </div>
+                                <div class="text-center gray-color font14 mt-3">Message on 15/2/2018</div>
+                                <div class="d-flex align-items-center mb-2 you">
+                                    <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div uib-accordion-group class="panel-default">
+                        <uib-accordion-heading>
+                            <div class="d-flex align-items-center">
+                                <div class="blue-circle"></div>
+                                <h6 class="fontRobotoBold font14 ml-2 mb-0">BRAND NAME</h6>
+                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
+                                <div class="ml-auto date-supportchat"><span class="font12">17/2/2018, 5:30 pm (4 days )</span></div>
+                            </div>
+                        </uib-accordion-heading>
+                        <div class="pt-0 px-4 pb-4">
+                            <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat">SUPPORT CHAT</h6>
+                            <div class="chat my-2">
+                                <div class="d-flex align-items-center mb-2 you">
+                                    <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                </div>
+                                <div class="d-flex align-items-center mb-2 flex-row-reverse me">
+                                    <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                    <div class="mr-2 px-3 py-1 chat-content">The Charging drains ways in an hour</div>
+                                </div>
+                                <div class="text-center gray-color font14 mt-3">Message on 15/2/2018</div>
+                                <div class="d-flex align-items-center mb-2 you">
+                                    <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div uib-accordion-group class="panel-default">
+                        <uib-accordion-heading>
+                            <div class="d-flex align-items-center">
+                                <div class="blue-circle"></div>
+                                <h6 class="fontRobotoBold font14 ml-2 mb-0">BRAND NAME</h6>
+                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
+                                <div class="ml-auto date-supportchat"><span class="font12">17/2/2018, 5:30 pm (4 days )</span></div>
+                            </div>
+                        </uib-accordion-heading>
+                        <div class="pt-0 px-4 pb-4">
+                            <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat">SUPPORT CHAT</h6>
+                            <div class="chat my-2">
+                                <div class="d-flex align-items-center mb-2 you">
+                                    <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                </div>
+                                <div class="d-flex align-items-center mb-2 flex-row-reverse me">
+                                    <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                    <div class="mr-2 px-3 py-1 chat-content">The Charging drains ways in an hour</div>
+                                </div>
+                                <div class="text-center gray-color font14 mt-3">Message on 15/2/2018</div>
+                                <div class="d-flex align-items-center mb-2 you">
+                                    <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
+                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </uib-accordion>
+            </div>
+
+
         </div>
     </div>
 </div>

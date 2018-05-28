@@ -323,6 +323,9 @@ header {
 .fontRobotoLight{
     font-family: Roboto-Light;
 }
+.font12{
+    font-size: 12px;
+}
 .font14{
     font-size: 14px;
 }
@@ -344,8 +347,20 @@ background-color: $orange;
 .orange-color{
     color: $orange !important;
 }
+.green-color{
+    color: #14C177;
+}
+.gray-color{
+    color: #CED5D9;
+}
+.font-color{
+    color: #657D95;
+}
 .border-rounded{
 border-radius: 10px;
+}
+.border-dashed-bottom{
+    border-bottom: dashed 1px #CFD7DB;
 }
 .space-letter{
     letter-spacing: 1px;

@@ -48,7 +48,7 @@
     .remainderSection {
         height: 148px;
     }
-    .info-div{
+    .info-div {
         height: 200px;
         overflow-y: auto;
     }
@@ -121,11 +121,11 @@
 }
 
 .support-chat {
-    border-bottom: dashed 1px #CFD7DB;
+    @extend .border-dashed-bottom;
 }
 
 .chat {
-    height: 70vh;
+    // height: 70vh;
     .image {
         width: 40px;
         height: 40px;
@@ -247,6 +247,91 @@
     }
 }
 
+.send-btn {
+    cursor: pointer;
+    position: relative;
+    padding: 5px 30px;
+    padding-left: 40px;
+    color: white;
+    background-color: $orange;
+    border: solid 2px $orange;
+    border-radius: 30px;
+    font-family: Roboto-Medium;
+    .close-icon {
+        position: absolute;
+        left: -5px;
+        top: 2px;
+        padding: 1px 7px;
+        background: $orange;
+        border: solid 2px white;
+        border-radius: 50%;
+    }
+    &:hover {
+        color: $orange;
+        background-color: white;
+        .close-icon {
+            background: white;
+            border: solid 2px $orange;
+        }
+    }
+}
+
+.pumpkin-support-feedback {
+    padding-left: 70px !important;
+    .pump-support-text {
+        position: relative;
+        &:before {
+            content: "";
+            width: 30px;
+            height: 30px;
+            background-color: #142c5b;
+            border: solid 1px #14C177;
+            border-radius: 50%;
+            position: absolute;
+            left: -40px;
+            top: -5px;
+        }
+    }
+}
+
 .view {
     color: #657D95;
+}
+
+.support-chat-history {
+    .panel-default {
+        margin: 10px 0;
+        background-color: white;
+        border-radius: 10px;
+        border-bottom: 0;
+        border: 0;  
+        position: relative;
+        &:after{
+            content: "";
+            width: 35px;
+            height: 35px;
+            right: 60px;
+            bottom: -22px;
+            position: absolute;
+            z-index: 1;
+            background-color: #f6a244;
+            border: solid 5px #ecf0f2;
+            border-radius: 50%;
+        }  
+    }
+    .date-supportchat{
+        color: #818587;
+    }
+    .card-header {
+        background-color: white;
+        border-bottom: 0;
+        border-radius: 10px;
+        padding: 25px;
+    }
+    .blue-circle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: $blue;
+    }
 }
