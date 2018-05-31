@@ -5,13 +5,17 @@
 @import "../../bower_components/angular-toastr/dist/angular-toastr";
 @import "../../bower_components/angular-ui-select/dist/select";
 @import "../../bower_components/popper.js/docs/css/popper";
+@import "../../bower_components/swiper/dist/css/swiper";
 /****** Please Import Libraries Above This!!!!!! ******/
 
 @import "main";
+@import "profile";
 @import "productreg";
 @import "openTicket";
 @import "productlisting";
 @import "ticketcreation";
+@import "unregistered";
+@import "registered";
 @import "../views/content/login/login";
 @import "other/fancybox-override";
 @import "responsive/xl";

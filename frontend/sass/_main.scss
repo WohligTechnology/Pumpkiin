@@ -9,7 +9,7 @@ $black: #000 !default;
 $red: #d9534f !default;
 $orange: #FFA345 !default; //changed as per requirement
 $yellow: #ffd500 !default;
-$green: #5cb85c !default;
+$green: #14C177 !default;
 $blue: #142C5C !default;
 $teal: #5bc0de !default;
 $pink: #ff5b77 !default;
@@ -161,6 +161,7 @@ $dropdown-box-shadow: 0 .5rem 1rem rgba($black, .175) !default;
     font-family: "Roboto-Light";
     src: url("../fonts/Roboto-Light.ttf");
 }
+
 body {
     padding-top: 56px;
     background-color: $gray-lighter;
@@ -196,10 +197,12 @@ a,
     cursor: pointer;
     transition: all ease 300ms;
 }
+
 //scss for hedaer
-.custom-header{
+.custom-header {
     box-shadow: 0px 1px $gray;
 }
+
 //end of header
 footer {
     font-size: 12px;
@@ -305,87 +308,135 @@ header {
         color: #66686E;
     }
 }
-.w-40{
+
+.w-15 {
+    width: 15%;
+}
+
+.w-40 {
     width: 40%;
 }
-.w-60{
+
+.w-60 {
     width: 60%;
 }
+
+.w-85 {
+    width: 85%;
+}
+
 .fontRobotoBold {
     font-family: Roboto-Bold;
 }
+
 .fontRobotoMedium {
     font-family: Roboto-Medium;
 }
+
 .fontRobotoRegular {
     font-family: Roboto-Regular;
 }
-.fontRobotoLight{
+
+.fontRobotoLight {
     font-family: Roboto-Light;
 }
-.font12{
+
+.font12 {
     font-size: 12px;
 }
-.font14{
+
+.font14 {
     font-size: 14px;
 }
-.font20{
+
+.font20 {
     font-size: 20px;
 }
-.background-blue{
+
+.background-blue {
     background-color: $darkblue;
 }
-.background-orange{
-background-color: $orange;
+
+.background-orange {
+    background-color: $orange;
 }
-.orange-border{
+
+.background-gray {
+    background-color: #EBEDF1;
+}
+
+.orange-border {
     border: solid 1px $orange;
 }
-.blue-color{
+
+.blue-color {
     color: $darkblue;
 }
-.orange-color{
+
+.orange-color {
     color: $orange !important;
 }
-.green-color{
-    color: #14C177;
+
+.green-color {
+    color: $green;
 }
-.gray-color{
+
+.gray-color {
     color: #CED5D9;
 }
-.font-color{
+
+.font-color {
     color: #657D95;
 }
-.border-rounded{
-border-radius: 10px;
+
+.dark-font-color {
+    color: $dark-gray;
 }
-.border-dashed-bottom{
+
+.border-rounded {
+    border-radius: 10px;
+}
+
+.border-dashed-bottom {
     border-bottom: dashed 1px #CFD7DB;
 }
-.space-letter{
+
+.space-letter {
     letter-spacing: 1px;
 }
-.button{
+
+.button {
     border: solid 1px transparent;
     border-radius: 20px;
     color: white !important;
 }
-.orange-btn{
-background-color: #FFA345;
-&:hover{
-    color: #FFA345 !important;
-    border: solid 1px #FFA345;
-    background-color: white;
-}
-}
-.green-btn{
-    background-color: #14C177;
-    &:hover{
-        color: #14C177 !important;
-        border: solid 1px #14C177;
+
+.orange-btn {
+    background-color: #FFA345;
+    &:hover {
+        color: #FFA345 !important;
+        border: solid 1px #FFA345;
         background-color: white;
     }
 }
+
+.green-btn {
+    background-color: $green;
+    &:hover {
+        color: $green !important;
+        border: solid 1px $green;
+        background-color: white;
+    }
+}
+
+.address-box {
+    width: 180px;
+}
+
+.added-btn {
+    background-color: #8D9FB0;
+}
+
 .social {
     position: relative;
     text-align: center;
@@ -407,6 +458,48 @@ background-color: #FFA345;
         border: solid 1px transparent;
     }
 }
-.unclickable{
+
+.unclickable {
     pointer-events: none;
+}
+
+.swiper-container {
+    width: 800px;
+    height: 300px;
+}
+
+//scss for home page
+.home-section {
+    height: 92vh;
+    .img-section {
+        width: 61.5vh;
+    }
+    .home-section-content {
+        font-size: 2.5em;
+        font-family: Roboto-Bold;
+    }
+}
+
+.about-pumpkin-section {
+    background-image: url("../img/home/section-bg-img.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    .about-pumpkin {
+        padding: 100px 0;
+        .about-content {
+            padding: 0 200px;
+            font-family: Roboto-Light;
+            a {
+                text-decoration: none;
+                color: #333;
+            }
+        }
+    }
+    .pumpkin-plans {
+        background-color: #F9F9F9;
+    }
+    .heading-fontsize {
+        font-size: 1.3em;
+    }
 }

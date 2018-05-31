@@ -1,7 +1,8 @@
+var mySwiper;
 myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http) {
         $scope.template = TemplateService.getHTML("content/home.html");
         TemplateService.title = "Home"; //This is the Title of the Website
-        TemplateService.header = ""; 
+        TemplateService.header = "";
         $scope.navigation = NavigationService.getNavigation();
 
         $scope.submitForm = function (data) {
@@ -13,6 +14,20 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             });
         };
 
+        $timeout(function () {
+            mySwiper = new Swiper('.swiper-container', {
+                // Optional parameters
+                direction: 'horizontal',
+                loop: true,
+                slidesPerView:2,
+
+                // Navigation arrows
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            })
+        }, 500);
 
         $scope.rate = 7;
         $scope.max = 10;

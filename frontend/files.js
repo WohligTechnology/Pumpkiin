@@ -13,6 +13,7 @@ module.exports = [
   'bower_components/angular/angular.js',
   'bower_components/angular-sanitize/angular-sanitize.js',
   'bower_components/angular-animate/angular-animate.min.js',
+  'bower_components/swiper/dist/js/swiper.min.js',
   'bower_components/ui-bootstrap4/docs/ui-bootstrap.js',
   'bower_components/ui-bootstrap4/docs/ui-bootstrap-tpls.js',
   'bower_components/angular-ui-router/release/angular-ui-router.min.js',

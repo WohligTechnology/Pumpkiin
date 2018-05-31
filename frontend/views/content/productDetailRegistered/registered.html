@@ -1,0 +1,115 @@
+<div class="container">
+    <div class="product-registration-detail">
+        <div class="my-3 back"><img src="img/registeredProduct/back-icon.png"><span class="ml-2 font14">BACK TO HOME</span></div>
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="d-flex bg-white border-rounded">
+                    <div class="w-15 border-right more-images">
+                        <div class="p-2"><img src="img/registeredProduct/headset.jpg" class="img-fluid"></div>
+                        <div class="p-2"><img src="img/registeredProduct/headset.jpg" class="img-fluid"></div>
+                        <div class="p-2"><img src="img/registeredProduct/headset.jpg" class="img-fluid"></div>
+                        <div class="p-2"><img src="img/registeredProduct/headset.jpg" class="img-fluid"></div>
+                        <div class="p-2"><img src="img/registeredProduct/headset.jpg" class="img-fluid"></div>
+                        <div class="p-2"><img src="img/registeredProduct/headset.jpg" class="img-fluid"></div>
+                    </div>
+                    <div class="w-85 p-3 float-right position-relative"><img src="img/registeredProduct/headset.jpg" class="img-fluid">
+                        <div class="position-absolute favourite"><i class="fas fa-heart"></i></div>
+                    </div>
+                </div>
+                <div class="d-flex my-3">
+                    <a role="button" class="button added-btn py-1 mr-1 w-50 text-center">Product Added</a>
+                    <a role="button" class="button orange-btn py-1 w-50 text-center">Support</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="bg-white p-4 border-rounded fontRobotoRegular font14">
+                    <h6 class="fontRobotoBold blue-color mb-2">PRODUCT INFORMATION<span class="float-right info-icon"><i class="fas fa-pencil-alt fa-xs"></i></span></h6>
+                    <div class="row">
+                        <div class="col-3 fontRobotoMedium dark-font-color">
+                            <div class="my-2">Product Name</div>
+                            <div class="my-2">Brand Name</div>
+                            <div class="my-2">Serial Number</div>
+                            <div class="my-2">Purchase Date</div>
+                            <div class="my-2">Purchase Price</div>
+                            <div class="my-2">Retailer</div>
+                        </div>
+                        <div class="col-9 fontRobotoRegular font-color text-capitalize">
+                            <div class="my-2">Bose Quietcomfort 35 II Wired Headset with Mic (Silver, Over the Ear)</div>
+                            <div class="my-2">Bose</div>
+                            <div class="my-2">Serial NumberBose - XYZ123</div>
+                            <div class="my-2">01 May 2018</div>
+                            <div class="my-2">Rs. 29000</div>
+                            <div class="my-2">Croma</div>
+                        </div>
+                    </div>
+                    <h6 class="fontRobotoBold blue-color my-3">PRODUCT USERS</h6>
+                    <div class="d-flex main-users">
+                        <div class="d-flex align-items-center existing-user p-2 mr-3" ng-repeat="rel in relation">
+                            <div class="user-circle"></div>
+                            <div class="mx-2 fontRobotoRegular name-rel">
+                                <div>{{rel.name}}</div><span class="fontRobotoLight">{{rel.relation}}</span></div>
+                            <div class="fontRobotoLight"><i class="fas fa-times"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 my-2 border-rounded position-relative reg-product-det">
+                    <h6 class="fontRobotoBold blue-color">WARRANTY<span class="ml-2"><img src="img/ticketCreation/warranty.png"></span><span class="float-right info-icon"><i class="fas fa-pencil-alt fa-xs"></i></span></h6>
+                    <div><span class="fontRobotoRegular font14 dark-font-color">Warranty expiration date</span><span class="ml-5 fontRobotoLight font12 font-color">01 May 2019</span></div>
+                    <div class="upload-btn-wrapper mx-1 position-absolute file-upload">
+                        <button class="btn">+</button>
+                        <input type="file" name="myfile">
+                    </div>
+                </div>
+                <div class="bg-white p-4 my-2 border-rounded position-relative reg-product-det">
+                    <h6 class="fontRobotoBold blue-color">INSURANCE<span class="ml-2"><img src="img/ticketCreation/warranty.png"></span><span class="float-right info-icon"><i class="fas fa-pencil-alt fa-xs"></i></span></h6>
+                    <div><span class="fontRobotoRegular font14 dark-font-color">Insurance expiration date</span><span class="ml-5 fontRobotoLight font12 font-color">01 May 2019</span></div>
+                    <div class="upload-btn-wrapper mx-1 position-absolute file-upload">
+                        <button class="btn">+</button>
+                        <input type="file" name="myfile">
+                    </div>
+                </div>
+                <div class="bg-white p-4 my-2 border-rounded position-relative reg-product-det">
+                    <h6 class="fontRobotoBold blue-color">ACCESSORIES<span class="float-right info-icon"><i class="fas fa-pencil-alt fa-xs"></i></span></h6>
+                    <div class="d-flex main-users">
+                        <div class="d-flex align-items-center existing-user p-2 mr-3" ng-repeat="accessories in accessoriesMain">
+                            <div class="user-circle"></div>
+                            <div class="mx-2 fontRobotoRegular name-rel">
+                                <div>{{accessories.name}}</div><span class="fontRobotoLight">{{accessories.relation}}</span></div>
+                            <div class="fontRobotoLight"><i class="fas fa-times"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="support-chat-history">
+                    <h6 class="fontRobotoBold blue-color my-4">SUPPORT CHAT HISTORY</h6>
+                    <div class="bg-white border-rounded p-4 my-2">
+                        <div class="d-flex align-items-center">
+                            <div class="blue-circle"></div>
+                            <h6 class="fontRobotoBold font14 ml-2 mb-0">BRAND NAME</h6>
+                            <span class="font12 font-color ml-2 d-inline-block w-25 text-truncate">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
+                            <div class="ml-auto date-supportchat"><span class="font12">17/2/2018, 5:30 pm</span></div>
+                            <div class="ml-auto green-color"><span class="font12">Closed</span></div>
+                        </div>
+                    </div>
+                    <div class="bg-white border-rounded p-4 my-2">
+                        <div class="d-flex align-items-center">
+                            <div class="blue-circle"></div>
+                            <h6 class="fontRobotoBold font14 ml-2 mb-0">BRAND NAME</h6>
+                            <span class="font12 font-color ml-2 d-inline-block w-25 text-truncate">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
+                            <div class="ml-auto date-supportchat"><span class="font12">17/2/2018, 5:30 pm</span></div>
+                            <div class="ml-auto orange-color"><span class="font12">Open</span></div>
+                        </div>
+                    </div>
+                    <div class="bg-white border-rounded p-4 my-2">
+                        <div class="d-flex align-items-center">
+                            <div class="blue-circle"></div>
+                            <h6 class="fontRobotoBold font14 ml-2 mb-0">BRAND NAME</h6>
+                            <span class="font12 font-color ml-2 d-inline-block w-25 text-truncate">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
+                            <div class="ml-auto date-supportchat"><span class="font12">17/2/2018, 5:30 pm</span></div>
+                            <div class="ml-auto blue-color"><span class="font12">Draft</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

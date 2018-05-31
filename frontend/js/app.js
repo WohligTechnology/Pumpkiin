@@ -25,6 +25,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'HomeCtrl'
         })
+        .state('profile', {
+            url: "/profile",
+            templateUrl: tempateURL,
+            controller: 'ProfileCtrl'
+        })
         .state('login', {
             url: "/login",
             templateUrl: tempateURL,
@@ -39,6 +44,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             url: "/productdetailregistered",
             templateUrl: tempateURL,
             controller: 'ProductDetailRegisteredCtrl'
+        })
+        .state('productdetailunregistered', {
+            url: "/productdetailunregistered",
+            templateUrl: tempateURL,
+            controller: 'ProductDetailUnregisteredCtrl'
         })
         .state('productregistration', {
             url: "/productregistration",

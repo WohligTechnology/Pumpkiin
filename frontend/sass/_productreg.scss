@@ -81,10 +81,10 @@
         @extend .fontRobotoLight;
         border-radius: 3px;
     }
-    .info-icon {
-        color: #D1D1D1;
-    }
     
+}
+.info-icon {
+    color: #D1D1D1;
 }
 .upload-btn-wrapper {
     position: relative;
@@ -108,7 +108,7 @@
         height: 60px;
         position: absolute;
         left: 0;
-        top: 0;
+        top: -20px;
         opacity: 0;
     }
 }
