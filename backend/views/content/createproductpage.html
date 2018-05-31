@@ -50,8 +50,10 @@
 
                 <div class="form-group" fields>
                     <label>Proof of Purchase</label>
-                    <div class="img-box" style="float:left;" ng-repeat="pur in formdata.purchaseproof track by $index">
-                        <img alt="" ng-src="{{pur.proofImage|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
+                    <div class="clearfix">
+                        <div class="img-box" style="float:left;" ng-repeat="pur in formdata.purchaseproof track by $index">
+                            <img alt="" ng-src="{{pur.proofImage|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -66,32 +68,34 @@
                 </div>
                 <div class="form-group">
                     <label>Warranty Card (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb) </label>
-                    <img alt="" ng-src="{{formdata.warrantyProof|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
+                    <div class="clearfix">
+                        <img alt="" ng-src="{{formdata.warrantyProof|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
+                        <div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Insurance Period </label>
+                            <input type="text" name="insurancePeriod" placeholder="insurance Period" ng-model="formdata.insurancePeriod" class="form-control">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Insurance Expiry Date </label>
+                            <input type="date" name="insuranceExpDate" placeholder="insurance ExpDate" ng-model="formdata.insuranceExpDate" class="form-control">
+
+                        </div>
+                        <div class="form-group" ng-if="!showSaveButton">
+                            <label>Insurance Card (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb) </label>
+                            <div class="clearfix">
+                                <img alt="" ng-src="{{formdata.insuranceProof|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
-
-                <div class="form-group">
-                    <label>Insurance Period </label>
-                    <input type="text" name="insurancePeriod" placeholder="insurance Period" ng-model="formdata.insurancePeriod" class="form-control">
-
-                </div>
-                <div class="form-group">
-                    <label>Insurance Expiry Date </label>
-                    <input type="date" name="insuranceExpDate" placeholder="insurance ExpDate" ng-model="formdata.insuranceExpDate" class="form-control">
+                <div class="text-center mt20 odd-even-button" ng-if="showSaveButton">
+                    <button class="btn btn-default" ng-disabled="newsForm.$invalid" type="submit">Save</button>
+                    <a class="btn btn-danger" ng-click="cancelEdit()">Cancel</a>
 
                 </div>
-                <div class="form-group" ng-if="!showSaveButton">
-                    <label>Insurance Card (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb) </label>
-                    <img alt="" ng-src="{{formdata.insuranceProof|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
-
-                </div>
-            </div>
-
-        </div>
-        <div class="text-center mt20 odd-even-button" ng-if="showSaveButton">
-            <button class="btn btn-default" ng-disabled="newsForm.$invalid" type="submit">Save</button>
-            <a class="btn btn-danger" ng-click="cancelEdit()">Cancel</a>
-
-        </div>
 
 </form>

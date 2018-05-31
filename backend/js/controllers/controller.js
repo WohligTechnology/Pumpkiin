@@ -438,6 +438,11 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                 $scope.formData.input = $scope.formData.input;
             }
         };
+        $scope.viewUserDetail = function (id) {
+            $state.go("createproductpage", {
+                id: id
+            })
+        }
         $scope.changeAll = function () {
             $scope.formData = {};
             $scope.formData.page = 1;
@@ -461,6 +466,9 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             }
         }
         $scope.viewTable = function () {
+            var dataTofilter = {};
+            dataTofilter.status = $stateParams.status;
+            $scope.formData.filter = dataTofilter;
             $scope.url = "Product/search";
             $scope.formData.page = $scope.formData.page++;
             NavigationService.apiCall($scope.url, $scope.formData, function (data) {
@@ -647,6 +655,16 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                 $scope.formData.input = $scope.formData.input;
             }
         };
+        $scope.getInfo = {}
+        $scope.getInfo._id = $stateParams.id;
+        NavigationService.apiCall("Product/getOne", $scope.getInfo, function (data) {
+            if (data.value === true) {
+                $scope.formdata = data.data;
+                $scope.formdata.purchasedate = new Date(data.data.purchasedate);
+                $scope.formdata.warrantyExpDate = new Date(data.data.warrantyExpDate);
+                $scope.formdata.insuranceExpDate = new Date(data.data.insuranceExpDate);
+            }
+        });
         $scope.changeAll = function () {
             $scope.formData = {};
             $scope.formData.page = 1;

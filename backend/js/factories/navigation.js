@@ -16,11 +16,23 @@ myApp.factory('NavigationService', function ($http) {
         {
             name: "Product",
             classis: "active",
-            uiSref: "viewproductpage",
-            access: false
+            sref: "",
+            subnav: [{
+                    name: "Confirmed",
+                    classis: "active",
+                    uiSref: "viewproductpage({status:'Confirmed'})",
+                    icon: "phone",
+                },
+                {
+                    name: "Pending",
+                    classis: "active",
+                    uiSref: "viewproductpage({status:'Pending'})",
+                    icon: "phone",
+                }
 
-        },
-        {
+            ]
+
+        }, {
             name: "Brands",
             classis: "active",
             sref: "#!/page/viewBrand//",
@@ -33,7 +45,8 @@ myApp.factory('NavigationService', function ($http) {
             sref: "#!/page/viewRetailer//",
             access: false
 
-        }
+        },
+
     ];
 
     return {

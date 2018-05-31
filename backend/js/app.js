@@ -88,7 +88,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
         })
         .state('viewproductpage', {
             templateUrl: "views/template.html",
-            url: "/viewproductpage/:id/{page:.*}/{keyword:.*}",
+            url: "/viewproductpage/:id/:status",
             controller: 'ViewProductPageCtrl'
         })
         .state('editproductpage', {
@@ -98,7 +98,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
         })
         .state('createproductpage', {
             templateUrl: "views/template.html",
-            url: "/createproductpage",
+            url: "/createproductpage/:id",
             controller: 'CreateProductPageCtrl'
         })
 
