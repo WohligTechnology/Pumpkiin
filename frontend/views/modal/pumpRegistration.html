@@ -9,7 +9,7 @@
     </div>
     <div class="form-group" fields>
         <label>Image</label>
-        <upload-image multiple ng-model="data.invoice"></upload-image>
+        <upload-image ng-model="data.purchaseproof1"></upload-image>
     </div>
     <div class="mb-2 mt-3 fontRobotoRegular">Upload Warranty Card</div>
     <div class="upload-btn-wrapper mx-1">
@@ -18,7 +18,7 @@
     </div>
     <div class="form-group" fields>
         <label>Image</label>
-        <upload-image multiple ng-model="data.warranty"></upload-image>
+        <upload-image ng-model="data.warrantyProof"></upload-image>
     </div>
-    <div class="d-flex justify-content-center text-center my-3 fontRobotoRegular"><a role="button" class="button green-btn py-1 w-50">UPLOAD FILES</a></div>
+    <div class="d-flex justify-content-center text-center my-3 fontRobotoRegular" ng-click="submitDocuments(data)"><a role="button" class="button green-btn py-1 w-50">UPLOAD FILES</a></div>
 </div>

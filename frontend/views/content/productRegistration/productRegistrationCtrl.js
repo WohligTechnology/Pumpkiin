@@ -91,25 +91,25 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     $scope.userData = {};
     $scope.addeduser = [];
     $scope.addUser = function (data) {
-            NavigationService.apiCallWithData("WebUser/save", data, function (res) {
-                if (res.value == true) {
-                    $scope.updateUser = {};
-                    $scope.updateUser.userId = "5b00213f78dcc437c34cc815";
-                    $scope.updateUser.memberId = res.data._id;
-                    NavigationService.apiCallWithData("WebUser/addUserRelationMember", $scope.updateUser, function (response) {
-                        $scope.userData = {};
-                        $scope.addeduser.push({
-                            name: data.name,
-                            relation: data.relation,
-                            mobile: data.mobile
-                        });
-
+        NavigationService.apiCallWithData("WebUser/save", data, function (res) {
+            if (res.value == true) {
+                $scope.updateUser = {};
+                $scope.updateUser.userId = "5b00213f78dcc437c34cc815";
+                $scope.updateUser.memberId = res.data._id;
+                NavigationService.apiCallWithData("WebUser/addUserRelationMember", $scope.updateUser, function (response) {
+                    $scope.userData = {};
+                    $scope.addeduser.push({
+                        name: data.name,
+                        relation: data.relation,
+                        mobile: data.mobile
                     });
-                }
-            });
-        },
 
-        $scope.removedUser = function (id, $index) {
+                });
+            }
+        });
+    };
+
+    $scope.removedUser = function (id, $index) {
             $scope.addeduser.splice($index, 1);
             $scope.removeMember = {};
             $scope.removeMember.mobile = id.mobile;
@@ -150,12 +150,24 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             $scope.dataTosave = {};
             $scope.dataTosave._id = $scope.product_id;
             $scope.dataTosave.doneBy = "User";
+            $scope.dataTosave.status = "Confirmed";
             NavigationService.apiCallWithData("Product/saveProduct", $scope.dataTosave, function (res) {
                 $scope.callProduct();
             });
             $scope.makeActive('circle4');
         },
+        $scope.submitDocuments = function (docs) {
+            console.log("*************", docs);
 
+            docs.purchaseproof = [];
+            docs.purchaseproof.push({
+                proofImage: docs.purchaseproof1
+            });
+            docs.status = "Pending";
+            NavigationService.apiCallWithData("Product/save", docs, function (res) {
+                console.log("inside submit documents api", res);
+            });
+        },
         $scope.accessoriesMain = [{
             "name": "Accessories Name",
             "relation": "Accessories",

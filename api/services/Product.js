@@ -27,7 +27,7 @@ var schema = new Schema({
     },
 
     purchaseprice: {
-        type: String
+        type: Number
     },
     confirmationcode: {
         type: String
