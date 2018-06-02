@@ -20,6 +20,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                 direction: 'horizontal',
                 loop: true,
                 slidesPerView:2,
+                slidesPerGroup:2,
 
                 // Navigation arrows
                 navigation: {
