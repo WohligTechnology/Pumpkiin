@@ -1,0 +1,147 @@
+{
+    "title": "Edit Ticket",
+    "name": "Ticket",
+    "jsonPage": "viewTicket",
+    "desciption": "",
+    "pageType": "edit",
+    "urlFields": ["_id"],
+    "fields": [{
+            "name": "Order Id",
+            "type": "number",
+            "tableRef": "orderid",
+            "placeholder": "Enter Order Id",
+            "id": "orderid",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "Issue Reported",
+            "type": "date",
+            "tableRef": "issuereported",
+            "placeholder": "Enter Issue Reported",
+            "id": "issuereported",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "Ticket Number",
+            "type": "number",
+            "tableRef": "ticketnumber",
+            "placeholder": "Enter Ticket Nsumber",
+            "id": "ticketnumber",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "Status",
+            "type": "text",
+            "tableRef": "status",
+            "placeholder": "Enter status",
+            "id": "status",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "Sub Status",
+            "type": "text",
+            "tableRef": "substatus",
+            "placeholder": "Enter substatus",
+            "id": "substatus",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "elapsedtime",
+            "type": "text",
+            "tableRef": "elapsedtime",
+            "placeholder": "Enter elapsedtime",
+            "id": "elapsedtime",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "customer Communicatio History",
+            "type": "text",
+            "tableRef": "customercommunicationhistory",
+            "placeholder": "Enter customer Communication History",
+            "id": "customercommunicationhistory",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "Closure Date",
+            "type": "date",
+            "tableRef": "closuredate",
+            "placeholder": "Enter Closure Date",
+            "id": "closuredate",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "closurecommentpumpkin",
+            "type": "text",
+            "tableRef": "closurecommentpumpkin",
+            "placeholder": "Enter closurecommentpumpkin",
+            "id": "closurecommentpumpkin",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "rating",
+            "type": "text",
+            "tableRef": "rating",
+            "placeholder": "Enter rating",
+            "id": "rating",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "cost",
+            "type": "numebr",
+            "tableRef": "cost",
+            "placeholder": "Enter cost",
+            "id": "cost",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "repairrecepit",
+            "type": "box",
+            "tableRef": "repairrecepit",
+            "validation": ["", "trim", ""],
+            "fields": [{
+                "name": "recepit",
+                "type": "image",
+                "tableRef": "recepit",
+                "placeholder": "Enter recepit",
+                "id": "recepit",
+                "validation": ["", "trim"],
+                "url": "",
+                "onView": true
+            }]
+        }
+    ],
+    "action": [{
+        "name": "submit",
+        "action": "submitTicket",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewTicket"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewTicket"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "Ticket/save",
+        "params": "_id"
+    },
+    "preApi": {
+        "url": "Ticket/getOne",
+        "params": "_id"
+    }
+
+}

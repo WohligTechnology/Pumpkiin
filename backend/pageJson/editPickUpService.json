@@ -1,0 +1,96 @@
+{
+    "title": "Edit PickUpService",
+    "name": "PickUpService",
+    "jsonPage": "viewPickUpService",
+    "desciption": "",
+    "pageType": "edit",
+    "urlFields": ["_id"],
+    "fields": [{
+            "name": "Ticket Id",
+            "type": "tags",
+            "tableRef": "ticketid",
+            "dropDownType": "single",
+            "dropDownField": "ticketnumber",
+            "searchApi": "searchCall",
+            "placeholder": "Enter ticketid Name",
+            "id": "ticketid",
+            "validation": ["", "trim", ""],
+            "url": "Ticket/search"
+        }, {
+            "name": "assignedto",
+            "type": "text",
+            "tableRef": "assignedto",
+            "placeholder": "Enter assignedto",
+            "id": "assignedto",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "assignedtonumber",
+            "type": "number",
+            "tableRef": "assignedtonumber",
+            "placeholder": "Enter assignedtonumber",
+            "id": "assignedtonumber",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "contactperson",
+            "type": "text",
+            "tableRef": "contactperson",
+            "placeholder": "Enter contactperson",
+            "id": "contactperson",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "contactnumber",
+            "type": "text",
+            "tableRef": "contactnumber",
+            "placeholder": "Enter contactnumber",
+            "id": "contactnumber",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "servicecenter",
+            "type": "tags",
+            "tableRef": "servicecenter",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter servicecenter Name",
+            "id": "servicecenter",
+            "validation": ["", "trim", ""],
+            "url": "ServiceCenter/search"
+        }
+
+    ],
+    "action": [{
+        "name": "submit",
+        "action": "submitPickUpService",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewPickUpService"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewPickUpService"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "PickUpService/save",
+        "params": "_id"
+    },
+    "preApi": {
+        "url": "PickUpService/getOne",
+        "params": "_id"
+    }
+
+}

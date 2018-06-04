@@ -1,4 +1,5 @@
 var schema = new Schema({
+
     orderid: {
         type: Number,
     },
@@ -9,16 +10,16 @@ var schema = new Schema({
         type: Number,
     },
     status: {
-        type: Date,
+        type: String,
     },
     substatus: {
-        type: Date,
+        type: String,
     },
     elapsedtime: {
-        type: Date,
+        type: String,
     },
     customercommunicationhistory: {
-        type: Date,
+        type: String,
     },
     closuredate: {
         type: Date,

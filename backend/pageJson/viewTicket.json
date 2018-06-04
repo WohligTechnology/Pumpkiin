@@ -1,0 +1,49 @@
+{
+    "title": "Ticket",
+    "description": "List of Ticket",
+    "pageType": "view",
+    "sendIdWithCreate": true,
+    "urlFields": ["_id"],
+    "fields": [{
+        "name": "Ticket id",
+        "isSort": "",
+        "tableRef": "ticketnumber"
+    }, {
+        "name": "order id",
+        "isSort": "",
+        "tableRef": "orderid"
+    }],
+    "action": [{
+        "name": "edit",
+        "icon": "fa-pencil",
+        "buttonClass": "btn-primary",
+        "type": "page",
+        "action": "editTicket",
+        "fieldsToSend": {
+            "_id": "_id"
+        }
+    }, {
+        "name": "delete",
+        "icon": "fa-trash",
+        "buttonClass": "btn-danger",
+        "type": "apiCallConfirm",
+        "title": "Delete Ticket",
+        "content": "Are you sure you want to delete Ticket?",
+        "api": "Ticket/delete",
+        "fieldsToSend": {
+            "name": "_id",
+            "value": "_id"
+        }
+    }],
+    "button": [{
+        "name": "Create",
+        "icon": "plus",
+        "class": "btn-success",
+        "type": "page",
+        "action": "createTicket"
+    }],
+    "apiCall": {
+        "url": "Ticket/search",
+        "params": "_id"
+    }
+}
