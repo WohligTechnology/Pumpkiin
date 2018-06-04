@@ -9,10 +9,15 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline mr-auto mx-auto">
+            <form class="form-inline mr-auto mx-auto relative">
                 <div class="product-search">
                     <img src="img/header/Search-icon.png" alt="Search-icon" class="search-icon">
-                    <input class="mr-sm-6" type="text" placeholder="Search for brands of product">
+                    <input class="mr-sm-6" type="text" placeholder="Search for brands of product" ng-model="productSearch">
+                </div>
+                <div class="product-drop" ng-if="productSearch">
+                    <div class="product" ng-repeat="product in productList | filter:productSearch">{{product.name}}
+                        <img ng-src="{{product.img}}" ng-if="product.img">
+                    </div>
                 </div>
             </form>
             <ul class="navbar-nav  my-2 my-lg-0 mr-4">
@@ -22,7 +27,9 @@
                 <li class="list-inline-item nav-item right-icon-width mx-2">
                     <img src="img/header/Products_circle-icon.png" alt="Products_circle-icon" class="w-100">
                 </li>
-                <li class="list-inline-item nav-item right-icon-width mx-2"><img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon" class="w-100"></li>
+                <li class="list-inline-item nav-item right-icon-width mx-2">
+                    <img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon" class="w-100">
+                </li>
                 <li class="list-inline-item nav-item mx-2">
                     <div class="user-profile rounded-circle">
                         <img src="img/header/profile.png" alt="Ticket_circle-icon" width="100%">

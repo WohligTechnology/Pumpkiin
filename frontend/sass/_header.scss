@@ -10,6 +10,7 @@
 
 .product-search {
     position: relative;
+    z-index: 2;
     input {
         width: 500px;
         border-radius: 20px;
@@ -18,6 +19,8 @@
         font-size: 13px;
         padding-left: 36px;
         font-family: "Roboto-Regular";
+        z-index: 2;
+        box-shadow: 0 0px 20px #333B45;
     }
     input::placeholder {
         font-size: 12px; // padding-left: 35px;
@@ -33,6 +36,34 @@
 
 .right-icon-width {
     width: 23px;
+}
+
+.relative {
+    position: relative;
+}
+
+.product-drop {
+    position: absolute;
+    background: #f9f9fa;
+    width: 100%;
+    top: 0;
+    padding: 60px 20px 20px 20px;
+    border-radius: 10px 10px 5px 5px;
+    .product {
+        border-bottom: 1px solid #DFE1E4;
+        color: #657D95;
+        font-size: 14px;
+        padding: 8px 2px;
+        position: relative;
+        img {
+            position: absolute;
+            right: 10px;
+            height: 50%;
+        }
+        &:first-child {
+            border-top: 1px solid #868F97;
+        }
+    }
 }
 
 /********************footer*******************/
