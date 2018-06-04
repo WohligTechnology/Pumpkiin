@@ -349,8 +349,16 @@ header {
     font-size: 14px;
 }
 
+.font16 {
+    font-size: 16px;
+}
+
 .font20 {
     font-size: 20px;
+}
+
+.font30 {
+    font-size: 30px;
 }
 
 .background-blue {
@@ -464,8 +472,7 @@ header {
 }
 
 .swiper-container {
-    width: 800px;
-    height: 300px;
+    width: 700px;
 }
 
 //scss for home page
@@ -477,6 +484,44 @@ header {
     .home-section-content {
         font-size: 2.5em;
         font-family: Roboto-Bold;
+        .select-box {
+            position: relative;
+            font-size: 30px;
+            display: inline-block;
+            .ui-select-icon {
+                position: absolute;
+                right: 5px;
+                bottom: 5px;
+            }
+            ::-webkit-input-placeholder {
+                /* Chrome/Opera/Safari */
+                color: white;
+                font-size: 30px;
+            }
+            ::-moz-placeholder {
+                /* Firefox 19+ */
+                color: white;
+                font-size: 30px;
+            }
+            :-ms-input-placeholder {
+                /* IE 10+ */
+                color: white;
+                font-size: 30px;
+            }
+            :-moz-placeholder {
+                /* Firefox 18- */
+                color: white;
+                font-size: 30px;
+            }
+            .ui-select-container {
+                width: 200px !important;
+            }
+            input {
+                background-color: $blue;
+                border: 0;
+                border-bottom: solid 2px white;
+            }
+        }
     }
 }
 
@@ -485,6 +530,7 @@ header {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center center;
+    height: 100vh;
     .about-pumpkin {
         padding: 100px 0;
         .about-content {
@@ -496,10 +542,64 @@ header {
             }
         }
     }
-    .pumpkin-plans {
-        background-color: #F9F9F9;
-    }
     .heading-fontsize {
         font-size: 1.3em;
     }
+}
+
+.customer-care {
+    @extend .fontRobotoRegular;
+    box-shadow: 0 -6px 0 #fff, 0 1px 6px rgba(0, 0, 0, .35);
+    .customer-care-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        img {
+            width: 80px;
+            border-radius: 50%;
+        }
+    }
+    .media-body {
+        p {
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+}
+
+.pumpkin-plans {
+    background-color: #F9F9F9;
+    .plans-list {
+        min-height: 100px;
+    }
+    .card-image{
+        height: 100px;
+        max-height: 100px;
+    }
+}
+
+.home-footer {
+    color: #222129;
+    @extend .fontRobotoLight;
+    font-size: 14px;
+    li{
+        cursor: pointer;
+        &:after{
+            content: "|";
+            padding-left: 15px;
+        }
+    }
+    li:last-child {
+        &:after{
+           display: none;
+        }
+    }
+}
+
+.main-swiper-container {
+    position: relative;
+    width: 800px;
+    margin: 0 auto;
 }
