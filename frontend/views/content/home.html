@@ -1,7 +1,27 @@
 <div class="background-blue home-section">
     <div class="d-flex">
         <div class="align-self-end img-section"><img src="img/home/homeBanner.png" class="img-fluid"></div>
-        <div class="align-self-center text-white home-section-content">Pumpkiin, please help!<br> My , needs Service .</div>
+        <div class="align-self-center text-white home-section-content">Pumpkiin, please help!<br> My
+            <div class="select-box">
+                <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
+                <ui-select ng-model="country.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country"
+                    append-to-body="true">
+                    <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices class="bg-white blue-color" repeat="country in countries | filter: $select.search">
+                        <span ng-bind-html="country.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>, needs
+            <div class="select-box">
+                <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
+                <ui-select ng-model="country.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country"
+                    append-to-body="true">
+                    <ui-select-match placeholder="Search">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices class="bg-white blue-color" repeat="country in countries | filter: $select.search">
+                        <span ng-bind-html="country.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>.</div>
     </div>
 </div>
 <div class="bg-white text-center about-pumpkin-section">
@@ -15,22 +35,137 @@
             <div class="py-3"><a>Know More....</a></div>
         </div>
     </div>
-    <!-- Slider main container -->
-<div class="swiper-container">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            <div class="swiper-slide">Slide 4</div>
-            <div class="swiper-slide">Slide 5</div>
-            <div class="swiper-slide">Slide 6</div>
+    <div class="main-swiper-container">
+        <!-- Slider main container -->
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide p-2">
+                    <div class="media border p-2 customer-care">
+                        <div class="align-self-center customer-care-img"><img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image"></div>
+                        <div class="media-body pl-3 text-left">
+                            <h5 class="mt-0 font16">Masud Rana</h5>
+                            <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+                                was born and I will give you a complete.But I must explain to you how all this mistaken idea
+                                of denouncing pleasure and praising pain was born and I will give you a complete”</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide p-2">
+                    <div class="media border p-2 customer-care">
+                        <div class="align-self-center customer-care-img"><img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image"></div>
+                        <div class="media-body pl-3 text-left">
+                            <h5 class="mt-0 font16">Masud Rana</h5>
+                            <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+                                was born and I will give you a complete”</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide p-2">
+                    <div class="media border p-2 customer-care">
+                        <div class="align-self-center customer-care-img"><img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image"></div>
+                        <div class="media-body pl-3 text-left">
+                            <h5 class="mt-0 font16">Masud Rana</h5>
+                            <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+                                was born and I will give you a complete”</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide p-2">
+                    <div class="media border p-2 customer-care">
+                        <div class="align-self-center customer-care-img"><img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image"></div>
+                        <div class="media-body pl-3 text-left">
+                            <h5 class="mt-0 font16">Masud Rana</h5>
+                            <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+                                was born and I will give you a complete”</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide p-2">
+                    <div class="media border p-2 customer-care">
+                        <div class="align-self-center customer-care-img"><img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image"></div>
+                        <div class="media-body pl-3 text-left">
+                            <h5 class="mt-0 font16">Masud Rana</h5>
+                            <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+                                was born and I will give you a complete”</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide p-2">
+                    <div class="media border p-2 customer-care">
+                        <div class="align-self-center customer-care-img"><img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image"></div>
+                        <div class="media-body pl-3 text-left">
+                            <h5 class="mt-0 font16">Masud Rana</h5>
+                            <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+                                was born and I will give you a complete”</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    
         <!-- If we need navigation buttons -->
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
     </div>
 </div>
-<div class="pumpkin-plans"></div>
+<div class="text-center p-5 pumpkin-plans">
+    <h4 class="fontRobotoLight blue-color">Plans as per your need</h4>
+    <div class="p-5 d-flex">
+        <div class="card border-rounded p-3 pt-5 mx-auto" style="width: 15rem;">
+            <div class="w-75 mx-auto card-image"><img class="img-fluid card-img-top" src="img/home/bluehome_small.png" alt="Card image cap"></div>
+            <div class="card-body py-2 px-0">
+                <h5 class="card-title pt-3 fontRobotoBold">STARTER</h5>
+                <div>
+                    <ul class="list-unstyled font12 plans-list">                             
+                        <li>Unlimited users</li>
+                        <li>Unlimited products registration</li>
+                        <li>Unlimited reminders</li>
+                    </ul>
+                    <h2 class="fontRobotoRegular font30">FREE</h2>
+                </div>
+                <button href="#" class="btn w-100 border-rounded fontRobotoBold text-white orange-btn">GET STARTED</button>
+            </div>
+        </div>
+        <div class="card border-rounded p-3 pt-5 mx-auto" style="width: 15rem;">
+            <div class="w-75 mx-auto card-image"><img class="img-fluid card-img-top" src="img/home/voilet_home.png" alt="Card image cap"></div>
+            <div class="card-body py-2 px-0">
+                <h5 class="card-title pt-3 fontRobotoBold">PRO</h5>
+                <div>
+                    <ul class="list-unstyled font12 plans-list">
+                        <li>All in Free</li>
+                        <li>1 service request handling*</li>
+                    </ul>
+                    <h2 class="fontRobotoBold font30 orange-color">Rs. 99</h2>
+                </div>
+                <button href="#" class="btn w-100 border-rounded fontRobotoBold text-white orange-btn">CHOOSE PRO</button>
+            </div>
+        </div>
+        <div class="card border-rounded p-3 pt-5 mx-auto" style="width: 15rem;">
+            <div class="w-75 mx-auto card-image"><img class="img-fluid card-img-top" src="img/home/bluehome-big.png" alt="Card image cap"></div>
+            <div class="card-body py-2 px-0">
+                <h5 class="card-title pt-3 fontRobotoBold">BUSINESS</h5>
+                <div>
+                    <ul class="list-unstyled font12 plans-list">
+                        <li>All in Free</li>
+                        <li>1 service request handling*</li>
+                    </ul>
+                    <h2 class="fontRobotoRegular font30">Rs.899</h2>
+                </div>
+                <button href="#" class="btn w-100 border-rounded fontRobotoBold text-white orange-btn">CHOOSE BUSINESS</button>
+            </div>
+        </div>
+    </div>
+    <div class="p-5 text-center home-footer">
+        <img src="img/header/Pumpkiinlogo.png" class="img-fluid my-2">
+        <p>Copyright © Pumpkiin 2018. All Rights Reserved.</p>
+        <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">About us</li>
+            <li class="list-inline-item">Terms and Conditions</li>
+            <li class="list-inline-item">Privacy Policy</li>
+            <li class="list-inline-item">Careers</li>
+            <li class="list-inline-item">Cities</li>
+            <li class="list-inline-item">Contact us</li>
+        </ul>
+    </div>
+</div>

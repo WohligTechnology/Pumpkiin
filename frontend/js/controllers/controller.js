@@ -17,6 +17,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         $timeout(function () {
             mySwiper = new Swiper('.swiper-container', {
                 // Optional parameters
+                width: '700',
                 direction: 'horizontal',
                 loop: true,
                 slidesPerView:2,
@@ -58,6 +59,16 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                 stateOff: 'glyphicon-off'
             }
         ];
+        $scope.countries=[{name: 'Afghanistan'}, 
+        {name: 'Åland Islands'}, 
+        {name: 'Albania'}, 
+        {name: 'Algeria'}, 
+        {name: 'American Samoa'}, 
+        {name: 'AndorrA'}, 
+        {name: 'Angola'}, 
+        {name: 'Anguilla'}, 
+        {name: 'Antarctica'}, 
+        {name: 'Antigua and Barbuda'}]
 
     })
 
