@@ -1,0 +1,85 @@
+{
+    "title": "Create FollowUp",
+    "name": "FollowUp",
+    "jsonPage": "viewFollowUp",
+    "desciption": "",
+    "pageType": "create",
+    "urlFields": ["FollowUp"],
+    "fields": [{
+            "name": "Ticket Id",
+            "type": "tags",
+            "tableRef": "ticketid",
+            "dropDownType": "single",
+            "dropDownField": "ticketnumber",
+            "searchApi": "searchCall",
+            "placeholder": "Enter ticketid Name",
+            "id": "ticketid",
+            "validation": ["", "trim", ""],
+            "url": "Ticket/search"
+        }, {
+            "name": "status",
+            "type": "text",
+            "tableRef": "status",
+            "placeholder": "Enter status",
+            "id": "status",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "contactperson",
+            "type": "text",
+            "tableRef": "contactperson",
+            "placeholder": "Enter contactperson",
+            "id": "contactperson",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "contact Number",
+            "type": "number",
+            "tableRef": "contactnumber",
+            "placeholder": "Enter contact number",
+            "id": "contactnumber",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "date",
+            "type": "date",
+            "tableRef": "date",
+            "placeholder": "Enter date",
+            "id": "date",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "time",
+            "type": "text",
+            "tableRef": "time",
+            "placeholder": "Enter time",
+            "id": "time",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }
+    ],
+    "action": [{
+        "name": "submit",
+        "action": "submitFollowUp",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewFollowUp"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewFollowUp"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "FollowUp/save"
+    }
+}

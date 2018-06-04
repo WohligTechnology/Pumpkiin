@@ -1,0 +1,49 @@
+{
+    "title": "CustomerSupportDetails",
+    "description": "List of CustomerSupportDetailss",
+    "pageType": "view",
+    "sendIdWithCreate": true,
+    "urlFields": ["_id"],
+    "fields": [{
+        "name": "email",
+        "isSort": "",
+        "tableRef": "email"
+    }, {
+        "name": "tollfreenumber",
+        "isSort": "",
+        "tableRef": "tollfreenumber"
+    }],
+    "action": [{
+        "name": "edit",
+        "icon": "fa-pencil",
+        "buttonClass": "btn-primary",
+        "type": "page",
+        "action": "editCustomerSupportDetails",
+        "fieldsToSend": {
+            "_id": "_id"
+        }
+    }, {
+        "name": "delete",
+        "icon": "fa-trash",
+        "buttonClass": "btn-danger",
+        "type": "apiCallConfirm",
+        "title": "Delete CustomerSupportDetails",
+        "content": "Are you sure you want to delete CustomerSupportDetails?",
+        "api": "CustomerSupportDetails/delete",
+        "fieldsToSend": {
+            "name": "_id",
+            "value": "_id"
+        }
+    }],
+    "button": [{
+        "name": "Create",
+        "icon": "plus",
+        "class": "btn-success",
+        "type": "page",
+        "action": "createCustomerSupportDetails"
+    }],
+    "apiCall": {
+        "url": "CustomerSupportDetails/search",
+        "params": "_id"
+    }
+}

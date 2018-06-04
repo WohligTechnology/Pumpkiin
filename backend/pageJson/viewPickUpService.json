@@ -1,0 +1,49 @@
+{
+    "title": "PickUpService",
+    "description": "List of PickUpService",
+    "pageType": "view",
+    "sendIdWithCreate": true,
+    "urlFields": ["_id"],
+    "fields": [{
+        "name": "ticketid",
+        "isSort": "",
+        "tableRef": "ticketid"
+    }, {
+        "name": "assignedto",
+        "isSort": "",
+        "tableRef": "assignedto"
+    }],
+    "action": [{
+        "name": "edit",
+        "icon": "fa-pencil",
+        "buttonClass": "btn-primary",
+        "type": "page",
+        "action": "editPickUpService",
+        "fieldsToSend": {
+            "_id": "_id"
+        }
+    }, {
+        "name": "delete",
+        "icon": "fa-trash",
+        "buttonClass": "btn-danger",
+        "type": "apiCallConfirm",
+        "title": "Delete PickUpService",
+        "content": "Are you sure you want to delete PickUpService?",
+        "api": "PickUpService/delete",
+        "fieldsToSend": {
+            "name": "_id",
+            "value": "_id"
+        }
+    }],
+    "button": [{
+        "name": "Create",
+        "icon": "plus",
+        "class": "btn-success",
+        "type": "page",
+        "action": "createPickUpService"
+    }],
+    "apiCall": {
+        "url": "PickUpService/search",
+        "params": "_id"
+    }
+}

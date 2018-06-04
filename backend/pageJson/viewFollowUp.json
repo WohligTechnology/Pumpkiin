@@ -1,0 +1,45 @@
+{
+    "title": "FollowUp",
+    "description": "List of FollowUps",
+    "pageType": "view",
+    "sendIdWithCreate": true,
+    "urlFields": ["_id"],
+    "fields": [{
+        "name": "ticketid",
+        "isSort": "",
+        "tableRef": "ticketid"
+    }],
+    "action": [{
+        "name": "edit",
+        "icon": "fa-pencil",
+        "buttonClass": "btn-primary",
+        "type": "page",
+        "action": "editFollowUp",
+        "fieldsToSend": {
+            "_id": "_id"
+        }
+    }, {
+        "name": "delete",
+        "icon": "fa-trash",
+        "buttonClass": "btn-danger",
+        "type": "apiCallConfirm",
+        "title": "Delete FollowUp",
+        "content": "Are you sure you want to delete FollowUp?",
+        "api": "FollowUp/delete",
+        "fieldsToSend": {
+            "name": "_id",
+            "value": "_id"
+        }
+    }],
+    "button": [{
+        "name": "Create",
+        "icon": "plus",
+        "class": "btn-success",
+        "type": "page",
+        "action": "createFollowUp"
+    }],
+    "apiCall": {
+        "url": "FollowUp/search",
+        "params": "_id"
+    }
+}

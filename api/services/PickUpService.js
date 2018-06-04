@@ -7,7 +7,7 @@ var schema = new Schema({
     assignedto: {
         type: String
     },
-    number: {
+    assignedtonumber: {
         type: Number
     },
     contactperson: {
