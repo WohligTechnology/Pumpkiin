@@ -15,7 +15,7 @@
                     <input class="mr-sm-6" type="text" placeholder="Search for brands of product" ng-model="productSearch">
                 </div>
                 <div class="product-drop" ng-if="productSearch">
-                    <div class="product" ng-repeat="product in productList | filter:productSearch">{{product.name}}
+                    <div class="product" ng-repeat="product in productList | filter:productSearch" ui-sref="productdetailunregistered">{{product.name}}
                         <img ng-src="{{product.img}}" ng-if="product.img">
                     </div>
                 </div>
