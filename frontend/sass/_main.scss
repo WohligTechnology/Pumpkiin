@@ -310,7 +310,9 @@ header {
         color: #66686E;
     }
 }
-
+.w-10{
+    width: 10%;
+}
 .w-15 {
     width: 15%;
 }
@@ -427,6 +429,7 @@ header {
 
 .orange-btn {
     background-color: #FFA345;
+    border: solid 1px #FFA345;
     &:hover {
         color: #FFA345 !important;
         border: solid 1px #FFA345;
