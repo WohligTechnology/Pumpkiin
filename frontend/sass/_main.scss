@@ -161,9 +161,11 @@ $dropdown-box-shadow: 0 .5rem 1rem rgba($black, .175) !default;
     font-family: "Roboto-Light";
     src: url("../fonts/Roboto-Light.ttf");
 }
-h2{
+
+h2 {
     font-size: $font-size-h2;
 }
+
 body {
     padding-top: 56px;
     background-color: $gray-lighter;
@@ -310,9 +312,11 @@ header {
         color: #66686E;
     }
 }
-.w-10{
+
+.w-10 {
     width: 10%;
 }
+
 .w-15 {
     width: 15%;
 }
@@ -328,9 +332,11 @@ header {
 .w-85 {
     width: 85%;
 }
-.w-90{
+
+.w-90 {
     width: 90%;
 }
+
 .fontRobotoBold {
     font-family: Roboto-Bold;
 }
@@ -366,9 +372,11 @@ header {
 .font30 {
     font-size: 30px;
 }
-.font40{
+
+.font40 {
     font-size: 40px;
 }
+
 .background-blue {
     background-color: $darkblue;
 }
@@ -403,6 +411,10 @@ header {
 
 .font-color {
     color: #657D95;
+}
+
+.modal-font-color {
+    color: #788DA2;
 }
 
 .dark-font-color {
@@ -482,6 +494,30 @@ header {
 
 .swiper-container {
     width: 700px;
+}
+
+//scss for modal
+.modal-close-icon{
+    position: absolute;
+    top: 20px;
+    right: 5%;
+}
+.modal-content {
+    border-radius: 20px;
+    position: relative;
+}
+
+.modal-header {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.modal-body {
+    @extend .font14;
+    @extend .modal-font-color;
+    line-height: 24px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 //scss for home page
@@ -583,7 +619,7 @@ header {
     .plans-list {
         min-height: 100px;
     }
-    .card-image{
+    .card-image {
         height: 100px;
         max-height: 100px;
     }
@@ -593,16 +629,16 @@ header {
     color: #222129;
     @extend .fontRobotoLight;
     font-size: 14px;
-    li{
+    li {
         cursor: pointer;
-        &:after{
+        &:after {
             content: "|";
             padding-left: 15px;
         }
     }
     li:last-child {
-        &:after{
-           display: none;
+        &:after {
+            display: none;
         }
     }
 }
