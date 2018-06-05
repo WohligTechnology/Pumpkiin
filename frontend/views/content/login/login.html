@@ -1,11 +1,11 @@
-<div class="bg-image" ng-init="login=2">
+<div class="bg-image">
     <div class="bg_overlay"></div>
     <div class="container h-100">
         <div class="d-table w-100 h-100">
             <div class="d-table-cell align-middle">
                 <div class="row align-items-center">
                     <div class="col-sm-12 col-md-7 text-white">
-                        <h2 class="fontRobotoBold">
+                        <h2 class="fontRobotoBold mb-0">
                             Simplified Customer Care
                         </h2>
                         <p class="fontRobotoLight">Your customer care personal assistant</p>
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-5" ng-if="showsignUp">
+                    <div class="col-sm-12 col-md-5"  ng-if="showsignUp">
                         <div class="w-75 float-right border rounded bg-white mb-2 pb-3">
                             <div class="p-3 border-bottom text-center fontRobotoBold">Enter OTP</div>
                             <div class="px-3 py-2">
@@ -46,7 +46,7 @@
                                             move-next-on-maxlength>
                                         <input type="text" class="otp-input" id="part2" ng-change="checkChange(2)" ng-model="formName.digit2" maxlength="1" move-next-on-maxlength>
                                         <input type="text" class="otp-input" id="part3" ng-change="checkChange(3)" ng-model="formName.digit3" maxlength="1" move-next-on-maxlength>
-                                        <input type="text" class="otp-input" id="part4" ng-change="checkChange(4)" ng-model="formName.digit4" maxlength="1">                                        <a ng-click="sendOtp(formName)" class="float-right">Resend OTP</a>
+                                        <input type="text" class="otp-input" id="part4" ng-change="checkChange(4)" ng-model="formName.digit4" maxlength="1"><a ng-click="sendOtp(formName)" class="py-2 float-right">Resend OTP</a>
                                     </div>
 
                                     <div class="form-group mb-2">
@@ -62,7 +62,7 @@
                                             required>
                                     </div>
                                     <div class="mb-1 text-center">
-                                        <button type="submit" class="btn w-75 login-btn form-control" ng-click="saveUser(formName)">Submit</button>
+                                        <button type="submit" class="btn w-90 login-btn form-control" ng-click="saveUser(formName)">Submit</button>
                                     </div>
                                 </form>
                             </div>
