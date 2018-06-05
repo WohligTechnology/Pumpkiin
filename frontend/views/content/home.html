@@ -1,42 +1,51 @@
 <div class="background-blue home-section">
     <div class="d-flex">
-        <div class="align-self-end img-section"><img src="img/home/homeBanner.png" class="img-fluid"></div>
+        <div class="align-self-end img-section">
+            <img src="img/home/homeBanner.png" class="img-fluid">
+        </div>
         <div class="align-self-center text-white home-section-content">
-            <div>Pumpkiin, please help!<br> My
+            <div>Pumpkiin, please help!
+                <br> My
                 <div class="select-box">
                     <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
-                    <ui-select ng-model="country.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country"
+                    <ui-select ng-model="product.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country"
                         append-to-body="true">
                         <ui-select-match>{{$select.selected.name}}</ui-select-match>
-                        <ui-select-choices class="bg-white blue-color" repeat="country in countries | filter: $select.search">
-                            <span ng-bind-html="country.name | highlight: $select.search"></span>
+                        <ui-select-choices class="bg-white blue-color" repeat="pro in product | filter: $select.search">
+                            <span ng-bind-html="pro.name | highlight: $select.search"></span>
                         </ui-select-choices>
                     </ui-select>
                 </div>, needs
                 <div class="select-box">
                     <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
-                    <ui-select ng-model="country.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country"
+                    <ui-select ng-model="service.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country"
                         append-to-body="true">
-                        <ui-select-match placeholder="Search">{{$select.selected.name}}</ui-select-match>
-                        <ui-select-choices class="bg-white blue-color" repeat="country in countries | filter: $select.search">
-                            <span ng-bind-html="country.name | highlight: $select.search"></span>
+                        <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices class="bg-white blue-color" repeat="ser in service | filter: $select.search">
+                            <span ng-bind-html="ser.name | highlight: $select.search"></span>
                         </ui-select-choices>
                     </ui-select>
                 </div>.
             </div>
-            <div class="text-center py-3"><button ui-sref="productdetailunregistered" class="btn w-25 border-rounded fontRobotoBold text-white orange-btn">Submit</button></div>
+            <div class="text-center py-3">
+                <button ui-sref="productdetailunregistered" class="btn w-25 border-rounded fontRobotoBold text-white orange-btn">Submit</button>
+            </div>
         </div>
     </div>
 </div>
 <div class="bg-white text-center about-pumpkin-section">
     <div class="about-pumpkin">
-        <div><img src="img/header/Pumpkiinlogo.png"></div>
+        <div>
+            <img src="img/header/Pumpkiinlogo.png">
+        </div>
         <div class="py-3 fontRobotoLight heading-fontsize">Your customer care personal assistant</div>
         <div class="about-content font14">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
             dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
             specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
             essentially unchanged.
-            <div class="py-3"><a>Know More....</a></div>
+            <div class="py-3">
+                <a>Know More....</a>
+            </div>
         </div>
     </div>
     <div class="main-swiper-container">
@@ -47,7 +56,9 @@
                 <!-- Slides -->
                 <div class="swiper-slide p-2">
                     <div class="media border p-2 customer-care">
-                        <div class="align-self-center customer-care-img"><img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image"></div>
+                        <div class="align-self-center customer-care-img">
+                            <img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image">
+                        </div>
                         <div class="media-body pl-3 text-left">
                             <h5 class="mt-0 font16">Masud Rana</h5>
                             <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
@@ -58,7 +69,9 @@
                 </div>
                 <div class="swiper-slide p-2">
                     <div class="media border p-2 customer-care">
-                        <div class="align-self-center customer-care-img"><img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image"></div>
+                        <div class="align-self-center customer-care-img">
+                            <img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image">
+                        </div>
                         <div class="media-body pl-3 text-left">
                             <h5 class="mt-0 font16">Masud Rana</h5>
                             <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
@@ -68,7 +81,9 @@
                 </div>
                 <div class="swiper-slide p-2">
                     <div class="media border p-2 customer-care">
-                        <div class="align-self-center customer-care-img"><img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image"></div>
+                        <div class="align-self-center customer-care-img">
+                            <img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image">
+                        </div>
                         <div class="media-body pl-3 text-left">
                             <h5 class="mt-0 font16">Masud Rana</h5>
                             <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
@@ -78,7 +93,9 @@
                 </div>
                 <div class="swiper-slide p-2">
                     <div class="media border p-2 customer-care">
-                        <div class="align-self-center customer-care-img"><img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image"></div>
+                        <div class="align-self-center customer-care-img">
+                            <img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image">
+                        </div>
                         <div class="media-body pl-3 text-left">
                             <h5 class="mt-0 font16">Masud Rana</h5>
                             <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
@@ -88,7 +105,9 @@
                 </div>
                 <div class="swiper-slide p-2">
                     <div class="media border p-2 customer-care">
-                        <div class="align-self-center customer-care-img"><img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image"></div>
+                        <div class="align-self-center customer-care-img">
+                            <img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image">
+                        </div>
                         <div class="media-body pl-3 text-left">
                             <h5 class="mt-0 font16">Masud Rana</h5>
                             <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
@@ -98,7 +117,9 @@
                 </div>
                 <div class="swiper-slide p-2">
                     <div class="media border p-2 customer-care">
-                        <div class="align-self-center customer-care-img"><img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image"></div>
+                        <div class="align-self-center customer-care-img">
+                            <img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image">
+                        </div>
                         <div class="media-body pl-3 text-left">
                             <h5 class="mt-0 font16">Masud Rana</h5>
                             <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
@@ -117,7 +138,9 @@
     <h4 class="fontRobotoLight blue-color">Plans as per your need</h4>
     <div class="p-5 d-flex">
         <div class="card border-rounded p-3 pt-5 mx-auto" style="width: 15rem;">
-            <div class="w-75 mx-auto card-image"><img class="img-fluid card-img-top" src="img/home/bluehome_small.png" alt="Card image cap"></div>
+            <div class="w-75 mx-auto card-image">
+                <img class="img-fluid card-img-top" src="img/home/bluehome_small.png" alt="Card image cap">
+            </div>
             <div class="card-body py-2 px-0">
                 <h5 class="card-title pt-3 fontRobotoBold">STARTER</h5>
                 <div>
@@ -132,7 +155,9 @@
             </div>
         </div>
         <div class="card border-rounded p-3 pt-5 mx-auto" style="width: 15rem;">
-            <div class="w-75 mx-auto card-image"><img class="img-fluid card-img-top" src="img/home/voilet_home.png" alt="Card image cap"></div>
+            <div class="w-75 mx-auto card-image">
+                <img class="img-fluid card-img-top" src="img/home/voilet_home.png" alt="Card image cap">
+            </div>
             <div class="card-body py-2 px-0">
                 <h5 class="card-title pt-3 fontRobotoBold">PRO</h5>
                 <div>
@@ -146,7 +171,9 @@
             </div>
         </div>
         <div class="card border-rounded p-3 pt-5 mx-auto" style="width: 15rem;">
-            <div class="w-75 mx-auto card-image"><img class="img-fluid card-img-top" src="img/home/bluehome-big.png" alt="Card image cap"></div>
+            <div class="w-75 mx-auto card-image">
+                <img class="img-fluid card-img-top" src="img/home/bluehome-big.png" alt="Card image cap">
+            </div>
             <div class="card-body py-2 px-0">
                 <h5 class="card-title pt-3 fontRobotoBold">BUSINESS</h5>
                 <div>

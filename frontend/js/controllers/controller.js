@@ -20,8 +20,8 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                 width: '700',
                 direction: 'horizontal',
                 loop: true,
-                slidesPerView:2,
-                slidesPerGroup:2,
+                slidesPerView: 2,
+                slidesPerGroup: 2,
 
                 // Navigation arrows
                 navigation: {
@@ -40,35 +40,28 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             $scope.percent = 100 * (value / $scope.max);
         };
 
-        $scope.ratingStates = [{
-                stateOn: 'glyphicon-ok-sign',
-                stateOff: 'glyphicon-ok-circle'
+
+        $scope.product = [{
+                name: 'Laptop'
             },
             {
-                stateOn: 'glyphicon-star',
-                stateOff: 'glyphicon-star-empty'
+                name: 'PC'
             },
             {
-                stateOn: 'glyphicon-heart',
-                stateOff: 'glyphicon-ban-circle'
+                name: 'Phone'
             },
             {
-                stateOn: 'glyphicon-heart'
+                name: 'TV'
             },
             {
-                stateOff: 'glyphicon-off'
+                name: 'Head Phone'
             }
         ];
-        $scope.countries=[{name: 'Afghanistan'}, 
-        {name: 'Åland Islands'}, 
-        {name: 'Albania'}, 
-        {name: 'Algeria'}, 
-        {name: 'American Samoa'}, 
-        {name: 'AndorrA'}, 
-        {name: 'Angola'}, 
-        {name: 'Anguilla'}, 
-        {name: 'Antarctica'}, 
-        {name: 'Antigua and Barbuda'}]
+        $scope.service = [{
+            name: 'Service'
+        }, {
+            name: 'Retail'
+        }]
 
     })
 
