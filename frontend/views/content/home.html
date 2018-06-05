@@ -1,32 +1,32 @@
 <div class="background-blue home-section">
     <div class="d-flex">
         <div class="align-self-end img-section"><img src="img/home/homeBanner.png" class="img-fluid"></div>
-        <!-- <div class="text-center"> -->
-        <div class="align-self-center text-white home-section-content">Pumpkiin, please help!<br> My
-            <div class="select-box">
-                <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
-                <ui-select ng-model="country.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country"
-                    append-to-body="true">
-                    <ui-select-match>{{$select.selected.name}}</ui-select-match>
-                    <ui-select-choices class="bg-white blue-color" repeat="country in countries | filter: $select.search">
-                        <span ng-bind-html="country.name | highlight: $select.search"></span>
-                    </ui-select-choices>
-                </ui-select>
-            </div>, needs
-            <div class="select-box">
-                <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
-                <ui-select ng-model="country.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country"
-                    append-to-body="true">
-                    <ui-select-match placeholder="Search">{{$select.selected.name}}</ui-select-match>
-                    <ui-select-choices class="bg-white blue-color" repeat="country in countries | filter: $select.search">
-                        <span ng-bind-html="country.name | highlight: $select.search"></span>
-                    </ui-select-choices>
-                </ui-select>
-            </div>.
+        <div class="align-self-center text-white home-section-content">
+            <div>Pumpkiin, please help!<br> My
+                <div class="select-box">
+                    <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
+                    <ui-select ng-model="country.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country"
+                        append-to-body="true">
+                        <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices class="bg-white blue-color" repeat="country in countries | filter: $select.search">
+                            <span ng-bind-html="country.name | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>, needs
+                <div class="select-box">
+                    <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
+                    <ui-select ng-model="country.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country"
+                        append-to-body="true">
+                        <ui-select-match placeholder="Search">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices class="bg-white blue-color" repeat="country in countries | filter: $select.search">
+                            <span ng-bind-html="country.name | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>.
+            </div>
+            <div class="text-center py-3"><button ui-sref="productdetailunregistered" class="btn w-25 border-rounded fontRobotoBold text-white orange-btn">Submit</button></div>
         </div>
-        <!-- </div> -->
     </div>
-    <button ui-sref="productdetailunregistered" class="btn w-25 border-rounded fontRobotoBold text-white orange-btn">Submit</button>
 </div>
 <div class="bg-white text-center about-pumpkin-section">
     <div class="about-pumpkin">
