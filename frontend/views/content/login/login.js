@@ -13,44 +13,47 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
 
             $scope.formName = {};
             $scope.formName.mobile = data.mobile;
-            NavigationService.apiCallWithData("WebUser/verifyUser", data, function (res) {
+            //for static 
+            $scope.showsignUp = true;
+            $scope.showLogin = false;
+            // NavigationService.apiCallWithData("WebUser/verifyUser", data, function (res) {
 
-                if (res.value == false) {
-                    async.waterfall([
-                        function (callback1) {
-                            NavigationService.apiCallWithData("WebUser/save", data, function (res1) {
+            //     if (res.value == false) {
+            //         async.waterfall([
+            //             function (callback1) {
+            //                 NavigationService.apiCallWithData("WebUser/save", data, function (res1) {
 
-                                if (res1.value == true) {
-                                    $scope.showsignUp = true;
-                                    $scope.showLogin = false;
-                                    callback1(null, res1);
+            //                     if (res1.value == true) {
+            //                         $scope.showsignUp = true;
+            //                         $scope.showLogin = false;
+            //                         callback1(null, res1);
 
-                                } else {
-                                    console.log("mobile already registered");
-                                }
+            //                     } else {
+            //                         console.log("mobile already registered");
+            //                     }
 
-                            });
-                        },
-                        function (data1, callback2) {
-                            console.log("inside 2nd waterfall", data1);
-                            NavigationService.apiCallWithData("WebUser/sendOtp", data, function (res1) {
+            //                 });
+            //             },
+            //             function (data1, callback2) {
+            //                 console.log("inside 2nd waterfall", data1);
+            //                 NavigationService.apiCallWithData("WebUser/sendOtp", data, function (res1) {
 
-                            });
-                        }
+            //                 });
+            //             }
 
-                    ], function (err, data) {
+            //         ], function (err, data) {
 
-                    });
+            //         });
 
-                } else {
-                    $scope.showsignUp = true;
-                    $scope.showLogin = false;
-                    $scope.shownameEmail = false;
-                    NavigationService.apiCallWithData("WebUser/sendOtp", data, function (res1) {
+            //     } else {
+            //         $scope.showsignUp = true;
+            //         $scope.showLogin = false;
+            //         $scope.shownameEmail = false;
+            //         NavigationService.apiCallWithData("WebUser/sendOtp", data, function (res1) {
 
-                    });
-                }
-            });
+            //         });
+            //     }
+            // });
         },
         $scope.saveUser = function (info) {
             if (info.digit1 >= 0 && info.digit2 >= 0 && info.digit3 >= 0 && info.digit4 >= 0) {
