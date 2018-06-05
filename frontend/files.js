@@ -26,6 +26,7 @@ module.exports = [
   "bower_components/angular-toastr/dist/angular-toastr.tpls.js",
   "bower_components/angular-promise-buttons/dist/angular-promise-buttons.js",
   "bower_components/angular-ui-select/dist/select.js",
+  "bower_components/async/dist/async.min.js",
 
   //App.js
   'frontend/js/app.js',

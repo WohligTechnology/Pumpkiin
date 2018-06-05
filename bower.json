@@ -65,7 +65,8 @@
     "ui-bootstrap4": "https://github.com/Morgul/ui-bootstrap4.git#^3.0.2",
     "popper.js": "^1.14.3",
     "angular-bootstrap-toggle-switch": "^0.5.6",
-    "swiper": "^4.3.0"
+    "swiper": "^4.3.0",
+    "async": "^2.6.1"
   },
   "resolutions": {
     "angular": "1.6.6"
