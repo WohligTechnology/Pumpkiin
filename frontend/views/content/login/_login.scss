@@ -1,6 +1,6 @@
 .bg-image {
     background: url("../img/bg.jpg");
-    height: 89.7vh;
+    height: 91.8vh;
     background-size: cover;
     background-position: top left;
     .bg_overlay {
@@ -109,9 +109,10 @@
 }
 
 .otp-send .otp-input {
-    width: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 5px;
-    border: 1px solid #707070;
+    border: 1px solid #D4D4D4;
     color: #707070;
     text-align: center;
 }
@@ -120,14 +121,15 @@
     position: relative;
     &:before {
         content: 'OR';
+        @extend .fontRobotoRegular;
         position: absolute;
         left: 46%;
         bottom: -21px;
-        font-size: 14px;
-        padding: 1px;
+        font-size: 12px;
+        padding: 2px;
         color: white;
         border-radius: 50%;
         background-color: #142C5C;
-        border: solid 5px #c9a685;
+        border: solid 5px #8e715a;
     }
 }
