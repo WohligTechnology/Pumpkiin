@@ -2,8 +2,8 @@
     position: relative;
     &:before {
         content: "";
-        background-image: url(../img/pdf.svg);
-        background-color: #ECF0F2;
+        // background-image: url(../img/pdf.svg);
+        background-color: $blue;
         border: solid 4px #ECF0F2;
         width: 40px;
         height: 40px;
@@ -74,7 +74,7 @@
         color: #657D95;
     }
     span {
-        color: #657D95;
+        color: #D1D1D1;
         font-size: 12px;
     }
     input {
@@ -175,6 +175,9 @@
         }
         .name-rel {
             line-height: 18px;
+        }
+        span{
+            color: #657D95;
         }
     }
 }

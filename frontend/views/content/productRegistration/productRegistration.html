@@ -57,13 +57,9 @@
                             <ul class="list-inline" ng-if="data.getImages">
                                 <li class="list-inline-item" ng-repeat="img in data.getImages">
                                     <img src="{{img.image |uploadpath}}" class="img-fluid" />
+                                    <!-- <upload-image multiple ng-model="data.images"></upload-image> -->
                                 </li>
                             </ul>
-
-                        </div>
-                        <div class="form-group" fields>
-                            <label>Image</label>
-                            <upload-image multiple ng-model="data.images"></upload-image>
                         </div>
                     </div>
                 </div>
@@ -122,11 +118,10 @@
                             </ul>
 
                         </div>
-                        <div class="form-group" fields>
+                        <!-- <div class="form-group" fields>
                             <label>Image</label>
                             <upload-image multiple ng-model="data.images"></upload-image>
-                        </div>
-
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -240,10 +235,10 @@
                             <button class="btn">+</button>
                             <input type="file" name="myfile" />
                         </div>
-                        <div class="form-group" fields>
+                        <!-- <div class="form-group" fields>
                             <label>Image</label>
                             <upload-image ng-model="data.warrantyProof"></upload-image>
-                        </div>
+                        </div> -->
                         <div class="d-flex social m-3 remainder">
                             <span class="social_icon">
                                 <i class="fas fa-plus"></i>
@@ -288,10 +283,10 @@
                             <button class="btn">+</button>
                             <input type="file" name="myfile" />
                         </div>
-                        <div class="form-group" fields>
+                        <!-- <div class="form-group" fields>
                             <label>Image</label>
                             <upload-image ng-model="data.insuranceProof"></upload-image>
-                        </div>
+                        </div> -->
                         <div class="d-flex social m-3 remainder">
                             <span class="social_icon">
                                 <i class="fas fa-plus"></i>
@@ -312,7 +307,7 @@
     </form>
 </div>
 
-<div class="container my-1" ng-if="activePage=='circle4'">
+<div class="container my-1 accessories" ng-if="activePage=='circle4'">
     <form>
         <div class="bg-white mx-3 p-4 border-rounded product-desc productreg">
             <h6 class="text-uppercase fontRobotoBold">ACCESSORIES

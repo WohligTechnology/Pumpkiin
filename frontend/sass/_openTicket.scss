@@ -10,7 +10,7 @@
         display: block;
     }
     .showhover{
-        direction: none;
+        display: none;
     }
     &:hover {
         background: $orange;
@@ -22,7 +22,7 @@
             display: none;
         }
         .showhover{
-            direction: block;
+            display: block;
         }
     }
 }
