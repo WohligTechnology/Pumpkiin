@@ -1,6 +1,6 @@
-.filters{
+.filters {
     color: #8B8B8B;
-    .brandsproducts{
+    .brandsproducts {
         position: relative;
         border-radius: 20px;
         color: #8B8B8B;
@@ -8,7 +8,7 @@
         border: solid 2px transparent;
         padding: 2px;
         padding-left: 15px;
-        .dropdown-icon{
+        .dropdown-icon {
             border: solid 2px #ecf0f2;
             position: absolute;
             right: -7px;
@@ -18,12 +18,13 @@
             background-color: white;
         }
     }
-    .dropdown-toggle{
-        &:after{
+    .dropdown-toggle {
+        &:after {
             display: none;
         }
     }
 }
+
 .export {
     position: relative;
     cursor: pointer;
@@ -164,6 +165,14 @@
 
 .closed-text {
     position: relative;
+    width: 34px;
+    height: 34px;
+    img {
+        width: 100%;
+    }
+    span {
+        font-size: 14px;
+    }
     .notification {
         position: absolute;
         top: -6px;
@@ -177,6 +186,9 @@
         border: solid 2px white;
         background-color: #14C177;
         color: white;
+    }
+    .notification-orange {
+        background-color: #FFA345;
     }
 }
 

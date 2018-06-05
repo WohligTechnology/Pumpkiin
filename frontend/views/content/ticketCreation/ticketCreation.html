@@ -2,191 +2,198 @@
     <div class="row ticket-creation-main">
         <div class="col col-md-3 openticketremainder">
             <div class="bg-white border-rounded p-3">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <img src="img/ticketCreation/openTicket.png">
+                <div class="d-flex justify-content-between" ng-init="show =false">
+                    <div class="closed-text" ng-click="show = false">
+                        <img src="img/ticketCreation/openTicket.png" ng-show="!show">
+                        <img src=" img/ticketCreation/open-ticket2.png" ng-show="show">
+                        <div class="notification notification-orange" ng-show="show">6</div>
+                        <span ng-show="show">open</span>
                     </div>
-                    <div class="closed-text">
-                        <img src="img/ticketCreation/closedTicket.png">
-                        <div class="notification">6</div>
+                    <div class="closed-text" ng-click="show = true">
+                        <img src="img/ticketCreation/close-ticket2.png" ng-show="!show">
+                        <img src="img/ticketCreation/green-ticket.png" ng-show="show">
+                        <div class="notification" ng-show="!show">6</div>
+                        <span ng-show="!show">close</span>
                     </div>
                     <div>
-                        <img src="img/ticketCreation/addButton.png">
+                        <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
-                <div class="my-3 open-tickets">
-                    <h4 class="d-inline">Open Tickets</h4>
-                    <span class="badge badge-style">14</span>
-                    <span>
-                        <img src="img/ticketCreation/search.png">
+                <div class="my-3 open-tickets ">
+                    <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
+                    <h5 class="d-inline" ng-show="show">closed Tickets</h5>
+                    <span class="badge badge-style ">14</span>
+                    <span class="float-right">
+                        <img src="img/ticketCreation/search.png ">
                     </span>
                 </div>
-                <div class="border-top listed-openTickets openticket">
-                    <div class="d-flex py-1 element-list">
-                        <div class="bullet"></div>
-                        <div class="d-block pl-4 text-truncate">
-                            <div class="product-title">Samsung s7 edge</div>
-                            <div class="date">12/2/2018</div>
+                <div class="border-top listed-openTickets openticket ">
+                    <div class="d-flex py-1 element-list ">
+                        <div class="bullet "></div>
+                        <div class="d-block pl-4 text-truncate ">
+                            <div class="product-title ">Samsung s7 edge</div>
+                            <div class="date ">12/2/2018</div>
                         </div>
-                        <span class="float-right caret-style">
-                            <i class="fas fa-caret-right"></i>
+                        <span class="float-right caret-style ">
+                            <i class="fas fa-caret-right "></i>
                         </span>
                     </div>
-                    <div class="d-flex py-1 element-list">
-                        <div class="bullet"></div>
-                        <div class="d-block pl-4">
-                            <div class="product-title">Samsung s7 edge</div>
-                            <div class="date">12/2/2018</div>
+                    <div class="d-flex py-1 element-list ">
+                        <div class="bullet "></div>
+                        <div class="d-block pl-4 ">
+                            <div class="product-title ">Samsung s7 edge</div>
+                            <div class="date ">12/2/2018</div>
                         </div>
-                        <span class="float-right caret-style">
-                            <i class="fas fa-caret-right"></i>
+                        <span class="float-right caret-style ">
+                            <i class="fas fa-caret-right "></i>
                         </span>
                     </div>
-                    <div class="d-flex py-1 element-list">
-                        <div class="bullet"></div>
-                        <div class="d-block pl-4">
-                            <div class="product-title">Samsung s7 edge</div>
-                            <div class="date">12/2/2018</div>
+                    <div class="d-flex py-1 element-list ">
+                        <div class="bullet "></div>
+                        <div class="d-block pl-4 ">
+                            <div class="product-title ">Samsung s7 edge</div>
+                            <div class="date ">12/2/2018</div>
                         </div>
-                        <span class="float-right caret-style">
-                            <i class="fas fa-caret-right"></i>
+                        <span class="float-right caret-style ">
+                            <i class="fas fa-caret-right "></i>
                         </span>
                     </div>
-                    <div class="d-flex py-1 element-list">
-                        <div class="bullet"></div>
-                        <div class="d-block pl-4">
-                            <div class="product-title">Samsung s7 edge</div>
-                            <div class="date">12/2/2018</div>
+                    <div class="d-flex py-1 element-list ">
+                        <div class="bullet "></div>
+                        <div class="d-block pl-4 ">
+                            <div class="product-title ">Samsung s7 edge</div>
+                            <div class="date ">12/2/2018</div>
                         </div>
-                        <span class="float-right caret-style">
-                            <i class="fas fa-caret-right"></i>
+                        <span class="float-right caret-style ">
+                            <i class="fas fa-caret-right "></i>
                         </span>
                     </div>
                 </div>
             </div>
-            <div class="bg-white border-rounded p-3 mt-3 productreg">
-                <div class="d-flex justify-content-between">
-                    <h4 class="orange-color">Remainders</h4>
+            <div class="bg-white border-rounded p-3 mt-3 productreg ">
+                <div class="d-flex justify-content-between ">
+                    <h4 class="orange-color ">Remainders</h4>
                     <div>
-                        <img src="img/ticketCreation/addButton.png">
+                        <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
-                <div class="border-top listed-openTickets remainderSection">
-                    <div class="d-flex py-1 element-list">
-                        <div class="bullet"></div>
-                        <div class="d-block pl-4">
-                            <div class="product-title">Samsung s7 edge</div>
-                            <div class="date">12/2/2018</div>
+                <div class="border-top listed-openTickets remainderSection ">
+                    <div class="d-flex py-1 element-list ">
+                        <div class="bullet "></div>
+                        <div class="d-block pl-4 ">
+                            <div class="product-title ">Samsung s7 edge</div>
+                            <div class="date ">12/2/2018</div>
                         </div>
-                        <span class="float-right caret-style">
-                            <i class="fas fa-caret-right"></i>
+                        <span class="float-right caret-style ">
+                            <i class="fas fa-caret-right "></i>
                         </span>
                     </div>
-                    <div class="d-flex py-1 element-list">
-                        <div class="bullet"></div>
-                        <div class="d-block pl-4">
-                            <div class="product-title">Samsung s7 edge</div>
-                            <div class="date">12/2/2018</div>
+                    <div class="d-flex py-1 element-list ">
+                        <div class="bullet "></div>
+                        <div class="d-block pl-4 ">
+                            <div class="product-title ">Samsung s7 edge</div>
+                            <div class="date ">12/2/2018</div>
                         </div>
-                        <span class="float-right caret-style">
-                            <i class="fas fa-caret-right"></i>
+                        <span class="float-right caret-style ">
+                            <i class="fas fa-caret-right "></i>
                         </span>
                     </div>
-                    <div class="d-flex py-1 element-list">
-                        <div class="bullet"></div>
-                        <div class="d-block pl-4">
-                            <div class="product-title">Samsung s7 edge</div>
-                            <div class="date">12/2/2018</div>
+                    <div class="d-flex py-1 element-list ">
+                        <div class="bullet "></div>
+                        <div class="d-block pl-4 ">
+                            <div class="product-title ">Samsung s7 edge</div>
+                            <div class="date ">12/2/2018</div>
                         </div>
-                        <span class="float-right caret-style">
-                            <i class="fas fa-caret-right"></i>
+                        <span class="float-right caret-style ">
+                            <i class="fas fa-caret-right "></i>
                         </span>
                     </div>
-                    <div class="d-flex py-1 element-list">
-                        <div class="bullet"></div>
-                        <div class="d-block pl-4">
-                            <div class="product-title">Samsung s7 edge</div>
-                            <div class="date">12/2/2018</div>
+                    <div class="d-flex py-1 element-list ">
+                        <div class="bullet "></div>
+                        <div class="d-block pl-4 ">
+                            <div class="product-title ">Samsung s7 edge</div>
+                            <div class="date ">12/2/2018</div>
                         </div>
-                        <span class="float-right caret-style">
-                            <i class="fas fa-caret-right"></i>
+                        <span class="float-right caret-style ">
+                            <i class="fas fa-caret-right "></i>
                         </span>
                     </div>
                 </div>
-                <div class="text-right mt-2 view">View All
-                    <span class="pl-2">
-                        <i class="fas fa-caret-right"></i>
+                <div class="text-right mt-2 view ">View All
+                    <span class="pl-2 ">
+                        <i class="fas fa-caret-right "></i>
                     </span>
                 </div>
             </div>
         </div>
-        <div class="col col-md-9" ng-init="modelNo=false">
-            <div class="background-blue border-rounded p-3 pb-5">
-                <div class="media">
-                    <div class="img-div">
-                        <img src="img/iphone.jpeg" class="img-fluid large-img">
+        <div class="col col-md-9 " ng-init="modelNo=false ">
+            <div class="background-blue border-rounded p-3 pb-5 ">
+                <div class="media ">
+                    <div class="img-div ">
+                        <img src="img/iphone.jpeg " class="img-fluid large-img ">
                         <div class="d-flex align-items-center justify-content-center small-img ">
-                            <img src="img/ticketCreation/mobile.png" width="10">
+                            <img src="img/ticketCreation/mobile.png " width="10 ">
                         </div>
                     </div>
-                    <div class="media-body pl-4 text-white">
-                        <h5 class="mt-0 fontRobotoMedium font20" ng-click="modelNo = !modelNo">Support ID: PSMS 6659
-                            <span class="float-right orange-color">
-                                <i class="fas" ng-class="{'fa-angle-down':modelNo ==false,'fa-angle-up':modelNo ==true}"></i>
+                    <div class="media-body pl-4 text-white ">
+                        <h5 class="mt-0 fontRobotoMedium font20 " ng-click="modelNo=! modelNo ">Support ID: PSMS 6659
+                            <span class="float-right orange-color ">
+                                <i class="fas fa-angle-up" ng-show="modelNo"></i>
+                                <i class="fas fa-angle-down" ng-show="!modelNo"></i>
                             </span>
                         </h5>
-                        <span class="fontRobotoBold font14">PRODUCT INFORMATION</span>
-                        <p class="fontRobotoRegular font20">Bose QuietComfort 25
-                            <span class="pl-2 fontRobotoLight"> (Bose)</span>
+                        <span class="fontRobotoBold font14 ">PRODUCT INFORMATION</span>
+                        <p class="fontRobotoRegular font20 ">Bose QuietComfort 25
+                            <span class="pl-2 fontRobotoLight "> (Bose)</span>
                         </p>
-                        <div class="row fontRobotoRegular font14 info-div" ng-show="modelNo">
-                            <div class="col col-md-6">
+                        <div class="row fontRobotoRegular font14 info-div " ng-show="modelNo ">
+                            <div class="col col-md-6 ">
                                 <p>
-                                    <span class="d-inline-block w-40">Model Number : </span>
-                                    <span class="d-inline-block w-60"> B - HDF 7585</span>
+                                    <span class="d-inline-block w-40 ">Model Number : </span>
+                                    <span class="d-inline-block w-60 "> B - HDF 7585</span>
                                 </p>
                                 <p>
-                                    <span class="d-inline-block w-40">Purchase Price : </span>
-                                    <span class="d-inline-block w-60"> INR 18750</span>
+                                    <span class="d-inline-block w-40 ">Purchase Price : </span>
+                                    <span class="d-inline-block w-60 "> INR 18750</span>
                                 </p>
-                                <p class="d-flex align-items-top">
-                                    <span class="d-inline-block w-40">Store : </span>
-                                    <span class="d-inline-block w-60"> Croma Reatils, Malad West</span>
+                                <p class="d-flex align-items-top ">
+                                    <span class="d-inline-block w-40 ">Store : </span>
+                                    <span class="d-inline-block w-60 "> Croma Reatils, Malad West</span>
                                 </p>
-                                <p class="d-flex align-items-top">
-                                    <span class="d-inline-block w-40">Attached Files : </span>
-                                    <span class="d-inline-block w-60">
-                                        <span class="d-inline-block img-uploaded"></span>
-                                        <span class="d-inline-block img-uploaded"></span>
-                                        <span class="d-inline-block img-uploaded"></span>
-                                        <span class="d-inline-block img-uploaded"></span>
+                                <p class="d-flex align-items-top ">
+                                    <span class="d-inline-block w-40 ">Attached Files : </span>
+                                    <span class="d-inline-block w-60 ">
+                                        <span class="d-inline-block img-uploaded "></span>
+                                        <span class="d-inline-block img-uploaded "></span>
+                                        <span class="d-inline-block img-uploaded "></span>
+                                        <span class="d-inline-block img-uploaded "></span>
                                     </span>
                                 </p>
                             </div>
-                            <div class="col col-md-6">
+                            <div class="col col-md-6 ">
                                 <p>
-                                    <span class="d-inline-block w-40">Serial Number : </span>
-                                    <span class="d-inline-block w-60"> 10-0B 24589 265 78</span>
+                                    <span class="d-inline-block w-40 ">Serial Number : </span>
+                                    <span class="d-inline-block w-60 "> 10-0B 24589 265 78</span>
                                 </p>
                                 <p>
-                                    <span class="d-inline-block w-40">Purchase Date : </span>
-                                    <span class="d-inline-block w-60"> 23-11-2017</span>
+                                    <span class="d-inline-block w-40 ">Purchase Date : </span>
+                                    <span class="d-inline-block w-60 "> 23-11-2017</span>
                                 </p>
-                                <p class="d-flex align-items-top">
-                                    <span class="d-inline-block w-40">Warranty : </span>
-                                    <span class="d-inline-block w-60 green-color"> 23-11-2017 - 22-11-2018</span>
+                                <p class="d-flex align-items-top ">
+                                    <span class="d-inline-block w-40 ">Warranty : </span>
+                                    <span class="d-inline-block w-60 green-color "> 23-11-2017 - 22-11-2018</span>
                                 </p>
-                                <p class="d-flex align-items-top">
-                                    <span class="d-inline-block w-40">Relation : </span>
-                                    <span class="d-inline-block w-60">
-                                        <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-2">Brother
-                                            <i class="fas fa-times"></i>
+                                <p class="d-flex align-items-top ">
+                                    <span class="d-inline-block w-40 ">Relation : </span>
+                                    <span class="d-inline-block w-60 ">
+                                        <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-2 ">Brother
+                                            <i class="fas fa-times "></i>
                                         </span>
-                                        <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-3">Mother
-                                            <i class="fas fa-times"></i>
+                                        <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-3 ">Mother
+                                            <i class="fas fa-times "></i>
                                         </span>
-                                        <button class="border-rounded background-orange border-0 text-white">Add New User
-                                            <i class="fas fa-plus"></i>
+                                        <button class="border-rounded background-orange border-0 text-white ">Add New User
+                                            <i class="fas fa-plus "></i>
                                         </button>
                                     </span>
                                 </p>
@@ -196,217 +203,224 @@
                 </div>
             </div>
 
-            <!-- <div class="bg-white mt-2 p-4 border-rounded productreg">
-                <h6 class="fontRobotoLight d-inline">SUPPORT TIMELINE</h6>
-                <h6 class="fontRobotoLight d-inline orange-color float-right">SUPPORT STATUS: OPEN</h6>
-                <div class="my-5 mr-5 support-timeline">
-                    <div class="circle circle1 timeline-active" ng-click="makeActive('circle1')"></div>
-                    <div class="circle circle2" ng-click="makeActive('circle2')"></div>
-                    <div class="circle circle3" ng-click="makeActive('circle3')"></div>
-                    <div class="circle circle4" ng-click="makeActive('circle4')"></div>
-                    <div class="circle circle5" ng-click="makeActive('circle4')"></div>
-                    <div class="circle moving" ng-click="makeActive('circle4')"></div>
+            <!-- <div class="bg-white mt-2 p-4 border-rounded productreg ">
+                <h6 class="fontRobotoLight d-inline ">SUPPORT TIMELINE</h6>
+                <h6 class="fontRobotoLight d-inline orange-color float-right ">SUPPORT STATUS: OPEN</h6>
+                <div class="my-5 mr-5 support-timeline ">
+                    <div class="circle circle1 timeline-active " ng-click="makeActive( 'circle1') "></div>
+                    <div class="circle circle2 " ng-click="makeActive( 'circle2') "></div>
+                    <div class="circle circle3 " ng-click="makeActive( 'circle3') "></div>
+                    <div class="circle circle4 " ng-click="makeActive( 'circle4') "></div>
+                    <div class="circle circle5 " ng-click="makeActive( 'circle4') "></div>
+                    <div class="circle moving " ng-click="makeActive( 'circle4') "></div>
                 </div>
             </div>
             <form>
-                <div class="bg-white mt-2 border-rounded productreg">
-                    <div class=" p-4">
-                        <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat">SUPPORT CHAT</h6>
-                        <div class="chat my-2">
-                            <div class="d-flex align-items-center mb-2 you">
-                                <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
-                                <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                <div class="bg-white mt-2 border-rounded productreg ">
+                    <div class=" p-4 ">
+                        <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat ">SUPPORT CHAT</h6>
+                        <div class="chat my-2 ">
+                            <div class="d-flex align-items-center mb-2 you ">
+                                <div class="img-fluid image "><img src="img/ticketCreation/profile.jpeg "></div>
+                                <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                             </div>
-                            <div class="d-flex align-items-center mb-2 flex-row-reverse me">
-                                <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
-                                <div class="mr-2 px-3 py-1 chat-content">The Charging drains ways in an hour</div>
+                            <div class="d-flex align-items-center mb-2 flex-row-reverse me ">
+                                <div class="img-fluid image "><img src="img/ticketCreation/profile.jpeg "></div>
+                                <div class="mr-2 px-3 py-1 chat-content ">The Charging drains ways in an hour</div>
                             </div>
-                            <div class="text-center gray-color font14 mt-3">Message on 15/2/2018</div>
-                            <div class="d-flex align-items-center mb-2 you">
-                                <div class="img-fluid image"><img src="img/ticketCreation/profile.jpeg"></div>
-                                <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                            <div class="text-center gray-color font14 mt-3 ">Message on 15/2/2018</div>
+                            <div class="d-flex align-items-center mb-2 you ">
+                                <div class="img-fluid image "><img src="img/ticketCreation/profile.jpeg "></div>
+                                <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                             </div>
                         </div>
-                        <div class="message-send-input">
-                            <img class="send" src="img/ticketCreation/submit.png">
-                            <img class="attachment" src="img/ticketCreation/attachment.png">
-                            <input class="form-control message mt-5" type="text" placeholder="Type your message ...">
+                        <div class="message-send-input ">
+                            <img class="send " src="img/ticketCreation/submit.png ">
+                            <img class="attachment " src="img/ticketCreation/attachment.png ">
+                            <input class="form-control message mt-5 " type="text " placeholder="Type your message ... ">
                         </div>
                     </div>
-                    <div class="text-center pb-4 border-dashed-bottom">Ticket Closed on 15/2/2018</div>
-                    <div class="p-4 pumpkin-support-feedback">
+                    <div class="text-center pb-4 border-dashed-bottom ">Ticket Closed on 15/2/2018</div>
+                    <div class="p-4 pumpkin-support-feedback ">
                         <form>
-                            <h6 class="fontRobotoBold blue-color pump-support-text">Pumpkiin Support</h6>
-                            <div class="fontRobotoRegular font12 font-color">Dear<br> Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Nullam
+                            <h6 class="fontRobotoBold blue-color pump-support-text ">Pumpkiin Support</h6>
+                            <div class="fontRobotoRegular font12 font-color ">Dear<br> Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Nullam
                                 quis risus eget urna mollis ornare vel eu leo. Nulla vitae elit libero, a pharetra augue.
                                 Cras justo odio, dapibus ac facilisis in, egestas eget quam.<br><br> Thanks you,<br> Pumpkiin
                                 Support
                             </div><br>
-                            <h6 class="fontRobotoBold blue-color">FEEDBACK</h6><br>
-                            <div class="font14 font-color mb-2">How would you rate your experience on scale of 1 to 5 stars based on the following parameters?</div>
-                            <div class="d-flex font14 fontRobotoRegular font-color my-2">
-                                <div class="mr-3"><span class="mr-2">Ease </span><span uib-rating ng-model="rate" max="max" read-only="isReadonly"
-                                        on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']"
-                                        aria-labelledby="default-rating"></span></div>
-                                <div class="mr-3"><span class="mr-2">Interaction </span><span uib-rating ng-model="rate" max="max" read-only="isReadonly"
-                                        on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']"
-                                        aria-labelledby="default-rating"></span></div>
-                                <div class="mr-3"><span class="mr-2">Resolution </span><span uib-rating ng-model="rate" max="max" read-only="isReadonly"
-                                        on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']"
-                                        aria-labelledby="default-rating"></span></div>
+                            <h6 class="fontRobotoBold blue-color ">FEEDBACK</h6><br>
+                            <div class="font14 font-color mb-2 ">How would you rate your experience on scale of 1 to 5 stars based on the following parameters?</div>
+                            <div class="d-flex font14 fontRobotoRegular font-color my-2 ">
+                                <div class="mr-3 "><span class="mr-2 ">Ease </span><span uib-rating ng-model="rate
+                            " max="max " read-only="isReadonly "
+                                        on-hover="hoveringOver(value) " on-leave="overStar=n ull " titles="[ 'one',
+                            'two', 'three'] "
+                                        aria-labelledby="default-rating "></span></div>
+                                <div class="mr-3 "><span class="mr-2 ">Interaction </span><span uib-rating ng-model="rate
+                            " max="max " read-only="isReadonly "
+                                        on-hover="hoveringOver(value) " on-leave="overStar=n ull " titles="[ 'one',
+                            'two', 'three'] "
+                                        aria-labelledby="default-rating "></span></div>
+                                <div class="mr-3 "><span class="mr-2 ">Resolution </span><span uib-rating ng-model="rate
+                            " max="max " read-only="isReadonly "
+                                        on-hover="hoveringOver(value) " on-leave="overStar=n ull " titles="[ 'one',
+                            'two', 'three'] "
+                                        aria-labelledby="default-rating "></span></div>
                             </div>
-                            <div class="font14 font-color my-2">Describe your experience with us</div>
-                            <textarea rows="5" name="feedback" class="form-control"></textarea>
-                            <button class="mt-3 send-btn"><span class="close-icon"><i class="fas fa-times"></i></span>Send</button>
+                            <div class="font14 font-color my-2 ">Describe your experience with us</div>
+                            <textarea rows="5 " name="feedback " class="form-control "></textarea>
+                            <button class="mt-3 send-btn "><span class="close-icon "><i class="fas fa-times "></i></span>Send</button>
                         </form>
                     </div>
                 </div>
-                <div class="my-4 chat-button"><button class="remainder-btn"><i class="fas fa-calendar-alt mr-3"></i>ADD REMINDER</button><button class="float-right close-btn"><span class="close-icon"><i class="fas fa-times"></i></span>Close</button></div>
+                <div class="my-4 chat-button "><button class="remainder-btn "><i class="fas fa-calendar-alt mr-3
+                            "></i>ADD REMINDER</button><button class="float-right close-btn "><span class="close-icon "><i class="fas fa-times "></i></span>Close</button></div>
             </form> -->
 
-            <div class="support-chat-history">
-                <h6 class="fontRobotoBold blue-color my-4">SUPPORT CHAT HISTORY</h6>
-                <uib-accordion close-others="true">
-                    <div uib-accordion-group class="panel-default">
+            <div class="support-chat-history ">
+                <h6 class="fontRobotoBold blue-color my-4 ">SUPPORT CHAT HISTORY</h6>
+                <uib-accordion close-others="true ">
+                    <div uib-accordion-group class="panel-default ">
                         <uib-accordion-heading>
-                            <div class="d-flex align-items-center">
-                                <div class="blue-circle"></div>
-                                <h6 class="fontRobotoBold font14 ml-2 mb-0">BRAND NAME</h6>
-                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
-                                <div class="ml-auto date-supportchat">
-                                    <span class="font12">17/2/2018, 5:30 pm (4 days )</span>
+                            <div class="d-flex align-items-center ">
+                                <div class="blue-circle "></div>
+                                <h6 class="fontRobotoBold font14 ml-2 mb-0 ">BRAND NAME</h6>
+                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
+                                <div class="ml-auto date-supportchat ">
+                                    <span class="font12 ">17/2/2018, 5:30 pm (4 days )</span>
                                 </div>
                             </div>
                         </uib-accordion-heading>
-                        <div class="pt-0 px-4 pb-4">
-                            <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat">SUPPORT CHAT</h6>
-                            <div class="chat my-2">
-                                <div class="d-flex align-items-center mb-2 you">
-                                    <div class="img-fluid image">
-                                        <img src="img/ticketCreation/profile.jpeg">
+                        <div class="pt-0 px-4 pb-4 ">
+                            <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat ">SUPPORT CHAT</h6>
+                            <div class="chat my-2 ">
+                                <div class="d-flex align-items-center mb-2 you ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
-                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                    <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                                 </div>
-                                <div class="d-flex align-items-center mb-2 flex-row-reverse me">
-                                    <div class="img-fluid image">
-                                        <img src="img/ticketCreation/profile.jpeg">
+                                <div class="d-flex align-items-center mb-2 flex-row-reverse me ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
-                                    <div class="mr-2 px-3 py-1 chat-content">The Charging drains ways in an hour</div>
+                                    <div class="mr-2 px-3 py-1 chat-content ">The Charging drains ways in an hour</div>
                                 </div>
-                                <div class="text-center gray-color font14 mt-3">Message on 15/2/2018</div>
-                                <div class="d-flex align-items-center mb-2 you">
-                                    <div class="img-fluid image">
-                                        <img src="img/ticketCreation/profile.jpeg">
+                                <div class="text-center gray-color font14 mt-3 ">Message on 15/2/2018</div>
+                                <div class="d-flex align-items-center mb-2 you ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
-                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                    <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div uib-accordion-group class="panel-default">
+                    <div uib-accordion-group class="panel-default ">
                         <uib-accordion-heading>
-                            <div class="d-flex align-items-center">
-                                <div class="blue-circle"></div>
-                                <h6 class="fontRobotoBold font14 ml-2 mb-0">BRAND NAME</h6>
-                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
-                                <div class="ml-auto date-supportchat">
-                                    <span class="font12">17/2/2018, 5:30 pm (4 days )</span>
+                            <div class="d-flex align-items-center ">
+                                <div class="blue-circle "></div>
+                                <h6 class="fontRobotoBold font14 ml-2 mb-0 ">BRAND NAME</h6>
+                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
+                                <div class="ml-auto date-supportchat ">
+                                    <span class="font12 ">17/2/2018, 5:30 pm (4 days )</span>
                                 </div>
                             </div>
                         </uib-accordion-heading>
-                        <div class="pt-0 px-4 pb-4">
-                            <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat">SUPPORT CHAT</h6>
-                            <div class="chat my-2">
-                                <div class="d-flex align-items-center mb-2 you">
-                                    <div class="img-fluid image">
-                                        <img src="img/ticketCreation/profile.jpeg">
+                        <div class="pt-0 px-4 pb-4 ">
+                            <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat ">SUPPORT CHAT</h6>
+                            <div class="chat my-2 ">
+                                <div class="d-flex align-items-center mb-2 you ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
-                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                    <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                                 </div>
-                                <div class="d-flex align-items-center mb-2 flex-row-reverse me">
-                                    <div class="img-fluid image">
-                                        <img src="img/ticketCreation/profile.jpeg">
+                                <div class="d-flex align-items-center mb-2 flex-row-reverse me ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
-                                    <div class="mr-2 px-3 py-1 chat-content">The Charging drains ways in an hour</div>
+                                    <div class="mr-2 px-3 py-1 chat-content ">The Charging drains ways in an hour</div>
                                 </div>
-                                <div class="text-center gray-color font14 mt-3">Message on 15/2/2018</div>
-                                <div class="d-flex align-items-center mb-2 you">
-                                    <div class="img-fluid image">
-                                        <img src="img/ticketCreation/profile.jpeg">
+                                <div class="text-center gray-color font14 mt-3 ">Message on 15/2/2018</div>
+                                <div class="d-flex align-items-center mb-2 you ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
-                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                    <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div uib-accordion-group class="panel-default">
+                    <div uib-accordion-group class="panel-default ">
                         <uib-accordion-heading>
-                            <div class="d-flex align-items-center">
-                                <div class="blue-circle"></div>
-                                <h6 class="fontRobotoBold font14 ml-2 mb-0">BRAND NAME</h6>
-                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
-                                <div class="ml-auto date-supportchat">
-                                    <span class="font12">17/2/2018, 5:30 pm (4 days )</span>
+                            <div class="d-flex align-items-center ">
+                                <div class="blue-circle "></div>
+                                <h6 class="fontRobotoBold font14 ml-2 mb-0 ">BRAND NAME</h6>
+                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
+                                <div class="ml-auto date-supportchat ">
+                                    <span class="font12 ">17/2/2018, 5:30 pm (4 days )</span>
                                 </div>
                             </div>
                         </uib-accordion-heading>
-                        <div class="pt-0 px-4 pb-4">
-                            <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat">SUPPORT CHAT</h6>
-                            <div class="chat my-2">
-                                <div class="d-flex align-items-center mb-2 you">
-                                    <div class="img-fluid image">
-                                        <img src="img/ticketCreation/profile.jpeg">
+                        <div class="pt-0 px-4 pb-4 ">
+                            <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat ">SUPPORT CHAT</h6>
+                            <div class="chat my-2 ">
+                                <div class="d-flex align-items-center mb-2 you ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
-                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                    <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                                 </div>
-                                <div class="d-flex align-items-center mb-2 flex-row-reverse me">
-                                    <div class="img-fluid image">
-                                        <img src="img/ticketCreation/profile.jpeg">
+                                <div class="d-flex align-items-center mb-2 flex-row-reverse me ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
-                                    <div class="mr-2 px-3 py-1 chat-content">The Charging drains ways in an hour</div>
+                                    <div class="mr-2 px-3 py-1 chat-content ">The Charging drains ways in an hour</div>
                                 </div>
-                                <div class="text-center gray-color font14 mt-3">Message on 15/2/2018</div>
-                                <div class="d-flex align-items-center mb-2 you">
-                                    <div class="img-fluid image">
-                                        <img src="img/ticketCreation/profile.jpeg">
+                                <div class="text-center gray-color font14 mt-3 ">Message on 15/2/2018</div>
+                                <div class="d-flex align-items-center mb-2 you ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
-                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                    <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div uib-accordion-group class="panel-default">
+                    <div uib-accordion-group class="panel-default ">
                         <uib-accordion-heading>
-                            <div class="d-flex align-items-center">
-                                <div class="blue-circle"></div>
-                                <h6 class="fontRobotoBold font14 ml-2 mb-0">BRAND NAME</h6>
-                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
-                                <div class="ml-auto date-supportchat">
-                                    <span class="font12">17/2/2018, 5:30 pm (4 days )</span>
+                            <div class="d-flex align-items-center ">
+                                <div class="blue-circle "></div>
+                                <h6 class="fontRobotoBold font14 ml-2 mb-0 ">BRAND NAME</h6>
+                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
+                                <div class="ml-auto date-supportchat ">
+                                    <span class="font12 ">17/2/2018, 5:30 pm (4 days )</span>
                                 </div>
                             </div>
                         </uib-accordion-heading>
-                        <div class="pt-0 px-4 pb-4">
-                            <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat">SUPPORT CHAT</h6>
-                            <div class="chat my-2">
-                                <div class="d-flex align-items-center mb-2 you">
-                                    <div class="img-fluid image">
-                                        <img src="img/ticketCreation/profile.jpeg">
+                        <div class="pt-0 px-4 pb-4 ">
+                            <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat ">SUPPORT CHAT</h6>
+                            <div class="chat my-2 ">
+                                <div class="d-flex align-items-center mb-2 you ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
-                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                    <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                                 </div>
-                                <div class="d-flex align-items-center mb-2 flex-row-reverse me">
-                                    <div class="img-fluid image">
-                                        <img src="img/ticketCreation/profile.jpeg">
+                                <div class="d-flex align-items-center mb-2 flex-row-reverse me ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
-                                    <div class="mr-2 px-3 py-1 chat-content">The Charging drains ways in an hour</div>
+                                    <div class="mr-2 px-3 py-1 chat-content ">The Charging drains ways in an hour</div>
                                 </div>
-                                <div class="text-center gray-color font14 mt-3">Message on 15/2/2018</div>
-                                <div class="d-flex align-items-center mb-2 you">
-                                    <div class="img-fluid image">
-                                        <img src="img/ticketCreation/profile.jpeg">
+                                <div class="text-center gray-color font14 mt-3 ">Message on 15/2/2018</div>
+                                <div class="d-flex align-items-center mb-2 you ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
-                                    <div class="ml-2 px-3 py-1 chat-content">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                    <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                                 </div>
                             </div>
                         </div>
