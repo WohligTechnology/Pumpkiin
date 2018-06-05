@@ -1,46 +1,54 @@
-.product-registration-detail{
-    .back{
-    color: #8B8B8B;
-    cursor: pointer;
-}
-.more-images{
-    div{
-        border: solid 1px transparent;
-        border-bottom: solid 1px #dee2e7;
+.product-registration-detail {
+    .back {
+        color: #8B8B8B;
         cursor: pointer;
-        &:hover{
-            border: solid 1px $blue;
+    }
+    .more-images {
+        div {
+            border: solid 1px transparent;
+            border-bottom: solid 1px #dee2e7;
+            cursor: pointer;
+            &:hover {
+                border: solid 1px $blue;
+            }
+        }
+        height: 297px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        /* Lets it scroll lazy */
+        -webkit-overflow-scrolling: auto;
+        /* Stops scrolling immediately */
+        &::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+            /* optional: just make scrollbar invisible */
+        }
+        /* optional: show position indicator in red */
+        &::-webkit-scrollbar-thumb {
+            background: transparent;
         }
     }
-    height: 297px;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */ 
-    -webkit-overflow-scrolling: auto; /* Stops scrolling immediately */
-    &::-webkit-scrollbar {
-        width: 0px;
-        background: transparent;
-        /* optional: just make scrollbar invisible */
+    .favourite {
+        width: 25px;
+        height: 25px;
+        border: solid 1px #C1C3C5;
+        -webkit-box-shadow: 0 0 5px 2px #C1C3C5;
+        -moz-box-shadow: 0 0 5px 2px #C1C3C5;
+        box-shadow: 0 0 5px 2px #C1C3C5;
+        color: #C1C3C5;
+        text-align: center;
+        border-radius: 50%;
+        top: 5px;
+        right: 5px;
+        .svg-inline--fa {
+            vertical-align: -0.1em;
+        }
     }
-    /* optional: show position indicator in red */
-    &::-webkit-scrollbar-thumb {
-        background: transparent;
+    .colors-available {
+        .color {
+            width: 40px;
+            height: 40px;
+            border: solid 1px #707070;
+        }
     }
-}
-.favourite{
-    width: 25px;
-    height: 25px;
-    border: solid 2px #C1C3C5;
-    color: #C1C3C5;
-    text-align: center;
-    border-radius: 50%;
-    top: 5px;
-    right: 5px;
-}
-.colors-available{
-    .color{
-        width: 40px;
-        height: 40px;
-        border: solid 1px #707070;
-    }
-}
 }

@@ -1,7 +1,10 @@
 <div class="modal-header justify-content-center background-blue text-white">
-    <h5 class="modal-title fontRobotoRegular" id="modal-title">Product Registration</h5><span class="float-right"><i class="fas fa-times"></i></span>
+    <h5 class="modal-title fontRobotoRegular" id="modal-title">Product Registration</h5><span class="modal-close-icon" ng-click="$dismiss()"><img src="img/modal/close_white.png" width="20"></span>
 </div>
 <div class="modal-body fontRobotoLight text-center" id="modal-body">
-    <div>Register your product to easily maintain it in the future. If you have a copy of the bill and warranty, just send it to us, and we'll do the rest. If you don't then you can do it swiftly yourself too</div>
-    <div class="d-flex my-3 fontRobotoRegular"><a role="button" class="button orange-btn py-1 w-50 mr-1" ng-click="registration.dismiss()">I will do it myself</a><a role="button" class="button green-btn py-1 w-50" ng-click="pumpkinRegistration()">Let Pumpkin do it for me</a></div>
+    <div>Register your product to easily maintain it in the future. If you have a copy of the bill and warranty, just send it
+        to us, and we'll do the rest. If you don't then you can do it swiftly yourself too</div>
+    <div class="d-flex my-3 fontRobotoRegular"><a role="button" class="button orange-btn py-1 w-50 mr-1" ng-click="registration.dismiss()">I will do it myself</a>
+        <a role="button" class="button green-btn py-1 w-50" ng-click="pumpkinRegistration()">Let Pumpkin do it for me</a>
+    </div>
 </div>
