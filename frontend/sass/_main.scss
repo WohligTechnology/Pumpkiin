@@ -218,6 +218,20 @@ footer {
 .pumpkin-logo{
     bottom: 50px;
     width: 60px;
+    .displaydefault{
+        display: block;
+    }
+    .displayclick{
+        display: none;
+    }
+    &:hover,&:active,&:focus{
+        .displaydefault{
+            display: none;
+        }
+        .displayclick{
+            display: block;
+        }
+    }
 }
 .footer-style{
     height:25px;
