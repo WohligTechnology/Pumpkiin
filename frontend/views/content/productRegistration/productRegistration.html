@@ -68,13 +68,21 @@
             </div>
         </div>
 
-        <fieldset class="d-flex social m-3 save" ng-click="saveProduct(data)" ng-disabled='product.$invalid'>
+        <fieldset class="d-flex social m-3 save" ng-click="saveProduct(data)">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
                 </i>
             </span>
             <div class="social-text">Save and Continue</div>
         </fieldset>
+        <!-- <fieldset class="d-flex social m-3 save" ng-click="saveProduct(data)" ng-disabled='product.$invalid'>
+            <span class="social_icon">
+                <i class="fas fa-save"></i>
+                </i>
+            </span>
+            <div class="social-text">Save and Continue</div>
+        </fieldset> -->
+
     </form>
 </div>
 
@@ -198,6 +206,13 @@
             </span>
             <div class="social-text">Save and Continue</div>
         </fieldset>
+        <!-- <fieldset class="d-flex social m-3 save" ng-click="savepurchaseDetails(data)">
+            <span class="social_icon">
+                <i class="fas fa-save"></i>
+                </i>
+            </span>
+            <div class="social-text">Save and Continue</div>
+        </fieldset> -->
     </form>
 </div>
 
@@ -336,7 +351,7 @@
                 </div>
             </div>
         </div>
-        <fieldset class="d-flex social m-3 save">
+        <fieldset class="d-flex social m-3 save" ui-sref="productListing">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
                 </i>

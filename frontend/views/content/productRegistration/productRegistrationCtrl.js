@@ -40,26 +40,28 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     });
 
     $scope.saveProduct = function (product) {
-        product.productImages = [];
-        _.forEach(product.images, function (img) {
-            product.productImages.push({
-                image: img,
-            });
-        });
-        if ($scope.product_id) {
-            product._id = $scope.product_id;
-            NavigationService.apiCallWithData("Product/saveProduct", product, function (res) {
-                $scope.product_id = res.data._id;
-                $scope.makeActive('circle2');
-                $scope.callProduct();
-            });
-        } else {
-            NavigationService.apiCallWithData("Product/save", product, function (res) {
-                $scope.product_id = res.data._id;
-                $scope.makeActive('circle2');
-                $scope.callProduct();
-            });
-        }
+        $scope.makeActive('circle2');
+        $scope.callProduct();
+        // product.productImages = [];
+        // _.forEach(product.images, function (img) {
+        //     product.productImages.push({
+        //         image: img,
+        //     });
+        // });
+        // if ($scope.product_id) {
+        //     product._id = $scope.product_id;
+        //     NavigationService.apiCallWithData("Product/saveProduct", product, function (res) {
+        //         $scope.product_id = res.data._id;
+        //         $scope.makeActive('circle2');
+        //         $scope.callProduct();
+        //     });
+        // } else {
+        //     NavigationService.apiCallWithData("Product/save", product, function (res) {
+        //         $scope.product_id = res.data._id;
+        //         $scope.makeActive('circle2');
+        //         $scope.callProduct();
+        //     });
+        // }
 
     }
     $scope.data = {};
@@ -120,18 +122,20 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             });
         },
         $scope.savepurchaseDetails = function (purchase) {
-            purchase.purchaseproof = [];
-            purchase._id = $scope.product_id;
-            _.forEach(purchase.images, function (img) {
-                purchase.purchaseproof.push({
-                    proofImage: img,
-                });
-            });
-            NavigationService.apiCallWithData("Product/saveProduct", purchase, function (res) {
-                $scope.product_id = res.data._id;
-                $scope.makeActive('circle3');
-                $scope.callProduct();
-            });
+            $scope.makeActive('circle3');
+            $scope.callProduct();
+            // purchase.purchaseproof = [];
+            // purchase._id = $scope.product_id;
+            // _.forEach(purchase.images, function (img) {
+            //     purchase.purchaseproof.push({
+            //         proofImage: img,
+            //     });
+            // });
+            // NavigationService.apiCallWithData("Product/saveProduct", purchase, function (res) {
+            //     $scope.product_id = res.data._id;
+            //     $scope.makeActive('circle3');
+            //     $scope.callProduct();
+            // });
         },
 
         $scope.addWarrantyDetails = function (Warranty) {
