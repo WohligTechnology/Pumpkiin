@@ -2,7 +2,7 @@
     <div class="row ticket-creation-main">
         <div class="col col-md-3 openticketremainder">
             <div class="bg-white border-rounded p-3">
-                <div class="d-flex justify-content-between" ng-init="show =false">
+                <!-- <div class="d-flex justify-content-between" ng-init="show =false">
                     <div class="closed-text" ng-click="show = false">
                         <img src="img/ticketCreation/openTicket.png" ng-show="!show">
                         <img src=" img/ticketCreation/open-ticket2.png" ng-show="show">
@@ -18,10 +18,24 @@
                     <div>
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
+                </div> -->
+                <div class="d-flex justify-content-between">
+                    <div class="closed-text" ui-sref="ticketcreation">
+                        <img src=" img/ticketCreation/open-ticket2.png">
+                        <div class="notification notification-orange">6</div>
+                        <span>open</span>
+                    </div>
+                    <div class="closed-text">
+                        <img src="img/ticketCreation/green-ticket.png">
+                    </div>
+                    <div>
+                        <img src="img/ticketCreation/addButton.png ">
+                    </div>
                 </div>
                 <div class="my-3 open-tickets ">
-                    <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
-                    <h5 class="d-inline" ng-show="show">closed Tickets</h5>
+                    <!-- <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
+                    <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
+                    <h5 class="d-inline">closed Tickets</h5>
                     <span class="badge badge-style ">14</span>
                     <span class="float-right">
                         <img src="img/ticketCreation/search.png ">
@@ -164,9 +178,9 @@
                                     <span class="d-inline-block w-40 ">Attached Files : </span>
                                     <span class="d-inline-block w-60 ">
                                         <span class="d-inline-block img-uploaded "></span>
-                                    <span class="d-inline-block img-uploaded "></span>
-                                    <span class="d-inline-block img-uploaded "></span>
-                                    <span class="d-inline-block img-uploaded "></span>
+                                        <span class="d-inline-block img-uploaded "></span>
+                                        <span class="d-inline-block img-uploaded "></span>
+                                        <span class="d-inline-block img-uploaded "></span>
                                     </span>
                                 </p>
                             </div>
@@ -189,10 +203,10 @@
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-2 ">Brother
                                             <i class="fas fa-times "></i>
                                         </span>
-                                    <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-3 ">Mother
+                                        <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
                                         </span>
-                                    <button class="border-rounded background-orange border-0 text-white ">Add New User
+                                        <button class="border-rounded background-orange border-0 text-white ">Add New User
                                             <i class="fas fa-plus "></i>
                                         </button>
                                     </span>

@@ -2,7 +2,7 @@
     <div class="row ticket-creation-main">
         <div class="col col-md-3 openticketremainder">
             <div class="bg-white border-rounded p-3">
-                <div class="d-flex justify-content-between" ng-init="show =false">
+                <!-- <div class="d-flex justify-content-between" ng-init="show =false">
                     <div class="closed-text" ng-click="show = false">
                         <img src="img/ticketCreation/openTicket.png" ng-show="!show">
                         <img src=" img/ticketCreation/open-ticket2.png" ng-show="show">
@@ -18,10 +18,24 @@
                     <div>
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
+                </div> -->
+                <div class="d-flex justify-content-between">
+                    <div class="closed-text">
+                        <img src="img/ticketCreation/openTicket.png">
+                    </div>
+                    <div class="closed-text" ui-sref="closedTicketcreation">
+                        <img src="img/ticketCreation/close-ticket2.png">
+                        <div class="notification">6</div>
+                        <span>close</span>
+                    </div>
+                    <div>
+                        <img src="img/ticketCreation/addButton.png ">
+                    </div>
                 </div>
                 <div class="my-3 open-tickets ">
-                    <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
-                    <h5 class="d-inline" ng-show="show">closed Tickets</h5>
+                    <h5 class="d-inline">Open Tickets</h5>
+                    <!-- <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
+                    <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
                     <span class="badge badge-style ">14</span>
                     <span class="float-right">
                         <img src="img/ticketCreation/search.png ">
@@ -164,9 +178,9 @@
                                     <span class="d-inline-block w-40 ">Attached Files : </span>
                                     <span class="d-inline-block w-60 ">
                                         <span class="d-inline-block img-uploaded "></span>
-                                    <span class="d-inline-block img-uploaded "></span>
-                                    <span class="d-inline-block img-uploaded "></span>
-                                    <span class="d-inline-block img-uploaded "></span>
+                                        <span class="d-inline-block img-uploaded "></span>
+                                        <span class="d-inline-block img-uploaded "></span>
+                                        <span class="d-inline-block img-uploaded "></span>
                                     </span>
                                 </p>
                             </div>
@@ -189,10 +203,10 @@
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-2 ">Brother
                                             <i class="fas fa-times "></i>
                                         </span>
-                                    <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-3 ">Mother
+                                        <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
                                         </span>
-                                    <button class="border-rounded background-orange border-0 text-white ">Add New User
+                                        <button class="border-rounded background-orange border-0 text-white ">Add New User
                                             <i class="fas fa-plus "></i>
                                         </button>
                                     </span>
@@ -221,16 +235,22 @@
                         <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat ">SUPPORT CHAT</h6>
                         <div class="chat my-2 ">
                             <div class="d-flex align-items-center mb-2 you ">
-                                <div class="img-fluid image "><img src="img/ticketCreation/profile.jpeg "></div>
+                                <div class="img-fluid image ">
+                                    <img src="img/ticketCreation/profile.jpeg ">
+                                </div>
                                 <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                             </div>
                             <div class="d-flex align-items-center mb-2 flex-row-reverse me ">
-                                <div class="img-fluid image "><img src="img/ticketCreation/profile.jpeg "></div>
+                                <div class="img-fluid image ">
+                                    <img src="img/ticketCreation/profile.jpeg ">
+                                </div>
                                 <div class="mr-2 px-3 py-1 chat-content ">The Charging drains ways in an hour</div>
                             </div>
                             <div class="text-center gray-color font14 mt-3 ">Message on 15/2/2018</div>
                             <div class="d-flex align-items-center mb-2 you ">
-                                <div class="img-fluid image "><img src="img/ticketCreation/profile.jpeg "></div>
+                                <div class="img-fluid image ">
+                                    <img src="img/ticketCreation/profile.jpeg ">
+                                </div>
                                 <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                             </div>
                         </div>
@@ -244,34 +264,58 @@
                     <div class="p-4 pumpkin-support-feedback ">
                         <form>
                             <h6 class="fontRobotoBold blue-color pump-support-text ">Pumpkiin Support</h6>
-                            <div class="fontRobotoRegular font12 font-color ">Dear<br> Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Nullam
+                            <div class="fontRobotoRegular font12 font-color ">Dear
+                                <br> Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Nullam
                                 quis risus eget urna mollis ornare vel eu leo. Nulla vitae elit libero, a pharetra augue.
-                                Cras justo odio, dapibus ac facilisis in, egestas eget quam.<br><br> Thanks you,<br> Pumpkiin
-                                Support
-                            </div><br>
-                            <h6 class="fontRobotoBold blue-color ">FEEDBACK</h6><br>
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                                <br>
+                                <br> Thanks you,
+                                <br> Pumpkiin Support
+                            </div>
+                            <br>
+                            <h6 class="fontRobotoBold blue-color ">FEEDBACK</h6>
+                            <br>
                             <div class="font14 font-color mb-2 ">How would you rate your experience on scale of 1 to 5 stars based on the following parameters?</div>
                             <div class="d-flex font14 fontRobotoRegular font-color my-2 ">
-                                <div class="mr-3 "><span class="mr-2 ">Ease </span><span uib-rating ng-model="rate
+                                <div class="mr-3 ">
+                                    <span class="mr-2 ">Ease </span>
+                                    <span uib-rating ng-model="rate
                             " max="max " read-only="isReadonly " on-hover="hoveringOver(value) " on-leave="overStar=n ull "
                                         titles="[ 'one',
-                            'two', 'three'] " aria-labelledby="default-rating "></span></div>
-                                <div class="mr-3 "><span class="mr-2 ">Interaction </span><span uib-rating ng-model="rate
+                            'two', 'three'] " aria-labelledby="default-rating "></span>
+                                </div>
+                                <div class="mr-3 ">
+                                    <span class="mr-2 ">Interaction </span>
+                                    <span uib-rating ng-model="rate
                             " max="max " read-only="isReadonly " on-hover="hoveringOver(value) " on-leave="overStar=n ull "
                                         titles="[ 'one',
-                            'two', 'three'] " aria-labelledby="default-rating "></span></div>
-                                <div class="mr-3 "><span class="mr-2 ">Resolution </span><span uib-rating ng-model="rate
+                            'two', 'three'] " aria-labelledby="default-rating "></span>
+                                </div>
+                                <div class="mr-3 ">
+                                    <span class="mr-2 ">Resolution </span>
+                                    <span uib-rating ng-model="rate
                             " max="max " read-only="isReadonly " on-hover="hoveringOver(value) " on-leave="overStar=n ull "
                                         titles="[ 'one',
-                            'two', 'three'] " aria-labelledby="default-rating "></span></div>
+                            'two', 'three'] " aria-labelledby="default-rating "></span>
+                                </div>
                             </div>
                             <div class="font14 font-color my-2 ">Describe your experience with us</div>
                             <textarea rows="5 " name="feedback " class="form-control "></textarea>
-                            <button class="mt-3 send-btn "><span class="close-icon "><i class="fas fa-times "></i></span>Send</button>
+                            <button class="mt-3 send-btn ">
+                                <span class="close-icon ">
+                                    <i class="fas fa-times "></i>
+                                </span>Send</button>
                         </form>
                     </div>
                 </div>
-                <div class="my-4 chat-button"><button class="remainder-btn"><i class="fas fa-calendar-alt mr-3"></i>ADD REMINDER</button><button class="float-right close-btn"><span class="close-icon"><i class="fas fa-times"></i></span>Close</button></div>
+                <div class="my-4 chat-button">
+                    <button class="remainder-btn">
+                        <i class="fas fa-calendar-alt mr-3"></i>ADD REMINDER</button>
+                    <button class="float-right close-btn">
+                        <span class="close-icon">
+                            <i class="fas fa-times"></i>
+                        </span>Close</button>
+                </div>
             </form>
         </div>
     </div>
