@@ -78,14 +78,14 @@
         <div class="col col-md-3">
             <div class="bg-white border-rounded p-3">
                 <div class="d-flex justify-content-between">
-                    <div>
+                    <div ui-sref="ticketcreation">
                         <img src="img/ticketCreation/openTicket.png">
                     </div>
-                    <div class="closed-text">
+                    <div class="closed-text" ui-sref="closedTicketcreation">
                         <img src="img/ticketCreation/closedTicket.png">
                         <div class="notification">6</div>
                     </div>
-                    <div>
+                    <div ui-sref="">
                         <img src="img/ticketCreation/addButton.png">
                     </div>
                 </div>
@@ -144,7 +144,7 @@
             <div class="bg-white border-rounded p-3 mt-3 productreg">
                 <div class="d-flex justify-content-between">
                     <h4 class="orange-color">Remainders</h4>
-                    <div>
+                    <div ng-controller="headerCtrl" ng-click="remainderModalOpen()">
                         <img src="img/ticketCreation/addButton.png">
                     </div>
                 </div>

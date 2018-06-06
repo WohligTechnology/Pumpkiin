@@ -1,4 +1,4 @@
-myApp.controller('headerCtrl', function ($scope, TemplateService) {
+myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal) {
     $scope.template = TemplateService;
     $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         $(window).scrollTop(0);
@@ -12,4 +12,12 @@ myApp.controller('headerCtrl', function ($scope, TemplateService) {
     }, {
         name: "Samsung s7 edge"
     }];
+    $scope.remainderModalOpen = function () {
+        $scope.addRemainder = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/addRemainder.html",
+            scope: $scope,
+            windowClass: 'app-modal-window'
+        });
+    }
 });

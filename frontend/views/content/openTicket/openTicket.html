@@ -22,12 +22,12 @@
             </div>
             <span ui-sref="productregistration">ADD PRODUCT</span>
         </div>
-        <div class="col-12 col-md-3 ticket-list">
+        <div class="col-12 col-md-3 ticket-list" ng-controller="headerCtrl">
             <div class="openticket-circle d-flex justify-content-center align-items-center my-3" ng-click="remainderModalOpen()">
                 <img class="showdefault" src="img/openticket/calendarorange.png">
                 <img class="showhover" src="img/openticket/calendarwhite.png">
             </div>
-            <span ng-click="remainderModalOpen()">ADD REMINDER</span>
+            <span>ADD REMINDER</span>
         </div>
     </div>
     <!--end of list-->
