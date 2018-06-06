@@ -34,11 +34,11 @@ function setupGFS() {
 
 global["database"] = "pumpkiin";
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/' + database, function (err) {
+mongoose.connect('mongodb://localhost:27017/' + database, {
+    useMongoClient: true
+}, function (err) {
     if (err) {
         console.log(err);
-    } else {
-        setupGFS();
     }
 });
 // Ensure a "sails" can be located:
