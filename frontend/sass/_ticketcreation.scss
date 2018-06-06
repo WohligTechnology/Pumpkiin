@@ -308,6 +308,10 @@
         position: relative;
         &:after {
             content: "";
+            background-image: url("../img/ticketCreation/caret-up.png");
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 50%;
             width: 35px;
             height: 35px;
             right: 60px;
@@ -317,6 +321,11 @@
             background-color: #f6a244;
             border: solid 5px #ecf0f2;
             border-radius: 50%;
+        }
+    }
+    .panel-default:last-child{
+        &:after{
+            display: none;
         }
     }
     .date-supportchat {

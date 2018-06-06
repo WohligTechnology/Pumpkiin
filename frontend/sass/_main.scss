@@ -208,14 +208,37 @@ a,
 }
 
 //end of header
+
+//scss for footer
 footer {
-    font-size: 12px;
-    background-color: #eee;
-    padding: 10px 0;
     p {
         margin: 0;
     }
 }
+.pumpkin-logo{
+    bottom: 50px;
+    width: 60px;
+}
+.footer-style{
+    height:25px;
+    box-shadow: 0 -5px 20px -5px #333;
+    &:after{
+        content: "";
+        background-image: url(../img/ticketCreation/caret-up.png);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        width: 30px;
+        height: 30px;
+        right: 60px;
+        bottom: 9px;
+        position: absolute;
+        z-index: 1;
+        background-color: #f6a244;
+        border-radius: 50%;
+    }
+}
+//end of footer 
 
 //bootstrap forms
 .input-lg,
@@ -268,7 +291,7 @@ footer {
 }
 
 .content {
-    min-height: 450px;
+    min-height: 580px;
 }
 
 .img-full {

@@ -86,8 +86,8 @@
             </div>
             <div class="bg-white border-rounded p-3 mt-3 productreg ">
                 <div class="d-flex justify-content-between ">
-                    <h4 class="orange-color ">Remainders</h4>
-                    <div>
+                    <h4 class="orange-color">Remainders</h4>
+                    <div ng-controller="headerCtrl" ng-click="remainderModalOpen()">
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
@@ -178,9 +178,9 @@
                                     <span class="d-inline-block w-40 ">Attached Files : </span>
                                     <span class="d-inline-block w-60 ">
                                         <span class="d-inline-block img-uploaded "></span>
-                                        <span class="d-inline-block img-uploaded "></span>
-                                        <span class="d-inline-block img-uploaded "></span>
-                                        <span class="d-inline-block img-uploaded "></span>
+                                    <span class="d-inline-block img-uploaded "></span>
+                                    <span class="d-inline-block img-uploaded "></span>
+                                    <span class="d-inline-block img-uploaded "></span>
                                     </span>
                                 </p>
                             </div>
@@ -203,10 +203,10 @@
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-2 ">Brother
                                             <i class="fas fa-times "></i>
                                         </span>
-                                        <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-3 ">Mother
+                                    <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
                                         </span>
-                                        <button class="border-rounded background-orange border-0 text-white ">Add New User
+                                    <button class="border-rounded background-orange border-0 text-white ">Add New User
                                             <i class="fas fa-plus "></i>
                                         </button>
                                     </span>
@@ -308,7 +308,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="my-4 chat-button">
+                <div class="my-4 chat-button" ng-controller="headerCtrl" ng-click="remainderModalOpen()">
                     <button class="remainder-btn">
                         <i class="fas fa-calendar-alt mr-3"></i>ADD REMINDER</button>
                     <button class="float-right close-btn" ui-sref="productListing">

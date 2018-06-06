@@ -63,6 +63,9 @@
         border: solid 2px $orange;
         margin: 20px auto;
         .small-circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: absolute;
             bottom: -15px;
             width: 35px;
@@ -90,6 +93,9 @@
             border-radius: 50%;
         }
         .small-circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: absolute;
             bottom: -15px;
             width: 35px;
