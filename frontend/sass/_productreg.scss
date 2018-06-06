@@ -4,6 +4,9 @@
         content: "";
         background-image: url(../img/pdf.png);
         background-color: $blue;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        background-position: center center;
         border: solid 4px #ECF0F2;
         width: 40px;
         height: 40px;
