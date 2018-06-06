@@ -1,6 +1,6 @@
 apps:
   - script: "app.js"
-    name: "Pumpkiin - 87"
+    name: "Pumpkiin - 80"
     watch: false
     args: "--prod"
     exec_mode: "cluster"
