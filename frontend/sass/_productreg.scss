@@ -2,7 +2,7 @@
     position: relative;
     &:before {
         content: "";
-        // background-image: url(../img/pdf.svg);
+        background-image: url(../img/pdf.png);
         background-color: $blue;
         border: solid 4px #ECF0F2;
         width: 40px;
@@ -81,11 +81,12 @@
         @extend .fontRobotoLight;
         border-radius: 3px;
     }
-    
 }
+
 .info-icon {
     color: #D1D1D1;
 }
+
 .upload-btn-wrapper {
     position: relative;
     overflow: hidden;
@@ -115,7 +116,8 @@
 
 .save,
 .cancel,
-.add,.remainder {
+.add,
+.remainder {
     float: right;
     width: 25%;
     .social_icon {
@@ -153,12 +155,14 @@
     }
 }
 
-.add,.remainder {
+.add,
+.remainder {
     width: 17%;
     .social_icon {
         padding: 3px 7px !important;
     }
 }
+
 .main-users {
     overflow: auto;
     .existing-user {
@@ -176,7 +180,7 @@
         .name-rel {
             line-height: 18px;
         }
-        span{
+        span {
             color: #657D95;
         }
     }
