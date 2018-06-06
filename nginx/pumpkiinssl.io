@@ -1,6 +1,8 @@
 server {
-	listen 80;
+	listen 443 ssl;
 	server_name pumpkiin.wohlig.co.in;
+	ssl_certificate /etc/letsencrypt/live/pumpkiin.wohlig.co.in/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/pumpkiin.wohlig.co.in/privkey.pem;
 	location /api {
 		proxy_pass http://127.0.0.1:82;
 		proxy_set_header Host $host;
@@ -19,4 +21,9 @@ server {
 		root /home/admin/Pumpkiin;
 		index index.html index.htm;
 	}
+}
+server {
+	listen 80;
+	server_name pumpkiin.wohlig.co.in;
+	return 301 https://pumpkiin.wohlig.co.in$request_uri;
 }
