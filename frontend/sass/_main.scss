@@ -208,35 +208,38 @@ a,
 }
 
 //end of header
-
 //scss for footer
 footer {
     p {
         margin: 0;
     }
 }
-.pumpkin-logo{
+
+.pumpkin-logo {
     bottom: 50px;
     width: 60px;
-    .displaydefault{
+    .displaydefault {
         display: block;
     }
-    .displayclick{
+    .displayclick {
         display: none;
     }
-    &:hover,&:active,&:focus{
-        .displaydefault{
+    &:hover,
+    &:active,
+    &:focus {
+        .displaydefault {
             display: none;
         }
-        .displayclick{
+        .displayclick {
             display: block;
         }
     }
 }
-.footer-style{
-    height:25px;
+
+.footer-style {
+    height: 25px;
     box-shadow: 0 -5px 20px -5px #333;
-    &:after{
+    &:after {
         content: "";
         background-image: url(../img/ticketCreation/caret-up.png);
         background-position: center center;
@@ -252,8 +255,8 @@ footer {
         border-radius: 50%;
     }
 }
-//end of footer 
 
+//end of footer 
 //bootstrap forms
 .input-lg,
 .input-group-lg>.form-control,
@@ -534,11 +537,12 @@ header {
 }
 
 //scss for modal
-.modal-close-icon{
+.modal-close-icon {
     position: absolute;
     top: 20px;
     right: 5%;
 }
+
 .modal-content {
     border-radius: 20px;
     position: relative;
@@ -574,6 +578,7 @@ header {
                 position: absolute;
                 right: 5px;
                 bottom: 5px;
+                z-index: 1;
             }
             ::-webkit-input-placeholder {
                 /* Chrome/Opera/Safari */
@@ -597,9 +602,12 @@ header {
             }
             .ui-select-container {
                 width: 200px !important;
+                background: transparent;
+                position: relative;
+                z-index: 2;
             }
             input {
-                background-color: $blue;
+                background-color: transparent;
                 border: 0;
                 border-bottom: solid 2px white;
             }
@@ -614,7 +622,7 @@ header {
     background-position: center center;
     height: 100vh;
     .about-pumpkin {
-        padding: 100px 0;
+        padding: 200px 0 100px 0;
         .about-content {
             padding: 0 200px;
             font-family: Roboto-Light;
@@ -684,4 +692,24 @@ header {
     position: relative;
     width: 800px;
     margin: 0 auto;
+}
+
+.facebook-logo {
+    background: #3b5998;
+    color: white;
+    border-radius: 50%;
+    height: 13px;
+    width: 13px;
+    padding: 10px 13px;
+    margin: 5px;
+}
+
+.twitter-logo {
+    background: #1DA1F2;
+    color: white;
+    border-radius: 50%;
+    height: 13px;
+    width: 13px;
+    padding: 10px 13px;
+    margin: 5px;
 }
