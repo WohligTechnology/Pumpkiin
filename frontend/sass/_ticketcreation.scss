@@ -39,7 +39,7 @@
         &:before {
             left: 4%;
             top: -23px;
-            border: solid 6px #ECF0F2;
+            border: solid 5px #ECF0F2;
         }
     }
     .openticket {
@@ -95,22 +95,24 @@
             left: 0;
         }
     }
-    .circle4 {
-        left: 75%;
-        &:before {
-            content: '';
-            left: 0;
-        }
-    }
+    // .circle4 {
+    //     left: 75%;
+    //     &:before {
+    //         content: '';
+    //         left: 0;
+    //     }
+    // }
     .circle5 {
         left: 100%;
+        background-color: #14C177;
         &:before {
-            content: '';
-            left: 0;
+            content: 'Ticket\00a0 Closed\a  12/2/2018';
+            text-align: right;
+            right: 0;
         }
     }
     .moving {
-        left: 60%;
+        left: 65%;
         background-color: #142C5C;
         &:before {
             content: 'You\00a0 Replied\a  12/2/2018';
@@ -220,7 +222,7 @@
     .close-btn {
         cursor: pointer;
         position: relative;
-        padding: 5px 30px;
+        padding: 2px 30px;
         padding-left: 40px;
         color: white;
         background-color: $orange;
@@ -230,7 +232,7 @@
         .close-icon {
             position: absolute;
             left: -5px;
-            top: 2px;
+            top: -1px;
             padding: 1px 7px;
             background: $orange;
             border: solid 2px #ecf0f2;
@@ -250,7 +252,7 @@
 .send-btn {
     cursor: pointer;
     position: relative;
-    padding: 5px 30px;
+    padding: 3px 30px;
     padding-left: 40px;
     color: white;
     background-color: $orange;
@@ -260,8 +262,8 @@
     .close-icon {
         position: absolute;
         left: -5px;
-        top: 2px;
-        padding: 1px 7px;
+        top: -1px;
+        padding: 2px 8px;
         background: $orange;
         border: solid 2px white;
         border-radius: 50%;
