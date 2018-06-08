@@ -4,10 +4,10 @@ myApp.controller('OpenTicketCtrl', function ($scope, TemplateService, Navigation
     TemplateService.title = "Open Ticket"; //This is the Title of the Website
     // TemplateService.header = " ";
     $scope.navigation = NavigationService.getNavigation();
-    // $scope.remainderModalOpen=function(){
-    //     $scope.addRemainder = $uibModal.open({
+    // $scope.reminderModalOpen=function(){
+    //     $scope.addReminder = $uibModal.open({
     //         animation: true,
-    //         templateUrl: "views/modal/addRemainder.html",
+    //         templateUrl: "views/modal/addReminder.html",
     //         scope: $scope,
     //         windowClass: 'app-modal-window'
     //     });

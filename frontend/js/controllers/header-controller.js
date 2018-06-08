@@ -12,10 +12,10 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal) {
     }, {
         name: "Samsung s7 edge"
     }];
-    $scope.remainderModalOpen = function () {
-        $scope.addRemainder = $uibModal.open({
+    $scope.reminderModalOpen = function () {
+        $scope.addReminder = $uibModal.open({
             animation: true,
-            templateUrl: "views/modal/addRemainder.html",
+            templateUrl: "views/modal/addReminder.html",
             scope: $scope,
             windowClass: 'app-modal-window'
         });

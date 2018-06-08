@@ -27,7 +27,7 @@
         margin: 0 3px;
         background-color: white;
     }
-    .openticketremainder {
+    .openticketreminder {
         .productreg {
             &:before {
                 left: 40%;
@@ -45,7 +45,7 @@
     .openticket {
         height: 500px;
     }
-    .remainderSection {
+    .reminderSection {
         height: 148px;
     }
     .info-div {
@@ -144,13 +144,13 @@
     .you {
         .chat-content {
             border-top-left-radius: 0;
-            background-color: rgba(255, 167, 77, 0.5);
+            background-color: rgba(20, 193, 119, 0.5);
         }
     }
     .me {
         .chat-content {
             border-top-right-radius: 0;
-            background-color: rgba(20, 193, 119, 0.5);
+            background-color: rgba(255, 167, 77, 0.5);
         }
     }
 }
@@ -204,7 +204,7 @@
 }
 
 .chat-button {
-    .remainder-btn {
+    .reminder-btn {
         cursor: pointer;
         padding: 5px 10px;
         color: $orange;
@@ -323,8 +323,8 @@
             border-radius: 50%;
         }
     }
-    .panel-default:last-child{
-        &:after{
+    .panel-default:last-child {
+        &:after {
             display: none;
         }
     }
