@@ -152,8 +152,12 @@
                     <div class="media-body pl-4 text-white ">
                         <h5 class="mt-0 fontRobotoMedium font20 " ng-click="modelNo=! modelNo ">Support ID: PSMS 6659
                             <span class="float-right orange-color ">
-                                <i class="fas fa-angle-up" ng-show="modelNo"></i>
-                                <i class="fas fa-angle-down" ng-show="!modelNo"></i>
+                                <span ng-show="modelNo">
+                                    <i class="fas fa-angle-up"></i>
+                                </span>
+                                <span ng-show="!modelNo">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
                             </span>
                         </h5>
                         <span class="fontRobotoBold font14 ">PRODUCT INFORMATION</span>
