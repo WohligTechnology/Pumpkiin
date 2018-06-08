@@ -85,6 +85,7 @@
         &:hover {
             background-color: #667E95;
             color: white;
+            transition: ease all 300ms;
             &:last-child {
                 background-color: #FFA345;
                 color: white;

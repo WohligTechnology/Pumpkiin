@@ -97,6 +97,7 @@
     &:hover .btn {
         background-color: $orange;
         color: white !important;
+        transition: ease all 300ms;
     }
     .btn {
         @extend .fontRobotoLight;
@@ -137,12 +138,14 @@
             background: white !important;
             color: $orange !important;
             border: solid 2px $orange !important;
+            transition: ease all 300ms;
         }
         .social-text {
             padding: 3px 0 !important;
             background: white !important;
             color: $orange !important;
             border: solid 1px $orange !important;
+            transition: ease all 300ms;
         }
     }
 }

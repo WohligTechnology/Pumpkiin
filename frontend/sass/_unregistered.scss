@@ -10,6 +10,7 @@
             cursor: pointer;
             &:hover {
                 border: solid 1px $blue;
+                transition: ease all 300ms;
             }
         }
         height: 297px;

@@ -46,9 +46,11 @@
     &:hover {
         background-color: $orange;
         color: white;
+        transition: ease all 300ms;
         span {
             border: solid 2px $gray-lighter;
             background-color: orange;
+            transition: ease all 300ms;
         }
     }
 }
@@ -163,6 +165,7 @@
     cursor: pointer;
     &:hover {
         box-shadow: 0 4px 24px rgba(108, 117, 125, 0.58);
+        transition: ease all 300ms;
         .addedsupport-btn {
             color: white;
             background-color: $orange !important;

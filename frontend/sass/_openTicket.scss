@@ -15,6 +15,7 @@
     &:hover {
         background: $orange;
         border: solid 5px $orange;
+        transition: ease all 300ms;
         i{
             color: white !important;
         }
@@ -38,5 +39,6 @@
         background-color: white;
         color: #142C5C;
         border: solid 1px #142C5C;
+        transition: ease all 300ms;
     }
 }
