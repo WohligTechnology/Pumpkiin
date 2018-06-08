@@ -217,6 +217,7 @@
         &:hover {
             background-color: $orange;
             color: white;
+            transition: ease all 300ms;
         }
     }
     .close-btn {
@@ -241,9 +242,11 @@
         &:hover {
             color: $orange;
             background-color: white;
+            transition: ease all 300ms;
             .close-icon {
                 background: white;
                 border: solid 2px $orange;
+                transition: ease all 300ms;
             }
         }
     }
@@ -271,9 +274,11 @@
     &:hover {
         color: $orange;
         background-color: white;
+        transition: ease all 300ms;
         .close-icon {
             background: white;
             border: solid 2px $orange;
+            transition: ease all 300ms;
         }
     }
 }
