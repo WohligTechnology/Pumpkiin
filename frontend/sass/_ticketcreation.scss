@@ -263,22 +263,38 @@
     border-radius: 30px;
     font-family: Roboto-Medium;
     .close-icon {
+        width: 35px;
+        height: 33px;
         position: absolute;
         left: -5px;
-        top: -1px;
-        padding: 2px 8px;
+        top: -1.5px;
+        padding: 6px 8px;
         background: $orange;
         border: solid 2px white;
         border-radius: 50%;
+        .showdefault{
+            display: block;
+        }
+        .showhover{
+            display: none;
+        }
     }
     &:hover {
         color: $orange;
         background-color: white;
         transition: ease all 300ms;
         .close-icon {
+            width: 35px;
+            height: 33px;
             background: white;
             border: solid 2px $orange;
             transition: ease all 300ms;
+            .showdefault{
+                display: none;
+            }
+            .showhover{
+                display: block;
+            }
         }
     }
 }
@@ -330,6 +346,7 @@
             border-radius: 50%;
         }
     }
+  
     .panel-default:last-child {
         &:after {
             display: none;
@@ -350,4 +367,11 @@
         border-radius: 50%;
         background: $blue;
     }
+}
+
+.star-color-change{
+    svg{
+            fill: $orange;
+    }
+   
 }
