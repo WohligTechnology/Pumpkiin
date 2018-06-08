@@ -1,10 +1,18 @@
 <div class="background-blue position-relative p-3 pb-5 text-center fontRobotoRegular text-white">
     <h5>Product Registration</h5>
     <div class="my-5 timeline">
-        <div class="circle circle1 timeline-active" ng-click="makeActive('circle1')"></div>
-        <div class="circle circle2" ng-click="makeActive('circle2')"></div>
-        <div class="circle circle3" ng-click="makeActive('circle3')"></div>
-        <div class="circle circle4" ng-click="makeActive('circle4')"></div>
+        <div class="circle circle1 timeline-active" ng-click="makeActive('circle1')">
+            <i class="fas fa-check check-icon" ng-if="activePage == 'circle2'"></i>
+        </div>
+        <div class="circle circle2" ng-click="makeActive('circle2')">
+            <i class="fas fa-check check-icon" ng-if="activePage == 'circle3'"></i>
+        </div>
+        <div class="circle circle3" ng-click="makeActive('circle3')">
+            <i class="fas fa-check check-icon" ng-if="activePage == 'circle4'"></i>
+        </div>
+        <div class="circle circle4" ng-click="makeActive('circle4')">
+            <i class="fas fa-check check-icon" ng-if="activePage == 'circle5'"></i>
+        </div>
     </div>
     <div class="d-flex social m-3 cancel mx-5" ui-sref="productListingfcanf">
         <span class="social_icon">
@@ -71,7 +79,7 @@
         <fieldset class="d-flex social m-3 save" ng-click="saveProduct(data)">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
-                </i>
+
             </span>
             <div class="social-text">Save and Continue</div>
         </fieldset>
@@ -199,20 +207,13 @@
                 </div>
             </div>
         </div>
-        <fieldset class="d-flex social m-3 save" ng-click="savepurchaseDetails(data)">
+        <div class="d-flex social m-3 save" ng-click="savepurchaseDetails(data)">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
                 </i>
             </span>
             <div class="social-text">Save and Continue</div>
-        </fieldset>
-        <!-- <fieldset class="d-flex social m-3 save" ng-click="savepurchaseDetails(data)">
-            <span class="social_icon">
-                <i class="fas fa-save"></i>
-                </i>
-            </span>
-            <div class="social-text">Save and Continue</div>
-        </fieldset> -->
+        </div>
     </form>
 </div>
 
@@ -314,13 +315,14 @@
                 </div>
             </div>
         </div>
-        <fieldset role="button" class="d-flex social m-3 save">
-            <span class="social_icon">
-                <i class="fas fa-save"></i>
-                </i>
-            </span>
-            <div class="social-text" ng-click="goToNxtTab()">Save and Continue</div>
-        </fieldset>
+        <div class="">
+            <fieldset class="d-flex social m-3 save">
+                <span class="social_icon">
+                    <i class="fas fa-save"></i>
+                </span>
+                <div class="social-text" ng-click="goToNxtTab()">Save and Continue</div>
+            </fieldset>
+        </div>
     </form>
 </div>
 
@@ -353,7 +355,7 @@
         </div>
         <fieldset class="d-flex social m-3 save" ui-sref="productListing">
             <span class="social_icon">
-                <i class="fas fa-save"></i>
+                <i class="fas fa-plus"></i>
                 </i>
             </span>
             <div class="social-text">Add Product</div>

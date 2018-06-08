@@ -517,7 +517,7 @@ header {
         color: white;
         position: absolute;
         left: -2px;
-        top: 2px;
+        top: -1px;
     }
     .social-text {
         padding: 8px 10px;
@@ -712,4 +712,10 @@ header {
     width: 13px;
     padding: 10px 13px;
     margin: 5px;
+}
+
+.app-modal-window {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }

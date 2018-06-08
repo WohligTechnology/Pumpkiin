@@ -38,13 +38,12 @@
         color: #7F7F7F;
         text-align: center;
         position: relative;
-        padding-left: 17%;
     }
     &:before {
         content: '+91';
         padding-right: 5px;
         position: absolute;
-        left: 7%;
+        left: 12%;
         top: 43%;
         transform: translate(-50%, -50%);
         z-index: 1;
@@ -66,7 +65,7 @@
 
 .facebook {
     .social_icon {
-        padding: 5px 13px;
+        padding: 9px 15px;
         background: #4267b2;
     }
     .social-text {
@@ -88,7 +87,7 @@
 
 .google {
     .social_icon {
-        padding: 5px 10px;
+        padding: 9px 12px;
         background-color: #D44E3D;
     }
     .social-text {

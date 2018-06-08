@@ -9,19 +9,19 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     $scope.productImages = [];
     $scope.productImages.image = {};
     $scope.makeActive = function (click) {
-            $('.' + click).addClass("timeline-active");
-            $scope.activePage = click;
-            if (click) {
-                $('.' + click).nextAll().removeClass("timeline-active");
-            }
-        },
+        $('.' + click).addClass("timeline-active");
+        $scope.activePage = click;
+        if (click) {
+            $('.' + click).nextAll().removeClass("timeline-active");
+        }
+    };
 
-        $scope.registration = $uibModal.open({
-            animation: true,
-            templateUrl: "views/modal/registration.html",
-            scope: $scope,
-            windowClass: 'app-modal-window'
-        });
+    $scope.registration = $uibModal.open({
+        animation: true,
+        templateUrl: "views/modal/registration.html",
+        scope: $scope,
+        windowClass: 'app-modal-window'
+    });
 
     $scope.pumpkinRegistration = function () {
         $scope.pumpRegistration = $uibModal.open({

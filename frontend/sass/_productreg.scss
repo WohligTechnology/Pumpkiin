@@ -11,7 +11,7 @@
         width: 40px;
         height: 40px;
         position: absolute;
-        left: 7%;
+        left: 3%;
         border-radius: 50%;
         top: -20px;
     }
@@ -121,10 +121,10 @@
 .cancel,
 .add,
 .remainder {
-    float: right;
+    text-align: right;
     width: 25%;
     .social_icon {
-        padding: 0px 5px;
+        padding: 3px 7px;
         border: solid 2px #ecf0f2;
         background: $orange !important;
     }
@@ -153,7 +153,7 @@
     top: 15%;
     right: 5%;
     .social_icon {
-        padding: 0px 7px;
+        padding: 3px 9px;
         border: solid 2px #142c5b;
     }
 }
@@ -162,7 +162,7 @@
 .remainder {
     width: 17%;
     .social_icon {
-        padding: 3px 7px !important;
+        padding: 6px 9px !important;
     }
 }
 
@@ -195,4 +195,11 @@
 
 .timeline-active {
     background-color: #14C177 !important;
+}
+
+.check-icon {
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    top: 2px;
 }
