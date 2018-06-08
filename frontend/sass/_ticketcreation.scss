@@ -27,7 +27,7 @@
         margin: 0 3px;
         background-color: white;
     }
-    .openticketremainder {
+    .openticketreminder {
         .productreg {
             &:before {
                 left: 40%;
@@ -45,7 +45,7 @@
     .openticket {
         height: 500px;
     }
-    .remainderSection {
+    .reminderSection {
         height: 148px;
     }
     .info-div {
@@ -204,7 +204,7 @@
 }
 
 .chat-button {
-    .remainder-btn {
+    .reminder-btn {
         cursor: pointer;
         padding: 5px 10px;
         color: $orange;
