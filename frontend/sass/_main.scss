@@ -201,7 +201,11 @@ a,
     cursor: pointer;
     transition: all ease 300ms;
 }
-
+.btn{
+    &:focus{
+        box-shadow: none;
+    }
+}
 //scss for hedaer
 .custom-header {
     box-shadow: 0px 1px $gray;

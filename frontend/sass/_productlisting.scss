@@ -37,10 +37,10 @@
     span {
         border: solid 2px orange;
         position: absolute;
-        left: -7px;
+        left: -10px;
         border-radius: 50%;
-        padding: 3px 9px;
-        top: -2px;
+        padding: 2px 9px;
+        top: -1px;
         background-color: white;
     }
     &:hover {
@@ -239,7 +239,7 @@
             color: #B9C3C8;
             position: absolute;
             right: 8px;
-            top: 20px;
+            top: 16px;
         }
         .product-title,
         .date {
@@ -247,6 +247,8 @@
         }
         .product-title {
             font-size: 20px;
+            width: 170px;
+            display: inline-block;
         }
         .date {
             font-size: 14px;
@@ -255,7 +257,7 @@
 }
 
 .product-creation,
-.openticketreminder {
+.openticketremainder {
     .productreg {
         &:before {
             left: 40%;
@@ -266,5 +268,8 @@
     }
     .view {
         color: #B9C3C8;
+    }
+    .dropdown-menu{
+        min-width: 7rem;
     }
 }
