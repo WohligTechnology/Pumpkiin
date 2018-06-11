@@ -263,12 +263,10 @@
     border-radius: 30px;
     font-family: Roboto-Medium;
     .close-icon {
-        width: 35px;
-        height: 33px;
         position: absolute;
         left: -5px;
-        top: -1.5px;
-        padding: 6px 8px;
+        bottom: -3px;
+        padding: 8px 7px;
         background: $orange;
         border: solid 2px white;
         border-radius: 50%;
@@ -284,8 +282,6 @@
         background-color: white;
         transition: ease all 300ms;
         .close-icon {
-            width: 35px;
-            height: 33px;
             background: white;
             border: solid 2px $orange;
             transition: ease all 300ms;

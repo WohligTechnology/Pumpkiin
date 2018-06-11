@@ -576,6 +576,9 @@ header {
     .home-section-content {
         font-size: 2.5em;
         font-family: Roboto-Bold;
+        // .line-spacing-height{
+        //     line-height: 60px;
+        // }
         .select-box {
             position: relative;
             font-size: 30px;
@@ -585,6 +588,9 @@ header {
                 right: 5px;
                 bottom: 0px;
                 z-index: 1;
+                margin: 5px 0;
+                margin-left: 10px;
+                cursor: pointer;
             }
             ::-webkit-input-placeholder {
                 /* Chrome/Opera/Safari */
@@ -625,7 +631,7 @@ header {
 }
 
 .ui-select-search{
-    font-size: 30px;
+    font-size: 20px;
     background-color: #142c5b;
     border: 0;
     border-bottom: solid 3px white;
