@@ -17,7 +17,6 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal) {
             animation: true,
             templateUrl: "views/modal/addReminder.html",
             scope: $scope,
-            windowClass: 'app-modal-window'
         });
     }
 });
