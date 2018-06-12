@@ -34,16 +34,16 @@
                     <div class="user-profile rounded-circle">
                         <img src="img/header/profile.png" alt="Ticket_circle-icon" width="100%">
                     </div>
-
                 </li>
-                <li class="list-inline-item nav-item position-relative" ng-click="profile= !profile"></li>
+                <li class="list-inline-item nav-item position-relative header-dropdown" ng-click="profile= !profile">
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-chevron-down text-white pl-1" aria-hidden="true"></i>
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu">
-                      <li><a href="#">HTML</a></li>
-                      <li><a href="#">CSS</a></li>
-                      <li><a href="#">JavaScript</a></li>
+                      <li class="px-2"><a ui-sref="profile">Profile</a></li>
+                      <li class="px-2"><a >Terms &amp; Conditions</a></li>
+                      <li class="px-2 pb-1"><a >Privacy Policy</a></li>  
+                      <li class="py-1 px-2 font18 logout-style"><a ui-sref="home" class="orange-color">LOGOUT</a></li>                 
                     </ul>
                   </div>
                 </li>

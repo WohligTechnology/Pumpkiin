@@ -106,3 +106,47 @@
         border-right: 10px solid transparent;
     }
 }
+
+.header-dropdown{
+    .dropdown-toggle::after{
+        display: none;
+    }
+    button{
+        background-color: #142c5b;
+        padding: 0;
+    }   
+    .dropdown-menu{
+        padding: 5px 0 0;
+        left: -142px;
+        top: 30px;
+        min-width: 11rem;
+        border-radius: 0.5rem;
+        @extend .font14;
+        @extend .fontRobotoRegular;
+        color: #667E95;
+        li{
+            cursor: pointer;
+            &:hover{
+                a{
+                    color: white;
+                }
+                background: $blue;
+            }
+        }
+        &:after{
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid white;
+            color: white;
+            position: absolute;
+            top: -10px;
+            right: 13px;
+        }
+    }
+    .logout-style{
+        border-top: solid 1px $orange;
+    }
+}
