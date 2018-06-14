@@ -124,7 +124,81 @@ var controller = {
     },
     sendmail: function (req, res) {
         Config.sendEmail("chintan@wohlig.com", "jagruti@wohlig.com", "first email from endgrid", "", "<html><body>dome content</body></html>");
+    },
+
+    addUserRelationMember: function (req, res) {
+        if (req.body) {
+            User.addUserRelationMember(req.body.userId, req.body.memberId, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+    removeUserRelationMember: function (req, res) {
+        if (req.body) {
+            User.removeUserRelationMember(req.body.userId, req.body.mobile, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+    verifyUserWithOtpWhileSignUP: function (req, res) {
+        if (req.body) {
+            User.verifyUserWithOtpWhileSignUP(req.body.mobile, req.body.otp, req.body.name, req.body.email, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+    verifyUserWithOtpWhileLogin: function (req, res) {
+        if (req.body) {
+            User.verifyUserWithOtpWhileLogin(req.body.mobile, req.body.otp, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+    verifyUser: function (req, res) {
+        if (req.body) {
+            User.verifyUser(req.body.mobile, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+    sendOtp: function (req, res) {
+        if (req.body) {
+            User.sendOtp(req.body.mobile, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
     }
+
 
 };
 module.exports = _.assign(module.exports, controller);

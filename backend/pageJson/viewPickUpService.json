@@ -7,11 +7,11 @@
     "fields": [{
         "name": "ticketid",
         "isSort": "",
-        "tableRef": "ticketid"
+        "tableRef": "ticketId"
     }, {
         "name": "assignedto",
         "isSort": "",
-        "tableRef": "assignedto"
+        "tableRef": "assignedTo"
     }],
     "action": [{
         "name": "edit",

@@ -21,7 +21,7 @@
         {
             "name": "Product Name",
             "type": "text",
-            "tableRef": "productname",
+            "tableRef": "productName",
             "placeholder": "Enter productname",
             "id": "productname",
             "validation": ["", "trim", ""],
@@ -29,7 +29,7 @@
         }, {
             "name": "Serial No",
             "type": "number",
-            "tableRef": "serialno",
+            "tableRef": "serialNo",
             "placeholder": "Enter serialno",
             "id": "serialno",
             "validation": ["", "trim", ""],
@@ -48,7 +48,7 @@
         }, {
             "name": "Purchase Date ",
             "type": "date",
-            "tableRef": "purchasedate",
+            "tableRef": "purchaseDate",
             "placeholder": "Enter purchasedate",
             "id": "purchasedate",
             "validation": ["", "trim", ""],
@@ -56,7 +56,7 @@
         }, {
             "name": "Warranty Period",
             "type": "text",
-            "tableRef": "warrantyperiod",
+            "tableRef": "warrantyPeriod",
             "placeholder": "Enter Warranty Period",
             "id": "warrantyperiod",
             "validation": ["", "trim", ""],
@@ -65,7 +65,7 @@
         {
             "name": "Warranty End Date ",
             "type": "date",
-            "tableRef": "warrantyenddate",
+            "tableRef": "warrantyExpDate",
             "placeholder": "Enter Warranty End Date",
             "id": "warrantyenddate",
             "validation": ["", "trim", ""],
@@ -73,7 +73,7 @@
         }, {
             "name": "Purchase Price",
             "type": "text",
-            "tableRef": "purchasprice",
+            "tableRef": "purchasePrice",
             "placeholder": "Enter purchasprice",
             "id": "purchasprice",
             "validation": ["", "trim", ""],
@@ -81,7 +81,7 @@
         }, {
             "name": "Confirmation Code",
             "type": "text",
-            "tableRef": "confirmationcode",
+            "tableRef": "confirmationCode",
             "placeholder": "Enter confirmationcode",
             "id": "confirmationcode",
             "validation": ["", "trim", ""],
@@ -100,7 +100,7 @@
         }, {
             "name": "Local Support",
             "type": "box",
-            "tableRef": "localsupport",
+            "tableRef": "localSupport",
             "validation": ["", "trim", ""],
             "fields": [{
                     "name": "Name",
@@ -136,7 +136,7 @@
         }, {
             "name": "Warrenty Status",
             "type": "text",
-            "tableRef": "warrentystatus",
+            "tableRef": "warrentyStatus",
             "placeholder": "Enter warrentystatus",
             "id": "warrentystatus",
             "validation": ["", "trim", ""],
@@ -163,7 +163,7 @@
         }, {
             "name": "Product Accessory Map",
             "type": "box",
-            "tableRef": "productaccessorymap",
+            "tableRef": "productAccessoryMap",
             "validation": ["", "trim", ""],
             "fields": [{
                 "name": "product",

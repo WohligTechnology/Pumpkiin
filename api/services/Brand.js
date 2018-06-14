@@ -2,14 +2,14 @@ var schema = new Schema({
     name: {
         type: String
     },
-    username: {
+    userName: {
         type: String
     },
     password: {
         type: String,
         default: ""
     },
-    brandname: {
+    brandName: {
         type: String,
         default: ""
     }

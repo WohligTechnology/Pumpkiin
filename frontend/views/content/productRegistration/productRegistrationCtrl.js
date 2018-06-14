@@ -93,12 +93,12 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     $scope.userData = {};
     $scope.addeduser = [];
     $scope.addUser = function (data) {
-        NavigationService.apiCallWithData("WebUser/save", data, function (res) {
+        NavigationService.apiCallWithData("User/save", data, function (res) {
             if (res.value == true) {
                 $scope.updateUser = {};
                 $scope.updateUser.userId = "5b00213f78dcc437c34cc815";
                 $scope.updateUser.memberId = res.data._id;
-                NavigationService.apiCallWithData("WebUser/addUserRelationMember", $scope.updateUser, function (response) {
+                NavigationService.apiCallWithData("User/addUserRelationMember", $scope.updateUser, function (response) {
                     $scope.userData = {};
                     $scope.addeduser.push({
                         name: data.name,
@@ -116,7 +116,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             $scope.removeMember = {};
             $scope.removeMember.mobile = id.mobile;
             $scope.removeMember.userId = "5b00213f78dcc437c34cc815";
-            NavigationService.apiCallWithData("WebUser/removeUserRelationMember", $scope.removeMember, function (response) {
+            NavigationService.apiCallWithData("User/removeUserRelationMember", $scope.removeMember, function (response) {
 
 
             });

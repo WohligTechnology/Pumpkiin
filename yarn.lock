@@ -4868,6 +4868,10 @@ mongoose-schematypes-extend@^0.3.2:
   dependencies:
     libphonenumber "0.0.9"
 
+mongoose-timestamp-plugin@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/mongoose-timestamp-plugin/-/mongoose-timestamp-plugin-0.0.1.tgz#afc4eb48a6b9953a9e863b8e67476c128adbe7d7"
+
 mongoose-timestamp@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/mongoose-timestamp/-/mongoose-timestamp-0.6.0.tgz#da54110ca8e6d4c2b9957a0366836c362ed272be"

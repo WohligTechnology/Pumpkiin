@@ -17,7 +17,7 @@
         {
             "name": "Username",
             "type": "text",
-            "tableRef": "username",
+            "tableRef": "userName",
             "placeholder": "Enter Username",
             "id": "username",
             "validation": ["", "trim", ""],
@@ -25,7 +25,7 @@
         }, {
             "name": "Brand Name",
             "type": "text",
-            "tableRef": "brandname",
+            "tableRef": "brandName",
             "placeholder": "Enter brand name",
             "id": "brandname",
             "validation": ["", "trim", ""],

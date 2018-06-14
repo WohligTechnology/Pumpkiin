@@ -11,7 +11,7 @@
     }, {
         "name": "tollfreenumber",
         "isSort": "",
-        "tableRef": "tollfreenumber"
+        "tableRef": "tollFreeNumber"
     }],
     "action": [{
         "name": "edit",

@@ -7,7 +7,7 @@
     "fields": [{
         "name": "ticketid",
         "isSort": "",
-        "tableRef": "ticketid"
+        "tableRef": "ticketId"
     }],
     "action": [{
         "name": "edit",

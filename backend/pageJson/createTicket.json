@@ -8,7 +8,7 @@
     "fields": [{
             "name": "Order Id",
             "type": "number",
-            "tableRef": "orderid",
+            "tableRef": "orderId",
             "placeholder": "Enter Order Id",
             "id": "orderid",
             "validation": ["", "trim", ""],
@@ -24,7 +24,7 @@
         }, {
             "name": "Ticket Number",
             "type": "number",
-            "tableRef": "ticketnumber",
+            "tableRef": "ticketNumber",
             "placeholder": "Enter Ticket Nsumber",
             "id": "ticketnumber",
             "validation": ["", "trim", ""],
@@ -42,7 +42,7 @@
         {
             "name": "Sub Status",
             "type": "text",
-            "tableRef": "substatus",
+            "tableRef": "subStatus",
             "placeholder": "Enter substatus",
             "id": "substatus",
             "validation": ["", "trim", ""],
@@ -51,7 +51,7 @@
         {
             "name": "elapsedtime",
             "type": "text",
-            "tableRef": "elapsedtime",
+            "tableRef": "elapsedTime",
             "placeholder": "Enter elapsedtime",
             "id": "elapsedtime",
             "validation": ["", "trim", ""],
@@ -59,7 +59,7 @@
         }, {
             "name": "customer Communicatio History",
             "type": "text",
-            "tableRef": "customercommunicationhistory",
+            "tableRef": "customerCommunicationHistory",
             "placeholder": "Enter customer Communication History",
             "id": "customercommunicationhistory",
             "validation": ["", "trim", ""],
@@ -67,7 +67,7 @@
         }, {
             "name": "Closure Date",
             "type": "date",
-            "tableRef": "closuredate",
+            "tableRef": "closureDate",
             "placeholder": "Enter Closure Date",
             "id": "closuredate",
             "validation": ["", "trim", ""],
@@ -76,7 +76,7 @@
         {
             "name": "closurecommentpumpkin",
             "type": "text",
-            "tableRef": "closurecommentpumpkin",
+            "tableRef": "closureCommentPumpkin",
             "placeholder": "Enter closurecommentpumpkin",
             "id": "closurecommentpumpkin",
             "validation": ["", "trim", ""],
@@ -102,7 +102,7 @@
         }, {
             "name": "repairrecepit",
             "type": "box",
-            "tableRef": "repairrecepit",
+            "tableRef": "repairRecepit",
             "validation": ["", "trim", ""],
             "fields": [{
                 "name": "recepit",

@@ -1,41 +1,18 @@
 var schema = new Schema({
+    orderId: Number,
+    issueReported: Date,
+    ticketNumber: Number,
+    status: String,
+    subStatus: String,
 
-    orderid: {
-        type: Number,
-    },
-    issuereported: {
-        type: Date,
-    },
-    ticketnumber: {
-        type: Number,
-    },
-    status: {
-        type: String,
-    },
-    substatus: {
-        type: String,
-    },
-    elapsedtime: {
-        type: String,
-    },
-    customercommunicationhistory: {
-        type: String,
-    },
-    closuredate: {
-        type: Date,
-    },
-    closurecommentpumpkin: {
-        type: String,
-    },
-    rating: {
-        type: String,
-    },
-    cost: {
-        type: Number,
-    },
-    repairrecepit: [{
-        recepit: String
-    }]
+    elapsedTime: Date,
+    customerCommunicationHistory: String,
+    closureDate: Date,
+    closureCommentPumpkin: String,
+    closureCommentCustomer: String,
+    rating: String,
+    cost: Number,
+    repairRecepit: [String]
 });
 
 schema.plugin(deepPopulate, {});
