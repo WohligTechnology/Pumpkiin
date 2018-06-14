@@ -2,6 +2,7 @@ var schema = new Schema({
     name: {
         type: String
     },
+    nickName: String,
     balance: {
         type: String
     },
@@ -27,14 +28,14 @@ var schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Retailer'
     },
-    contact:Number,
-    location:[{
-        location:String
+    contact: Number,
+    location: [{
+        location: String
     }],
-    loginSession:[{
-        timestamp:Date,
-        ip:String,
-        accessToken:String
+    loginSession: [{
+        timestamp: Date,
+        ip: String,
+        accessToken: String
     }],
     dob: {
         type: Date,
@@ -94,7 +95,7 @@ var schema = new Schema({
     },
     accessLevel: {
         type: String,
-        enum: ['Retailer', 'Admin', 'Brand','webUser']
+        enum: ['Retailer', 'Admin', 'Brand', 'User']
     },
     address: [{
         lineOne: String,
@@ -314,35 +315,32 @@ var model = {
 
     //old api written
 
-    addUserRelationMember: function (userId, memberId, callback) {
-        WebUser.findOneAndUpdate({
-            _id: mongoose.Types.ObjectId(userId)
-        }, {
-            $push: {
-                'member': {
-                    memberId: memberId
+    addUserRelationMember: function (data, callback) {
+        var dataToSend = {};
+        if (data.memberId) {
+            User.saveData(adta, callback);
+        } else {
+            dataToSend.name = data.name;
+            dataToSend.nickName = data.nickName;
+            dataToSend.email = data.email;
+            dataToSend.contact = data.contact;
+            User.saveData(dataToSend, function (err, newUserData) {
+                if (!_.isEmpty(newUserData)) {
+                    var sendData = {};
+                    sendData._id = data._id;
+                    var arrData = [];
+                    arrData.relationType = data.relationType;
+                    arrData.user = newUserData._id;
                 }
-            }
-
-        }, {
-            new: true
-        }).deepPopulate('member.memberId').exec(function (err, found) {
-            if (err) {
-                callback(err, null);
-            } else if (_.isEmpty(found)) {
-                callback("noDataound", null);
-            } else {
-                callback(null, found);
-            }
-
-        });
+            })
+        }
     },
 
     removeUserRelationMember: function (userId, mobile, callback) {
         console.log("inside api", userId, mobile);
         async.waterfall([
             function (callback1) {
-                WebUser.findOne({
+                User.findOne({
                     mobile: mobile
                 }).exec(function (err, found) {
                     console.log("found********", found)
@@ -353,7 +351,7 @@ var model = {
                     } else {
                         var dataforDelete = {}
                         dataforDelete._id = found._id;
-                        WebUser.deleteData(found, function (err, created) {
+                        User.deleteData(found, function (err, created) {
                             if (err) {
                                 callback1(err, null);
                             } else if (_.isEmpty(created)) {
@@ -369,7 +367,7 @@ var model = {
             },
             function (id, callback2) {
                 console.log("idddddddddddddd", id);
-                WebUser.findOneAndUpdate({
+                User.findOneAndUpdate({
                     _id: mongoose.Types.ObjectId(userId)
                 }, {
                     $pull: {
@@ -400,10 +398,10 @@ var model = {
             }
         });
     },
-    
+
     // removeUserRelationMember: function (userId, mobile, callback) {
     //     console.log("inside USer RElation Memeber", userId, mobile)
-    // WebUser.findOneAndUpdate({
+    // User.findOneAndUpdate({
     //     _id: mongoose.Types.ObjectId(userId)
     // }, {
     //     $pull: {
@@ -422,7 +420,7 @@ var model = {
     //     } else {
     //         var user = {}
     //         user._id = memberId;
-    //         WebUser.deleteData(user, function (err, created) {
+    //         User.deleteData(user, function (err, created) {
     //             console.log("afte api response", created);
     //             if (err) {
     //                 callback(err, null);
@@ -436,9 +434,9 @@ var model = {
 
     // });
     // },
-   
+
     verifyUser: function (mobile, callback) {
-        WebUser.findOne({
+        User.findOne({
             mobile: mobile
         }).exec(function (err, found) {
             if (err) {
@@ -452,10 +450,10 @@ var model = {
         });
 
     },
-    
+
     sendOtp: function (mobile, callback) {
         var otpNumber = (Math.random() + "").substring(2, 6);
-        WebUser.findOneAndUpdate({
+        User.findOneAndUpdate({
             mobile: mobile
         }, {
             otp: otpNumber
@@ -475,7 +473,7 @@ var model = {
     },
 
     verifyUserWithOtpWhileSignUP: function (mobile, otp, name, email, callback) {
-        WebUser.findOneAndUpdate({
+        User.findOneAndUpdate({
             mobile: mobile,
             otp: otp
         }, {
@@ -495,10 +493,10 @@ var model = {
         });
 
     },
-   
+
 
     verifyUserWithOtpWhileLogin: function (mobile, otp, callback) {
-        WebUser.find({
+        User.find({
             mobile: mobile,
             otp: otp
         }).exec(function (err, found) {
