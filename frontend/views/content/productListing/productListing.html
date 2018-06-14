@@ -31,7 +31,8 @@
         </div>
         <button class="export float-right">
             <span>
-                <i class="far fa-file-pdf"></i>
+                <!-- <i class="far fa-file-pdf"></i> -->
+                <i class="far fa-file-excel"></i>
             </span>Export Product List</button>
     </div>
     <div class="row mt-4">
@@ -54,7 +55,7 @@
                         <span class="float-right product-icon" ng-click="deleteProduct($index)">
                             <i class="fas fa-trash"></i>
                         </span>
-                        <div class="addedpromain" ui-sref="ticketcreation">
+                        <div class="addedpromain" ui-sref="productdetailunregistered">
                             <div class="d-flex align-items-center justify-content-center addedproduct" ui-sref="productdetailunregistered">
                                 <img src="{{product.largeimage}}" class="img-fluid large-img">
                                 <div class="background-blue small-circle">
@@ -85,12 +86,12 @@
                         <img src="img/ticketCreation/closedTicket.png">
                         <div class="notification">6</div>
                     </div>
-                    <div ui-sref="ticketcreation">
+                    <div ui-sref="">
                         <img src="img/ticketCreation/addButton.png">
                     </div>
                 </div>
                 <div class="my-3 open-tickets">
-                    <h4 class="d-inline">Open Tickets</h4>
+                    <h5 class="d-inline">Open Tickets</h5>
                     <span class="badge badge-style float-right">14</span>
                 </div>
                 <div class="border-top listed-openTickets">
@@ -137,7 +138,7 @@
                 </div>
                 <div class="text-right mt-2 view">View All
                     <span class="pl-2">
-                        <i class="fas fa-ellipsis-v"></i>
+                        <i class="fas fa-caret-right"></i>
                     </span>
                 </div>
             </div>
@@ -196,6 +197,14 @@
                     </span>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <div class="d-inline-block pluse-circle">
+            <i class="fas fa-plus-circle"></i>
+        </div>
+        <div class="font-color  d-inline-block">
+            <p class="load-more">Load More</p>
         </div>
     </div>
 </div>

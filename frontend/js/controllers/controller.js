@@ -18,7 +18,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         $timeout(function () {
             mySwiper = new Swiper('.swiper-container', {
                 // Optional parameters
-                width: '700',
+                width: '800',
                 direction: 'horizontal',
                 loop: true,
                 slidesPerView: 2,

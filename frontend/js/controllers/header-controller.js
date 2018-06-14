@@ -1,4 +1,4 @@
-myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal) {
+myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $state) {
     $scope.template = TemplateService;
     $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         $(window).scrollTop(0);
@@ -12,6 +12,7 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal) {
     }, {
         name: "Samsung s7 edge"
     }];
+    $scope.currentState = $state.current.name;
     $scope.reminderModalOpen = function () {
         $scope.addReminder = $uibModal.open({
             animation: true,
