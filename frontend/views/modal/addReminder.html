@@ -1,5 +1,8 @@
 <div class="modal-header justify-content-center background-blue text-white">
-    <h5 class="modal-title fontRobotoRegular" id="modal-title">Reminder</h5><span class="modal-close-icon" ng-click="$dismiss()"><img src="img/modal/close_white.png" width="20"></span>
+    <h5 class="modal-title fontRobotoRegular" id="modal-title">Reminder</h5>
+    <span class="modal-close-icon" ng-click="$dismiss()">
+        <img src="img/modal/close_white.png" width="20">
+    </span>
 </div>
 <div class="modal-body fontRobotoLight" id="modal-body">
     <form>
@@ -14,10 +17,10 @@
         <div class="form-group">
             <label for="title">Select Date</label>
             <input class="form-control form-control-sm w-50" type="datetime-local" name="title">
-            <input class="form-control form-control-sm w-50" type="datetime-local" name="title">
+
         </div>
         <div class="text-center">
-                <button class="reminder-btn">Save Reminder</button>
+            <button class="reminder-btn" ui-sref="productListing">Save Reminder</button>
         </div>
     </form>
 </div>

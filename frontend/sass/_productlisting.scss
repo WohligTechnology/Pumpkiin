@@ -166,11 +166,12 @@
     &:hover {
         box-shadow: 0 4px 24px rgba(108, 117, 125, 0.58);
         transition: ease all 300ms;
-        .addedsupport-btn {
-            color: white;
-            background-color: $orange !important;
-        }
     }
+}
+
+.addedsupport-btn:hover {
+    color: white;
+    background-color: $orange !important;
 }
 
 .closed-text {
@@ -272,7 +273,7 @@
     .view {
         color: #B9C3C8;
     }
-    .dropdown-menu{
+    .dropdown-menu {
         min-width: 7rem;
     }
 }
