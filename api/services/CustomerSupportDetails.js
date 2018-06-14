@@ -1,11 +1,7 @@
 var schema = new Schema({
-    tollfreenumber: {
-        type: Number,
-    },
-    email: {
-        type: String
-    },
-    servicecenteraddresses: [{
+    tollFreeNumber: Number,
+    email: String,
+    serviceCenterAddresses: [{
         lineOne: String,
         lineTwo: String,
         lineThree: String,
@@ -14,12 +10,9 @@ var schema = new Schema({
         state: String,
         pincode: String
     }],
-    facebookpage: {
-        type: Number,
-    },
-    twitterpage: {
-        type: Number,
-    },
+    facebookPage: String,
+    twitterPage: String,
+    officialProductWebsite: String
 });
 
 schema.plugin(deepPopulate, {});

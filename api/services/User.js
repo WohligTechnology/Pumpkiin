@@ -9,7 +9,12 @@ var schema = new Schema({
         account: String
     }],
     relations: [{
-        relation: String
+        relationType: String,
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            index: true
+        }
     }],
     email: {
         type: String
@@ -22,6 +27,15 @@ var schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Retailer'
     },
+    contact:Number,
+    location:[{
+        location:String
+    }],
+    loginSession:[{
+        timestamp:Date,
+        ip:String,
+        accessToken:String
+    }],
     dob: {
         type: Date,
         excel: {
@@ -80,7 +94,7 @@ var schema = new Schema({
     },
     accessLevel: {
         type: String,
-        enum: ['Retailer', 'Admin', 'Brand']
+        enum: ['Retailer', 'Admin', 'Brand','webUser']
     },
     address: [{
         lineOne: String,
@@ -113,6 +127,7 @@ module.exports = mongoose.model('User', schema);
 
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "user retailer brand", "user retailer brand"));
 var model = {
+
     getOneUser: function (data, callback) {
         User.findOne({
             _id: data._id
@@ -127,6 +142,7 @@ var model = {
 
         });
     },
+
     saveUser: function (data, callback) {
 
         User.findOne({
@@ -189,6 +205,7 @@ var model = {
         });
         return sum;
     },
+
     existsSocial: function (user, callback) {
         var Model = this;
         console.log("existsSocial user: ", user);
@@ -256,6 +273,7 @@ var model = {
             }
         });
     },
+
     profile: function (data, callback, getGoogle) {
         var str = "name email photo mobile accessLevel brand retailer";
         if (getGoogle) {
@@ -274,6 +292,7 @@ var model = {
             }
         });
     },
+
     updateAccessToken: function (id, accessToken) {
         User.findOne({
             "_id": id
@@ -282,6 +301,7 @@ var model = {
             data.save(function () {});
         });
     },
+
     /**
      * This function get all the media from the id.
      * @param {userId} data
@@ -290,6 +310,210 @@ var model = {
      */
     getAllMedia: function (data, callback) {
 
+    },
+
+    //old api written
+
+    addUserRelationMember: function (userId, memberId, callback) {
+        WebUser.findOneAndUpdate({
+            _id: mongoose.Types.ObjectId(userId)
+        }, {
+            $push: {
+                'member': {
+                    memberId: memberId
+                }
+            }
+
+        }, {
+            new: true
+        }).deepPopulate('member.memberId').exec(function (err, found) {
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(found)) {
+                callback("noDataound", null);
+            } else {
+                callback(null, found);
+            }
+
+        });
+    },
+
+    removeUserRelationMember: function (userId, mobile, callback) {
+        console.log("inside api", userId, mobile);
+        async.waterfall([
+            function (callback1) {
+                WebUser.findOne({
+                    mobile: mobile
+                }).exec(function (err, found) {
+                    console.log("found********", found)
+                    if (err) {
+                        callback1(err, null);
+                    } else if (_.isEmpty(found)) {
+                        callback1("noDataound", null);
+                    } else {
+                        var dataforDelete = {}
+                        dataforDelete._id = found._id;
+                        WebUser.deleteData(found, function (err, created) {
+                            if (err) {
+                                callback1(err, null);
+                            } else if (_.isEmpty(created)) {
+                                callback1(null, "noDataound");
+                            } else {
+
+                                callback1(null, found._id);
+                            }
+                        });
+                    }
+
+                })
+            },
+            function (id, callback2) {
+                console.log("idddddddddddddd", id);
+                WebUser.findOneAndUpdate({
+                    _id: mongoose.Types.ObjectId(userId)
+                }, {
+                    $pull: {
+                        'member': {
+                            memberId: id
+                        }
+                    }
+
+                }, {
+                    new: true
+                }).exec(function (err, found) {
+                    if (err) {
+                        callback2(err, null);
+                    } else if (_.isEmpty(found)) {
+                        callback2("noDataound", null);
+                    } else {
+                        callback2(null, found);
+                    }
+
+                });
+            }
+        ], function (err, data) {
+
+            if (err || _.isEmpty(data)) {
+                callback(err, [])
+            } else {
+                callback(null, data)
+            }
+        });
+    },
+    
+    // removeUserRelationMember: function (userId, mobile, callback) {
+    //     console.log("inside USer RElation Memeber", userId, mobile)
+    // WebUser.findOneAndUpdate({
+    //     _id: mongoose.Types.ObjectId(userId)
+    // }, {
+    //     $pull: {
+    //         'member': {
+    //             memberId: memberId
+    //         }
+    //     }
+
+    // }, {
+    //     new: true
+    // }).deepPopulate('member.memberId').exec(function (err, found) {
+    //     if (err) {
+    //         callback(err, null);
+    //     } else if (_.isEmpty(found)) {
+    //         callback("noDataound", null);
+    //     } else {
+    //         var user = {}
+    //         user._id = memberId;
+    //         WebUser.deleteData(user, function (err, created) {
+    //             console.log("afte api response", created);
+    //             if (err) {
+    //                 callback(err, null);
+    //             } else if (_.isEmpty(found)) {
+    //                 callback(null, "noDataound");
+    //             } else {
+    //                 callback(null, found);
+    //             }
+    //         });
+    //     }
+
+    // });
+    // },
+   
+    verifyUser: function (mobile, callback) {
+        WebUser.findOne({
+            mobile: mobile
+        }).exec(function (err, found) {
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(found)) {
+                callback("noDataFound", null);
+            } else {
+                callback(null, found);
+            }
+
+        });
+
+    },
+    
+    sendOtp: function (mobile, callback) {
+        var otpNumber = (Math.random() + "").substring(2, 6);
+        WebUser.findOneAndUpdate({
+            mobile: mobile
+        }, {
+            otp: otpNumber
+        }, {
+            new: true
+        }).exec(function (err, found) {
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(found)) {
+                callback("noDataFound", null);
+            } else {
+                callback(null, found);
+            }
+
+        });
+
+    },
+
+    verifyUserWithOtpWhileSignUP: function (mobile, otp, name, email, callback) {
+        WebUser.findOneAndUpdate({
+            mobile: mobile,
+            otp: otp
+        }, {
+            name: name,
+            email: email
+        }, {
+            new: true
+        }).exec(function (err, found) {
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(found)) {
+                callback("noDataFound", null);
+            } else {
+                callback(null, found);
+            }
+
+        });
+
+    },
+   
+
+    verifyUserWithOtpWhileLogin: function (mobile, otp, callback) {
+        WebUser.find({
+            mobile: mobile,
+            otp: otp
+        }).exec(function (err, found) {
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(found)) {
+                callback("noDataFound", null);
+            } else {
+                callback(null, found);
+            }
+
+        });
+
     }
+
+
 };
 module.exports = _.assign(module.exports, exports, model);

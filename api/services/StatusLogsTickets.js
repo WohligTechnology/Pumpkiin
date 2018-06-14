@@ -1,17 +1,11 @@
 var schema = new Schema({
-    ticketid: {
+    ticketId: {
         type: Schema.Types.ObjectId,
         ref: 'Ticket'
     },
-    statusfrom: {
-        type: String,
-    },
-    statusto: {
-        type: String,
-    },
-    timeinstatusfrom: {
-        type: String,
-    }
+    statusFrom: String,
+    statusTo: String,
+    timeInStatusFrom: String
 });
 
 schema.plugin(deepPopulate, {});

@@ -1,22 +1,14 @@
 var schema = new Schema({
-    ticketid: {
+    ticketId: {
         type: Schema.Types.ObjectId,
         ref: 'Ticket',
         index: true
     },
-    assignedto: {
-        type: String
-    },
-    assignedtonumber: {
-        type: Number
-    },
-    contactperson: {
-        type: String
-    },
-    contactnumber: {
-        type: Number
-    },
-    servicecenter: {
+    assignedTo: String,
+    assignedtoNumber: Number,
+    contactPerson: String,
+    contactNumber: Number,
+    serviceCenter: {
         type: Schema.Types.ObjectId,
         ref: 'ServiceCenter',
         index: true

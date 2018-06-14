@@ -3,7 +3,7 @@ var schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Brand'
     },
-    productname: {
+    productName: {
         type: String
     },
     serialNo: {
@@ -16,51 +16,74 @@ var schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Retailer'
     },
-    productImages: [{
-        image: String,
-    }],
-    purchaseproof: [{
-        proofImage: String,
-    }],
-    purchasedate: {
+    purchaseDate: {
         type: Date
     },
-
-    purchaseprice: {
+    warrantyPeriod: String,
+    warrantyExpDate: Date,
+    bill: Schema.Types.Mixed,
+    purchasePrice: {
         type: Number
     },
-    confirmationcode: {
-        type: String
-    },
-    invoiceImage: {
-        type: String
-    },
-    warrantyCardImage: {
+    confirmationCode: {
         type: String
     },
     status: {
         type: String,
         enum: ['Pending', 'Confirmed']
     },
-    localsupport: [{
+
+    productImages: [{
+        image: String,
+    }],
+    purchaseProof: [{
+        proofImage: String,
+    }],
+    localSupport: [{
         name: String,
         contact: Date,
         email: String
     }],
-    warrantyPeriod: String,
-    warrantyExpDate: Date,
-    warrantyProof: String,
-
-    insurancePeriod: String,
-    insuranceExpDate: Date,
-    insuranceProof: String,
-    warrentystatus: {
+    warrentyStatus: {
+        type: String
+    },
+    document: [{
+        name: String,
+        doc: String
+    }],
+    invoiceImage: {
+        type: String
+    },
+    warrantyCardImage: {
         type: String
     },
     tags: {
         type: String
     },
+    type: {
+        type: String,
+        enum: ['Product', 'Accessory']
+    },
+    productAccessoryMap: [{
+        product: String,
+    }],
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        index: true
+    },
+    relatedUser: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        index: true
+    }],
 
+
+    //extra fields
+    warrantyProof: String,
+    insurancePeriod: String,
+    insuranceExpDate: Date,
+    insuranceProof: String,
     doneBy: {
         type: String,
         enum: ['Admin', 'User']
@@ -69,11 +92,6 @@ var schema = new Schema({
         type: Boolean,
         default: false
     },
-    productaccessorymap: [{
-        product: String,
-    }]
-
-
 });
 
 schema.plugin(deepPopulate, {
@@ -92,6 +110,7 @@ module.exports = mongoose.model('Product', schema);
 
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "brand retailer ", "brand retailer "));
 var model = {
+
     saveProduct: function (data, callback) {
         Product.saveData(data, function (err, created) {
             if (err) {
@@ -114,5 +133,6 @@ var model = {
             }
         });
     },
+
 };
 module.exports = _.assign(module.exports, exports, model);

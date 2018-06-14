@@ -1,13 +1,13 @@
 var schema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'WebUser'
+        ref: 'User'
     },
     title: String,
     description: String,
     datefrom: Date,
     dateTo: Date,
-    time: String
+    time: Date
 
 });
 

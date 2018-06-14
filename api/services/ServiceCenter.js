@@ -12,7 +12,7 @@ var schema = new Schema({
         pincode: String
     }],
     contact: Number,
-    communicationaddresss: [{
+    communicationAddresss: [{
         lineOne: String,
         lineTwo: String,
         lineThree: String,
@@ -21,12 +21,8 @@ var schema = new Schema({
         state: String,
         pincode: String
     }],
-    date: {
-        type: Date
-    },
-    time: {
-        type: String,
-    }
+    date: Date,
+    time: Date
 });
 
 schema.plugin(deepPopulate, {});
