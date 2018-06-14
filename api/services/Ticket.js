@@ -12,9 +12,7 @@ var schema = new Schema({
     closureCommentCustomer: String,
     rating: String,
     cost: Number,
-    repairRecepit: [{
-        String
-    }]
+    repairRecepit: [String]
 });
 
 schema.plugin(deepPopulate, {});

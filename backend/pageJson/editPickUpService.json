@@ -8,7 +8,7 @@
     "fields": [{
             "name": "Ticket Id",
             "type": "tags",
-            "tableRef": "ticketid",
+            "tableRef": "ticketId",
             "dropDownType": "single",
             "dropDownField": "ticketnumber",
             "searchApi": "searchCall",
@@ -19,7 +19,7 @@
         }, {
             "name": "assignedto",
             "type": "text",
-            "tableRef": "assignedto",
+            "tableRef": "assignedTo",
             "placeholder": "Enter assignedto",
             "id": "assignedto",
             "validation": ["", "trim", ""],
@@ -27,7 +27,7 @@
         }, {
             "name": "assignedtonumber",
             "type": "number",
-            "tableRef": "assignedtonumber",
+            "tableRef": "assignedtoNumber",
             "placeholder": "Enter assignedtonumber",
             "id": "assignedtonumber",
             "validation": ["", "trim", ""],
@@ -36,7 +36,7 @@
         {
             "name": "contactperson",
             "type": "text",
-            "tableRef": "contactperson",
+            "tableRef": "contactPerson",
             "placeholder": "Enter contactperson",
             "id": "contactperson",
             "validation": ["", "trim", ""],
@@ -45,7 +45,7 @@
         {
             "name": "contactnumber",
             "type": "text",
-            "tableRef": "contactnumber",
+            "tableRef": "contactNumber",
             "placeholder": "Enter contactnumber",
             "id": "contactnumber",
             "validation": ["", "trim", ""],
@@ -54,7 +54,7 @@
         {
             "name": "servicecenter",
             "type": "tags",
-            "tableRef": "servicecenter",
+            "tableRef": "serviceCenter",
             "dropDownType": "single",
             "dropDownField": "name",
             "searchApi": "searchCall",

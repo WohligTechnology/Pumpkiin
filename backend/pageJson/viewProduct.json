@@ -7,7 +7,7 @@
     "fields": [{
         "name": "Product Name",
         "isSort": "",
-        "tableRef": "productname"
+        "tableRef": "productName"
     }],
     "action": [{
         "name": "edit",

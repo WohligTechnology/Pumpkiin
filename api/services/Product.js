@@ -3,63 +3,38 @@ var schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Brand'
     },
-    productName: {
-        type: String
-    },
-    serialNo: {
-        type: Number
-    },
-    modelNo: {
-        type: String
-    },
+    productName: String,
+    serialNo: Number,
+    modelNo: String,
     retailer: {
         type: Schema.Types.ObjectId,
         ref: 'Retailer'
     },
-    purchaseDate: {
-        type: Date
-    },
+    purchaseDate: Date,
     warrantyPeriod: String,
     warrantyExpDate: Date,
     bill: Schema.Types.Mixed,
-    purchasePrice: {
-        type: Number
-    },
-    confirmationCode: {
-        type: String
-    },
+    purchasePrice: Number,
+    confirmationCode: String,
     status: {
         type: String,
         enum: ['Pending', 'Confirmed']
     },
-
-    productImages: [{
-        image: String,
-    }],
-    purchaseProof: [{
-        proofImage: String,
-    }],
+    productImages: [String],
+    purchaseProof: [String],
     localSupport: [{
         name: String,
         contact: Date,
         email: String
     }],
-    warrentyStatus: {
-        type: String
-    },
+    warrentyStatus: String,
     document: [{
         name: String,
         doc: String
     }],
-    invoiceImage: {
-        type: String
-    },
-    warrantyCardImage: {
-        type: String
-    },
-    tags: {
-        type: String
-    },
+    invoiceImage: String,
+    warrantyCardImage: String,
+    tags: String,
     type: {
         type: String,
         enum: ['Product', 'Accessory']

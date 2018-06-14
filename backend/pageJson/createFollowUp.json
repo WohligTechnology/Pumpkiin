@@ -8,7 +8,7 @@
     "fields": [{
             "name": "Ticket Id",
             "type": "tags",
-            "tableRef": "ticketid",
+            "tableRef": "ticketId",
             "dropDownType": "single",
             "dropDownField": "ticketnumber",
             "searchApi": "searchCall",
@@ -27,7 +27,7 @@
         }, {
             "name": "contactperson",
             "type": "text",
-            "tableRef": "contactperson",
+            "tableRef": "contactPerson",
             "placeholder": "Enter contactperson",
             "id": "contactperson",
             "validation": ["", "trim", ""],
@@ -35,7 +35,7 @@
         }, {
             "name": "contact Number",
             "type": "number",
-            "tableRef": "contactnumber",
+            "tableRef": "contactNumber",
             "placeholder": "Enter contact number",
             "id": "contactnumber",
             "validation": ["", "trim", ""],
@@ -47,15 +47,6 @@
             "tableRef": "date",
             "placeholder": "Enter date",
             "id": "date",
-            "validation": ["", "trim", ""],
-            "url": ""
-        },
-        {
-            "name": "time",
-            "type": "text",
-            "tableRef": "time",
-            "placeholder": "Enter time",
-            "id": "time",
             "validation": ["", "trim", ""],
             "url": ""
         }

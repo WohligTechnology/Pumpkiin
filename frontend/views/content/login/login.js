@@ -65,7 +65,7 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
                 if (info.email || info.name) {
                     $scope.data.name = info.name;
                     $scope.data.email = info.email;
-                    NavigationService.apiCallWithData("WebUser/verifyUserWithOtpWhileSignUP", $scope.data, function (data) {
+                    NavigationService.apiCallWithData("User/verifyUserWithOtpWhileSignUP", $scope.data, function (data) {
 
                         if (data.value == true) {
                             toastr.success('You have been successfully sign in', 'Sign in Success')
@@ -75,7 +75,7 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
                     });
 
                 } else {
-                    NavigationService.apiCallWithData("WebUser/verifyUserWithOtpWhileLogin", $scope.data, function (data) {
+                    NavigationService.apiCallWithData("User/verifyUserWithOtpWhileLogin", $scope.data, function (data) {
 
                         if (data.value == true) {
                             toastr.success('You have been successfully logged in', 'Login Success')
@@ -90,7 +90,7 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
             }
         },
         $scope.sendOtp = function (data) {
-            NavigationService.apiCallWithData("WebUser/sendOtp", data, function (res1) {
+            NavigationService.apiCallWithData("User/sendOtp", data, function (res1) {
                 if (res1.value == true) {
                     toastr.success('Otp sent succefully')
                     $scope.formName.digit1 = "";

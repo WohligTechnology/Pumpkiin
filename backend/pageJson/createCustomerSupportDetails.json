@@ -8,7 +8,7 @@
     "fields": [{
             "name": "tollfreenumber",
             "type": "number",
-            "tableRef": "tollfreenumber",
+            "tableRef": "tollFreeNumber",
             "placeholder": "Enter tollfreenumber",
             "id": "tollfreenumber",
             "validation": ["", "trim", ""],
@@ -24,7 +24,7 @@
         }, {
             "name": "servicecenteraddresses",
             "type": "box",
-            "tableRef": "servicecenteraddresses",
+            "tableRef": "serviceCenterAddresses",
             "validation": ["", "trim", ""],
             "fields": [{
                 "name": "Line 1",
@@ -93,7 +93,7 @@
         }, {
             "name": "facebookpage",
             "type": "number",
-            "tableRef": "facebookpage",
+            "tableRef": "facebookPage",
             "placeholder": "Enter facebookpage",
             "id": "facebookpage",
             "validation": ["", "trim", ""],
@@ -102,7 +102,7 @@
         {
             "name": "twitterpage",
             "type": "number",
-            "tableRef": "twitterpage",
+            "tableRef": "twitterPage",
             "placeholder": "Enter twitterpage",
             "id": "twitterpage",
             "validation": ["", "trim", ""],
