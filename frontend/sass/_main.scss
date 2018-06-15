@@ -592,8 +592,8 @@ header {
         font-size: 40px;
         font-family: Roboto-Bold;
         .line-spacing-height {
-            height: 60px;
-            overflow: hidden;
+            // height: 60px;
+            // overflow: hidden;
         }
         .select-box {
             position: relative;
@@ -638,11 +638,11 @@ header {
                 background: transparent;
                 position: relative;
                 z-index: 2;
+                border-bottom: solid 2px white;
             }
             input {
                 background-color: transparent;
-                border: 0;
-                border-bottom: solid 2px white;
+                border: 0; // border-bottom: solid 2px white;
             }
         }
     }
@@ -677,7 +677,7 @@ header {
     .about-pumpkin {
         padding: 200px 0 100px 0;
         .about-content {
-            width: 65%;
+            width: 50%;
             margin: 0 auto;
             font-family: Roboto-Light;
             a {
@@ -789,4 +789,29 @@ header {
 .pluse-circle {
     font-size: 20px;
     color: #657D95;
+}
+
+.up-arrow {
+    width: 36px;
+    height: 36px;
+    right: 60px;
+    text-align: center;
+    bottom: -22px;
+    position: absolute;
+    z-index: 1;
+    background-color: #f6a244;
+    border: solid 5px #ecf0f2;
+    border-radius: 50%;
+    .fa-sort-down {
+        color: white;
+        vertical-align: 0;
+    }
+}
+
+.support-chat-history {
+    margin-bottom: 22px;
+}
+
+.width-girl {
+    width: 61.5vh;
 }

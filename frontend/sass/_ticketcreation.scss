@@ -94,8 +94,7 @@
             content: '12/2/2018 \a Brand\00a0 Replied\00a0 to\00a0 your\00a0 issue';
             left: 0;
         }
-    }
-    // .circle4 {
+    } // .circle4 {
     //     left: 75%;
     //     &:before {
     //         content: '';
@@ -270,10 +269,10 @@
         background: $orange;
         border: solid 2px white;
         border-radius: 50%;
-        .showdefault{
+        .showdefault {
             display: block;
         }
-        .showhover{
+        .showhover {
             display: none;
         }
     }
@@ -285,10 +284,10 @@
             background: white;
             border: solid 2px $orange;
             transition: ease all 300ms;
-            .showdefault{
+            .showdefault {
                 display: none;
             }
-            .showhover{
+            .showhover {
                 display: block;
             }
         }
@@ -324,25 +323,23 @@
         border-radius: 10px;
         border-bottom: 0;
         border: 0;
-        position: relative;
-        &:after {
-            content: "";
-            background-image: url("../img/ticketCreation/caret-up.png");
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: 50%;
-            width: 35px;
-            height: 35px;
-            right: 60px;
-            bottom: -22px;
-            position: absolute;
-            z-index: 1;
-            background-color: #f6a244;
-            border: solid 5px #ecf0f2;
-            border-radius: 50%;
-        }
+        position: relative; // &:after {
+        //     content: "";
+        //     background-image: url("../img/ticketCreation/caret-up.png");
+        //     background-position: center center;
+        //     background-repeat: no-repeat;
+        //     background-size: 50%;
+        //     width: 35px;
+        //     height: 35px;
+        //     right: 60px;
+        //     bottom: -22px;
+        //     position: absolute;
+        //     z-index: 1;
+        //     background-color: #f6a244;
+        //     border: solid 5px #ecf0f2;
+        //     border-radius: 50%;
+        // }
     }
-  
     .panel-default:last-child {
         &:after {
             display: none;
@@ -365,9 +362,8 @@
     }
 }
 
-.star-color-change{
-    svg{
-            fill: $orange;
+.star-color-change {
+    svg {
+        fill: $orange;
     }
-   
 }

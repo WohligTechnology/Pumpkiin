@@ -6,28 +6,29 @@
     border: solid 5px $orange;
     background: white;
     margin: 0 auto;
-    .showdefault{
+    .showdefault {
         display: block;
     }
-    .showhover{
+    .showhover {
         display: none;
     }
     &:hover {
         background: $orange;
         border: solid 5px $orange;
         transition: ease all 300ms;
-        i{
+        i {
             color: white !important;
         }
-        .showdefault{
+        .showdefault {
             display: none;
         }
-        .showhover{
+        .showhover {
             display: block;
         }
     }
 }
-.reminder-btn{
+
+.reminder-btn {
     cursor: pointer;
     border-radius: 20px;
     padding: 5px 45px;
@@ -35,10 +36,26 @@
     background-color: #142C5C;
     color: white;
     border: solid 1px transparent;
-    &:hover{
+    &:hover {
         background-color: white;
         color: #142C5C;
         border: solid 1px #142C5C;
+        transition: ease all 300ms;
+    }
+}
+
+.reminder-btn-green {
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 5px 45px;
+    border: 0;
+    background-color: #14C177;
+    color: white;
+    border: solid 1px transparent;
+    &:hover {
+        background-color: white;
+        color: #14C177;
+        border: solid 1px #14C177;
         transition: ease all 300ms;
     }
 }

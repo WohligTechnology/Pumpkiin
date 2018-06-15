@@ -210,9 +210,13 @@
         font-size: 10px;
         background-color: $orange;
         color: white;
-        padding: 5px 15px;
+        padding: 5px 10px;
         border-radius: 15px;
     }
+}
+
+.h-25 {
+    height: 25vh !important;
 }
 
 .listed-openTickets {

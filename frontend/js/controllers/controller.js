@@ -63,6 +63,10 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         }, {
             name: 'Retail'
         }]
+        $scope.product1 = '';
+        $scope.changeProduct = function (index) {
+            $scope.product1 = $scope.product[index].name;
+        }
 
     })
 
