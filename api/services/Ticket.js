@@ -1,5 +1,8 @@
 var schema = new Schema({
-    orderId: Number,
+    productId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Product'
+    },
     issueReported: Date,
     ticketNumber: Number,
     status: String,

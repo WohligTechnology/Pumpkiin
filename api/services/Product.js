@@ -44,21 +44,21 @@ var schema = new Schema({
     }],
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
-        index: true
+        ref: 'User'
     },
     relatedUser: [{
         type: Schema.Types.ObjectId,
-        ref: 'User',
-        index: true
+        ref: 'User'
     }],
 
 
     //extra fields
+
+    category: String,
     warrantyProof: String,
     insurancePeriod: String,
     insuranceExpDate: Date,
-    insuranceProof: String,
+    insuranceProofImage: String,
     doneBy: {
         type: String,
         enum: ['Admin', 'User']

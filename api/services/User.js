@@ -13,8 +13,7 @@ var schema = new Schema({
         relationType: String,
         user: {
             type: Schema.Types.ObjectId,
-            ref: 'User',
-            index: true
+            ref: 'User'
         }
     }],
     email: {
@@ -28,7 +27,6 @@ var schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Retailer'
     },
-    contact: Number,
     location: [{
         location: String
     }],
@@ -316,24 +314,44 @@ var model = {
     //old api written
 
     addUserRelationMember: function (data, callback) {
-        var dataToSend = {};
-        if (data.memberId) {
-            User.saveData(adta, callback);
+        console.log("data", data);
+        if (data.relationId) {
+            User.saveData(data, callback);
         } else {
+            var dataToSend = {};
             dataToSend.name = data.name;
             dataToSend.nickName = data.nickName;
             dataToSend.email = data.email;
-            dataToSend.contact = data.contact;
+            dataToSend.mobile = data.contact;
             User.saveData(dataToSend, function (err, newUserData) {
                 if (!_.isEmpty(newUserData)) {
                     var sendData = {};
                     sendData._id = data._id;
                     var arrData = [];
-                    arrData.relationType = data.relationType;
-                    arrData.user = newUserData._id;
+                    var sendData1 = {};
+                    sendData1.relationType = data.relationType;
+                    sendData1.user = newUserData._id;
+                    arrData.push(sendData1)
+                    sendData.relations = arrData;
+                    console.log("sendData---------", sendData);
+                    User.saveData(sendData, callback);
+                } else {
+                    callback(err, "noData");
                 }
-            })
+            });
         }
+    },
+
+    addRelation: function (data, callback) {
+        var sendData = {};
+        sendData._id = data._id;
+        var arrData = [];
+        var sendData1 = {};
+        sendData1.relationType = data.relationType;
+        sendData1.user = newUserData._id;
+        arrData.push(sendData1)
+        sendData.relations = arrData;
+        User.saveData(sendData, callback);
     },
 
     removeUserRelationMember: function (userId, mobile, callback) {
