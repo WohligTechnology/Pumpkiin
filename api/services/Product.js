@@ -44,21 +44,21 @@ var schema = new Schema({
     }],
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
-        index: true
+        ref: 'User'
     },
     relatedUser: [{
         type: Schema.Types.ObjectId,
-        ref: 'User',
-        index: true
+        ref: 'User'
     }],
 
 
     //extra fields
+
+    category: String,
     warrantyProof: String,
     insurancePeriod: String,
     insuranceExpDate: Date,
-    insuranceProof: String,
+    insuranceProofImage: String,
     doneBy: {
         type: String,
         enum: ['Admin', 'User']
@@ -87,24 +87,11 @@ var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "brand retaile
 var model = {
 
     saveProduct: function (data, callback) {
-        Product.saveData(data, function (err, created) {
-            if (err) {
+        Product.saveData(data, function (err, found) {
+            if (err || _.isEmpty(found)) {
                 callback(err, null);
-            } else if (_.isEmpty(created)) {
-                callback(null, "noDatafound");
             } else {
-                Product.findOne({
-                    _id: data._id
-                }, function (err, created) {
-                    if (err) {
-                        callback(err, null);
-                    } else if (_.isEmpty(created)) {
-                        callback(null, "noDataound");
-                    } else {
-
-                        callback(null, created);
-                    }
-                });
+                callback(null, found);
             }
         });
     },
