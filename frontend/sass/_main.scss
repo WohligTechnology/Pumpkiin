@@ -368,6 +368,18 @@ header {
     }
 }
 
+.custom-input {
+    input {
+        color: #657D95;
+        font-family: Roboto-Regular;
+        border: 0;
+        width: 100%;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
 .w-10 {
     width: 10%;
 }
@@ -633,16 +645,22 @@ header {
             input:active {
                 color: white;
             }
-            .ui-select-container {
-                width: 250px !important;
-                background: transparent;
-                position: relative;
-                z-index: 2;
+            .dropdown-toggle {
                 border-bottom: solid 2px white;
+                &:after {
+                    background-color: transparent;
+                    margin-left: 0.55em;
+                    border: 0; // border-bottom: solid 2px white;
+                }
             }
-            input {
-                background-color: transparent;
-                border: 0; // border-bottom: solid 2px white;
+            .dropdown-menu {
+                background: transparent;
+                color: white;
+                border: 0;
+            }
+            .dropdown-item:hover,
+            .dropdown-item:focus {
+                background: transparent;
             }
         }
     }
@@ -659,13 +677,6 @@ header {
 
 .selectize-control.single>.selectize-input>input {
     color: white;
-}
-
-.ui-select-search {
-    font-size: 20px;
-    background-color: #142c5b;
-    border: 0;
-    border-bottom: solid 2px white;
 }
 
 .about-pumpkin-section {

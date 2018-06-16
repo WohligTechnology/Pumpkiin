@@ -7,36 +7,29 @@
             <div>
                 <div class="line-spacing-height">Pumpkiin, please help!</div>
                 <div class="line-spacing-height">My
-
                     <div class="select-box" ng-init="product1='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'">
                         <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
                         <div class="dropdown">
-                            <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{product1}}
                             </span>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" ng-click="product1='select'">select</a>
-                                <a class="dropdown-item" ng-click="product1='action'">Action</a>
-                                <a class="dropdown-item" ng-click="product1='actionAnother'">Another action</a>
-                                <a class="dropdown-item" ng-click="product1='actionAnotherAnother'">Something else here</a>
+                                <a ng-repeat="pro in product track by $index" class="dropdown-item" ng-click="$parent.product1 = pro.name">{{pro.name}}</a>
                             </div>
                         </div>
-                        <!-- <ui-select ng-model="product.selected" theme="selectize" ng-disabled="ctrl.disabled" append-to-body="true">
-                            <ui-select-match></ui-select-match>
-                            <ui-select-choices class="bg-white blue-color" repeat="pro in product | filter: $select.search">
-                                <span ng-bind-html="pro.name | highlight: $select.search"></span>
-                            </ui-select-choices>
-                        </ui-select> -->
                     </div>, needs
-                    <div class="select-box">
+                    <div class="select-box" ng-init="product2='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'">
                         <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
-                        <ui-select ng-model="service.selected" theme="selectize" ng-disabled="ctrl.disabled" append-to-body="true">
-                            <ui-select-match>{{$select.selected.name}}</ui-select-match>
-                            <ui-select-choices class="bg-white blue-color" repeat="ser in service | filter: $select.search">
-                                <span ng-bind-html="ser.name | highlight: $select.search"></span>
-                            </ui-select-choices>
-                        </ui-select>
+                        <div class="dropdown">
+                            <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{product2}}
+                            </span>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a ng-repeat="ser in service track by $index" class="dropdown-item" ng-click="$parent.product2 = ser.name">{{ser.name }}</a>
+                            </div>
+                        </div>
                     </div>.
+
                 </div>
             </div>
             <div class="text-center py-3">

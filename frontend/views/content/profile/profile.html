@@ -28,7 +28,7 @@
 <div class="container profile-page-subsection">
     <div class="bg-white border-rounded p-4 my-2 productreg">
         <h6 class="fontRobotoBold blue-color my-2 space-letter">PERSONAL INFORMATION
-            <span class="float-right info-icon">
+            <span class="float-right info-icon" ng-click="personalInfo=!personalInfo">
                 <i class="fas fa-pencil-alt fa-xs"></i>
             </span>
         </h6>
@@ -41,9 +41,13 @@
                     </div>
                 </div>
                 <div class="col-10">
-                    <div class="fontRobotoLight font-color font14">
-                        <div>Female</div>
-                        <div>15 August 1990</div>
+                    <div class="fontRobotoLight font14">
+                        <div class="custom-input">
+                            <input type="text" name="female" value="female" ng-readonly="!personalInfo">
+                        </div>
+                        <div class="custom-input">
+                            <input type="text" name="August" value="August" ng-readonly="!personalInfo">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -59,8 +63,11 @@
                     <div class="d-flex fontRobotoLight font-color font12">
                         <div class="p-2 background-gray mr-2 text-capitalize address-box">
                             <div class="font14 dark-font-color fontRobotoRegular">Home
-                                <span class="float-right">
+                                <span class="float-right p3">
                                     <i class="fas fa-times fa-sm"></i>
+                                </span>
+                                <span class=" float-right p3" ng-click="addressModalOpen();">
+                                    <i class="fas fa-pencil-alt fa-xs"></i>
                                 </span>
                             </div>
                             <div>Address line 1</div>
@@ -69,8 +76,11 @@
                         </div>
                         <div class="p-2 background-gray mx-2 text-capitalize address-box">
                             <div class="font14 dark-font-color fontRobotoRegular">Office
-                                <span class="float-right">
+                                <span class="float-right p3">
                                     <i class="fas fa-times fa-sm"></i>
+                                </span>
+                                <span class=" float-right p3" ng-click="addressModalOpen();">
+                                    <i class="fas fa-pencil-alt fa-xs"></i>
                                 </span>
                             </div>
                             <div>Address line 1</div>
@@ -79,8 +89,11 @@
                         </div>
                         <div class="p-2 background-gray mx-2 text-capitalize address-box">
                             <div class="font14 dark-font-color fontRobotoRegular">Home
-                                <span class="float-right">
+                                <span class="float-right p3">
                                     <i class="fas fa-times fa-sm"></i>
+                                </span>
+                                <span class=" float-right p3" ng-click="addressModalOpen();">
+                                    <i class="fas fa-pencil-alt fa-xs"></i>
                                 </span>
                             </div>
                             <div>Address line 1</div>
@@ -90,9 +103,6 @@
                     </div>
                 </div>
                 <div class="col-1">
-                    <span class="pl-3 float-right info-icon" ng-click="addressModalOpen();">
-                        <i class="fas fa-pencil-alt fa-xs"></i>
-                    </span>
                     <span class="pl-3 float-right info-icon">
                         <i class="fas fa-plus"></i>
                     </span>

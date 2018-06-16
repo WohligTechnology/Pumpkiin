@@ -42,7 +42,7 @@
             <div class="col-12 col-md-8">
                 <div class="bg-white p-4 border-rounded fontRobotoRegular font14">
                     <h6 class="fontRobotoBold blue-color mb-2">PRODUCT INFORMATION
-                        <span class="float-right info-icon">
+                        <span class="float-right info-icon" ng-click="personalInfo=!personalInfo">
                             <i class="fas fa-pencil-alt fa-xs"></i>
                         </span>
                     </h6>
@@ -56,12 +56,36 @@
                             <div class="my-2">Retailer</div>
                         </div>
                         <div class="col-9 fontRobotoRegular font-color text-capitalize">
-                            <div class="my-2">Bose Quietcomfort 35 II Wired Headset with Mic (Silver, Over the Ear)</div>
-                            <div class="my-2">Bose</div>
-                            <div class="my-2">Serial NumberBose - XYZ123</div>
-                            <div class="my-2">01 May 2018</div>
-                            <div class="my-2">Rs. 29000</div>
-                            <div class="my-2">Croma</div>
+                            <div class="my-2">
+                                <div class="custom-input">
+                                    <input type="text" name="" value="Bose Quietcomfort 35 II Wired Headset with Mic (Silver, Over the Ear)" ng-readonly="!personalInfo">
+                                </div>
+                            </div>
+                            <div class="my-2">
+                                <div class="custom-input">
+                                    <input type="text" name="" value="Bose " ng-readonly="!personalInfo">
+                                </div>
+                            </div>
+                            <div class="my-2">
+                                <div class="custom-input">
+                                    <input type="text" name="" value="Serial NumberBose - XYZ123 " ng-readonly="!personalInfo">
+                                </div>
+                            </div>
+                            <div class="my-2">
+                                <div class="custom-input">
+                                    <input type="text" name="" value="01 May 2018 " ng-readonly="!personalInfo">
+                                </div>
+                            </div>
+                            <div class="my-2">
+                                <div class="custom-input">
+                                    <input type="text" name="" value="Rs. 29000" ng-readonly="!personalInfo">
+                                </div>
+                            </div>
+                            <div class="my-2">
+                                <div class="custom-input">
+                                    <input type="text" name="" value="Croma" ng-readonly="!personalInfo">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <h6 class="fontRobotoBold blue-color my-3">PRODUCT USERS</h6>
@@ -83,13 +107,17 @@
                         <span class="ml-2">
                             <img src="img/ticketCreation/warranty.png">
                         </span>
-                        <span class="float-right info-icon">
+                        <span class="float-right info-icon" ng-click="personalInfo=!personalInfo">
                             <i class="fas fa-pencil-alt fa-xs"></i>
                         </span>
                     </h6>
                     <div>
                         <span class="fontRobotoRegular font14 dark-font-color">Warranty expiration date</span>
-                        <span class="ml-5 fontRobotoLight font12 font-color">01 May 2019</span>
+
+                        <div class="custom-input font12 ml-5 d-inline-block fontRobotoLight">
+                            <input type="text" name="" value="01 May 2019" ng-readonly="!personalInfo">
+                        </div>
+
                     </div>
                     <div class="upload-btn-wrapper mx-1 position-absolute file-upload">
                         <button class="btn">+</button>
@@ -101,13 +129,15 @@
                         <span class="ml-2">
                             <img src="img/ticketCreation/warranty.png">
                         </span>
-                        <span class="float-right info-icon">
+                        <span class="float-right info-icon" ng-click="personalInfo=!personalInfo">
                             <i class="fas fa-pencil-alt fa-xs"></i>
                         </span>
                     </h6>
                     <div>
                         <span class="fontRobotoRegular font14 dark-font-color">Insurance expiration date</span>
-                        <span class="ml-5 fontRobotoLight font12 font-color">01 May 2019</span>
+                        <div class="custom-input font12 ml-5 d-inline-block fontRobotoLight">
+                            <input type="text" name="" value="01 May 2019" ng-readonly="!personalInfo">
+                        </div>
                     </div>
                     <div class="upload-btn-wrapper mx-1 position-absolute file-upload">
                         <button class="btn">+</button>
@@ -116,7 +146,7 @@
                 </div>
                 <div class="bg-white p-4 my-2 border-rounded position-relative reg-product-det">
                     <h6 class="fontRobotoBold blue-color">ACCESSORIES
-                        <span class="float-right info-icon">
+                        <span class="float-right info-icon" ng-click="personalInfo=!personalInfo">
                             <i class="fas fa-pencil-alt fa-xs"></i>
                         </span>
                     </h6>
