@@ -9764,6 +9764,12 @@ header {
     text-decoration: none;
     color: #66686E; }
 
+.l-height {
+  line-height: 1.8; }
+
+.mx-6 {
+  margin: 0 4rem !important; }
+
 .custom-input input {
   color: #657D95;
   font-family: Roboto-Regular;
@@ -10264,7 +10270,7 @@ header {
     padding: 3px 0 !important;
     background: white !important;
     color: #FFA345 !important;
-    border: solid 1px #FFA345 !important;
+    border: solid 2px #FFA345 !important;
     -webkit-transition: ease all 300ms;
     transition: ease all 300ms; }
 
@@ -10560,7 +10566,7 @@ header {
     border-radius: 15px; }
 
 .h-25 {
-  height: 25vh !important; }
+  height: 28 vh !important; }
 
 .listed-openTickets {
   height: 148px;
