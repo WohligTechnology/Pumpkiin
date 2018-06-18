@@ -173,9 +173,23 @@ var controller = {
             });
         }
     },
+
     sendOtp: function (req, res) {
         if (req.body) {
             User.sendOtp(req.body.mobile, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
+    sendOtpTest: function (req, res) {
+        if (req.body) {
+            User.sendOtpTest(req.body.mobile, res.callback);
         } else {
             res.json({
                 value: false,

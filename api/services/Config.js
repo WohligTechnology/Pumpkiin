@@ -378,6 +378,34 @@ var models = {
             callback(err);
         });
     },
+
+    //sms
+    sendSms: function (data, callback) {
+        console.log("data", data);
+        if (data.mobile) {
+            request.post({
+                url: 'http://control.msg91.com/api/sendotp.php',
+                body: {
+                    authkey: global.smsApi,
+                    message: data.message,
+                    sender: data.senderId,
+                    mobile: data.mobile
+                },
+                json: true
+            }, function (error, response, body) {
+                console.log("body-----------", body);
+                console.log("error-----------", error);
+                // console.log("response-----------", response);
+                callback(error, body);
+            });
+        } else {
+            callback({
+                message: "Mobile number not found"
+            }, null);
+        }
+    },
+    //sms end
+
     sendEmail: function (fromEmail, toEmail, subject, html, attachments, callback) {
 
         Password.findOneByName("sendgrid", function (err, data) {

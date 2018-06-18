@@ -490,6 +490,23 @@ var model = {
 
     },
 
+    sendOtpTest: function (data) {
+        var smsData = {};
+        smsData.message = 'Your verification code is ##OTP##';
+        smsData.senderId = 'TestSms';
+        smsData.mobile = "+919004489552";
+        Config.sendSms(smsData, function (err, smsRespo) {
+            if (err) {
+                console.log("*************************************************sms gateway error in photographer***********************************************", err);
+            } else if (smsRespo) {
+                console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
+            } else {
+                console.log("invalid data");
+            }
+        });
+    },
+
+
     verifyUserWithOtpWhileSignUP: function (mobile, otp, name, email, callback) {
         User.findOneAndUpdate({
             mobile: mobile,

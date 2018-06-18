@@ -84,6 +84,8 @@ global.monguurl = require('monguurl');
 require('mongoose-middleware').initialize(mongoose);
 global.Schema = mongoose.Schema;
 
+global.smsApi = '216376An6Pv4xgR5bY5b27b863';
+
 
 global.http = require('http');
 
