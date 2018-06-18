@@ -368,6 +368,26 @@ header {
     }
 }
 
+.l-height {
+    line-height: 1.8;
+}
+
+.mx-6 {
+    margin: 0 4rem !important;
+}
+
+.custom-input {
+    input {
+        color: #657D95;
+        font-family: Roboto-Regular;
+        border: 0;
+        width: 100%;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
 .w-10 {
     width: 10%;
 }
@@ -592,8 +612,8 @@ header {
         font-size: 40px;
         font-family: Roboto-Bold;
         .line-spacing-height {
-            height: 60px;
-            overflow: hidden;
+            // height: 60px;
+            // overflow: hidden;
         }
         .select-box {
             position: relative;
@@ -633,16 +653,22 @@ header {
             input:active {
                 color: white;
             }
-            .ui-select-container {
-                width: 250px !important;
-                background: transparent;
-                position: relative;
-                z-index: 2;
-            }
-            input {
-                background-color: transparent;
-                border: 0;
+            .dropdown-toggle {
                 border-bottom: solid 2px white;
+                &:after {
+                    background-color: transparent;
+                    margin-left: 0.55em;
+                    border: 0; // border-bottom: solid 2px white;
+                }
+            }
+            .dropdown-menu {
+                background: transparent;
+                color: white;
+                border: 0;
+            }
+            .dropdown-item:hover,
+            .dropdown-item:focus {
+                background: transparent;
             }
         }
     }
@@ -661,13 +687,6 @@ header {
     color: white;
 }
 
-.ui-select-search {
-    font-size: 20px;
-    background-color: #142c5b;
-    border: 0;
-    border-bottom: solid 2px white;
-}
-
 .about-pumpkin-section {
     background-image: url("../img/home/section-bg-img.png");
     background-size: 100%;
@@ -677,7 +696,7 @@ header {
     .about-pumpkin {
         padding: 200px 0 100px 0;
         .about-content {
-            width: 65%;
+            width: 50%;
             margin: 0 auto;
             font-family: Roboto-Light;
             a {
@@ -789,4 +808,29 @@ header {
 .pluse-circle {
     font-size: 20px;
     color: #657D95;
+}
+
+.up-arrow {
+    width: 36px;
+    height: 36px;
+    right: 60px;
+    text-align: center;
+    bottom: -22px;
+    position: absolute;
+    z-index: 1;
+    background-color: #f6a244;
+    border: solid 5px #ecf0f2;
+    border-radius: 50%;
+    .fa-sort-down {
+        color: white;
+        vertical-align: 0;
+    }
+}
+
+.support-chat-history {
+    margin-bottom: 22px;
+}
+
+.width-girl {
+    width: 61.5vh;
 }

@@ -6,43 +6,43 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, Naviga
     $scope.productInfo = [{
         "largeimage": "img/iphone.jpeg",
         "smallimage": "img/ticketCreation/mobile.png",
-        "productname": "Apple iPhone X",
+        "productname": "Apple iPhone X 1",
         "relation": "Sisters Phone",
         "warranty": "Warranty Exp: 8 months"
     }, {
         "largeimage": "img/iphone.jpeg",
         "smallimage": "img/ticketCreation/mobile.png",
-        "productname": "Apple iPhone X",
+        "productname": "Apple iPhone X 2",
         "relation": "Sisters Phone",
         "warranty": "Warranty Exp: 8 months"
     }, {
         "largeimage": "img/iphone.jpeg",
         "smallimage": "img/ticketCreation/mobile.png",
-        "productname": "Apple iPhone X",
+        "productname": "Apple iPhone X 3",
         "relation": "Sisters Phone",
         "warranty": "Warranty Exp: 8 months"
     }, {
         "largeimage": "img/iphone.jpeg",
         "smallimage": "img/ticketCreation/mobile.png",
-        "productname": "Apple iPhone X",
+        "productname": "Apple iPhone X 4",
         "relation": "Sisters Phone",
         "warranty": "Warranty Exp: 8 months"
     }, {
         "largeimage": "img/iphone.jpeg",
         "smallimage": "img/ticketCreation/mobile.png",
-        "productname": "Apple iPhone X",
+        "productname": "Apple iPhone X 5",
         "relation": "Sisters Phone",
         "warranty": "Warranty Exp: 8 months"
     }, {
         "largeimage": "img/iphone.jpeg",
         "smallimage": "img/ticketCreation/mobile.png",
-        "productname": "Apple iPhone X",
+        "productname": "Apple iPhone X 6",
         "relation": "Sisters Phone",
         "warranty": "Warranty Exp: 8 months"
     }, {
         "largeimage": "img/iphone.jpeg",
         "smallimage": "img/ticketCreation/mobile.png",
-        "productname": "Apple iPhone X",
+        "productname": "Apple iPhone X 7",
         "relation": "Sisters Phone",
         "warranty": "Warranty Exp: 8 months"
     }]

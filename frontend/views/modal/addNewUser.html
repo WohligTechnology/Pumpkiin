@@ -1,0 +1,49 @@
+<div class="modal-header justify-content-center background-blue text-white">
+    <h5 class="modal-title fontRobotoRegular" id="modal-title">Add New User</h5>
+    <span class="modal-close-icon" ng-click="$dismiss()">
+        <img src="img/modal/close_white.png" width="20">
+    </span>
+</div>
+<div class="modal-body fontRobotoLight" id="modal-body">
+    <form>
+        <div class="row form-group">
+            <div class="col-12 col-md-6">
+                <label class="mb-0">Name</label>
+                <div class=" d-flex">
+                    <input ng-model="userData.name" class="form-control form-control-sm w-50 mr-2 ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
+                        type="text" required="">
+                    <input ng-model="userData.lastname" class="form-control form-control-sm w-50 ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+                        type="text" required="">
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <label class="mb-0">Email</label>
+                <input ng-model="userData.email" class="form-control form-control-sm ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-email"
+                    type="email" required="">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-12 col-md-6">
+                <label class="mb-0">Mobile Number</label>
+                <input ng-model="userData.mobile" class="form-control form-control-sm ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+                    type="text" required="">
+            </div>
+            <div class="col-12 col-md-6">
+                <label class="mb-0">NickName</label>
+                <input ng-model="userData.nickName" class="form-control form-control-sm ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+                    type="text" required="">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-12 col-md-6">
+                <label class="mb-0">Relationship</label>
+                <input ng-model="userData.relation" class="form-control form-control-sm ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
+                    type="text" required="">
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="reminder-btn">Save User</button>
+            <button class="reminder-btn-green" ng-if="">Save User</button>
+        </div>
+    </form>
+</div>

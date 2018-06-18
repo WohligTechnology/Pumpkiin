@@ -5,26 +5,31 @@
         </div>
         <div class="align-self-center text-white home-section-content">
             <div>
-                <div class="line-spacing-height">Pumpkiin, please help!</div>
+                <div class="line-spacing-height text-center">Pumpkiin, please help!</div>
                 <div class="line-spacing-height">My
-                    <div class="select-box">
+                    <div class="select-box" ng-init="product1='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'">
                         <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
-                        <ui-select ng-model="product.selected" theme="selectize" ng-disabled="ctrl.disabled" append-to-body="true">
-                            <ui-select-match>{{$select.selected.name}}</ui-select-match>
-                            <ui-select-choices class="bg-white blue-color" repeat="pro in product | filter: $select.search">
-                                <span ng-bind-html="pro.name | highlight: $select.search"></span>
-                            </ui-select-choices>
-                        </ui-select>
+                        <div class="dropdown">
+                            <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{product1}}
+                            </span>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a ng-repeat="pro in product track by $index" class="dropdown-item" ng-click="$parent.product1 = pro.name">{{pro.name}}</a>
+                            </div>
+                        </div>
                     </div>, needs
-                    <div class="select-box">
+                    <div class="select-box" ng-init="product2='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'">
                         <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
-                        <ui-select ng-model="service.selected" theme="selectize" ng-disabled="ctrl.disabled" append-to-body="true">
-                            <ui-select-match>{{$select.selected.name}}</ui-select-match>
-                            <ui-select-choices class="bg-white blue-color" repeat="ser in service | filter: $select.search">
-                                <span ng-bind-html="ser.name | highlight: $select.search"></span>
-                            </ui-select-choices>
-                        </ui-select>
+                        <div class="dropdown">
+                            <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{product2}}
+                            </span>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a ng-repeat="ser in service track by $index" class="dropdown-item" ng-click="$parent.product2 = ser.name">{{ser.name }}</a>
+                            </div>
+                        </div>
                     </div>.
+
                 </div>
             </div>
             <div class="text-center py-3">
@@ -60,7 +65,7 @@
                             </div>
                             <div class="media-body pl-3 text-left">
                                 <h5 class="mt-0 font16">Masud Rana</h5>
-                                <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising
+                                <p class="font12 mb-0 l-height">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising
                                     pain was born and I will give you a complete.But I must explain to you how all this mistaken
                                     idea of denouncing pleasure and praising pain was born and I will give you a complete”</p>
                             </div>
@@ -73,7 +78,7 @@
                             </div>
                             <div class="media-body pl-3 text-left">
                                 <h5 class="mt-0 font16">Masud Rana</h5>
-                                <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising
+                                <p class="font12 mb-0 l-height">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising
                                     pain was born and I will give you a complete”</p>
                             </div>
                         </div>
@@ -85,7 +90,7 @@
                             </div>
                             <div class="media-body pl-3 text-left">
                                 <h5 class="mt-0 font16">Masud Rana</h5>
-                                <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising
+                                <p class="font12 mb-0 l-height">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising
                                     pain was born and I will give you a complete”</p>
                             </div>
                         </div>
@@ -97,7 +102,7 @@
                             </div>
                             <div class="media-body pl-3 text-left">
                                 <h5 class="mt-0 font16">Masud Rana</h5>
-                                <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising
+                                <p class="font12 mb-0 l-height">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising
                                     pain was born and I will give you a complete”</p>
                             </div>
                         </div>
@@ -109,7 +114,7 @@
                             </div>
                             <div class="media-body pl-3 text-left">
                                 <h5 class="mt-0 font16">Masud Rana</h5>
-                                <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising
+                                <p class="font12 mb-0 l-height">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising
                                     pain was born and I will give you a complete”</p>
                             </div>
                         </div>
@@ -120,8 +125,8 @@
                                 <img class="mr-3" src="img/profileImg.jpg" alt="Generic placeholder image">
                             </div>
                             <div class="media-body pl-3 text-left">
-                                <h5 class="mt-0 font16">Masud Rana</h5>
-                                <p class="font12 mb-0">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising
+                                <h5 class="mt-0 font16 ">Masud Rana</h5>
+                                <p class="font12 mb-0 l-height">“But I must explain to you how all this mistaken idea of denouncing pleasure and praising
                                     pain was born and I will give you a complete”</p>
                             </div>
                         </div>
@@ -136,76 +141,79 @@
 
 </div>
 <div class="text-center p-5 pumpkin-plans">
-    <h4 class="fontRobotoLight blue-color">Plans as per your need</h4>
-    <div class="p-5 d-flex">
-        <div class="card border-rounded p-3 pt-5 mx-auto" style="width: 15rem;">
-            <div class="w-75 mx-auto card-image">
-                <img class="img-fluid card-img-top" src="img/home/bluehome_small.png" alt="Card image cap">
-            </div>
-            <div class="card-body py-2 px-0">
-                <h5 class="card-title pt-3 fontRobotoBold">STARTER</h5>
-                <div>
-                    <ul class="list-unstyled font12 plans-list">
-                        <li>Unlimited users</li>
-                        <li>Unlimited products registration</li>
-                        <li>Unlimited reminders</li>
-                    </ul>
-                    <h2 class="fontRobotoRegular font30">FREE</h2>
+    <div class="container">
+        <h4 class="fontRobotoLight blue-color">Plans as per your need</h4>
+        <div class="p-5 mx-6 d-flex">
+            <div class="card border-rounded p-3 pt-5 mx-auto" style="width: 15rem;">
+                <div class="w-75 mx-auto card-image">
+                    <img class="img-fluid card-img-top" src="img/home/bluehome_small.png" alt="Card image cap">
                 </div>
-                <button href="#" class="btn w-100 border-rounded fontRobotoBold text-white orange-btn">GET STARTED</button>
+                <div class="card-body py-2 px-0">
+                    <h5 class="card-title pt-3 fontRobotoBold">STARTER</h5>
+                    <div>
+                        <ul class="list-unstyled font12 plans-list">
+                            <li>Unlimited users</li>
+                            <li>Unlimited products registration</li>
+                            <li>Unlimited reminders</li>
+                        </ul>
+                        <h2 class="fontRobotoRegular font30">FREE</h2>
+                    </div>
+                    <button href="#" class="btn w-100 border-rounded fontRobotoBold text-white orange-btn">GET STARTED</button>
+                </div>
+            </div>
+            <div class="card border-rounded p-3 pt-5 mx-auto" style="width: 15rem;">
+                <div class="w-75 mx-auto card-image">
+                    <img class="img-fluid card-img-top" src="img/home/voilet_home.png" alt="Card image cap">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <h5 class="card-title pt-3 fontRobotoBold">PRO</h5>
+                    <div>
+                        <ul class="list-unstyled font12 plans-list">
+                            <li>All in Free</li>
+                            <li>1 service request handling*</li>
+                        </ul>
+                        <h2 class="fontRobotoBold font30 orange-color">Rs. 99</h2>
+                    </div>
+                    <button href="#" class="btn w-100 border-rounded fontRobotoBold text-white orange-btn">CHOOSE PRO</button>
+                </div>
+            </div>
+            <div class="card border-rounded p-3 pt-5 mx-auto" style="width: 15rem;">
+                <div class="w-75 mx-auto card-image">
+                    <img class="img-fluid card-img-top" src="img/home/bluehome-big.png" alt="Card image cap">
+                </div>
+                <div class="card-body py-2 px-0">
+                    <h5 class="card-title pt-3 fontRobotoBold">BUSINESS</h5>
+                    <div>
+                        <ul class="list-unstyled font12 plans-list">
+                            <li>All in Free</li>
+                            <li>1 service request handling*</li>
+                        </ul>
+                        <h2 class="fontRobotoRegular font30">Rs.899</h2>
+                    </div>
+                    <button href="#" class="btn w-100 border-rounded fontRobotoBold text-white orange-btn">CHOOSE BUSINESS</button>
+                </div>
             </div>
         </div>
-        <div class="card border-rounded p-3 pt-5 mx-auto" style="width: 15rem;">
-            <div class="w-75 mx-auto card-image">
-                <img class="img-fluid card-img-top" src="img/home/voilet_home.png" alt="Card image cap">
-            </div>
-            <div class="card-body py-2 px-0">
-                <h5 class="card-title pt-3 fontRobotoBold">PRO</h5>
-                <div>
-                    <ul class="list-unstyled font12 plans-list">
-                        <li>All in Free</li>
-                        <li>1 service request handling*</li>
-                    </ul>
-                    <h2 class="fontRobotoBold font30 orange-color">Rs. 99</h2>
-                </div>
-                <button href="#" class="btn w-100 border-rounded fontRobotoBold text-white orange-btn">CHOOSE PRO</button>
-            </div>
-        </div>
-        <div class="card border-rounded p-3 pt-5 mx-auto" style="width: 15rem;">
-            <div class="w-75 mx-auto card-image">
-                <img class="img-fluid card-img-top" src="img/home/bluehome-big.png" alt="Card image cap">
-            </div>
-            <div class="card-body py-2 px-0">
-                <h5 class="card-title pt-3 fontRobotoBold">BUSINESS</h5>
-                <div>
-                    <ul class="list-unstyled font12 plans-list">
-                        <li>All in Free</li>
-                        <li>1 service request handling*</li>
-                    </ul>
-                    <h2 class="fontRobotoRegular font30">Rs.899</h2>
-                </div>
-                <button href="#" class="btn w-100 border-rounded fontRobotoBold text-white orange-btn">CHOOSE BUSINESS</button>
+        <div class="p-5 text-center home-footer">
+            <img src="img/header/Pumpkiinlogo.png" class="img-fluid my-2">
+            <p>Copyright © Pumpkiin 2018. All Rights Reserved.</p>
+            <ul class="list-unstyled list-inline">
+                <li class="list-inline-item">About us</li>
+                <li class="list-inline-item">Terms and Conditions</li>
+                <li class="list-inline-item">Privacy Policy</li>
+                <li class="list-inline-item">Careers</li>
+                <li class="list-inline-item">Cities</li>
+                <li class="list-inline-item">Contact us</li>
+            </ul>
+            <div>
+                <span class="facebook-logo">
+                    <i class="fab fa-facebook-f"></i>
+                </span>
+                <span class="twitter-logo">
+                    <i class="fab fa-twitter"></i>
+                </span>
             </div>
         </div>
     </div>
-    <div class="p-5 text-center home-footer">
-        <img src="img/header/Pumpkiinlogo.png" class="img-fluid my-2">
-        <p>Copyright © Pumpkiin 2018. All Rights Reserved.</p>
-        <ul class="list-unstyled list-inline">
-            <li class="list-inline-item">About us</li>
-            <li class="list-inline-item">Terms and Conditions</li>
-            <li class="list-inline-item">Privacy Policy</li>
-            <li class="list-inline-item">Careers</li>
-            <li class="list-inline-item">Cities</li>
-            <li class="list-inline-item">Contact us</li>
-        </ul>
-        <div>
-            <span class="facebook-logo">
-                <i class="fab fa-facebook-f"></i>
-            </span>
-            <span class="twitter-logo">
-                <i class="fab fa-twitter"></i>
-            </span>
-        </div>
-    </div>
+
 </div>
