@@ -75,6 +75,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'OpenTicketCtrl'
         })
+        .state('notification', {
+            url: "/notification",
+            templateUrl: tempateURL,
+            controller: 'NotificationCtrl'
+        })
         .state('links', {
             url: "/links",
             templateUrl: tempateURL,

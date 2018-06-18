@@ -60,6 +60,7 @@ module.exports = [
   'frontend/views/content/productListing/productListingCtrl.js',
   'frontend/views/content/ticketCreation/ticketcreation.js',
   'frontend/views/content/closedTicketcreation/closedTicketcreation.js',
+  'frontend/views/content/notification/notification.js',
   'frontend/views/content/login/login.js',
   'frontend/views/content/openTicket/openTicketCtrl.js',
 ];
