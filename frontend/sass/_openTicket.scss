@@ -33,13 +33,14 @@
     border-radius: 20px;
     padding: 5px 45px;
     border: 0;
-    background-color: #142C5C;
+    background-color: #C6CBD9;
     color: white;
+    font-weight: 600;
     border: solid 1px transparent;
     &:hover {
         background-color: white;
-        color: #142C5C;
-        border: solid 1px #142C5C;
+        color: #C6CBD9;
+        border: solid 1px #C6CBD9;
         transition: ease all 300ms;
     }
 }
