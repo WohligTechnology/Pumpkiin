@@ -558,7 +558,7 @@ header {
         color: white;
         position: absolute;
         left: -2px;
-        top: -1px;
+        top: 1px;
     }
     .social-text {
         padding: 8px 10px;
@@ -767,10 +767,20 @@ header {
     margin: 0 auto;
     .swiper-button-prev,
     .swiper-button-next {
-        height: 30px;
+        height: 20px;
+        width: 50px;
+        margin-top: -15px;
         &:focus {
             outline: none;
         }
+    }
+    .swiper-button-prev,
+    .swiper-container-rtl .swiper-button-next {
+        background-image: url("../img/left-arrow.png");
+    }
+    .swiper-button-next,
+    .swiper-container-rtl .swiper-button-prev {
+        background-image: url("../img/right-arrow.png");
     }
 }
 

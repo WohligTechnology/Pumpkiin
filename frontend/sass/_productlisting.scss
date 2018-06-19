@@ -39,8 +39,8 @@
         position: absolute;
         left: -10px;
         border-radius: 50%;
-        padding: 2px 9px;
-        top: -1px;
+        padding: 3px 10px;
+        top: -2px;
         background-color: white;
     }
     &:hover {
@@ -176,7 +176,7 @@
 
 .closed-text {
     position: relative;
-    width: 34px;
+    width: 30px;
     height: 34px;
     img {
         width: 100%;
@@ -216,8 +216,7 @@
 }
 
 .h-25 {
-    height: 28
-    vh !important;
+    height: 28 vh !important;
 }
 
 .listed-openTickets {
@@ -255,8 +254,8 @@
             color: #B9C3C8;
         }
         .product-title {
-            font-size: 20px;
-            width: 170px;
+            font-size: 18px;
+            width: 195px;
             display: inline-block;
         }
         .date {
