@@ -71,13 +71,13 @@ var schema = new Schema({
     },
     mobile: {
         type: Number,
-        default: ""
+        require: true
     },
     otp: {
         type: String,
         default: ""
     },
-
+    otpTime: Date,
     accessToken: {
         type: [String],
         index: true
@@ -143,7 +143,6 @@ var model = {
     },
 
     saveUser: function (data, callback) {
-
         User.findOne({
             _id: data._id
         }).exec(function (err, found) {
@@ -197,6 +196,7 @@ var model = {
 
         });
     },
+
     add: function () {
         var sum = 0;
         _.each(arguments, function (arg) {
@@ -453,48 +453,40 @@ var model = {
     // });
     // },
 
-    verifyUser: function (mobile, callback) {
-        User.findOne({
-            mobile: mobile
-        }).exec(function (err, found) {
-            if (err) {
-                callback(err, null);
-            } else if (_.isEmpty(found)) {
-                callback("noDataFound", null);
-            } else {
-                callback(null, found);
-            }
-
-        });
-
-    },
-
-    sendOtp: function (mobile, callback) {
+    sendOtp: function (data, callback) {
         var otpNumber = (Math.random() + "").substring(2, 6);
         User.findOneAndUpdate({
-            mobile: mobile
+            mobile: data.mobile
         }, {
-            otp: otpNumber
+            otp: otpNumber,
+            accessToken: uid(16),
+            otpTime: new Date()
         }, {
-            new: true
+            new: true,
+            upsert: true
         }).exec(function (err, found) {
             if (err) {
                 callback(err, null);
             } else if (_.isEmpty(found)) {
                 callback("noDataFound", null);
             } else {
-                callback(null, found);
+                data3 = found.toObject();
+                delete data3.accessToken;
+                delete data3.password;
+                delete data3.forgotPassword;
+                delete data3.otp;
+                callback(null, data3);
             }
-
         });
 
     },
 
     sendOtpTest: function (data) {
+        var otpNumber = (Math.random() + "").substring(2, 6);
         var smsData = {};
-        smsData.message = 'Your verification code is ##OTP##';
-        smsData.senderId = 'TestSms';
-        smsData.mobile = "+919004489552";
+        smsData.message = 'Your verification code is ' + otpNumber;
+        smsData.senderId = 'OTPSMS';
+        smsData.mobile = 9004489552;
         Config.sendSms(smsData, function (err, smsRespo) {
             if (err) {
                 console.log("*************************************************sms gateway error in photographer***********************************************", err);
@@ -506,47 +498,31 @@ var model = {
         });
     },
 
-
-    verifyUserWithOtpWhileSignUP: function (mobile, otp, name, email, callback) {
-        User.findOneAndUpdate({
-            mobile: mobile,
-            otp: otp
-        }, {
-            name: name,
-            email: email
-        }, {
-            new: true
+    verifyUserWithOtp: function (data, callback) {
+        User.findOne({
+            mobile: data.mobile,
+            otp: data.otp
         }).exec(function (err, found) {
-            if (err) {
-                callback(err, null);
-            } else if (_.isEmpty(found)) {
-                callback("noDataFound", null);
+            if (err || _.isEmpty(found)) {
+                callback(err, "noData");
             } else {
-                callback(null, found);
-            }
-
-        });
-
-    },
-
-
-    verifyUserWithOtpWhileLogin: function (mobile, otp, callback) {
-        User.find({
-            mobile: mobile,
-            otp: otp
-        }).exec(function (err, found) {
-            if (err) {
-                callback(err, null);
-            } else if (_.isEmpty(found)) {
-                callback("noDataFound", null);
-            } else {
-                callback(null, found);
+                console.log("found.otpTime", found.otpTime);
+                var ottym = found.otpTime;
+                var currentTime = new Date();
+                var diff = moment(currentTime).diff(ottym, 'minutes');
+                console.log("pre", moment(ottym).format('LTS'));
+                console.log("curr", moment(currentTime).format('LTS'));
+                console.log("diff", moment(currentTime).diff(ottym, 'minutes'));
+                if (diff <= 10) {
+                    callback(null, "login successfull");
+                } else {
+                    callback(null, "resendOtp");
+                }
             }
 
         });
 
     }
-
 
 };
 module.exports = _.assign(module.exports, exports, model);

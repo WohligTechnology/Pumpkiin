@@ -149,9 +149,9 @@ var controller = {
             });
         }
     },
-    verifyUserWithOtpWhileLogin: function (req, res) {
+    verifyUserWithOtp: function (req, res) {
         if (req.body) {
-            User.verifyUserWithOtpWhileLogin(req.body.mobile, req.body.otp, res.callback);
+            User.verifyUserWithOtp(req.body, res.callback);
         } else {
             res.json({
                 value: false,
@@ -176,7 +176,7 @@ var controller = {
 
     sendOtp: function (req, res) {
         if (req.body) {
-            User.sendOtp(req.body.mobile, res.callback);
+            User.sendOtp(req.body, res.callback);
         } else {
             res.json({
                 value: false,
@@ -189,7 +189,7 @@ var controller = {
 
     sendOtpTest: function (req, res) {
         if (req.body) {
-            User.sendOtpTest(req.body.mobile, res.callback);
+            User.sendOtpTest(req.body, res.callback);
         } else {
             res.json({
                 value: false,

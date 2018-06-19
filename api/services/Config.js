@@ -381,22 +381,18 @@ var models = {
 
     //sms
     sendSms: function (data, callback) {
-        console.log("data", data);
         if (data.mobile) {
             request.post({
-                url: 'http://control.msg91.com/api/sendotp.php',
-                body: {
-                    authkey: global.smsApi,
-                    message: data.message,
-                    sender: data.senderId,
-                    mobile: data.mobile
-                },
-                json: true
-            }, function (error, response, body) {
-                console.log("body-----------", body);
-                console.log("error-----------", error);
-                // console.log("response-----------", response);
-                callback(error, body);
+                url: "http://api.msg91.com/api/sendhttp.php?sender=MSGIND&route=4&mobiles=" + data.mobile + "&authkey=" + global.smsApi + "&country=91&message=" + data.message
+            }, function (err, http, body) {
+                if (err) {
+                    console.log("*************************************************sms gateway error***********************************************")
+                    console.log(err);
+                    callback(err, null);
+                } else {
+                    console.log("*************************************************sms sent***********************************************", body);
+                    callback(null, body);
+                }
             });
         } else {
             callback({
