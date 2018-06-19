@@ -378,6 +378,30 @@ var models = {
             callback(err);
         });
     },
+
+    //sms
+    sendSms: function (data, callback) {
+        if (data.mobile) {
+            request.post({
+                url: "http://api.msg91.com/api/sendhttp.php?sender=MSGIND&route=4&mobiles=" + data.mobile + "&authkey=" + global.smsApi + "&country=91&message=" + data.message
+            }, function (err, http, body) {
+                if (err) {
+                    console.log("*************************************************sms gateway error***********************************************")
+                    console.log(err);
+                    callback(err, null);
+                } else {
+                    console.log("*************************************************sms sent***********************************************", body);
+                    callback(null, body);
+                }
+            });
+        } else {
+            callback({
+                message: "Mobile number not found"
+            }, null);
+        }
+    },
+    //sms end
+
     sendEmail: function (fromEmail, toEmail, subject, html, attachments, callback) {
 
         Password.findOneByName("sendgrid", function (err, data) {
