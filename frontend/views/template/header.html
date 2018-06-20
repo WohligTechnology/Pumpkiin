@@ -29,9 +29,9 @@
                     <img src="img/header/Products_circle-icon.png" alt="Products_circle-icon" class="w-100" ng-if="currentState!=='productListing'">
                     <img src="img/header/Products_circle-icon-orange.png" alt="Products_circle-icon" class="w-100" ng-if="currentState=='productListing'">
                 </li>
-                <li class="list-inline-item nav-item right-icon-width mx-2">
-                    <img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon" class="w-100">
-                    <!-- <img src="img/header/Notification_circle-icon-orange.png" alt="Notification_circle-icon" class="w-100"> -->
+                <li class="list-inline-item nav-item right-icon-width mx-2" ui-sref="notification">
+                    <img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState!=='notification'">
+                    <img src="img/header/Notification_circle-icon-orange.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState=='notification'">
                 </li>
                 <li class="list-inline-item nav-item mx-2" ui-sref="profile">
                     <div class="user-profile rounded-circle">
@@ -45,16 +45,16 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li class="px-2">
+                            <li class="px-3 py-1">
                                 <a ui-sref="profile">Profile</a>
                             </li>
-                            <li class="px-2">
+                            <li class="px-3 py-1">
                                 <a>Terms &amp; Conditions</a>
                             </li>
-                            <li class="px-2 pb-1">
+                            <li class="px-3 py-1 pb-2">
                                 <a>Privacy Policy</a>
                             </li>
-                            <li class="py-1 px-2 font18 logout-style">
+                            <li class="py-1 px-3 py-1 font18 logout-style">
                                 <a ui-sref="home" class="orange-color">LOGOUT</a>
                             </li>
                         </ul>

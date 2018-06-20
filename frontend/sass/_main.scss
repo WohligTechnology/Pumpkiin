@@ -373,7 +373,7 @@ header {
 }
 
 .mx-6 {
-    margin: 0 4rem !important;
+    margin: 0 9rem !important;
 }
 
 .custom-input {
@@ -743,6 +743,21 @@ header {
     }
 }
 
+.card-home {
+    transition: transform 1s;
+    &:hover {
+        -ms-transform: scale(1.1);
+        /* IE 9 */
+        -webkit-transform: scale(1.1);
+        /* Safari 3-8 */
+        transform: scale(1.1);
+        z-index: 99;
+        -webkit-box-shadow: 0 0 3px 2px #ccc;
+        -moz-box-shadow: 0 0 3px 2px #ccc;
+        box-shadow: 0 0 3px 2px #ccc;
+    }
+}
+
 .home-footer {
     color: #222129;
     @extend .fontRobotoLight;
@@ -843,4 +858,43 @@ header {
 
 .width-girl {
     width: 61.5vh;
+}
+
+.reminder-body {
+    .card-body {
+        padding: 0 1.25rem;
+    }
+}
+
+.snooze-color {
+    background: #142C5C;
+    border: 1px solid #142C5C;
+    &:hover {
+        color: #142C5C !important;
+        border: 1px solid #142C5C;
+        background: white;
+        transition: ease all 300ms;
+    }
+}
+
+.completed-color {
+    background: #14C177;
+    border: 1px solid #14C177;
+    &:hover {
+        color: #14C177 !important;
+        border: 1px solid #14C177;
+        background: white;
+        transition: ease all 300ms;
+    }
+}
+
+.delete-btn {
+    background: #d9534f;
+    border: 1px solid #d9534f;
+    &:hover {
+        background: white;
+        color: #d9534f !important;
+        border: 1px solid #d9534f;
+        transition: ease all 300ms;
+    }
 }

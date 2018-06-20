@@ -220,8 +220,7 @@
 }
 
 .listed-openTickets {
-    height: 148px;
-    overflow: auto;
+    height: 290px; // overflow: auto;
     &::-webkit-scrollbar {
         width: 3px;
         background: transparent;
@@ -257,6 +256,7 @@
             font-size: 18px;
             width: 195px;
             display: inline-block;
+            line-height: 1;
         }
         .date {
             font-size: 14px;
