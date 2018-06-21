@@ -94,12 +94,28 @@
                 </div>
             </div>
             <div class="bg-white border-rounded p-3 mt-3 productreg ">
-                <div class="d-flex justify-content-between ">
-                    <h4 class="orange-color">Reminders</h4>
-                    <div ng-controller="headerCtrl" ng-click="reminderModalOpen()">
+                <div class="d-flex justify-content-between">
+                    <div class="closed-text">
+                        <img src="img/header/Notification_circle-icon-orange.png">
+                        <div class="notification notification-orange">6</div>
+                    </div>
+                    <div class="closed-text">
+                        <img src="img/ticketCreation/Notification_circle-icon-green.png">
+                    </div>
+                    <div ui-sref="productregistration">
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
+                <div class="my-3 open-tickets ">
+                    <h5 class="d-inline">Reminders</h5>
+                    <!-- <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
+                        <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
+                    <span class="badge badge-style ">14</span>
+                    <span class="float-right">
+                        <img src="img/ticketCreation/search.png ">
+                    </span>
+                </div>
+
                 <div class="border-top listed-openTickets reminderSection ">
                     <div class="d-flex py-1 element-list ">
                         <div class="bullet "></div>
