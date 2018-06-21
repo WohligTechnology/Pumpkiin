@@ -4,12 +4,12 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, Navigati
     TemplateService.title = "Notification"; //This is the Title of the Website
     // TemplateService.header = " ";
     $scope.navigation = NavigationService.getNavigation();
-    // $scope.reminderModalOpen=function(){
-    //     $scope.addReminder = $uibModal.open({
-    //         animation: true,
-    //         templateUrl: "views/modal/addReminder.html",
-    //         scope: $scope,
-    //         windowClass: 'app-modal-window'
-    //     });
-    // }
+    $scope.reminderModalOpen = function () {
+        $scope.addReminder = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/addReminder.html",
+            scope: $scope,
+            windowClass: 'app-modal-window'
+        });
+    }
 });
