@@ -9768,7 +9768,7 @@ header {
   line-height: 1.8; }
 
 .mx-6 {
-  margin: 0 4rem !important; }
+  margin: 0 9rem !important; }
 
 .custom-input input {
   color: #657D95;
@@ -9913,7 +9913,7 @@ header {
     color: white;
     position: absolute;
     left: -2px;
-    top: -1px; }
+    top: 1px; }
   .social .social-text {
     padding: 8px 10px;
     color: white;
@@ -10050,6 +10050,20 @@ header {
     height: 100px;
     max-height: 100px; }
 
+.card-home {
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s; }
+  .card-home:hover {
+    /* IE 9 */
+    -webkit-transform: scale(1.1);
+    /* Safari 3-8 */
+    transform: scale(1.1);
+    z-index: 99;
+    -webkit-box-shadow: 0 0 3px 2px #ccc;
+    box-shadow: 0 0 3px 2px #ccc; }
+
 .home-footer {
   color: #222129;
   font-size: 14px; }
@@ -10067,10 +10081,18 @@ header {
   margin: 0 auto; }
   .main-swiper-container .swiper-button-prev,
   .main-swiper-container .swiper-button-next {
-    height: 30px; }
+    height: 20px;
+    width: 50px;
+    margin-top: -15px; }
     .main-swiper-container .swiper-button-prev:focus,
     .main-swiper-container .swiper-button-next:focus {
       outline: none; }
+  .main-swiper-container .swiper-button-prev,
+  .main-swiper-container .swiper-container-rtl .swiper-button-next {
+    background-image: url("../img/left-arrow.png"); }
+  .main-swiper-container .swiper-button-next,
+  .main-swiper-container .swiper-container-rtl .swiper-button-prev {
+    background-image: url("../img/right-arrow.png"); }
 
 .facebook-logo {
   background: #3b5998;
@@ -10092,9 +10114,12 @@ header {
 
 .app-modal-window {
   left: 50%;
-  top: 50%;
+  top: 35%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%); }
+
+.modal-open .modal {
+  overflow-y: hidden; }
 
 .load-more {
   font-family: "Roboto-Light";
@@ -10124,6 +10149,39 @@ header {
 
 .width-girl {
   width: 61.5vh; }
+
+.reminder-body .card-body {
+  padding: 0 1.25rem; }
+
+.snooze-color {
+  background: #142C5C;
+  border: 1px solid #142C5C; }
+  .snooze-color:hover {
+    color: #142C5C !important;
+    border: 1px solid #142C5C;
+    background: white;
+    -webkit-transition: ease all 300ms;
+    transition: ease all 300ms; }
+
+.completed-color {
+  background: #14C177;
+  border: 1px solid #14C177; }
+  .completed-color:hover {
+    color: #14C177 !important;
+    border: 1px solid #14C177;
+    background: white;
+    -webkit-transition: ease all 300ms;
+    transition: ease all 300ms; }
+
+.delete-btn {
+  background: #d9534f;
+  border: 1px solid #d9534f; }
+  .delete-btn:hover {
+    background: white;
+    color: #d9534f !important;
+    border: 1px solid #d9534f;
+    -webkit-transition: ease all 300ms;
+    transition: ease all 300ms; }
 
 .profile-page .profile-image {
   width: 130px;
@@ -10252,7 +10310,7 @@ header {
   .cancel .social-text,
   .add .social-text,
   .reminder .social-text {
-    padding: 3px 0 !important;
+    padding: 5px 0 !important;
     background: #FFA345 !important; }
   .save:hover .social_icon,
   .cancel:hover .social_icon,
@@ -10267,7 +10325,7 @@ header {
   .cancel:hover .social-text,
   .add:hover .social-text,
   .reminder:hover .social-text {
-    padding: 3px 0 !important;
+    padding: 4px 0 !important;
     background: white !important;
     color: #FFA345 !important;
     border: solid 2px #FFA345 !important;
@@ -10350,13 +10408,14 @@ header {
   border-radius: 20px;
   padding: 5px 45px;
   border: 0;
-  background-color: #142C5C;
+  background-color: #C6CBD9;
   color: white;
+  font-weight: 600;
   border: solid 1px transparent; }
   .reminder-btn:hover {
     background-color: white;
-    color: #142C5C;
-    border: solid 1px #142C5C;
+    color: #C6CBD9;
+    border: solid 1px #C6CBD9;
     -webkit-transition: ease all 300ms;
     transition: ease all 300ms; }
 
@@ -10410,8 +10469,8 @@ header {
     position: absolute;
     left: -10px;
     border-radius: 50%;
-    padding: 2px 9px;
-    top: -1px;
+    padding: 3px 10px;
+    top: -2px;
     background-color: white; }
   .export:hover {
     background-color: #FFA345;
@@ -10533,7 +10592,7 @@ header {
 
 .closed-text {
   position: relative;
-  width: 34px;
+  width: 30px;
   height: 34px; }
   .closed-text img {
     width: 100%; }
@@ -10564,13 +10623,14 @@ header {
     color: white;
     padding: 5px 10px;
     border-radius: 15px; }
+  .open-tickets .badge {
+    vertical-align: bottom !important; }
 
 .h-25 {
   height: 28 vh !important; }
 
 .listed-openTickets {
-  height: 148px;
-  overflow: auto;
+  min-height: 23vh;
   /* optional: show position indicator in red */ }
   .listed-openTickets::-webkit-scrollbar {
     width: 3px;
@@ -10598,9 +10658,10 @@ header {
     .listed-openTickets .element-list .date {
       color: #B9C3C8; }
     .listed-openTickets .element-list .product-title {
-      font-size: 20px;
-      width: 170px;
-      display: inline-block; }
+      font-size: 18px;
+      width: 195px;
+      display: inline-block;
+      line-height: 1; }
     .listed-openTickets .element-list .date {
       font-size: 14px; }
 
@@ -10613,7 +10674,7 @@ header {
 
 .product-creation .view,
 .openticketremainder .view {
-  color: #B9C3C8; }
+  color: #657d95; }
 
 .product-creation .dropdown-menu,
 .openticketremainder .dropdown-menu {
@@ -10655,10 +10716,10 @@ header {
   border: solid 5px #ECF0F2; }
 
 .ticket-creation-main .openticket {
-  height: 500px; }
+  min-height: 23vh; }
 
 .ticket-creation-main .reminderSection {
-  height: 148px; }
+  min-height: 23vh; }
 
 .ticket-creation-main .info-div {
   overflow-y: auto; }
@@ -10762,7 +10823,7 @@ header {
 
 .message-send-input {
   position: relative; }
-  .message-send-input .send {
+  .message-send-input .send img {
     position: absolute;
     right: 0;
     width: 30px;
@@ -10770,7 +10831,12 @@ header {
   .message-send-input .attachment {
     position: absolute;
     right: 40px;
-    margin: 10px; }
+    margin: 10px;
+    cursor: pointer; }
+
+.clock {
+  top: 0;
+  right: 10%; }
 
 .chat-button .reminder-btn {
   cursor: pointer;
@@ -10899,6 +10965,13 @@ header {
 .star-color-change svg {
   fill: #FFA345; }
 
+.custom-file {
+  position: absolute;
+  opacity: 0;
+  width: 20px;
+  height: 30px;
+  top: 0px; }
+
 .product-registration-detail .back {
   color: #8B8B8B;
   cursor: pointer; }
@@ -10977,21 +11050,22 @@ header {
   color: peachpuff;
   font-size: 12px; }
 
-.constant-text .custom_input {
-  color: #7F7F7F;
-  text-align: center;
-  position: relative; }
-
-.constant-text:before {
-  content: '+91';
-  padding-right: 5px;
-  position: absolute;
-  left: 12%;
-  top: 43%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  z-index: 1;
-  border-right: solid 1px #333; }
+.constant-text {
+  width: 100%; }
+  .constant-text .custom_input {
+    color: #7F7F7F;
+    text-align: center;
+    position: relative; }
+  .constant-text:before {
+    content: '+91';
+    padding-right: 5px;
+    position: absolute;
+    left: 12%;
+    top: 43%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    z-index: 1;
+    border-right: solid 1px #333; }
 
 .login-btn {
   border-radius: 20px;
@@ -11057,7 +11131,10 @@ header {
     color: white;
     border-radius: 50%;
     background-color: #142C5C;
-    border: solid 5px #8e715a; }
+    border: solid 5px #142C5C; }
+
+.padl150 {
+  padding-left: 150px; }
 
 #fancybox-loading,
 .fancybox-close,

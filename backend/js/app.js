@@ -41,7 +41,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: "views/template.html",
             controller: 'PageJsonCtrl'
         })
-
+        .state('productlist', {
+            url: "/productlist",
+            templateUrl: "views/template.html",
+            controller: 'ProductlistCtrl'
+        })
         .state('loginapp', {
             url: "/login/:id",
             templateUrl: "views/login.html",

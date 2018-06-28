@@ -191,7 +191,7 @@
 
 .message-send-input {
     position: relative;
-    .send {
+    .send img {
         position: absolute;
         right: 0;
         width: 30px;
@@ -201,7 +201,13 @@
         position: absolute;
         right: 40px;
         margin: 10px;
+        cursor: pointer;
     }
+}
+
+.clock {
+    top: 0;
+    right: 10%;
 }
 
 .chat-button {
@@ -366,4 +372,12 @@
     svg {
         fill: $orange;
     }
+}
+
+.custom-file {
+    position: absolute;
+    opacity: 0;
+    width: 20px;
+    height: 30px;
+    top: 0px;
 }

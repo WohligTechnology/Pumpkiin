@@ -176,15 +176,20 @@
                         </div>
                     </div>
                     <div class="media-body pl-4 text-white ">
-                        <h5 class="mt-0 fontRobotoMedium font20 " ng-click="modelNo=! modelNo">Support ID: PSMS 6659
-                            <span class="float-right orange-color ">
-                                <span ng-show="modelNo">
-                                    <i class="fas fa-angle-up"></i>
+                        <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">Support ID: PSMS 6659
+                            <div class="position-absolute clock">
+                                <i class="far fa-clock"></i>
+                                </i>5.30pm</div>
+                            <div>
+                                <span class="float-right orange-color ">
+                                    <span ng-show="modelNo">
+                                        <i class="fas fa-angle-up"></i>
+                                    </span>
+                                    <span ng-show="!modelNo">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
                                 </span>
-                                <span ng-show="!modelNo">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
-                            </span>
+                            </div>
                         </h5>
                         <span class="fontRobotoBold font14 ">PRODUCT INFORMATION</span>
                         <p class="fontRobotoRegular font20 m-0">Bose QuietComfort 25
@@ -284,11 +289,16 @@
                                 <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                             </div>
                         </div>
-                        <!-- <div class="message-send-input ">
-                            <img class="send " src="img/ticketCreation/submit.png ">
-                            <img class="attachment " src="img/ticketCreation/attachment.png ">
+                        <div class="message-send-input ">
+                            <div class="send">
+                                <img src="img/ticketCreation/submit.png ">
+                            </div>
+                            <div class="attachment ">
+                                <img class=" " src="img/ticketCreation/attachment.png ">
+                                <input type="file" name="pic" accept="" class="custom-file">
+                            </div>
                             <input class="form-control message mt-5 " type="text " placeholder="Type your message ... ">
-                        </div> -->
+                        </div>
                     </div>
                     <div class="text-center pb-4 border-dashed-bottom ">Ticket Closed on 15/2/2018</div>
                     <div class="p-4 pumpkin-support-feedback ">
@@ -307,39 +317,42 @@
                             <br>
                             <div class="font14 font-color mb-2 ">How would you rate your experience on scale of 1 to 5 stars based on the following parameters?</div>
                             <div class="d-flex font14 fontRobotoRegular font-color my-2 ">
-                                <div class="mr-3">
+                                <div class="mr-3 ">
                                     <span class="mr-2 ">Ease </span>
-                                    <span uib-rating ng-model="rate" max="max" on-hover="hoveringOver(value)" on-leave="overStar=null" titles="[ 'one','two', 'three'] "
-                                        aria-labelledby="default-rating" state-on="'star-color-change'"></span>
+                                    <span uib-rating ng-model="rate " max="max " on-hover="hoveringOver(value)
+                                " on-leave="overStar=null " titles="[ 'one', 'two', 'three'] " aria-labelledby="default-rating "
+                                        state-on=" 'star-color-change' "></span>
                                 </div>
-                                <div class="mr-3">
+                                <div class="mr-3 ">
                                     <span class="mr-2 ">Interaction </span>
-                                    <span uib-rating ng-model="rate" max="max " on-hover="hoveringOver(value)" on-leave="overStar=null" titles="[ 'one','two', 'three'] "
-                                        aria-labelledby="default-rating" state-on="'star-color-change'"></span>
+                                    <span uib-rating ng-model="rate " max="max " on-hover="hoveringOver(value)
+                                " on-leave="overStar=null " titles="[ 'one', 'two', 'three'] " aria-labelledby="default-rating "
+                                        state-on=" 'star-color-change' "></span>
                                 </div>
-                                <div class="mr-3">
-                                    <span class="mr-2">Resolution </span>
-                                    <span uib-rating ng-model="rate" max="max " on-hover="hoveringOver(value)" on-leave="overStar=null" titles="[ 'one','two', 'three'] "
-                                        aria-labelledby="default-rating" state-on="'star-color-change'"></span>
+                                <div class="mr-3 ">
+                                    <span class="mr-2 ">Resolution </span>
+                                    <span uib-rating ng-model="rate " max="max " on-hover="hoveringOver(value)
+                                " on-leave="overStar=null " titles="[ 'one', 'two', 'three'] " aria-labelledby="default-rating "
+                                        state-on=" 'star-color-change' "></span>
                                 </div>
                             </div>
                             <div class="font14 font-color my-2 ">Describe your experience with us</div>
                             <textarea rows="5 " name="feedback " class="form-control "></textarea>
                             <button class="mt-3 send-btn ">
-                                <span class="close-icon">
-                                    <img width="20" class="showdefault" src="img/ticketCreation/whire_arrow.png">
-                                    <img width="20" class="showhover" src="img/ticketCreation/orange_arrow.png">
-                                    <!-- <i class="fas fa-times"></i> -->
+                                <span class="close-icon ">
+                                    <img width="20 " class="showdefault " src="img/ticketCreation/whire_arrow.png ">
+                                    <img width="20 " class="showhover " src="img/ticketCreation/orange_arrow.png ">
+                                    <!-- <i class="fas fa-times "></i> -->
                                 </span>Send</button>
                         </form>
                     </div>
                 </div>
-                <!-- <div class="my-4 chat-button" ng-controller="headerCtrl" ng-click="reminderModalOpen()">
-                    <button class="reminder-btn">
-                        <i class="fas fa-calendar-alt mr-3"></i>ADD REMINDER</button>
-                    <button class="float-right close-btn" ui-sref="productListing">
-                        <span class="close-icon">
-                            <i class="fas fa-times"></i>
+                <!-- <div class="my-4 chat-button " ng-controller="headerCtrl " ng-click="reminderModalOpen() ">
+                    <button class="reminder-btn ">
+                        <i class="fas fa-calendar-alt mr-3 "></i>ADD REMINDER</button>
+                    <button class="float-right close-btn " ui-sref="productListing ">
+                        <span class="close-icon ">
+                            <i class="fas fa-times "></i>
                         </span>Close</button>
                 </div> -->
             </form>
