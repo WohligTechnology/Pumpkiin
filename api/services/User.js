@@ -417,6 +417,16 @@ var model = {
         });
     },
 
+    getAllMembersForSearch: function (data, callback) {
+        User.find({}, {
+            name: 1,
+            _id: 1,
+            mobile: 1
+        }).lean().exec(function (err, data) {
+            callback(null, data);
+        });
+    },
+
     // removeUserRelationMember: function (userId, mobile, callback) {
     //     console.log("inside USer RElation Memeber", userId, mobile)
     // User.findOneAndUpdate({
