@@ -485,6 +485,20 @@ var model = {
                 delete data3.password;
                 delete data3.forgotPassword;
                 delete data3.otp;
+                var otpNumber = (Math.random() + "").substring(2, 6);
+                var smsData = {};
+                smsData.message = 'Your verification code is ' + otpNumber;
+                smsData.senderId = 'PUMPKIIN';
+                smsData.mobile = data.mobile;
+                Config.sendSms(smsData, function (err, smsRespo) {
+                    if (err) {
+                        console.log("*************************************************sms gateway error in photographer***********************************************", err);
+                    } else if (smsRespo) {
+                        console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
+                    } else {
+                        console.log("invalid data");
+                    }
+                });
                 callback(null, data3);
             }
         });
@@ -516,15 +530,20 @@ var model = {
             if (err || _.isEmpty(found)) {
                 callback(err, "noData");
             } else {
-                console.log("found.otpTime", found.otpTime);
+                // console.log("found.otpTime", found.otpTime);
                 var ottym = found.otpTime;
                 var currentTime = new Date();
                 var diff = moment(currentTime).diff(ottym, 'minutes');
-                console.log("pre", moment(ottym).format('LTS'));
-                console.log("curr", moment(currentTime).format('LTS'));
-                console.log("diff", moment(currentTime).diff(ottym, 'minutes'));
+                // console.log("pre", moment(ottym).format('LTS'));
+                // console.log("curr", moment(currentTime).format('LTS'));
+                // console.log("diff", moment(currentTime).diff(ottym, 'minutes'));
                 if (diff <= 10) {
-                    callback(null, "login successfull");
+                    data3 = found.toObject();
+                    delete data3.accessToken;
+                    delete data3.password;
+                    delete data3.forgotPassword;
+                    delete data3.otp;
+                    callback(null, data3);
                 } else {
                     callback(null, "resendOtp");
                 }
