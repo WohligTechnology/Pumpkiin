@@ -25,6 +25,7 @@ module.exports = [
     "bower_components/angular-toastr/dist/angular-toastr.tpls.js",
     "bower_components/angular-hotkeys/build/hotkeys.js",
     "bower_components/moment/min/moment.min.js",
+    "bower_components/font-awesome/svg-with-js/js/fontawesome-all.min.js",
     "bower_components/angular-ui-sortable/sortable.js",
     "bower_components/intl-tel-input/lib/libphonenumber/build/utils.js",
     "bower_components/intl-tel-input/build/js/intlTelInput.js",
