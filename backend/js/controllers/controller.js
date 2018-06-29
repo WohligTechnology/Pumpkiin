@@ -8,11 +8,11 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
     })
 
     .controller('AccessController', function ($scope, TemplateService, NavigationService, $timeout, $state) {
-        // if ($.jStorage.get("accessToken")) {
+        if ($.jStorage.get("accessToken")) {
 
-        // } else {
-        //     $state.go("login");
-        // }
+        } else {
+            $state.go("login");
+        }
     })
 
     .controller('JagzCtrl', function ($scope, TemplateService, NavigationService, $timeout, $state, $interval) {
@@ -1656,6 +1656,21 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
 
+    })
+    .controller('TicketcreationCtrl', function ($scope, TemplateService, NavigationService, $timeout, $stateParams, $state, toastr, $uibModal) {
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("ticketcreation");
+        $scope.menutitle = NavigationService.makeactive("Ticket Creation");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+        $scope.pickupOpen = function () {
+            $uibModal.open({
+                animation: true,
+                templateUrl: "views/modal/pickup.html",
+                scope: $scope,
+                windowClass: 'app-modal-window'
+            });
+        }
     })
     .controller('headerctrl', function ($scope, TemplateService, $uibModal) {
         $scope.template = TemplateService;

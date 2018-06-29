@@ -10970,7 +10970,8 @@ header {
   opacity: 0;
   width: 20px;
   height: 30px;
-  top: 0px; }
+  top: 0px;
+  overflow: hidden; }
 
 .product-registration-detail .back {
   color: #8B8B8B;
