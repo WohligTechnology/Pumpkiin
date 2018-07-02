@@ -1,4 +1,4 @@
-var imgurl = " http://wohlig.io/api/upload/";
+var imgurl = "http://wohlig.io:80/api/upload/";
 
 var imgpath = imgurl + "readFile";
 var uploadurl = imgurl;

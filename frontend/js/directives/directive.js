@@ -101,6 +101,7 @@ myApp.directive('img', function ($compile, $parse) {
             }
         };
     })
+
     .directive('uploadImage', function ($http, $filter, $timeout) {
         return {
             templateUrl: 'views/directive/uploadFile.html',
@@ -157,6 +158,7 @@ myApp.directive('img', function ($compile, $parse) {
                                 url: n
                             });
                         });
+
                     } else {
                         if (_.endsWith($scope.model, ".pdf")) {
                             $scope.type = "pdf";
@@ -172,7 +174,6 @@ myApp.directive('img', function ($compile, $parse) {
                 };
                 $scope.uploadNow = function (image) {
                     $scope.uploadStatus = "uploading";
-
                     var Template = this;
                     image.hide = true;
                     var formData = new FormData();
@@ -205,8 +206,7 @@ myApp.directive('img', function ($compile, $parse) {
                                 $scope.type = "image";
                             }
                             $scope.model = data.data[0];
-                            console.log($scope.model, 'model means blob');
-
+                            // console.log($scope.model, 'model means blob');
                         }
                         $timeout(function () {
                             $scope.callback();

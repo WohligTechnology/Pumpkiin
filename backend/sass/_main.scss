@@ -92,6 +92,11 @@ a,
     margin-top: 15px;
 }
 
+.clock,
+.pickup-btn {
+    font-size: 0.75rem;
+}
+
 .logo {
     padding: 10px 0 10px 25px;
 }
@@ -1279,6 +1284,11 @@ body {
 .product-table {
     td {
         text-align: center;
+        padding: 0.25rem;
+        font-size: 0.75rem;
+    }
+    thead th {
+        font-size: 0.75rem;
     }
     .badge {
         width: 100px;

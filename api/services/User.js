@@ -315,31 +315,27 @@ var model = {
 
     addUserRelationMember: function (data, callback) {
         console.log("data", data);
-        if (data.relationId) {
-            User.saveData(data, callback);
-        } else {
-            var dataToSend = {};
-            dataToSend.name = data.name;
-            dataToSend.nickName = data.nickName;
-            dataToSend.email = data.email;
-            dataToSend.mobile = data.contact;
-            User.saveData(dataToSend, function (err, newUserData) {
-                if (!_.isEmpty(newUserData)) {
-                    var sendData = {};
-                    sendData._id = data._id;
-                    var arrData = [];
-                    var sendData1 = {};
-                    sendData1.relationType = data.relationType;
-                    sendData1.user = newUserData._id;
-                    arrData.push(sendData1)
-                    sendData.relations = arrData;
-                    console.log("sendData---------", sendData);
-                    User.saveData(sendData, callback);
-                } else {
-                    callback(err, "noData");
-                }
-            });
-        }
+        var dataToSend = {};
+        dataToSend.name = data.name;
+        dataToSend.nickName = data.nickName;
+        dataToSend.email = data.email;
+        dataToSend.mobile = data.contact;
+        User.saveData(dataToSend, function (err, newUserData) {
+            if (!_.isEmpty(newUserData)) {
+                var sendData = {};
+                sendData._id = data._id;
+                var arrData = [];
+                var sendData1 = {};
+                sendData1.relationType = data.relation;
+                sendData1.user = newUserData._id;
+                arrData.push(sendData1)
+                sendData.relations = arrData;
+                console.log("sendData---------", sendData);
+                User.saveData(sendData, callback);
+            } else {
+                callback(err, "noData");
+            }
+        });
     },
 
     addRelation: function (data, callback) {
@@ -484,10 +480,9 @@ var model = {
                 delete data3.accessToken;
                 delete data3.password;
                 delete data3.forgotPassword;
-                delete data3.otp;
-                var otpNumber = (Math.random() + "").substring(2, 6);
                 var smsData = {};
-                smsData.message = 'Your verification code is ' + otpNumber;
+                smsData.message = 'Your verification code is ' + data3.otp;
+                delete data3.otp;
                 smsData.senderId = 'PUMPKIIN';
                 smsData.mobile = data.mobile;
                 Config.sendSms(smsData, function (err, smsRespo) {
@@ -528,7 +523,7 @@ var model = {
             otp: data.otp
         }).exec(function (err, found) {
             if (err || _.isEmpty(found)) {
-                callback(err, "noData");
+                callback(err, null);
             } else {
                 // console.log("found.otpTime", found.otpTime);
                 var ottym = found.otpTime;

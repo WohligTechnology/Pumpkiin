@@ -8,6 +8,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     $scope.activePage = 'circle1';
     $scope.productImages = [];
     $scope.productImages.image = {};
+    $scope.jstrgValue = $.jStorage.get('userData');
     $scope.makeActive = function (click) {
         $('.' + click).addClass("timeline-active");
         $scope.activePage = click;
@@ -43,11 +44,8 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         $scope.makeActive('circle2');
         $scope.callProduct();
         // product.productImages = [];
-        // _.forEach(product.images, function (img) {
-        //     product.productImages.push({
-        //         image: img,
-        //     });
-        // });
+        // product.productImages = product.images;
+        // product.user = $scope.jstrgValue._id;
         // if ($scope.product_id) {
         //     product._id = $scope.product_id;
         //     NavigationService.apiCallWithData("Product/saveProduct", product, function (res) {
@@ -62,8 +60,8 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         //         $scope.callProduct();
         //     });
         // }
-
     }
+
     $scope.data = {};
     $scope.callProduct = function () {
         $scope.dataToGet = {};
@@ -90,24 +88,25 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         });
     }
 
+
     $scope.userData = {};
     $scope.addeduser = [];
-    $scope.addUser = function (data) {
-        NavigationService.apiCallWithData("User/save", data, function (res) {
-            if (res.value == true) {
-                $scope.updateUser = {};
-                $scope.updateUser.userId = "5b00213f78dcc437c34cc815";
-                $scope.updateUser.memberId = res.data._id;
-                NavigationService.apiCallWithData("User/addUserRelationMember", $scope.updateUser, function (response) {
-                    $scope.userData = {};
-                    $scope.addeduser.push({
-                        name: data.name,
-                        relation: data.relation,
-                        mobile: data.mobile
-                    });
 
-                });
-            }
+    $scope.addUser = function (data) {
+        // console.log("$scope.jstrgValue", $scope.jstrgValue._id);
+        // console.log("datae", data);
+        data._id = $scope.jstrgValue._id;
+        NavigationService.apiCallWithData("User/addUserRelationMember", data, function (response) {
+            // $scope.userData = {};
+            console.log("response", response);
+            if (response.value == true) {
+                toastr.success("Relation added successfully");
+                userData.relation = '';
+            } // $scope.addeduser.push({
+            //     name: data.name,
+            //     relation: data.relation,
+            //     mobile: data.mobile
+            // });
         });
     };
 

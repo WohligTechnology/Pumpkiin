@@ -33,7 +33,7 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-3">Product Name</label>
-                    <input ng-model="data.productname" class="form-control form-control-sm" type="text" name="productName" placeholder="Product Name"
+                    <input ng-model="data.productName" class="form-control form-control-sm" type="text" name="productName" placeholder="Product Name"
                         required>
                 </div>
                 <div class="col-12 col-md-6">
@@ -66,10 +66,13 @@
                         <div ng-if=data.getImages>
                             <ul class="list-inline" ng-if="data.getImages">
                                 <li class="list-inline-item" ng-repeat="img in data.getImages">
-                                    <img src="{{img.image |uploadpath}}" class="img-fluid" />
-                                    <!-- <upload-image multiple ng-model="data.images"></upload-image> -->
+                                    <!-- <img src="{{img.image |uploadpath}}" class="img-fluid" /> -->
+                                    <upload-image ng-model="data.images"></upload-image>
                                 </li>
                             </ul>
+                        </div>
+                        <div ng-if=!data.getImages>
+                            <upload-image multiple ng-model="data.images"></upload-image>
                         </div>
                     </div>
                 </div>
@@ -173,8 +176,8 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Name</label>
                     <div class=" d-flex">
-                        <input ng-model="userData.name" class="form-control form-control-sm w-50 mr-2" type="text" required>
-                        <input ng-model="userData.lastname" class="form-control form-control-sm w-50" type="text" required>
+                        <input ng-model="userData.name" class="form-control form-control-sm" type="text" required>
+                        <!-- <input ng-model="userData.lastname" class="form-control form-control-sm w-50" type="text" required> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6">

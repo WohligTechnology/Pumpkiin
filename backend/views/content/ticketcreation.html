@@ -4,7 +4,7 @@
             <form>
                 <div class="bg-white mt-2 border-rounded productreg ">
                     <div>
-                        <div class="p-4">
+                        <div class="p-3">
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="media chat">
@@ -12,24 +12,23 @@
                                             <img class="align-self-center mr-3" src="img/profile.jpeg">
                                         </div>
                                         <div class="media-body">
-                                            <h5 class="m-0">Name OF Person</h5>
+                                            <h6 class="m-0">Name OF Person</h6>
                                             <p class="m-0">Name OF Person</p>
-
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-9">
                                     <div class="">
                                         <div class="d-inline-block">
-                                            <div class="px-3">
-                                                <a class="btn btn-success" href="" ng-click="pickupOpen();">
+                                            <div class="px-1">
+                                                <a class="btn btn-success pickup-btn" href="" ng-click="pickupOpen();">
                                                     Pick Up Time
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="d-inline-block">
+                                        <div class="d-inline-block clock">
                                             <label>Status :</label>
-                                            <select class="p-1">
+                                            <select>
                                                 <option value="1">Repair/ Maintenance (On-site)</option>
                                                 <option value="2">Scheduling service with customer (Open)</option>
                                                 <option value="3">Coordinating with the service provider (Open)</option>
@@ -38,9 +37,7 @@
                                                 <option value="6">Awaiting feedback (Closed)</option>
                                                 <option value="7">Completed (Completed)</option>
                                             </select>
-                                        </div>
-                                        <div class="d-inline-block">
-                                            <select class="p-1">
+                                            <select>
                                                 <option value="8">Repair (Off-site)</option>
                                                 <option value="9">Scheduling service with customer (Open)</option>
                                                 <option value="10">Coordinating with the service provider (Open)</option>
@@ -51,7 +48,8 @@
                                                 <option value="15">Completed (Completed)</option>
                                             </select>
                                         </div>
-                                        <div class="clock px-3 d-inline-block float-right">
+
+                                        <div class="clock px-1 d-inline-block float-right">
                                             <i class="far fa-clock "></i>
                                             5.30pm
                                         </div>
