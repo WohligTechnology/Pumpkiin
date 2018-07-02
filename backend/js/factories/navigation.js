@@ -68,7 +68,16 @@ myApp.factory('NavigationService', function ($http) {
             classis: "active",
             sref: "#!/page/viewPickUpService//",
             access: false
-
+        }, {
+            name: "ticketcreation",
+            classis: "active",
+            uiSref: "ticketcreation",
+            access: false
+        }, {
+            name: "productlist",
+            classis: "active",
+            uiSref: "productlist",
+            access: false
         }
 
     ];
