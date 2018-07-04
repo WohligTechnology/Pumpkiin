@@ -139,6 +139,9 @@
                             </ul>
 
                         </div>
+                        <div ng-if=!data.getImages>
+                            <upload-image multiple ng-model="data.images"></upload-image>
+                        </div>
                         <!-- <div class="form-group" fields>
                             <label>Image</label>
                             <upload-image multiple ng-model="data.images"></upload-image>
