@@ -93,7 +93,8 @@ var schema = new Schema({
     },
     accessLevel: {
         type: String,
-        enum: ['Retailer', 'Admin', 'Brand', 'User']
+        enum: ['Retailer', 'Admin', 'Brand', 'User'],
+        default: 'User'
     },
     address: [{
         lineOne: String,
@@ -116,6 +117,9 @@ schema.plugin(deepPopulate, {
         },
         'brand': {
             select: ''
+        },
+        'relations.user': {
+            select: ''
         }
     }
 });
@@ -124,7 +128,7 @@ schema.plugin(timestamps);
 
 module.exports = mongoose.model('User', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "user retailer brand", "user retailer brand"));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "user retailer brand relations.user", "user retailer brand relations.user"));
 var model = {
 
     getOneUser: function (data, callback) {
@@ -314,28 +318,44 @@ var model = {
     //old api written
 
     addUserRelationMember: function (data, callback) {
-        console.log("data", data);
-        var dataToSend = {};
-        dataToSend.name = data.name;
-        dataToSend.nickName = data.nickName;
-        dataToSend.email = data.email;
-        dataToSend.mobile = data.contact;
-        User.saveData(dataToSend, function (err, newUserData) {
-            if (!_.isEmpty(newUserData)) {
+        var newuserData;
+        async.waterfall([
+            function (callback) {
+                // console.log("data", data);
+                var dataToSend = {};
+                dataToSend.name = data.name;
+                dataToSend.nickName = data.nickName;
+                dataToSend.email = data.email;
+                dataToSend.mobile = data.contact;
+                User.saveData(dataToSend, callback);
+            },
+            function (newUserData, callback) {
+                // console.log("newUserData", newUserData);
+                newuserData = newUserData;
+                if (!_.isEmpty(newUserData)) {
+                    User.findOne({
+                        _id: data._id
+                    }).exec(callback);
+                } else {
+                    callback(err, "noData");
+                }
+            },
+            function (oldUserData, callback) {
+                // console.log("oldUserData", oldUserData);
                 var sendData = {};
-                sendData._id = data._id;
+                sendData = oldUserData;
                 var arrData = [];
+                arrData = oldUserData.relations;
+                // console.log("arrData---------", arrData);
                 var sendData1 = {};
                 sendData1.relationType = data.relation;
-                sendData1.user = newUserData._id;
+                sendData1.user = newuserData._id;
                 arrData.push(sendData1)
                 sendData.relations = arrData;
-                console.log("sendData---------", sendData);
+                // console.log("sendData---------", sendData);
                 User.saveData(sendData, callback);
-            } else {
-                callback(err, "noData");
             }
-        });
+        ], callback);
     },
 
     addRelation: function (data, callback) {

@@ -1,4 +1,4 @@
-myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $uibModal, NavigationService, $timeout, toastr, $http) {
+myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $uibModal, NavigationService, $timeout, toastr, $http, $state) {
     $scope.template = TemplateService.getHTML("content/productRegistration/productRegistration.html");
     TemplateService.title = "product Registration"; //This is the Title of the Website
     TemplateService.landingheader = "";
@@ -17,6 +17,17 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         }
     };
 
+    $scope.getUserData = function () {
+        var data = {};
+        data._id = $scope.jstrgValue._id;
+        NavigationService.apiCallWithData("User/getOne", data, function (response) {
+            if (response.value == true) {
+                $scope.userDataForRegist = response.data;
+                console.log("$scope.userDataForRegist ", $scope.userDataForRegist);
+            }
+        });
+    }
+
     $scope.registration = $uibModal.open({
         animation: true,
         templateUrl: "views/modal/registration.html",
@@ -33,34 +44,49 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         });
         $scope.registration.close();
     }
+
     NavigationService.apiCallWithoutData("Brand/getAllBrand", function (res) {
-
+        if (res.value == true) {
+            $scope.brandsData = res.data;
+            // console.log("$scope.brandsData-----", $scope.brandsData)
+        }
     });
-    NavigationService.apiCallWithoutData("Retailer/getAllRetailer", function (res) {
 
+    NavigationService.apiCallWithoutData("Retailer/getAllRetailer", function (res) {
+        if (res.value == true) {
+            $scope.retaillersData = res.data;
+            // console.log("$scope.retaillersData-----", $scope.retaillersData);
+        }
     });
 
     $scope.saveProduct = function (product) {
         $scope.makeActive('circle2');
         $scope.callProduct();
+        $scope.getUserData();
         // product.productImages = [];
         // product.productImages = product.images;
         // product.user = $scope.jstrgValue._id;
+        // product.brand = product.brand._id;
         // if ($scope.product_id) {
         //     product._id = $scope.product_id;
         //     NavigationService.apiCallWithData("Product/saveProduct", product, function (res) {
         //         $scope.product_id = res.data._id;
+        //         console.log("res.data", res.data);
         //         $scope.makeActive('circle2');
         //         $scope.callProduct();
         //     });
         // } else {
         //     NavigationService.apiCallWithData("Product/save", product, function (res) {
         //         $scope.product_id = res.data._id;
+        //         console.log("res.data", res.data);
         //         $scope.makeActive('circle2');
         //         $scope.callProduct();
         //     });
         // }
+
     }
+
+
 
     $scope.data = {};
     $scope.callProduct = function () {
@@ -101,7 +127,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             console.log("response", response);
             if (response.value == true) {
                 toastr.success("Relation added successfully");
-                userData.relation = '';
+                $scope.userData = null;
             } // $scope.addeduser.push({
             //     name: data.name,
             //     relation: data.relation,
@@ -121,20 +147,27 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             });
         },
         $scope.savepurchaseDetails = function (purchase) {
+            console.log("purchase", purchase)
             $scope.makeActive('circle3');
             $scope.callProduct();
-            // purchase.purchaseproof = [];
-            // purchase._id = $scope.product_id;
-            // _.forEach(purchase.images, function (img) {
-            //     purchase.purchaseproof.push({
-            //         proofImage: img,
+            // purchase.purchaseProof = [];
+            // purchase.purchaseProof = purchase.images;
+            // purchase.retailer = purchase.retailer._id;
+            // purchase.relatedUser = [];
+            // _.each(purchase.Users, function (x) {
+            //     purchase.relatedUser.push(x._id);
+            // })
+            // console.log("purchase----", purchase)
+            // console.log("$scope.product_id", $scope.product_id)
+            // if ($scope.product_id) {
+            //     product._id = $scope.product_id;
+            //     NavigationService.apiCallWithData("Product/saveProduct", product, function (res) {
+            //         $scope.product_id = res.data._id;
+            //         console.log("res.data", res.data);
+            //         $scope.makeActive('circle3');
+            //         $scope.callProduct();
             //     });
-            // });
-            // NavigationService.apiCallWithData("Product/saveProduct", purchase, function (res) {
-            //     $scope.product_id = res.data._id;
-            //     $scope.makeActive('circle3');
-            //     $scope.callProduct();
-            // });
+            // }
         },
 
         $scope.addWarrantyDetails = function (Warranty) {
@@ -184,4 +217,5 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             "name": "Accessories Name",
             "relation": "Accessories",
         }];
+
 });

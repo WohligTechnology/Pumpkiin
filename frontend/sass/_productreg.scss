@@ -207,3 +207,15 @@
     top: 2px;
     margin: 1px 3px;
 }
+
+.selectize-control.single>.selectize-input>input {
+    color: #333 !important;
+}
+
+.selectize-control>.selectize-dropdown {
+    background-color: $darkblue !important;
+}
+
+.ui-select-bootstrap.open .dropdown-menu {
+    display: block;
+}

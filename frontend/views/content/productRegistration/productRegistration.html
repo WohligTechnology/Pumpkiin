@@ -38,7 +38,13 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Brand Name</label>
-                    <input ng-model="data.brand" class="form-control form-control-sm" type="text" name="brandName" placeholder="Brand Name">
+                    <ui-select ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country">
+                        <ui-select-match placeholder="Select or search a brand in the list...">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices class="background-blue text-white" repeat="brand in brandsData | filter: $select.search">
+                            <span ng-bind-html="brand.name | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                    <!-- <input ng-model="data.brand" class="form-control form-control-sm" type="text" name="brandName" placeholder="Brand Name"> -->
                 </div>
             </div>
             <div class="row form-group">
@@ -72,7 +78,7 @@
                             </ul>
                         </div>
                         <div ng-if=!data.getImages>
-                            <upload-image multiple ng-model="data.images"></upload-image>
+                            <upload-image multiple ng-model="data.images" no-view></upload-image>
                         </div>
                     </div>
                 </div>
@@ -108,17 +114,23 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-3">Purchase Date</label>
-                    <input ng-model="data.purchasedate" name="date" class="form-control form-control-sm" type="date" required>
+                    <input ng-model="data.purchaseDate" name="date" class="form-control form-control-sm" type="date" required>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Purchase Price</label>
-                    <input ng-model="data.purchaseprice" name="price" class="form-control form-control-sm" type="text" required>
+                    <input ng-model="data.purchasePrice" name="price" class="form-control form-control-sm" type="text" required>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-3">Retailer</label>
-                    <input ng-model="data.retailer" name="retailer" class="form-control form-control-sm" type="text">
+                    <ui-select ng-model="data.retailer" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country">
+                        <ui-select-match placeholder="Select or search a retailer in the list...">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices class="background-blue text-white" repeat="retailer in retaillersData | filter: $select.search">
+                            <span ng-bind-html="retailer.name | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                    <!-- <input ng-model="data.retailer" name="retailer" class="form-control form-control-sm" type="text"> -->
                 </div>
             </div>
             <div class="row form-group">
@@ -140,7 +152,7 @@
 
                         </div>
                         <div ng-if=!data.getImages>
-                            <upload-image multiple ng-model="data.images"></upload-image>
+                            <upload-image multiple ng-model="data.images" no-view></upload-image>
                         </div>
                         <!-- <div class="form-group" fields>
                             <label>Image</label>
@@ -156,10 +168,20 @@
                     <i class="fas fa-info-circle"></i>
                 </span> -->
             </h6>
-            <div class="row form-group">
+            <div class="row form-group" ng-init="data ={}   ">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Search for exsisting user</label>
-                    <input class="form-control form-control-sm" type="text" placeholder="Type User Name to Add" required>
+                    <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="data.Users" theme="bootstrap" sortable="true"
+                        ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a color">
+                        <ui-select-match placeholder="Select colors...">
+                            <span ng-if="$item.user.name"> {{$item.user.name}}</span>
+                            <span ng-if="!$item.user.name"> {{$item}}</span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="users in userDataForRegist.relations | filter:$select.search">
+                            {{users.user.name}}
+                        </ui-select-choices>
+                    </ui-select>
+                    <!-- <input class="form-control form-control-sm" type="text" placeholder="Type User Name to Add" required> -->
                 </div>
             </div>
             <div class="d-flex main-users">
