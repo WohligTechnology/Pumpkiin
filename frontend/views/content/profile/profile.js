@@ -3,6 +3,10 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     TemplateService.title = "Profile"; //This is the Title of the Website
     TemplateService.landingheader = "";
     $scope.navigation = NavigationService.getNavigation();
+    $scope.jstrgValue = $.jStorage.get('userData');
+
+    console.log("$scope.jstrgValue", $scope.jstrgValue);
+
     $scope.relation = [{
         "name": "First Last Name",
         "relation": "Brother",
@@ -10,6 +14,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         "name": "First Last Name",
         "relation": "Brother",
     }];
+
     $scope.addressModalOpen = function () {
         $scope.addReminder = $uibModal.open({
             animation: true,
@@ -17,4 +22,16 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
             scope: $scope,
         });
     }
+
+
+    var data = {};
+    data._id = $scope.jstrgValue._id;
+    NavigationService.apiCallWithData("User/getOne", data, function (response) {
+        if (response.value == true) {
+            $scope.userDataForProfile = response.data;
+            console.log("$scope.userDataForProfile ", $scope.userDataForProfile);
+        }
+    });
+
+
 });

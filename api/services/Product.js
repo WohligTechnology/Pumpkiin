@@ -50,15 +50,11 @@ var schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-
-
-    //extra fields
-
     category: String,
     warrantyProof: String,
     insurancePeriod: String,
     insuranceExpDate: Date,
-    insuranceProofImage: String,
+    insuranceProofImage: [String],
     doneBy: {
         type: String,
         enum: ['Admin', 'User']
@@ -67,6 +63,8 @@ var schema = new Schema({
         type: Boolean,
         default: false
     },
+    productInvoicePR: String,
+    warrantyCardPR: String,
 });
 
 schema.plugin(deepPopulate, {

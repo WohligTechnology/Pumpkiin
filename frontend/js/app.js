@@ -41,7 +41,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'LandingCtrl'
         })
         .state('productdetailregistered', {
-            url: "/productdetailregistered",
+            url: "/productdetailregistered/:id",
             templateUrl: tempateURL,
             controller: 'ProductDetailRegisteredCtrl'
         })

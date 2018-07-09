@@ -7,7 +7,8 @@ var schema = new Schema({
     description: String,
     datefrom: Date,
     dateTo: Date,
-    time: Date
+    time: Date,
+    dateOfReminder: Date
 
 });
 

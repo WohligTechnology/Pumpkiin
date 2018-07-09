@@ -3,6 +3,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, Naviga
     TemplateService.title = "Product Listing"; //This is the Title of the Website
     TemplateService.landingheader = "";
     $scope.navigation = NavigationService.getNavigation();
+
     $scope.productInfo = [{
         "largeimage": "img/iphone.jpeg",
         "smallimage": "img/ticketCreation/mobile.png",
@@ -45,9 +46,26 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, Naviga
         "productname": "Apple iPhone X 7",
         "relation": "Sisters Phone",
         "warranty": "Warranty Exp: 8 months"
-    }]
+    }];
+
+
+    NavigationService.apiCallWithoutData("Product/search", function (res) {
+        if (res.value == true) {
+            console.log("res-----", res.data.results);
+            $scope.allProducts = res.data.results;
+        }
+    });
+
     $scope.deleteProduct = function (index) {
-        $scope.productInfo.splice(index, 1);
+        var teest = $scope.allProducts.splice(index, 1);
+        var dataToSend = {};
+        dataToSend._id = teest[0]._id;
+        console.log("dataToSend", dataToSend);
+        // NavigationService.apiCallWithData("Product/delete", dataToSend,function (res) {
+        //     if (res.value == true) {
+        //         toastr.success("Product deleted successfully");
+        //     }
+        // });
     }
 
 });

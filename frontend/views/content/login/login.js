@@ -10,9 +10,8 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
 
 
     $scope.checkUser = function (data) {
-            $scope.showsignUp = true;
-            $scope.showLogin = false;
-
+            // $scope.showsignUp = true;
+            // $scope.showLogin = false;
             NavigationService.apiCallWithData("User/sendOtp", data, function (res1) {
                 console.log("res1", res1);
                 if (res1.value == true) {
@@ -129,6 +128,7 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
                     console.log("invalid choice");
             }
         }
+
     $scope.navigation = NavigationService.getNavigation();
 
 });

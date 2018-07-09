@@ -50,20 +50,20 @@
                         <button class="my-3 support-btn">SUPPORT</button>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-3 mb-3 px-2" ng-repeat="product in productInfo track by $index">
+                <div class="col-xs-12 col-md-3 mb-3 px-2" ng-repeat="product in allProducts track by $index">
                     <div class="bg-white border border-rounded text-center effectonhover">
                         <span class="float-right product-icon" ng-click="deleteProduct($index)">
                             <i class="fas fa-ellipsis-v"></i>
                         </span>
-                        <div class="addedpromain" ui-sref="productdetailunregistered">
-                            <div class="d-flex align-items-center justify-content-center addedproduct" ui-sref="productdetailunregistered">
+                        <div class="addedpromain" ui-sref="productdetailregistered({id: product._id})">
+                            <div class="d-flex align-items-center justify-content-center addedproduct" ui-sref="productdetailregistered({id: product._id})">
                                 <img src="{{product.largeimage}}" class="img-fluid large-img">
                                 <div class="background-blue small-circle">
                                     <img src="{{product.smallimage}}">
                                 </div>
                             </div>
                             <div class="addedproducttext pb-2">
-                                <span class="product">{{product.productname}}</span>
+                                <span class="product">{{product.productName}}</span>
                                 <br>
                                 <span class="relation">{{product.relation}}</span>
                                 <br>

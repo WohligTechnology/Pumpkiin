@@ -1,4 +1,4 @@
-myApp.controller('OpenTicketCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal) {
+myApp.controller('OpenTicketCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state) {
     $scope.template = TemplateService.getHTML("content/openTicket/openTicket.html");
     TemplateService.landingheader = "";
     TemplateService.title = "Open Ticket"; //This is the Title of the Website
@@ -12,4 +12,12 @@ myApp.controller('OpenTicketCtrl', function ($scope, TemplateService, Navigation
     //         windowClass: 'app-modal-window'
     //     });
     // }
+
+    $scope.saveReminder = function (data) {
+        console.log("----------", data);
+        NavigationService.apiCallWithData("Reminder/save", data, function (res) {
+            console.log("res.data", res.data);
+            $state.go("productListing");
+        });
+    }
 });

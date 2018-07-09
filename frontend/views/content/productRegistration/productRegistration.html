@@ -256,7 +256,7 @@
                     <i class="fas fa-info-circle"></i>
                 </span>
             </h6>
-            <div class="row form-group">
+            <!-- <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-3">Period</label>
                     <div class="d-flex">
@@ -264,7 +264,7 @@
                         <input class="form-control form-control-sm w-50" type="text" required>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Expiry Date</label>
@@ -281,16 +281,19 @@
                             <button class="btn">+</button>
                             <input type="file" name="myfile" />
                         </div>
+                        <div ng-if=!data.warrantyCardImage>
+                            <upload-image multiple ng-model="data.warrantyCardImage" no-view></upload-image>
+                        </div>
                         <!-- <div class="form-group" fields>
                             <label>Image</label>
                             <upload-image ng-model="data.warrantyProof"></upload-image>
                         </div> -->
-                        <div class="d-flex social my-3 reminder" ng-controller="headerCtrl">
+                        <!-- <div class="d-flex social my-3 reminder" ng-controller="headerCtrl">
                             <span class="social_icon">
                                 <i class="fas fa-plus"></i>
                             </span>
                             <div class="social-text" ng-click="reminderModalOpen()">Add Reminder</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -304,7 +307,7 @@
                     <i class="fas fa-info-circle"></i>
                 </span>
             </h6>
-            <div class="row form-group">
+            <!-- <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Period</label>
                     <div class="d-flex">
@@ -312,7 +315,7 @@
                         <input class="form-control form-control-sm w-50" type="text" required>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Expiry Date</label>
@@ -329,16 +332,19 @@
                             <button class="btn">+</button>
                             <input type="file" name="myfile" />
                         </div>
+                        <div ng-if=!data.insuranceProofImage>
+                            <upload-image multiple ng-model="data.insuranceProofImage" no-view></upload-image>
+                        </div>
                         <!-- <div class="form-group" fields>
                             <label>Image</label>
                             <upload-image ng-model="data.insuranceProof"></upload-image>
                         </div> -->
-                        <div class="d-flex social my-3 reminder" ng-controller="headerCtrl">
+                        <!-- <div class="d-flex social my-3 reminder" ng-controller="headerCtrl">
                             <span class="social_icon">
                                 <i class="fas fa-plus"></i>
                             </span>
                             <div class="social-text" ng-click="reminderModalOpen()">Add Reminder</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -348,7 +354,7 @@
                 <span class="social_icon">
                     <i class="fas fa-save"></i>
                 </span>
-                <div class="social-text" ng-click="goToNxtTab()">Save and Continue</div>
+                <div class="social-text" ng-click="goToNxtTab(data)">Save and Continue</div>
             </fieldset>
         </div>
     </form>
@@ -364,8 +370,15 @@
             </h6>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-3">Search Accessories</label>
-                    <input class="form-control form-control-sm" type="text" placeholder="Type User Name to Add" required>
+                    <ui-select class="w-100" multiple tagging tagging-label="(custom 'new' label)" ng-model="ctrl.multipleDemo.colors" theme="bootstrap"
+                        sortable="true" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a color">
+                        <ui-select-match placeholder="Select colors...">{{$item}}</ui-select-match>
+                        <ui-select-choices repeat="color in availableColors | filter:$select.search">
+                            {{color}}
+                        </ui-select-choices>
+                    </ui-select>
+                    <!-- <label class="mb-3">Search Accessories</label>
+                    <input class="form-control form-control-sm" type="text" placeholder="Type User Name to Add" required> -->
                 </div>
             </div>
             <div class="d-flex main-users">
