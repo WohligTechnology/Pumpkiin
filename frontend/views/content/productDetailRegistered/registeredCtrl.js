@@ -26,8 +26,18 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
         }
     });
 
-    $scope.changeName = function (data) {
-        console.log("data---------", data)
+    $scope.changeName = function (data, data1) {
+        console.log("data---------", data);
+        console.log("data1---------", data1);
+        // var dataToSend = {};
+        // dataToSend._id = $stateParams.id
+        // NavigationService.apiCallWithData("Product/getOne", dataToSend, function (res) {
+        //     if (res.value == true) {
+        //         $scope.productDetails = res.data;
+        //         console.log(" $scope.productDetails", $scope.productDetails)
+        //     }
+        // });
+
     }
 
 });

@@ -190,8 +190,9 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
                 $scope.callProduct();
             });
         },
-        $scope.goToNxtTab = function (data) {
 
+
+        $scope.goToNxtTab = function (data) {
             console.log("data---", data);
             $scope.makeActive('circle4');
 
@@ -203,13 +204,27 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             //         $scope.callProduct();
             //     });
             // }
-            // $scope.dataTosave = {};
-            // $scope.dataTosave._id = $scope.product_id;
-            // $scope.dataTosave.doneBy = "User";
-            // $scope.dataTosave.status = "Confirmed";
-            // NavigationService.apiCallWithData("Product/saveProduct", $scope.dataTosave, function (res) {
-            //     $scope.callProduct();
-            // });
+
+            var dataForReminderWarranty = {};
+            dataForReminderWarranty.user = $scope.jstrgValue._id;
+            dataForReminderWarranty.title = "Warranty expiry";
+            dataForReminderWarranty.status = "Pending";
+            dataForReminderWarranty.description = "End of warranty period";
+            dataForReminderWarranty.dateOfReminder = data.warrantyExpDate;
+            NavigationService.apiCallWithData("Reminder/save", dataForReminderWarranty, function (res) {
+
+            });
+
+            var dataForReminderInsurance = {};
+            dataForReminderInsurance.user = $scope.jstrgValue._id;
+            dataForReminderInsurance.title = "Insurance expiry";
+            dataForReminderWarranty.status = "Pending";
+            dataForReminderWarranty.description = "End of insurance period";
+            dataForReminderInsurance.dateOfReminder = data.insuranceExpDate;
+            NavigationService.apiCallWithData("Reminder/save", dataForReminderInsurance, function (res) {
+
+            });
+
         },
 
 

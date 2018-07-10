@@ -6,6 +6,8 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
     $scope.rate = 2;
     $scope.max = 5;
     $scope.isReadonly = false;
+    $scope.jstrgValue = $.jStorage.get('userData');
+
     $scope.newUserModalOpen = function () {
         $scope.addNewUser = $uibModal.open({
             animation: true,
@@ -13,4 +15,21 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             scope: $scope,
         });
     }
+
+    var reminderData = {};
+    reminderData.user = $scope.jstrgValue._id;
+    NavigationService.apiCallWithData("Reminder/findReminderByUser", reminderData, function (res) {
+        if (res.value == true) {
+            // console.log("res--111---", res.data);
+            $scope.allReminders = res.data;
+        }
+    });
+
+    NavigationService.apiCallWithData("Reminder/totalNumberOfReminders", reminderData, function (res) {
+        if (res.value == true) {
+            // console.log("res---222--", res.data);
+            $scope.totalReminders = res.data;
+
+        }
+    });
 });

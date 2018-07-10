@@ -10,17 +10,17 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
 
 
     $scope.checkUser = function (data) {
-            // $scope.showsignUp = true;
-            // $scope.showLogin = false;
-            NavigationService.apiCallWithData("User/sendOtp", data, function (res1) {
-                console.log("res1", res1);
-                if (res1.value == true) {
-                    $scope.showsignUp = true;
-                    $scope.showLogin = false;
-                } else {
-                    console.log("mobile already registered");
-                }
-            });
+            $scope.showsignUp = true;
+            $scope.showLogin = false;
+            // NavigationService.apiCallWithData("User/sendOtp", data, function (res1) {
+            //     console.log("res1", res1);
+            //     if (res1.value == true) {
+            //         $scope.showsignUp = true;
+            //         $scope.showLogin = false;
+            //     } else {
+            //         console.log("mobile already registered");
+            //     }
+            // });
         },
 
 

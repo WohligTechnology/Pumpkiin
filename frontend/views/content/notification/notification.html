@@ -11,58 +11,26 @@
                     <div class="closed-text">
                         <img src="img/ticketCreation/Notification_circle-icon-green.png">
                     </div>
-                    <div ui-sref="productregistration">
+                    <div ng-controller="headerCtrl" ng-click="reminderModalOpen()">
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
                 <div class="my-3 open-tickets ">
                     <h5 class="d-inline ">Reminders</h5>
-                    <span class="badge badge-style ml-auto">14</span>
+                    <span class="badge badge-style ml-auto">{{totalReminders}}</span>
                     <span class="float-right">
                         <img src="img/ticketCreation/search.png ">
                     </span>
                 </div>
 
                 <div class="border-top listed-openTickets openticket ">
-                    <div class="d-flex py-1 element-list ">
+                    <div class="d-flex py-1 element-list " ng-repeat="reminders in allReminders">
                         <div class="bullet "></div>
-                        <div class="d-block pl-4 text-truncate w-100">
-                            <div class="product-title ">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
+                        <div class="d-block pl-4 ">
+                            <div class="product-title text-truncate">{{reminders.title}}</div>
+                            <div class="date ">{{reminders.dateOfReminder | date}}</div>
                         </div>
-                        <!-- <span class="float-right caret-style ">
-                            <i class="fas fa-caret-right "></i>
-                        </span> -->
-                    </div>
-                    <div class="d-flex py-1 element-list ">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4 w-100">
-                            <div class="product-title ">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
-                        </div>
-                        <!-- <span class="float-right caret-style ">
-                            <i class="fas fa-caret-right "></i>
-                        </span> -->
-                    </div>
-                    <div class="d-flex py-1 element-list ">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4 w-100">
-                            <div class="product-title ">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
-                        </div>
-                        <!-- <span class="float-right caret-style ">
-                            <i class="fas fa-caret-right "></i>
-                        </span> -->
-                    </div>
-                    <div class="d-flex py-1 element-list ">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4 w-100">
-                            <div class="product-title ">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
-                        </div>
-                        <!-- <span class="float-right caret-style ">
-                            <i class="fas fa-caret-right "></i>
-                        </span> -->
+
                     </div>
 
                 </div>
@@ -231,15 +199,15 @@
                 <h6 class="fontRobotoBold blue-color mb-4 text-uppercase">Reminders
                 </h6>
                 <uib-accordion close-others="true">
-                    <div uib-accordion-group class="panel-default reminder-body" is-open="status1.open">
+                    <div uib-accordion-group class="panel-default reminder-body" is-open="status1.open" ng-repeat="reminders in allReminders">
                         <uib-accordion-heading>
                             <div class="d-flex align-items-center ">
                                 <div class="blue-circle "></div>
-                                <h6 class="fontRobotoBold font14 ml-2 mb-0 text-uppercase">Reminder 1
+                                <h6 class="fontRobotoBold font14 ml-2 mb-0 text-uppercase">{{reminders.title}}
                                 </h6>
-                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate " ng-if="!status1.open">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
+                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate " ng-if="!status1.open">{{reminders.description}}</span>
                                 <div class="ml-auto date-supportchat ">
-                                    <span class="font12 ">17/2/2018, 5:30 pm (4 days )</span>
+                                    <span class="font12 ">{{reminders.dateOfReminder | date}}</span>
                                 </div>
                             </div>
                             <div class="up-arrow" ng-class="{'rotate-180':status1.open==true}">
@@ -247,112 +215,20 @@
                             </div>
                         </uib-accordion-heading>
                         <div class="pt-0 px-4 pb-4">
-                            <p>Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...Dear Support
-                                Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...Dear Support Team, Maecenas
-                                faucibus mollis interdum. Etiam porta sem malesuada...Dear Support Team, Maecenas faucibus
-                                mollis interdum. Etiam porta sem malesuada...Dear Support Team, Maecenas faucibus mollis
-                                interdum. Etiam porta sem malesuada...Dear Support Team, Maecenas faucibus mollis interdum.
-                                Etiam porta sem malesuada...Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta
-                                sem malesuada...</p>
+                            <p>{{reminders.description}}</p>
                             <div class="text-right">
                                 <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center snooze-color" ng-click="reminderModalOpen();">Snooze / Edit
                                 </a>
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center completed-color">Completed
+                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center completed-color" ng-click="chnageStatus(reminders._id);">Completed
                                 </a>
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center delete-btn">Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div uib-accordion-group class="panel-default reminder-body" is-open="status2.open">
-                        <uib-accordion-heading>
-                            <div class="d-flex align-items-center ">
-                                <div class="blue-circle "></div>
-                                <h6 class="fontRobotoBold font14 ml-2 mb-0 text-uppercase">Reminder 2
-                                </h6>
-                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate " ng-if="!status2.open">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
-                                <div class="ml-auto date-supportchat ">
-                                    <span class="font12 ">17/2/2018, 5:30 pm (4 days )</span>
-                                </div>
-                            </div>
-                            <div class="up-arrow" ng-class="{'rotate-180':status2.open==true}">
-                                <i class="fas fa-sort-down"></i>
-                            </div>
-                        </uib-accordion-heading>
-                        <div class="pt-0 px-4 pb-4">
-                            <p>Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...Dear Support
-                                Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...Dear Support Team, Maecenas
-                                faucibus mollis interdum. Etiam porta sem malesuada...</p>
-                            <div class="text-right">
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center snooze-color" ng-click="reminderModalOpen();">Snooze / Edit
-                                </a>
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center completed-color">Completed
-                                </a>
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center delete-btn">Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div uib-accordion-group class="panel-default reminder-body" is-open="status3.open">
-                        <uib-accordion-heading>
-                            <div class="d-flex align-items-center ">
-                                <div class="blue-circle "></div>
-                                <h6 class="fontRobotoBold font14 ml-2 mb-0 text-uppercase">Reminder 3 </h6>
-                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate " ng-if="!status3.open">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
-                                <div class="ml-auto date-supportchat ">
-                                    <span class="font12 ">17/2/2018, 5:30 pm (4 days )</span>
-                                </div>
-                            </div>
-                            <div class="up-arrow" ng-class="{'rotate-180':status3.open==true}">
-                                <i class="fas fa-sort-down"></i>
-                            </div>
-                        </uib-accordion-heading>
-                        <div class="pt-0 px-4 pb-4">
-                            <p>Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...Dear Support
-                                Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...Dear Support Team, Maecenas
-                                faucibus mollis interdum. Etiam porta sem malesuada...</p>
-                            <div class="text-right">
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center snooze-color" ng-click="reminderModalOpen();">Snooze / Edit
-                                </a>
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center completed-color">Completed
-                                </a>
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center delete-btn">Delete
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div uib-accordion-group class="panel-default reminder-body" is-open="status4.open">
-                        <uib-accordion-heading>
-                            <div class="d-flex align-items-center ">
-                                <div class="blue-circle "></div>
-                                <h6 class="fontRobotoBold font14 ml-2 mb-0 text-uppercase">Reminder 4 </h6>
-                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate " ng-if="!status4.open">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
-                                <div class="ml-auto date-supportchat ">
-                                    <span class="font12 ">17/2/2018, 5:30 pm (4 days )</span>
-                                </div>
-                            </div>
-                            <div class="up-arrow" ng-class="{'rotate-180':status4.open==true}">
-                                <i class="fas fa-sort-down"></i>
-                            </div>
-                        </uib-accordion-heading>
-                        <div class="pt-0 px-4 pb-4">
-                            <p>Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...Dear Support
-                                Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...Dear Support Team, Maecenas
-                                faucibus mollis interdum. Etiam porta sem malesuada...Dear Support Team, Maecenas faucibus
-                                mollis interdum. Etiam porta sem malesuada...</p>
-                            <div class="text-right">
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center snooze-color" ng-click="reminderModalOpen();">Snooze / Edit
-                                </a>
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center completed-color">Completed
-                                </a>
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center delete-btn">Delete
+                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center delete-btn" ng-click="deleteReminder(reminders._id);">Delete
                                 </a>
                             </div>
                         </div>
                     </div>
                 </uib-accordion>
             </div>
-            <a role="button" class="button w-25 py-1 float-right fontRobotoBold text-center orange-btn">Add Reminder
+            <a role="button" class="button w-25 py-1 float-right fontRobotoBold text-center orange-btn" ng-controller="headerCtrl" ng-click="reminderModalOpen()">Add Reminder
             </a>
         </div>
     </div>

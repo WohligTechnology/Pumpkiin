@@ -552,16 +552,22 @@ var model = {
                 // console.log("pre", moment(ottym).format('LTS'));
                 // console.log("curr", moment(currentTime).format('LTS'));
                 // console.log("diff", moment(currentTime).diff(ottym, 'minutes'));
-                if (diff <= 10) {
-                    data3 = found.toObject();
-                    delete data3.accessToken;
-                    delete data3.password;
-                    delete data3.forgotPassword;
-                    delete data3.otp;
-                    callback(null, data3);
-                } else {
-                    callback(null, "resendOtp");
-                }
+                // if (diff <= 10) {
+                //     data3 = found.toObject();
+                //     delete data3.accessToken;
+                //     delete data3.password;
+                //     delete data3.forgotPassword;
+                //     delete data3.otp;
+                //     callback(null, data3);
+                // } else {
+                //     callback(null, "resendOtp");
+                // }
+                data3 = found.toObject();
+                delete data3.accessToken;
+                delete data3.password;
+                delete data3.forgotPassword;
+                delete data3.otp;
+                callback(null, data3);
             }
 
         });
