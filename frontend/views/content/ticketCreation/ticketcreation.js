@@ -1,4 +1,4 @@
-myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal) {
+myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $stateParams) {
     $scope.template = TemplateService.getHTML("content/ticketCreation/ticketCreation.html");
     TemplateService.title = "Ticket Creation"; //This is the Title of the Website
     TemplateService.landingheader = "";
@@ -32,4 +32,38 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
         }
     });
+
+    // console.log("$stateParams.id", $stateParams.id)
+
+    var ticketData = {};
+    ticketData.productId = $stateParams.id;
+    NavigationService.apiCallWithData("Ticket/findAllTickteOfUser", reminderData, function (res) {
+        if (res.value == true) {
+
+        }
+    });
+
+    $scope.addComment = function (data) {
+
+        console.log("data", data);
+        // console.log("  $.jStorage.get", $.jStorage.get("userData"));
+
+        var formData = {};
+        var dataToSend = {};
+        dataToSend.customerChat = [];
+        if (!_.isEmpty($.jStorage.get("userData"))) {
+            formData.user = $.jStorage.get("userData")._id;
+            formData.comment = data.comment;
+            dataToSend.customerChat.push(formData);
+            console.log("dataToSend", dataToSend);
+            // NavigationService.apiCallWithData("Photographer/allUpdate", $scope.userData, function (data) {
+            //     if (data.value) {
+            //         // console.log(data);
+            //         $state.reload();
+            //     }
+            // });
+        }
+    }
+
+
 });

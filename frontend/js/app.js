@@ -61,7 +61,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'ProductlistingCtrl'
         })
         .state('ticketcreation', {
-            url: "/ticketcreation",
+            url: "/ticketcreation/:id",
             templateUrl: tempateURL,
             controller: 'TicketCreationCtrl'
         })

@@ -259,13 +259,14 @@
                         </div>
                         <div class="message-send-input ">
                             <div class="send">
-                                <img src="img/ticketCreation/submit.png ">
+                                <img src="img/ticketCreation/submit.png " ng-click="addComment(data)">
                             </div>
                             <div class="attachment ">
                                 <img class=" " src="img/ticketCreation/attachment.png ">
                                 <input type="file" name="pic" accept="" class="custom-file">
+                                <!-- <upload-image multiple ng-model="data.images" no-view></upload-image> -->
                             </div>
-                            <input class="form-control message mt-5 " type="text " placeholder="Type your message ... ">
+                            <input class="form-control message mt-5 " type="text " placeholder="Type your message ... " ng-model="data.comment">
                         </div>
                     </div>
                     <div class="text-center pb-4 border-dashed-bottom ">Ticket Closed on 15/2/2018</div>
