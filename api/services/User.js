@@ -546,9 +546,9 @@ var model = {
                 callback(err, null);
             } else {
                 // console.log("found.otpTime", found.otpTime);
-                var ottym = found.otpTime;
-                var currentTime = new Date();
-                var diff = moment(currentTime).diff(ottym, 'minutes');
+                // var ottym = found.otpTime;
+                // var currentTime = new Date();
+                // var diff = moment(currentTime).diff(ottym, 'minutes');
                 // console.log("pre", moment(ottym).format('LTS'));
                 // console.log("curr", moment(currentTime).format('LTS'));
                 // console.log("diff", moment(currentTime).diff(ottym, 'minutes'));
@@ -562,12 +562,18 @@ var model = {
                 // } else {
                 //     callback(null, "resendOtp");
                 // }
+                found.email = data.email;
+                found.name = data.name;
+                User.saveData(found, function () {});
                 data3 = found.toObject();
                 delete data3.accessToken;
                 delete data3.password;
                 delete data3.forgotPassword;
                 delete data3.otp;
+                data3.email = data.email;
+                data3.name = data.name;
                 callback(null, data3);
+
             }
 
         });
