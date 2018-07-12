@@ -37,10 +37,8 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
     var ticketData = {};
     ticketData.productId = $stateParams.id;
-    NavigationService.apiCallWithData("Ticket/findAllTickteOfUser", reminderData, function (res) {
-        if (res.value == true) {
-
-        }
+    NavigationService.apiCallWithData("Ticket/findTicketOfUser", ticketData, function (res) {
+        console.log("res-----------", res);
     });
 
     $scope.addComment = function (data) {

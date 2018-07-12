@@ -39,9 +39,35 @@ var controller = {
         }
     },
 
-    findAllTickteOfUser: function (req, res) {
+    findTicketOfUser: function (req, res) {
         if (req.body) {
-            Ticket.findAllTickteOfUser(req.body, res.callback);
+            Ticket.findTicketOfUser(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
+    createNewTicket: function (req, res) {
+        if (req.body) {
+            Ticket.createNewTicket(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
+    TicketIdGenerate: function (req, res) {
+        if (req.body) {
+            Ticket.TicketIdGenerate(req.body, res.callback);
         } else {
             res.json({
                 value: false,

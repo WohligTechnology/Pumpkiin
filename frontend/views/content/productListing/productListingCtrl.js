@@ -87,4 +87,17 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, Naviga
 
         }
     });
+
+    $scope.addTicket = function (data) {
+        var dataToSend = {};
+        dataToSend.product = data;
+        console.log("dataToSend", dataToSend);
+        NavigationService.apiCallWithData("Ticket/createNewTicket", dataToSend, function (res) {
+            // console.log("res", res)
+            // if (res.value == true) {
+            //     toastr.success("Product deleted successfully");
+            // }
+        });
+    }
+
 });
