@@ -42,7 +42,7 @@
             <div class="col-12 col-md-8">
                 <div class="bg-white p-4 border-rounded fontRobotoRegular font14">
                     <h6 class="fontRobotoBold blue-color mb-2">PRODUCT INFORMATION
-                        <span class="float-right info-icon" ng-click="personalInfo=!personalInfo">
+                        <span class="float-right info-icon" ng-click="personalInfo=!personalInfo;makeEditable()">
                             {{personalInfo}}
                             <i class="fas fa-pencil-alt fa-xs"></i>
                         </span>
@@ -59,70 +59,172 @@
                         <div class="col-9 fontRobotoRegular font-color text-capitalize">
                             <div class="my-2">
                                 <div class="custom-input">
-                                    <input type="text" name="" ng-model="productDetails.productName" ng-readonly="!personalInfo " ng-change="changeName(productDetails.productName,'productName')">
+                                    <input type="text" id="productName" name="" ng-model="productDetails.productName" ng-readonly="!personalInfo " ng-change="changeName(productDetails.productName,'productName')"
+                                        readonly="readonly">
                                 </div>
                             </div>
                             <div class="my-2 ">
                                 <div class="custom-input ">
-                                    <input type="text " name=" " ng-model="productDetails.brand.name" ng-readonly="!personalInfo " ng-change="changeName(productDetails.productDetails.brand.name,'brandName')">
+                                    <input type="text" id="brandName" name=" " ng-model="productDetails.brand.name" ng-readonly="!personalInfo " ng-change="changeName(productDetails.productDetails.brand.name,'brandName')"
+                                        readonly="readonly">
                                 </div>
                             </div>
                             <div class="my-2 ">
                                 <div class="custom-input ">
-                                    <input type="text " name=" " ng-model="productDetails.serialNo" ng-readonly="!personalInfo " ng-change="changeName(productDetails.serialNo,'serialNo')">
+                                    <input type="text" id="serialNumber" name=" " ng-model="productDetails.serialNo" ng-readonly="!personalInfo " ng-change="changeName(productDetails.serialNo,'serialNo')"
+                                        readonly="readonly">
                                 </div>
                             </div>
                             <div class="my-2 ">
                                 <div class="custom-input ">
-                                    <input type="text " name=" " ng-model="productDetails.purchaseDate" ng-readonly="!personalInfo " ng-change="changeName(productDetails.purchaseDate,'purchaseDate')">
+                                    <input type="date" id="purchaseDate" name="" ng-model="productDetails.purchaseDate" ng-readonly="!personalInfo " ng-change="changeName(productDetails.purchaseDate,'purchaseDate')"
+                                        readonly="readonly">
                                 </div>
                             </div>
                             <div class="my-2 ">
                                 <div class="custom-input ">
-                                    <input type="text " name=" " ng-model="productDetails.purchasePrice" ng-readonly="!personalInfo" ng-change="changeName(productDetails.purchasePrice,'purchasePrice')">
+                                    <input type="text" id="purchasePrice" name=" " ng-model="productDetails.purchasePrice" ng-readonly="!personalInfo" ng-change="changeName(productDetails.purchasePrice,'purchasePrice')"
+                                        readonly="readonly">
                                 </div>
                             </div>
                             <div class="my-2 ">
                                 <div class="custom-input ">
-                                    <input type="text " name=" " ng-model="productDetails.retailer.name" ng-readonly="!personalInfo" ng-change="changeName(productDetails.retailer.name,'retailerName')">
+                                    <input type="text" id="Retailer" name=" " ng-model="productDetails.retailer.name" ng-readonly="!personalInfo" ng-change="changeName(productDetails.retailer.name,'retailerName')"
+                                        readonly="readonly">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <h6 class="fontRobotoBold blue-color my-3 ">PRODUCT USERS</h6>
-                    <div class="d-flex main-users ">
-                        <div class="d-flex align-items-center existing-user p-2 mr-3 " ng-repeat="rel in relation ">
-                            <div class="user-circle "></div>
-                            <div class="mx-2 fontRobotoRegular name-rel ">
-                                <div>{{rel.name}}</div>
-                                <span class="fontRobotoLight ">{{rel.relation}}</span>
+                    <div ng-if="personalInfo">
+                        <div class="row form-group" ng-init="data ={}   ">
+                            <div class="col-12 col-md-6">
+                                <label class="mb-0">Search for exsisting user</label>
+                                <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="data.Users" theme="bootstrap" sortable="true"
+                                    ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a color">
+                                    <ui-select-match placeholder="Select colors...">
+                                        <span ng-if="$item.user.name"> {{$item.user.name}}</span>
+                                        <span ng-if="!$item.user.name"> {{$item}}</span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="users in userDataForRegist.relations | filter:$select.search">
+                                        {{users.user.name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <!-- <input class="form-control form-control-sm" type="text" placeholder="Type User Name to Add" required> -->
                             </div>
-                            <div class="fontRobotoLight ">
-                                <i class="fas fa-times "></i>
+                        </div>
+                        <div class="d-flex main-users">
+                            <div class="d-flex align-items-center existing-user p-2 mb-3 mr-3" ng-repeat="user in addeduser">
+                                <div class="user-circle"></div>
+                                <div class="mx-2 fontRobotoRegular name-rel">
+                                    <div>{{user.name}}</div>
+                                    <span class="fontRobotoLight">{{user.relation}}</span>
+                                </div>
+                                <div ng-click="removedUser(user,$index)" class="fontRobotoLight">
+                                    <i class="fas fa-times"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h6 class="text-uppercase fontRobotoBold pt-3 border-dashed">ADD NEW USER</h6>
+                        <div class="row form-group">
+                            <div class="col-12 col-md-6">
+                                <label class="mb-0">Name</label>
+                                <div class=" d-flex">
+                                    <input ng-model="userData.name" class="form-control form-control-sm" type="text" required>
+                                    <!-- <input ng-model="userData.lastname" class="form-control form-control-sm w-50" type="text" required> -->
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="mb-0">Email</label>
+                                <input ng-model="userData.email" class="form-control form-control-sm" type="email" required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-12 col-md-6">
+                                <label class="mb-0">Mobile Number</label>
+                                <input ng-model="userData.mobile" class="form-control form-control-sm" type="text" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="mb-0">NickName</label>
+                                <input ng-model="userData.nickName" class="form-control form-control-sm" type="text" required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-12 col-md-6">
+                                <label class="mb-0">Relationship</label>
+                                <input ng-model="userData.relation" class="form-control form-control-sm" type="text" required>
+                            </div>
+                        </div>
+                        <div class="row form-group" ng-click="addUser(userData)">
+                            <div class="d-flex social m-3 add">
+                                <span class="social_icon">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                <div class="social-text">Add User</div>
+                            </div>
+                        </div>
+                        <div class="d-flex main-users ">
+                            <div class="d-flex align-items-center existing-user p-2 mr-3" ng-repeat="rel in relation">
+                                <div class="user-circle "></div>
+                                <div class="mx-2 fontRobotoRegular name-rel">
+                                    <div>{{rel.name}}</div>
+                                    <span class="fontRobotoLight ">{{rel.relation}}</span>
+                                </div>
+                                <div class="fontRobotoLight ">
+                                    <i class="fas fa-times "></i>
+                                </div>
+                            </div>
+                        </div>
+                        <fieldset class="d-flex social m-3 save mx-auto">
+                                <span class="social_icon">
+                                    <i class="fas fa-save"></i>
+                                </span>
+                                <div class="social-text" ng-click="goToNxtTab(data)">Save</div>
+                            </fieldset>
+                    </div>
+                    <div class="d-flex main-users" ng-if="!personalInfo">
+                        <div class="d-flex align-items-center existing-user p-2 mr-3" ng-repeat="rel in relation">
+                            <div class="mx-2 fontRobotoRegular name-rel">
+                                <div>{{rel.name}}</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-4 my-2 border-rounded position-relative reg-product-det ">
+                <div class="bg-white p-4 my-2 border-rounded position-relative reg-product-det">
                     <h6 class="fontRobotoBold blue-color ">WARRANTY
-                        <span class="ml-2 ">
-                            <img src="img/ticketCreation/warranty.png ">
-                        </span>
-                        <span class="float-right info-icon " ng-click="personalInfo=!personalInfo ">
+                        <span class="float-right info-icon " ng-click="warranty=!warranty;">
                             <i class="fas fa-pencil-alt fa-xs "></i>
                         </span>
                     </h6>
                     <div>
                         <span class="fontRobotoRegular font14 dark-font-color ">Warranty expiration date</span>
-
                         <div class="custom-input font12 ml-5 d-inline-block fontRobotoLight ">
-                            <input type="text " name=" " value="01 May 2019 " ng-readonly="!personalInfo ">
+                            <input type="text " name=" " value="01 May 2019 " ng-readonly="!warranty">
                         </div>
-
                     </div>
-                    <div class="upload-btn-wrapper mx-1 position-absolute file-upload ">
-                        <button class="btn ">+</button>
-                        <!-- <input type="file " name="myfile "> -->
+                    <div class="scrollbar d-flex">
+                        <div class="" id="scrollbar" ng-if="warranty">
+                            <div class="mt-2">
+                                <upload-image multiple ng-model="data.images"></upload-image>
+                            </div>
+                        </div>
+                        <div class="d-flex mt-2">
+                            <div class="rounded mr-1 image-style">
+                                <img class="img-thumbnail" src="img/profileImg.jpg">
+                            </div>
+                            <div class="rounded mr-1 image-style">
+                                <img class="img-thumbnail" src="img/profileImg.jpg">
+                            </div>
+                            <div class="rounded mr-1 image-style">
+                                <img class="img-thumbnail" src="img/profileImg.jpg">
+                            </div>
+                            <div class="rounded mr-1 image-style">
+                                <img class="img-thumbnail" src="img/profileImg.jpg">
+                            </div>
+                            <div class="rounded mr-1 image-style">
+                                <img class="img-thumbnail" src="img/profileImg.jpg">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="bg-white p-4 my-2 border-rounded position-relative reg-product-det ">
@@ -130,39 +232,75 @@
                         <span class="ml-2 ">
                             <img src="img/ticketCreation/warranty.png ">
                         </span>
-                        <span class="float-right info-icon " ng-click="personalInfo=!personalInfo ">
+                        <span class="float-right info-icon " ng-click="insurance=!insurance ">
                             <i class="fas fa-pencil-alt fa-xs "></i>
                         </span>
                     </h6>
                     <div>
                         <span class="fontRobotoRegular font14 dark-font-color ">Insurance expiration date</span>
                         <div class="custom-input font12 ml-5 d-inline-block fontRobotoLight ">
-                            <input type="text " name=" " value="01 May 2019 " ng-readonly="!personalInfo ">
+                            <input type="text " name=" " value="01 May 2019 " ng-readonly="!insurance ">
                         </div>
                     </div>
-                    <div class="upload-btn-wrapper mx-1 position-absolute file-upload ">
-                        <button class="btn ">+</button>
-                        <!-- <input type="file " name="myfile "> -->
+                    <div class="scrollbar d-flex">
+                        <div class="" id="scrollbar" ng-if="insurance">
+                            <div class="mt-2">
+                                <upload-image multiple ng-model="data.images"></upload-image>
+                            </div>
+                        </div>
+                        <div class="d-flex mt-2">
+                            <div class="rounded mr-1 image-style">
+                                <img class="img-thumbnail" src="img/profileImg.jpg">
+                            </div>
+                            <div class="rounded mr-1 image-style">
+                                <img class="img-thumbnail" src="img/profileImg.jpg">
+                            </div>
+                            <div class="rounded mr-1 image-style">
+                                <img class="img-thumbnail" src="img/profileImg.jpg">
+                            </div>
+                            <div class="rounded mr-1 image-style">
+                                <img class="img-thumbnail" src="img/profileImg.jpg">
+                            </div>
+                            <div class="rounded mr-1 image-style">
+                                <img class="img-thumbnail" src="img/profileImg.jpg">
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="bg-white p-4 my-2 border-rounded position-relative reg-product-det ">
+                <div class="bg-white p-4 my-2 border-rounded position-relative reg-product-det">
                     <h6 class="fontRobotoBold blue-color ">ACCESSORIES
-                        <span class="float-right info-icon " ng-click="personalInfo=!personalInfo ">
+                        <span class="float-right info-icon " ng-click="accessories=!accessories">
                             <i class="fas fa-pencil-alt fa-xs "></i>
                         </span>
                     </h6>
-                    <div class="d-flex main-users ">
-                        <div class="d-flex align-items-center existing-user p-2 mr-3 " ng-repeat="accessories in accessoriesMain ">
-                            <div class="user-circle "></div>
-                            <div class="mx-2 fontRobotoRegular name-rel ">
-                                <div>{{accessories.name}}</div>
-                                <span class="fontRobotoLight ">{{accessories.relation}}</span>
+                    <div class="row form-group" ng-if="accessories">
+                        <div class="col-12 col-md-6">
+                            <form ng-submit="addAccessories(formData)">
+                                <input class="form-control form-control-sm" ng-model="formData.accessories" type="text" placeholder="Type Accessories to Add"
+                                    required>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="d-flex main-users" ng-if="accessories">
+                        <div class="d-flex align-items-center existing-user p-2 mb-1 mr-2" ng-repeat="accessories in accessoriesMain track by $index">
+                            <div class="user-circle"></div>
+                            <div class="mx-2 fontRobotoRegular name-rel">
+                                <div>{{accessories}}</div>
+                                <!-- <span class="fontRobotoLight">{{accessories.relation}}</span> -->
                             </div>
-                            <div class="fontRobotoLight ">
-                                <i class="fas fa-times "></i>
+                            <div class="ml-auto fontRobotoLight" ng-click="remove($index)">
+                                <i class="fas fa-times cursor-point"></i>
                             </div>
                         </div>
                     </div>
+                    <div class="d-flex main-users" ng-if="!accessories">
+                            <div class="d-flex align-items-center existing-user p-2 mb-1 mr-2" ng-repeat="accessories in accessoriesMain track by $index">
+                                <div class="mx-2 fontRobotoRegular name-rel">
+                                    <div>{{accessories}}</div>
+                                    <!-- <span class="fontRobotoLight">{{accessories.relation}}</span> -->
+                                </div>
+                            </div>
+                        </div>
                 </div>
                 <div class="support-chat-history mb-5 ">
                     <h6 class="fontRobotoBold blue-color my-4 ">SUPPORT CHAT HISTORY</h6>

@@ -5,17 +5,31 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
     $scope.navigation = NavigationService.getNavigation();
 
     $scope.relation = [{
-        "name": "First Last Name",
+        "name": "Andrew John",
         "relation": "Brother",
     }, {
-        "name": "First Last Name",
+        "name": "Anther Bruter",
         "relation": "Brother",
     }];
-    $scope.accessoriesMain = [{
-        "name": "Accessories Name",
-        "relation": "Accessories",
-    }];
+    $scope.accessoriesMain = ["Headset", "Accessories Name"];
+    $scope.addAccessories = function (data) {
+    if (data.accessories) {
+        $scope.accessoriesMain.push(data.accessories);
+        data.accessories = "";
+    }
+}
+$scope.remove = function (index) {
+    $scope.accessoriesMain.splice(index, 1);
+};
 
+    $scope.makeEditable = function () {
+        document.getElementById('productName').readOnly = false;
+        document.getElementById('brandName').readOnly = false;
+        document.getElementById('serialNumber').readOnly = false;
+        document.getElementById('purchaseDate').readOnly = false;
+        document.getElementById('purchasePrice').readOnly = false;
+        document.getElementById('Retailer').readOnly = false;
+    }
 
     var dataToSend = {};
     dataToSend._id = $stateParams.id

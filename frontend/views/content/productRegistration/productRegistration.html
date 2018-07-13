@@ -65,19 +65,7 @@
                     <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span>
                     <br>
                     <div class="scrollbar">
-                        <!-- <div class="upload-btn-wrapper mx-1">
-                            <button class="btn">+</button>
-                            <input type="file" name="myfile" />
-                        </div> -->
-                        <div ng-if=data.getImages>
-                            <ul class="list-inline" ng-if="data.getImages">
-                                <li class="list-inline-item" ng-repeat="img in data.getImages">
-                                    <!-- <img src="{{img.image |uploadpath}}" class="img-fluid" /> -->
-                                    <upload-image ng-model="data.images"></upload-image>
-                                </li>
-                            </ul>
-                        </div>
-                        <div ng-if=!data.getImages>
+                        <div>
                             <upload-image multiple ng-model="data.images"></upload-image>
                         </div>
                     </div>
@@ -92,14 +80,6 @@
             </span>
             <div class="social-text">Save and Continue</div>
         </fieldset>
-        <!-- <fieldset class="d-flex social m-3 save" ng-click="saveProduct(data)" ng-disabled='product.$invalid'>
-            <span class="social_icon">
-                <i class="fas fa-save"></i>
-                </i>
-            </span>
-            <div class="social-text">Save and Continue</div>
-        </fieldset> -->
-
     </form>
 </div>
 
@@ -139,25 +119,13 @@
                     <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span>
                     <br>
                     <div class="scrollbar">
-                        <div class="upload-btn-wrapper mx-1">
+                        <!-- <div class="upload-btn-wrapper mx-1">
                             <button class="btn">+</button>
                             <input type="file" name="myfile" />
-                        </div>
-                        <div ng-if=data.getImages>
-                            <ul class="list-inline" ng-if="data.getImages">
-                                <li class="list-inline-item" ng-repeat="img in data.getPurchaseImages">
-                                    <img src="{{img.proofImage |uploadpath}}" class="img-fluid" />
-                                </li>
-                            </ul>
-
-                        </div>
-                        <div ng-if=!data.getImages>
-                            <upload-image multiple ng-model="data.images" no-view></upload-image>
-                        </div>
-                        <!-- <div class="form-group" fields>
-                            <label>Image</label>
-                            <upload-image multiple ng-model="data.images"></upload-image>
                         </div> -->
+                        <div>
+                            <upload-image multiple ng-model="data.images"></upload-image>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -277,23 +245,9 @@
                     <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span>
                     <br>
                     <div class="scrollbar">
-                        <div class="upload-btn-wrapper mx-1">
-                            <button class="btn">+</button>
-                            <input type="file" name="myfile" />
+                        <div>
+                            <upload-image multiple ng-model="data.images"></upload-image>
                         </div>
-                        <div ng-if=!data.warrantyCardImage>
-                            <upload-image multiple ng-model="data.warrantyCardImage" no-view></upload-image>
-                        </div>
-                        <!-- <div class="form-group" fields>
-                            <label>Image</label>
-                            <upload-image ng-model="data.warrantyProof"></upload-image>
-                        </div> -->
-                        <!-- <div class="d-flex social my-3 reminder" ng-controller="headerCtrl">
-                            <span class="social_icon">
-                                <i class="fas fa-plus"></i>
-                            </span>
-                            <div class="social-text" ng-click="reminderModalOpen()">Add Reminder</div>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -328,23 +282,9 @@
                     <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span>
                     <br>
                     <div class="scrollbar">
-                        <div class="upload-btn-wrapper mx-1">
-                            <button class="btn">+</button>
-                            <input type="file" name="myfile" />
+                        <div>
+                            <upload-image multiple ng-model="data.images"></upload-image>
                         </div>
-                        <div ng-if=!data.insuranceProofImage>
-                            <upload-image multiple ng-model="data.insuranceProofImage" no-view></upload-image>
-                        </div>
-                        <!-- <div class="form-group" fields>
-                            <label>Image</label>
-                            <upload-image ng-model="data.insuranceProof"></upload-image>
-                        </div> -->
-                        <!-- <div class="d-flex social my-3 reminder" ng-controller="headerCtrl">
-                            <span class="social_icon">
-                                <i class="fas fa-plus"></i>
-                            </span>
-                            <div class="social-text" ng-click="reminderModalOpen()">Add Reminder</div>
-                        </div> -->
                     </div>
                 </div>
             </div>
