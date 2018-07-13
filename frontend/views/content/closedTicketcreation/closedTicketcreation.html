@@ -20,12 +20,15 @@
                             </div>
                         </div> -->
                 <div class="d-flex justify-content-between">
-                    <div class="closed-text">
+                    <div class="closed-text" ui-sref="ticketcreation">
                         <img src="img/ticketCreation/openTicket.png">
+                        <div class="notification" ng-if="totalNumberOfOpenTickets!='noData'">{{totalNumberOfOpenTickets}}</div>
+                        <div class="notification" ng-if="totalNumberOfOpenTickets=='noData'">0</div>
                     </div>
-                    <div class="closed-text" ui-sref="closedTicketcreation">
+                    <div class="closed-text">
                         <img src="img/ticketCreation/closedTicket.png">
-                        <div class="notification">6</div>
+                        <div class="notification" ng-if="totalNumberOfClosedTickets!='noData'">{{totalNumberOfClosedTickets}}</div>
+                        <div class="notification" ng-if="totalNumberOfClosedTickets=='noData'">0</div>
                     </div>
                     <div ui-sref="productregistration">
                         <img src="img/ticketCreation/addButton.png ">
@@ -35,57 +38,19 @@
                     <h5 class="d-inline">Closed Tickets</h5>
                     <!-- <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
                             <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
-                    <span class="badge badge-style ">14</span>
+                    <span class="badge badge-style ">{{totalNumberOfTickets}}</span>
                     <span class="float-right">
                         <img src="img/ticketCreation/search.png ">
                     </span>
                 </div>
                 <div class="border-top listed-openTickets openticket ">
-                    <div class="d-flex py-1 element-list ">
+                    <div class="d-flex py-1 element-list " ng-repeat="closeticket in totalClosedTickets">
                         <div class="bullet "></div>
                         <div class="d-block pl-4">
-                            <div class="product-title text-truncate">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
+                            <div class="product-title text-truncate" ui-sref="closedTicketcreation({id: closeticket._id})">{{closeticket.product.productName}}</div>
+                            <div class="date ">{{closeticket.product.createdAt | date}}</div>
                         </div>
-                        <!-- <span class="float-right caret-style ">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                    
-                                </span> -->
                     </div>
-                    <div class="d-flex py-1 element-list ">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4">
-                            <div class="product-title text-truncate">Samsung s7 edge Samsung s7 edge Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
-                        </div>
-                        <!-- <span class="float-right caret-style ">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                    
-                                </span> -->
-                    </div>
-                    <div class="d-flex py-1 element-list ">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4">
-                            <div class="product-title text-truncate">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
-                        </div>
-                        <!-- <span class="float-right caret-style ">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                    
-                                </span> -->
-                    </div>
-                    <div class="d-flex py-1 element-list ">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4">
-                            <div class="product-title text-truncate">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
-                        </div>
-                        <!-- <span class="float-right caret-style ">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                    
-                                </span> -->
-                    </div>
-
                 </div>
                 <div class="text-right  view mt-2">View All
                     <span class="pl-2 ">
@@ -102,7 +67,7 @@
                     <div class="closed-text">
                         <img src="img/ticketCreation/Notification_circle-icon-green.png">
                     </div>
-                    <div ui-sref="productregistration">
+                    <div ng-controller="headerCtrl" ng-click="reminderModalOpen()">
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
@@ -110,55 +75,24 @@
                     <h5 class="d-inline">Reminders</h5>
                     <!-- <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
                                 <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
-                    <span class="badge badge-style ">14</span>
+                    <span class="badge badge-style ">{{totalReminders}}</span>
                     <span class="float-right">
                         <img src="img/ticketCreation/search.png ">
                     </span>
                 </div>
 
                 <div class="border-top listed-openTickets reminderSection ">
-                    <div class="d-flex py-1 element-list ">
+                    <div class="d-flex py-1 element-list " ng-repeat="reminders in allReminders">
                         <div class="bullet "></div>
                         <div class="d-block pl-4 ">
-                            <div class="product-title text-truncate">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
+                            <div class="product-title text-truncate">{{reminders.title}}</div>
+                            <div class="date ">{{reminders.dateOfReminder | date}}</div>
                         </div>
-                        <!-- <span class="float-right caret-style ">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </span> -->
-                    </div>
-                    <div class="d-flex py-1 element-list ">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4 ">
-                            <div class="product-title text-truncate">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
-                        </div>
-                        <!-- <span class="float-right caret-style ">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </span> -->
-                    </div>
-                    <div class="d-flex py-1 element-list ">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4 ">
-                            <div class="product-title text-truncate">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
-                        </div>
-                        <!-- <span class="float-right caret-style ">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </span> -->
-                    </div>
-                    <div class="d-flex py-1 element-list ">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4 ">
-                            <div class="product-title text-truncate">Samsung s7 edge Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
-                        </div>
-                        <!-- <span class="float-right caret-style ">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </span> -->
+
                     </div>
 
                 </div>
+
                 <div class="text-right  view mt-2">View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
@@ -169,7 +103,7 @@
 
         <div class="col col-md-9 " ng-init="modelNo=false ">
             <div class="background-blue border-rounded p-4">
-                <div class="media ">
+                <div class="media">
                     <div class="img-div ">
                         <img src="img/iphone.jpeg " class="img-fluid large-img ">
                         <div class="d-flex align-items-center justify-content-center small-img ">
@@ -177,69 +111,74 @@
                         </div>
                     </div>
                     <div class="media-body pl-4 text-white ">
-                        <h5 class="mt-0 fontRobotoMedium font20 " ng-click="modelNo=! modelNo ">Support ID: PSMS 6659
-                            <span class="float-right orange-color ">
-                                <span ng-show="modelNo">
-                                    <i class="fas fa-angle-up"></i>
+                        <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">Support ID: {{ticketDetails.ticketNumber}}
+                            <div class="position-absolute clock">
+                                <i class="far fa-clock"></i>
+                                </i>{{ticketDetails.issueReported | date}}</div>
+                            <div>
+                                <span class="float-right orange-color ">
+                                    <span ng-show="modelNo">
+                                        <i class="fas fa-angle-up"></i>
+                                    </span>
+                                    <span ng-show="!modelNo">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
                                 </span>
-                                <span ng-show="!modelNo">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
-                            </span>
+                            </div>
                         </h5>
                         <span class="fontRobotoBold font14 ">PRODUCT INFORMATION</span>
-                        <p class="fontRobotoRegular font20 m-0">Bose QuietComfort 25
-                            <span class="pl-2 fontRobotoLight "> (Bose)</span>
+                        <p class="fontRobotoRegular font20 m-0">{{ticketDetails.product.productName}}
+                            <span class="pl-2 fontRobotoLight "> ({{ticketDetails.product.brand.name}})</span>
                         </p>
                         <div class="row fontRobotoRegular font14 info-div mt-1" ng-show="modelNo ">
                             <div class="col col-md-6 ">
-                                <p>
+                                <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Model Number : </span>
-                                    <span class=" w-60 "> B - HDF 7585</span>
+                                    <span class="d-inline-block w-60 ">{{ticketDetails.product.modelNo}}</span>
                                 </p>
-                                <p>
+                                <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Purchase Price : </span>
-                                    <span class=" w-60 "> INR 18750</span>
+                                    <span class="d-inline-block w-60 "> {{ticketDetails.product.purchasePrice}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Store : </span>
-                                    <span class=" w-60 "> Croma Reatils, Malad West</span>
+                                    <span class="d-inline-block w-60 ">{{ticketDetails.product.purchasePrice}}</span>
                                 </p>
-                                <p class="d-flex align-items-top ">
+                                <!-- <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Attached Files : </span>
-                                    <span class=" w-60 ">
+                                    <span class="d-inline-block w-60 ">
                                         <span class="d-inline-block img-uploaded "></span>
                                         <span class="d-inline-block img-uploaded "></span>
                                         <span class="d-inline-block img-uploaded "></span>
                                         <span class="d-inline-block img-uploaded "></span>
                                     </span>
-                                </p>
+                                </p> -->
                             </div>
                             <div class="col col-md-6 ">
-                                <p>
+                                <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Serial Number : </span>
-                                    <span class=" w-60 "> 10-0B 24589 265 78</span>
+                                    <span class="d-inline-block w-60 ">{{ticketDetails.product.serialNo}}</span>
                                 </p>
-                                <p>
+                                <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Purchase Date : </span>
-                                    <span class=" w-60 "> 23-11-2017</span>
+                                    <span class="d-inline-block w-60 "> {{ticketDetails.product.purchaseDate}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Warranty : </span>
-                                    <span class="w-60 green-color "> 23-11-2017 - 22-11-2018</span>
+                                    <span class="d-inline-block w-60 green-color "> {{ticketDetails.product.warrantyExpDate}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Relation : </span>
-                                    <span class="d-inline-block w-60 ">
-                                        <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-2 ">Brother
-                                            <i class="fas fa-times "></i>
+                                    <span class="d-inline-block w-60 " ng-repeat="relatives in ticketDetails.product.user.relations">
+                                        <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
+                                            <!-- <i class="fas fa-times "></i> -->
                                         </span>
-                                        <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-3 ">Mother
+                                        <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
-                                        </span>
-                                        <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
+                                        </span> -->
+                                        <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
                                             <i class="fas fa-plus "></i>
-                                        </button>
+                                        </button> -->
                                     </span>
                                 </p>
                             </div>

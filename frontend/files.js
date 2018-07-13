@@ -44,6 +44,7 @@ module.exports = [
 
   // Services
   'frontend/js/services/template.js',
+  'frontend/js/services/ticketService.js',
 
   //Factories
   'frontend/js/factories/navigation.js',

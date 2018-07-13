@@ -66,7 +66,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'TicketCreationCtrl'
         })
         .state('closedTicketcreation', {
-            url: "/closedTicketcreation",
+            url: "/closedTicketcreation/:id",
             templateUrl: tempateURL,
             controller: 'ClosedTicketcreationCtrl'
         })

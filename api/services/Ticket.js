@@ -3,6 +3,10 @@ var schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Product'
     },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     issueReported: {
         type: Date,
         default: Date.now()
@@ -40,20 +44,40 @@ schema.plugin(deepPopulate, {
     populate: {
         product: {
             select: ""
-        }
+        },
+        "product.brand": {
+            select: ""
+        },
+        "product.user": {
+            select: ""
+        },
     }
 });
 schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('Ticket', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "product", "product"));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "product product.brand product.user", "product product.brand product.user"));
 var model = {
 
     totalNumberOfTickets: function (data, callback) {
         this.find({
             user: data.user
         }).count().exec(callback);
+    },
+
+    totalOpenTickets: function (data, callback) {
+        this.find({
+            user: data.user,
+            status: "Active"
+        }).deepPopulate('product product.brand product.user').exec(callback);
+    },
+
+    totalClosedTickets: function (data, callback) {
+        this.find({
+            user: data.user,
+            status: "Closed"
+        }).deepPopulate('product product.brand product.user').exec(callback);
     },
 
     totalNumberOfOpenTickets: function (data, callback) {
@@ -72,18 +96,20 @@ var model = {
 
     findTicketOfUser: function (data, callback) {
         this.findOne({
-            product: data.productId,
-        }).deepPopulate('product').exec(callback);
+            _id: data.ticketId,
+            user: data.user
+        }).deepPopulate('product product.brand product.user').exec(callback);
     },
 
     createNewTicket: function (data, callback) {
         Ticket.findOne({
-            product: data.product
+            product: data.product,
+            status: 'Active'
         }).exec(function (err, data1) {
             if (_.isEmpty(data1)) {
                 Ticket.TicketIdGenerate(function (err, data2) {
                     data.ticketNumber = data2;
-                    console.log("data", data);
+                    // console.log("data", data);
                     Ticket.saveData(data, callback);
                 });
             } else {
@@ -109,7 +135,7 @@ var model = {
                     } else if (m == 2) {
                         var ticketNumber = "T" + year + month + "-" + "1";
                     }
-                    console.log("ticketNumber", ticketNumber)
+                    // console.log("ticketNumber", ticketNumber)
 
                     callback(null, ticketNumber);
                 } else {
@@ -123,7 +149,7 @@ var model = {
                         } else if (m == 2) {
                             var ticketNumber = "T" + year + month + "-" + "1";
                         }
-                        console.log("ticketNumber", ticketNumber)
+                        // console.log("ticketNumber", ticketNumber)
 
                         callback(null, ticketNumber);
                     } else {
@@ -139,7 +165,7 @@ var model = {
                         } else if (m == 2) {
                             var ticketNumber = "T" + year + month + "-" + nextNum;
                         }
-                        console.log("ticketNumber", ticketNumber)
+                        // console.log("ticketNumber", ticketNumber)
                         callback(null, ticketNumber);
                     }
                 }

@@ -1,4 +1,4 @@
-myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal) {
+myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state) {
     $scope.template = TemplateService.getHTML("content/productListing/productListing.html");
     TemplateService.title = "Product Listing"; //This is the Title of the Website
     TemplateService.landingheader = "";
@@ -91,12 +91,15 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, Naviga
     $scope.addTicket = function (data) {
         var dataToSend = {};
         dataToSend.product = data;
+        dataToSend.user = $scope.jstrgValue._id;
         console.log("dataToSend", dataToSend);
         NavigationService.apiCallWithData("Ticket/createNewTicket", dataToSend, function (res) {
-            // console.log("res", res)
-            // if (res.value == true) {
-            //     toastr.success("Product deleted successfully");
-            // }
+            if (res.value == true) {
+                // console.log("res", res.data._id);
+                $state.go('ticketcreation', {
+                    'id': res.data._id
+                });
+            }
         });
     }
 
