@@ -199,7 +199,8 @@
                     <div>
                         <span class="fontRobotoRegular font14 dark-font-color ">Warranty expiration date</span>
                         <div class="custom-input font12 ml-5 d-inline-block fontRobotoLight ">
-                            <input type="text " name=" " value="01 May 2019 " ng-readonly="!warranty">
+                                <input type="date" id="purchaseDate" name="" ng-model="productDetails.purchaseDate" ng-readonly="!warranty " ng-change="changeName(productDetails.purchaseDate,'purchaseDate')"
+                                readonly="readonly">
                         </div>
                     </div>
                     <div class="scrollbar d-flex">
@@ -239,7 +240,8 @@
                     <div>
                         <span class="fontRobotoRegular font14 dark-font-color ">Insurance expiration date</span>
                         <div class="custom-input font12 ml-5 d-inline-block fontRobotoLight ">
-                            <input type="text " name=" " value="01 May 2019 " ng-readonly="!insurance ">
+                                <input type="date" id="purchaseDate" name="" ng-model="productDetails.purchaseDate" ng-readonly="!insurance " ng-change="changeName(productDetails.purchaseDate,'purchaseDate')"
+                                readonly="readonly">
                         </div>
                     </div>
                     <div class="scrollbar d-flex">
