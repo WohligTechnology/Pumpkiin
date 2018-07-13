@@ -32,13 +32,13 @@
             </h6>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-3">Product Name</label>
+                    <label class="mb-0">Product Name</label>
                     <input ng-model="data.productName" class="form-control form-control-sm" type="text" name="productName" placeholder="Product Name"
                         required>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Brand Name</label>
-                    <ui-select ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country">
+                    <ui-select ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a brand">
                         <ui-select-match placeholder="Select or search a brand in the list...">{{$select.selected.name}}</ui-select-match>
                         <ui-select-choices class="background-blue text-white" repeat="brand in brandsData | filter: $select.search">
                             <span ng-bind-html="brand.name | highlight: $select.search"></span>
@@ -65,10 +65,10 @@
                     <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span>
                     <br>
                     <div class="scrollbar">
-                        <div class="upload-btn-wrapper mx-1">
+                        <!-- <div class="upload-btn-wrapper mx-1">
                             <button class="btn">+</button>
                             <input type="file" name="myfile" />
-                        </div>
+                        </div> -->
                         <div ng-if=data.getImages>
                             <ul class="list-inline" ng-if="data.getImages">
                                 <li class="list-inline-item" ng-repeat="img in data.getImages">
@@ -78,7 +78,7 @@
                             </ul>
                         </div>
                         <div ng-if=!data.getImages>
-                            <upload-image multiple ng-model="data.images" no-view></upload-image>
+                            <upload-image multiple ng-model="data.images"></upload-image>
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
             </h6>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-3">Purchase Date</label>
+                    <label class="mb-0">Purchase Date</label>
                     <input ng-model="data.purchaseDate" name="date" class="form-control form-control-sm" type="date" required>
                 </div>
                 <div class="col-12 col-md-6">
@@ -123,7 +123,7 @@
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-3">Retailer</label>
+                    <label class="mb-0">Retailer</label>
                     <ui-select ng-model="data.retailer" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country">
                         <ui-select-match placeholder="Select or search a retailer in the list...">{{$select.selected.name}}</ui-select-match>
                         <ui-select-choices class="background-blue text-white" repeat="retailer in retaillersData | filter: $select.search">
@@ -361,7 +361,6 @@
 </div>
 
 <div class="container my-1 accessories" ng-if="activePage=='circle4'">
-    <form>
         <div class="bg-white mx-3 p-4 border-rounded product-desc productreg">
             <h6 class="text-uppercase fontRobotoBold my-3">ACCESSORIES
                 <span class="float-right info-icon">
@@ -370,26 +369,28 @@
             </h6>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <ui-select class="w-100" multiple tagging tagging-label="(custom 'new' label)" ng-model="ctrl.multipleDemo.colors" theme="bootstrap"
+                    <!-- <ui-select class="w-100" multiple tagging tagging-label="(custom 'new' label)" ng-model="ctrl.multipleDemo.colors" theme="bootstrap"
                         sortable="true" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a color">
                         <ui-select-match placeholder="Select colors...">{{$item}}</ui-select-match>
                         <ui-select-choices repeat="color in availableColors | filter:$select.search">
                             {{color}}
                         </ui-select-choices>
-                    </ui-select>
-                    <!-- <label class="mb-3">Search Accessories</label>
-                    <input class="form-control form-control-sm" type="text" placeholder="Type User Name to Add" required> -->
+                    </ui-select> -->
+                    <label class="mb-3">Accessories</label>
+                    <form ng-submit="addAccessories(formData)">
+                        <input class="form-control form-control-sm" ng-model="formData.accessories" type="text" placeholder="Type Accessories to Add" required>
+                    </form>
                 </div>
             </div>
             <div class="d-flex main-users">
-                <div class="d-flex align-items-center existing-user p-2 mb-3 mr-3" ng-repeat="accessories in accessoriesMain">
+                <div class="d-flex align-items-center existing-user p-2 mb-3 mr-3" ng-repeat="accessories in accessoriesMain track by $index">
                     <div class="user-circle"></div>
                     <div class="mx-2 fontRobotoRegular name-rel">
-                        <div>{{accessories.name}}</div>
+                        <div>{{accessories}}</div>
                         <!-- <span class="fontRobotoLight">{{accessories.relation}}</span> -->
                     </div>
-                    <div class="fontRobotoLight">
-                        <i class="fas fa-times"></i>
+                    <div class="ml-auto fontRobotoLight" ng-click="remove($index)">
+                        <i class="fas fa-times cursor-point"></i>
                     </div>
                 </div>
             </div>
@@ -401,5 +402,4 @@
             </span>
             <div class="social-text">Add Product</div>
         </fieldset>
-    </form>
 </div>

@@ -236,18 +236,16 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             // });
         },
 
-        $scope.accessoriesMain = [{
-            "name": "Accessories Name",
-            "relation": "Accessories",
-        }, {
-            "name": "Accessories Name",
-            "relation": "Accessories",
-        }, {
-            "name": "Accessories Name",
-            "relation": "Accessories",
-        }, {
-            "name": "Accessories Name",
-            "relation": "Accessories",
-        }];
+        $scope.accessoriesMain = ["Headset", "Accessories Name"];
+
+        $scope.addAccessories = function (data) {
+        if (data.accessories) {
+            $scope.accessoriesMain.push(data.accessories);
+            data.accessories = "";
+        }
+    }
+    $scope.remove = function (index) {
+        $scope.accessoriesMain.splice(index, 1);
+    };
 
 });

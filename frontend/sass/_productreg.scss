@@ -90,32 +90,46 @@
     color: #D1D1D1;
     font-size: 16px !important;
 }
-
-.upload-btn-wrapper {
-    position: relative;
-    overflow: hidden;
-    display: inline;
-    &:hover .btn {
-        background-color: $orange;
-        color: white !important;
-        transition: ease all 300ms;
+.scrollbar {
+    display: flex;
+    width: 100%;
+    overflow: auto;
+    &::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+            /* optional: just make scrollbar invisible */
+        }
+        /* optional: show position indicator in red */
+        &::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        cursor: pointer;
+        min-width: 75px;
+        &:hover .btn {
+            color: white;
+            background-color: orange;
+        }
     }
     .btn {
-        @extend .fontRobotoLight;
-        @extend .orange-color;
-        border: 1px solid #C6CBD9;
+        border: 1px solid orange;
+        color: orange;
         background-color: white;
-        padding: 5px 22px;
+        padding: 10px 25px;
         border-radius: 5px;
         font-size: 40px;
+        cursor: pointer;
     }
-    input[type=file] {
-        width: 67px;
-        height: 60px;
+    .upload-btn-wrapper input[type=file] {
+        font-size: 100px;
         position: absolute;
         left: 0;
-        top: -20px;
+        top: 0;
         opacity: 0;
+        cursor: pointer;
     }
 }
 
@@ -174,11 +188,11 @@
     .existing-user {
         background: #EBEDF1;
         border-radius: 5px;
-        min-width: 19%;
+        min-width: auto;
         color: #657D95;
         .user-circle {
-            width: 30px;
-            height: 30px;
+            min-width: 30px;
+            min-height: 30px;
             background: white;
             border-radius: 50%;
             border: solid 1px #707070;
