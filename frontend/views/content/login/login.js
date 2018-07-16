@@ -7,7 +7,7 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
     $scope.showsignUp = false;
     $scope.showLogin = true;
     $scope.shownameEmail = true;
-
+    $scope.mobile;
 
     $scope.checkUser = function (data) {
         // $scope.showsignUp = true;

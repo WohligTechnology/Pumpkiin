@@ -119,10 +119,6 @@
                     <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span>
                     <br>
                     <div class="scrollbar">
-                        <!-- <div class="upload-btn-wrapper mx-1">
-                            <button class="btn">+</button>
-                            <input type="file" name="myfile" />
-                        </div> -->
                         <div>
                             <upload-image multiple ng-model="data.images"></upload-image>
                         </div>
@@ -224,15 +220,6 @@
                     <i class="fas fa-info-circle"></i>
                 </span>
             </h6>
-            <!-- <div class="row form-group">
-                <div class="col-12 col-md-6">
-                    <label class="mb-3">Period</label>
-                    <div class="d-flex">
-                        <input ng-model="data.warrantyPeriod" class="form-control form-control-sm w-50 mr-2" type="text" required>
-                        <input class="form-control form-control-sm w-50" type="text" required>
-                    </div>
-                </div>
-            </div> -->
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Expiry Date</label>
@@ -246,7 +233,7 @@
                     <br>
                     <div class="scrollbar">
                         <div>
-                            <upload-image multiple ng-model="data.images"></upload-image>
+                            <upload-image multiple ng-model="data.warrantyCardImage"></upload-image>
                         </div>
                     </div>
                 </div>
@@ -261,15 +248,6 @@
                     <i class="fas fa-info-circle"></i>
                 </span>
             </h6>
-            <!-- <div class="row form-group">
-                <div class="col-12 col-md-6">
-                    <label class="mb-0">Period</label>
-                    <div class="d-flex">
-                        <input ng-model="data.insurancePeriod" class="form-control form-control-sm w-50 mr-2" type="text" required>
-                        <input class="form-control form-control-sm w-50" type="text" required>
-                    </div>
-                </div>
-            </div> -->
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Expiry Date</label>
@@ -283,7 +261,7 @@
                     <br>
                     <div class="scrollbar">
                         <div>
-                            <upload-image multiple ng-model="data.images"></upload-image>
+                            <upload-image multiple ng-model="data.insuranceProofImage"></upload-image>
                         </div>
                     </div>
                 </div>
@@ -301,45 +279,46 @@
 </div>
 
 <div class="container my-1 accessories" ng-if="activePage=='circle4'">
-        <div class="bg-white mx-3 p-4 border-rounded product-desc productreg">
-            <h6 class="text-uppercase fontRobotoBold my-3">ACCESSORIES
-                <span class="float-right info-icon">
-                    <i class="fas fa-info-circle"></i>
-                </span>
-            </h6>
-            <div class="row form-group">
-                <div class="col-12 col-md-6">
-                    <!-- <ui-select class="w-100" multiple tagging tagging-label="(custom 'new' label)" ng-model="ctrl.multipleDemo.colors" theme="bootstrap"
+    <div class="bg-white mx-3 p-4 border-rounded product-desc productreg">
+        <h6 class="text-uppercase fontRobotoBold my-3">ACCESSORIES
+            <span class="float-right info-icon">
+                <i class="fas fa-info-circle"></i>
+            </span>
+        </h6>
+        <div class="row form-group">
+            <div class="col-12 col-md-6">
+                <!-- <ui-select class="w-100" multiple tagging tagging-label="(custom 'new' label)" ng-model="ctrl.multipleDemo.colors" theme="bootstrap"
                         sortable="true" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a color">
                         <ui-select-match placeholder="Select colors...">{{$item}}</ui-select-match>
                         <ui-select-choices repeat="color in availableColors | filter:$select.search">
                             {{color}}
                         </ui-select-choices>
                     </ui-select> -->
-                    <label class="mb-3">Accessories</label>
-                    <form ng-submit="addAccessories(formData)">
-                        <input class="form-control form-control-sm" ng-model="formData.accessories" type="text" placeholder="Type Accessories to Add" required>
-                    </form>
-                </div>
+                <label class="mb-3">Accessories</label>
+                <form ng-submit="addAccessories(formData)">
+                    <input class="form-control form-control-sm" ng-model="formData.accessories" type="text" placeholder="Type Accessories to Add"
+                        required>
+                </form>
             </div>
-            <div class="d-flex main-users">
-                <div class="d-flex align-items-center existing-user p-2 mb-3 mr-3" ng-repeat="accessories in accessoriesMain track by $index">
-                    <div class="user-circle"></div>
-                    <div class="mx-2 fontRobotoRegular name-rel">
-                        <div>{{accessories}}</div>
-                        <!-- <span class="fontRobotoLight">{{accessories.relation}}</span> -->
-                    </div>
-                    <div class="ml-auto fontRobotoLight" ng-click="remove($index)">
-                        <i class="fas fa-times cursor-point"></i>
-                    </div>
+        </div>
+        <div class="d-flex main-users">
+            <div class="d-flex align-items-center existing-user p-2 mb-3 mr-3" ng-repeat="accessories in accessoriesMain track by $index">
+                <div class="user-circle"></div>
+                <div class="mx-2 fontRobotoRegular name-rel">
+                    <div>{{accessories}}</div>
+                    <!-- <span class="fontRobotoLight">{{accessories.relation}}</span> -->
+                </div>
+                <div class="ml-auto fontRobotoLight" ng-click="remove($index)">
+                    <i class="fas fa-times cursor-point"></i>
                 </div>
             </div>
         </div>
-        <fieldset class="d-flex social m-3 save ml-auto" ui-sref="productListing">
-            <span class="social_icon">
-                <i class="fas fa-plus"></i>
-                </i>
-            </span>
-            <div class="social-text">Add Product</div>
-        </fieldset>
+    </div>
+    <fieldset class="d-flex social m-3 save ml-auto" ng-click="addProduct()">
+        <span class="social_icon">
+            <i class="fas fa-plus"></i>
+            </i>
+        </span>
+        <div class="social-text">Add Product</div>
+    </fieldset>
 </div>

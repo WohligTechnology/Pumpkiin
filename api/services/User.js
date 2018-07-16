@@ -321,7 +321,7 @@ var model = {
         var newuserData;
         async.waterfall([
             function (callback) {
-                // console.log("data", data);
+                console.log("data", data);
                 var dataToSend = {};
                 dataToSend.name = data.name;
                 dataToSend.nickName = data.nickName;
@@ -353,7 +353,12 @@ var model = {
                 arrData.push(sendData1)
                 sendData.relations = arrData;
                 // console.log("sendData---------", sendData);
-                User.saveData(sendData, callback);
+                User.saveData(sendData, function (err, userData) {
+                    var productDataToSave = {};
+                    productDataToSave._id = data.productId;
+                    productDataToSave.relatedUser = arrData;
+                    Product.saveData(productDataToSave, callback)
+                });
             }
         ], callback);
     },
@@ -545,26 +550,8 @@ var model = {
             if (err || _.isEmpty(found)) {
                 callback(err, null);
             } else {
-                // console.log("found.otpTime", found.otpTime);
-                // var ottym = found.otpTime;
-                // var currentTime = new Date();
-                // var diff = moment(currentTime).diff(ottym, 'minutes');
-                // console.log("pre", moment(ottym).format('LTS'));
-                // console.log("curr", moment(currentTime).format('LTS'));
-                // console.log("diff", moment(currentTime).diff(ottym, 'minutes'));
-                // if (diff <= 10) {
-                //     data3 = found.toObject();
-                //     delete data3.accessToken;
-                //     delete data3.password;
-                //     delete data3.forgotPassword;
-                //     delete data3.otp;
-                //     callback(null, data3);
-                // } else {
-                //     callback(null, "resendOtp");
-                // }
-                found.email = data.email;
-                found.name = data.name;
-                User.saveData(found, function () {});
+                data._id = found._id
+                User.saveData(data, function () {});
                 data3 = found.toObject();
                 delete data3.accessToken;
                 delete data3.password;

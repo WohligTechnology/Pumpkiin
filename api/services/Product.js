@@ -11,17 +11,30 @@ var schema = new Schema({
         ref: 'Retailer'
     },
     purchaseDate: Date,
+    purchasePrice: Number,
+    purchaseProof: [String],
+    relatedUser: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+
     warrantyPeriod: String,
     warrantyExpDate: Date,
+    warrantyCardImage: [String],
+
+    insurancePeriod: String,
+    insuranceExpDate: Date,
+    insuranceProofImage: [String],
+
+
     bill: Schema.Types.Mixed,
-    purchasePrice: Number,
     confirmationCode: String,
     status: {
         type: String,
-        enum: ['Pending', 'Confirmed']
+        enum: ['Pending', 'Confirmed'],
+        default: 'Pending'
     },
     productImages: [String],
-    purchaseProof: [String],
     localSupport: [{
         name: String,
         contact: Date,
@@ -33,28 +46,20 @@ var schema = new Schema({
         doc: String
     }],
     invoiceImage: String,
-    warrantyCardImage: String,
     tags: String,
     type: {
         type: String,
         enum: ['Product', 'Accessory']
     },
-    productAccessoryMap: [{
-        product: String,
-    }],
+    productAccessory: [String],
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    relatedUser: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
+
     category: String,
     warrantyProof: String,
-    insurancePeriod: String,
-    insuranceExpDate: Date,
-    insuranceProofImage: [String],
+
     doneBy: {
         type: String,
         enum: ['Admin', 'User']
@@ -74,6 +79,12 @@ schema.plugin(deepPopulate, {
         },
         'retailer': {
             select: ''
+        },
+        'user': {
+            select: ''
+        },
+        'user.relations.user': {
+            select: ''
         }
     }
 });
@@ -81,7 +92,7 @@ schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('Product', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "brand retailer ", "brand retailer "));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "brand retailer user user.relations.user", "brand retailer user user.relations.user"));
 var model = {
 
     saveProduct: function (data, callback) {
