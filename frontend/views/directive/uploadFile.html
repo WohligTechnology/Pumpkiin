@@ -1,6 +1,13 @@
-<div class="form-group d-flex image-upload">
+<div class="form-group d-flex image-upload {{imageclass}}">
+        <br ng-show="isMultiple">
+        <!-- <button ng-show="isMultiple" class="btn btn-danger btn-outline btn-small create-btn" ng-click="clearOld()">CLEAR FILES</button> -->
+        <span class="label label-success mr-3" ng-if="uploadStatus == 'uploaded'" ng-show="!isMultiple">Documents Uploaded - {{image.file.name}}</span>
+        <span class="label label-success mr-3" ng-if="uploadStatus == 'uploaded'" ng-show="isMultiple">Documents Uploaded - {{image.length}}</span>
+        <span class="label label-warning mr-3" ng-if="uploadStatus == 'uploading'" ng-show="!isMultiple">Uploading Documents {{image.file.name}}</span>
+        <span class="label label-warning mr-3" ng-if="uploadStatus == 'uploading'" ng-show="isMultiple">Uploading Documents {{image.length}}</span>
         <div class="upload-btn-wrapper mr-1 float-left">
-            <button class="btn">+</button>
+            <img ng-if="imagesrc && imageclass" src="{{imagesrc}}">
+            <button ng-if="!(imagesrc && imageclass)" class="btn">+</button>
             <input id="inputImage" ng-show="!isMultiple && type=='image'" type="file" accept="image/*,application/pdf" image="image"
                 title="Choose Files" class="btn-primary">
             <input id="inputImage" ng-show="!isMultiple && type=='pdf'" type="file" accept="application/pdf" image="image" title="Choose Files"
@@ -38,10 +45,5 @@
             class="btn-primary" multiple>
         <span>CHOOSE FILE</span>
     </div> -->
-    <br ng-show="isMultiple">
-    <!-- <button ng-show="isMultiple" class="btn btn-danger btn-outline btn-small create-btn" ng-click="clearOld()">CLEAR FILES</button> -->
-    <span class="label label-success" ng-if="uploadStatus == 'uploaded'" ng-show="!isMultiple">Document Uploaded - {{image.file.name}}</span>
-    <span class="label label-success" ng-if="uploadStatus == 'uploaded'" ng-show="isMultiple">Document Uploaded - {{image.length}}</span>
-    <span class="label label-warning" ng-if="uploadStatus == 'uploading'" ng-show="!isMultiple">Uploading Document {{image.file.name}}</span>
-    <span class="label label-warning" ng-if="uploadStatus == 'uploading'" ng-show="isMultiple">Uploading Document {{image.length}}</span>
+    
 </div>

@@ -108,9 +108,13 @@ myApp.directive('img', function ($compile, $parse) {
             scope: {
                 model: '=ngModel',
                 type: "@type",
-                callback: "&ngCallback"
+                callback: "&ngCallback",
+                imagesrc:'@imageSrc',
+                imageclass:'@imageClass'
+
             },
             link: function ($scope, element, attrs) {
+                console.log($scope.imagesrc,$scope.imageclass);
                 $scope.showImage = function () {};
                 $scope.check = true;
                 if (!$scope.type) {

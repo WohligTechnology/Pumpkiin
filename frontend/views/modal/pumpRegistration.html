@@ -6,30 +6,18 @@
 </div>
 <div class="modal-body fontRobotoLight" id="modal-body">
     <div class="mb-2 fontRobotoRegular">Upload Product Invioce</div>
-    <div class="upload-btn-wrapper mx-1">
-        <button class="btn">+</button>
-        <input type="file" name="myfile" />
-    </div>
 
-    <div ng-if=!data.productInvoicePR>
-        <upload-image multiple ng-model="data.productInvoicePR" no-view></upload-image>
+    <div class="scrollbar" ng-if=!data.productInvoicePR>
+        <div>
+            <upload-image multiple ng-model="data.images"></upload-image>
+        </div>
     </div>
-    <!-- <div class="form-group" fields>
-        <label>Image</label>
-        <upload-image ng-model="data.purchaseproof1"></upload-image>
-    </div> -->
     <div class="mb-2 mt-3 fontRobotoRegular">Upload Warranty Card</div>
-    <div class="upload-btn-wrapper mx-1">
-        <button class="btn">+</button>
-        <input type="file" name="myfile" />
+    <div class="scrollbar" ng-if=!data.warrantyCardPR>
+        <div>
+            <upload-image multiple ng-model="data.images"></upload-image>
+        </div>
     </div>
-    <div ng-if=!data.warrantyCardPR>
-        <upload-image multiple ng-model="data.warrantyCardPR" no-view></upload-image>
-    </div>
-    <!-- <div class="form-group" fields>
-        <label>Image</label>
-        <upload-image ng-model="data.warrantyProof"></upload-image>
-    </div> -->
     <div class="d-flex justify-content-center text-center my-3 fontRobotoRegular" ng-click="submitDocuments(data)">
         <a role="button" class="button green-btn py-1 w-50">UPLOAD FILES</a>
     </div>

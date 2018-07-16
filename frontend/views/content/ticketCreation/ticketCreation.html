@@ -118,7 +118,7 @@
                                     <span ng-show="modelNo">
                                         <i class="fas fa-angle-up"></i>
                                     </span>
-                                    <span ng-show="!modelNo">
+                                <span ng-show="!modelNo">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
                                 </span>
@@ -171,10 +171,10 @@
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
                                             <!-- <i class="fas fa-times "></i> -->
                                         </span>
-                                        <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
+                                    <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
                                         </span> -->
-                                        <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
+                                    <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
                                             <i class="fas fa-plus "></i>
                                         </button> -->
                                     </span>
@@ -222,15 +222,17 @@
                                 <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
                             </div> -->
                         </div>
-                        <div class="message-send-input ">
+                        <div class="message-send-input">
                             <div class="send">
                                 <img src="img/ticketCreation/submit.png " ng-click="addComment(data)">
                             </div>
-                            <div class="attachment ">
+                            <div class="scrollbar-tcreation">
+                                <upload-image multiple ng-model="data.images" image-src="../img/ticketCreation/attachment.png" image-class="attachment" no-view></upload-image>
+                            </div>
+                            <!-- <div class="attachment">
                                 <img class=" " src="img/ticketCreation/attachment.png ">
                                 <input type="file" name="pic" accept="" class="custom-file">
-                                <!-- <upload-image multiple ng-model="data.images" no-view></upload-image> -->
-                            </div>
+                            </div> -->
                             <input class="form-control message mt-5 " type="text " placeholder="Type your message ... " ng-model="data.comment">
                         </div>
                     </div>

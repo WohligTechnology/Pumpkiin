@@ -200,8 +200,46 @@
     .attachment {
         position: absolute;
         right: 40px;
-        margin: 10px;
+        margin: 7px;
         cursor: pointer;
+    }
+    .scrollbar-tcreation{
+        &::-webkit-scrollbar {
+                width: 0px;
+                background: transparent;
+                /* optional: just make scrollbar invisible */
+            }
+            /* optional: show position indicator in red */
+            &::-webkit-scrollbar-thumb {
+                background: transparent;
+            }
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            cursor: pointer;
+            &:hover .btn {
+                color: white;
+                background-color: orange;
+            }
+        }
+        .btn {
+            border: 1px solid orange;
+            color: orange;
+            background-color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        .upload-btn-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
     }
 }
 

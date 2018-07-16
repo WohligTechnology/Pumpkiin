@@ -7,6 +7,8 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
     $scope.max = 5;
     $scope.isReadonly = false;
     $scope.jstrgValue = $.jStorage.get('userData');
+    
+    $scope.attachmentImage=true;
 
     $scope.newUserModalOpen = function () {
         $scope.addNewUser = $uibModal.open({
