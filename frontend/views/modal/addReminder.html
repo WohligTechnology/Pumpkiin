@@ -8,18 +8,19 @@
     <form>
         <div class="form-group">
             <label for="title">Add Title *</label>
-            <input class="form-control form-control-sm" type="text" name="title" ng-model="data.title">
+            <input class="form-control form-control-sm" type="text" name="title" ng-model="data.title" required>
         </div>
         <div class="form-group">
             <label for="title">Add Description</label>
-            <input class="form-control form-control-sm" type="text" name="description" ng-model="data.description">
+            <input class="form-control form-control-sm" type="text" name="description" ng-model="data.description" required>
         </div>
         <div class="form-group">
             <label for="title">Select Date</label>
             <input ng-model="data.dateOfReminder" class="form-control form-control-sm" type="date" required>
-
-            <!-- <input class="form-control form-control-sm w-50" type="datetime-local" name="title"> -->
-
+        </div>
+        <div class="form-group">
+            <label for="title">Select Time</label>
+            <input ng-model="data.dateOfReminder" class="form-control form-control-sm" type="time" required>
         </div>
         <div class="text-center">
             <button class="reminder-btn" ng-click="saveReminder(data)">Save Reminder</button>
