@@ -104,7 +104,7 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Retailer</label>
-                    <ui-select ng-model="data.retailer" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country">
+                    <ui-select ng-model="data.retailer" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a country">
                         <ui-select-match placeholder="Select or search a retailer in the list...">{{$select.selected.name}}</ui-select-match>
                         <ui-select-choices class="background-blue text-white" repeat="retailer in retaillersData | filter: $select.search">
                             <span ng-bind-html="retailer.name | highlight: $select.search"></span>
@@ -136,8 +136,8 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Search for exsisting user</label>
                     <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="data.Users" theme="bootstrap" sortable="true"
-                        ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a color">
-                        <ui-select-match placeholder="Select colors...">
+                        ng-disabled="ctrl.disabled" title="Choose a color">
+                        <ui-select-match placeholder="Select users...">
                             <span ng-if="$item.user.name"> {{$item.user.name}}</span>
                             <span ng-if="!$item.user.name"> {{$item}}</span>
                         </ui-select-match>
@@ -288,7 +288,7 @@
         <div class="row form-group">
             <div class="col-12 col-md-6">
                 <!-- <ui-select class="w-100" multiple tagging tagging-label="(custom 'new' label)" ng-model="ctrl.multipleDemo.colors" theme="bootstrap"
-                        sortable="true" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a color">
+                        sortable="true" ng-disabled="ctrl.disabled" title="Choose a color">
                         <ui-select-match placeholder="Select colors...">{{$item}}</ui-select-match>
                         <ui-select-choices repeat="color in availableColors | filter:$select.search">
                             {{color}}
