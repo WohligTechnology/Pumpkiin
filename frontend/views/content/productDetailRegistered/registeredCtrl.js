@@ -57,11 +57,9 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
 
     $scope.makeEditable = function () {
         document.getElementById('productName').readOnly = false;
-        // document.getElementById('brandName').disabled = false;
         document.getElementById('serialNumber').readOnly = false;
         document.getElementById('purchaseDate').readOnly = false;
         document.getElementById('purchasePrice').readOnly = false;
-        // document.getElementById('Retailer').readOnly = false;
     }
 
 

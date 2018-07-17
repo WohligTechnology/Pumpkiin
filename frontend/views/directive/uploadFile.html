@@ -28,6 +28,7 @@
     <div class="d-flex" ng-if="model && isMultiple" ng-hide="noShow">
         <div class="img-box mr-1" ng-repeat="sImage in model track by $index">
             <img alt="" ng-src="{{sImage|uploadpath}}" class="img-fluid uploadingImage img-thumbnail" />
+            <div class="img-delete"><i class="far fa-times-circle fa-xs"></i></div>
         </div>
     </div>
 

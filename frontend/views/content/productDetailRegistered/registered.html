@@ -43,7 +43,6 @@
                 <div class="bg-white p-4 border-rounded fontRobotoRegular font14">
                     <h6 class="fontRobotoBold blue-color mb-2">PRODUCT INFORMATION
                         <span class="float-right info-icon" ng-click="personalInfo=!personalInfo;">
-                            {{personalInfo}}
                             <i class="fas fa-pencil-alt fa-xs"></i>
                         </span>
                     </h6>
@@ -62,11 +61,11 @@
                                     <input type="text" id="productName" name="" ng-model="productDetails.productName" ng-readonly="!personalInfo">
                                 </div>
                             </div>
-                            <div class="my-2 height-label" ng-init="data ={}   ">
-                                <div class="custom-input" ng-if="productDetails.brand.name">
+                            <div class="my-2 height-label" ng-init="data ={}">
+                                <div class="custom-input" ng-if="!personalInfo">
                                     <input type="text" id="brandName" name=" " ng-model="productDetails.brand.name" ng-readonly="!personalInfo">
                                 </div>
-                                <ui-select ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a brand" ng-if="!productDetails.brand.name">
+                                <ui-select ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a brand" ng-if="personalInfo">
                                     <ui-select-match placeholder="Select or search a brand in the list...">{{$select.selected.name}}</ui-select-match>
                                     <ui-select-choices class="background-blue text-white" repeat="brand in brandsData | filter: $select.search">
                                         <span ng-bind-html="brand.name | highlight: $select.search"></span>
