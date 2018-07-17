@@ -16,11 +16,7 @@
         </div>
         <div class="form-group">
             <label for="title">Select Date</label>
-            <input ng-model="data.dateOfReminder" class="form-control form-control-sm" type="date" required>
-        </div>
-        <div class="form-group">
-            <label for="title">Select Time</label>
-            <input ng-model="data.dateOfReminder" class="form-control form-control-sm" type="time" required>
+            <input ng-model="data.dateOfReminder" class="form-control form-control-sm" type="datetime-local" required>
         </div>
         <div class="text-center">
             <button class="reminder-btn" ng-click="saveReminder(data)">Save Reminder</button>

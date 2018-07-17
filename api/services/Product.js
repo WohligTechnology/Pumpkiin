@@ -14,8 +14,11 @@ var schema = new Schema({
     purchasePrice: Number,
     purchaseProof: [String],
     relatedUser: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+        relationType: String,
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
     }],
 
     warrantyPeriod: String,
@@ -83,7 +86,7 @@ schema.plugin(deepPopulate, {
         'user': {
             select: ''
         },
-        'user.relations.user': {
+        'relatedUser.user': {
             select: ''
         }
     }
@@ -92,7 +95,7 @@ schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('Product', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "brand retailer user user.relations.user", "brand retailer user user.relations.user"));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "brand retailer user relatedUser.user", "brand retailer user relatedUser.user"));
 var model = {
 
     saveProduct: function (data, callback) {

@@ -1,4 +1,4 @@
-myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $stateParams, $state, ticketService) {
+myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, reminderService, $uibModal, $stateParams, $state, ticketService) {
     $scope.template = TemplateService.getHTML("content/ticketCreation/ticketCreation.html");
     TemplateService.title = "Ticket Creation"; //This is the Title of the Website
     TemplateService.landingheader = "";
@@ -7,8 +7,8 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
     $scope.max = 5;
     $scope.isReadonly = false;
     $scope.jstrgValue = $.jStorage.get('userData');
-    
-    $scope.attachmentImage=true;
+
+    $scope.attachmentImage = true;
 
     $scope.newUserModalOpen = function () {
         $scope.addNewUser = $uibModal.open({
@@ -18,22 +18,46 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
         });
     }
 
-    var reminderData = {};
-    reminderData.user = $scope.jstrgValue._id;
-    NavigationService.apiCallWithData("Reminder/findReminderByUser", reminderData, function (res) {
-        if (res.value == true) {
-            // console.log("res--111---", res.data);
-            $scope.allReminders = res.data;
-        }
+    //REMINDER SECTION
+
+    reminderService.findReminderOfPendingSnoozeByUser(function (data) {
+        $scope.allReminders = data;
+        $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
     });
 
-    NavigationService.apiCallWithData("Reminder/totalNumberOfReminders", reminderData, function (res) {
-        if (res.value == true) {
-            // console.log("res---222--", res.data);
-            $scope.totalReminders = res.data;
 
-        }
+    reminderService.totalNumberOfReminders(function (data) {
+        $scope.totalReminders = data;
+        console.log("$scope.totalReminders", $scope.totalReminders);
     });
+
+    reminderService.totalNumberOfCompletedReminders(function (data) {
+        $scope.totalCompletedReminder = data;
+        console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
+    });
+
+
+    reminderService.totalNumberOfPendingReminders(function (data) {
+        $scope.totalPendingReminders = data;
+        console.log("$scope.totalPendingReminders--", $scope.totalPendingReminders);
+    });
+
+
+    $scope.completedReminders = function (data) {
+        reminderService.findReminderOfCompletedByUser(function (data) {
+            $scope.allReminders = data;
+            $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+        });
+    }
+
+    $scope.pendingReminders = function (data) {
+        reminderService.findReminderOfPendingSnoozeByUser(function (data) {
+            $scope.allReminders = data;
+            $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+        });
+    }
+
+    //REMINDER SECTION END
 
     //for ticket block
 

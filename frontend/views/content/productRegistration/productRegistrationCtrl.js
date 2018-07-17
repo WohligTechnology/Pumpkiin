@@ -8,6 +8,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     $scope.activePage = 'circle1';
     $scope.productImages = [];
     $scope.productImages.image = {};
+    $scope.data = {};
     $scope.jstrgValue = $.jStorage.get('userData');
     $scope.makeActive = function (click) {
         $('.' + click).addClass("timeline-active");
@@ -179,9 +180,35 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
                 $state.go("productListing");
             });
         }
+
+        $scope.callProduct = function () {
+            $scope.dataToGet = {};
+            $scope.dataToGet._id = $scope.product_id;
+            NavigationService.apiCallWithData("Product/getOne", $scope.dataToGet, function (res) {
+                $scope.data = res.data;
+                if (res.data.purchasedate) {
+                    $scope.data.purchasedate = new Date(res.data.purchasedate);
+                }
+                if (res.data.productImages) {
+                    $scope.data.getImages = res.data.productImages;
+                }
+                if (res.data.purchaseproof) {
+                    $scope.data.getPurchaseImages = res.data.purchaseproof;
+                }
+                if (res.data.insuranceExpDate) {
+                    $scope.data.insuranceExpDate = new Date(res.data.insuranceExpDate);
+                }
+                if (res.data.warrantyExpDate) {
+                    $scope.data.warrantyExpDate = new Date(res.data.warrantyExpDate);
+                }
+            });
+        }
     } else {
         toastr.error('Please fill form properly');
     }
+
+
+
 
     $scope.submitDocuments = function (docs) {
         console.log("*************", docs);

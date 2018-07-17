@@ -1,4 +1,4 @@
-myApp.controller('NotificationCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state) {
+myApp.controller('NotificationCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state, reminderService) {
     $scope.template = TemplateService.getHTML("content/notification/notification.html");
     TemplateService.landingheader = "";
     TemplateService.title = "Notification"; //This is the Title of the Website
@@ -6,31 +6,48 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, Navigati
 
     // TemplateService.header = " ";
     $scope.navigation = NavigationService.getNavigation();
-    $scope.reminderModalOpen = function () {
-        $scope.addReminder = $uibModal.open({
-            animation: true,
-            templateUrl: "views/modal/addReminder.html",
-            scope: $scope,
-            windowClass: 'app-modal-window'
+
+    //REMINDER SECTION
+
+    reminderService.findReminderOfPendingSnoozeByUser(function (data) {
+        $scope.allReminders = data;
+        $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+    });
+
+
+    reminderService.totalNumberOfReminders(function (data) {
+        $scope.totalReminders = data;
+        console.log("$scope.totalReminders", $scope.totalReminders);
+    });
+
+    reminderService.totalNumberOfCompletedReminders(function (data) {
+        $scope.totalCompletedReminder = data;
+        console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
+    });
+
+
+    reminderService.totalNumberOfPendingReminders(function (data) {
+        $scope.totalPendingReminders = data;
+        console.log("$scope.totalPendingReminders--", $scope.totalPendingReminders);
+    });
+
+
+    $scope.completedReminders = function (data) {
+        reminderService.findReminderOfCompletedByUser(function (data) {
+            $scope.allReminders = data;
+            $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
         });
     }
 
-    var reminderData = {};
-    reminderData.user = $scope.jstrgValue._id;
-    NavigationService.apiCallWithData("Reminder/findReminderByUser", reminderData, function (res) {
-        if (res.value == true) {
-            // console.log("res--111---", res.data);
-            $scope.allReminders = res.data;
-        }
-    });
+    $scope.pendingReminders = function (data) {
+        reminderService.findReminderOfPendingSnoozeByUser(function (data) {
+            $scope.allReminders = data;
+            $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+        });
+    }
 
-    NavigationService.apiCallWithData("Reminder/totalNumberOfReminders", reminderData, function (res) {
-        if (res.value == true) {
-            // console.log("res---222--", res.data);
-            $scope.totalReminders = res.data;
+    //REMINDER SECTION END
 
-        }
-    });
 
     $scope.chnageStatus = function (data) {
         console.log("data", data);

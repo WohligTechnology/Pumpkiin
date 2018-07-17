@@ -13,9 +13,50 @@ var controller = {
         }
     },
 
-    findReminderByUser: function (req, res) {
+    totalNumberOfCompletedReminders: function (req, res) {
         if (req.body) {
-            Reminder.findReminderByUser(req.body, res.callback);
+            Reminder.totalNumberOfCompletedReminders(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
+
+    totalNumberOfPendingReminders: function (req, res) {
+        if (req.body) {
+            Reminder.totalNumberOfPendingReminders(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
+
+    findReminderOfPendingSnoozeByUser: function (req, res) {
+        if (req.body) {
+            Reminder.findReminderOfPendingSnoozeByUser(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
+    findReminderOfCompletedByUser: function (req, res) {
+        if (req.body) {
+            Reminder.findReminderOfCompletedByUser(req.body, res.callback);
         } else {
             res.json({
                 value: false,

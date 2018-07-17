@@ -180,11 +180,12 @@
             <div class="bg-white border-rounded p-3 mt-3 productreg ">
                 <div class="d-flex justify-content-between">
                     <div class="closed-text">
-                        <img src="img/header/Notification_circle-icon-orange.png">
-                        <div class="notification notification-orange">6</div>
+                        <img src="img/header/Notification_circle-icon-orange.png" ng-click="pendingReminders()">
+                        <div class="notification notification-orange">{{totalPendingReminders}}</div>
                     </div>
                     <div class="closed-text">
-                        <img src="img/ticketCreation/Notification_circle-icon-green.png">
+                        <img src="img/ticketCreation/Notification_circle-icon-green.png" ng-click="completedReminders()">
+                        <div class="notification notification-orange">{{totalCompletedReminder}}</div>
                     </div>
                     <div ng-controller="headerCtrl" ng-click="reminderModalOpen()">
                         <img src="img/ticketCreation/addButton.png ">
@@ -212,7 +213,7 @@
 
 
                 </div>
-                <div class="text-right  view mt-2">View All
+                <div class="text-right  view mt-2" ui-sref='notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>

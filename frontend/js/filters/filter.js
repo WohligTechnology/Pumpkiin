@@ -51,3 +51,13 @@ myApp.filter('indianCurrency', function () {
     }
   }
 });
+
+myApp.filter('serverimage', function () {
+  return function (image) {
+    if (image && image !== null) {
+      return adminurl + "upload/readFile?file=" + image;
+    } else {
+      return undefined;
+    }
+  }
+});

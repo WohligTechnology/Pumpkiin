@@ -61,11 +61,12 @@
             <div class="bg-white border-rounded p-3 mt-3 productreg ">
                 <div class="d-flex justify-content-between">
                     <div class="closed-text">
-                        <img src="img/header/Notification_circle-icon-orange.png">
-                        <div class="notification notification-orange">6</div>
+                        <img src="img/header/Notification_circle-icon-orange.png" ng-click="pendingReminders()">
+                        <div class="notification notification-orange">{{totalPendingReminders}}</div>
                     </div>
                     <div class="closed-text">
-                        <img src="img/ticketCreation/Notification_circle-icon-green.png">
+                        <img src="img/ticketCreation/Notification_circle-icon-green.png" ng-click="completedReminders()">
+                        <div class="notification notification-orange">{{totalCompletedReminder}}</div>
                     </div>
                     <div ng-controller="headerCtrl" ng-click="reminderModalOpen()">
                         <img src="img/ticketCreation/addButton.png ">
@@ -92,7 +93,7 @@
                     </div>
 
                 </div>
-                <div class="text-right  view mt-2">View All
+                <div class="text-right  view mt-2" ui-sref='notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
@@ -118,7 +119,7 @@
                                     <span ng-show="modelNo">
                                         <i class="fas fa-angle-up"></i>
                                     </span>
-                                <span ng-show="!modelNo">
+                                    <span ng-show="!modelNo">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
                                 </span>
@@ -171,10 +172,10 @@
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
                                             <!-- <i class="fas fa-times "></i> -->
                                         </span>
-                                    <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
+                                        <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
                                         </span> -->
-                                    <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
+                                        <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
                                             <i class="fas fa-plus "></i>
                                         </button> -->
                                     </span>

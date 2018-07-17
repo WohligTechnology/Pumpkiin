@@ -11,7 +11,7 @@ var schema = new Schema({
     dateOfReminder: Date,
     status: {
         type: String,
-        enum: ['Completed', 'Pending']
+        enum: ['Completed', 'Pending', 'Snooze']
     },
 });
 
@@ -29,10 +29,44 @@ var model = {
         }).count().exec(callback);
     },
 
-    findReminderByUser: function (data, callback) {
+    totalNumberOfCompletedReminders: function (data, callback) {
         this.find({
             user: data.user,
-            status: 'Pending'
+            status: 'Completed'
+        }).count().exec(callback);
+    },
+
+    totalNumberOfPendingReminders: function (data, callback) {
+        this.find({
+            user: data.user,
+            $or: [{
+                status: 'Pending'
+            }, {
+                status: 'Snooze'
+            }]
+        }).count().exec(callback);
+    },
+
+
+    findReminderOfPendingSnoozeByUser: function (data, callback) {
+        this.find({
+            user: data.user,
+            $or: [{
+                status: 'Pending'
+            }, {
+                status: 'Snooze'
+            }]
+        }).sort({
+            dateOfReminder: 1
+        }).exec(callback);
+    },
+
+    findReminderOfCompletedByUser: function (data, callback) {
+        this.find({
+            user: data.user,
+            status: 'Completed'
+        }).sort({
+            dateOfReminder: 1
         }).exec(callback);
     }
 

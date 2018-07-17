@@ -352,12 +352,13 @@ var model = {
                 sendData1.user = newuserData._id;
                 arrData.push(sendData1)
                 sendData.relations = arrData;
-                // console.log("sendData---------", sendData);
+                // console.log("arrData---------", arrData);
                 User.saveData(sendData, function (err, userData) {
                     var productDataToSave = {};
                     productDataToSave._id = data.productId;
                     productDataToSave.relatedUser = arrData;
-                    Product.saveData(productDataToSave, callback)
+                    // console.log("productDataToSave---------", productDataToSave);
+                    Product.saveData(productDataToSave, callback);
                 });
             }
         ], callback);
