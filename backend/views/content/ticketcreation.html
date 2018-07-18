@@ -5,7 +5,7 @@
                 <div class="bg-white mt-2 border-rounded productreg ">
                     <div>
                         <div class="p-3">
-                            <div class="row">
+                            <div class="row no-gutters align-items-center justify-content-between">
                                 <div class="col-lg-3">
                                     <div class="media chat">
                                         <div class="img-fluid image d-inline-block">
@@ -18,15 +18,13 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-9">
-                                    <div class="">
-                                        <div class="d-inline-block">
-                                            <div class="px-1">
+                                    <div class="d-flex">
+                                        <div class="mr-2 clock text-right">
+                                            <div class="d-inline-block px-1">
                                                 <a class="btn btn-success pickup-btn" href="" ng-click="pickupOpen();">
-                                                    Pick Up Time
-                                                </a>
+                                                        Pick Up Time
+                                                 </a>
                                             </div>
-                                        </div>
-                                        <div class="d-inline-block clock">
                                             <label>Status :</label>
                                             <select>
                                                 <option value="1">Repair/ Maintenance (On-site)</option>
@@ -37,7 +35,7 @@
                                                 <option value="6">Awaiting feedback (Closed)</option>
                                                 <option value="7">Completed (Completed)</option>
                                             </select>
-                                            <select>
+                                            <select class="ml-5">
                                                 <option value="8">Repair (Off-site)</option>
                                                 <option value="9">Scheduling service with customer (Open)</option>
                                                 <option value="10">Coordinating with the service provider (Open)</option>
@@ -48,18 +46,35 @@
                                                 <option value="15">Completed (Completed)</option>
                                             </select>
                                         </div>
-
-                                        <div class="clock px-1 d-inline-block float-right">
-                                            <i class="far fa-clock "></i>
-                                            5.30pm
+                                        <div class="d-flex clock px-1">
+                                            <span><i class="far fa-clock mr-1"></i></span><span>5.30pm</span>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
+                            <h5 class="mt-3 text-center">Product Details</h5>
+                            <div class="d-flex justify-content-between my-3">
+                                <div class="mx-2 p-1">
+                                    <div class="d-inline-block">Sr No. : </div>
+                                    <div class="d-inline-block">3243</div>
+                                </div>
+                                <div class="mx-2">
+                                    <div class="d-inline-block">Model No. : </div>
+                                    <div class="d-inline-block">23423425432542</div>
+                                </div>
+                                <div class="mx-2">
+                                    <div class="d-inline-block">Purchase Date : </div>
+                                    <div class="d-inline-block">31/5/2018</div>
+                                </div>
+                                <div class="mx-2">
+                                    <div class="d-inline-block">Product Name : </div>
+                                    <div class="d-inline-block">vdsvdsrbvfb</div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class=" p-4 ">
+                        <div class="px-4">
                             <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat ">SUPPORT CHAT</h6>
                             <div class="chat my-2 ">
                                 <div class="d-flex align-items-center mb-2 you ">
