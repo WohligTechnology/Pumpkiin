@@ -62,11 +62,11 @@
                                     <input type="text" id="productName" name="" ng-model="productDetails.productName" ng-readonly="!personalInfo">
                                 </div>
                             </div>
-                            <div class="my-2 height-label" ng-init="data ={}   ">
-                                <div class="custom-input" ng-if="productDetails.brand.name">
+                            <div class="my-2 height-label" ng-init="data ={}">
+                                <div class="custom-input" ng-if="!personalInfo">
                                     <input type="text" id="brandName" name=" " ng-model="productDetails.brand.name" ng-readonly="!personalInfo">
                                 </div>
-                                <ui-select class="w-100" ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a brand" ng-if="!productDetails.brand.name">
+                                <ui-select class="w-100" ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a brand" ng-if="personalInfo">
                                     <ui-select-match placeholder="Select or search a brand in the list...">{{$select.selected.name}}</ui-select-match>
                                     <ui-select-choices class="background-blue text-white" repeat="brand in brandsData | filter: $select.search">
                                         <span ng-bind-html="brand.name | highlight: $select.search"></span>
@@ -89,10 +89,10 @@
                                 </div>
                             </div>
                             <div class="my-2 height-label">
-                                <div class="custom-input " ng-if="productDetails.retailer.name">
-                                    <input type="text" id="Retailer" name=" " ng-model="productDetails.retailer.name">
+                                <div class="custom-input " ng-if="!personalInfo">
+                                    <input type="text" id="Retailer" name=" " ng-model="productDetails.retailer.name" ng-readonly="!personalInfo">
                                 </div>
-                                <ui-select class="w-100" ng-if="!productDetails.retailer.name" ng-model="data.retailer" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a country">
+                                <ui-select ng-if="personalInfo" class="w-100" ng-if="!productDetails.retailer.name" ng-model="data.retailer" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a country">
                                     <ui-select-match placeholder="Select or search a retailer in the list...">{{$select.selected.name}}</ui-select-match>
                                     <ui-select-choices class="background-blue text-white" repeat="retailer in retaillersData | filter: $select.search">
                                         <span ng-bind-html="retailer.name | highlight: $select.search"></span>
