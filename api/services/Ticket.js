@@ -96,26 +96,18 @@ var model = {
 
     findTicketOfUser: function (data, callback) {
         this.findOne({
-            _id: data.ticketId,
-            user: data.user
+            product: data.product,
+            user: data.user,
+            status: 'Active'
         }).deepPopulate('product product.brand product.user').exec(callback);
     },
 
     createNewTicket: function (data, callback) {
-        Ticket.findOne({
-            product: data.product,
-            status: 'Active'
-        }).exec(function (err, data1) {
-            if (_.isEmpty(data1)) {
-                Ticket.TicketIdGenerate(function (err, data2) {
-                    data.ticketNumber = data2;
-                    // console.log("data", data);
-                    Ticket.saveData(data, callback);
-                });
-            } else {
-                callback(err, data1);
-            }
-        })
+        Ticket.TicketIdGenerate(function (err, data2) {
+            data.ticketNumber = data2;
+            // console.log("data", data);
+            Ticket.saveData(data, callback);
+        });
     },
 
     TicketIdGenerate: function (callback) {

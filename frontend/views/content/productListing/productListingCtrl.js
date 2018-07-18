@@ -112,19 +112,19 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, Naviga
         });
     }
 
-    $scope.addTicket = function (data) {
-        var dataToSend = {};
-        dataToSend.product = data;
-        dataToSend.user = $scope.jstrgValue._id;
-        console.log("dataToSend", dataToSend);
-        NavigationService.apiCallWithData("Ticket/createNewTicket", dataToSend, function (res) {
-            if (res.value == true) {
-                // console.log("res", res.data._id);
-                $state.go('ticketcreation', {
-                    'id': res.data._id
-                });
-            }
-        });
-    }
+    // $scope.addTicket = function (data) {
+    //     var dataToSend = {};
+    //     dataToSend.product = data;
+    //     dataToSend.user = $scope.jstrgValue._id;
+    //     console.log("dataToSend", dataToSend);
+    //     NavigationService.apiCallWithData("Ticket/createNewTicket", dataToSend, function (res) {
+    //         if (res.value == true) {
+    //             // console.log("res", res.data._id);
+    //             $state.go('ticketcreation', {
+    //                 'id': res.data._id
+    //             });
+    //         }
+    //     });
+    // }
 
 });

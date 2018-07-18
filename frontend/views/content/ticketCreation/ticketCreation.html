@@ -25,7 +25,12 @@
                         <div class="notification" ng-if="!totalNumberOfOpenTickets">0</div>
                         <div class="notification" ng-if="totalNumberOfOpenTickets">{{totalNumberOfOpenTickets}}</div>
                     </div>
-                    <div class="closed-text" ui-sref="closedTicketcreation">
+                    <div class="closed-text" ui-sref="closedTicketcreation" ng-if="totalNumberOfClosedTickets">
+                        <img src="img/ticketCreation/closedTicket.png">
+                        <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
+                        <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
+                    </div>
+                    <div class="closed-text" ng-if="!totalNumberOfClosedTickets">
                         <img src="img/ticketCreation/closedTicket.png">
                         <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
@@ -47,7 +52,7 @@
                     <div class="d-flex py-1 element-list " ng-repeat="openticket in totalOpenTickets">
                         <div class="bullet "></div>
                         <div class="d-block pl-4">
-                            <div class="product-title text-truncate" ui-sref="ticketcreation({id: openticket._id})">{{openticket.product.productName}}</div>
+                            <div class="product-title text-truncate" ui-sref="ticketcreation({id: openticket.product._id})">{{openticket.product.productName}}</div>
                             <div class="date ">{{openticket.product.createdAt | date}}</div>
                         </div>
                     </div>
@@ -110,10 +115,13 @@
                         </div>
                     </div>
                     <div class="media-body pl-4 text-white ">
-                        <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">Support ID: {{ticketDetails.ticketNumber}}
-                            <div class="position-absolute clock">
+                        <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">
+                            <div ng-if="ticketDetails.ticketNumber">Support ID: {{ticketDetails.ticketNumber}}</div>
+                            <div ng-if="!ticketDetails.ticketNumber">Support ID: ---</div>
+                            <div class="position-absolute clock" ng-if="ticketDetails.ticketNumber">
                                 <i class="far fa-clock"></i>
-                                </i>{{ticketDetails.issueReported | date}}</div>
+                                </i>{{ticketDetails.issueReported | date}}
+                            </div>
                             <div>
                                 <span class="float-right orange-color ">
                                     <span ng-show="modelNo">
@@ -126,22 +134,22 @@
                             </div>
                         </h5>
                         <span class="fontRobotoBold font14 ">PRODUCT INFORMATION</span>
-                        <p class="fontRobotoRegular font20 m-0">{{ticketDetails.product.productName}}
-                            <span class="pl-2 fontRobotoLight "> ({{ticketDetails.product.brand.name}})</span>
+                        <p class="fontRobotoRegular font20 m-0">{{productDetails.productName}}
+                            <span class="pl-2 fontRobotoLight "> ({{productDetails.brand.name}})</span>
                         </p>
                         <div class="row fontRobotoRegular font14 info-div mt-1" ng-show="modelNo ">
                             <div class="col col-md-6 ">
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Model Number : </span>
-                                    <span class="d-inline-block w-60 ">{{ticketDetails.product.modelNo}}</span>
+                                    <span class="d-inline-block w-60 ">{{productDetails.modelNo}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Purchase Price : </span>
-                                    <span class="d-inline-block w-60 "> {{ticketDetails.product.purchasePrice}}</span>
+                                    <span class="d-inline-block w-60 "> {{productDetails.purchasePrice}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Store : </span>
-                                    <span class="d-inline-block w-60 ">{{ticketDetails.product.purchasePrice}}</span>
+                                    <span class="d-inline-block w-60 ">{{productDetails.purchasePrice}}</span>
                                 </p>
                                 <!-- <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Attached Files : </span>
@@ -156,19 +164,19 @@
                             <div class="col col-md-6 ">
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Serial Number : </span>
-                                    <span class="d-inline-block w-60 ">{{ticketDetails.product.serialNo}}</span>
+                                    <span class="d-inline-block w-60 ">{{productDetails.serialNo}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Purchase Date : </span>
-                                    <span class="d-inline-block w-60 "> {{ticketDetails.product.purchaseDate}}</span>
+                                    <span class="d-inline-block w-60 "> {{productDetails.purchaseDate |date}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Warranty : </span>
-                                    <span class="d-inline-block w-60 green-color "> {{ticketDetails.product.warrantyExpDate}}</span>
+                                    <span class="d-inline-block w-60 green-color "> {{productDetails.warrantyExpDate |date}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Relation : </span>
-                                    <span class="d-inline-block w-60 " ng-repeat="relatives in ticketDetails.product.user.relations">
+                                    <span class="d-inline-block w-60 " ng-repeat="relatives in productDetails.relatedUser">
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
                                             <!-- <i class="fas fa-times "></i> -->
                                         </span>
@@ -188,7 +196,9 @@
 
             <div class="bg-white mt-2 p-4 border-rounded productreg">
                 <h6 class="fontRobotoLight d-inline">SUPPORT TIMELINE</h6>
-                <h6 class="fontRobotoLight d-inline orange-color float-right">SUPPORT STATUS: {{ticketDetails.status}}</h6>
+                <h6 class="fontRobotoLight d-inline orange-color float-right" ng-if="ticketDetails.status">SUPPORT STATUS: {{ticketDetails.status}}</h6>
+                <h6 class="fontRobotoLight d-inline orange-color float-right" ng-if="!ticketDetails.status">SUPPORT STATUS: Ticket Not Generated</h6>
+
                 <div class="my-5 mr-5 support-timeline">
                     <div class="circle circle1 timeline-active" ng-click="makeActive('circle1')"></div>
                     <div class="circle circle2" ng-click="makeActive('circle2')"></div>
@@ -213,7 +223,10 @@
                                 <!-- <div class="img-fluid image ">
                                     <img src="img/ticketCreation/profile.jpeg ">
                                 </div> -->
-                                <div class="mr-2 px-3 py-1 chat-content ">{{chat.comment}}</div>
+                                <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
+                                <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.file">
+                                    <img class="img-thumbnail w-10 float-right" ng-src="{{chat.file | serverimage}}" alt="">
+                                </div>
                                 <div class="text-center gray-color font14 mt-3 ">{{chat.date | date}}</div>
                             </div>
                             <!-- <div class="d-flex align-items-center mb-2 you ">
@@ -228,7 +241,7 @@
                                 <img src="img/ticketCreation/submit.png " ng-click="addComment(data)">
                             </div>
                             <div class="scrollbar-tcreation">
-                                <upload-image multiple ng-model="data.images" image-src="../img/ticketCreation/attachment.png" image-class="attachment" no-view></upload-image>
+                                <upload-image ng-model="data.image" image-src="../img/ticketCreation/attachment.png" image-class="attachment" no-view></upload-image>
                             </div>
                             <!-- <div class="attachment">
                                 <img class=" " src="img/ticketCreation/attachment.png ">

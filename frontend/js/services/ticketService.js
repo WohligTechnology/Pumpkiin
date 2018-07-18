@@ -10,8 +10,6 @@ myApp.service('ticketService', function (NavigationService) {
         NavigationService.apiCallWithData("Ticket/totalNumberOfTickets", ticketData, function (res) {
             if (res.value == true) {
                 callback(res.data);
-            } else {
-                callback("noData");
             }
         });
     };
@@ -20,8 +18,6 @@ myApp.service('ticketService', function (NavigationService) {
         NavigationService.apiCallWithData("Ticket/totalNumberOfOpenTickets", ticketData, function (res) {
             if (res.value == true) {
                 callback(res.data);
-            } else {
-                callback("noData");
             }
         });
     };
@@ -30,8 +26,6 @@ myApp.service('ticketService', function (NavigationService) {
         NavigationService.apiCallWithData("Ticket/totalNumberOfClosedTickets", ticketData, function (res) {
             if (res.value == true) {
                 callback(res.data);
-            } else {
-                callback("noData");
             }
         });
     };
@@ -40,8 +34,6 @@ myApp.service('ticketService', function (NavigationService) {
         NavigationService.apiCallWithData("Ticket/totalOpenTickets", ticketData, function (res) {
             if (res.value == true) {
                 callback(res.data);
-            } else {
-                callback("noData");
             }
         });
     };
@@ -50,8 +42,6 @@ myApp.service('ticketService', function (NavigationService) {
         NavigationService.apiCallWithData("Ticket/totalClosedTickets", ticketData, function (res) {
             if (res.value == true) {
                 callback(res.data);
-            } else {
-                callback("noData");
             }
         });
     };
