@@ -90,7 +90,6 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
             // console.log("res---totalClosedTickets--", $scope.totalClosedTickets[0]);
             $scope.ticketDetails = $scope.totalClosedTickets[0];
         }
-
     });
 
 

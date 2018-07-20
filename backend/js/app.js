@@ -52,7 +52,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'TicketlistCtrl'
         })
         .state('ticketcreation', {
-            url: "/ticketcreation",
+            url: "/ticketcreation/:id",
             templateUrl: "views/template.html",
             controller: 'TicketcreationCtrl'
         })

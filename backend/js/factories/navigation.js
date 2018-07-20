@@ -78,7 +78,7 @@ myApp.factory('NavigationService', function ($http) {
             classis: "active",
             uiSref: "productlist",
             access: false
-        },{
+        }, {
             name: "ticketlist",
             classis: "active",
             uiSref: "ticketlist",
@@ -89,12 +89,12 @@ myApp.factory('NavigationService', function ($http) {
 
     return {
         getnav: function () {
-            console.log("navigationnavigation", navigation[0].name)
+            // console.log("navigationnavigation", navigation[0].name)
 
             var userData = $.jStorage.get("profile")
             if (userData && userData.accessLevel) {
                 _.forEach(navigation, function (value) {
-                    console.log("valuevaluevaluevalue", value.access)
+                    // console.log("valuevaluevaluevalue", value.access)
                     if (userData.accessLevel == "Brand" || userData.accessLevel == "Retailer") {
                         if (value.name == "Product") {
                             value.access = true;
@@ -205,6 +205,13 @@ myApp.factory('NavigationService', function ($http) {
 
             });
 
+        },
+
+        apiCallWithoutData: function (url, callback) {
+            $http.post(adminurl + url).then(function (data) {
+                data = data.data;
+                callback(data);
+            });
         },
 
     };

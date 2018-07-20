@@ -26,92 +26,26 @@
                     <tr>
                         <th scope="col" class="text-center">Ticket No.</th>
                         <th scope="col" class="text-center">Issued Date</th>
-                        <th scope="col" class="text-center">Date</th>
                         <th scope="col" class="text-center">Product Name</th>
                         <th scope="col" class="text-center">User Name</th>
                         <th scope="col" class="text-center">User Email Id</th>
-                        <th scope="col" class="text-center">User Contact</th>
+                        <th scope="col" class="text-center">User Contact No.</th>
                         <th scope="col" class="text-center">Status</th>
                         <th scope="col" class="text-center">Ticket</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>00125</td>
-                        <td>30 june 2018</td>
-                        <td>8 July 2018</td>
-                        <td>XYZ</td>
-                        <td>64 Dark </td>
-                        <td>Sample@gmail.com</td>
-                        <td>9401252536</td>
-                        <td>Pending</td>
-                        <td><span class="badge badge-pill badge-info p-2">Select</span></td>
-                    </tr>
-                    <tr>
-                        <td>00125</td>
-                        <td>30 june 2018</td>
-                        <td>8 July 2018</td>
-                        <td>XYZ</td>
-                        <td>64 Dark </td>
-                        <td>Sample@gmail.com</td>
-                        <td>9401252536</td>
-                        <td>Pending</td>
-                        <td><span class="badge badge-pill badge-info p-2">Select</span></td>
-                    </tr>
-                    <tr>
-                        <td>00125</td>
-                        <td>30 june 2018</td>
-                        <td>8 July 2018</td>
-                        <td>XYZ</td>
-                        <td>64 Dark </td>
-                        <td>Sample@gmail.com</td>
-                        <td>9401252536</td>
-                        <td>Pending</td>
-                        <td><span class="badge badge-pill badge-info p-2">Select</span></td>
-                    </tr>
-                    <tr>
-                        <td>00125</td>
-                        <td>30 june 2018</td>
-                        <td>8 July 2018</td>
-                        <td>XYZ</td>
-                        <td>64 Dark </td>
-                        <td>Sample@gmail.com</td>
-                        <td>9401252536</td>
-                        <td>Pending</td>
-                        <td><span class="badge badge-pill badge-info p-2">Select</span></td>
-                    </tr>
-                    <tr>
-                        <td>00125</td>
-                        <td>30 june 2018</td>
-                        <td>8 July 2018</td>
-                        <td>XYZ</td>
-                        <td>64 Dark </td>
-                        <td>Sample@gmail.com</td>
-                        <td>9401252536</td>
-                        <td>Pending</td>
-                        <td><span class="badge badge-pill badge-info p-2">Select</span></td>
-                    </tr>
-                    <tr>
-                        <td>00125</td>
-                        <td>30 june 2018</td>
-                        <td>8 July 2018</td>
-                        <td>XYZ</td>
-                        <td>64 Dark </td>
-                        <td>Sample@gmail.com</td>
-                        <td>9401252536</td>
-                        <td>Pending</td>
-                        <td><span class="badge badge-pill badge-info p-2">Select</span></td>
-                    </tr>
-                    <tr>
-                        <td>00125</td>
-                        <td>30 june 2018</td>
-                        <td>8 July 2018</td>
-                        <td>XYZ</td>
-                        <td>64 Dark </td>
-                        <td>Sample@gmail.com</td>
-                        <td>9401252536</td>
-                        <td>Pending</td>
-                        <td><span class="badge badge-pill badge-info p-2">Select</span></td>
+                    <tr ng-repeat="tickets in allTickets">
+                        <td>{{tickets.ticketNumber}}</td>
+                        <td>{{tickets.issueReported}}</td>
+                        <td>{{tickets.product.productName}}</td>
+                        <td>{{tickets.user.name}}</td>
+                        <td>{{tickets.user.email}}</td>
+                        <td>{{tickets.user.mobile}}</td>
+                        <td>{{tickets.status}}</td>
+                        <td ng-if="tickets.status=='Active'">
+                            <span class="badge badge-pill badge-info p-2" ui-sref="ticketcreation({id: tickets._id})">Select</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>

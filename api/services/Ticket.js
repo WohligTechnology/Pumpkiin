@@ -57,7 +57,7 @@ schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('Ticket', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "product product.brand product.user", "product product.brand product.user"));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "product product.brand product.user user", "product product.brand product.user user"));
 var model = {
 
     totalNumberOfTickets: function (data, callback) {
@@ -112,7 +112,7 @@ var model = {
     createNewTicket: function (data, callback) {
         Ticket.TicketIdGenerate(function (err, data2) {
             data.ticketNumber = data2;
-            // console.log("data", data);
+            console.log("data", data);
             Ticket.saveData(data, callback);
         });
     },
@@ -138,35 +138,20 @@ var model = {
 
                     callback(null, ticketNumber);
                 } else {
-                    if (!found[0].paymentId) {
-                        var year = new Date().getFullYear().toString().substr(-2);
-                        var month = new Date().getMonth() + 1;
-                        var m = month.toString().length;
-                        if (m == 1) {
-                            month = "0" + month
-                            var ticketNumber = "T" + year + month + "-" + "1";
-                        } else if (m == 2) {
-                            var ticketNumber = "T" + year + month + "-" + "1";
-                        }
-                        // console.log("ticketNumber", ticketNumber)
-
-                        callback(null, ticketNumber);
-                    } else {
-                        var paymentData = found[0].paymentId.split("-");
-                        var num = parseInt(paymentData[1]);
-                        var nextNum = num + 1;
-                        var year = new Date().getFullYear().toString().substr(-2);
-                        var month = new Date().getMonth() + 1;
-                        var m = month.toString().length;
-                        if (m == 1) {
-                            month = "0" + month
-                            var ticketNumber = "T" + year + month + "-" + nextNum;
-                        } else if (m == 2) {
-                            var ticketNumber = "T" + year + month + "-" + nextNum;
-                        }
-                        // console.log("ticketNumber", ticketNumber)
-                        callback(null, ticketNumber);
+                    var ticketNum = found[0].ticketNumber.split("-");
+                    var num = parseInt(ticketNum[1]);
+                    var nextNum = num + 1;
+                    var year = new Date().getFullYear().toString().substr(-2);
+                    var month = new Date().getMonth() + 1;
+                    var m = month.toString().length;
+                    if (m == 1) {
+                        month = "0" + month
+                        var ticketNumber = "T" + year + month + "-" + nextNum;
+                    } else if (m == 2) {
+                        var ticketNumber = "T" + year + month + "-" + nextNum;
                     }
+                    // console.log("ticketNumber", ticketNumber)
+                    callback(null, ticketNumber);
                 }
             }
         });

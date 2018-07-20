@@ -1252,18 +1252,148 @@ body {
     background-color: rgba(255, 167, 77, 0.5);
 }
 
-.message-send-input .send img {
-    position: absolute;
-    right: 0px;
-    width: 30px;
-    margin: 6px;
+.message-send-input {
+    position: relative;
+    .send img {
+        position: absolute;
+        right: 0;
+        width: 30px;
+        margin: 6px;
+    }
+    .attachment {
+        position: absolute;
+        right: 40px;
+        margin: 7px;
+        cursor: pointer;
+    }
+    .scrollbar-tcreation {
+        &::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+            /* optional: just make scrollbar invisible */
+        }
+        /* optional: show position indicator in red */
+        &::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            cursor: pointer;
+            &:hover .btn {
+                color: white;
+                background-color: orange;
+            }
+        }
+        .btn {
+            border: 1px solid orange;
+            color: orange;
+            background-color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        .upload-btn-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+    }
 }
 
-.message-send-input .attachment {
-    position: absolute;
-    right: 40px;
+.chat-button {
+    .reminder-btn {
+        cursor: pointer;
+        padding: 5px 10px;
+        color: $orange;
+        background-color: white;
+        border: solid 1px $orange;
+        border-radius: 30px;
+        font-family: Roboto-Medium;
+        &:hover {
+            background-color: $orange;
+            color: white;
+            transition: ease all 300ms;
+        }
+    }
+    .close-btn {
+        cursor: pointer;
+        position: relative;
+        padding: 2px 30px;
+        padding-left: 40px;
+        color: white;
+        background-color: $orange;
+        border: solid 2px $orange;
+        border-radius: 30px;
+        font-family: Roboto-Medium;
+        .close-icon {
+            position: absolute;
+            left: -5px;
+            top: -1px;
+            padding: 1px 7px;
+            background: $orange;
+            border: solid 2px #ecf0f2;
+            border-radius: 50%;
+        }
+        &:hover {
+            color: $orange;
+            background-color: white;
+            transition: ease all 300ms;
+            .close-icon {
+                background: white;
+                border: solid 2px $orange;
+                transition: ease all 300ms;
+            }
+        }
+    }
+}
+
+.send-btn {
     cursor: pointer;
-    margin: 10px;
+    position: relative;
+    padding: 3px 30px;
+    padding-left: 40px;
+    color: white;
+    background-color: $orange;
+    border: solid 2px $orange;
+    border-radius: 30px;
+    font-family: Roboto-Medium;
+    .close-icon {
+        position: absolute;
+        left: -5px;
+        bottom: -3px;
+        padding: 8px 7px;
+        background: $orange;
+        border: solid 2px white;
+        border-radius: 50%;
+        .showdefault {
+            display: block;
+        }
+        .showhover {
+            display: none;
+        }
+    }
+    &:hover {
+        color: $orange;
+        background-color: white;
+        transition: ease all 300ms;
+        .close-icon {
+            background: white;
+            border: solid 2px $orange;
+            transition: ease all 300ms;
+            .showdefault {
+                display: none;
+            }
+            .showhover {
+                display: block;
+            }
+        }
+    }
 }
 
 .message {

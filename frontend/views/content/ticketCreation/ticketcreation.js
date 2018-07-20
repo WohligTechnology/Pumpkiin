@@ -8,7 +8,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
     $scope.isReadonly = false;
     $scope.jstrgValue = $.jStorage.get('userData');
 
-    $scope.data = {};
+    $scope.chatData = {};
     $scope.ticketId = {};
     var productData = {};
 
@@ -66,24 +66,6 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
     //for ticket block
 
-
-    ticketService.totalNumberOfTickets(function (data) {
-        $scope.totalNumberOfTickets = data;
-        // console.log("res--totalNumberOfTickets---", data);
-    });
-
-    ticketService.totalNumberOfOpenTickets(function (data) {
-        $scope.totalNumberOfOpenTickets = data;
-        // console.log("res---totalNumberOfOpenTickets--", data);
-    });
-
-
-    ticketService.totalNumberOfClosedTickets(function (data) {
-        $scope.totalNumberOfClosedTickets = data;
-        // console.log("res---totalNumberOfClosedTickets--", data);
-    });
-
-
     $scope.getTicket = function () {
         ticketService.totalOpenTickets(function (data) {
             $scope.totalOpenTickets = data;
@@ -106,15 +88,15 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                 });
 
             } else {
-                // console.log("res---totalOpenTickets--", $scope.totalOpenTickets[0]);
-                $scope.ticketDetails = $scope.totalOpenTickets[0];
-
-                productData._id = $scope.totalOpenTickets[0].product._id;
-                NavigationService.apiCallWithData("Product/getOne", productData, function (res) {
-                    $scope.productDetails = res.data;
-                    // console.log("$scope.productDetails-----------", $scope.productDetails);
-                });
-
+                if ($scope.totalOpenTickets[0]) {
+                    // console.log("res---totalOpenTickets--", $scope.totalOpenTickets[0]);
+                    $scope.ticketDetails = $scope.totalOpenTickets[0];
+                    productData._id = $scope.totalOpenTickets[0].product._id;
+                    NavigationService.apiCallWithData("Product/getOne", productData, function (res) {
+                        $scope.productDetails = res.data;
+                        // console.log("$scope.productDetails-----------", $scope.productDetails);
+                    });
+                }
             }
         });
 
@@ -137,14 +119,6 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
     $scope.getTicket();
 
-    // if ($stateParams.id) {
-    //     var productData = {};
-    //     productData._id = $stateParams.id;
-    //     NavigationService.apiCallWithData("Product/getOne", productData, function (res) {
-    //         $scope.productDetails = res.data;
-    //         // console.log("$scope.productDetails-----------", $scope.productDetails);
-    //     });
-    // }
 
     //for ticket block end
 
@@ -152,10 +126,13 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
     $scope.addComment = function (data) {
         // console.log("data", data);
         // console.log("  $.jStorage.get", $.jStorage.get("userData"));
+        // console.log("$scope.ticketDetails-----------", $scope.ticketDetails);
+        // console.log("$scope.ticketDetails-----------", _.isEmpty($scope.ticketDetails));
+
         var formData = {};
         var dataToSend = {};
         dataToSend.customerChat = [];
-        if (!_.isEmpty($.jStorage.get("userData")) && _.isEmpty($scope.ticketId)) {
+        if (!_.isEmpty($.jStorage.get("userData")) && $scope.ticketDetails == 'No Data Found') {
             formData.user = $.jStorage.get("userData")._id;
             formData.comment = data.comment;
             formData.file = data.image;
@@ -168,7 +145,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                 if (data.value == true) {
                     $scope.ticketId = data.data._id;
                     // $scope.ticketDetails = data.data;
-                    $scope.data = null;
+                    delete $scope.chatData;
                     $scope.getTicket();
                 }
             });
@@ -177,10 +154,11 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             formData.comment = data.comment;
             formData.file = data.image;
             $scope.ticketDetails.customerChat.push(formData);
-            console.log("dataToSend", dataToSend);
+            console.log(" $scope.ticketDetails", $scope.ticketDetails);
             NavigationService.apiCallWithData("Ticket/save", $scope.ticketDetails, function (data) {
+                delete $scope.chatData;
+                $scope.$apply();
                 if (data.value == true) {
-                    $scope.data = null;
                     $scope.getTicket();
                 }
             });

@@ -1664,7 +1664,14 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
 
+        NavigationService.apiCallWithoutData("Ticket/search", function (res) {
+            if (res.value == true) {
+                $scope.allTickets = res.data.results;
+                // console.log("$scope.allTickets-----", $scope.allTickets);
+            }
+        });
     })
+
     .controller('TicketcreationCtrl', function ($scope, TemplateService, NavigationService, $timeout, $stateParams, $state, toastr, $uibModal) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("ticketcreation");
@@ -1679,7 +1686,36 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                 windowClass: 'app-modal-window'
             });
         }
+
+        var formData = {};
+
+        $scope.jstrgData = $.jStorage.get('profile');
+        // console.log("=====================");
+        console.log("$stateParams----------", $stateParams.id);
+
+        var sendData = {};
+        sendData._id = $stateParams.id;
+        NavigationService.apiCall("Ticket/getOne", sendData, function (res) {
+            if (res.value == true) {
+                $scope.ticketData = res.data;
+                console.log("$scope.ticketData-----", $scope.ticketData);
+            }
+        });
+
+        $scope.addComment = function (data) {
+            formData.user = $.jStorage.get("userData")._id;
+            formData.comment = data.comment;
+            formData.file = data.image;
+            $scope.ticketData.customerChat.push(formData);
+            // console.log(" $scope.ticketData", $scope.ticketData);
+            NavigationService.apiCallWithData("Ticket/save", $scope.ticketData, function (data) {
+                if (data.value == true) {}
+            });
+        };
+
     })
+
+
     .controller('headerctrl', function ($scope, TemplateService, $uibModal) {
         $scope.template = TemplateService;
         $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {

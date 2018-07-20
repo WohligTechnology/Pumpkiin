@@ -1,4 +1,4 @@
-myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state, reminderService) {
+myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticketService, NavigationService, $timeout, toastr, $http, $uibModal, $state, reminderService) {
     $scope.template = TemplateService.getHTML("content/productListing/productListing.html");
     TemplateService.title = "Product Listing"; //This is the Title of the Website
     TemplateService.landingheader = "";
@@ -91,6 +91,49 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, Naviga
     }
 
     //REMINDER SECTION END
+
+    //for ticket block
+
+    ticketService.totalOpenTickets(function (data) {
+        $scope.ticketDetails = data;
+        console.log(" $scope.ticketDetails --", $scope.ticketDetails);
+
+    });
+
+    // ticketService.totalClosedTickets(function (data) {
+    //     $scope.ticketDetails = data;
+    // });
+
+    ticketService.totalNumberOfTickets(function (data) {
+        $scope.totalNumberOfTickets = data;
+        // console.log("res--totalNumberOfTickets---", data);
+    });
+
+    ticketService.totalNumberOfOpenTickets(function (data) {
+        $scope.totalNumberOfOpenTickets = data;
+        // console.log("res---totalNumberOfOpenTickets--", data);
+    });
+
+    ticketService.totalNumberOfClosedTickets(function (data) {
+        $scope.totalNumberOfClosedTickets = data;
+        // console.log("res---totalNumberOfClosedTickets--", data);
+    });
+
+
+    $scope.getClosedTickets = function () {
+        ticketService.totalClosedTickets(function (data) {
+            $scope.ticketDetails = data;
+        });
+    }
+
+    $scope.getOpenTickets = function () {
+        ticketService.totalOpenTickets(function (data) {
+            $scope.ticketDetails = data;
+        });
+    }
+
+    //for ticket block end
+
 
 
     NavigationService.apiCallWithoutData("Product/search", function (res) {

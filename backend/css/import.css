@@ -31260,17 +31260,124 @@ body {
   max-width: 70%;
   background-color: rgba(255, 167, 77, 0.5); }
 
-.message-send-input .send img {
-  position: absolute;
-  right: 0px;
-  width: 30px;
-  margin: 6px; }
+.message-send-input {
+  position: relative; }
+  .message-send-input .send img {
+    position: absolute;
+    right: 0;
+    width: 30px;
+    margin: 6px; }
+  .message-send-input .attachment {
+    position: absolute;
+    right: 40px;
+    margin: 7px;
+    cursor: pointer; }
+  .message-send-input .scrollbar-tcreation {
+    /* optional: show position indicator in red */ }
+    .message-send-input .scrollbar-tcreation::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+      /* optional: just make scrollbar invisible */ }
+    .message-send-input .scrollbar-tcreation::-webkit-scrollbar-thumb {
+      background: transparent; }
+    .message-send-input .scrollbar-tcreation .upload-btn-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      cursor: pointer; }
+      .message-send-input .scrollbar-tcreation .upload-btn-wrapper:hover .btn {
+        color: white;
+        background-color: orange; }
+    .message-send-input .scrollbar-tcreation .btn {
+      border: 1px solid orange;
+      color: orange;
+      background-color: white;
+      padding: 10px 25px;
+      border-radius: 5px;
+      font-size: 40px;
+      cursor: pointer; }
+    .message-send-input .scrollbar-tcreation .upload-btn-wrapper input[type=file] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer; }
 
-.message-send-input .attachment {
-  position: absolute;
-  right: 40px;
+.chat-button .reminder-btn {
   cursor: pointer;
-  margin: 10px; }
+  padding: 5px 10px;
+  color: #f29c2c;
+  background-color: white;
+  border: solid 1px #f29c2c;
+  border-radius: 30px;
+  font-family: Roboto-Medium; }
+  .chat-button .reminder-btn:hover {
+    background-color: #f29c2c;
+    color: white;
+    transition: ease all 300ms; }
+
+.chat-button .close-btn {
+  cursor: pointer;
+  position: relative;
+  padding: 2px 30px;
+  padding-left: 40px;
+  color: white;
+  background-color: #f29c2c;
+  border: solid 2px #f29c2c;
+  border-radius: 30px;
+  font-family: Roboto-Medium; }
+  .chat-button .close-btn .close-icon {
+    position: absolute;
+    left: -5px;
+    top: -1px;
+    padding: 1px 7px;
+    background: #f29c2c;
+    border: solid 2px #ecf0f2;
+    border-radius: 50%; }
+  .chat-button .close-btn:hover {
+    color: #f29c2c;
+    background-color: white;
+    transition: ease all 300ms; }
+    .chat-button .close-btn:hover .close-icon {
+      background: white;
+      border: solid 2px #f29c2c;
+      transition: ease all 300ms; }
+
+.send-btn {
+  cursor: pointer;
+  position: relative;
+  padding: 3px 30px;
+  padding-left: 40px;
+  color: white;
+  background-color: #f29c2c;
+  border: solid 2px #f29c2c;
+  border-radius: 30px;
+  font-family: Roboto-Medium; }
+  .send-btn .close-icon {
+    position: absolute;
+    left: -5px;
+    bottom: -3px;
+    padding: 8px 7px;
+    background: #f29c2c;
+    border: solid 2px white;
+    border-radius: 50%; }
+    .send-btn .close-icon .showdefault {
+      display: block; }
+    .send-btn .close-icon .showhover {
+      display: none; }
+  .send-btn:hover {
+    color: #f29c2c;
+    background-color: white;
+    transition: ease all 300ms; }
+    .send-btn:hover .close-icon {
+      background: white;
+      border: solid 2px #f29c2c;
+      transition: ease all 300ms; }
+      .send-btn:hover .close-icon .showdefault {
+        display: none; }
+      .send-btn:hover .close-icon .showhover {
+        display: block; }
 
 .message {
   background-color: #ecf0f2;
