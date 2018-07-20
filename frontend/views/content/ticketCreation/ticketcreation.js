@@ -10,6 +10,8 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
     $scope.data = {};
     $scope.ticketId = {};
+    var productData = {};
+
 
     $scope.attachmentImage = true;
 
@@ -92,10 +94,27 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                 ticketData.user = $scope.jstrgValue._id;
                 ticketData.product = $stateParams.id;
                 // console.log("$scope.ticketData-----------", ticketData);
-                NavigationService.apiCallWithData("Ticket/findTicketOfUser", ticketData, function (res) {
-                    console.log("$scope.ticketDetails-----------", res.data);
+                NavigationService.apiCallWithData("Ticket/findActiveTicketOfUser", ticketData, function (res) {
+                    // console.log("$scope.ticketDetails-----------", res.data);
                     $scope.ticketDetails = res.data;
                 });
+
+                productData._id = $stateParams.id;
+                NavigationService.apiCallWithData("Product/getOne", productData, function (res) {
+                    $scope.productDetails = res.data;
+                    // console.log("$scope.productDetails-----------", $scope.productDetails);
+                });
+
+            } else {
+                // console.log("res---totalOpenTickets--", $scope.totalOpenTickets[0]);
+                $scope.ticketDetails = $scope.totalOpenTickets[0];
+
+                productData._id = $scope.totalOpenTickets[0].product._id;
+                NavigationService.apiCallWithData("Product/getOne", productData, function (res) {
+                    $scope.productDetails = res.data;
+                    // console.log("$scope.productDetails-----------", $scope.productDetails);
+                });
+
             }
         });
 
@@ -118,14 +137,14 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
     $scope.getTicket();
 
-    if ($stateParams.id) {
-        var productData = {};
-        productData._id = $stateParams.id;
-        NavigationService.apiCallWithData("Product/getOne", productData, function (res) {
-            $scope.productDetails = res.data;
-            // console.log("$scope.productDetails-----------", $scope.productDetails);
-        });
-    }
+    // if ($stateParams.id) {
+    //     var productData = {};
+    //     productData._id = $stateParams.id;
+    //     NavigationService.apiCallWithData("Product/getOne", productData, function (res) {
+    //         $scope.productDetails = res.data;
+    //         // console.log("$scope.productDetails-----------", $scope.productDetails);
+    //     });
+    // }
 
     //for ticket block end
 

@@ -82,12 +82,12 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
             var ticketData = {};
             ticketData.ticketId = $stateParams.id;
             ticketData.user = $scope.jstrgValue._id;
-            NavigationService.apiCallWithData("Ticket/findTicketOfUser", ticketData, function (res) {
+            NavigationService.apiCallWithData("Ticket/findClosedTicketOfUser", ticketData, function (res) {
                 $scope.ticketDetails = res.data;
                 console.log("$scope.ticketDetails-----------", res.data);
             });
         } else {
-            console.log("res---totalClosedTickets--", $scope.totalClosedTickets[0]);
+            // console.log("res---totalClosedTickets--", $scope.totalClosedTickets[0]);
             $scope.ticketDetails = $scope.totalClosedTickets[0];
         }
 

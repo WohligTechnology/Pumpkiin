@@ -40,9 +40,23 @@ var controller = {
         }
     },
 
-    findTicketOfUser: function (req, res) {
+    findActiveTicketOfUser: function (req, res) {
         if (req.body) {
-            Ticket.findTicketOfUser(req.body, res.callback);
+            Ticket.findActiveTicketOfUser(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
+
+    findClosedTicketOfUser: function (req, res) {
+        if (req.body) {
+            Ticket.findClosedTicketOfUser(req.body, res.callback);
         } else {
             res.json({
                 value: false,

@@ -94,11 +94,18 @@ var model = {
         }).count().exec(callback);
     },
 
-    findTicketOfUser: function (data, callback) {
+    findActiveTicketOfUser: function (data, callback) {
         this.findOne({
             product: data.product,
             user: data.user,
             status: 'Active'
+        }).deepPopulate('product product.brand product.user').exec(callback);
+    },
+
+    findClosedTicketOfUser: function (data, callback) {
+        this.findOne({
+            _id: data.ticketId,
+            user: data.user,
         }).deepPopulate('product product.brand product.user').exec(callback);
     },
 
