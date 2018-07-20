@@ -46,6 +46,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: "views/template.html",
             controller: 'ProductlistCtrl'
         })
+        .state('ticketlist', {
+            url: "/ticketlist",
+            templateUrl: "views/template.html",
+            controller: 'TicketlistCtrl'
+        })
         .state('ticketcreation', {
             url: "/ticketcreation",
             templateUrl: "views/template.html",

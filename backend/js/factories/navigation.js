@@ -78,6 +78,11 @@ myApp.factory('NavigationService', function ($http) {
             classis: "active",
             uiSref: "productlist",
             access: false
+        },{
+            name: "ticketlist",
+            classis: "active",
+            uiSref: "ticketlist",
+            access: false
         }
 
     ];
