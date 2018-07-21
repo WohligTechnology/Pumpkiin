@@ -73,13 +73,13 @@
             </div>
         </div>
 
-        <fieldset class="d-flex social m-3 save ml-auto" ng-click="saveProduct(data)">
+        <button class="d-flex social m-3 save ml-auto" ng-click="saveProduct(data)" ng-disabled="product.$invalid">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
 
             </span>
             <div class="social-text">Save and Continue</div>
-        </fieldset>
+        </button>
     </form>
 </div>
 
@@ -120,7 +120,7 @@
                     <br>
                     <div class="scrollbar">
                         <div>
-                            <upload-image multiple ng-model="data.images"></upload-image>
+                            <upload-image multiple ng-model="data.purchaseProof"></upload-image>
                         </div>
                     </div>
                 </div>

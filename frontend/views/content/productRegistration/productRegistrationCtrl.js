@@ -60,7 +60,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             NavigationService.apiCallWithData("User/getOne", data, function (response) {
                 if (response.value == true) {
                     $scope.userDataForRegist = response.data;
-                    console.log("$scope.userDataForRegist ", $scope.userDataForRegist);
+                    // console.log("$scope.userDataForRegist ", $scope.userDataForRegist);
                 }
             });
         }
@@ -68,7 +68,6 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         $scope.getUserData();
 
         $scope.saveProduct = function (product) {
-            // $scope.makeActive('circle2');
             product.productImages = [];
             product.productImages = product.images;
             product.user = $scope.jstrgValue._id;
@@ -88,14 +87,13 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
                 });
             }
         }
-    }
 
-    if ($scope.product_id) {
 
         $scope.userData = {}
         $scope.addeduser = []
         $scope.addUser = function (data) {
-            // console.log("datae", data);
+            console.log("$scope.product_id", $scope.product_id);
+            console.log("datae", data);
             data._id = $scope.jstrgValue._id;
             data.productId = $scope.product_id;
             NavigationService.apiCallWithData("User/addUserRelationMember", data, function (response) {
@@ -109,18 +107,16 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         }
 
         $scope.savepurchaseDetails = function (purchase) {
-            console.log("purchase", purchase)
-            // $scope.makeActive('circle3');
             if (purchase) {
-                purchase.purchaseProof = [];
-                purchase.purchaseProof = purchase.images;
                 purchase.retailer = purchase.retailer._id;
                 purchase.relatedUser = [];
                 _.each(purchase.Users, function (x) {
-                    purchase.relatedUser.push(x._id);
+                    var dataToSend = {};
+                    dataToSend.relationType = null;
+                    dataToSend.user = x._id;
+                    purchase.relatedUser.push(dataToSend);
                 });
                 delete purchase.Users;
-                delete purchase.images;
                 // console.log("purchase----", purchase)
                 // console.log("$scope.product_id", $scope.product_id);
                 purchase._id = $scope.product_id;
@@ -157,7 +153,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             NavigationService.apiCallWithData("Reminder/save", dataForReminderInsurance, function (res) {});
         }
 
-        $scope.accessoriesMain = []
+        $scope.accessoriesMain = [];
 
         $scope.addAccessories = function (data) {
             if (data.accessories) {
@@ -203,19 +199,16 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
                 }
             });
         }
-    } else {
-        toastr.error('Please fill form properly');
-    }
 
 
+        $scope.submitDocuments = function (docs) {
+            // console.log("*************", docs);
+            docs.status = "Pending";
+            NavigationService.apiCallWithData("Product/save", docs, function (res) {
+                console.log("inside submit documents api", res);
+            });
+        }
 
-
-    $scope.submitDocuments = function (docs) {
-        console.log("*************", docs);
-        docs.status = "Pending";
-        NavigationService.apiCallWithData("Product/save", docs, function (res) {
-            console.log("inside submit documents api", res);
-        });
     }
 
 });

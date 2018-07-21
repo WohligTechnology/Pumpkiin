@@ -90,19 +90,20 @@
     color: #D1D1D1;
     font-size: 16px !important;
 }
+
 .scrollbar {
     display: flex;
     width: 100%;
     overflow: auto;
     &::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
-            /* optional: just make scrollbar invisible */
-        }
-        /* optional: show position indicator in red */
-        &::-webkit-scrollbar-thumb {
-            background: transparent;
-        }
+        width: 0px;
+        background: transparent;
+        /* optional: just make scrollbar invisible */
+    }
+    /* optional: show position indicator in red */
+    &::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
     .upload-btn-wrapper {
         position: relative;
         overflow: hidden;
@@ -228,6 +229,7 @@
 
 .selectize-control>.selectize-dropdown {
     background-color: $darkblue !important;
+    position: relative;
 }
 
 .ui-select-bootstrap.open .dropdown-menu {

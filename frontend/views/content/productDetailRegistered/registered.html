@@ -8,27 +8,12 @@
             <div class="col-12 col-md-4">
                 <div class="d-flex bg-white border-rounded">
                     <div class="w-15 border-right more-images">
-                        <div class="p-2">
-                            <img src="img/registeredProduct/headset.jpg" class="img-fluid">
-                        </div>
-                        <div class="p-2">
-                            <img src="img/registeredProduct/headset.jpg" class="img-fluid">
-                        </div>
-                        <div class="p-2">
-                            <img src="img/registeredProduct/headset.jpg" class="img-fluid">
-                        </div>
-                        <div class="p-2">
-                            <img src="img/registeredProduct/headset.jpg" class="img-fluid">
-                        </div>
-                        <div class="p-2">
-                            <img src="img/registeredProduct/headset.jpg" class="img-fluid">
-                        </div>
-                        <div class="p-2">
-                            <img src="img/registeredProduct/headset.jpg" class="img-fluid">
+                        <div class="p-2" ng-repeat="productImg in productDetails.productImages">
+                            <img class="img-thumbnail" ng-src="{{productImg | serverimage}}" alt="">
                         </div>
                     </div>
                     <div class="w-85 p-3 float-right position-relative">
-                        <img src="img/registeredProduct/headset.jpg" class="img-fluid">
+                        <img class="img-thumbnail" ng-src="{{productDetails.productImages[0] | serverimage}}" alt="">
                         <div class="position-absolute favourite">
                             <i class="fas fa-heart"></i>
                         </div>
@@ -43,7 +28,6 @@
                 <div class="bg-white p-4 border-rounded fontRobotoRegular font14">
                     <h6 class="fontRobotoBold blue-color mb-2">PRODUCT INFORMATION
                         <span class="float-right info-icon" ng-click="personalInfo=!personalInfo;">
-                            {{personalInfo}}
                             <i class="fas fa-pencil-alt fa-xs"></i>
                         </span>
                     </h6>
@@ -92,13 +76,15 @@
                                 <div class="custom-input " ng-if="!personalInfo">
                                     <input type="text" id="Retailer" name=" " ng-model="productDetails.retailer.name" ng-readonly="!personalInfo">
                                 </div>
-                                <ui-select ng-if="personalInfo" class="w-100" ng-if="!productDetails.retailer.name" ng-model="data.retailer" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a country">
+                                <ui-select ng-if="personalInfo" class="w-100" ng-if="!productDetails.retailer.name" ng-model="data.retailer" theme="selectize"
+                                    ng-disabled="ctrl.disabled" title="Choose a country">
                                     <ui-select-match placeholder="Select or search a retailer in the list...">{{$select.selected.name}}</ui-select-match>
                                     <ui-select-choices class="background-blue text-white" repeat="retailer in retaillersData | filter: $select.search">
                                         <span ng-bind-html="retailer.name | highlight: $select.search"></span>
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
+
                         </div>
                     </div>
                     <h6 class="fontRobotoBold blue-color my-3 ">PRODUCT USERS</h6>

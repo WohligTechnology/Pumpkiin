@@ -176,6 +176,11 @@ myApp.directive('img', function ($compile, $parse) {
                 $scope.clearOld = function () {
                     $scope.model = [];
                 };
+
+                $scope.removeIndex = function (index) {
+                    $scope.model = _.slice($scope.model, 0, index);
+                }
+
                 $scope.uploadNow = function (image) {
                     $scope.uploadStatus = "uploading";
                     var Template = this;

@@ -57,7 +57,7 @@
                         </span>
                         <div class="addedpromain" ui-sref="productdetailregistered({id: product._id})">
                             <div class="d-flex align-items-center justify-content-center addedproduct" ui-sref="productdetailregistered({id: product._id})">
-                                <img src="{{product.largeimage}}" class="img-fluid large-img">
+                                <img class="img-thumbnail" ng-src="{{product.productImages[0] | serverimage}}" alt="">
                                 <div class="background-blue small-circle">
                                     <img src="{{product.smallimage}}">
                                 </div>
