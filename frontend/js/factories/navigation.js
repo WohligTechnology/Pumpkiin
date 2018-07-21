@@ -1,4 +1,8 @@
-var imgurl = "http://wohlig.io:80/api/upload/";
+// var imgurl = "http://wohlig.io:80/api/upload/";
+
+var imgurl = "http://pumpkiin.wohlig.co.in/api/upload/";
+
+
 
 var imgpath = imgurl + "readFile";
 var uploadurl = imgurl;
