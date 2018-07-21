@@ -145,7 +145,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                 if (data.value == true) {
                     $scope.ticketId = data.data._id;
                     // $scope.ticketDetails = data.data;
-                    delete $scope.chatData;
+                    $scope.chatData = null;
                     $scope.getTicket();
                 }
             });
@@ -156,8 +156,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             $scope.ticketDetails.customerChat.push(formData);
             console.log(" $scope.ticketDetails", $scope.ticketDetails);
             NavigationService.apiCallWithData("Ticket/save", $scope.ticketDetails, function (data) {
-                delete $scope.chatData;
-                $scope.$apply();
+                $scope.chatData = null;
                 if (data.value == true) {
                     $scope.getTicket();
                 }

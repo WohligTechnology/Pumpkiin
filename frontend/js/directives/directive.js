@@ -109,12 +109,12 @@ myApp.directive('img', function ($compile, $parse) {
                 model: '=ngModel',
                 type: "@type",
                 callback: "&ngCallback",
-                imagesrc:'@imageSrc',
-                imageclass:'@imageClass'
+                imagesrc: '@imageSrc',
+                imageclass: '@imageClass'
 
             },
             link: function ($scope, element, attrs) {
-                console.log($scope.imagesrc,$scope.imageclass);
+                console.log($scope.imagesrc, $scope.imageclass);
                 $scope.showImage = function () {};
                 $scope.check = true;
                 if (!$scope.type) {
@@ -221,6 +221,7 @@ myApp.directive('img', function ($compile, $parse) {
             }
         };
     })
+
     .directive("moveNextOnMaxlength", function () {
         return {
             restrict: "A",

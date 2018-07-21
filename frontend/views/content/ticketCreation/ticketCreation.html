@@ -212,21 +212,25 @@
                 <div class="bg-white mt-2 border-rounded productreg ">
                     <div class=" p-4 ">
                         <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat ">SUPPORT CHAT</h6>
+
                         <div class="chat my-2 ">
                             <div ng-repeat="chat in ticketDetails.customerChat">
                                 <div class="d-flex align-items-center mb-2 you " ng-if="chat.user!=jstrgValue._id">
                                     <div class="img-fluid image ">
                                         <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
-                                    <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                    <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
+                                    <div ng-if="chat.file">
+                                        <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt="">
+                                    </div>
                                 </div>
                                 <div class="d-flex align-items-center mb-2 flex-row-reverse me " ng-if="chat.user==jstrgValue._id">
                                     <!-- <div class="img-fluid image ">
                                         <img src="img/ticketCreation/profile.jpeg ">
                                     </div> -->
                                     <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
-                                    <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.file">
-                                        <img class="img-thumbnail w-10 float-right" ng-src="{{chat.file | serverimage}}" alt="">
+                                    <div ng-if="chat.file">
+                                        <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt="">
                                     </div>
                                 </div>
                                 <div class="text-center gray-color font14 mt-3 ">{{chat.date | date}}</div>

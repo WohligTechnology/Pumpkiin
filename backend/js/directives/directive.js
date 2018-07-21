@@ -33,10 +33,13 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
         scope: {
             model: '=ngModel',
             type: "@type",
-            callback: "&ngCallback"
+            callback: "&ngCallback",
+            imagesrc: '@imageSrc',
+            imageclass: '@imageClass'
+
         },
         link: function ($scope, element, attrs) {
-            console.log($scope.model);
+            console.log($scope.imagesrc, $scope.imageclass);
             $scope.showImage = function () {};
             $scope.check = true;
             if (!$scope.type) {
@@ -56,17 +59,16 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
             // } else {
             //     $scope.required = false;
             // }
-
             $scope.$watch("image", function (newVal, oldVal) {
-                console.log(newVal, oldVal);
+
                 isArr = _.isArray(newVal);
+
                 if (!isArr && newVal && newVal.file) {
+
                     $scope.uploadNow(newVal);
                 } else if (isArr && newVal.length > 0 && newVal[0].file) {
 
                     $timeout(function () {
-                        console.log(oldVal, newVal);
-                        console.log(newVal.length);
                         _.each(newVal, function (newV, key) {
                             if (newV && newV.file) {
                                 $scope.uploadNow(newV);
@@ -85,6 +87,7 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
                             url: n
                         });
                     });
+
                 } else {
                     if (_.endsWith($scope.model, ".pdf")) {
                         $scope.type = "pdf";
@@ -100,11 +103,12 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
             };
             $scope.uploadNow = function (image) {
                 $scope.uploadStatus = "uploading";
-
                 var Template = this;
                 image.hide = true;
                 var formData = new FormData();
                 formData.append('file', image.file, image.name);
+
+
                 $http.post(uploadurl, formData, {
                     headers: {
                         'Content-Type': undefined
@@ -131,8 +135,7 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
                             $scope.type = "image";
                         }
                         $scope.model = data.data[0];
-                        console.log($scope.model, 'model means blob');
-
+                        // console.log($scope.model, 'model means blob');
                     }
                     $timeout(function () {
                         $scope.callback();
@@ -143,7 +146,6 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
         }
     };
 });
-
 
 
 myApp.directive('onlyDigits', function () {

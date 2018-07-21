@@ -1703,12 +1703,12 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         });
 
         $scope.addComment = function (data) {
-            formData.user = $.jStorage.get("userData")._id;
+            formData.user = $scope.jstrgData._id;
             formData.comment = data.comment;
             formData.file = data.image;
             $scope.ticketData.customerChat.push(formData);
-            // console.log(" $scope.ticketData", $scope.ticketData);
-            NavigationService.apiCallWithData("Ticket/save", $scope.ticketData, function (data) {
+            console.log(" $scope.ticketData", $scope.ticketData);
+            NavigationService.apiCall("Ticket/save", $scope.ticketData, function (data) {
                 if (data.value == true) {}
             });
         };
