@@ -213,6 +213,19 @@ var controller = {
         }
     },
 
+    addRelation: function (req, res) {
+        if (req.body) {
+            User.addRelation(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
     getAllMembersForSearch: function (req, res) {
         if (req.body) {
             User.getAllMembersForSearch(req.body, res.callback);

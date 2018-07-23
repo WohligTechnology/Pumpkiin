@@ -9899,6 +9899,12 @@ header {
   border-radius: 20px;
   color: white !important; }
 
+button:disabled {
+  opacity: 0.6;
+  cursor: no-drop;
+  border: 0;
+  background: transparent; }
+
 .orange-btn {
   background-color: #FFA345;
   border: solid 1px #FFA345; }

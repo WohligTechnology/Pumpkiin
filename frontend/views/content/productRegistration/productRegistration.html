@@ -164,23 +164,23 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Name</label>
                     <div class=" d-flex">
-                        <input ng-model="userData.name" class="form-control form-control-sm" type="text">
+                        <input ng-model="userData.name" class="form-control form-control-sm" type="text" required>
                         <!-- <input ng-model="userData.lastname" class="form-control form-control-sm w-50" type="text" required> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Email</label>
-                    <input ng-model="userData.email" class="form-control form-control-sm" type="email">
+                    <input ng-model="userData.email" class="form-control form-control-sm" type="email" required>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Mobile Number</label>
-                    <input ng-model="userData.mobile" class="form-control form-control-sm" type="text">
+                    <input ng-model="userData.mobile" class="form-control form-control-sm" type="text" required>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">NickName</label>
-                    <input ng-model="userData.nickName" class="form-control form-control-sm" type="text">
+                    <input ng-model="userData.nickName" class="form-control form-control-sm" type="text" required>
                 </div>
             </div>
             <div class="row form-group">
@@ -201,7 +201,7 @@
                 </div>
             </div>
         </div>
-        <button class="d-flex social m-3 save ml-auto" role="button" ng-click="savepurchaseDetails(data)" ng-disabled="purchase.$invalid">
+        <button type="submit" class="d-flex social m-3 save ml-auto" role="button" ng-click="savepurchaseDetails(data)" ng-disabled="purchase.$invalid">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
                 </i>

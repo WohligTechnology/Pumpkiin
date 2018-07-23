@@ -10,9 +10,7 @@
             <div class="col-12 col-md-6">
                 <label class="mb-0">Name</label>
                 <div class=" d-flex">
-                    <input placeholder="First Name" ng-model="userData.name" class="form-control form-control-sm w-50 mr-2 ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
-                        type="text" required="">
-                    <input placeholder="Last Name" ng-model="userData.lastname" class="form-control form-control-sm w-50 ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
+                    <input ng-model="userData.name" class="form-control form-control-sm ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
                         type="text" required="">
                 </div>
             </div>
@@ -37,13 +35,15 @@
         <div class="row form-group">
             <div class="col-12 col-md-6">
                 <label class="mb-0">Relationship</label>
-                <input ng-model="userData.relation" class="form-control form-control-sm ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
-                    type="text" required="">
+                <!-- <input ng-model="userData.relation" class="form-control form-control-sm ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
+                    type="text" required=""> -->
+                <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation">
+                    <option ng-repeat="relations in relationsForUser">{{relations}}</option>
+                </select>
             </div>
         </div>
         <div class="text-center">
-            <button class="reminder-btn">Save User</button>
-            <button class="reminder-btn-green" ng-if="">Save User</button>
+            <button class="reminder-btn" ng-click="addUser(userData)">Save User</button>
         </div>
     </form>
 </div>

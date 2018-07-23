@@ -42,28 +42,34 @@
                 </div>
                 <div class="col-10">
                     <div class="fontRobotoLight font14">
-                        <div ng-if="!personalInfo" class="mb-2 w-20 custom-input">
-                            <input type="text" name="female" value="female" ng-readonly="!personalInfo">
+                        <div ng-if="!personalInfo && userDataForProfile.gender " class="mb-2 w-20 custom-input">
+                            {{userDataForProfile.gender}}
+                        </div>
+                        <div ng-if="!personalInfo && !userDataForProfile.gender " class="mb-2 w-20 custom-input">
+                            - - -
                         </div>
                         <div ng-if="personalInfo">
                             <label class="radio-inline mr-3">
-                                    <input type="radio" name="optradio"> Male
-                                  </label>
+                                <input type="radio" name="optradio" value="male" ng-model="genderData.gender"> Male
+                            </label>
                             <label class="radio-inline mr-3">
-                                    <input type="radio" name="optradio"> Female
-                                  </label>
+                                <input type="radio" name="optradio" value="female" ng-model="genderData.gender"> Female
+                            </label>
                         </div>
-                        <div class="w-20 custom-input">
-                            <input type="date" name="August" value="August" ng-readonly="!personalInfo">
+                        <div class="w-20 custom-input" ng-if="personalInfo">
+                            <input type="date" name="August" ng-model="genderData.dob">
+                        </div>
+                        <div class="w-20 custom-input" ng-if="!personalInfo">
+                            {{ userDataForProfile.dob |date}}
                         </div>
                     </div>
                 </div>
                 <fieldset class="d-flex ml-3 social mt-3 mb-0 save" ng-if="personalInfo">
-                        <span class="social_icon">
-                            <i class="fas fa-save"></i>
-                        </span>
-                        <div class="social-text" ng-click="addProduct()">Save</div>
-                    </fieldset>
+                    <span class="social_icon">
+                        <i class="fas fa-save"></i>
+                    </span>
+                    <div class="social-text" ng-click="changeInfo(genderData)">Save</div>
+                </fieldset>
             </div>
         </div>
         <div class="py-4 border-dashed-bottom">
@@ -132,13 +138,13 @@
                 </div>
                 <div class="col-10">
                     <div class="d-flex main-users">
-                        <div class="d-flex align-items-center existing-user p-2 mr-3" ng-repeat="rel in relation">
+                        <div class="d-flex align-items-center existing-user p-2 mr-3" ng-repeat="rel in userDataForProfile.relations">
                             <div class="user-circle"></div>
                             <div class="mx-2 fontRobotoRegular name-rel">
-                                <div>{{rel.name}}</div>
-                                <span class="fontRobotoLight">{{rel.relation}}</span>
+                                <div>{{rel.user.name}}</div>
+                                <span class="fontRobotoLight">{{rel.relationType}}</span>
                             </div>
-                            <div class="fontRobotoLight">
+                            <div class="fontRobotoLight" ng-click="removeRelation(rel._id)">
                                 <i class="fas fa-times"></i>
                             </div>
                         </div>

@@ -132,7 +132,10 @@
                         <div class="row form-group">
                             <div class="col-12 col-md-6">
                                 <label class="mb-0">Relationship</label>
-                                <input ng-model="userData.relation" class="form-control form-control-sm" type="text" required>
+                                <!-- <input ng-model="userData.relation" class="form-control form-control-sm" type="text" required> -->
+                                <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation">
+                                    <option ng-repeat="relations in relationsForUser">{{relations}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row form-group" ng-click="addUser(userData)">

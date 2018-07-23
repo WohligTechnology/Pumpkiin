@@ -16,6 +16,9 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
         "relation": "Brother",
     }];
 
+    $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew"]
+
+
     $scope.makeEditable = function () {
         document.getElementById('productName').readOnly = false;
         document.getElementById('serialNumber').readOnly = false;

@@ -44,6 +44,7 @@ var schema = new Schema({
             }
         }
     },
+    gender: String,
     photo: {
         type: String,
         default: "",
@@ -365,15 +366,44 @@ var model = {
     },
 
     addRelation: function (data, callback) {
-        var sendData = {};
-        sendData._id = data._id;
-        var arrData = [];
-        var sendData1 = {};
-        sendData1.relationType = data.relationType;
-        sendData1.user = newUserData._id;
-        arrData.push(sendData1)
-        sendData.relations = arrData;
-        User.saveData(sendData, callback);
+        var newuserData;
+        async.waterfall([
+            function (callback) {
+                console.log("data", data);
+                var dataToSend = {};
+                dataToSend.name = data.name;
+                dataToSend.nickName = data.nickName;
+                dataToSend.email = data.email;
+                dataToSend.mobile = data.contact;
+                User.saveData(dataToSend, callback);
+            },
+            function (newUserData, callback) {
+                // console.log("newUserData", newUserData);
+                newuserData = newUserData;
+                if (!_.isEmpty(newUserData)) {
+                    User.findOne({
+                        _id: data._id
+                    }).exec(callback);
+                } else {
+                    callback(err, "noData");
+                }
+            },
+            function (oldUserData, callback) {
+                // console.log("oldUserData", oldUserData);
+                var sendData = {};
+                sendData = oldUserData;
+                var arrData = [];
+                arrData = oldUserData.relations;
+                // console.log("arrData---------", arrData);
+                var sendData1 = {};
+                sendData1.relationType = data.relation;
+                sendData1.user = newuserData._id;
+                arrData.push(sendData1)
+                sendData.relations = arrData;
+                // console.log("arrData---------", arrData);
+                User.saveData(sendData, callback);
+            }
+        ], callback);
     },
 
     removeUserRelationMember: function (userId, mobile, callback) {
