@@ -73,10 +73,9 @@
             </div>
         </div>
 
-        <button class="d-flex social m-3 save ml-auto" ng-click="saveProduct(data)" ng-disabled="product.$invalid">
+        <button class="d-flex social m-3 save ml-auto" role="button" ng-click="saveProduct(data)" ng-disabled="product.$invalid">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
-
             </span>
             <div class="social-text">Save and Continue</div>
         </button>
@@ -165,29 +164,32 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Name</label>
                     <div class=" d-flex">
-                        <input ng-model="userData.name" class="form-control form-control-sm" type="text" required>
+                        <input ng-model="userData.name" class="form-control form-control-sm" type="text">
                         <!-- <input ng-model="userData.lastname" class="form-control form-control-sm w-50" type="text" required> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Email</label>
-                    <input ng-model="userData.email" class="form-control form-control-sm" type="email" required>
+                    <input ng-model="userData.email" class="form-control form-control-sm" type="email">
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Mobile Number</label>
-                    <input ng-model="userData.mobile" class="form-control form-control-sm" type="text" required>
+                    <input ng-model="userData.mobile" class="form-control form-control-sm" type="text">
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">NickName</label>
-                    <input ng-model="userData.nickName" class="form-control form-control-sm" type="text" required>
+                    <input ng-model="userData.nickName" class="form-control form-control-sm" type="text">
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Relationship</label>
-                    <input ng-model="userData.relation" class="form-control form-control-sm" type="text" required>
+                    <!-- <input ng-model="userData.relation" class="form-control form-control-sm" type="text"> -->
+                    <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation">
+                        <option ng-repeat="relations in relationsForUser">{{relations}}</option>
+                    </select>
                 </div>
             </div>
             <div class="row form-group" ng-click="addUser(userData)">
@@ -199,18 +201,18 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex social m-3 save ml-auto" ng-click="savepurchaseDetails(data)">
+        <button class="d-flex social m-3 save ml-auto" role="button" ng-click="savepurchaseDetails(data)" ng-disabled="purchase.$invalid">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
                 </i>
             </span>
             <div class="social-text">Save and Continue</div>
-        </div>
+        </button>
     </form>
 </div>
 
 <div class="container my-1" ng-if="activePage=='circle3'">
-    <form>
+    <form name="Warranty">
         <div class="bg-white mx-3 p-4 border-rounded product-desc productreg">
             <h6 class="text-uppercase fontRobotoBold my-3">Warranty
                 <span class="orange-color ml-1">
@@ -267,14 +269,13 @@
                 </div>
             </div>
         </div>
-        <div class="">
-            <fieldset class="d-flex social m-3 save ml-auto">
-                <span class="social_icon">
-                    <i class="fas fa-save"></i>
-                </span>
-                <div class="social-text" ng-click="goToNxtTab(data)">Save and Continue</div>
-            </fieldset>
-        </div>
+
+        <button class="d-flex social m-3 save ml-auto" role="button" ng-click="goToNxtTab(data)" ng-disabled="Warranty.$invalid">
+            <span class="social_icon">
+                <i class="fas fa-save"></i>
+            </span>
+            <div class="social-text">Save and Continue</div>
+        </button>
     </form>
 </div>
 
@@ -314,11 +315,11 @@
             </div>
         </div>
     </div>
-    <fieldset class="d-flex social m-3 save ml-auto" ng-click="addProduct()">
+
+    <button class="d-flex social m-3 save ml-auto" role="button" ng-click="addProduct()">
         <span class="social_icon">
-            <i class="fas fa-plus"></i>
-            </i>
+            <i class="fas fa-save"></i>
         </span>
         <div class="social-text">Add Product</div>
-    </fieldset>
+    </button>
 </div>

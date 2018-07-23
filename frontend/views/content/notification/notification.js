@@ -1,4 +1,4 @@
-myApp.controller('NotificationCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state, reminderService) {
+myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketService, NavigationService, $timeout, toastr, $http, $uibModal, $state, reminderService) {
     $scope.template = TemplateService.getHTML("content/notification/notification.html");
     TemplateService.landingheader = "";
     TemplateService.title = "Notification"; //This is the Title of the Website
@@ -47,6 +47,51 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, Navigati
     }
 
     //REMINDER SECTION END
+
+    //for ticket block
+
+    ticketService.totalOpenTickets(function (data) {
+        // $scope.ticketDetails = data;
+        $scope.ticketDetails = _.slice(data, 0, 5);
+        console.log(" $scope.ticketDetails --", $scope.ticketDetails);
+
+    });
+
+    // ticketService.totalClosedTickets(function (data) {
+    //     $scope.ticketDetails = data;
+    // });
+
+    ticketService.totalNumberOfTickets(function (data) {
+        $scope.totalNumberOfTickets = data;
+        // console.log("res--totalNumberOfTickets---", data);
+    });
+
+    ticketService.totalNumberOfOpenTickets(function (data) {
+        $scope.totalNumberOfOpenTickets = data;
+        // console.log("res---totalNumberOfOpenTickets--", data);
+    });
+
+    ticketService.totalNumberOfClosedTickets(function (data) {
+        $scope.totalNumberOfClosedTickets = data;
+        // console.log("res---totalNumberOfClosedTickets--", data);
+    });
+
+
+    $scope.getClosedTickets = function () {
+        ticketService.totalClosedTickets(function (data) {
+            // $scope.ticketDetails = data;
+            $scope.ticketDetails = _.slice(data, 0, 5);
+        });
+    }
+
+    $scope.getOpenTickets = function () {
+        ticketService.totalOpenTickets(function (data) {
+            // $scope.ticketDetails = data;
+            $scope.ticketDetails = _.slice(data, 0, 5);
+        });
+    }
+
+    //for ticket block end
 
 
     $scope.chnageStatus = function (data) {

@@ -76,6 +76,8 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
 
     ticketService.totalClosedTickets(function (data) {
         $scope.totalClosedTickets = data;
+        $scope.showLessClosedTickets = _.slice($scope.totalClosedTickets, 0, 5);
+
         // console.log("res---totalClosedTickets--", data);
         // console.log("res---totalClosedTickets--", $scope.totalClosedTickets);
         if ($stateParams.id) {

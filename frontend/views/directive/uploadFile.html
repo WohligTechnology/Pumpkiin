@@ -2,7 +2,7 @@
     <br ng-show="isMultiple">
     <!-- <button ng-show="isMultiple" class="btn btn-danger btn-outline btn-small create-btn" ng-click="clearOld()">CLEAR FILES</button> -->
     <span class="label label-success mr-3" ng-if="uploadStatus == 'uploaded'" ng-show="!isMultiple">Documents Uploaded - {{image.file.name}}</span>
-    <span class="label label-success mr-3" ng-if="uploadStatus == 'uploaded'" ng-show="isMultiple">Documents Uploaded - {{image.length}}</span>
+    <span class="label label-success mr-3" ng-if="uploadStatus == 'uploaded'" ng-show="isMultiple">Documents Uploaded - {{model.length}}</span>
     <span class="label label-warning mr-3" ng-if="uploadStatus == 'uploading'" ng-show="!isMultiple">Uploading Documents {{image.file.name}}</span>
     <span class="label label-warning mr-3" ng-if="uploadStatus == 'uploading'" ng-show="isMultiple">Uploading Documents {{image.length}}</span>
     <div class="upload-btn-wrapper mr-1 float-left">

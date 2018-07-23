@@ -6,6 +6,7 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
     var usersData = [];
     $scope.jstrgValue = $.jStorage.get('userData');
     $scope.userData = {};
+    $scope.productDetails = {};
 
     $scope.relation = [{
         "name": "Andrew John",
@@ -45,7 +46,10 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
             NavigationService.apiCallWithData("Product/getOne", dataToSend, function (res) {
                 if (res.value == true) {
                     $scope.productDetails = res.data;
-                    console.log("$scope.productDetails", $scope.productDetails);
+                    if ($scope.productDetails.productImages) {
+                        $scope.setImg = $scope.productDetails.productImages[0];
+                    }
+                    // console.log("$scope.productDetails", $scope.productDetails);
                     if (res.data.purchaseDate) {
                         $scope.productDetails.purchaseDate = new Date(res.data.purchaseDate);
                     }
@@ -103,24 +107,28 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
         }
 
 
-        $scope.accessoriesMain = [];
+        $scope.productDetails.productAccessory = [];
         $scope.addAccessories = function (data) {
             if (data.accessories) {
-                $scope.accessoriesMain.push(data.accessories);
+                $scope.productDetails.productAccessory.push(data.accessories);
                 data.accessories = "";
             }
         }
 
         $scope.remove = function (index) {
-            $scope.accessoriesMain.splice(index, 1);
+            $scope.productDetails.productAccessory.splice(index, 1);
         };
 
         $scope.addProduct = function () {
-            $scope.productDetails.productAccessory = $scope.accessoriesMain;
-            console.log(" $scope.productDetails", $scope.productDetails);
+            // console.log(" $scope.productDetails", $scope.productDetails);
             NavigationService.apiCallWithData("Product/saveProduct", $scope.productDetails, function (res) {
                 $state.reload();
             });
+        }
+
+        $scope.setImage = function (data) {
+            // console.log("data", data);
+            $scope.setImg = data;
         }
 
 

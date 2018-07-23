@@ -18,7 +18,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         }
     };
 
-    $scope.availableColors = ["yellow", "blue", "pink"]
+    $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew"]
 
 
     $scope.registration = $uibModal.open({
@@ -92,8 +92,8 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         $scope.userData = {}
         $scope.addeduser = []
         $scope.addUser = function (data) {
-            console.log("$scope.product_id", $scope.product_id);
-            console.log("datae", data);
+            // console.log("$scope.product_id", $scope.product_id);
+            // console.log("datae", data);
             data._id = $scope.jstrgValue._id;
             data.productId = $scope.product_id;
             NavigationService.apiCallWithData("User/addUserRelationMember", data, function (response) {

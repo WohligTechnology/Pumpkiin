@@ -6,11 +6,14 @@
                 <div class="d-flex justify-content-between">
                     <div class="closed-text" ng-click="pendingReminders()">
                         <img src="img/header/Notification_circle-icon-orange.png">
-                        <div class="notification notification-orange">{{totalPendingReminders}}</div>
+                        <div class="notification notification-orange" ng-if="totalPendingReminders">{{totalPendingReminders}}</div>
+                        <div class="notification notification-orange" ng-if="!totalPendingReminders">0</div>
+
                     </div>
                     <div class="closed-text" ng-click="completedReminders()">
                         <img src="img/ticketCreation/Notification_circle-icon-green.png">
-                        <div class="notification notification-orange">{{totalCompletedReminder}}</div>
+                        <div class="notification notification-orange" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
+                        <div class="notification notification-orange" ng-if="!totalCompletedReminder">0</div>
                     </div>
                     <div ng-click="reminderModalOpen()">
                         <img src="img/ticketCreation/addButton.png ">
@@ -41,78 +44,60 @@
                     </span>
                 </div>
             </div>
-            <div class="bg-white border-rounded p-3 my-3 productreg">
+            <div class="bg-white border-rounded p-3">
                 <div class="d-flex justify-content-between">
-                    <div class="closed-text" ui-sref="ticketcreation">
-                        <img src=" img/ticketCreation/open-ticket-name.png">
-                        <div class="notification notification-orange">6</div>
+                    <div class="closed-text" ng-click="getOpenTickets()">
+                        <img src="img/ticketCreation/openTicket.png">
+                        <div class="notification" ng-if="!totalNumberOfOpenTickets">0</div>
+                        <div class="notification" ng-if="totalNumberOfOpenTickets">{{totalNumberOfOpenTickets}}</div>
                     </div>
-                    <div class="closed-text">
-                        <img src="img/ticketCreation/green-ticket.png">
+                    <div class="closed-text" ng-click="getClosedTickets()" ng-if="totalNumberOfClosedTickets">
+                        <img src="img/ticketCreation/closedTicket.png">
+                        <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
+                        <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
                     </div>
-                    <div ui-sref="productregistration">
+                    <div class="closed-text" ng-if="!totalNumberOfClosedTickets">
+                        <img src="img/ticketCreation/closedTicket.png">
+                        <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
+                        <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
+                    </div>
+                    <div ui-sref="ticketcreation">
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
                 <div class="my-3 open-tickets ">
+                    <h5 class="d-inline">Open Tickets</h5>
                     <!-- <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
-                    <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
-                    <h5 class="d-inline">Closed Tickets</h5>
-                    <span class="badge badge-style ml-auto">14</span>
+                        <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
+                    <span class="badge badge-style ">{{totalNumberOfTickets}}</span>
                     <span class="float-right">
                         <img src="img/ticketCreation/search.png ">
                     </span>
                 </div>
-                <div class="border-top listed-openTickets reminderSection ">
-                    <div class="d-flex py-1 element-list ">
+                <div class="border-top listed-openTickets openticket ">
+                    <div class="d-flex py-1 element-list " ng-repeat="tickets in ticketDetails">
                         <div class="bullet "></div>
-                        <div class="d-block pl-4 ">
-                            <div class="product-title ">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
+                        <div class="d-block pl-4">
+                            <div class="product-title text-truncate">{{tickets.product.productName}}</div>
+                            <div class="date ">{{tickets.issueReported | date}}</div>
                         </div>
                         <!-- <span class="float-right caret-style ">
-                                    <i class="fas fa-caret-right "></i>
-                                </span> -->
+                                <i class="fas fa-ellipsis-v"></i>
+                                
+                            </span> -->
                     </div>
-                    <div class="d-flex py-1 element-list ">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4 ">
-                            <div class="product-title ">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
-                        </div>
-                        <!-- <span class="float-right caret-style ">
-                                    <i class="fas fa-caret-right "></i>
-                                </span> -->
-                    </div>
-                    <div class="d-flex py-1 element-list ">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4 ">
-                            <div class="product-title ">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
-                        </div>
-                        <!-- <span class="float-right caret-style ">
-                                    <i class="fas fa-caret-right "></i>
-                                </span> -->
-                    </div>
-                    <div class="d-flex py-1 element-list ">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4 ">
-                            <div class="product-title ">Samsung s7 edge</div>
-                            <div class="date ">12/2/2018</div>
-                        </div>
-                        <!-- <span class="float-right caret-style ">
-                                    <i class="fas fa-caret-right "></i>
-                                </span> -->
-                    </div>
-
                 </div>
-                <div class="text-right  view mt-2">View All
+                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Active'" ui-sref='ticketcreation'>View All
+                    <span class="pl-2 ">
+                        <i class="fas fa-caret-right "></i>
+                    </span>
+                </div>
+                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Closed'" ui-sref='closedTicketcreation'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
                 </div>
             </div>
-
         </div>
 
         <div class="col col-md-9 " ng-init="modelNo=false ">

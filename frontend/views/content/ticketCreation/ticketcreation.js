@@ -64,11 +64,14 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
     //REMINDER SECTION END
 
+
+
     //for ticket block
 
     $scope.getTicket = function () {
         ticketService.totalOpenTickets(function (data) {
             $scope.totalOpenTickets = data;
+            $scope.showLessOpenTickets = _.slice($scope.totalOpenTickets, 0, 5);
             // console.log("res---totalOpenTickets--", data);
             if (!_.isEmpty($stateParams.id)) {
                 var ticketData = {};

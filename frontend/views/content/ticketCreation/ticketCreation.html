@@ -2,23 +2,6 @@
     <div class="row ticket-creation-main">
         <div class="col col-md-3 openticketreminder">
             <div class="bg-white border-rounded p-3">
-                <!-- <div class="d-flex justify-content-between" ng-init="show =false">
-                    <div class="closed-text" ng-click="show = false">
-                        <img src="img/ticketCreation/openTicket.png" ng-show="!show">
-                        <img src=" img/ticketCreation/open-ticket2.png" ng-show="show">
-                        <div class="notification notification-orange" ng-show="show">6</div>
-                        <span ng-show="show">open</span>
-                    </div>
-                    <div class="closed-text" ng-click="show = true">
-                        <img src="img/ticketCreation/close-ticket2.png" ng-show="!show">
-                        <img src="img/ticketCreation/green-ticket.png" ng-show="show">
-                        <div class="notification" ng-show="!show">6</div>
-                        <span ng-show="!show">close</span>
-                    </div>
-                    <div>
-                        <img src="img/ticketCreation/addButton.png ">
-                    </div>
-                </div> -->
                 <div class="d-flex justify-content-between">
                     <div class="closed-text">
                         <img src="img/ticketCreation/openTicket.png">
@@ -35,7 +18,7 @@
                         <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
                     </div>
-                    <div ui-sref="productregistration">
+                    <div ui-sref="ticketcreation">
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
@@ -49,7 +32,7 @@
                     </span>
                 </div>
                 <div class="border-top listed-openTickets openticket ">
-                    <div class="d-flex py-1 element-list " ng-repeat="openticket in totalOpenTickets">
+                    <div class="d-flex py-1 element-list " ng-repeat="openticket in showLessOpenTickets">
                         <div class="bullet "></div>
                         <div class="d-block pl-4">
                             <div class="product-title text-truncate" ui-sref="ticketcreation({id: openticket.product._id})">{{openticket.product.productName}}</div>
@@ -63,32 +46,38 @@
                     </span>
                 </div>
             </div>
-            <div class="bg-white border-rounded p-3 mt-3 productreg ">
+            <div class="bg-white border-rounded p-3">
                 <div class="d-flex justify-content-between">
-                    <div class="closed-text">
-                        <img src="img/header/Notification_circle-icon-orange.png" ng-click="pendingReminders()">
-                        <div class="notification notification-orange">{{totalPendingReminders}}</div>
+                    <div class="closed-text" ng-click="pendingReminders()">
+                        <img src="img/header/Notification_circle-icon-orange.png">
+                        <div class="notification notification-orange" ng-if="totalPendingReminders">{{totalPendingReminders}}</div>
+                        <div class="notification notification-orange" ng-if="!totalPendingReminders">0</div>
+
                     </div>
-                    <div class="closed-text">
-                        <img src="img/ticketCreation/Notification_circle-icon-green.png" ng-click="completedReminders()">
-                        <div class="notification notification-orange">{{totalCompletedReminder}}</div>
+                    <div class="closed-text" ng-if="!totalCompletedReminder">
+                        <img src="img/ticketCreation/Notification_circle-icon-green.png">
+                        <div class="notification notification-orange" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
+                        <div class="notification notification-orange" ng-if="!totalCompletedReminder">0</div>
                     </div>
-                    <div ng-controller="headerCtrl" ng-click="reminderModalOpen()">
+                    <div class="closed-text" ng-click="completedReminders()" ng-if="totalCompletedReminder">
+                        <img src="img/ticketCreation/Notification_circle-icon-green.png">
+                        <div class="notification notification-orange" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
+                        <div class="notification notification-orange" ng-if="!totalCompletedReminder">0</div>
+                    </div>
+                    <div ng-click="reminderModalOpen()">
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
                 <div class="my-3 open-tickets ">
-                    <h5 class="d-inline">Reminders</h5>
-                    <!-- <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
-                        <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
-                    <span class="badge badge-style ">{{totalReminders}}</span>
+                    <h5 class="d-inline ">Reminders</h5>
+                    <span class="badge badge-style ml-auto">{{totalReminders}}</span>
                     <span class="float-right">
                         <img src="img/ticketCreation/search.png ">
                     </span>
                 </div>
 
-                <div class="border-top listed-openTickets reminderSection ">
-                    <div class="d-flex py-1 element-list " ng-repeat="reminders in allReminders">
+                <div class="border-top listed-openTickets openticket ">
+                    <div class="d-flex py-1 element-list " ng-repeat="reminders in showLessReminders">
                         <div class="bullet "></div>
                         <div class="d-block pl-4 ">
                             <div class="product-title text-truncate">{{reminders.title}}</div>

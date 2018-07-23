@@ -9,11 +9,11 @@
                 <div class="d-flex bg-white border-rounded">
                     <div class="w-15 border-right more-images">
                         <div class="p-2" ng-repeat="productImg in productDetails.productImages">
-                            <img class="img-thumbnail" ng-src="{{productImg | serverimage}}" alt="">
+                            <img class="img-thumbnail" ng-src="{{productImg | serverimage}}" alt="" ng-click="setImage(productImg)">
                         </div>
                     </div>
                     <div class="w-85 p-3 float-right position-relative">
-                        <img class="img-thumbnail" ng-src="{{productDetails.productImages[0] | serverimage}}" alt="">
+                        <img class="img-thumbnail" ng-src="{{setImg | serverimage}}" alt="">
                         <div class="position-absolute favourite">
                             <i class="fas fa-heart"></i>
                         </div>
@@ -232,13 +232,13 @@
                     <div class="row form-group" ng-if="accessories">
                         <div class="col-12 col-md-6">
                             <form ng-submit="addAccessories(formData)">
-                                <input class="form-control form-control-sm" ng-model="formData.accessories" type="text" placeholder="Type Accessories to Add"
+                                <input class="form-control form-control-sm" ng-model="formData.accessories" type="text" placeholder="Type Accessories And Enter To Add"
                                     required>
                             </form>
                         </div>
                     </div>
                     <div class="d-flex main-users" ng-if="accessories">
-                        <div class="d-flex align-items-center existing-user p-2 mb-1 mr-2" ng-repeat="accessories in accessoriesMain track by $index">
+                        <div class="d-flex align-items-center existing-user p-2 mb-1 mr-2" ng-repeat="accessories in productDetails.productAccessory track by $index">
                             <div class="user-circle"></div>
                             <div class="mx-2 fontRobotoRegular name-rel">
                                 <div>{{accessories}}</div>
