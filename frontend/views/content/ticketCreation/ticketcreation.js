@@ -158,7 +158,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             formData.file = data.image;
             $scope.ticketDetails.customerChat.push(formData);
             console.log(" $scope.ticketDetails", $scope.ticketDetails);
-            NavigationService.apiCallWithData("Ticket/save", $scope.ticketDetails, function (data) {
+            NavigationService.apiCallWithData("Ticket/addToChat", $scope.ticketDetails, function (data) {
                 $scope.chatData = null;
                 if (data.value == true) {
                     $scope.getTicket();

@@ -113,7 +113,12 @@ var model = {
         Ticket.TicketIdGenerate(function (err, data2) {
             data.ticketNumber = data2;
             console.log("data", data);
-            Ticket.saveData(data, callback);
+            Ticket.saveData(data, function (err, data) {
+                sails.sockets.blast("ticketChat", {
+                    ticketChatData: data
+                });
+                callback(err, data);
+            });
         });
     },
 
@@ -156,5 +161,15 @@ var model = {
             }
         });
     },
+
+    addToChat: function (data, callback) {
+        Ticket.saveData(data, function (err, data1) {
+            sails.sockets.blast("ticketChat", {
+                ticketChatData: data
+            });
+            callback(err, data);
+        });
+    },
+
 };
 module.exports = _.assign(module.exports, exports, model);

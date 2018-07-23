@@ -14,6 +14,12 @@
     <link rel="shortcut icon" href="img/favicon.ico" />
 
     <title ng-bind="'Pumpkiin | '+template.title"></title>
+    <script src="js/dependencies/sails.io.js"></script>
+    <script>
+      var adminUUU = "http://wohlig.io:80";
+      var adminurl = "http://wohlig.io:80/api/";
+      io.sails.url = adminUUU;
+    </script>
 
     <!--[if IE]> <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script> <![endif]-->
     <!--[if IE]> <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script> <![endif]-->

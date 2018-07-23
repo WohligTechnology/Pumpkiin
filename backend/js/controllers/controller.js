@@ -1713,6 +1713,16 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             });
         };
 
+
+        $scope.ticketChatSocket = function (data) {
+            if (data) {
+                $scope.ticketData = data.ticketChatData;
+                console.log("$scope.ticketData ", $scope.ticketData)
+            }
+        }
+        $scope.ticketChatSocket();
+        io.socket.on("ticketChat", $scope.ticketChatSocket);
+
     })
 
 
