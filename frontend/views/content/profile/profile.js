@@ -23,6 +23,13 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         });
     }
 
+    $scope.newUserModalOpen = function () {
+        $scope.addNewUser = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/addNewUser.html",
+            scope: $scope,
+        });
+    }
 
     var data = {};
     data._id = $scope.jstrgValue._id;

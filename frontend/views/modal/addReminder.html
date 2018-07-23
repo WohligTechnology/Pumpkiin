@@ -19,7 +19,7 @@
             <input ng-model="data.dateOfReminder" class="form-control form-control-sm" type="datetime-local" required>
         </div>
         <div class="text-center">
-            <button class="reminder-btn" ng-click="saveReminder(data)">Save Reminder</button>
+            <button type="submit" class="btn w-50 form-control reminder-btn" ng-click="saveReminder(data)" ng-disabled="!(data.title && data.description && data.dateOfReminder)">Save Reminder</button>
         </div>
     </form>
 </div>
