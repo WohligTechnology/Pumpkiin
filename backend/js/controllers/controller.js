@@ -1678,6 +1678,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         $scope.menutitle = NavigationService.makeactive("Ticket Creation");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
+        $scope.chatData = {};
         $scope.pickupOpen = function () {
             $uibModal.open({
                 animation: true,
@@ -1690,38 +1691,39 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         var formData = {};
 
         $scope.jstrgData = $.jStorage.get('profile');
-        // console.log("=====================");
-        console.log("$stateParams----------", $stateParams.id);
+        // console.log("$stateParams----------", $stateParams.id);
 
         var sendData = {};
         sendData._id = $stateParams.id;
         NavigationService.apiCall("Ticket/getOne", sendData, function (res) {
             if (res.value == true) {
                 $scope.ticketData = res.data;
-                console.log("$scope.ticketData-----", $scope.ticketData);
+                // console.log("$scope.ticketData-----", $scope.ticketData);
             }
         });
+
+        $scope.ticketChatSocket = function (data) {
+            if (data) {
+                $scope.ticketData = data.ticketChatData;
+                // console.log("$scope.ticketData------------ ", $scope.ticketData);
+                $scope.$apply();
+            }
+        }
+        $scope.ticketChatSocket();
+        io.socket.on("ticketChat", $scope.ticketChatSocket);
 
         $scope.addComment = function (data) {
             formData.user = $scope.jstrgData._id;
             formData.comment = data.comment;
             formData.file = data.image;
             $scope.ticketData.customerChat.push(formData);
-            console.log(" $scope.ticketData", $scope.ticketData);
-            NavigationService.apiCall("Ticket/save", $scope.ticketData, function (data) {
-                if (data.value == true) {}
+            // console.log(" $scope.ticketData", $scope.ticketData);
+            NavigationService.apiCall("Ticket/addToChat", $scope.ticketData, function (data) {
+                if (data.value == true) {
+                    $scope.chatData = null;
+                }
             });
         };
-
-
-        $scope.ticketChatSocket = function (data) {
-            if (data) {
-                $scope.ticketData = data.ticketChatData;
-                console.log("$scope.ticketData ", $scope.ticketData)
-            }
-        }
-        $scope.ticketChatSocket();
-        io.socket.on("ticketChat", $scope.ticketChatSocket);
 
     })
 

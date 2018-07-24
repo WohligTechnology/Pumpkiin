@@ -54,6 +54,7 @@ myApp.filter('indianCurrency', function () {
 
 myApp.filter('serverimage', function () {
   return function (image) {
+    console.log("imageimageimage", adminurl + "upload/readFile?file=" + image)
     if (image && image !== null) {
       return adminurl + "upload/readFile?file=" + image;
     } else {
