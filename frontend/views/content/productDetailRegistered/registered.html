@@ -21,7 +21,7 @@
                 </div>
                 <div class="d-flex my-3">
                     <a role="button" class="button added-btn py-1 mr-1 w-50 text-center">Product Added</a>
-                    <a role="button" ui-sref="ticketcreation" class="button orange-btn py-1 w-50 text-center">Support</a>
+                    <a role="button" ui-sref="ticketcreation({id: productDetails._id})" class="button orange-btn py-1 w-50 text-center">Support</a>
                 </div>
             </div>
             <div class="col-12 col-md-8">
@@ -73,16 +73,16 @@
                                 </div>
                             </div>
                             <div class="my-2 height-label">
-                                <div class="custom-input " ng-if="!personalInfo">
-                                    <input type="text" id="Retailer" name=" " ng-model="productDetails.retailer.name" ng-readonly="!personalInfo">
+                                <div class="custom-input ">
+                                    <input type="text" id="Retailer" name=" " ng-model="productDetails.retailer" ng-readonly="!personalInfo">
                                 </div>
-                                <ui-select ng-if="personalInfo" class="w-100" ng-if="!productDetails.retailer.name" ng-model="data.retailer" theme="selectize"
+                                <!-- <ui-select ng-if="personalInfo" class="w-100" ng-if="!productDetails.retailer.name" ng-model="data.retailer" theme="selectize"
                                     ng-disabled="ctrl.disabled" title="Choose a country">
                                     <ui-select-match placeholder="Select or search a retailer in the list...">{{$select.selected.name}}</ui-select-match>
                                     <ui-select-choices class="background-blue text-white" repeat="retailer in retaillersData | filter: $select.search">
                                         <span ng-bind-html="retailer.name | highlight: $select.search"></span>
                                     </ui-select-choices>
-                                </ui-select>
+                                </ui-select> -->
                             </div>
 
                         </div>

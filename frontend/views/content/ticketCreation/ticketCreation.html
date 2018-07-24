@@ -210,7 +210,9 @@
                                     </div>
                                     <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
                                     <div ng-if="chat.file">
-                                        <a ng-href="http://wohlig.io/api/upload/readFile?file={{chat.file}}" target="blank">pdf</a>
+                                        <a ng-href="http://wohlig.io:80/api/upload/readFile?file={{chat.file}}" target="blank">
+                                            <i class="fas fa-file-download" style="font-size: 40px"></i>
+                                        </a>
                                         <!-- <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt=""> -->
                                     </div>
                                 </div>
@@ -220,7 +222,9 @@
                                     </div> -->
                                     <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
                                     <div ng-if="chat.file">
-                                        <a ng-href="http://wohlig.io/api/upload/readFile?file={{chat.file}}" target="blank">pdf</a>
+                                        <a ng-href="http://wohlig.io:80/api/upload/readFile?file={{chat.file}}" target="blank">
+                                            <i class="fas fa-file-download" style="font-size: 40px"></i>
+                                        </a>
                                         <!-- <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt=""> -->
                                     </div>
                                 </div>

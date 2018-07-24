@@ -87,7 +87,10 @@
                                         </div>
                                         <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
                                         <div ng-if="chat.file">
-                                            <img class="img-thumbnail w-25" ng-src="{{chat.file | serverimage}}" alt="">
+                                            <!-- <img class="img-thumbnail w-25" ng-src="{{chat.file | serverimage}}" alt=""> -->
+                                            <a ng-href="http://wohlig.io/api/upload/readFile?file={{chat.file}}" target="blank">
+                                                <i class="fas fa-file-download" style="font-size: 40px"></i>
+                                            </a>
                                         </div>
                                     </div>
                                     <!-- <div class="text-center gray-color font14 mt-3 ">Message on 15/2/2018</div> -->
@@ -97,7 +100,10 @@
                                         </div>
                                         <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
                                         <div ng-if="chat.file">
-                                            <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt="">
+                                            <!-- <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt=""> -->
+                                            <a ng-href="http://wohlig.io/api/upload/readFile?file={{chat.file}}" target="blank">
+                                                <i class="fas fa-file-download" style="font-size: 40px"></i>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="text-center gray-color font14 mt-3 ">Message on {{chat.date | date}}</div>
