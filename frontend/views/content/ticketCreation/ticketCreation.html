@@ -210,7 +210,8 @@
                                     </div>
                                     <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
                                     <div ng-if="chat.file">
-                                        <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt="">
+                                        <a ng-href="http://wohlig.io/api/upload/readFile?file={{chat.file}}" target="blank">pdf</a>
+                                        <!-- <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt=""> -->
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center mb-2 flex-row-reverse me " ng-if="chat.user==jstrgValue._id">
@@ -219,7 +220,8 @@
                                     </div> -->
                                     <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
                                     <div ng-if="chat.file">
-                                        <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt="">
+                                        <a ng-href="http://wohlig.io/api/upload/readFile?file={{chat.file}}" target="blank">pdf</a>
+                                        <!-- <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt=""> -->
                                     </div>
                                 </div>
                                 <div class="text-center gray-color font14 mt-3 ">{{chat.date | date}}</div>

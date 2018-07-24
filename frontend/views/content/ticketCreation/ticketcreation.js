@@ -125,6 +125,17 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
     //for ticket block end
 
+    $scope.ticketChatSocket = function (data) {
+        if (data) {
+            $scope.ticketDetails = data.ticketChatData;
+            // console.log("$scope.ticketData$$$$$$$$$$------- ", $scope.ticketDetails);
+            $scope.$apply();
+        }
+    }
+
+    $scope.ticketChatSocket();
+    io.socket.on("ticketChat", $scope.ticketChatSocket);
+
 
     $scope.addComment = function (data) {
         // console.log("data", data);
@@ -142,7 +153,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             dataToSend.customerChat.push(formData);
             dataToSend.user = $scope.jstrgValue._id;
             dataToSend.product = $stateParams.id;
-            console.log("dataToSend", dataToSend);
+            // console.log("dataToSend", dataToSend);
             NavigationService.apiCallWithData("Ticket/createNewTicket", dataToSend, function (data) {
                 console.log("data", data);
                 if (data.value == true) {
@@ -157,7 +168,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             formData.comment = data.comment;
             formData.file = data.image;
             $scope.ticketDetails.customerChat.push(formData);
-            console.log(" $scope.ticketDetails", $scope.ticketDetails);
+            // console.log(" $scope.ticketDetails", $scope.ticketDetails);
             NavigationService.apiCallWithData("Ticket/addToChat", $scope.ticketDetails, function (data) {
                 $scope.chatData = null;
                 if (data.value == true) {

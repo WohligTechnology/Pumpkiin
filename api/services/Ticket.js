@@ -163,12 +163,21 @@ var model = {
     },
 
     addToChat: function (data, callback) {
-        Ticket.saveData(data, function (err, data1) {
-            sails.sockets.blast("ticketChat", {
-                ticketChatData: data
-            });
-            callback(err, data);
-        });
+        async.waterfall([
+            function (callback) {
+                Ticket.saveData(data, callback);
+            },
+            function (newUserData, callback) {
+                Ticket.findOne({
+                    _id: data._id
+                }).exec(function (err, data) {
+                    sails.sockets.blast("ticketChat", {
+                        ticketChatData: data
+                    });
+                    callback(err, data)
+                })
+            }
+        ], callback);
     },
 
 };
