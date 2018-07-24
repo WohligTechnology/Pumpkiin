@@ -9777,6 +9777,13 @@ header {
 .mx-6 {
   margin: 0 9rem !important; }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0; }
+
 .custom-input input {
   color: #657D95;
   font-family: Roboto-Regular;
@@ -9899,11 +9906,12 @@ header {
   border-radius: 20px;
   color: white !important; }
 
-button:disabled {
+fieldset:disabled {
   opacity: 0.6;
-  cursor: no-drop;
   border: 0;
-  background: transparent; }
+  background: transparent;
+  pointer-events: none;
+  cursor: no-drop; }
 
 .orange-btn {
   background-color: #FFA345;
@@ -10442,8 +10450,10 @@ button:disabled {
       border-radius: 50%;
       border: solid 1px #707070; }
     .main-users .existing-user .name-rel {
-      line-height: 18px; }
+      line-height: 18px;
+      min-width: 130px; }
     .main-users .existing-user span {
+      font-size: 14px;
       color: #657D95; }
 
 .border-dashed {
@@ -11040,7 +11050,7 @@ button:disabled {
         display: block; }
 
 .pumpkin-support-feedback {
-  padding-left: 70px !important; }
+  padding-left: 40px !important; }
   .pumpkin-support-feedback .pump-support-text {
     position: relative; }
     .pumpkin-support-feedback .pump-support-text:before {
@@ -11053,6 +11063,10 @@ button:disabled {
       position: absolute;
       left: -40px;
       top: -5px; }
+  .pumpkin-support-feedback .close-icon {
+    bottom: -1px;
+    padding: 2px 8px;
+    border: solid 2px #ecf0f2; }
 
 .view {
   color: #657D95; }

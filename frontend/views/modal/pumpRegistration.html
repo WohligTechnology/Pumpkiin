@@ -7,15 +7,15 @@
 <div class="modal-body fontRobotoLight" id="modal-body">
     <div class="mb-2 fontRobotoRegular">Upload Product Invioce</div>
 
-    <div class="scrollbar" ng-if=!data.productInvoicePR>
+    <div class="scrollbar">
         <div>
-            <upload-image multiple ng-model="data.images"></upload-image>
+            <upload-image multiple ng-model="data.productInvoicePR"></upload-image>
         </div>
     </div>
     <div class="mb-2 mt-3 fontRobotoRegular">Upload Warranty Card</div>
-    <div class="scrollbar" ng-if=!data.warrantyCardPR>
+    <div class="scrollbar">
         <div>
-            <upload-image multiple ng-model="data.images"></upload-image>
+            <upload-image multiple ng-model="data.warrantyCardPR"></upload-image>
         </div>
     </div>
     <div class="d-flex justify-content-center text-center my-3 fontRobotoRegular" ng-click="submitDocuments(data)">

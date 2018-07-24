@@ -68,8 +68,8 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         $scope.getUserData();
 
         $scope.saveProduct = function (product) {
-            product.productImages = [];
-            product.productImages = product.images;
+            // product.productImages = [];
+            // product.productImages = product.images;
             product.user = $scope.jstrgValue._id;
             product.brand = product.brand._id;
             if ($scope.product_id) {
@@ -147,8 +147,8 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             var dataForReminderInsurance = {};
             dataForReminderInsurance.user = $scope.jstrgValue._id;
             dataForReminderInsurance.title = "Insurance expiry";
-            dataForReminderWarranty.status = "Pending";
-            dataForReminderWarranty.description = "End of insurance period";
+            dataForReminderInsurance.status = "Pending";
+            dataForReminderInsurance.description = "End of insurance period";
             dataForReminderInsurance.dateOfReminder = data.insuranceExpDate;
             NavigationService.apiCallWithData("Reminder/save", dataForReminderInsurance, function (res) {});
         }
