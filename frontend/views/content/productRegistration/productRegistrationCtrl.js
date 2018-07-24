@@ -95,9 +95,9 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             // console.log("$scope.product_id", $scope.product_id);
             // console.log("datae", data);
             data._id = $scope.jstrgValue._id;
-            data.productId = $scope.product_id;
-            NavigationService.apiCallWithData("User/addUserRelationMember", data, function (response) {
-                console.log("response", response);
+            // data.productId = $scope.product_id;
+            NavigationService.apiCallWithData("User/addRelation", data, function (response) {
+                // console.log("response", response);
                 if (response.value == true) {
                     toastr.success("Relation added successfully");
                     $scope.userData = null;
@@ -108,14 +108,15 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
 
         $scope.savepurchaseDetails = function (purchase) {
             if (purchase) {
-                purchase.retailer = purchase.retailer._id;
                 purchase.relatedUser = [];
-                _.each(purchase.Users, function (x) {
-                    var dataToSend = {};
-                    dataToSend.relationType = null;
-                    dataToSend.user = x._id;
-                    purchase.relatedUser.push(dataToSend);
-                });
+                console.log("purchase.Users----", purchase.Users)
+                // _.each(purchase.Users, function (x) {
+                //     var dataToSend = {};
+                //     dataToSend.relationType = null;
+                //     dataToSend.user = x._id;
+                //     purchase.relatedUser.push(dataToSend);
+                // });
+                purchase.relatedUser = purchase.Users;
                 delete purchase.Users;
                 // console.log("purchase----", purchase)
                 // console.log("$scope.product_id", $scope.product_id);
@@ -206,6 +207,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             docs.status = "Pending";
             NavigationService.apiCallWithData("Product/save", docs, function (res) {
                 console.log("inside submit documents api", res);
+                $scope.pumpRegistration.close();
             });
         }
 

@@ -62,7 +62,7 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
                     if (res.data.warrantyExpDate) {
                         $scope.productDetails.warrantyExpDate = new Date(res.data.warrantyExpDate);
                     }
-                    // console.log(" $scope.productDetails", $scope.productDetails)
+                    console.log(" $scope.productDetails", $scope.productDetails)
                 }
             });
         }
@@ -73,8 +73,8 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
         $scope.addUser = function (data) {
             // console.log("datae", data);
             data._id = $scope.jstrgValue._id;
-            data.productId = $scope.productDetails._id;
-            NavigationService.apiCallWithData("User/addUserRelationMember", data, function (response) {
+            // data.productId = $scope.productDetails._id;
+            NavigationService.apiCallWithData("User/addRelation", data, function (response) {
                 console.log("response", response);
                 if (response.value == true) {
                     toastr.success("Relation added successfully");

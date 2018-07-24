@@ -6,10 +6,11 @@ var schema = new Schema({
     productName: String,
     serialNo: Number,
     modelNo: String,
-    retailer: {
-        type: Schema.Types.ObjectId,
-        ref: 'Retailer'
-    },
+    retailer: String,
+    // retailer: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Retailer'
+    // },
     purchaseDate: Date,
     purchasePrice: Number,
     purchaseProof: [String],
