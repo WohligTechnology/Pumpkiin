@@ -1720,7 +1720,8 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             // console.log(" $scope.ticketData", $scope.ticketData);
             NavigationService.apiCall("Ticket/addToChat", $scope.ticketData, function (data) {
                 if (data.value == true) {
-                    $scope.chatData = null;
+                    $scope.chatData.comment = null;
+                    $scope.chatData.image = null;
                 }
             });
         };
