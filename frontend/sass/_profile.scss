@@ -1,13 +1,45 @@
 .profile-page {
     .profile-image {
+        position: relative;
         width: 130px;
         height: 130px;
         border-radius: 50%;
         border: solid 1px $green;
-        img {
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .upload-btn-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .img-uploaded {
             width: 130px;
             border-radius: 50%;
         }
+        &:hover{
+            .profile-photo-upload{
+                opacity: 1;
+            }
+        }
+    }
+    .profile-photo-upload{
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+        padding: 11px 25px;
+        opacity: 0;
+        background-color: rgba(255, 255, 255, 0.5);
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
     }
 }
 

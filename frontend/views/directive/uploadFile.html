@@ -1,11 +1,11 @@
 <div class="form-group d-flex image-upload {{imageclass}}">
     <br ng-show="isMultiple">
     <!-- <button ng-show="isMultiple" class="btn btn-danger btn-outline btn-small create-btn" ng-click="clearOld()">CLEAR FILES</button> -->
-    <span class="label label-success mr-3" ng-if="uploadStatus == 'uploaded'" ng-show="!isMultiple">Documents Uploaded - {{image.file.name}}</span>
-    <span class="label label-success mr-3" ng-if="uploadStatus == 'uploaded'" ng-show="isMultiple">Documents Uploaded - {{model.length}}</span>
-    <span class="label label-warning mr-3" ng-if="uploadStatus == 'uploading'" ng-show="!isMultiple">Uploading Documents {{image.file.name}}</span>
-    <span class="label label-warning mr-3" ng-if="uploadStatus == 'uploading'" ng-show="isMultiple">Uploading Documents {{image.length}}</span>
-    <div class="upload-btn-wrapper mr-1 float-left">
+    <span class="label label-success mr-3 mt-3" ng-if="uploadStatus == 'uploaded'" ng-show="!isMultiple">Documents Uploaded - {{image.file.name}}</span>
+    <span class="label label-success mr-3 mt-3" ng-if="uploadStatus == 'uploaded'" ng-show="isMultiple">Documents Uploaded - {{model.length}}</span>
+    <span class="label label-warning mr-3 mt-3" ng-if="uploadStatus == 'uploading'" ng-show="!isMultiple">Uploading Documents {{image.file.name}}</span>
+    <span class="label label-warning mr-3 mt-3" ng-if="uploadStatus == 'uploading'" ng-show="isMultiple">Uploading Documents {{image.length}}</span>
+    <div class="upload-btn-wrapper mr-1 mt-3 float-left">
         <img ng-if="imagesrc && imageclass" src="{{imagesrc}}">
         <button ng-if="!(imagesrc && imageclass)" class="btn">+</button>
         <input id="inputImage" ng-show="!isMultiple && type=='image'" type="file" accept="image/*,application/pdf" image="image"
@@ -21,15 +21,15 @@
             class="btn-primary" multiple>
     </div>
     <!-- <label for="exampleInputEmail1" style="margin:5px;">Image Upload</label> -->
-    <div class="img-box" ng-if="model && !isMultiple" ng-hide="noShow">
+    <div class="img-box mt-3" ng-if="model && !isMultiple" ng-hide="noShow">
         <img ng-src="{{model|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" ng-if="type=='image'" />
         <iframe src="{{model|uploadpath}}" style="width:400px; height:400px;" frameborder="0" ng-if="type=='pdf'"></iframe>
     </div>
-    <div class="d-flex" ng-if="model && isMultiple" ng-hide="noShow">
+    <div class="d-flex mt-3" ng-if="model && isMultiple" ng-hide="noShow">
         <div class="img-box mr-1" ng-repeat="sImage in model track by $index">
             <img alt="" ng-src="{{sImage|uploadpath}}" class="img-fluid uploadingImage img-thumbnail" />
-            <div class="img-delete" ng-click="removeIndex($index)">
-                <i class="far fa-times-circle fa-xs"></i>
+            <div class="img-delete cursor-point" ng-click="removeIndex($index)">
+                <i class="far fa-times-circle"></i>
             </div>
         </div>
     </div>

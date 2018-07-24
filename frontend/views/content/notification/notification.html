@@ -12,8 +12,8 @@
                     </div>
                     <div class="closed-text" ng-click="completedReminders()">
                         <img src="img/ticketCreation/Notification_circle-icon-green.png">
-                        <div class="notification notification-orange" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
-                        <div class="notification notification-orange" ng-if="!totalCompletedReminder">0</div>
+                        <div class="notification" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
+                        <div class="notification" ng-if="!totalCompletedReminder">0</div>
                     </div>
                     <div ng-click="reminderModalOpen()">
                         <img src="img/ticketCreation/addButton.png ">
@@ -48,8 +48,8 @@
                 <div class="d-flex justify-content-between">
                     <div class="closed-text" ng-click="getOpenTickets()">
                         <img src="img/ticketCreation/openTicket.png">
-                        <div class="notification" ng-if="!totalNumberOfOpenTickets">0</div>
-                        <div class="notification" ng-if="totalNumberOfOpenTickets">{{totalNumberOfOpenTickets}}</div>
+                        <div class="notification notification-orange" ng-if="!totalNumberOfOpenTickets">0</div>
+                        <div class="notification notification-orange" ng-if="totalNumberOfOpenTickets">{{totalNumberOfOpenTickets}}</div>
                     </div>
                     <div class="closed-text" ng-click="getClosedTickets()" ng-if="totalNumberOfClosedTickets">
                         <img src="img/ticketCreation/closedTicket.png">

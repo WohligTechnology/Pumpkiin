@@ -2,8 +2,10 @@
     <div class="container">
         <div class="d-flex profile-details mb-3">
             <div class="profile-image" class="img-fluid">
-                <img src="img/profileImg.jpg">
-                <input type="file">
+                <img class="img-uploaded" src="img/profileImg.jpg">
+                <div class="profile-photo-upload">
+                    <upload-image image-src="../img/camera1.png" image-class="profile-upload"></upload-image>
+                </div>
             </div>
             <div class="text-white fontRobotoRegular font14 ml-5">
                 <div class="font20">{{userDataForProfile.name}}</div>
