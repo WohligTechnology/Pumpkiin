@@ -339,7 +339,7 @@
 }
 
 .pumpkin-support-feedback {
-    padding-left: 70px !important;
+    padding-left: 40px !important;
     .pump-support-text {
         position: relative;
         &:before {
@@ -353,6 +353,11 @@
             left: -40px;
             top: -5px;
         }
+    }
+    .close-icon{
+        bottom: -1px;
+        padding: 2px 8px;
+        border: solid 2px #ecf0f2;
     }
 }
 

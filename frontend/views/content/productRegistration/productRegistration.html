@@ -73,12 +73,12 @@
             </div>
         </div>
 
-        <button class="d-flex social m-3 save ml-auto" role="button" ng-click="saveProduct(data)" ng-disabled="product.$invalid">
+        <fieldset class="d-flex social m-3 save ml-auto" role="button" ng-click="saveProduct(data)" ng-disabled="product.$invalid">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
             </span>
             <div class="social-text">Save and Continue</div>
-        </button>
+        </fieldset>
     </form>
 </div>
 
@@ -103,7 +103,7 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Retailer</label>
-                    <ui-select ng-model="data.retailer" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a country">
+                    <ui-select ng-model="data.retailer" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a country" ng-required="true">
                         <ui-select-match placeholder="Select or search a retailer in the list...">{{$select.selected.name}}</ui-select-match>
                         <ui-select-choices class="background-blue text-white" repeat="retailer in retaillersData | filter: $select.search">
                             <span ng-bind-html="retailer.name | highlight: $select.search"></span>
@@ -135,7 +135,7 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Search for exsisting user</label>
                     <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="data.Users" theme="bootstrap" sortable="true"
-                        ng-disabled="ctrl.disabled" title="Choose a color">
+                        ng-disabled="ctrl.disabled" title="Choose a color" ng-required="true">
                         <ui-select-match placeholder="Select users...">
                             <span ng-if="$item.user.name"> {{$item.user.name}}</span>
                             <span ng-if="!$item.user.name"> {{$item}}</span>
@@ -160,6 +160,7 @@
                 </div>
             </div>
             <h6 class="text-uppercase fontRobotoBold pt-3 border-dashed">ADD NEW USER</h6>
+            <form></form>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Name</label>
@@ -192,22 +193,22 @@
                     </select>
                 </div>
             </div>
-            <div class="row form-group" ng-click="addUser(userData)">
+            <fieldset class="row form-group" ng-click="addUser(userData)">
                 <div class="d-flex social m-3 add">
                     <span class="social_icon">
                         <i class="fas fa-plus"></i>
                     </span>
                     <div class="social-text">Add User</div>
                 </div>
-            </div>
+            </fieldset>
         </div>
-        <button type="submit" class="d-flex social m-3 save ml-auto" role="button" ng-click="savepurchaseDetails(data)" ng-disabled="purchase.$invalid">
+        <fieldset class="d-flex social m-3 save ml-auto" ng-click="savepurchaseDetails(data)" ng-disabled="purchase.$invalid">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
                 </i>
             </span>
             <div class="social-text">Save and Continue</div>
-        </button>
+        </fieldset>
     </form>
 </div>
 
@@ -270,12 +271,12 @@
             </div>
         </div>
 
-        <button class="d-flex social m-3 save ml-auto" role="button" ng-click="goToNxtTab(data)" ng-disabled="Warranty.$invalid">
+        <fieldset class="d-flex social m-3 save ml-auto" ng-click="goToNxtTab(data)" ng-disabled="Warranty.$invalid">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
             </span>
             <div class="social-text">Save and Continue</div>
-        </button>
+        </fieldset>
     </form>
 </div>
 
@@ -316,10 +317,10 @@
         </div>
     </div>
 
-    <button class="d-flex social m-3 save ml-auto" role="button" ng-click="addProduct()">
+    <fieldset class="d-flex social m-3 save ml-auto" ng-click="addProduct()">
         <span class="social_icon">
             <i class="fas fa-save"></i>
         </span>
         <div class="social-text">Add Product</div>
-    </button>
+    </fieldset>
 </div>

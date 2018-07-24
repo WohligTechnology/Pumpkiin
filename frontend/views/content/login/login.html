@@ -20,7 +20,7 @@
                                 <form name="formName">
                                     <div class="form-group mb-0">
                                         <label class="constant-text">
-                                            <input type="tel" maxlength="10" minlength="10" ng-model="formName.mobile" class="form-control rounded custom_input" id="contact"
+                                            <input type="number" maxlength="10" minlength="10" ng-model="formName.mobile" class="form-control rounded custom_input" id="contact"
                                                 name="contact" placeholder="Enter 10 Digit Mobile Number" required>
                                         </label>
                                     </div>
@@ -67,12 +67,10 @@
                                     </div>
 
                                     <div class="mb-3" ng-if="shownameEmail">
-                                        <input type="tel" class="form-control rounded custom_input" id="contact" ng-model="formName.name" placeholder="Enter First Last Name"
-                                            required>
+                                        <input type="text" class="form-control rounded custom_input" id="txtFirstName" ng-model="formName.name" placeholder="Enter First Last Name" required>
                                     </div>
                                     <div class="mb-3" ng-if="shownameEmail">
-                                        <input type="email" class="form-control rounded custom_input" id="contact" ng-model="formName.email" placeholder="Enter Email Address (Dont worry we dont spam)"
-                                            required>
+                                        <input type="email" class="form-control rounded custom_input" id="email" ng-model="formName.email" placeholder="Enter Email Address (Dont worry we dont spam)" required>
                                     </div>
                                     <div class="mb-1 text-center">
                                         <button type="submit" class="btn w-90 login-btn form-control" ng-click="saveUser(formName)" ng-disabled="!(formName.name && formName.email)">Submit</button>

@@ -399,7 +399,13 @@ header {
 .mx-6 {
     margin: 0 9rem !important;
 }
-
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
 .custom-input {
     input {
         color: #657D95;
@@ -559,11 +565,12 @@ header {
     color: white !important;
 }
 
-button:disabled {
+fieldset:disabled {
     opacity: 0.6;
-    cursor: no-drop;
     border: 0;
     background: transparent;
+    pointer-events: none;
+    cursor: no-drop;
 }
 
 .orange-btn {

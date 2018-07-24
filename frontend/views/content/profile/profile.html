@@ -3,6 +3,7 @@
         <div class="d-flex profile-details mb-3">
             <div class="profile-image" class="img-fluid">
                 <img src="img/profileImg.jpg">
+                <input type="file">
             </div>
             <div class="text-white fontRobotoRegular font14 ml-5">
                 <div class="font20">{{userDataForProfile.name}}</div>
@@ -137,7 +138,7 @@
                     </div>
                 </div>
                 <div class="col-10">
-                    <div class="d-flex main-users">
+                    <div class="d-flex main-users scrollbar">
                         <div class="d-flex align-items-center existing-user p-2 mr-3" ng-repeat="rel in userDataForProfile.relations">
                             <div class="user-circle"></div>
                             <div class="mx-2 fontRobotoRegular name-rel">
