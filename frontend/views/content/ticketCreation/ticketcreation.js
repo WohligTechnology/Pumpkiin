@@ -160,6 +160,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                     $scope.ticketId = data.data._id;
                     // $scope.ticketDetails = data.data;
                     $scope.chatData.comment = null;
+                    $scope.chatData.image = null;
                     $scope.getTicket();
                 }
             });
@@ -171,6 +172,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             // console.log(" $scope.ticketDetails", $scope.ticketDetails);
             NavigationService.apiCallWithData("Ticket/addToChat", $scope.ticketDetails, function (data) {
                 $scope.chatData.comment = null;
+                $scope.chatData.image = null;
                 if (data.value == true) {
                     $scope.getTicket();
                 }
