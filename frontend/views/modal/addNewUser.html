@@ -5,31 +5,31 @@
     </span>
 </div>
 <div class="modal-body fontRobotoLight" id="modal-body">
-    <form>
+    <form name="newuser">
         <div class="row form-group">
             <div class="col-12 col-md-6">
                 <label class="mb-0">Name</label>
                 <div class=" d-flex">
                     <input ng-model="userData.name" class="form-control form-control-sm ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
-                        type="text" required="">
+                        type="text" required>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <label class="mb-0">Email</label>
                 <input ng-model="userData.email" class="form-control form-control-sm ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-email"
-                    type="email" required="">
+                    type="email" required>
             </div>
         </div>
         <div class="row form-group">
             <div class="col-12 col-md-6">
                 <label class="mb-0">Mobile Number</label>
                 <input ng-model="userData.mobile" class="form-control form-control-sm ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
-                    type="text" required="">
+                    type="number" required>
             </div>
             <div class="col-12 col-md-6">
                 <label class="mb-0">NickName</label>
                 <input ng-model="userData.nickName" class="form-control form-control-sm ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
-                    type="text" required="">
+                    type="text" required>
             </div>
         </div>
         <div class="row form-group">
@@ -37,13 +37,13 @@
                 <label class="mb-0">Relationship</label>
                 <!-- <input ng-model="userData.relation" class="form-control form-control-sm ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
                     type="text" required=""> -->
-                <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation">
+                <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation" required>
                     <option ng-repeat="relations in relationsForUser">{{relations}}</option>
                 </select>
             </div>
         </div>
         <div class="text-center">
-            <button class="reminder-btn" ng-click="addUser(userData)">Save User</button>
+            <button class="form-control w-40 mx-auto reminder-btn" ng-click="addUser(userData)" ng-disabled="newuser.$invalid">Save User</button>
         </div>
     </form>
 </div>

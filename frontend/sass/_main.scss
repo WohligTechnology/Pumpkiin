@@ -514,7 +514,9 @@ input[type=number]::-webkit-outer-spin-button {
 .background-gray {
     background-color: #EBEDF1;
 }
-
+.input-border{
+    border: 1px solid #ced4da;
+}
 .orange-border {
     border: solid 1px $orange;
 }
@@ -599,7 +601,7 @@ fieldset:disabled {
 }
 
 .address-box {
-    width: 180px;
+    min-width: 180px;
 }
 
 .added-btn {

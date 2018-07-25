@@ -5,30 +5,52 @@
     </span>
 </div>
 <div class="modal-body fontRobotoLight" id="modal-body">
-    <form>
+    <form name="address">
         <div class="form-group">
             <label for="title">
                 Name of Address</label>
-            <input class="form-control form-control-sm" type="text" name="title">
+            <input class="form-control form-control-sm" type="text" name="addressName">
+        </div>
+        <div class="form-group">
+            <label for="title">
+                Country</label>
+            <ui-select class="input-border" ng-model="ctrl.address.selected" theme="bootstrap" ng-disabled="ctrl.disabled" reset-search-input="false" 
+                title="Choose Country" required="true">
+                <ui-select-match placeholder="Enter Country...">{{$select.selected.formatted_address}}</ui-select-match>
+                <ui-select-choices repeat="address in ctrl.addresses track by $index" refresh="ctrl.refreshAddresses($select.search)" refresh-delay="0">
+                    <div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="form-group">
+            <label for="title">
+                State</label>
+            <ui-select class="input-border" ng-model="ctrl.address.selected" theme="bootstrap" ng-disabled="ctrl.disabled" reset-search-input="false" 
+                title="Choose State" required="true">
+                <ui-select-match placeholder="Enter State...">{{$select.selected.formatted_address}}</ui-select-match>
+                <ui-select-choices repeat="address in ctrl.addresses track by $index" refresh="ctrl.refreshAddresses($select.search)" refresh-delay="0">
+                    <div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="form-group">
+            <label for="title">
+                City</label>
+            <ui-select class="input-border" ng-model="ctrl.address.selected" theme="bootstrap" ng-disabled="ctrl.disabled" reset-search-input="false" 
+                title="Choose City" required="true">
+                <ui-select-match placeholder="Enter City...">{{$select.selected.formatted_address}}</ui-select-match>
+                <ui-select-choices repeat="address in ctrl.addresses track by $index" refresh="ctrl.refreshAddresses($select.search)" refresh-delay="0">
+                    <div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
         </div>
         <div class="form-group">
             <label for="title">
                 Address Line 1</label>
-            <input class="form-control form-control-sm" type="text" name="title">
+            <input class="form-control form-control-sm" type="text" name="title" required>
         </div>
-        <div class="form-group">
-            <label for="title">
-                Address Line 2</label>
-            <input class="form-control form-control-sm" type="text" name="title">
-        </div>
-        <div class="form-group">
-            <label for="title">
-                Address Line 3</label>
-            <input class="form-control form-control-sm" type="text" name="title">
-        </div>
-        <div class="text-center">
-            <button class="reminder-btn">Save </button>
-            <button class="reminder-btn-green" ng-if>Save </button>
+        <div>
+            <button class="form-control w-40 mx-auto reminder-btn" ng-disabled="address.$invalid">Save</button>
         </div>
     </form>
 </div>
