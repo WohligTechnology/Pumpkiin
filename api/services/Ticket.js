@@ -180,5 +180,17 @@ var model = {
         ], callback);
     },
 
+    getAllStatesOfIndia: function (data, callback) {
+        var options = {
+            method: 'GET',
+            url: 'http://services.groupkt.com/state/get/IND/all'
+        };
+        request(options, function (err, response, body) {
+            console.log("body", body);
+            callback(null, body);
+        });
+    },
+
+
 };
 module.exports = _.assign(module.exports, exports, model);

@@ -93,6 +93,6 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
                 if (response.value == true) {}
             });
         }
-    })
+    });
 
 });
