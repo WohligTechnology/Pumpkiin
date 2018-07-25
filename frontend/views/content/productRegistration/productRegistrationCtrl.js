@@ -128,7 +128,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         }
 
         $scope.goToNxtTab = function (data) {
-            console.log("data---", data);
+            // console.log("data---", data);
             if ($scope.product_id) {
                 data._id = $scope.product_id;
                 NavigationService.apiCallWithData("Product/saveProduct", data, function (res) {

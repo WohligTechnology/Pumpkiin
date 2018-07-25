@@ -48,18 +48,18 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
                 console.log("res.data", res.data);
                 toastr.success("Reminder Snoozed Successfully");
                 $scope.addReminder.close();
-                $state.reload()
+                $state.reload();
             });
         } else {
-            console.log("-----$scope.data-----", data);
-            // data.user = $scope.jstrgValue._id;
-            // data.status = "Pending";
-            // NavigationService.apiCallWithData("Reminder/save", data, function (res) {
-            //     console.log("res.data", res.data);
-            //     toastr.success("Reminder Added Successfully");
-            //     $scope.addReminder.close();
-            //     $state.reload()
-            // });
+            // console.log("-----$scope.data-----", data);
+            data.user = $scope.jstrgValue._id;
+            data.status = "Pending";
+            NavigationService.apiCallWithData("Reminder/save", data, function (res) {
+                console.log("res.data", res.data);
+                toastr.success("Reminder Added Successfully");
+                $scope.addReminder.close();
+                $state.reload();
+            });
         }
     }
 
