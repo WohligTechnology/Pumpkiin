@@ -32,12 +32,12 @@
             </h6>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Product Name</label>
+                    <label class="mb-0">Product Name * </label>
                     <input ng-model="data.productName" class="form-control form-control-sm" type="text" name="productName" placeholder="Product Name"
                         required>
                 </div>
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Brand Name</label>
+                    <label class="mb-0">Brand Name * </label>
                     <ui-select ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a brand">
                         <ui-select-match class="selected-tags" placeholder="Select or search a brand in the list...">{{$select.selected.name}}</ui-select-match>
                         <ui-select-choices class="background-blue text-white" repeat="brand in brandsData | filter: $select.search">
@@ -49,12 +49,12 @@
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Serial Number</label>
+                    <label class="mb-0">Serial Number * </label>
                     <input ng-model="data.serialNo" class="form-control form-control-sm" type="text" name="srno" placeholder="Serial Number"
-                        required only-digits>
+                        required>
                 </div>
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Model Number</label>
+                    <label class="mb-0">Model Number * </label>
                     <input ng-model="data.modelNo" class="form-control form-control-sm" type="text" name="modelno" placeholder="Model Number"
                         required>
                 </div>
@@ -65,9 +65,7 @@
                     <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span>
                     <br>
                     <div class="scrollbar">
-                        <div>
                             <upload-image multiple ng-model="data.productImages"></upload-image>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -91,17 +89,17 @@
             </h6>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Purchase Date</label>
+                    <label class="mb-0">Purchase Date * </label>
                     <input ng-model="data.purchaseDate" name="date" class="form-control form-control-sm" type="date" required>
                 </div>
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Purchase Price</label>
+                    <label class="mb-0">Purchase Price * </label>
                     <input ng-model="data.purchasePrice" name="price" class="form-control form-control-sm" type="text" required only-digits>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Retailer</label>
+                    <label class="mb-0">Retailer * </label>
                     <!-- <ui-select ng-model="data.retailer" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a country" ng-required="true">
                         <ui-select-match placeholder="Select or search a retailer in the list...">{{$select.selected.name}}</ui-select-match>
                         <ui-select-choices class="background-blue text-white" repeat="retailer in retaillersData | filter: $select.search">
@@ -117,9 +115,7 @@
                     <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span>
                     <br>
                     <div class="scrollbar">
-                        <div>
                             <upload-image multiple ng-model="data.purchaseProof"></upload-image>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -132,7 +128,7 @@
             </h6>
             <div class="row form-group" ng-init="data ={}">
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Search for exsisting user</label>
+                    <label class="mb-0">Search for exsisting user * </label>
                     <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="data.Users" theme="bootstrap" sortable="true"
                         ng-disabled="ctrl.disabled" title="Choose a color" ng-required="true">
                         <ui-select-match class="selected-tags" placeholder="Select users">
@@ -163,30 +159,30 @@
             <h6 class="text-uppercase fontRobotoBold pt-3 border-dashed">ADD NEW USER</h6>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Name</label>
+                    <label class="mb-0">Name * </label>
                     <div class=" d-flex">
                         <input ng-model="userData.name" class="form-control form-control-sm" type="text" only-letters-input required>
                         <!-- <input ng-model="userData.lastname" class="form-control form-control-sm w-50" type="text" required> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Email</label>
+                    <label class="mb-0">Email * </label>
                     <input ng-model="userData.email" class="form-control form-control-sm" type="email" required>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Mobile Number</label>
+                    <label class="mb-0">Mobile Number * </label>
                     <input ng-model="userData.mobile" class="form-control form-control-sm" type="text" required only-digits>
                 </div>
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">NickName</label>
+                    <label class="mb-0">NickName * </label>
                     <input ng-model="userData.nickName" class="form-control form-control-sm" type="text" required>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Relationship</label>
+                    <label class="mb-0">Relationship * </label>
                     <!-- <input ng-model="userData.relation" class="form-control form-control-sm" type="text"> -->
                     <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation" required>
                         <option ng-repeat="relations in relationsForUser">{{relations}}</option>
@@ -203,7 +199,7 @@
             </fieldset>
         </form>
         </div>
-        <fieldset class="d-flex social m-3 save ml-auto" ng-click="savepurchaseDetails(data)" ng-disabled="!(data.purchaseDate && data.purchasePrice && data.retailer && data.purchaseProof && data.Users)">
+        <fieldset class="d-flex social m-3 save ml-auto" ng-click="savepurchaseDetails(data)" ng-disabled="!(data.purchaseDate && data.purchasePrice && data.retailer && data.Users)">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
                 </i>
@@ -225,7 +221,7 @@
             </h6>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Expiry Date</label>
+                    <label class="mb-0">Expiry Date * </label>
                     <input ng-model="data.warrantyExpDate" class="form-control form-control-sm" type="date" required>
                 </div>
             </div>
@@ -235,9 +231,7 @@
                     <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span>
                     <br>
                     <div class="scrollbar">
-                        <div>
                             <upload-image multiple ng-model="data.warrantyCardImage"></upload-image>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -253,7 +247,7 @@
             </h6>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Expiry Date</label>
+                    <label class="mb-0">Expiry Date * </label>
                     <input ng-model="data.insuranceExpDate" class="form-control form-control-sm" type="date" required>
                 </div>
             </div>

@@ -8,17 +8,17 @@
     <form name="address">
         <div class="form-group">
             <label for="title">
-                Address Title ( Home / Work )</label>
+                Address Title ( Home / Work ) * </label>
             <input class="form-control form-control-sm" type="text" name="addressName" required>
         </div>
         <div class="form-group">
             <label for="fulladd">
-                Full Address</label>
+                Full Address * </label>
             <input class="form-control form-control-sm" type="text" name="title" required>
         </div>
         <div class="form-group">
             <label for="title">
-                Country</label>
+                Country * </label>
             <ui-select class="input-border" ng-model="ctrl.address.selected" theme="bootstrap" ng-disabled="ctrl.disabled" reset-search-input="false" 
                 title="Choose Country" required="true">
                 <ui-select-match placeholder="Enter Country">{{$select.selected.formatted_address}}</ui-select-match>
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label for="title">
-                State</label>
+                State * </label>
             <ui-select class="input-border" ng-model="ctrl.address.selected" theme="bootstrap" ng-disabled="ctrl.disabled" reset-search-input="false" 
                 title="Choose State" required="true">
                 <ui-select-match placeholder="Enter State">{{$select.selected.formatted_address}}</ui-select-match>
@@ -40,7 +40,7 @@
         </div>
         <div class="form-group">
             <label for="title">
-                City</label>
+                City * </label>
             <ui-select class="input-border" ng-model="ctrl.address.selected" theme="bootstrap" ng-disabled="ctrl.disabled" reset-search-input="false" 
                 title="Choose City" required="true">
                 <ui-select-match placeholder="Enter City">{{$select.selected.formatted_address}}</ui-select-match>
@@ -51,7 +51,7 @@
         </div>
         <div class="form-group">
             <label for="pin">
-                Pincode</label>
+                Pincode * </label>
             <input ng-model="pin" type="text" class="form-control form-control-sm" name="pin" required only-digits>
         </div>
         <div>
