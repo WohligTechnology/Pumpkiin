@@ -1000,3 +1000,14 @@ fieldset:disabled {
         transition: ease all 300ms;
     }
 }
+
+.selected-tags{
+    .ui-select-match-item{
+        @extend .background-blue;
+        @extend .text-white;
+        @extend .rounded;
+    }
+    .btn{
+        padding: 0.2rem 0.3rem !important;
+    }
+}

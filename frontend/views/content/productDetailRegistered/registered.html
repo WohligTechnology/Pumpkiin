@@ -94,7 +94,7 @@
                                 <label class="mb-0">Search for exsisting user</label>
                                 <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="data.Users" theme="bootstrap" sortable="true"
                                     ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a color">
-                                    <ui-select-match placeholder="Select colors...">
+                                    <ui-select-match class="selected-tags" placeholder="Select colors...">
                                         <span ng-if="$item.user.name"> {{$item.user.name}}</span>
                                         <span ng-if="!$item.user.name"> {{$item}}</span>
                                     </ui-select-match>
