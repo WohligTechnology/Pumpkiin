@@ -11,7 +11,7 @@
                 <label class="mb-0">Name</label>
                 <div class=" d-flex">
                     <input ng-model="userData.name" class="form-control form-control-sm ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
-                        type="text" required>
+                        type="text" required only-letters-input>
                 </div>
             </div>
             <div class="col-12 col-md-6">
@@ -24,7 +24,7 @@
             <div class="col-12 col-md-6">
                 <label class="mb-0">Mobile Number</label>
                 <input ng-model="userData.mobile" class="form-control form-control-sm ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"
-                    type="number" required>
+                    type="text" required only-digits>
             </div>
             <div class="col-12 col-md-6">
                 <label class="mb-0">NickName</label>

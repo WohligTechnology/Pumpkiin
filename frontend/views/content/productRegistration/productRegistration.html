@@ -50,8 +50,8 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Serial Number</label>
-                    <input ng-model="data.serialNo" class="form-control form-control-sm" type="number" name="srno" placeholder="Serial Number"
-                        required>
+                    <input ng-model="data.serialNo" class="form-control form-control-sm" type="text" name="srno" placeholder="Serial Number"
+                        required only-digits>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Model Number</label>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Purchase Price</label>
-                    <input ng-model="data.purchasePrice" name="price" class="form-control form-control-sm" type="number" required>
+                    <input ng-model="data.purchasePrice" name="price" class="form-control form-control-sm" type="text" required only-digits>
                 </div>
             </div>
             <div class="row form-group">
@@ -165,7 +165,7 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Name</label>
                     <div class=" d-flex">
-                        <input ng-model="userData.name" class="form-control form-control-sm" type="text" required>
+                        <input ng-model="userData.name" class="form-control form-control-sm" type="text" only-letters-input required>
                         <!-- <input ng-model="userData.lastname" class="form-control form-control-sm w-50" type="text" required> -->
                     </div>
                 </div>
@@ -177,7 +177,7 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Mobile Number</label>
-                    <input ng-model="userData.mobile" class="form-control form-control-sm" type="number" required>
+                    <input ng-model="userData.mobile" class="form-control form-control-sm" type="text" required only-digits>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">NickName</label>

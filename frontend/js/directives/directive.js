@@ -227,6 +227,55 @@ myApp.directive('img', function ($compile, $parse) {
         };
     })
 
+    .directive('onlyDigits', function () {
+        return {
+            require: 'ngModel',
+            restrict: 'A',
+            link: function (scope, element, attr, ctrl) {
+                var digits;
+
+                function inputValue(val) {
+                    if (val) {
+                        var otherVal = val + "";
+                        if (attr.type == "text") {
+                            digits = otherVal.replace(/[^0-9\-\.\\]/g, '');
+                        } else {
+                            digits = otherVal.replace(/[^0-9\-\.\\]/g, '');
+                        }
+
+
+                        if (digits !== val) {
+                            ctrl.$setViewValue(digits);
+                            ctrl.$render();
+                        }
+                        return parseInt(digits, 10);
+                    }
+                    return undefined;
+                }
+                ctrl.$parsers.push(inputValue);
+            }
+        };
+    })
+
+    .directive('onlyLettersInput', function () {
+        return {
+            require: 'ngModel',
+            restrict: 'A',
+            link: function (scope, element, attr, ngModelCtrl) {
+                function fromUser(text) {
+                    var transformedInput = text.replace(/[^a-zA-Z]/g, '');
+                    //console.log(transformedInput);
+                    if (transformedInput !== text) {
+                        ngModelCtrl.$setViewValue(transformedInput);
+                        ngModelCtrl.$render();
+                    }
+                    return transformedInput;
+                }
+                ngModelCtrl.$parsers.push(fromUser);
+            }
+        };
+    })
+
     .directive("moveNextOnMaxlength", function () {
         return {
             restrict: "A",

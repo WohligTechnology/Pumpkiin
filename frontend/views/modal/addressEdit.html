@@ -52,7 +52,7 @@
         <div class="form-group">
             <label for="pin">
                 Pincode</label>
-            <input class="form-control form-control-sm" type="number" name="title" required>
+            <input ng-model="pin" type="text" class="form-control form-control-sm" name="pin" required only-digits>
         </div>
         <div>
             <button class="form-control w-40 mx-auto reminder-btn" ng-disabled="address.$invalid">Save</button>
