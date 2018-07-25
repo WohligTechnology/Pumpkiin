@@ -110,8 +110,8 @@ myApp.directive('img', function ($compile, $parse) {
                 type: "@type",
                 callback: "&ngCallback",
                 imagesrc: '@imageSrc',
-                imageclass: '@imageClass'
-
+                imageclass: '@imageClass',
+                noStatus: '@noStatus'
             },
             link: function ($scope, element, attrs) {
                 console.log($scope.imagesrc, $scope.imageclass);

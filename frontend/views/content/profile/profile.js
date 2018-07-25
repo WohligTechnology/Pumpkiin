@@ -55,7 +55,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         // console.log("$scope.userDataForProfile.relations", $scope.userDataForProfile.relations);
         NavigationService.apiCallWithData("User/save", $scope.userDataForProfile, function (response) {
             if (response.value == true) {
-                toastr.success("Member removed successfully");
+                toastr.error("Member removed successfully");
                 $scope.getUserData();
             }
         });
@@ -83,5 +83,16 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         });
     }
 
+
+    $scope.$watch("userDataForProfile.profilePic", function (newVal, oldVal) {
+        // console.log("newVal----------", newVal);
+        if ($scope.userDataForProfile) {
+            $scope.userDataForProfile.profilePic = newVal;
+            console.log("$scope.userDataForProfile----------", $scope.userDataForProfile);
+            NavigationService.apiCallWithData("User/save", $scope.userDataForProfile, function (response) {
+                if (response.value == true) {}
+            });
+        }
+    })
 
 });

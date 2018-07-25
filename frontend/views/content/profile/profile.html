@@ -2,9 +2,11 @@
     <div class="container">
         <div class="d-flex profile-details mb-3">
             <div class="profile-image" class="img-fluid">
-                <img class="img-uploaded" src="img/profileImg.jpg">
+                <img class="img-uploaded" src="img/emptyProfile.png" ng-if="!userDataForProfile.profilePic">
+                <img class="img-uploaded" src="{{userDataForProfile.profilePic | serverimage}}" ng-if="userDataForProfile.profilePic">
                 <div class="profile-photo-upload">
-                    <upload-image image-src="../img/camera1.png" image-class="profile-upload"></upload-image>
+                    <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="userDataForProfile.profilePic" noStatus="true"
+                        no-view></upload-image>
                 </div>
             </div>
             <div class="text-white fontRobotoRegular font14 ml-5">

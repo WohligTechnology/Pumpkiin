@@ -45,6 +45,7 @@ var schema = new Schema({
         }
     },
     gender: String,
+    profilePic: String,
     photo: {
         type: String,
         default: "",
@@ -479,41 +480,6 @@ var model = {
         });
     },
 
-    // removeUserRelationMember: function (userId, mobile, callback) {
-    //     console.log("inside USer RElation Memeber", userId, mobile)
-    // User.findOneAndUpdate({
-    //     _id: mongoose.Types.ObjectId(userId)
-    // }, {
-    //     $pull: {
-    //         'member': {
-    //             memberId: memberId
-    //         }
-    //     }
-
-    // }, {
-    //     new: true
-    // }).deepPopulate('member.memberId').exec(function (err, found) {
-    //     if (err) {
-    //         callback(err, null);
-    //     } else if (_.isEmpty(found)) {
-    //         callback("noDataound", null);
-    //     } else {
-    //         var user = {}
-    //         user._id = memberId;
-    //         User.deleteData(user, function (err, created) {
-    //             console.log("afte api response", created);
-    //             if (err) {
-    //                 callback(err, null);
-    //             } else if (_.isEmpty(found)) {
-    //                 callback(null, "noDataound");
-    //             } else {
-    //                 callback(null, found);
-    //             }
-    //         });
-    //     }
-
-    // });
-    // },
 
     sendOtp: function (data, callback) {
         var otpNumber = (Math.random() + "").substring(2, 6);
@@ -536,20 +502,20 @@ var model = {
                 delete data3.accessToken;
                 delete data3.password;
                 delete data3.forgotPassword;
-                var smsData = {};
-                smsData.message = 'Your verification code is ' + data3.otp;
+                // var smsData = {};
+                // smsData.message = 'Your verification code is ' + data3.otp;
                 delete data3.otp;
-                smsData.senderId = 'PUMPKIIN';
-                smsData.mobile = data.mobile;
-                Config.sendSms(smsData, function (err, smsRespo) {
-                    if (err) {
-                        console.log("*************************************************sms gateway error in photographer***********************************************", err);
-                    } else if (smsRespo) {
-                        console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
-                    } else {
-                        console.log("invalid data");
-                    }
-                });
+                // smsData.senderId = 'PUMPKIIN';
+                // smsData.mobile = data.mobile;
+                // Config.sendSms(smsData, function (err, smsRespo) {
+                //     if (err) {
+                //         console.log("*************************************************sms gateway error in photographer***********************************************", err);
+                //     } else if (smsRespo) {
+                //         console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
+                //     } else {
+                //         console.log("invalid data");
+                //     }
+                // });
                 callback(null, data3);
             }
         });

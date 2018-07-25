@@ -7355,7 +7355,7 @@ button.bg-dark:focus {
 .border-white {
   border-color: #fff !important; }
 
-.rounded {
+.rounded, .selected-tags .ui-select-match-item {
   border-radius: 0.25rem !important; }
 
 .rounded-top {
@@ -9429,7 +9429,7 @@ button.bg-dark:focus {
 .font-italic {
   font-style: italic !important; }
 
-.text-white {
+.text-white, .selected-tags .ui-select-match-item {
   color: #fff !important; }
 
 .text-primary {
@@ -9859,7 +9859,7 @@ input[type=number]::-webkit-outer-spin-button {
 .font40 {
   font-size: 40px; }
 
-.background-blue {
+.background-blue, .selected-tags .ui-select-match-item {
   background-color: #142C5C; }
 
 .background-orange {
@@ -10257,6 +10257,9 @@ fieldset:disabled {
     -webkit-transition: ease all 300ms;
     transition: ease all 300ms; }
 
+.selected-tags .btn {
+  padding: 0.2rem 0.3rem !important; }
+
 .profile-page .profile-image {
   position: relative;
   width: 130px;
@@ -10264,11 +10267,16 @@ fieldset:disabled {
   border-radius: 50%;
   border: solid 1px #14C177; }
   .profile-page .profile-image .upload-btn-wrapper {
+    padding: 25px 25px;
+    margin-top: 0 !important;
     position: relative;
     overflow: hidden;
     display: inline-block;
     cursor: pointer; }
   .profile-page .profile-image .upload-btn-wrapper input[type=file] {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
     font-size: 100px;
     position: absolute;
     left: 0;
@@ -10286,7 +10294,6 @@ fieldset:disabled {
   top: 0;
   left: 0;
   cursor: pointer;
-  padding: 11px 25px;
   opacity: 0;
   background-color: rgba(255, 255, 255, 0.5);
   width: 130px;
