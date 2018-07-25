@@ -88,7 +88,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         // console.log("newVal----------", newVal);
         if ($scope.userDataForProfile) {
             $scope.userDataForProfile.profilePic = newVal;
-            console.log("$scope.userDataForProfile----------", $scope.userDataForProfile);
+            // console.log("$scope.userDataForProfile----------", $scope.userDataForProfile);
             NavigationService.apiCallWithData("User/save", $scope.userDataForProfile, function (response) {
                 if (response.value == true) {}
             });
