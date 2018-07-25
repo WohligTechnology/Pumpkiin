@@ -9,18 +9,26 @@
     <div class="modal-body">
         <div class="form-group">
             <label for="name">Name Of Person:</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter Name">
+            <input type="text" class="form-control" id="name" placeholder="Enter Name" ng-model="contactData.contactPerson">
+        </div>
+        <div class="form-group">
+            <label for="name">Contact Number:</label>
+            <input type="number" class="form-control" id="name" placeholder="Enter Contact Number" ng-model="contactData.contactNumber">
         </div>
         <div class="form-group">
             <label for="time">PickUp Time:</label>
-            <input type="text" class="form-control" id="time" placeholder="Enter PickUp Time">
+            <input type="datetime-local" class="form-control" id="time" placeholder="Enter PickUp Time" ng-model="contactData.pickUpTime">
         </div>
         <div class="form-group">
+            <label for="name">Address :</label>
+            <textarea class="form-control" id="address" placeholder="Enter Address" ng-model="contactData.pickUpAddress"></textarea>
+        </div>
+        <!-- <div class="form-group">
             <label for="Desctiption">Product Desctiption</label>
             <textarea class="form-control" id="Desctiption" rows="3"></textarea>
-        </div>
+        </div> -->
         <div class="text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" ng-click="setPickUpTime(contactData)">Submit</button>
         </div>
 
     </div>

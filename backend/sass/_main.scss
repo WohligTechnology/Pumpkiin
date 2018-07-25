@@ -482,6 +482,12 @@ $trans-black: rgba( black,
     background: white !important;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .nav-tabs {
     border: 0;
     >li.active {

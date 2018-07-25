@@ -8,6 +8,8 @@ var schema = new Schema({
     assignedtoNumber: Number,
     contactPerson: String,
     contactNumber: Number,
+    pickUpTime: Date,
+    pickUpAddress: String,
     serviceCenter: {
         type: Schema.Types.ObjectId,
         ref: 'ServiceCenter',

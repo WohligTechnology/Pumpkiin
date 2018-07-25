@@ -26,14 +26,7 @@
                                                 </a>
                                             </div>
                                             <label>Status :</label>
-                                            <select>
-                                                <option value="1">Repair/ Maintenance (On-site)</option>
-                                                <option value="2">Scheduling service with customer (Open)</option>
-                                                <option value="3">Coordinating with the service provider (Open)</option>
-                                                <option value="4">Service confirmed (In-progress)</option>
-                                                <option value="5">Service completed (Closed)</option>
-                                                <option value="6">Awaiting feedback (Closed)</option>
-                                                <option value="7">Completed (Completed)</option>
+                                            <select ng-model="ticketData.status" ng-change="updateStatus(ticketData.status)" ng-options="x for x in statusArr">
                                             </select>
                                             <select class="ml-5">
                                                 <option value="8">Repair (Off-site)</option>

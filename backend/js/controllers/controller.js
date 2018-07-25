@@ -1680,7 +1680,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         $scope.navigation = NavigationService.getnav();
         $scope.chatData = {};
         $scope.pickupOpen = function () {
-            $uibModal.open({
+            $scope.pickUp = $uibModal.open({
                 animation: true,
                 templateUrl: "views/modal/pickup.html",
                 scope: $scope,
@@ -1722,6 +1722,30 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                 if (data.value == true) {
                     $scope.chatData.comment = null;
                     $scope.chatData.image = null;
+                }
+            });
+        };
+
+        $scope.setPickUpTime = function (data) {
+            console.log(" data", data);
+            data.ticketId = $stateParams.id;
+            NavigationService.apiCall("PickUpService/save", data, function (data) {
+                if (data.value == true) {
+                    $scope.pickUp.close();
+                }
+            });
+        };
+
+        $scope.statusArr = ["Repair/ Maintenance (On-site)", "Scheduling service with customer (Open)", "Coordinating with the service provider (Open)", "Service confirmed (In-progress)", "Service completed (Closed)", "Awaiting feedback (Closed)", "Completed (Completed)"];
+
+        $scope.updateStatus = function (data) {
+            console.log(" data", data);
+            var dataToSend = {};
+            dataToSend._id = $stateParams.id;
+            dataToSend.subStatus = data;
+            NavigationService.apiCall("Ticket/save", dataToSend, function (data) {
+                if (data.value == true) {
+                    toastr.success("status changed Sucessfully");
                 }
             });
         };
