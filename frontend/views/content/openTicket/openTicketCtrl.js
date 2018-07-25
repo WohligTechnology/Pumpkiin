@@ -6,7 +6,7 @@ myApp.controller('OpenTicketCtrl', function ($scope, TemplateService, Navigation
     $scope.navigation = NavigationService.getNavigation();
     $scope.jstrgValue = $.jStorage.get('userData');
 
-    // $scope.reminderModalOpen=function(){
+    // $scope.reminderModalOpen = function () {
     //     $scope.addReminder = $uibModal.open({
     //         animation: true,
     //         templateUrl: "views/modal/addReminder.html",
@@ -16,11 +16,11 @@ myApp.controller('OpenTicketCtrl', function ($scope, TemplateService, Navigation
     // }
 
     // $scope.saveReminder = function (data) {
-    //     console.log("----------", data);
+    //     // console.log("----------", data);
     //     data.user = $scope.jstrgValue._id;
     //     data.status = "Pending";
     //     NavigationService.apiCallWithData("Reminder/save", data, function (res) {
-    //         console.log("res.data", res.data);
+    //         // console.log("res.data", res.data);
     //         $state.go("productListing");
     //     });
     // }

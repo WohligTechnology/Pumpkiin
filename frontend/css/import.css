@@ -10260,6 +10260,12 @@ fieldset:disabled {
 .selected-tags .btn {
   padding: 0.2rem 0.3rem !important; }
 
+.brand-div .ui-select-match {
+  padding: 2px 10px;
+  border: solid 1px #ced4db;
+  border-radius: 0.25em;
+  color: black; }
+
 .profile-page .profile-image {
   position: relative;
   width: 130px;
@@ -10375,7 +10381,6 @@ fieldset:disabled {
   color: #657D95; }
 
 .product-desc span {
-  color: #D1D1D1;
   font-size: 12px; }
 
 .product-desc input {

@@ -403,13 +403,15 @@ header {
 .mx-6 {
     margin: 0 9rem !important;
 }
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    margin: 0; 
+    margin: 0;
 }
+
 .custom-input {
     input {
         color: #657D95;
@@ -514,9 +516,11 @@ input[type=number]::-webkit-outer-spin-button {
 .background-gray {
     background-color: #EBEDF1;
 }
-.input-border{
+
+.input-border {
     border: 1px solid #ced4da;
 }
+
 .orange-border {
     border: solid 1px $orange;
 }
@@ -1001,13 +1005,22 @@ fieldset:disabled {
     }
 }
 
-.selected-tags{
-    .ui-select-match-item{
+.selected-tags {
+    .ui-select-match-item {
         @extend .background-blue;
         @extend .text-white;
         @extend .rounded;
     }
-    .btn{
+    .btn {
         padding: 0.2rem 0.3rem !important;
+    }
+}
+
+.brand-div {
+    .ui-select-match {
+        padding: 2px 10px;
+        border: solid 1px #ced4db;
+        border-radius: 0.25em;
+        color: black;
     }
 }

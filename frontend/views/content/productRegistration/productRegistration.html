@@ -36,7 +36,7 @@
                     <input ng-model="data.productName" class="form-control form-control-sm" type="text" name="productName" placeholder="Product Name"
                         required>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 brand-div">
                     <label class="mb-0">Brand Name</label>
                     <ui-select ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a brand">
                         <ui-select-match class="selected-tags" placeholder="Select or search a brand in the list...">{{$select.selected.name}}</ui-select-match>
@@ -158,58 +158,58 @@
                     </div>
                 </div>
             </div>
-        </form>
-            <form name="adduser">
-            <h6 class="text-uppercase fontRobotoBold pt-3 border-dashed">ADD NEW USER</h6>
-            <div class="row form-group">
-                <div class="col-12 col-md-6">
-                    <label class="mb-0">Name</label>
-                    <div class=" d-flex">
-                        <input ng-model="userData.name" class="form-control form-control-sm" type="text" only-letters-input required>
-                        <!-- <input ng-model="userData.lastname" class="form-control form-control-sm w-50" type="text" required> -->
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <label class="mb-0">Email</label>
-                    <input ng-model="userData.email" class="form-control form-control-sm" type="email" required>
+    </form>
+    <form name="adduser">
+        <h6 class="text-uppercase fontRobotoBold pt-3 border-dashed">ADD NEW USER</h6>
+        <div class="row form-group">
+            <div class="col-12 col-md-6">
+                <label class="mb-0">Name</label>
+                <div class=" d-flex">
+                    <input ng-model="userData.name" class="form-control form-control-sm" type="text" only-letters-input required>
+                    <!-- <input ng-model="userData.lastname" class="form-control form-control-sm w-50" type="text" required> -->
                 </div>
             </div>
-            <div class="row form-group">
-                <div class="col-12 col-md-6">
-                    <label class="mb-0">Mobile Number</label>
-                    <input ng-model="userData.mobile" class="form-control form-control-sm" type="text" required only-digits>
-                </div>
-                <div class="col-12 col-md-6">
-                    <label class="mb-0">NickName</label>
-                    <input ng-model="userData.nickName" class="form-control form-control-sm" type="text" required>
-                </div>
+            <div class="col-12 col-md-6">
+                <label class="mb-0">Email</label>
+                <input ng-model="userData.email" class="form-control form-control-sm" type="email" required>
             </div>
-            <div class="row form-group">
-                <div class="col-12 col-md-6">
-                    <label class="mb-0">Relationship</label>
-                    <!-- <input ng-model="userData.relation" class="form-control form-control-sm" type="text"> -->
-                    <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation" required>
-                        <option ng-repeat="relations in relationsForUser">{{relations}}</option>
-                    </select>
-                </div>
-            </div>
-            <fieldset class="row form-group" ng-click="addUser(userData)" ng-disabled="adduser.$invalid">
-                <div class="d-flex social m-3 add">
-                    <span class="social_icon">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    <div class="social-text">Add User</div>
-                </div>
-            </fieldset>
-        </form>
         </div>
-        <fieldset class="d-flex social m-3 save ml-auto" ng-click="savepurchaseDetails(data)" ng-disabled="!(data.purchaseDate && data.purchasePrice && data.retailer && data.purchaseProof && data.Users)">
-            <span class="social_icon">
-                <i class="fas fa-save"></i>
-                </i>
-            </span>
-            <div class="social-text">Save and Continue</div>
+        <div class="row form-group">
+            <div class="col-12 col-md-6">
+                <label class="mb-0">Mobile Number</label>
+                <input ng-model="userData.mobile" class="form-control form-control-sm" type="text" required only-digits>
+            </div>
+            <div class="col-12 col-md-6">
+                <label class="mb-0">NickName</label>
+                <input ng-model="userData.nickName" class="form-control form-control-sm" type="text" required>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-12 col-md-6">
+                <label class="mb-0">Relationship</label>
+                <!-- <input ng-model="userData.relation" class="form-control form-control-sm" type="text"> -->
+                <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation" required>
+                    <option ng-repeat="relations in relationsForUser">{{relations}}</option>
+                </select>
+            </div>
+        </div>
+        <fieldset class="row form-group" ng-click="addUser(userData)" ng-disabled="adduser.$invalid">
+            <div class="d-flex social m-3 add">
+                <span class="social_icon">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <div class="social-text">Add User</div>
+            </div>
         </fieldset>
+    </form>
+    </div>
+    <fieldset class="d-flex social m-3 save ml-auto" ng-click="savepurchaseDetails(data)" ng-disabled="!(data.purchaseDate && data.purchasePrice && data.retailer && data.purchaseProof && data.Users)">
+        <span class="social_icon">
+            <i class="fas fa-save"></i>
+            </i>
+        </span>
+        <div class="social-text">Save and Continue</div>
+    </fieldset>
 </div>
 
 <div class="container my-1" ng-if="activePage=='circle3'">
