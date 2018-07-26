@@ -9,53 +9,47 @@
         <div class="form-group">
             <label for="title">
                 Address Title ( Home / Work ) * </label>
-            <input class="form-control form-control-sm" type="text" name="addressName" required>
+            <input class="form-control form-control-sm" type="text" name="addressName" ng-model="data.title" required>
         </div>
         <div class="form-group">
             <label for="fulladd">
                 Full Address * </label>
-            <input class="form-control form-control-sm" type="text" name="title" required>
+            <input class="form-control form-control-sm" type="text" name="title" required ng-model="data.address">
         </div>
         <div class="form-group">
             <label for="title">
                 Country * </label>
-            <ui-select class="input-border" ng-model="ctrl.address.selected" theme="bootstrap" ng-disabled="ctrl.disabled" reset-search-input="false" 
-                title="Choose Country" required="true">
-                <ui-select-match placeholder="Enter Country">{{$select.selected.formatted_address}}</ui-select-match>
-                <ui-select-choices repeat="address in ctrl.addresses track by $index" refresh="ctrl.refreshAddresses($select.search)" refresh-delay="0">
-                    <div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
-                </ui-select-choices>
-            </ui-select>
+            <div class="form-control form-control-sm">India</div>
         </div>
         <div class="form-group">
             <label for="title">
                 State * </label>
-            <ui-select class="input-border" ng-model="ctrl.address.selected" theme="bootstrap" ng-disabled="ctrl.disabled" reset-search-input="false" 
-                title="Choose State" required="true">
-                <ui-select-match placeholder="Enter State">{{$select.selected.formatted_address}}</ui-select-match>
-                <ui-select-choices repeat="address in ctrl.addresses track by $index" refresh="ctrl.refreshAddresses($select.search)" refresh-delay="0">
-                    <div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
+            <ui-select class="input-border" ng-model="data.state" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a state"
+                ng-change="updateState(data.state)">
+                <ui-select-match placeholder="Select or search a state in the list...">{{$select.selected.region}}</ui-select-match>
+                <ui-select-choices class="background-blue text-white" repeat="state in states | filter: $select.search">
+                    <span ng-bind-html="state.region | highlight: $select.search"></span>
                 </ui-select-choices>
             </ui-select>
         </div>
         <div class="form-group">
             <label for="title">
                 City * </label>
-            <ui-select class="input-border" ng-model="ctrl.address.selected" theme="bootstrap" ng-disabled="ctrl.disabled" reset-search-input="false" 
-                title="Choose City" required="true">
-                <ui-select-match placeholder="Enter City">{{$select.selected.formatted_address}}</ui-select-match>
-                <ui-select-choices repeat="address in ctrl.addresses track by $index" refresh="ctrl.refreshAddresses($select.search)" refresh-delay="0">
-                    <div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
+            <ui-select class="input-border" ng-model="data.city" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a state"
+                ng-change="updateState(data.city)">
+                <ui-select-match placeholder="Select or search a city in the list...">{{$select.selected.city}}</ui-select-match>
+                <ui-select-choices class="background-blue text-white" repeat="city in cities | filter: $select.search">
+                    <span ng-bind-html="city.city | highlight: $select.search"></span>
                 </ui-select-choices>
             </ui-select>
         </div>
         <div class="form-group">
             <label for="pin">
                 Pincode * </label>
-            <input ng-model="pin" type="text" class="form-control form-control-sm" name="pin" required only-digits>
+            <input ng-model="data.pin" type="text" class="form-control form-control-sm" name="pin" required only-digits>
         </div>
         <div>
-            <button class="form-control w-40 mx-auto reminder-btn" ng-disabled="address.$invalid">Save</button>
+            <button class="form-control w-40 mx-auto reminder-btn" ng-disabled="address.$invalid" ng-click="saveAddressData(data)">Save</button>
         </div>
     </form>
 </div>

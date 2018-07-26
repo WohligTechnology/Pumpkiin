@@ -21,10 +21,12 @@
                             </form>
                             <a class="btn btn-success" ui-sref="createproductpage">
                                 Create
-                              </a>
+                            </a>
 
                         </div>
-                        <h3>List of Product<span class="tableTotal ">(Total : {{totalItems}}) </span></h3>
+                        <h3>List of Product
+                            <span class="tableTotal ">(Total : {{totalItems}}) </span>
+                        </h3>
                     </div>
 
                     <div class="table-responsive">
@@ -45,12 +47,12 @@
                                     <!--<tr>-->
                                     <td>{{($index + 1)+((formData.page-1)*maxRow)}}</td>
                                     <!--<td>{{($index + 1)}}</td>-->
-                                    <td>{{item.productname}}</td>
+                                    <td>{{item.productName}}</td>
                                     <td>
                                         </a>
                                         <a class="btn btn-success" ng-click="viewUserDetail(item._id)">
-                      View Detail
-                    </a>
+                                            View Detail
+                                        </a>
                                     </td>
 
                                 </tr>

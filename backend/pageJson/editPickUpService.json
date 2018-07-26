@@ -10,10 +10,10 @@
             "type": "tags",
             "tableRef": "ticketId",
             "dropDownType": "single",
-            "dropDownField": "ticketnumber",
+            "dropDownField": "ticketNumber",
             "searchApi": "searchCall",
-            "placeholder": "Enter ticketid Name",
-            "id": "ticketid",
+            "placeholder": "Enter ticketId Name",
+            "id": "ticketId",
             "validation": ["", "trim", ""],
             "url": "Ticket/search"
         }, {
@@ -50,18 +50,6 @@
             "id": "contactnumber",
             "validation": ["", "trim", ""],
             "url": ""
-        },
-        {
-            "name": "servicecenter",
-            "type": "tags",
-            "tableRef": "serviceCenter",
-            "dropDownType": "single",
-            "dropDownField": "name",
-            "searchApi": "searchCall",
-            "placeholder": "Enter servicecenter Name",
-            "id": "servicecenter",
-            "validation": ["", "trim", ""],
-            "url": "ServiceCenter/search"
         }
 
     ],

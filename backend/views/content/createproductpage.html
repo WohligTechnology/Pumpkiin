@@ -13,38 +13,34 @@
             <div class="sec">
                 <div class="form-group" fields>
                     <label>Product Name * </label>
-                    <input type="text" name="productname" placeholder="product name" ng-model="formdata.productname" class="form-control" required>
-
+                    <input type="text" name="productname" placeholder="product name" ng-model="formdata.productName" class="form-control" required>
                 </div>
-
                 <div class="form-group">
                     <label>Serial No * </label>
                     <input type="text" name="serialNo" placeholder="serial No" ng-model="formdata.serialNo" class="form-control" required>
-
                 </div>
                 <div class="form-group">
                     <label>Model No * </label>
                     <input type="text" name="modelNo" placeholder="model No" ng-model="formdata.modelNo" class="form-control" required>
-
                 </div>
                 <div class="form-group" fields ng-if="!showSaveButton">
                     <label>Product Image * </label>
                     <div class="clearfix">
                         <div class="img-box" style="float:left;" ng-repeat="pro in formdata.productImages track by $index">
-                            <img alt="" ng-src="{{pro.image|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
-                            <a class="btn btn-danger" ng-click="demo(pro.image)">Cancel</a>
+                            <img alt="" ng-src="{{pro|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
+                            <a class="btn btn-danger" ng-click="removeProductImage($index)">Cancel</a>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Purchase date * </label>
-                    <input type="date" name="purchasedate" placeholder="purchase date" ng-model="formdata.purchasedate" class="form-control"
+                    <input type="date" name="purchasedate" placeholder="purchase date" ng-model="formdata.purchaseDate" class="form-control"
                         required>
 
                 </div>
                 <div class="form-group">
                     <label>Purchase Price * </label>
-                    <input type="number" name="purchaseprice" placeholder="purchaseprice" ng-model="formdata.purchaseprice" class="form-control"
+                    <input type="number" name="purchaseprice" placeholder="purchaseprice" ng-model="formdata.purchasePrice" class="form-control"
                         required>
 
                 </div>
@@ -52,24 +48,47 @@
                 <div class="form-group" fields>
                     <label>Proof of Purchase</label>
                     <div class="clearfix">
-                        <div class="img-box" style="float:left;" ng-repeat="pur in formdata.purchaseproof track by $index">
-                            <img alt="" ng-src="{{pur.proofImage|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
+                        <div class="img-box" style="float:left;" ng-repeat="pur in formdata.purchaseProof track by $index">
+                            <img alt="" ng-src="{{pur|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label>Warranty Period * </label>
                     <input type="text" name="warrantyPeriod" placeholder="warranty Period" ng-model="formdata.warrantyPeriod" class="form-control"
                         required>
 
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label>Warranty Expiry Date * </label>
                     <input type="date" name="warrantyExpDate" placeholder="warranty ExpDate" ng-model="formdata.warrantyExpDate" class="form-control"
                         required>
-
                 </div>
+                <div class="form-group" fields>
+                    <label>Warranty Card</label>
+                    <div class="clearfix">
+                        <div class="img-box" style="float:left;" ng-repeat="warrntyImage in formdata.warrantyCardImage track by $index">
+                            <img alt="" ng-src="{{warrntyImage|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group">
+                    <label>Insurance Expiry Date </label>
+                    <input type="date" name="insuranceExpDate" placeholder="insuranceExpDate" ng-model="formdata.insuranceExpDate" class="form-control"
+                        required>
+                </div>
+                <div class="form-group" fields>
+                    <label>Insurance Card</label>
+                    <div class="clearfix">
+                        <div class="img-box" style="float:left;" ng-repeat="insuranceImage in formdata.insuranceProofImage track by $index">
+                            <img alt="" ng-src="{{insuranceImage|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- <div class="form-group">
                     <label>Warranty Card (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</label>
                     <div class="clearfix">
                         <img alt="" ng-src="{{formdata.warrantyProof|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
@@ -92,9 +111,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="text-center mt20 odd-even-button" ng-if="showSaveButton">
+                </div> -->
+                <div class="text-center mt20 odd-even-button">
                     <button class="btn btn-default" ng-disabled="newsForm.$invalid" type="submit">Save</button>
-                    <a class="btn btn-danger" ng-click="cancelEdit()">Cancel</a>
+                    <a class="btn btn-danger" ui-sref="viewproductpage({status:'Confirmed'})">Cancel</a>
                 </div>
 </form>

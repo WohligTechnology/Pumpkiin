@@ -109,5 +109,17 @@ var model = {
         });
     },
 
+    getAllProducts: function (data, callback) {
+        Product.find({
+            status: 'Confirmed'
+        }, function (err, found) {
+            if (err || _.isEmpty(found)) {
+                callback(err, null);
+            } else {
+                callback(null, found);
+            }
+        });
+    }
+
 };
 module.exports = _.assign(module.exports, exports, model);

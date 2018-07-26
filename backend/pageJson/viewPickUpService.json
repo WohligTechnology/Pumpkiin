@@ -5,14 +5,16 @@
     "sendIdWithCreate": true,
     "urlFields": ["_id"],
     "fields": [{
-        "name": "ticketid",
-        "isSort": "",
-        "tableRef": "ticketId"
-    }, {
-        "name": "assignedto",
-        "isSort": "",
-        "tableRef": "assignedTo"
-    }],
+            "name": "Contact Person",
+            "isSort": "",
+            "tableRef": "contactPerson"
+        },
+        {
+            "name": "Contact Number",
+            "isSort": "",
+            "tableRef": "contactNumber"
+        }
+    ],
     "action": [{
         "name": "edit",
         "icon": "fa-pencil",

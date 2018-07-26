@@ -139,10 +139,10 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
 
 
-    NavigationService.apiCallWithoutData("Product/search", function (res) {
+    NavigationService.apiCallWithoutData("Product/getAllProducts", function (res) {
         if (res.value == true) {
             // console.log("res-----", res.data.results);
-            $scope.allProducts = res.data.results;
+            $scope.allProducts = res.data;
         }
     });
 

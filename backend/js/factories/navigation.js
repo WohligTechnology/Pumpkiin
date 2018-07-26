@@ -10,7 +10,6 @@ myApp.factory('NavigationService', function ($http) {
             name: "Users",
             classis: "active",
             sref: "#!/page/viewUser//",
-            icon: "phone",
             access: false
         },
         {
@@ -45,36 +44,41 @@ myApp.factory('NavigationService', function ($http) {
             sref: "#!/page/viewRetailer//",
             access: false
 
-        }, {
-            name: "Ticket",
-            classis: "active",
-            sref: "#!/page/viewTicket//",
-            access: false
+        },
+        // {
+        //     name: "Ticket",
+        //     classis: "active",
+        //     sref: "#!/page/viewTicket//",
+        //     access: false
 
-        }, {
-            name: "CustomerSupportDetails",
-            classis: "active",
-            sref: "#!/page/viewCustomerSupportDetails//",
-            access: false
+        // },
+        // {
+        //     name: "CustomerSupportDetails",
+        //     classis: "active",
+        //     sref: "#!/page/viewCustomerSupportDetails//",
+        //     access: false
 
-        }, {
-            name: "FollowUp",
-            classis: "active",
-            sref: "#!/page/viewFollowUp//",
-            access: false
+        // }, {
+        //     name: "FollowUp",
+        //     classis: "active",
+        //     sref: "#!/page/viewFollowUp//",
+        //     access: false
 
-        }, {
+        // }, 
+        // {
+        //     name: "productlist",
+        //     classis: "active",
+        //     uiSref: "productlist",
+        //     access: false
+        // }, 
+        {
             name: "PickUpService",
             classis: "active",
             sref: "#!/page/viewPickUpService//",
             access: false
-        }, {
-            name: "productlist",
-            classis: "active",
-            uiSref: "productlist",
-            access: false
-        }, {
-            name: "ticketlist",
+        },
+        {
+            name: "ticket",
             classis: "active",
             uiSref: "ticketlist",
             access: false
@@ -158,7 +162,7 @@ myApp.factory('NavigationService', function ($http) {
         },
 
         apiCall: function (url, formData, callback) {
-            console.log("urlurlurlurl", url)
+            // console.log("urlurlurlurl", url)
             $http.post(adminurl + url, formData).then(function (data) {
                 data = data.data;
                 callback(data);

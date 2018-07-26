@@ -472,7 +472,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             $scope.url = "Product/search";
             $scope.formData.page = $scope.formData.page++;
             NavigationService.apiCall($scope.url, $scope.formData, function (data) {
-                console.log("data.value", data);
+                // console.log("data.value", data);
                 if (data.value) {
                     $scope.items = data.data.results;
                     console.log(" $scope.items", $scope.items);
@@ -483,12 +483,6 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             });
         }
         $scope.viewTable();
-
-
-
-
-
-
 
     })
     .controller('EditProductPageCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, $uibModal) {
@@ -660,7 +654,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         NavigationService.apiCall("Product/getOne", $scope.getInfo, function (data) {
             if (data.value === true) {
                 $scope.formdata = data.data;
-                $scope.formdata.purchasedate = new Date(data.data.purchasedate);
+                $scope.formdata.purchaseDate = new Date(data.data.purchaseDate);
                 $scope.formdata.warrantyExpDate = new Date(data.data.warrantyExpDate);
                 $scope.formdata.insuranceExpDate = new Date(data.data.insuranceExpDate);
             }
@@ -721,12 +715,18 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                     $scope.formdata = data.data;
                 }
             });
-
-
             $state.go("viewproductpage");
         }
 
+        $scope.removeProductImage = function (index) {
+            $scope.formdata.productImages = _.slice($scope.formdata.productImages, 0, index);
+            NavigationService.apiCall("Product/save", $scope.formdata, function (data) {
+                if (data.value === true) {
+                    $state.reload();
+                }
+            });
 
+        }
 
 
     })
@@ -1736,19 +1736,21 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             });
         };
 
-        $scope.statusArr = ["Repair/ Maintenance (On-site)", "Scheduling service with customer (Open)", "Coordinating with the service provider (Open)", "Service confirmed (In-progress)", "Service completed (Closed)", "Awaiting feedback (Closed)", "Completed (Completed)"];
+        $scope.statusArr = ["Repair/ Maintenance (On-site)", "Scheduling service with customer (Open)", "Coordinating with the service provider (Open)", "Service confirmed (In-progress)", "Service completed (Closed)", "Awaiting feedback (Closed)", "Completed (Completed)", "Repair (Off-site)", "Scheduling service with customer (Open)", "Coordinating with the service provider (Open)", "Service confirmed (In-progress)", "Appliance picked up (In-progress)", "Appliance returned (Closed)", "Awaiting feedback (Closed)", "Completed (Completed)"];
 
         $scope.updateStatus = function (data) {
-            console.log(" data", data);
-            var dataToSend = {};
-            dataToSend._id = $stateParams.id;
-            dataToSend.subStatus = data;
-            NavigationService.apiCall("Ticket/save", dataToSend, function (data) {
+            $scope.ticketData.subStatus = data;
+            var arr = {};
+            arr.status = data;
+            arr.statusDate = new Date();
+            $scope.ticketData.substat.push(arr);
+            NavigationService.apiCall("Ticket/save", $scope.ticketData, function (data) {
                 if (data.value == true) {
                     toastr.success("status changed Sucessfully");
                 }
             });
         };
+
 
     })
 

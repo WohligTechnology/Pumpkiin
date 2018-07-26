@@ -37,7 +37,11 @@ var schema = new Schema({
     closureCommentCustomer: String,
     rating: String,
     cost: Number,
-    repairRecepit: [String]
+    repairRecepit: [String],
+    substat: [{
+        statusDate: Date,
+        status: String
+    }]
 });
 
 schema.plugin(deepPopulate, {
@@ -183,14 +187,27 @@ var model = {
     getAllStatesOfIndia: function (data, callback) {
         var options = {
             method: 'GET',
-            url: 'http://services.groupkt.com/state/get/IND/all'
+            url: 'http://battuta.medunes.net/api/region/in/all/?key=fa11e38b7e2861e75f8554ac562d4e06'
         };
         request(options, function (err, response, body) {
-            console.log("body", body);
-            callback(null, body);
+            // console.log("body", body);
+            // console.log("------------", typeof (body));
+            var myJSON = JSON.parse(body);
+            callback(null, myJSON);
         });
     },
 
+    getCity: function (data, callback) {
+        var options = {
+            method: 'GET',
+            url: 'http://battuta.medunes.net/api/city/in/search/?region=' + data.region + '&key=fa11e38b7e2861e75f8554ac562d4e06'
+        };
+        request(options, function (err, response, body) {
+            // console.log("body", body);
+            var myJSON = JSON.parse(body);
+            callback(null, myJSON);
+        });
+    },
 
 };
 module.exports = _.assign(module.exports, exports, model);

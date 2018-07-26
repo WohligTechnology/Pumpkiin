@@ -86,44 +86,19 @@
                 </div>
                 <div class="col-9">
                     <div class="d-flex fontRobotoLight font-color font12">
-                        <div class="p-2 background-gray mr-2 text-capitalize address-box">
-                            <div class="font14 dark-font-color fontRobotoRegular">Home
-                                <span class="float-right p3">
+                        <div class="p-2 background-gray mr-2 text-capitalize address-box" ng-repeat="addressData in userDataForProfile.address">
+                            <div class="font14 dark-font-color fontRobotoRegular">{{addressData.title}}
+                                <span class="float-right p3" ng-click="removeAddress($index)">
                                     <i class="fas fa-times fa-sm"></i>
                                 </span>
-                                <span class=" float-right p3" ng-click="addressModalOpen();">
+                                <!-- <span class=" float-right p3" ng-click="addressModalOpen();">
                                     <i class="fas fa-pencil-alt fa-xs"></i>
-                                </span>
+                                </span> -->
                             </div>
-                            <div>Address line 1</div>
-                            <div>Address line 2</div>
-                            <div>Address line 3</div>
-                        </div>
-                        <div class="p-2 background-gray mx-2 text-capitalize address-box">
-                            <div class="font14 dark-font-color fontRobotoRegular">Office
-                                <span class="float-right p3">
-                                    <i class="fas fa-times fa-sm"></i>
-                                </span>
-                                <span class=" float-right p3" ng-click="addressModalOpen();">
-                                    <i class="fas fa-pencil-alt fa-xs"></i>
-                                </span>
-                            </div>
-                            <div>Address line 1</div>
-                            <div>Address line 2</div>
-                            <div>Address line 3</div>
-                        </div>
-                        <div class="p-2 background-gray mx-2 text-capitalize address-box">
-                            <div class="font14 dark-font-color fontRobotoRegular">Home
-                                <span class="float-right p3">
-                                    <i class="fas fa-times fa-sm"></i>
-                                </span>
-                                <span class=" float-right p3" ng-click="addressModalOpen();">
-                                    <i class="fas fa-pencil-alt fa-xs"></i>
-                                </span>
-                            </div>
-                            <div>Address line 1</div>
-                            <div>Address line 2</div>
-                            <div>Address line 3</div>
+                            <div>{{addressData.addressLine}}</div>
+                            <div>{{addressData.state}}</div>
+                            <div>{{addressData.city}}</div>
+                            <div>{{addressData.pincode}}</div>
                         </div>
                     </div>
                 </div>

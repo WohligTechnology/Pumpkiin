@@ -172,6 +172,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             var accessoriesToSave = {};
             accessoriesToSave._id = $scope.product_id;
             accessoriesToSave.productAccessory = $scope.accessoriesMain;
+            accessoriesToSave.status = 'Confirmed';
             NavigationService.apiCallWithData("Product/saveProduct", accessoriesToSave, function (res) {
                 toastr.success("Accessory added successfully");
                 $state.go("productListing");
