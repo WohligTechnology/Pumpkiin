@@ -30,7 +30,8 @@ var schema = new Schema({
         date: {
             type: Date,
             default: Date.now()
-        }
+        },
+        pickUpDetails: Schema.Types.Mixed
     }],
     closureDate: Date,
     closureCommentPumpkin: String,

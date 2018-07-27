@@ -1693,14 +1693,18 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         $scope.jstrgData = $.jStorage.get('profile');
         // console.log("$stateParams----------", $stateParams.id);
 
-        var sendData = {};
-        sendData._id = $stateParams.id;
-        NavigationService.apiCall("Ticket/getOne", sendData, function (res) {
-            if (res.value == true) {
-                $scope.ticketData = res.data;
-                // console.log("$scope.ticketData-----", $scope.ticketData);
-            }
-        });
+        $scope.getTicket = function () {
+            var sendData = {};
+            sendData._id = $stateParams.id;
+            NavigationService.apiCall("Ticket/getOne", sendData, function (res) {
+                if (res.value == true) {
+                    $scope.ticketData = res.data;
+                    // console.log("$scope.ticketData-----", $scope.ticketData);
+                }
+            });
+        }
+        $scope.getTicket();
+
 
         $scope.ticketChatSocket = function (data) {
             if (data) {
@@ -1722,6 +1726,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                 if (data.value == true) {
                     $scope.chatData.comment = null;
                     $scope.chatData.image = null;
+                    $scope.getTicket();
                 }
             });
         };
@@ -1729,6 +1734,16 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         $scope.setPickUpTime = function (data) {
             console.log(" data", data);
             data.ticketId = $stateParams.id;
+            var dataToSendToChat = {};
+            dataToSendToChat.pickUpDetails = data;
+            dataToSendToChat.user = $scope.jstrgData._id;
+            dataToSendToChat.comment = null;
+            dataToSendToChat.file = null;
+            $scope.ticketData.customerChat.push(dataToSendToChat);
+            // console.log(" $scope.ticketData", $scope.ticketData);
+            NavigationService.apiCall("Ticket/addToChat", $scope.ticketData, function (data) {
+                $scope.getTicket();
+            });
             NavigationService.apiCall("PickUpService/save", data, function (data) {
                 if (data.value == true) {
                     $scope.pickUp.close();
@@ -1736,7 +1751,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             });
         };
 
-        $scope.statusArr = ["Repair/ Maintenance (On-site)", "Scheduling service with customer (Open)", "Coordinating with the service provider (Open)", "Service confirmed (In-progress)", "Service completed (Closed)", "Awaiting feedback (Closed)", "Completed (Completed)", "Repair (Off-site)", "Scheduling service with customer (Open)", "Coordinating with the service provider (Open)", "Service confirmed (In-progress)", "Appliance picked up (In-progress)", "Appliance returned (Closed)", "Awaiting feedback (Closed)", "Completed (Completed)"];
+        $scope.statusArr = ["Repair/ Maintenance (On-site)", "Scheduling service with customer (Open)", "Coordinating with the service provider (Open)", "Service confirmed (In-progress)", "Service completed (Closed)", "Awaiting feedback (Closed)", "Appliance picked up (In-progress)", "Appliance returned (Closed)", "Completed (Completed)"];
 
         $scope.updateStatus = function (data) {
             $scope.ticketData.subStatus = data;

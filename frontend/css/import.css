@@ -10887,40 +10887,30 @@ fieldset:disabled {
     background-color: #CFD7DB;
     border: solid 3px #ECF0F2; }
     .support-timeline .circle:before {
-      font-size: 10px;
+      font-size: 9px;
       position: absolute;
       top: 20px; }
   .support-timeline .circle1 {
     left: 0; }
-    .support-timeline .circle1:before {
-      content: '12/2/2018 \aTicket\00a0 Opened';
-      left: 0; }
   .support-timeline .circle2 {
-    left: 25%;
+    left: 11.11%;
     background-color: #14C177; }
-    .support-timeline .circle2:before {
-      content: '13/2/2018\aTicket\00a0 Accepted\00a0 by\00a0 brand';
-      left: 0; }
   .support-timeline .circle3 {
-    left: 50%;
-    background-color: #14C177; }
-    .support-timeline .circle3:before {
-      content: '12/2/2018 \a Brand\00a0 Replied\00a0 to\00a0 your\00a0 issue';
-      left: 0; }
+    left: 22.22%; }
+  .support-timeline .circle4 {
+    left: 33.3%; }
   .support-timeline .circle5 {
-    left: 100%;
-    background-color: #14C177; }
-    .support-timeline .circle5:before {
-      content: 'Ticket\00a0 Closed\a  12/2/2018';
-      text-align: right;
-      right: 0; }
-  .support-timeline .moving {
-    left: 65%;
-    background-color: #142C5C; }
-    .support-timeline .moving:before {
-      content: 'You\00a0 Replied\a  12/2/2018';
-      left: 0;
-      top: -35px; }
+    left: 44.44%; }
+  .support-timeline .circle6 {
+    left: 55.55%; }
+  .support-timeline .circle7 {
+    left: 66.66%; }
+  .support-timeline .circle8 {
+    left: 77.77%; }
+  .support-timeline .circle9 {
+    left: 88.88%; }
+  .support-timeline .circle10 {
+    left: 100%; }
 
 .chat .image {
   width: 40px;

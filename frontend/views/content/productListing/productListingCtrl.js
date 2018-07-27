@@ -138,8 +138,9 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
     //for ticket block end
 
 
-
-    NavigationService.apiCallWithoutData("Product/getAllProducts", function (res) {
+    var dataToSendForProduct = {};
+    dataToSendForProduct.user = $scope.jstrgValue._id;
+    NavigationService.apiCallWithData("Product/getAllProducts", dataToSendForProduct, function (res) {
         if (res.value == true) {
             // console.log("res-----", res.data.results);
             $scope.allProducts = res.data;

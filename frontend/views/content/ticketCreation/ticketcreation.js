@@ -80,8 +80,9 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                 ticketData.product = $stateParams.id;
                 // console.log("$scope.ticketData-----------", ticketData);
                 NavigationService.apiCallWithData("Ticket/findActiveTicketOfUser", ticketData, function (res) {
-                    // console.log("$scope.ticketDetails-----------", res.data);
                     $scope.ticketDetails = res.data;
+                    console.log("$scope.ticketDetails-----------", $scope.ticketDetails);
+
                 });
 
                 productData._id = $stateParams.id;

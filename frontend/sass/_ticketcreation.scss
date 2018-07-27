@@ -66,7 +66,7 @@
         background-color: #CFD7DB;
         border: solid 3px #ECF0F2;
         &:before {
-            font-size: 10px;
+            font-size: 9px;
             @extend .fontRobotoRegular;
             position: absolute;
             top: 20px;
@@ -74,50 +74,34 @@
     }
     .circle1 {
         left: 0;
-        &:before {
-            content: '12/2/2018 \aTicket\00a0 Opened';
-            left: 0;
-        }
     }
     .circle2 {
-        left: 25%;
+        left: 11.11%;
         background-color: #14C177;
-        &:before {
-            content: '13/2/2018\aTicket\00a0 Accepted\00a0 by\00a0 brand';
-            left: 0;
-        }
     }
     .circle3 {
-        left: 50%;
-        background-color: #14C177;
-        &:before {
-            content: '12/2/2018 \a Brand\00a0 Replied\00a0 to\00a0 your\00a0 issue';
-            left: 0;
-        }
-    } // .circle4 {
-    //     left: 75%;
-    //     &:before {
-    //         content: '';
-    //         left: 0;
-    //     }
-    // }
-    .circle5 {
-        left: 100%;
-        background-color: #14C177;
-        &:before {
-            content: 'Ticket\00a0 Closed\a  12/2/2018';
-            text-align: right;
-            right: 0;
-        }
+        left: 22.22%;
     }
-    .moving {
-        left: 65%;
-        background-color: #142C5C;
-        &:before {
-            content: 'You\00a0 Replied\a  12/2/2018';
-            left: 0;
-            top: -35px;
-        }
+    .circle4 {
+        left: 33.3%;
+    }
+    .circle5 {
+        left: 44.44%;
+    }
+    .circle6 {
+        left: 55.55%;
+    }
+    .circle7 {
+        left: 66.66%;
+    }
+    .circle8 {
+        left: 77.77%;
+    }
+    .circle9 {
+        left: 88.88%;
+    }
+    .circle10 {
+        left: 100%;
     }
 }
 
@@ -203,16 +187,16 @@
         margin: -10px;
         cursor: pointer;
     }
-    .scrollbar-tcreation{
+    .scrollbar-tcreation {
         &::-webkit-scrollbar {
-                width: 0px;
-                background: transparent;
-                /* optional: just make scrollbar invisible */
-            }
-            /* optional: show position indicator in red */
-            &::-webkit-scrollbar-thumb {
-                background: transparent;
-            }
+            width: 0px;
+            background: transparent;
+            /* optional: just make scrollbar invisible */
+        }
+        /* optional: show position indicator in red */
+        &::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
         .upload-btn-wrapper {
             position: relative;
             overflow: hidden;
@@ -354,7 +338,7 @@
             top: -5px;
         }
     }
-    .close-icon{
+    .close-icon {
         bottom: -1px;
         padding: 2px 8px;
         border: solid 2px #ecf0f2;

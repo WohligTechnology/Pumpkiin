@@ -111,7 +111,8 @@ var model = {
 
     getAllProducts: function (data, callback) {
         Product.find({
-            status: 'Confirmed'
+            status: 'Confirmed',
+            user: data.user
         }, function (err, found) {
             if (err || _.isEmpty(found)) {
                 callback(err, null);

@@ -1,3 +1,55 @@
+<style>
+    .circle1:before {
+        content: '12/2/2018 \aTicket\00a0 Opened';
+        left: 0;
+    }
+
+    .circle2:before {
+        content: '13/2/2018\aRepair/\aMaintenance\A(On-site)';
+        left: 0;
+    }
+
+    .circle3:before {
+        content: '12/2/2018 \a Scheduling\00a0 \aservice\00a0with\00a0\a customer\00a0 (Open)';
+        left: 0;
+    }
+
+    .circle4:before {
+        content: '12/2/2018 \a Coordinating \a with\00a0 the\00a0 service \a provider\00a0 (Open)';
+        left: 0;
+    }
+
+    .circle5:before {
+        content: '12/2/2018 \a Service\00a0 confirmed (In-progress)';
+        left: 0;
+    }
+
+    .circle6:before {
+        content: '12/2/2018 \a Service\00a0 completed (Closed)';
+        left: 0;
+    }
+
+    .circle7:before {
+        content: '12/2/2018 \a Awaiting\00a0 feedback (Closed)';
+        left: 0;
+    }
+
+    .circle8:before {
+        content: '12/2/2018 \a Appliance\00a0 picked \00a0up (In-progress)';
+        left: 0;
+    }
+
+    .circle9:before {
+        content: '12/2/2018 \a Appliance \00a0 returned (Closed)';
+        left: 0;
+    }
+
+    .circle10:before {
+        content: '12/2/2018 \a Completed (Completed)';
+        text-align: right;
+        right: 0;
+    }
+</style>
 <div class="container py-5">
     <div class="row ticket-creation-main">
         <div class="col col-md-3 openticketreminder">
@@ -188,13 +240,21 @@
                 <h6 class="fontRobotoLight d-inline orange-color float-right" ng-if="ticketDetails.status">SUPPORT STATUS: {{ticketDetails.status}}</h6>
                 <h6 class="fontRobotoLight d-inline orange-color float-right" ng-if="!ticketDetails.status">SUPPORT STATUS: Ticket Not Generated</h6>
 
-                <div class="my-5 mr-5 support-timeline">
+                <div class="my-5 support-timeline">
+                    <!-- <div ng-repeat="subStatus in ticketDetails.substat"> -->
+                    <!-- {{subStatus.status}} -->
                     <div class="circle circle1 timeline-active" ng-click="makeActive('circle1')"></div>
+                    <!-- </div> -->
+
                     <div class="circle circle2" ng-click="makeActive('circle2')"></div>
                     <div class="circle circle3" ng-click="makeActive('circle3')"></div>
-                    <!-- <div class="circle circle4" ng-click="makeActive('circle4')"></div> -->
-                    <div class="circle circle5" ng-click="makeActive('circle4')"></div>
-                    <div class="circle moving" ng-click="makeActive('circle4')"></div>
+                    <div class="circle circle4" ng-click="makeActive('circle4')"></div>
+                    <div class="circle circle5" ng-click="makeActive('circle2')"></div>
+                    <div class="circle circle6" ng-click="makeActive('circle3')"></div>
+                    <div class="circle circle7" ng-click="makeActive('circle4')"></div>
+                    <div class="circle circle8" ng-click="makeActive('circle4')"></div>
+                    <div class="circle circle9" ng-click="makeActive('circle4')"></div>
+                    <div class="circle circle10" ng-click="makeActive('circle5')"></div>
                 </div>
             </div>
             <form>
@@ -215,6 +275,10 @@
                                         </a>
                                         <!-- <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt=""> -->
                                     </div>
+                                    <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact Person:{{chat.pickUpDetails.contactPerson}}
+                                        <br>Contact Number:{{chat.pickUpDetails.contactNumber}}
+                                        <br> Address:{{chat.pickUpDetails.pickUpAddress}}
+                                    </div>
                                 </div>
                                 <div class="d-flex align-items-center mb-2 flex-row-reverse me " ng-if="chat.user==jstrgValue._id">
                                     <!-- <div class="img-fluid image ">
@@ -226,6 +290,10 @@
                                             <i class="fas fa-file-download" style="font-size: 40px"></i>
                                         </a>
                                         <!-- <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt=""> -->
+                                    </div>
+                                    <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact Person:{{chat.pickUpDetails.contactPerson}}
+                                        <br>Contact Number:{{chat.pickUpDetails.contactNumber}}
+                                        <br> Address:{{chat.pickUpDetails.pickUpAddress}}
                                     </div>
                                 </div>
                                 <div class="text-center gray-color font14 mt-3 ">{{chat.date | date}}</div>
