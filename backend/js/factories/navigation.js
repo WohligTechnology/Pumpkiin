@@ -115,6 +115,7 @@ myApp.factory('NavigationService', function ($http) {
         removeAccessToken: function (data, callback) {
             $.jStorage.flush();
         },
+
         profile: function (callback, errorCallback) {
             var data = {
                 accessToken: $.jStorage.get("accessToken")

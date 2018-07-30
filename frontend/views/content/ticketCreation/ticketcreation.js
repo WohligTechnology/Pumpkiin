@@ -21,7 +21,9 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             templateUrl: "views/modal/addNewUser.html",
             scope: $scope,
         });
-    }
+    };
+
+
 
     //REMINDER SECTION
 
@@ -81,7 +83,56 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                 // console.log("$scope.ticketData-----------", ticketData);
                 NavigationService.apiCallWithData("Ticket/findActiveTicketOfUser", ticketData, function (res) {
                     $scope.ticketDetails = res.data;
-                    console.log("$scope.ticketDetails-----------", $scope.ticketDetails);
+                    // console.log("$scope.ticketDetails-----------", $scope.ticketDetails);
+
+                    //timeline
+
+                    $scope.statusArray = [{
+                        status: "Repair/ Maintenance (On-site)",
+                        activeClass: ''
+                    }, {
+                        status: "Scheduling service with customer (Open)",
+                        activeClass: ''
+                    }, {
+                        status: "Coordinating with the service provider (Open)",
+                        activeClass: ''
+                    }, {
+                        status: "Service confirmed (In-progress)",
+                        activeClass: ''
+                    }, {
+                        status: "Service completed (Closed)",
+                        activeClass: ''
+                    }, {
+                        status: "Awaiting feedback (Closed)",
+                        activeClass: ''
+                    }, {
+                        status: "Appliance picked up (In-progress)",
+                        activeClass: ''
+                    }, {
+                        status: "Appliance returned (Closed)",
+                        activeClass: ''
+                    }, {
+                        status: "Completed (Completed)",
+                        activeClass: ''
+                    }];
+
+                    _.each($scope.statusArray, function (x) {
+                        _.each($scope.ticketDetails.substat, function (y) {
+                            if (y.status == x.status) {
+                                // console.log("-", _.findIndex($scope.statusArray, function (o) {
+                                //     return o == x;
+                                // }))
+                                var index = _.findIndex($scope.statusArray, function (o) {
+                                    return o.status == x.status;
+                                });
+                                $scope.statusArray[index].activeClass = 'timeline-active';
+
+                                // $(".circle6").addClass("timeline-active");
+                            }
+                        })
+                    })
+
+                    //timeline end
 
                 });
 
@@ -90,7 +141,6 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                     $scope.productDetails = res.data;
                     // console.log("$scope.productDetails-----------", $scope.productDetails);
                 });
-
             } else {
                 if ($scope.totalOpenTickets[0]) {
                     // console.log("res---totalOpenTickets--", $scope.totalOpenTickets[0]);
@@ -101,6 +151,55 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                         // console.log("$scope.productDetails-----------", $scope.productDetails);
                     });
                 }
+
+                //timeline
+
+                $scope.statusArray = [{
+                    status: "Repair/ Maintenance (On-site)",
+                    activeClass: ''
+                }, {
+                    status: "Scheduling service with customer (Open)",
+                    activeClass: ''
+                }, {
+                    status: "Coordinating with the service provider (Open)",
+                    activeClass: ''
+                }, {
+                    status: "Service confirmed (In-progress)",
+                    activeClass: ''
+                }, {
+                    status: "Service completed (Closed)",
+                    activeClass: ''
+                }, {
+                    status: "Awaiting feedback (Closed)",
+                    activeClass: ''
+                }, {
+                    status: "Appliance picked up (In-progress)",
+                    activeClass: ''
+                }, {
+                    status: "Appliance returned (Closed)",
+                    activeClass: ''
+                }, {
+                    status: "Completed (Completed)",
+                    activeClass: ''
+                }];
+
+                _.each($scope.statusArray, function (x) {
+                    _.each($scope.ticketDetails.substat, function (y) {
+                        if (y.status == x.status) {
+                            // console.log("-", _.findIndex($scope.statusArray, function (o) {
+                            //     return o == x;
+                            // }))
+                            var index = _.findIndex($scope.statusArray, function (o) {
+                                return o.status == x.status;
+                            });
+                            $scope.statusArray[index].activeClass = 'timeline-active';
+
+                            // $(".circle6").addClass("timeline-active");
+                        }
+                    })
+                })
+
+                //timeline end
             }
         });
 
@@ -180,6 +279,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             });
         }
     };
+
 
 
 });

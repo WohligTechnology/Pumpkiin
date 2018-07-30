@@ -402,64 +402,76 @@ var models = {
     },
     //sms end
 
-    sendEmail: function (fromEmail, toEmail, subject, html, attachments, callback) {
-
-        Password.findOneByName("sendgrid", function (err, data) {
+    email: function (data, callback) {
+        Password.find().exec(function (err, userdata) {
             if (err) {
-                callback(err);
-            } else {
-                var helper = require('sendgrid').mail;
-                var sg = require('sendgrid')(data.key);
-                var mail = new helper.Mail();
-
-                var email = new helper.Email(fromEmail.email, fromEmailName.name);
-                mail.setFrom(email);
-                mail.setSubject(subject);
-                var personalization = new helper.Personalization();
-                _.each(toEmail, function (n) {
-                    var email = new helper.Email(n.email, n.name);
-                    personalization.addTo(email);
-                });
-
-                mail.addPersonalization(personalization);
-
-                var content = new helper.Content('text/html', html);
-                mail.addContent(content);
-
-                async.each(attachments, function (filename, callback) {
-                    var attachment = new helper.Attachment();
-                    Config.readAttachment(filename, function (err, data) {
+                console.log(err);
+                callback(err, null);
+            } else if (userdata && userdata.length > 0) {
+                if (data.filename && data.filename != "") {
+                    request.post({
+                        url: requrl + "config/emailReader/",
+                        json: data
+                    }, function (err, http, body) {
                         if (err) {
-                            callback(err);
+                            console.log(err);
+                            callback(err, null);
                         } else {
-                            var base64File = new Buffer(data).toString('base64');
-                            attachment.setContent(base64File);
-                            attachment.setFilename(filename);
-                            attachment.setDisposition('attachment');
-                            mail.addAttachment(attachment);
-                            callback();
+                            // console.log('email else', body);
+                            if (body && body.value != false) {
+                                var helper = require('sendgrid').mail;
+
+                                from_email = new helper.Email(data.from);
+                                to_email = new helper.Email(data.email);
+                                subject = data.subject;
+                                content = new helper.Content("text/html", body);
+                                mail = new helper.Mail(from_email, subject, to_email, content);
+
+                                if (data.file) {
+                                    var attachment = new helper.Attachment();
+                                    var file = fs.readFileSync('pdf/' + data.file);
+                                    var base64File = new Buffer(file).toString('base64');
+                                    attachment.setContent(base64File);
+                                    // attachment.setType('application/text');
+                                    var pdfgen = data.filename.split(".");
+                                    data.filename = pdfgen[0] + ".pdf";
+                                    attachment.setFilename(data.filename);
+                                    attachment.setDisposition('attachment');
+                                    mail.addAttachment(attachment);
+                                }
+
+                                var sg = require('sendgrid')(userdata[0].name);
+                                var request = sg.emptyRequest({
+                                    method: 'POST',
+                                    path: '/v3/mail/send',
+                                    body: mail.toJSON()
+                                });
+
+                                sg.API(request, function (error, response) {
+                                    if (error) {
+                                        callback(error);
+                                    } else {
+                                        callback(null, response);
+                                    }
+                                });
+                            } else {
+                                callback({
+                                    message: "Error while sending mail."
+                                }, null);
+                            }
                         }
                     });
-                }, function (err) {
-                    if (err) {
-                        callback(err);
-                    } else {
-                        var request = sg.emptyRequest({
-                            method: 'POST',
-                            path: '/v3/mail/send',
-                            body: mail.toJSON(),
-                        });
-                        sg.API(request, callback);
-                    }
-
-                });
+                } else {
+                    callback({
+                        message: "Please provide params"
+                    }, null);
+                }
+            } else {
+                callback({
+                    message: "No api keys found"
+                }, null);
             }
         });
-
-
-
-
-
-    }
+    },
 };
 module.exports = _.assign(module.exports, models);
