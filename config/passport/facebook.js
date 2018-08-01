@@ -1,6 +1,6 @@
 passport.use(new FacebookStrategy({
         clientID: "622844211417911",
-        clientSecret: "77dc40c5df0e0df179a831c2eb09aa0d",
+        clientSecret: "b8a6448d7a689462545c71150a347f15",
         callbackURL: "https://pumpkiin.wohlig.co.in/api/user/loginFacebook"
     },
     function (accessToken, refreshToken, profile, done) {
