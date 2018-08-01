@@ -31,7 +31,7 @@ var controller = {
     },
     loginFacebook: function (req, res) {
         passport.authenticate('facebook', {
-            scope: ['default', 'email'],
+            scope: ['public_profile', 'email'],
             successRedirect: '/',
             failureRedirect: '/'
         }, res.socialLogin)(req, res);
