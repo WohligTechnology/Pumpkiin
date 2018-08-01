@@ -41,7 +41,10 @@
                                 <span class="social_icon">
                                     <i class="fab fa-google"></i>
                                 </span>
-                                <div class="social-text">Login with Google</div>
+                                <a class="btn btn-google btn-icon btn-block" ng-href="
+                                http://wohlig.io/api/user/loginGoogle?returnUrl=
+                                http://wohlig.io:8081/login">
+                                    <div class="social-text">Login with Google</div>
                             </div>
                         </div>
                     </div>
@@ -53,9 +56,12 @@
                                     <div class="otp-send text-left my-3">
                                         <input type="text" class="otp-input" id="part1" ng-change="checkChange(1)" autofocus ng-model="formName.digit1" maxlength="1"
                                             move-next-on-maxlength only-digits required>
-                                        <input type="text" class="otp-input" id="part2" ng-change="checkChange(2)" ng-model="formName.digit2" maxlength="1" move-next-on-maxlength only-digits required>
-                                        <input type="text" class="otp-input" id="part3" ng-change="checkChange(3)" ng-model="formName.digit3" maxlength="1" move-next-on-maxlength only-digits required>
-                                        <input type="text" class="otp-input" id="part4" ng-change="checkChange(4)" ng-model="formName.digit4" maxlength="1" only-digits required>
+                                        <input type="text" class="otp-input" id="part2" ng-change="checkChange(2)" ng-model="formName.digit2" maxlength="1" move-next-on-maxlength
+                                            only-digits required>
+                                        <input type="text" class="otp-input" id="part3" ng-change="checkChange(3)" ng-model="formName.digit3" maxlength="1" move-next-on-maxlength
+                                            only-digits required>
+                                        <input type="text" class="otp-input" id="part4" ng-change="checkChange(4)" ng-model="formName.digit4" maxlength="1" only-digits
+                                            required>
                                         <button class="btn btn-sm orange-btn my-1 float-right border-rounded w-40 text-white" ng-click="resendOtp(formName)">Resend OTP</button>
                                     </div>
 
@@ -67,10 +73,12 @@
                                     </div>
 
                                     <div class="mb-3" ng-if="shownameEmail">
-                                        <input type="text" class="form-control rounded custom_input" id="txtFirstName" ng-model="formName.name" placeholder="Enter First Last Name * " required only-letters-input>
+                                        <input type="text" class="form-control rounded custom_input" id="txtFirstName" ng-model="formName.name" placeholder="Enter First Last Name * "
+                                            required only-letters-input>
                                     </div>
                                     <div class="mb-3" ng-if="shownameEmail">
-                                        <input type="email" class="form-control rounded custom_input" id="email" ng-model="formName.email" placeholder="Enter Email Address (Dont worry we dont spam) * " required>
+                                        <input type="email" class="form-control rounded custom_input" id="email" ng-model="formName.email" placeholder="Enter Email Address (Dont worry we dont spam) * "
+                                            required>
                                     </div>
                                     <div class="mb-1 text-center">
                                         <button type="submit" class="btn w-90 login-btn form-control" ng-click="saveUser(formName)" ng-disabled="!(formName.name && formName.email)">Submit</button>

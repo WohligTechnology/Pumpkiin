@@ -43,11 +43,21 @@ var controller = {
 
         }
 
-        passport.authenticate('google', {
-            scope: ['openid', 'profile', 'email'],
-            failureRedirect: '/'
-        }, res.socialLogin)(req, res);
+        var verifyUrl = req.session.returnUrl;
+        var verifiedUrl = verifyUrl.match(/backend/g);
+        if (_.isEmpty(verifiedUrl)) {
+            passport.authenticate('google', {
+                scope: ['openid', 'profile', 'email'],
+                failureRedirect: '/'
+            }, res.socialLoginGoogle)(req, res);
+        } else {
+            passport.authenticate('google', {
+                scope: ['openid', 'profile', 'email'],
+                failureRedirect: '/'
+            }, res.socialLogin)(req, res);
+        }
     },
+
     profile: function (req, res) {
         if (req.body && req.body.accessToken) {
             User.profile(req.body, res.callback);
@@ -55,6 +65,7 @@ var controller = {
             res.callback("Please provide Valid AccessToken", null);
         }
     },
+
     pdf: function (req, res) {
 
         var html = fs.readFileSync('./views/pdf/demo.ejs', 'utf8');

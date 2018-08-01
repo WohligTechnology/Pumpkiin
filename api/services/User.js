@@ -278,6 +278,64 @@ var model = {
         });
     },
 
+    existsSocialFrontendLogin: function (user, callback) {
+        var Model = this;
+        // console.log("existsSocial user: ", user);
+        Model.findOne({
+            "email": user.emails[0].value
+        }).exec(function (err, data) {
+            console.log("existsSocial: ", err, data);
+            if (err) {
+                callback(err, data);
+            } else if (_.isEmpty(data)) {
+                var modelUser = {
+                    name: user.displayName,
+                    accessToken: [uid(16)],
+                    oauthLogin: [{
+                        socialId: user.id,
+                        socialProvider: user.provider,
+                    }]
+
+                };
+                modelUser.email = user.emails[0].value;
+                modelUser.accessLevel = "User";
+                modelUser.googleAccessToken = user.googleAccessToken;
+                modelUser.googleRefreshToken = user.googleRefreshToken;
+                if (user.image && user.image.url) {
+                    modelUser.photo = user.image.url;
+                }
+                Model.saveData(modelUser, function (err, data2) {
+                    if (err) {
+                        callback(err, data2);
+                    } else {
+                        data3 = data2.toObject();
+                        delete data3.oauthLogin;
+                        delete data3.password;
+                        delete data3.forgotPassword;
+                        delete data3.otp;
+                        callback(err, data3);
+                    }
+                });
+            } else {
+                // console.log("00000000000000000000000000", data)
+                delete data.oauthLogin;
+                delete data.password;
+                delete data.forgotPassword;
+                delete data.otp;
+                data.googleAccessToken = user.googleAccessToken;
+                data.googleRefreshToken = user.googleRefreshToken;
+                data.name = user.displayName,
+                    data.accessToken = [uid(16)],
+                    data.oauthLogin = [{
+                        socialId: user.id,
+                        socialProvider: user.provider,
+                    }]
+                data.save(function () {});
+                callback(err, data);
+            }
+        });
+    },
+
     profile: function (data, callback, getGoogle) {
         var str = "name email photo mobile accessLevel brand retailer";
         if (getGoogle) {
@@ -501,20 +559,20 @@ var model = {
                 delete data3.accessToken;
                 delete data3.password;
                 delete data3.forgotPassword;
-                // var smsData = {};
-                // smsData.message = 'Your verification code is ' + data3.otp;
+                var smsData = {};
+                smsData.message = 'Your verification code is ' + data3.otp;
                 delete data3.otp;
-                // smsData.senderId = 'PUMPKIIN';
-                // smsData.mobile = data.mobile;
-                // Config.sendSms(smsData, function (err, smsRespo) {
-                //     if (err) {
-                //         console.log("*************************************************sms gateway error in photographer***********************************************", err);
-                //     } else if (smsRespo) {
-                //         console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
-                //     } else {
-                //         console.log("invalid data");
-                //     }
-                // });
+                smsData.senderId = 'PUMPKIIN';
+                smsData.mobile = data.mobile;
+                Config.sendSms(smsData, function (err, smsRespo) {
+                    if (err) {
+                        console.log("*************************************************sms gateway error in photographer***********************************************", err);
+                    } else if (smsRespo) {
+                        console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
+                    } else {
+                        console.log("invalid data");
+                    }
+                });
                 callback(null, data3);
             }
         });

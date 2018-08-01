@@ -31,7 +31,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'ProfileCtrl'
         })
         .state('login', {
-            url: "/login",
+            url: "/login/:id",
             templateUrl: tempateURL,
             controller: 'LoginCtrl'
         })

@@ -1,4 +1,4 @@
-myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationService, $timeout, $window, toastr, $http, $state) {
+myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationService, $timeout, $window, toastr, $http, $state, $stateParams) {
     $scope.template = TemplateService.getHTML("content/login/login.html");
     TemplateService.title = "Login"; //This is the Title of the Website
     TemplateService.header = "";
@@ -8,6 +8,22 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
     $scope.showLogin = true;
     $scope.shownameEmail = true;
     $scope.mobile;
+
+    if ($stateParams.id) {
+        if ($stateParams.id === "AccessNotAvailable") {
+            toastr.error("You do not have access for the Backend.");
+        } else {
+            NavigationService.parseAccessToken($stateParams.id, function () {
+                NavigationService.profile(function () {
+                    $state.go("openticket");
+                }, function () {
+                    $state.go("login");
+                });
+            });
+        }
+    } else {
+        NavigationService.removeAccessToken();
+    }
 
     $scope.checkUser = function (data) {
         // $scope.showsignUp = true;

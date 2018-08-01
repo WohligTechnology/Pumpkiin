@@ -93,7 +93,7 @@ myApp.factory('NavigationService', function ($http) {
             var userData = $.jStorage.get("profile")
             if (userData && userData.accessLevel) {
                 _.forEach(navigation, function (value) {
-                    // console.log("valuevaluevaluevalue", value.access)
+                    // console.log("userData.accessLevel", userData.accessLevel)
                     if (userData.accessLevel == "Brand" || userData.accessLevel == "Retailer") {
                         if (value.name == "Product") {
                             value.access = true;
@@ -115,7 +115,6 @@ myApp.factory('NavigationService', function ($http) {
         removeAccessToken: function (data, callback) {
             $.jStorage.flush();
         },
-
         profile: function (callback, errorCallback) {
             var data = {
                 accessToken: $.jStorage.get("accessToken")

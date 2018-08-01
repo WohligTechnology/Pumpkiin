@@ -1,6 +1,6 @@
-var imgurl = "http://wohlig.io:80/api/upload/";
+// var imgurl = "http://wohlig.io:80/api/upload/";
 
-// var imgurl = "http://pumpkiin.wohlig.co.in/api/upload/";
+var imgurl = "http://pumpkiin.wohlig.co.in/api/upload/";
 
 
 
@@ -42,6 +42,33 @@ myApp.factory('NavigationService', function ($http) {
             $http.post(adminurl + url).then(function (data) {
                 data = data.data;
                 callback(data);
+            });
+        },
+
+        parseAccessToken: function (data, callback) {
+            if (data) {
+                $.jStorage.set("accessToken", data);
+                callback();
+            }
+        },
+
+        removeAccessToken: function (data, callback) {
+            $.jStorage.flush();
+        },
+
+        profile: function (callback, errorCallback) {
+            var data = {
+                accessToken: $.jStorage.get("accessToken")
+            };
+            $http.post(adminurl + 'user/profile', data).then(function (data) {
+                data = data.data;
+
+                if (data.value === true) {
+                    $.jStorage.set("userData", data.data);
+                    callback();
+                } else {
+                    errorCallback(data.error);
+                }
             });
         },
     };
