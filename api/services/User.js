@@ -336,6 +336,60 @@ var model = {
         });
     },
 
+    existsSocialFrontendFbLogin: function (user, callback) {
+        var Model = this;
+        // console.log("existsSocial user: ", user);
+        Model.findOne({
+            "email": user.emails[0].value
+        }).exec(function (err, data) {
+            console.log("existsSocial: ", err, data);
+            if (err) {
+                callback(err, data);
+            } else if (_.isEmpty(data)) {
+                var modelUser = {
+                    name: user.name.givenName,
+                    accessToken: [uid(16)],
+                    oauthLogin: [{
+                        socialId: user.id,
+                        socialProvider: user.provider,
+                    }]
+
+                };
+                modelUser.email = user.emails[0].value;
+                modelUser.accessLevel = "User";
+                if (user.image && user.image.url) {
+                    modelUser.photo = user.image.url;
+                }
+                Model.saveData(modelUser, function (err, data2) {
+                    if (err) {
+                        callback(err, data2);
+                    } else {
+                        data3 = data2.toObject();
+                        delete data3.oauthLogin;
+                        delete data3.password;
+                        delete data3.forgotPassword;
+                        delete data3.otp;
+                        callback(err, data3);
+                    }
+                });
+            } else {
+                // console.log("00000000000000000000000000", data)
+                delete data.oauthLogin;
+                delete data.password;
+                delete data.forgotPassword;
+                delete data.otp;
+                data.name = user.name.givenName,
+                    data.accessToken = [uid(16)],
+                    data.oauthLogin = [{
+                        socialId: user.id,
+                        socialProvider: user.provider,
+                    }]
+                data.save(function () {});
+                callback(err, data);
+            }
+        });
+    },
+
     profile: function (data, callback, getGoogle) {
         var str = "name email photo mobile accessLevel brand retailer";
         if (getGoogle) {
@@ -344,7 +398,7 @@ var model = {
         User.findOne({
             accessToken: data.accessToken
         }, str).exec(function (err, data) {
-            console.log("datadatadatadatadata", data)
+            console.log("datadatadatadatadata", data);
             if (err) {
                 callback(err);
             } else if (data) {

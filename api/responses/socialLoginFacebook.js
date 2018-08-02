@@ -8,7 +8,7 @@ module.exports = function (profile) {
         // res.serverError();
     } else {
         if (req.session.returnUrl) {
-            User.existsSocialFrontendLogin(profile, function (err, data) {
+            User.existsSocialFrontendFbLogin(profile, function (err, data) {
                 // console.log("*****************************************")
                 // console.log("data22222222222222222222222222222222", data)
                 if (data.name == "noAccess") {
@@ -29,7 +29,7 @@ module.exports = function (profile) {
                 }
             });
         } else {
-            User.existsSocialFrontendLogin(profile, res.callback);
+            User.existsSocialFrontendFbLogin(profile, res.callback);
         }
     }
 };

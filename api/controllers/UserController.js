@@ -29,12 +29,13 @@ var controller = {
             name: "Hello World"
         });
     },
+
     loginFacebook: function (req, res) {
         passport.authenticate('facebook', {
             scope: ['public_profile', 'email'],
             successRedirect: '/',
             failureRedirect: '/'
-        }, res.socialLogin)(req, res);
+        }, res.socialLoginFacebook)(req, res);
     },
 
     loginGoogle: function (req, res) {
@@ -250,6 +251,10 @@ var controller = {
             });
         }
     },
+
+    getConfig: function (req, res) {
+        res.json(env);
+    }
 
 };
 module.exports = _.assign(module.exports, controller);

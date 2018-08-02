@@ -9,6 +9,11 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
     $scope.shownameEmail = true;
     $scope.mobile;
 
+    NavigationService.apiCallWithoutData("User/getConfig", function (res) {
+        $scope.url = res.realHost;
+        console.log(" $scope.url----", $scope.url);
+    });
+
     // if ($stateParams.id) {
     //     if ($stateParams.id === "AccessNotAvailable") {
     //         toastr.error("You do not have access for the Backend.");

@@ -4,8 +4,9 @@ passport.use(new FacebookStrategy({
         callbackURL: "https://pumpkiin.wohlig.co.in/api/user/loginFacebook",
         profileFields: ['email', 'name', 'id']
     },
-    function (accessToken, refreshToken, profile, done) {
-        console.log(accessToken, refreshToken, profile);
-        done(profile);
+    function (accessToken, refreshToken, profile, cb) {
+        profile.googleAccessToken = accessToken;
+        profile.googleRefreshToken = refreshToken;
+        return cb(profile);
     }
 ));
