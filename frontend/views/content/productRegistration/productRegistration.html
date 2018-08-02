@@ -18,7 +18,7 @@
         <span class="social_icon">
             <i class="fas fa-times"></i>
         </span>
-        <div class="social-text" ui-sref="productListing">Cancel</div>
+        <div class="social-text" ui-sref="openticket">Cancel</div>
     </div>
 </div>
 
@@ -177,7 +177,7 @@
             </div>
             <div class="col-12 col-md-6">
                 <label class="mb-0">NickName * </label>
-                <input ng-model="userData.nickName" class="form-control form-control-sm" type="text" required>
+                <input ng-model="userData.nickName" class="form-control form-control-sm" type="text">
             </div>
         </div>
         <div class="row form-group">
@@ -185,15 +185,15 @@
                 <label class="mb-0">Relationship * </label>
                 <!-- <input ng-model="userData.relation" class="form-control form-control-sm" type="text"> -->
                 <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation" required>
-                        <option ng-repeat="relations in relationsForUser">{{relations}}</option>
-                    </select>
+                    <option ng-repeat="relations in relationsForUser">{{relations}}</option>
+                </select>
             </div>
         </div>
         <fieldset class="row form-group" ng-click="addUser(userData)" ng-disabled="adduser.$invalid">
             <div class="d-flex social m-3 add">
                 <span class="social_icon">
-                        <i class="fas fa-plus"></i>
-                    </span>
+                    <i class="fas fa-plus"></i>
+                </span>
                 <div class="social-text">Add User</div>
             </div>
         </fieldset>

@@ -33,6 +33,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             animation: true,
             templateUrl: "views/modal/pumpRegistration.html",
             scope: $scope,
+            backdrop: 'static'
             // windowClass: 'app-modal-window'
         });
         $scope.registration.close();
@@ -76,13 +77,13 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
                 product._id = $scope.product_id;
                 NavigationService.apiCallWithData("Product/saveProduct", product, function (res) {
                     $scope.product_id = res.data._id;
-                    console.log("res.data", res.data);
+                    // console.log("res.data", res.data);
                     $scope.makeActive('circle2');
                 });
             } else {
                 NavigationService.apiCallWithData("Product/save", product, function (res) {
                     $scope.product_id = res.data._id;
-                    console.log("res.data", res.data);
+                    // console.log("res.data", res.data);
                     $scope.makeActive('circle2');
                 });
             }
@@ -93,8 +94,9 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         $scope.addeduser = []
         $scope.addUser = function (data) {
             // console.log("$scope.product_id", $scope.product_id);
-            // console.log("datae", data);
             data._id = $scope.jstrgValue._id;
+            console.log("datae", data);
+
             // data.productId = $scope.product_id;
             NavigationService.apiCallWithData("User/addRelation", data, function (response) {
                 // console.log("response", response);
@@ -102,6 +104,8 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
                     toastr.success("Relation added successfully");
                     $scope.userData = null;
                     $scope.getUserData();
+                } else {
+                    toastr.error("Check The Mobile Number");
                 }
             });
         }
@@ -184,14 +188,15 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             $scope.dataToGet._id = $scope.product_id;
             NavigationService.apiCallWithData("Product/getOne", $scope.dataToGet, function (res) {
                 $scope.data = res.data;
-                if (res.data.purchasedate) {
-                    $scope.data.purchasedate = new Date(res.data.purchasedate);
+                console.log("$scope.data")
+                if (res.data.purchaseDate) {
+                    $scope.data.purchaseDate = new Date(res.data.purchaseDate);
                 }
                 if (res.data.productImages) {
                     $scope.data.getImages = res.data.productImages;
                 }
-                if (res.data.purchaseproof) {
-                    $scope.data.getPurchaseImages = res.data.purchaseproof;
+                if (res.data.purchaseProof) {
+                    $scope.data.purchaseProof = res.data.purchaseProof;
                 }
                 if (res.data.insuranceExpDate) {
                     $scope.data.insuranceExpDate = new Date(res.data.insuranceExpDate);
@@ -207,8 +212,10 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             // console.log("*************", docs);
             docs.status = "Pending";
             NavigationService.apiCallWithData("Product/save", docs, function (res) {
-                console.log("inside submit documents api", res);
+                // console.log("inside submit documents api", res);
                 $scope.pumpRegistration.close();
+                toastr.success("Documents added successfully");
+                $state.go("openticket")
             });
         }
 

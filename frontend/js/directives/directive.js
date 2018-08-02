@@ -102,7 +102,7 @@ myApp.directive('img', function ($compile, $parse) {
         };
     })
 
-    .directive('uploadImage', function ($http, $filter, $timeout) {
+    .directive('uploadImage', function ($http, $filter, $timeout, toastr) {
         return {
             templateUrl: 'views/directive/uploadFile.html',
             scope: {
@@ -111,7 +111,7 @@ myApp.directive('img', function ($compile, $parse) {
                 callback: "&ngCallback",
                 imagesrc: '@imageSrc',
                 imageclass: '@imageClass',
-                noStatus: '@noStatus'
+                // noStatus: '@noStatus'
             },
             link: function ($scope, element, attrs) {
                 console.log($scope.imagesrc, $scope.imageclass);
@@ -145,8 +145,15 @@ myApp.directive('img', function ($compile, $parse) {
 
                         $timeout(function () {
                             _.each(newVal, function (newV, key) {
-                                if (newV && newV.file) {
-                                    $scope.uploadNow(newV);
+                                console.log("newV", newV.file.size)
+                                if (newV.file.size <= 5000000) {
+                                    if (newV && newV.file || newV.file.type == 'application/pdf' || newV.file.type == 'image/jpeg ' || newV.file.type == 'image/png ' || newV.file.type == 'application/doc') {
+                                        $scope.uploadNow(newV);
+                                    } else {
+                                        toastr.error("Please check the file");
+                                    }
+                                } else {
+                                    toastr.error("Please check the file Size");
                                 }
                             });
                         }, 100);
@@ -162,7 +169,6 @@ myApp.directive('img', function ($compile, $parse) {
                                 url: n
                             });
                         });
-
                     } else {
                         if (_.endsWith($scope.model, ".pdf")) {
                             $scope.type = "pdf";
@@ -173,6 +179,7 @@ myApp.directive('img', function ($compile, $parse) {
                 if (attrs.inobj || attrs.inobj === "") {
                     $scope.inObject = true;
                 }
+
                 $scope.clearOld = function () {
                     $scope.model = [];
                 };
@@ -181,14 +188,13 @@ myApp.directive('img', function ($compile, $parse) {
                     $scope.model = _.slice($scope.model, 0, index);
                 }
 
+
                 $scope.uploadNow = function (image) {
                     $scope.uploadStatus = "uploading";
                     var Template = this;
                     image.hide = true;
                     var formData = new FormData();
                     formData.append('file', image.file, image.name);
-
-
                     $http.post(uploadurl, formData, {
                         headers: {
                             'Content-Type': undefined
@@ -198,6 +204,11 @@ myApp.directive('img', function ($compile, $parse) {
                         data = data.data;
                         $scope.uploadStatus = "uploaded";
                         if ($scope.isMultiple) {
+                            if (_.endsWith(data.data[0], ".pdf")) {
+                                $scope.type = "pdf";
+                            } else {
+                                $scope.type = "image";
+                            }
                             if ($scope.inObject) {
                                 $scope.model.push({
                                     "image": data.data[0]

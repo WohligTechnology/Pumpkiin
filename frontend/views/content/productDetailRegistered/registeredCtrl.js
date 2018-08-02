@@ -71,8 +71,9 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
 
 
         $scope.addUser = function (data) {
-            // console.log("datae", data);
             data._id = $scope.jstrgValue._id;
+            console.log("datae", data);
+
             // data.productId = $scope.productDetails._id;
             NavigationService.apiCallWithData("User/addRelation", data, function (response) {
                 console.log("response", response);
@@ -80,6 +81,8 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
                     toastr.success("Relation added successfully");
                     $scope.userData = null;
                     $scope.getProduct();
+                } else {
+                    toastr.error("Check The Mobile Number");
                 }
             });
         }

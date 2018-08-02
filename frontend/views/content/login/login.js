@@ -11,31 +11,30 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
 
     NavigationService.apiCallWithoutData("User/getConfig", function (res) {
         $scope.url = res.realHost;
-        console.log(" $scope.url----", $scope.url);
+        // console.log(" $scope.url----", $scope.url);
     });
 
-    // if ($stateParams.id) {
-    //     if ($stateParams.id === "AccessNotAvailable") {
-    //         toastr.error("You do not have access for the Backend.");
-    //     } else {
-    //         NavigationService.parseAccessToken($stateParams.id, function () {
-    //             NavigationService.profile(function () {
-    //                 $state.go("openticket");
-    //             }, function () {
-    //                 $state.go("login");
-    //             });
-    //         });
-    //     }
-    // } else {
-    //     NavigationService.removeAccessToken();
-    // }
-
+    if ($stateParams.id) {
+        if ($stateParams.id === "AccessNotAvailable") {
+            toastr.error("You do not have access for the Backend.");
+        } else {
+            NavigationService.parseAccessToken($stateParams.id, function () {
+                NavigationService.profile(function () {
+                    $state.go("openticket");
+                }, function () {
+                    $state.go("login");
+                });
+            });
+        }
+    } else {
+        $.jStorage.flush();
+    }
     $scope.checkUser = function (data) {
         // $scope.showsignUp = true;
         // $scope.showLogin = false;
         $scope.mobile = data.mobile;
         NavigationService.apiCallWithData("User/sendOtp", data, function (res1) {
-            console.log("res1", res1);
+            // console.log("res1", res1);
             if (res1.value == true) {
                 $scope.showsignUp = true;
                 $scope.showLogin = false;
@@ -87,13 +86,15 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
 
 
     $scope.resendOtp = function (info) {
-        if (info.mobile) {
-            NavigationService.apiCallWithData("User/sendOtp", info, function (res1) {
-                console.log("res1", res1);
+        if (info) {
+            var sendData = {};
+            sendData.mobile = info;
+            NavigationService.apiCallWithData("User/sendOtp", sendData, function (res1) {
+                // console.log("res1", res1);
                 if (res1.value == true) {
-                    console.log("sms resend");
+                    toastr.success('Check The Otp');
                 } else {
-                    console.log("mobile already registered");
+                    toastr.warning('Please Check Mobile Number');
                 }
             });
         }
@@ -153,5 +154,6 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
     }
 
     $scope.navigation = NavigationService.getNavigation();
+
 
 });

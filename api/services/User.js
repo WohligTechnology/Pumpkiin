@@ -73,7 +73,7 @@ var schema = new Schema({
     },
     mobile: {
         type: Number,
-        require: true
+        unique: true
     },
     otp: {
         type: String,
@@ -486,7 +486,7 @@ var model = {
                 dataToSend.name = data.name;
                 dataToSend.nickName = data.nickName;
                 dataToSend.email = data.email;
-                dataToSend.mobile = data.contact;
+                dataToSend.mobile = data.mobile;
                 User.saveData(dataToSend, callback);
             },
             function (newUserData, callback) {
@@ -613,20 +613,20 @@ var model = {
                 delete data3.accessToken;
                 delete data3.password;
                 delete data3.forgotPassword;
-                var smsData = {};
-                smsData.message = 'Your verification code is ' + data3.otp;
+                // var smsData = {};
+                // smsData.message = 'Your verification code is ' + data3.otp;
                 delete data3.otp;
-                smsData.senderId = 'PUMPKIIN';
-                smsData.mobile = data.mobile;
-                Config.sendSms(smsData, function (err, smsRespo) {
-                    if (err) {
-                        console.log("*************************************************sms gateway error in photographer***********************************************", err);
-                    } else if (smsRespo) {
-                        console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
-                    } else {
-                        console.log("invalid data");
-                    }
-                });
+                // smsData.senderId = 'PUMPKIIN';
+                // smsData.mobile = data.mobile;
+                // Config.sendSms(smsData, function (err, smsRespo) {
+                //     if (err) {
+                //         console.log("*************************************************sms gateway error in photographer***********************************************", err);
+                //     } else if (smsRespo) {
+                //         console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
+                //     } else {
+                //         console.log("invalid data");
+                //     }
+                // });
                 callback(null, data3);
             }
         });
