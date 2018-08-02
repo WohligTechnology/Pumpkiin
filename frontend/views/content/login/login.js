@@ -9,21 +9,21 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
     $scope.shownameEmail = true;
     $scope.mobile;
 
-    if ($stateParams.id) {
-        if ($stateParams.id === "AccessNotAvailable") {
-            toastr.error("You do not have access for the Backend.");
-        } else {
-            NavigationService.parseAccessToken($stateParams.id, function () {
-                NavigationService.profile(function () {
-                    $state.go("openticket");
-                }, function () {
-                    $state.go("login");
-                });
-            });
-        }
-    } else {
-        NavigationService.removeAccessToken();
-    }
+    // if ($stateParams.id) {
+    //     if ($stateParams.id === "AccessNotAvailable") {
+    //         toastr.error("You do not have access for the Backend.");
+    //     } else {
+    //         NavigationService.parseAccessToken($stateParams.id, function () {
+    //             NavigationService.profile(function () {
+    //                 $state.go("openticket");
+    //             }, function () {
+    //                 $state.go("login");
+    //             });
+    //         });
+    //     }
+    // } else {
+    //     NavigationService.removeAccessToken();
+    // }
 
     $scope.checkUser = function (data) {
         // $scope.showsignUp = true;
