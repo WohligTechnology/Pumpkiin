@@ -613,25 +613,102 @@ var model = {
                 delete data3.accessToken;
                 delete data3.password;
                 delete data3.forgotPassword;
-                // var smsData = {};
-                // smsData.message = 'Your verification code is ' + data3.otp;
                 delete data3.otp;
-                // smsData.senderId = 'PUMPKIIN';
-                // smsData.mobile = data.mobile;
-                // Config.sendSms(smsData, function (err, smsRespo) {
-                //     if (err) {
-                //         console.log("*************************************************sms gateway error in photographer***********************************************", err);
-                //     } else if (smsRespo) {
-                //         console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
-                //     } else {
-                //         console.log("invalid data");
-                //     }
-                // });
+                var smsData = {};
+                smsData.message = 'Your verification code is ' + data3.otp;
+                smsData.senderId = 'PUMPKIIN';
+                smsData.mobile = data.mobile;
+                Config.sendSms(smsData, function (err, smsRespo) {
+                    if (err) {
+                        console.log("*************************************************sms gateway error in photographer***********************************************", err);
+                    } else if (smsRespo) {
+                        console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
+                    } else {
+                        console.log("invalid data");
+                    }
+                });
                 callback(null, data3);
             }
         });
 
     },
+
+    // sendOtpTest1: function (data, callback) {
+    //     async.waterfall([
+    //         function (callback) {
+    //             var otpNumber = (Math.random() + "").substring(2, 6);
+    //             User.findOneAndUpdate({
+    //                 mobile: data.mobile
+    //             }, {
+    //                 otp: otpNumber,
+    //                 accessToken: uid(16),
+    //                 otpTime: new Date()
+    //             }, {
+    //                 new: true,
+    //                 upsert: true
+    //             }).exec(function (err, found) {
+    //                 if (err) {
+    //                     callback(err, null);
+    //                 } else if (_.isEmpty(found)) {
+    //                     callback("noDataFound", null);
+    //                 } else {
+    //                     data3 = found.toObject();
+    //                     delete data3.accessToken;
+    //                     delete data3.password;
+    //                     delete data3.forgotPassword;
+    //                     delete data3.otp;
+    //                     // var smsData = {};
+    //                     // smsData.message = 'Your verification code is ' + data3.otp;
+    //                     // smsData.senderId = 'PUMPKIIN';
+    //                     // smsData.mobile = data.mobile;
+    //                     // Config.sendSms(smsData, function (err, smsRespo) {
+    //                     //     if (err) {
+    //                     //         console.log("*************************************************sms gateway error in photographer***********************************************", err);
+    //                     //     } else if (smsRespo) {
+    //                     //         console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
+    //                     //     } else {
+    //                     //         console.log("invalid data");
+    //                     //     }
+    //                     // });
+    //                     callback(null, data3);
+    //                 }
+    //             });
+    //         },
+    //         function (data, callback) {
+    //             // var smsData = {};
+    //             // smsData.message = 'Your verification code is ' + data3.otp;
+    //             // smsData.senderId = 'PUMPKIIN';
+    //             // smsData.mobile = data.mobile;
+    //             // Config.sendSms(smsData, function (err, smsRespo) {
+    //             //     if (err) {
+    //             //         console.log("*************************************************sms gateway error in photographer***********************************************", err);
+    //             //     } else if (smsRespo) {
+    //             //         console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
+    //             //     } else {
+    //             //         console.log("invalid data");
+    //             //     }
+    //             // });
+    //         },
+    //         function (data, callback) {
+    //             var emailData = {};
+    //             emailData.from = "admin@clickmania.in";
+    //             emailData.name = data.name;
+    //             emailData.email = data.email;
+    //             emailData.filename = "featuredpht.ejs";
+    //             emailData.subject = "welcome to pumpkiin";
+    //             Config.email(emailData, function (err, emailRespo) {
+    //                 if (err) {
+    //                     console.log(err);
+    //                     callback(err);
+    //                 } else if (emailRespo) {
+    //                     callback(null, emailRespo);
+    //                 } else {
+    //                     callback(null, "Invalid data");
+    //                 }
+    //             });
+    //         }
+    //     ], callback);
+    // },
 
     sendOtpTest: function (data) {
         var otpNumber = (Math.random() + "").substring(2, 6);
@@ -658,7 +735,7 @@ var model = {
             if (err || _.isEmpty(found)) {
                 callback(err, null);
             } else {
-                data._id = found._id
+                data._id = found._id;
                 User.saveData(data, function () {});
                 data3 = found.toObject();
                 delete data3.accessToken;
@@ -668,9 +745,7 @@ var model = {
                 data3.email = data.email;
                 data3.name = data.name;
                 callback(null, data3);
-
             }
-
         });
 
     }

@@ -117,7 +117,7 @@ var model = {
     createNewTicket: function (data, callback) {
         Ticket.TicketIdGenerate(function (err, data2) {
             data.ticketNumber = data2;
-            console.log("data", data);
+            // console.log("data", data);
             Ticket.saveData(data, function (err, data) {
                 sails.sockets.blast("ticketChat", {
                     ticketChatData: data
@@ -209,6 +209,71 @@ var model = {
             callback(null, myJSON);
         });
     },
+
+    //getAllTickets oF user For edit Product Page
+
+    getAllTickets: function (data, callback) {
+        this.find({
+            user: data.user
+        }).exec(callback);
+    },
+
+    ticketCreationMail: function (data, callback) {
+        var emailData = {};
+        emailData.from = "admin@clickmania.in";
+        emailData.name = data.name;
+        emailData.email = data.email;
+        emailData.filename = "featuredpht.ejs";
+        emailData.subject = "welcome to pumpkiin";
+        Config.email(emailData, function (err, emailRespo) {
+            if (err) {
+                console.log(err);
+                callback(err);
+            } else if (emailRespo) {
+                callback(null, emailRespo);
+            } else {
+                callback(null, "Invalid data");
+            }
+        });
+    },
+
+    ticketStatusChangeMail: function (data, callback) {
+        var emailData = {};
+        emailData.from = "admin@clickmania.in";
+        emailData.name = data.name;
+        emailData.email = data.email;
+        emailData.filename = "featuredpht.ejs";
+        emailData.subject = "welcome to pumpkiin";
+        Config.email(emailData, function (err, emailRespo) {
+            if (err) {
+                console.log(err);
+                callback(err);
+            } else if (emailRespo) {
+                callback(null, emailRespo);
+            } else {
+                callback(null, "Invalid data");
+            }
+        });
+    },
+
+    ticketCloserMail: function (data, callback) {
+        var emailData = {};
+        emailData.from = "admin@clickmania.in";
+        emailData.name = data.name;
+        emailData.email = data.email;
+        emailData.filename = "featuredpht.ejs";
+        emailData.subject = "welcome to pumpkiin";
+        Config.email(emailData, function (err, emailRespo) {
+            if (err) {
+                console.log(err);
+                callback(err);
+            } else if (emailRespo) {
+                callback(null, emailRespo);
+            } else {
+                callback(null, "Invalid data");
+            }
+        });
+    }
 
 };
 module.exports = _.assign(module.exports, exports, model);

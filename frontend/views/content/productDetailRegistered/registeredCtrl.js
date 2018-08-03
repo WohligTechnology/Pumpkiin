@@ -40,6 +40,15 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
         }
     });
 
+    var ticketDataToSend = {};
+    ticketDataToSend.user = $scope.jstrgValue._id;
+    NavigationService.apiCallWithData("Ticket/getAllTickets", ticketDataToSend, function (res) {
+        if (res.value == true) {
+            $scope.ticketData = res.data;
+            // console.log("$scope.ticketData-----", $scope.ticketData);
+        }
+    });
+
 
     if ($scope.jstrgValue._id) {
 
@@ -62,7 +71,17 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
                     if (res.data.warrantyExpDate) {
                         $scope.productDetails.warrantyExpDate = new Date(res.data.warrantyExpDate);
                     }
-                    console.log(" $scope.productDetails", $scope.productDetails)
+                    // console.log(" $scope.productDetails", $scope.productDetails);
+
+                    var getUserDetails = {};
+                    getUserDetails._id = $scope.productDetails.user._id;
+                    NavigationService.apiCallWithData("User/getOne", getUserDetails, function (res) {
+                        if (res.value == true) {
+                            $scope.userDetails = res.data;
+                            // console.log("  $scope.userDetails", $scope.userDetails);
+
+                        }
+                    });
                 }
             });
         }

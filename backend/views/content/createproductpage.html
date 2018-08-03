@@ -25,11 +25,14 @@
                 </div>
                 <div class="form-group" fields ng-if="!showSaveButton">
                     <label>Product Image * </label>
-                    <div class="clearfix">
+                    <div class="clearfix" ng-if="formdata.productImages">
                         <div class="img-box" style="float:left;" ng-repeat="pro in formdata.productImages track by $index">
                             <img alt="" ng-src="{{pro|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
                             <a class="btn btn-danger" ng-click="removeProductImage($index)">Cancel</a>
                         </div>
+                    </div>
+                    <div ng-if="!formdata.productImages">
+                        <upload-image multiple ng-model="formdata.productImages"></upload-image>
                     </div>
                 </div>
                 <div class="form-group">
@@ -47,10 +50,13 @@
 
                 <div class="form-group" fields>
                     <label>Proof of Purchase</label>
-                    <div class="clearfix">
+                    <div class="clearfix" ng-if="formdata.purchaseProof">
                         <div class="img-box" style="float:left;" ng-repeat="pur in formdata.purchaseProof track by $index">
                             <img alt="" ng-src="{{pur|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
                         </div>
+                    </div>
+                    <div ng-if="!formdata.purchaseProof">
+                        <upload-image multiple ng-model="formdata.purchaseProof"></upload-image>
                     </div>
                 </div>
                 <!-- <div class="form-group">
@@ -66,10 +72,13 @@
                 </div>
                 <div class="form-group" fields>
                     <label>Warranty Card</label>
-                    <div class="clearfix">
+                    <div class="clearfix" ng-if="formdata.warrantyCardImage">
                         <div class="img-box" style="float:left;" ng-repeat="warrntyImage in formdata.warrantyCardImage track by $index">
                             <img alt="" ng-src="{{warrntyImage|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
                         </div>
+                    </div>
+                    <div ng-if="!formdata.warrantyCardImage">
+                        <upload-image multiple ng-model="formdata.warrantyCardImage"></upload-image>
                     </div>
                 </div>
 
@@ -80,12 +89,25 @@
                 </div>
                 <div class="form-group" fields>
                     <label>Insurance Card</label>
-                    <div class="clearfix">
+                    <div class="clearfix" ng-if="formdata.insuranceProofImage">
                         <div class="img-box" style="float:left;" ng-repeat="insuranceImage in formdata.insuranceProofImage track by $index">
                             <img alt="" ng-src="{{insuranceImage|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
                         </div>
                     </div>
+                    <div ng-if="!formdata.insuranceProofImage">
+                        <upload-image multiple ng-model="formdata.insuranceProofImage"></upload-image>
+                    </div>
                 </div>
+
+                <div class="form-group" fields>
+                    <label>Status</label>
+                    <select class="form-control" id="sel1" name="sellist1" ng-model="formdata.status" required>
+                        <option>Pending</option>
+                        <option>Confirmed</option>
+                    </select>
+                </div>
+
+
 
 
                 <!-- <div class="form-group">

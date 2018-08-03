@@ -52,12 +52,20 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         _.remove($scope.userDataForProfile.relations, function (n) {
             return n._id == data;
         });
+        var test = {};
+        test.relatedUsers = $scope.userDataForProfile.relations;
+        test.user = $scope.userDataForProfile._id;
+        // console.log("test", test);
         // console.log("$scope.userDataForProfile.relations", $scope.userDataForProfile.relations);
         NavigationService.apiCallWithData("User/save", $scope.userDataForProfile, function (response) {
             if (response.value == true) {
                 toastr.error("Member removed successfully");
                 $scope.getUserData();
             }
+        });
+
+        NavigationService.apiCallWithData("Product/removeRelation", test, function (response) {
+            if (response.value == true) {}
         });
     }
 

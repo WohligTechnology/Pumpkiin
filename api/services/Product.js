@@ -120,6 +120,48 @@ var model = {
                 callback(null, found);
             }
         });
+    },
+
+    removeRelation: function (data, callback) {
+        Product.find({
+            user: data.user
+        }, function (err, found) {
+            if (err || _.isEmpty(found)) {
+                callback(err, null);
+            } else {
+                _.each(found, function (x) {
+                    Product.findOneAndUpdate({
+                        _id: x._id
+                    }, {
+                        relatedUser: data.relatedUsers
+                    }).exec(function (err, found1) {
+                        // callback(null, found1)
+                    })
+                })
+                callback(null, found);
+            }
+        })
+    },
+
+    //mailer
+
+    productRegistrationMail: function (data, callback) {
+        var emailData = {};
+        emailData.from = "admin@clickmania.in";
+        emailData.name = data.name;
+        emailData.email = data.email;
+        emailData.filename = "featuredpht.ejs";
+        emailData.subject = "welcome to pumpkiin";
+        Config.email(emailData, function (err, emailRespo) {
+            if (err) {
+                console.log(err);
+                callback(err);
+            } else if (emailRespo) {
+                callback(null, emailRespo);
+            } else {
+                callback(null, "Invalid data");
+            }
+        });
     }
 
 };

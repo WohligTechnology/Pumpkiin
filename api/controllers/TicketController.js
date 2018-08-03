@@ -157,5 +157,57 @@ var controller = {
             });
         }
     },
+
+    getAllTickets: function (req, res) {
+        if (req.body) {
+            Ticket.getAllTickets(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
+    ticketCreationMail: function (req, res) {
+        if (req.body) {
+            Product.ticketCreationMail(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
+    ticketStatusChangeMail: function (req, res) {
+        if (req.body) {
+            Product.ticketStatusChangeMail(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
+    ticketCloserMail: function (req, res) {
+        if (req.body) {
+            Product.ticketCloserMail(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
 };
 module.exports = _.assign(module.exports, controller);

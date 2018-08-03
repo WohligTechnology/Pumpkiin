@@ -11,17 +11,19 @@
             </div>
             <div class="text-white fontRobotoRegular font14 ml-5">
                 <div class="font20">{{userDataForProfile.name}}</div>
-                <div class="my-1">(Code: 123456)</div>
+                <!-- <div class="my-1">(Code: 123456)</div> -->
                 <div class="d-flex my-1">
                     <div class="d-inline-block">Phone Number : </div>
-                    <div class="ml-3">{{userDataForProfile.mobile}}</div>
+                    <div class="ml-3" ng-if="userDataForProfile.mobile">{{userDataForProfile.mobile}}</div>
+                    <div class="ml-3" ng-if="!userDataForProfile.mobile">- - -</div>
                     <div class="ml-3">
                         <img src="img/chekmark.png">
                     </div>
                 </div>
                 <div class="d-flex my-1">
                     <div class="d-inline-block">Email Address : </div>
-                    <div class="ml-3">{{userDataForProfile.email}}</div>
+                    <div class="ml-3" ng-if="userDataForProfile.email">{{userDataForProfile.email}}</div>
+                    <div class="ml-3" ng-if="!userDataForProfile.email">- - -</div>
                     <div class="ml-3">
                         <img src="img/chekmark.png">
                     </div>
@@ -64,8 +66,11 @@
                         <div class="w-20 custom-input" ng-if="personalInfo">
                             <input type="date" name="August" ng-model="genderData.dob">
                         </div>
-                        <div class="w-20 custom-input" ng-if="!personalInfo">
+                        <div class="w-20 custom-input" ng-if="!personalInfo && userDataForProfile.dob ">
                             {{ userDataForProfile.dob |date}}
+                        </div>
+                        <div class="w-20 custom-input" ng-if="!personalInfo && !userDataForProfile.dob ">
+                            - - -
                         </div>
                     </div>
                 </div>

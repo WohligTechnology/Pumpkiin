@@ -98,7 +98,7 @@
                                         <span ng-if="$item.user.name"> {{$item.user.name}}</span>
                                         <span ng-if="!$item.user.name"> {{$item}}</span>
                                     </ui-select-match>
-                                    <ui-select-choices repeat="users in productDetails.relatedUser | filter:$select.search">
+                                    <ui-select-choices repeat="users in userDetails.relations | filter:$select.search">
                                         {{users.user.name}}
                                     </ui-select-choices>
                                 </ui-select>
@@ -268,42 +268,18 @@
                 </div>
                 <div class="support-chat-history mb-5 ">
                     <h6 class="fontRobotoBold blue-color my-4 ">SUPPORT CHAT HISTORY</h6>
-                    <div class="bg-white border-rounded p-4 my-2 ">
+                    <div class="bg-white border-rounded p-4 my-2 " ng-repeat="tickets in ticketData" ui-sref="ticketcreation">
                         <div class="d-flex align-items-center ">
                             <div class="blue-circle "></div>
-                            <h6 class="fontRobotoBold font14 ml-2 mb-0 ">BRAND NAME</h6>
-                            <span class="font12 font-color ml-2 d-inline-block w-25 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
+                            <h6 class="fontRobotoBold font14 ml-2 mb-0 ">{{tickets.ticketNumber}}</h6>
+                            <!-- <span class="font12 font-color ml-2 d-inline-block w-25 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span> -->
                             <div class="ml-auto date-supportchat ">
-                                <span class="font12 ">17/2/2018, 5:30 pm</span>
+                                <span class="font12 ">{{tickets.issueReported | date}}</span>
                             </div>
                             <div class="ml-auto green-color ">
-                                <span class="font12 ">Closed</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white border-rounded p-4 my-2 ">
-                        <div class="d-flex align-items-center ">
-                            <div class="blue-circle "></div>
-                            <h6 class="fontRobotoBold font14 ml-2 mb-0 ">BRAND NAME</h6>
-                            <span class="font12 font-color ml-2 d-inline-block w-25 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
-                            <div class="ml-auto date-supportchat ">
-                                <span class="font12 ">17/2/2018, 5:30 pm</span>
-                            </div>
-                            <div class="ml-auto orange-color ">
-                                <span class="font12 ">Open</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white border-rounded p-4 my-2 ">
-                        <div class="d-flex align-items-center ">
-                            <div class="blue-circle "></div>
-                            <h6 class="fontRobotoBold font14 ml-2 mb-0 ">BRAND NAME</h6>
-                            <span class="font12 font-color ml-2 d-inline-block w-25 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span>
-                            <div class="ml-auto date-supportchat ">
-                                <span class="font12 ">17/2/2018, 5:30 pm</span>
-                            </div>
-                            <div class="ml-auto blue-color ">
-                                <span class="font12 ">Draft</span>
+                                <span class="font12 " ng-if="tickets.status=='Active'">Open</span>
+                                <span class="font12 " ng-if="tickets.status=='Closed'">Closed</span>
+
                             </div>
                         </div>
                     </div>
