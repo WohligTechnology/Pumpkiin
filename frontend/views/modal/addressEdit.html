@@ -7,23 +7,21 @@
 <div class="modal-body fontRobotoLight" id="modal-body">
     <form name="address">
         <div class="form-group">
-            <label for="title">
-                Address Title ( Home / Work ) * </label>
+            <label for="title"> Address Title ( Home / Work ) * </label>
             <input class="form-control form-control-sm" type="text" name="addressName" ng-model="data.title" required>
+            <span class="error" ng-show="address.addressName.$invalid && address.addressName.$touched"> Please, enter address title</span>
         </div>
         <div class="form-group">
-            <label for="fulladd">
-                Full Address * </label>
-            <input class="form-control form-control-sm" type="text" name="title" required ng-model="data.address">
+            <label for="fulladd">Full Address * </label>
+            <input class="form-control form-control-sm" type="text" name="address" required ng-model="data.address" required>
+            <span class="error" ng-show="address.address.$invalid && address.address.$touched"> Please, enter address</span>
         </div>
         <div class="form-group">
-            <label for="title">
-                Country * </label>
-            <div class="form-control form-control-sm">India</div>
+            <label for="country">Country * </label>
+            <div name="country" class="form-control form-control-sm">India</div>
         </div>
         <div class="form-group">
-            <label for="title">
-                State * </label>
+            <label for="state">State * </label>
             <ui-select class="input-border" ng-model="data.state" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a state"
                 ng-change="updateState(data.state)">
                 <ui-select-match placeholder="Select or search a state in the list...">{{$select.selected.region}}</ui-select-match>
@@ -33,8 +31,7 @@
             </ui-select>
         </div>
         <div class="form-group">
-            <label for="title">
-                City * </label>
+            <label for="title">City * </label>
             <ui-select class="input-border" ng-model="data.city" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a state"
                 ng-change="updateState(data.city)">
                 <ui-select-match placeholder="Select or search a city in the list...">{{$select.selected.city}}</ui-select-match>
@@ -44,9 +41,9 @@
             </ui-select>
         </div>
         <div class="form-group">
-            <label for="pin">
-                Pincode * </label>
-            <input ng-model="data.pin" type="text" class="form-control form-control-sm" name="pin" required only-digits>
+            <label for="pin">Pincode * </label>
+            <input name="pin" ng-model="data.pin" type="text" class="form-control form-control-sm" name="pin" required only-digits>
+            <span class="error" ng-show="address.pin.$invalid && address.pin.$touched"> Please, enter pincode</span>
         </div>
         <div>
             <button class="form-control w-40 mx-auto reminder-btn" ng-disabled="address.$invalid" ng-click="saveAddressData(data)">Save</button>

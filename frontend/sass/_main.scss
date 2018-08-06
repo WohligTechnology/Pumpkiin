@@ -299,7 +299,14 @@ footer {
         }
     }
 }
-
+.error{color:red;
+}
+input.ng-valid.ng-touched{
+  border:1px solid #55b878;
+}
+input.ng-invalid.ng-touched {
+  border:1px solid red;
+ }
 .form-submission {
     min-height: 300px;
 }
@@ -360,6 +367,9 @@ header {
 
 .image-upload {
     .img-box {
+        cursor: pointer;
+        align-items: center;
+        display: flex;
         width: 75px;
         min-height: 60px;
         max-height: 70px;
@@ -647,6 +657,7 @@ fieldset:disabled {
     position: absolute;
     top: 20px;
     right: 5%;
+    cursor: pointer;
 }
 
 .modal-content {
