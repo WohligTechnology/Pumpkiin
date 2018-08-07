@@ -91,10 +91,10 @@
                     <div ng-if="personalInfo">
                         <div class="row form-group">
                             <div class="col-12 col-md-6">
-                                <label class="mb-0">Search for exsisting user</label>
+                                <label class="mb-0">Search for existing user</label>
                                 <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="data.Users" theme="bootstrap" sortable="true"
                                     ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a color">
-                                    <ui-select-match class="selected-tags" placeholder="Select colors...">
+                                    <ui-select-match class="selected-tags" placeholder="">
                                         <span ng-if="$item.user.name"> {{$item.user.name}}</span>
                                         <span ng-if="!$item.user.name"> {{$item}}</span>
                                     </ui-select-match>
@@ -105,47 +105,48 @@
                                 <!-- <input class="form-control form-control-sm" type="text" placeholder="Type User Name to Add" required> -->
                             </div>
                         </div>
-                        <h6 class="text-uppercase fontRobotoBold pt-3 border-dashed">ADD NEW USER</h6>
-                        <div class="row form-group">
-                            <div class="col-12 col-md-6">
-                                <label class="mb-0">Name</label>
-                                <div class=" d-flex">
-                                    <input ng-model="userData.name" class="form-control form-control-sm" type="text" required>
-                                    <!-- <input ng-model="userData.lastname" class="form-control form-control-sm w-50" type="text" required> -->
+                        <form name="newuser">
+                            <div class="row form-group">
+                                <div class="col-12 col-md-6">
+                                    <label class="mb-0">Name * </label>
+                                    <input name="user" ng-model="userData.name" class="form-control form-control-sm" type="text" required only-letters-input>
+                                    <span class="error" ng-show="newuser.user.$invalid && newuser.user.$touched"> Please, enter user name</span>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="mb-0">Email * </label>
+                                    <input name="email" ng-model="userData.email" class="form-control form-control-sm" type="email" required>
+                                    <span class="error" ng-show="newuser.email.$invalid && newuser.email.$touched"> Please, enter user email</span>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-6">
-                                <label class="mb-0">Email</label>
-                                <input ng-model="userData.email" class="form-control form-control-sm" type="email" required>
+                            <div class="row form-group">
+                                <div class="col-12 col-md-6">
+                                    <label class="mb-0">Mobile Number * </label>
+                                    <input name="mobile" ng-model="userData.mobile" class="form-control form-control-sm" type="text" required only-digits>
+                                    <span class="error" ng-show="newuser.mobile.$invalid && newuser.mobile.$touched"> Please, enter user contact</span>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="mb-0">NickName</label>
+                                    <input ng-model="userData.nickName" class="form-control form-control-sm" type="text">
+                                </div>
                             </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-12 col-md-6">
-                                <label class="mb-0">Mobile Number</label>
-                                <input ng-model="userData.mobile" class="form-control form-control-sm" type="text" required>
+                            <div class="row form-group">
+                                <div class="col-12 col-md-6">
+                                    <label class="mb-0">Relationship * </label>
+                                    <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation" required>
+                                                <option ng-repeat="relations in relationsForUser">{{relations}}</option>
+                                            </select>
+                                    <span class="error" ng-show="newuser.sellist1.$invalid && newuser.sellist1.$touched"> Please, select relationship</span>
+                                </div>
                             </div>
-                            <div class="col-12 col-md-6">
-                                <label class="mb-0">NickName</label>
-                                <input ng-model="userData.nickName" class="form-control form-control-sm" type="text" required>
+                            <div class="row form-group" ng-click="addUser(userData)">
+                                <div class="d-flex social m-3 add">
+                                    <span class="social_icon">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                    <div class="social-text">Add User</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-12 col-md-6">
-                                <label class="mb-0">Relationship</label>
-                                <!-- <input ng-model="userData.relation" class="form-control form-control-sm" type="text" required> -->
-                                <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation">
-                                    <option ng-repeat="relations in relationsForUser">{{relations}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row form-group" ng-click="addUser(userData)">
-                            <div class="d-flex social m-3 add">
-                                <span class="social_icon">
-                                    <i class="fas fa-plus"></i>
-                                </span>
-                                <div class="social-text">Add User</div>
-                            </div>
-                        </div>
+                        </form>
                         <fieldset class="d-flex social m-3 save mx-auto">
                             <span class="social_icon">
                                 <i class="fas fa-save"></i>

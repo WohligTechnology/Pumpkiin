@@ -220,8 +220,12 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             NavigationService.apiCallWithData("Product/save", docs, function (res) {
                 // console.log("inside submit documents api", res);
                 $scope.pumpRegistration.close();
-                toastr.success("Documents added successfully");
-                $state.go("openticket")
+                $scope.thanks = $uibModal.open({
+                    animation: true,
+                    templateUrl: "views/modal/upload-thanks.html",
+                    scope: $scope,
+                    windowClass: 'app-modal-window'
+                });
             });
         }
 

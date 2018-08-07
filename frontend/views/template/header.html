@@ -22,16 +22,22 @@
             </form>
             <ul class="navbar-nav  my-2 my-lg-0 mr-4">
                 <li class="list-inline-item nav-item right-icon-width mx-2" ui-sref="ticketcreation">
-                    <img src="img/header/Ticket_circle-icon.png" alt="Ticket_circle-icon" class="w-100" ng-if="currentState!=='ticketcreation' && currentState!=='closedTicketcreation'">
-                    <img src="img/header/Ticket_circle-icon-orange.png" alt="Ticket_circle-icon" class="w-100" ng-if="currentState=='ticketcreation' || currentState=='closedTicketcreation'">
+                    <img src="img/header/Ticket_circle-icon.png" alt="Ticket_circle-icon" class="w-100" ng-if="currentState!=='ticketcreation' && currentState!=='closedTicketcreation'"
+                        data-toggle="tooltip" data-placement="bottom" title="Open Tickets">
+                    <img src="img/header/Ticket_circle-icon-orange.png" alt="Ticket_circle-icon" class="w-100" ng-if="currentState=='ticketcreation' || currentState=='closedTicketcreation'"
+                        data-toggle="tooltip" data-placement="bottom" title="Open Tickets">
                 </li>
                 <li class="list-inline-item nav-item right-icon-width mx-2" ui-sref="productListing">
-                    <img src="img/header/Products_circle-icon.png" alt="Products_circle-icon" class="w-100" ng-if="currentState!=='productListing'">
-                    <img src="img/header/Products_circle-icon-orange.png" alt="Products_circle-icon" class="w-100" ng-if="currentState=='productListing'">
+                    <img src="img/header/Products_circle-icon.png" alt="Products_circle-icon" class="w-100" ng-if="currentState!=='productListing'"
+                        data-toggle="tooltip" data-placement="bottom" title="Product List">
+                    <img src="img/header/Products_circle-icon-orange.png" alt="Products_circle-icon" class="w-100" ng-if="currentState=='productListing'"
+                        data-toggle="tooltip" data-placement="bottom" title="Product List">
                 </li>
                 <li class="list-inline-item nav-item right-icon-width mx-2" ui-sref="notification">
-                    <img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState!=='notification'">
-                    <img src="img/header/Notification_circle-icon-orange.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState=='notification'">
+                    <img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState!=='notification'"
+                        data-toggle="tooltip" data-placement="bottom" title="Reminders">
+                    <img src="img/header/Notification_circle-icon-orange.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState=='notification'"
+                        data-toggle="tooltip" data-placement="bottom" title="Reminders">
                 </li>
                 <li class="list-inline-item nav-item mx-2" ui-sref="profile">
                     <div class="user-profile rounded-circle">

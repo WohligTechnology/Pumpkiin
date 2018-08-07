@@ -64,6 +64,8 @@ module.exports = [
   'frontend/views/content/ticketCreation/ticketcreation.js',
   'frontend/views/content/closedTicketcreation/closedTicketcreation.js',
   'frontend/views/content/notification/notification.js',
+  'frontend/views/content/ticketopen-notification/ticketopen-notification.js',
+  'frontend/views/content/ticketclose-notification/ticketclose-notification.js',
   'frontend/views/content/login/login.js',
   'frontend/views/content/openTicket/openTicketCtrl.js',
 ];

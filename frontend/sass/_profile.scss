@@ -25,7 +25,8 @@
             cursor: pointer;
         }
         .img-uploaded {
-            width: 130px;
+            max-width: 130px;
+            height: 130px;
             border-radius: 50%;
         }
         &:hover{
@@ -63,5 +64,10 @@
         .social-text{
             width: 40%;
         }
+    }
+}
+.profile-details{
+    .noShow{
+        display: none;
     }
 }
