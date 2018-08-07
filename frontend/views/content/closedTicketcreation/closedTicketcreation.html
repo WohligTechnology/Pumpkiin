@@ -27,9 +27,12 @@
                     <!-- <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
                             <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
                     <span class="badge badge-style ">{{totalNumberOfTickets}}</span>
-                    <span class="float-right">
-                        <img src="img/ticketCreation/search.png ">
-                    </span>
+                    <div class="float-right custom-searchbar">
+                        <form action="" autocomplete="on" class="position-relative">
+                            <input id="search" name="search" type="text" placeholder="">
+                            <input id="search_submit" value="Rechercher" type="submit">
+                        </form>
+                    </div>
                 </div>
                 <div class="border-top listed-openTickets openticket ">
                     <div class="d-flex py-1 element-list " ng-repeat="closeticket in showLessClosedTickets">
@@ -71,9 +74,12 @@
                 <div class="my-3 open-tickets ">
                     <h5 class="d-inline ">Reminders</h5>
                     <span class="badge badge-style ml-auto">{{totalReminders}}</span>
-                    <span class="float-right">
-                        <img src="img/ticketCreation/search.png ">
-                    </span>
+                    <div class="float-right custom-searchbar">
+                        <form action="" autocomplete="on" class="position-relative">
+                            <input id="search" name="search" type="text" placeholder="">
+                            <input id="search_submit" value="Rechercher" type="submit">
+                        </form>
+                    </div>
                 </div>
 
                 <div class="border-top listed-openTickets openticket ">
@@ -114,7 +120,7 @@
                                     <span ng-show="modelNo">
                                         <i class="fas fa-angle-up"></i>
                                     </span>
-                                    <span ng-show="!modelNo">
+                                <span ng-show="!modelNo">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
                                 </span>
@@ -167,10 +173,10 @@
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
                                             <!-- <i class="fas fa-times "></i> -->
                                         </span>
-                                        <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
+                                    <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
                                         </span> -->
-                                        <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
+                                    <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
                                             <i class="fas fa-plus "></i>
                                         </button> -->
                                     </span>
@@ -228,26 +234,28 @@
             </div>
             <a role="button" class="button w-25 py-1 float-right fontRobotoBold text-center orange-btn" ui-sref="ticketcreation">Support</a>
             <div class="p-4 pumpkin-support-feedback ">
-                        <form>
-                            <h6 class="fontRobotoBold blue-color pump-support-text ">Pumpkiin Support</h6>
-                            <div class="fontRobotoRegular font12 font-color ">Dear<br> Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Nullam
-                                quis risus eget urna mollis ornare vel eu leo. Nulla vitae elit libero, a pharetra augue.
-                                Cras justo odio, dapibus ac facilisis in, egestas eget quam.<br><br> Thanks you,<br> Pumpkiin
-                                Support
-                            </div><br>
-                            <h6 class="fontRobotoBold blue-color ">FEEDBACK</h6><br>
-                            <div class="font14 font-color mb-2 ">How would you rate your experience on scale of 1 to 5 stars based on the following parameters?</div>
-                            <div class="d-flex font14 fontRobotoRegular font-color my-2 ">
-                                <div class="mr-3 "><span class="mr-2">Ease </span><span uib-rating ng-model="rate" max="max " read-only="isReadonly " on-hover="hoveringOver(value) " on-leave="overStar=null " titles="[ 'one',
-                            'two', 'three'] "  aria-labelledby="default-rating "></span></div>
-                                <div class="mr-3 "><span class="mr-2 ">Interaction </span><span uib-rating ng-model="rate" max="max " read-only="isReadonly " on-hover="hoveringOver(value) " on-leave="overStar=null " titles="[ 'one','two', 'three'] " aria-labelledby="default-rating "></span></div>
-                                <div class="mr-3 "><span class="mr-2 ">Resolution </span><span uib-rating ng-model="rate" max="max " read-only="isReadonly " on-hover="hoveringOver(value) " on-leave="overStar=null " titles="[ 'one','two', 'three'] " aria-labelledby="default-rating "></span></div>
-                            </div>
-                            <div class="font14 font-color my-2 ">Describe your experience with us</div>
-                            <textarea rows="5 " name="feedback " class="form-control "></textarea>
-                            <button class="mt-3 send-btn "><span class="close-icon "><i class="fas fa-times "></i></span>Send</button>
-                        </form>
+                <form>
+                    <h6 class="fontRobotoBold blue-color pump-support-text ">Pumpkiin Support</h6>
+                    <div class="fontRobotoRegular font12 font-color ">Dear<br> Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Nullam quis
+                        risus eget urna mollis ornare vel eu leo. Nulla vitae elit libero, a pharetra augue. Cras justo odio,
+                        dapibus ac facilisis in, egestas eget quam.<br><br> Thanks you,<br> Pumpkiin Support
+                    </div><br>
+                    <h6 class="fontRobotoBold blue-color ">FEEDBACK</h6><br>
+                    <div class="font14 font-color mb-2 ">How would you rate your experience on scale of 1 to 5 stars based on the following parameters?</div>
+                    <div class="d-flex font14 fontRobotoRegular font-color my-2 ">
+                        <div class="mr-3 "><span class="mr-2">Ease </span><span uib-rating ng-model="rate" max="max " read-only="isReadonly "
+                                on-hover="hoveringOver(value) " on-leave="overStar=null " titles="[ 'one',
+                            'two', 'three'] " aria-labelledby="default-rating "></span></div>
+                        <div class="mr-3 "><span class="mr-2 ">Interaction </span><span uib-rating ng-model="rate" max="max " read-only="isReadonly "
+                                on-hover="hoveringOver(value) " on-leave="overStar=null " titles="[ 'one','two', 'three'] " aria-labelledby="default-rating "></span></div>
+                        <div class="mr-3 "><span class="mr-2 ">Resolution </span><span uib-rating ng-model="rate" max="max " read-only="isReadonly "
+                                on-hover="hoveringOver(value) " on-leave="overStar=null " titles="[ 'one','two', 'three'] " aria-labelledby="default-rating "></span></div>
                     </div>
+                    <div class="font14 font-color my-2 ">Describe your experience with us</div>
+                    <textarea rows="5 " name="feedback " class="form-control "></textarea>
+                    <button class="mt-3 send-btn "><span class="close-icon "><i class="fas fa-times "></i></span>Send</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

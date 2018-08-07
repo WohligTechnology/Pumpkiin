@@ -39,7 +39,7 @@ myApp.directive('img', function ($compile, $parse) {
     })
 
 
-    .directive('fancybox', function ($document) {
+    .directive('fancyboxBox', function ($document) {
         return {
             restrict: 'EA',
             replace: false,
@@ -56,9 +56,52 @@ myApp.directive('img', function ($compile, $parse) {
                     openEffect: 'fade',
                     closeEffect: 'fade',
                     closeBtn: true,
+                    nextEffect: '',
+                    prevEffect: '',
                     padding: 0,
                     helpers: {
-                        media: {}
+                        title: {
+                            type: 'over'
+                        },
+                        thumbs: {
+                            width: 50,
+                            height: 50
+                        },
+                        helpers: {
+                            media: {}
+                        }
+                    }
+                });
+            }
+        };
+    })
+
+    .directive('fancyboxThumb', function ($document) {
+
+        return {
+            restrict: 'EA',
+            replace: false,
+            link: function (scope, element, attr) {
+                var $element = $(element);
+                var target;
+                if (attr.rel) {
+                    target = $("[rel='" + attr.rel + "']");
+                } else {
+                    target = element;
+                }
+
+                target.fancybox({
+                    nextEffect: 'none',
+                    prevEffect: 'none',
+                    padding: 0,
+                    helpers: {
+                        title: {
+                            type: 'over'
+                        },
+                        thumbs: {
+                            width: 50,
+                            height: 50
+                        }
                     }
                 });
             }
