@@ -10333,6 +10333,14 @@ fieldset:disabled {
 .profile-details .noShow {
   display: none; }
 
+.mobile-edit {
+  background: transparent;
+  border: none;
+  color: white;
+  border-bottom: 1px solid #cccccc; }
+  .mobile-edit:focus {
+    outline: none; }
+
 .productreg {
   position: relative; }
   .productreg:before {
@@ -11119,7 +11127,7 @@ fieldset:disabled {
       border: solid 1px #14C177;
       border-radius: 50%;
       position: absolute;
-      left: -40px;
+      left: -35px;
       top: -5px; }
   .pumpkin-support-feedback .close-icon {
     bottom: -1px;
