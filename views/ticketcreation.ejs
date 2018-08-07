@@ -54,42 +54,40 @@
             <tbody>
                 <tr>
                     <td style="padding:0px; text-align:center;font-family: 'Catamaran', sans-serif;">
-                      <h2>Ticket creation email</h2>
+                        <h2>Ticket creation email</h2>
                     </td>
                 </tr>
                 <tr>
                     <td style="font-family: 'Catamaran', sans-serif;">
-                        <p style="margin:0px">Subject: <span> Ticket successfully created. Ticket number <%ticket number></span></p>
+                        <p style="margin:0px">Hello
+                            <%= name%>,
                     </td>
                 </tr>
                 <tr>
                     <td style="font-family: 'Catamaran', sans-serif;">
-                        <p style="margin:0px">Hello <span style="color:#9cdbb9"> <%user>,</span></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="font-family: 'Catamaran', sans-serif;">
-                        <p style="margin:0px">Your ticket regarding the <%product name> has been created.</p>
+                        <p style="margin:0px">Your ticket regarding the
+                            <%= productName%> has been created.</p>
                     </td>
                 </tr>
 
                 <tr>
                     <td>
                         <p style="font-family: 'Catamaran', sans-serif;color: black;text-align:justify;margin:0px 0 10px 0;line-height: 1.2;">
-                          The ticket ID for your reference is <%ticket ID>.
+                            The ticket ID for your reference is
+                            <%= ticketID%>.
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <p style="font-family: 'Catamaran', sans-serif;color: black;text-align:justify;margin:0px 0 10px 0;line-height: 1.2;">
-                      Sit back, relax, and we’ll take care of the rest.
+                            Sit back, relax, and we’ll take care of the rest.
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <p style="font-family: 'Catamaran', sans-serif;color: black;margin:0px 0 20px 0;">
-                          Cheers,
+                            Cheers,
                             <br>Team Pumpkiin.
                         </p>
                     </td>
@@ -99,10 +97,13 @@
             <tfoot style="background-color:#3f4040;">
                 <tr>
                     <td style="padding: 0px 0px;text-align:center ;font-family:'Catamaran', sans-serif">
-                        <p>Copyright <span><i class="fa fa-copyright" aria-hidden="true"></i></spna> 2018 Team Pumpkiin </p>
-                             </td>
-                         </tr>
-             </tfoot>
+                        <p>Copyright
+                            <span>
+                                <i class="fa fa-copyright" aria-hidden="true"></i>
+                                </spna> 2018 Team Pumpkiin </p>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </body>
