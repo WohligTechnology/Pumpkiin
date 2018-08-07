@@ -91,19 +91,19 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Purchase Date * </label>
                     <input ng-model="data.purchaseDate" name="date" class="form-control form-control-sm" type="date" required>
-                    <span class="error" ng-show="product.date.$invalid && product.date.$touched"> Please, enter purchase date</span> 
+                    <span class="error" ng-show="purchase.date.$invalid && purchase.date.$touched"> Please, enter purchase date</span> 
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Purchase Price * </label>
                     <input ng-model="data.purchasePrice" name="price" class="form-control form-control-sm" type="text" required only-digits>
-                    <span class="error" ng-show="product.price.$invalid && product.price.$touched"> Please, enter purchase price</span>
+                    <span class="error" ng-show="purchase.price.$invalid && purchase.price.$touched"> Please, enter purchase price</span>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Retailer * </label>
                     <input ng-model="data.retailer" name="retailer" class="form-control form-control-sm" type="text" required>
-                    <span class="error" ng-show="product.retailer.$invalid && product.retailer.$touched"> Please, enter retailer</span> 
+                    <span class="error" ng-show="purchase.retailer.$invalid && purchase.retailer.$touched"> Please, enter retailer</span> 
                 </div>
             </div>
             <div class="row form-group">
