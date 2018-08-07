@@ -95,7 +95,7 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
 
             // data.productId = $scope.productDetails._id;
             NavigationService.apiCallWithData("User/addRelation", data, function (response) {
-                console.log("response", response);
+                // console.log("response", response);
                 if (response.value == true) {
                     toastr.success("Relation added successfully");
                     $scope.userData = null;
@@ -156,6 +156,18 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
             $scope.setImg = data;
         }
 
+        $scope.removeRelation = function (data) {
+            // console.log("data", data)
+            _.remove($scope.productDetails.relatedUser, function (n) {
+                return n._id == data;
+            });
+            // console.log("$scope.productDetails.relatedUser", $scope.productDetails.relatedUser);
+            NavigationService.apiCallWithData("Product/save", $scope.productDetails, function (response) {
+                if (response.value == true) {
+                    toastr.success("User removed from Product");
+                }
+            });
+        }
 
     }
 

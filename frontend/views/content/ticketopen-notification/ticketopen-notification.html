@@ -93,12 +93,12 @@
                             </span> -->
                     </div>
                 </div>
-                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Active'" ui-sref='ticketcreation'>View All
+                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Active'" ui-sref='ticketopen-notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
                 </div>
-                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Closed'" ui-sref='closedTicketcreation'>View All
+                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Closed'" ui-sref='ticketclose-notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
@@ -106,125 +106,26 @@
             </div>
         </div>
 
-        <div class="col col-md-9 " ng-init="modelNo=false ">
-            <!-- <div class="background-blue border-rounded p-4">
-                <div class="media ">
-                    <div class="img-div ">
-                        <img src="img/iphone.jpeg " class="img-fluid large-img ">
-                        <div class="d-flex align-items-center justify-content-center small-img ">
-                            <img src="img/ticketCreation/mobile.png " width="10 ">
-                        </div>
-                    </div>
-                    <div class="media-body pl-4 text-white ">
-                        <h5 class="mt-0 fontRobotoMedium font20 " ng-click="modelNo=! modelNo ">Support ID: PSMS 6659
-                            <span class="float-right orange-color ">
-                                <span ng-show="modelNo">
-                                    <i class="fas fa-angle-up"></i>
-                                </span>
-                                <span ng-show="!modelNo">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
-                            </span>
-                        </h5>
-                        <span class="fontRobotoBold font14 ">PRODUCT INFORMATION</span>
-                        <p class="fontRobotoRegular font20 m-0">Bose QuietComfort 25
-                            <span class="pl-2 fontRobotoLight "> (Bose)</span>
-                        </p>
-                        <div class="row fontRobotoRegular font14 info-div " ng-show="modelNo ">
-                            <div class="col col-md-6 ">
-                                <p>
-                                    <span class="d-inline-block w-40 ">Model Number : </span>
-                                    <span class=" w-60 "> B - HDF 7585</span>
-                                </p>
-                                <p>
-                                    <span class="d-inline-block w-40 ">Purchase Price : </span>
-                                    <span class=" w-60 "> INR 18750</span>
-                                </p>
-                                <p class="d-flex align-items-top ">
-                                    <span class="d-inline-block w-40 ">Store : </span>
-                                    <span class=" w-60 "> Croma Reatils, Malad West</span>
-                                </p>
-                                <p class="d-flex align-items-top ">
-                                    <span class="d-inline-block w-40 ">Attached Files : </span>
-                                    <span class=" w-60 ">
-                                        <span class="d-inline-block img-uploaded "></span>
-                                        <span class="d-inline-block img-uploaded "></span>
-                                        <span class="d-inline-block img-uploaded "></span>
-                                        <span class="d-inline-block img-uploaded "></span>
-                                    </span>
-                                </p>
-                            </div>
-                            <div class="col col-md-6 ">
-                                <p>
-                                    <span class="d-inline-block w-40 ">Serial Number : </span>
-                                    <span class=" w-60 "> 10-0B 24589 265 78</span>
-                                </p>
-                                <p>
-                                    <span class="d-inline-block w-40 ">Purchase Date : </span>
-                                    <span class=" w-60 "> 23-11-2017</span>
-                                </p>
-                                <p class="d-flex align-items-top ">
-                                    <span class="d-inline-block w-40 ">Warranty : </span>
-                                    <span class="w-60 green-color "> 23-11-2017 - 22-11-2018</span>
-                                </p>
-                                <p class="d-flex align-items-top ">
-                                    <span class="d-inline-block w-40 ">Relation : </span>
-                                    <span class="d-inline-block w-60 ">
-                                        <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-2 ">Brother
-                                            <i class="fas fa-times "></i>
-                                        </span>
-                                        <span class="d-inline-block bg-white blue-color border-rounded px-2 my-2 mr-3 ">Mother
-                                            <i class="fas fa-times "></i>
-                                        </span>
-                                        <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
-                                            <i class="fas fa-plus "></i>
-                                        </button>
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
+        <div class="col col-md-9 ">
             <div class="support-chat-history">
                 <h6 class="fontRobotoBold blue-color mb-4 text-uppercase">Open Tickets
                 </h6>
-                <uib-accordion close-others="true">
-                    <div uib-accordion-group class="panel-default reminder-body" is-open="status1.open" ng-repeat="reminders in allReminders">
-                        <uib-accordion-heading>
-                            <div class="d-flex align-items-center ">
-                                <div class="blue-circle "></div>
-                                <h6 class="fontRobotoBold font14 ml-2 mb-0 text-uppercase">{{reminders.title}}
-                                </h6>
-                                <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate " ng-if="!status1.open">{{reminders.description}}</span>
-                                <div class="ml-auto date-supportchat ">
-                                    <span class="font12 ">{{reminders.dateOfReminder | date}}</span>
-                                </div>
-                            </div>
-                            <div class="up-arrow" ng-class="{'rotate-180':status1.open==true}">
-                                <i class="fas fa-sort-down"></i>
-                            </div>
-                        </uib-accordion-heading>
-                        <div class="pt-0 px-4 pb-4">
-                            <p>{{reminders.description}}</p>
-                            <!-- <div class="text-right">
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center snooze-color" ng-click="reminderModalOpen(reminders._id);"
-                                    ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Snooze / Edit
-                                </a>
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center completed-color" ng-click="chnageStatus(reminders._id);"
-                                    ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Completed
-                                </a>
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center delete-btn" ng-click="deleteReminder(reminders._id);">Delete
-                                </a>
-                            </div> -->
+                <div class="bg-white border-rounded p-4 my-2 " ng-repeat="tickets in ticketData" ui-sref="ticketcreation">
+                    <div class="d-flex align-items-center ">
+                        <div class="blue-circle "></div>
+                        <h6 class="fontRobotoBold font14 ml-2 mb-0 ">{{tickets.ticketNumber}}</h6>
+                        <!-- <span class="font12 font-color ml-2 d-inline-block w-25 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span> -->
+                        <div class="ml-auto date-supportchat ">
+                            <span class="font12 ">{{tickets.issueReported | date}}</span>
+                        </div>
+                        <div class="ml-auto green-color ">
+                            <span class="font12 " ng-if="tickets.status=='Active'">Open</span>
+                            <span class="font12 " ng-if="tickets.status=='Closed'">Closed</span>
+
                         </div>
                     </div>
-                </uib-accordion>
+                </div>
             </div>
-            <a role="button" class="button w-25 py-1 float-right fontRobotoBold text-center orange-btn" ng-click="reminderModalOpen()"
-                ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Add Reminder
-            </a>
         </div>
     </div>
 </div>

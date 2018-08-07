@@ -124,8 +124,8 @@
                                 <div class="col-12 col-md-6">
                                     <label class="mb-0">Relationship * </label>
                                     <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation" required>
-                                                <option ng-repeat="relations in relationsForUser">{{relations}}</option>
-                                            </select>
+                                        <option ng-repeat="relations in relationsForUser">{{relations}}</option>
+                                    </select>
                                     <span class="error" ng-show="newuser.sellist1.$invalid && newuser.sellist1.$touched"> Please, select relationship</span>
                                 </div>
                             </div>
@@ -142,10 +142,11 @@
                                     <div class="mx-2 fontRobotoRegular name-rel">
                                         <div>{{rel.user.name}}</div>
                                     </div>
+                                    <div class="fontRobotoLight" ng-click="removeRelation(rel._id)">
+                                        <i class="fas fa-times"></i>
+                                    </div>
                                 </div>
-                                <div class="fontRobotoLight" ng-click="removeRelation(rel._id)">
-                                    <i class="fas fa-times"></i>
-                                </div>
+
                             </div>
                         </form>
                         <fieldset class="d-flex social m-3 save mx-auto">

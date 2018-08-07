@@ -4,11 +4,11 @@
             <div class="bg-white border-rounded p-3 mb-2">
                 <div class="d-flex justify-content-between">
                     <div class="closed-text">
-                        <img src="img/ticketCreation/openTicket.png">
+                        <img src="img/ticketCreation/openTicket.png" ng-click="getOpenTickets()">
                         <div class="notification notification-orange" ng-if="!totalNumberOfOpenTickets">0</div>
                         <div class="notification notification-orange" ng-if="totalNumberOfOpenTickets">{{totalNumberOfOpenTickets}}</div>
                     </div>
-                    <div class="closed-text" ui-sref="closedTicketcreation" ng-if="totalNumberOfClosedTickets">
+                    <div class="closed-text" ng-click="getClosedTickets()" ng-if="totalNumberOfClosedTickets">
                         <img src="img/ticketCreation/closedTicket.png">
                         <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="border-top listed-openTickets openticket ">
-                    <div class="d-flex py-1 element-list " ng-repeat="closeticket in showLessClosedTickets">
+                    <div class="d-flex py-1 element-list " ng-repeat="closeticket in ticketDetails">
                         <div class="bullet "></div>
                         <div class="d-block pl-4">
                             <div class="product-title text-truncate" ui-sref="closedTicketcreation({id: closeticket._id})">{{closeticket.product.productName}}</div>
@@ -43,7 +43,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-right  view mt-2">View All
+                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Active'" ui-sref='ticketopen-notification'>View All
+                    <span class="pl-2 ">
+                        <i class="fas fa-caret-right "></i>
+                    </span>
+                </div>
+                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Closed'" ui-sref='ticketclose-notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
@@ -120,7 +125,7 @@
                                     <span ng-show="modelNo">
                                         <i class="fas fa-angle-up"></i>
                                     </span>
-                                <span ng-show="!modelNo">
+                                    <span ng-show="!modelNo">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
                                 </span>
@@ -173,10 +178,10 @@
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
                                             <!-- <i class="fas fa-times "></i> -->
                                         </span>
-                                    <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
+                                        <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
                                         </span> -->
-                                    <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
+                                        <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
                                             <i class="fas fa-plus "></i>
                                         </button> -->
                                     </span>
@@ -236,24 +241,42 @@
             <div class="p-4 pumpkin-support-feedback ">
                 <form>
                     <h6 class="fontRobotoBold blue-color pump-support-text ">Pumpkiin Support</h6>
-                    <div class="fontRobotoRegular font12 font-color ">Dear<br> Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Nullam quis
-                        risus eget urna mollis ornare vel eu leo. Nulla vitae elit libero, a pharetra augue. Cras justo odio,
-                        dapibus ac facilisis in, egestas eget quam.<br><br> Thanks you,<br> Pumpkiin Support
-                    </div><br>
-                    <h6 class="fontRobotoBold blue-color ">FEEDBACK</h6><br>
+                    <div class="fontRobotoRegular font12 font-color ">Dear
+                        <br> Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Nullam quis risus
+                        eget urna mollis ornare vel eu leo. Nulla vitae elit libero, a pharetra augue. Cras justo odio, dapibus
+                        ac facilisis in, egestas eget quam.
+                        <br>
+                        <br> Thanks you,
+                        <br> Pumpkiin Support
+                    </div>
+                    <br>
+                    <h6 class="fontRobotoBold blue-color ">FEEDBACK</h6>
+                    <br>
                     <div class="font14 font-color mb-2 ">How would you rate your experience on scale of 1 to 5 stars based on the following parameters?</div>
                     <div class="d-flex font14 fontRobotoRegular font-color my-2 ">
-                        <div class="mr-3 "><span class="mr-2">Ease </span><span uib-rating ng-model="rate" max="max " read-only="isReadonly "
-                                on-hover="hoveringOver(value) " on-leave="overStar=null " titles="[ 'one',
-                            'two', 'three'] " aria-labelledby="default-rating "></span></div>
-                        <div class="mr-3 "><span class="mr-2 ">Interaction </span><span uib-rating ng-model="rate" max="max " read-only="isReadonly "
-                                on-hover="hoveringOver(value) " on-leave="overStar=null " titles="[ 'one','two', 'three'] " aria-labelledby="default-rating "></span></div>
-                        <div class="mr-3 "><span class="mr-2 ">Resolution </span><span uib-rating ng-model="rate" max="max " read-only="isReadonly "
-                                on-hover="hoveringOver(value) " on-leave="overStar=null " titles="[ 'one','two', 'three'] " aria-labelledby="default-rating "></span></div>
+                        <div class="mr-3 ">
+                            <span class="mr-2">Ease </span>
+                            <span uib-rating ng-model="rate" max="max " read-only="isReadonly " on-hover="hoveringOver(value) " on-leave="overStar=null "
+                                titles="[ 'one',
+                            'two', 'three'] " aria-labelledby="default-rating "></span>
+                        </div>
+                        <div class="mr-3 ">
+                            <span class="mr-2 ">Interaction </span>
+                            <span uib-rating ng-model="rate" max="max " read-only="isReadonly " on-hover="hoveringOver(value) " on-leave="overStar=null "
+                                titles="[ 'one','two', 'three'] " aria-labelledby="default-rating "></span>
+                        </div>
+                        <div class="mr-3 ">
+                            <span class="mr-2 ">Resolution </span>
+                            <span uib-rating ng-model="rate" max="max " read-only="isReadonly " on-hover="hoveringOver(value) " on-leave="overStar=null "
+                                titles="[ 'one','two', 'three'] " aria-labelledby="default-rating "></span>
+                        </div>
                     </div>
                     <div class="font14 font-color my-2 ">Describe your experience with us</div>
                     <textarea rows="5 " name="feedback " class="form-control "></textarea>
-                    <button class="mt-3 send-btn "><span class="close-icon "><i class="fas fa-times "></i></span>Send</button>
+                    <button class="mt-3 send-btn ">
+                        <span class="close-icon ">
+                            <i class="fas fa-times "></i>
+                        </span>Send</button>
                 </form>
             </div>
         </div>

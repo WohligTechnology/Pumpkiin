@@ -90,30 +90,11 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
         });
     }
 
+    ticketService.totalOpenTickets(function (data) {
+        $scope.ticketData = data;
+    });
+
     //for ticket block end
 
-
-    $scope.chnageStatus = function (data) {
-        console.log("data", data);
-        var changeStatusData = {};
-        changeStatusData.status = 'Completed';
-        changeStatusData._id = data;
-        NavigationService.apiCallWithData("Reminder/save", changeStatusData, function (res) {
-            if (res.value == true) {
-                $state.reload();
-            }
-        });
-    }
-
-    $scope.deleteReminder = function (data) {
-        console.log("data", data);
-        var changeStatusData = {};
-        changeStatusData._id = data;
-        NavigationService.apiCallWithData("Reminder/delete", changeStatusData, function (res) {
-            if (res.value == true) {
-                $state.reload();
-            }
-        });
-    }
 
 });

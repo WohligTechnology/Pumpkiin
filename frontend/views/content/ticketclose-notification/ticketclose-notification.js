@@ -16,18 +16,18 @@ myApp.controller('TicketcloseNotificationCtrl', function ($scope, TemplateServic
 
     reminderService.totalNumberOfReminders(function (data) {
         $scope.totalReminders = data;
-        console.log("$scope.totalReminders", $scope.totalReminders);
+        // console.log("$scope.totalReminders", $scope.totalReminders);
     });
 
     reminderService.totalNumberOfCompletedReminders(function (data) {
         $scope.totalCompletedReminder = data;
-        console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
+        // console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
     });
 
 
     reminderService.totalNumberOfPendingReminders(function (data) {
         $scope.totalPendingReminders = data;
-        console.log("$scope.totalPendingReminders--", $scope.totalPendingReminders);
+        // console.log("$scope.totalPendingReminders--", $scope.totalPendingReminders);
     });
 
 
@@ -90,30 +90,11 @@ myApp.controller('TicketcloseNotificationCtrl', function ($scope, TemplateServic
         });
     }
 
+
+    ticketService.totalClosedTickets(function (data) {
+        $scope.ticketData = data;
+    });
+
     //for ticket block end
-
-
-    $scope.chnageStatus = function (data) {
-        console.log("data", data);
-        var changeStatusData = {};
-        changeStatusData.status = 'Completed';
-        changeStatusData._id = data;
-        NavigationService.apiCallWithData("Reminder/save", changeStatusData, function (res) {
-            if (res.value == true) {
-                $state.reload();
-            }
-        });
-    }
-
-    $scope.deleteReminder = function (data) {
-        console.log("data", data);
-        var changeStatusData = {};
-        changeStatusData._id = data;
-        NavigationService.apiCallWithData("Reminder/delete", changeStatusData, function (res) {
-            if (res.value == true) {
-                $state.reload();
-            }
-        });
-    }
 
 });
