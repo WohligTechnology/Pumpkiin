@@ -144,25 +144,58 @@ var model = {
     },
 
     //mailer
-
-    productRegistrationMail: function (data, callback) {
-        var emailData = {};
-        emailData.from = "admin@clickmania.in";
-        emailData.name = data.name;
-        emailData.email = data.email;
-        emailData.filename = "featuredpht.ejs";
-        emailData.subject = "welcome to pumpkiin";
-        Config.email(emailData, function (err, emailRespo) {
-            if (err) {
-                console.log(err);
-                callback(err);
-            } else if (emailRespo) {
-                callback(null, emailRespo);
-            } else {
-                callback(null, "Invalid data");
+    saveFinalProduct: function (data, callback) {
+        var productdata = {};
+        async.waterfall([
+            function (callback) {
+                Product.findOne({
+                    _id: data._id
+                }, function (err, found) {
+                    if (err || _.isEmpty(found)) {
+                        callback(err, null);
+                    } else {
+                        callback(null, found);
+                    }
+                });
+            },
+            function (productData, callback) {
+                // console.log("productData", productData)
+                productdata = productData;
+                var accessoriesToSave = {};
+                accessoriesToSave._id = data._id;
+                accessoriesToSave.productAccessory = data.productAccessory;
+                accessoriesToSave.status = 'Confirmed';
+                Product.saveData(accessoriesToSave, function (err, found) {
+                    if (err || _.isEmpty(found)) {
+                        callback(err, null);
+                    } else {
+                        callback(null, found);
+                    }
+                });
+            },
+            function (finalData, callback) {
+                var emailData = {};
+                var time = new Date().getHours();
+                var greeting;
+                if (time < 10) {
+                    greeting = "Good morning";
+                } else if (time < 17) {
+                    greeting = "Good Afternoon";
+                } else {
+                    greeting = "Good evening";
+                }
+                emailData.from = "sahil@pumpkiin.com";
+                emailData.name = data.name;
+                emailData.email = data.email;
+                emailData.greeting = greeting;
+                emailData.productName = productdata.productName;
+                emailData.filename = "product-registration.ejs";
+                emailData.subject = "New Product Registered";
+                Config.email(emailData, function (err, emailRespo) {
+                    callback(null, emailRespo);
+                });
             }
-        });
-    }
-
+        ], callback);
+    },
 };
 module.exports = _.assign(module.exports, exports, model);

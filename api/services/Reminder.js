@@ -68,7 +68,47 @@ var model = {
         }).sort({
             dateOfReminder: 1
         }).exec(callback);
-    }
+    },
+
+    reminderMail: function (data, callback) {
+        async.waterfall([
+            function (callback) {
+                Reminder.saveData(data, function (err, found) {
+                    if (err || _.isEmpty(found)) {
+                        callback(err, null);
+                    } else {
+                        callback(null, found);
+                    }
+                });
+            },
+            function (finalData, callback) {
+                var emailData = {};
+                var time = new Date().getHours();
+                var greeting;
+                if (time < 10) {
+                    greeting = "Good morning";
+                } else if (time < 17) {
+                    greeting = "Good Afternoon";
+                } else {
+                    greeting = "Good evening";
+                }
+                emailData.from = "sahil@pumpkiin.com";
+                emailData.name = data.name;
+                emailData.email = data.email;
+                emailData.greeting = greeting;
+                emailData.title = data.title;
+                emailData.description = data.description;
+                emailData.filename = "Reminder.ejs";
+                emailData.subject = "Reminder Notification";
+                console.log("emailData", emailData);
+                Config.email(emailData, function (err, emailRespo) {
+                    console.log("err", err);
+                    console.log("emailRespo", emailRespo);
+                    callback(null, emailRespo);
+                });
+            }
+        ], callback);
+    },
 
 };
 module.exports = _.assign(module.exports, exports, model);

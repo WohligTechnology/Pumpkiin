@@ -143,19 +143,23 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
 
             var dataForReminderWarranty = {};
             dataForReminderWarranty.user = $scope.jstrgValue._id;
+            dataForReminderWarranty.email = $scope.jstrgValue.email;
+            dataForReminderWarranty.name = $scope.jstrgValue.name;
             dataForReminderWarranty.title = "Warranty expiry";
             dataForReminderWarranty.status = "Pending";
             dataForReminderWarranty.description = "End of warranty period";
             dataForReminderWarranty.dateOfReminder = data.warrantyExpDate;
-            NavigationService.apiCallWithData("Reminder/save", dataForReminderWarranty, function (res) {});
+            NavigationService.apiCallWithData("Reminder/reminderMail", dataForReminderWarranty, function (res) {});
 
             var dataForReminderInsurance = {};
             dataForReminderInsurance.user = $scope.jstrgValue._id;
+            dataForReminderWarranty.email = $scope.jstrgValue.email;
+            dataForReminderWarranty.name = $scope.jstrgValue.name;
             dataForReminderInsurance.title = "Insurance expiry";
             dataForReminderInsurance.status = "Pending";
             dataForReminderInsurance.description = "End of insurance period";
             dataForReminderInsurance.dateOfReminder = data.insuranceExpDate;
-            NavigationService.apiCallWithData("Reminder/save", dataForReminderInsurance, function (res) {});
+            NavigationService.apiCallWithData("Reminder/reminderMail", dataForReminderInsurance, function (res) {});
         }
 
         $scope.accessoriesMain = [];
@@ -177,7 +181,9 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             accessoriesToSave._id = $scope.product_id;
             accessoriesToSave.productAccessory = $scope.accessoriesMain;
             accessoriesToSave.status = 'Confirmed';
-            NavigationService.apiCallWithData("Product/saveProduct", accessoriesToSave, function (res) {
+            accessoriesToSave.name = $scope.jstrgValue.name;
+            accessoriesToSave.email = $scope.jstrgValue.email;
+            NavigationService.apiCallWithData("Product/saveFinalProduct", accessoriesToSave, function (res) {
                 toastr.success("Accessory added successfully");
                 $state.go("productListing");
             });

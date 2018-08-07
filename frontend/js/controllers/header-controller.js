@@ -53,8 +53,10 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
         } else {
             // console.log("-----$scope.data-----", data);
             data.user = $scope.jstrgValue._id;
+            data.name = $scope.jstrgValue.name;
+            data.email = $scope.jstrgValue.email;
             data.status = "Pending";
-            NavigationService.apiCallWithData("Reminder/save", data, function (res) {
+            NavigationService.apiCallWithData("Reminder/reminderMail", data, function (res) {
                 console.log("res.data", res.data);
                 toastr.success("Reminder Added Successfully");
                 $scope.addReminder.close();
