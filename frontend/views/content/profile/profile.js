@@ -98,7 +98,16 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
             $scope.userDataForProfile.profilePic = newVal;
             // console.log("$scope.userDataForProfile----------", $scope.userDataForProfile);
             NavigationService.apiCallWithData("User/save", $scope.userDataForProfile, function (response) {
-                if (response.value == true) {}
+                if (response.value == true) {
+                    var data = {};
+                    data._id = $scope.jstrgValue._id;
+                    NavigationService.apiCallWithData("User/getOne", data, function (response) {
+                        if (response.value == true) {
+                            $.jStorage.set("userData", response.data);
+                            // console.log("$scope.userDataForProfile ", $scope.userDataForProfile);
+                        }
+                    });
+                }
             });
         }
     });

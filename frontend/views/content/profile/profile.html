@@ -17,7 +17,9 @@
                 <div class="d-flex my-1">
                     <div class="d-inline-block">Phone Number : </div>
                     <div class="ml-3" ng-if="userDataForProfile.mobile">{{userDataForProfile.mobile}} </div>
-                    <div class="ml-3" ng-if="!userDataForProfile.mobile"><input type="number" class="mobile-edit"></div>
+                    <div class="ml-3" ng-if="!userDataForProfile.mobile">
+                        - - -
+                    </div>
                     <div class="ml-3">
                         <img src="img/chekmark.png">
                     </div>
@@ -48,7 +50,7 @@
                     <div class="fontRobotoRegular dark-font-color font14">
                         <div class="mb-2">Gender</div>
                         <div class="mb-2">Date of Birth</div>
-                        <div>Phone Number :</div>
+                        <div>Phone Number </div>
                     </div>
                 </div>
                 <div class="col-10">
@@ -76,11 +78,14 @@
                         <div class="w-20 custom-input" ng-if="!personalInfo && !userDataForProfile.dob ">
                             - - -
                         </div>
-                        <div ng-if="!personalInfo && userDataForProfile.mobile " class="mb-2 w-20 custom-input">
+                        <div ng-if="!personalInfo && userDataForProfile.mobile " class="my-2 w-20 custom-input">
                             {{userDataForProfile.mobile}}
                         </div>
+                        <div ng-if="!personalInfo && !userDataForProfile.mobile " class="mb-2 w-20 custom-input">
+                            - - -
+                        </div>
                         <div ng-if="personalInfo" class="mb-2 w-20 custom-input">
-                            <input type="number" class="mt-2 p-1">
+                            <input type="number" class="mt-2 p-1" ng-model="genderData.mobile">
                         </div>
 
                     </div>

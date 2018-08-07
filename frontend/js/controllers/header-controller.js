@@ -5,14 +5,16 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
     });
     $.fancybox.close(true);
     $scope.data = {};
-    $scope.productList = [{
-        name: "Samsung s7 in Mobile",
-        img: "../img/ticketCreation/warranty.png"
-    }, {
-        name: "Samsung s7 in Mobile Black"
-    }, {
-        name: "Samsung s7 edge"
-    }];
+    // $scope.productList = [{
+    //     name: "Samsung s7 in Mobile",
+    //     img: "../img/ticketCreation/warranty.png"
+    // }, {
+    //     name: "Samsung s7 in Mobile Black"
+    // }, {
+    //     name: "Samsung s7 edge"
+    // }];
+    $scope.jstrgValue = $.jStorage.get('userData');
+    // console.log("$scope.jstrgValue", $scope.jstrgValue)
     $scope.currentState = $state.current.name;
     $scope.reminderModalOpen = function (data) {
         if (data) {
@@ -64,5 +66,20 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
             });
         }
     }
+
+
+    $scope.searchData = function (data) {
+        $scope.productList = []
+        if (data.length > 0) {
+            var dataToSend = {};
+            dataToSend.keyword = data;
+            NavigationService.apiCallWithData("Product/getSearchProductAndBrand", dataToSend, function (response) {
+                if (response.value) {
+                    $scope.productList = response.data;
+                }
+            });
+        }
+
+    };
 
 });
