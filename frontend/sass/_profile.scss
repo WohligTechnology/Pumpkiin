@@ -29,13 +29,13 @@
             height: 130px;
             border-radius: 50%;
         }
-        &:hover{
-            .profile-photo-upload{
+        &:hover {
+            .profile-photo-upload {
                 opacity: 1;
             }
         }
     }
-    .profile-photo-upload{
+    .profile-photo-upload {
         position: absolute;
         top: 0;
         left: 0;
@@ -57,17 +57,28 @@
     .p3 {
         padding: 0 3px;
     }
-    .social{
-        .social_icon{
+    .social {
+        .social_icon {
             border: solid 2px white;
         }
-        .social-text{
+        .social-text {
             width: 40%;
         }
     }
 }
-.profile-details{
-    .noShow{
+
+.profile-details {
+    .noShow {
         display: none;
+    }
+}
+
+.mobile-edit {
+    background: transparent;
+    border: none;
+    color: white;
+    border-bottom: 1px solid #cccccc;
+    &:focus {
+        outline: none;
     }
 }

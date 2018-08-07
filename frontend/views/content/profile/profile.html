@@ -1,6 +1,7 @@
 <div class="background-blue p-4 profile-page">
     <div class="container">
-        <div class="d-flex profile-details mb-3">
+        <div class="d-flex profile-details mb-3 ">
+
             <div class="profile-image" class="img-fluid">
                 <img class="img-uploaded" src="img/emptyProfile.png" ng-if="!userDataForProfile.profilePic">
                 <img class="img-uploaded" src="{{userDataForProfile.profilePic | serverimage}}" ng-if="userDataForProfile.profilePic">
@@ -10,12 +11,13 @@
                 </div>
             </div>
             <div class="text-white fontRobotoRegular font14 ml-5">
+
                 <div class="font20">{{userDataForProfile.name}}</div>
                 <!-- <div class="my-1">(Code: 123456)</div> -->
                 <div class="d-flex my-1">
                     <div class="d-inline-block">Phone Number : </div>
                     <div class="ml-3" ng-if="userDataForProfile.mobile">{{userDataForProfile.mobile}} </div>
-                    <div class="ml-3" ng-if="!userDataForProfile.mobile">-----------<i class="fas fa-pencil-alt fa-xs"></i></div>
+                    <div class="ml-3" ng-if="!userDataForProfile.mobile"><input type="number" class="mobile-edit"></div>
                     <div class="ml-3">
                         <img src="img/chekmark.png">
                     </div>
@@ -23,12 +25,13 @@
                 <div class="d-flex my-1">
                     <div class="d-inline-block">Email Address : </div>
                     <div class="ml-3" ng-if="userDataForProfile.email">{{userDataForProfile.email}}</div>
-                    <div class="ml-3" ng-if="!userDataForProfile.email">---------- <i class="fas fa-pencil-alt fa-xs"></i></div>
+                    <div class="ml-3" ng-if="!userDataForProfile.email"></div>
                     <div class="ml-3">
                         <img src="img/chekmark.png">
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -44,7 +47,8 @@
                 <div class="col-2">
                     <div class="fontRobotoRegular dark-font-color font14">
                         <div class="mb-2">Gender</div>
-                        <div>Date of Birth</div>
+                        <div class="mb-2">Date of Birth</div>
+                        <div>Phone Number :</div>
                     </div>
                 </div>
                 <div class="col-10">
@@ -72,6 +76,13 @@
                         <div class="w-20 custom-input" ng-if="!personalInfo && !userDataForProfile.dob ">
                             - - -
                         </div>
+                        <div ng-if="!personalInfo && userDataForProfile.mobile " class="mb-2 w-20 custom-input">
+                            {{userDataForProfile.mobile}}
+                        </div>
+                        <div ng-if="personalInfo" class="mb-2 w-20 custom-input">
+                            <input type="number" class="mt-2 p-1">
+                        </div>
+
                     </div>
                 </div>
                 <fieldset class="d-flex ml-3 social mt-3 mb-0 save" ng-if="personalInfo">
