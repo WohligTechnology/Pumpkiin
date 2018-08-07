@@ -11,6 +11,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
     $scope.chatData = {};
     $scope.ticketId = {};
     var productData = {};
+    var productName;
 
 
     $scope.attachmentImage = true;
@@ -139,6 +140,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                 productData._id = $stateParams.id;
                 NavigationService.apiCallWithData("Product/getOne", productData, function (res) {
                     $scope.productDetails = res.data;
+                    productName = $scope.productDetails.productName;
                     // console.log("$scope.productDetails-----------", $scope.productDetails);
                 });
             } else {
@@ -148,6 +150,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                     productData._id = $scope.totalOpenTickets[0].product._id;
                     NavigationService.apiCallWithData("Product/getOne", productData, function (res) {
                         $scope.productDetails = res.data;
+                        productName = $scope.productDetails.productName;
                         // console.log("$scope.productDetails-----------", $scope.productDetails);
                     });
                 }
@@ -238,7 +241,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
 
     $scope.addComment = function (data) {
-        // console.log("data", data);
+        console.log("data", data);
         // console.log("  $.jStorage.get", $.jStorage.get("userData"));
         // console.log("$scope.ticketDetails-----------", $scope.ticketDetails);
         // console.log("$scope.ticketDetails-----------", _.isEmpty($scope.ticketDetails));
@@ -253,9 +256,12 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             dataToSend.customerChat.push(formData);
             dataToSend.user = $scope.jstrgValue._id;
             dataToSend.product = $stateParams.id;
+            dataToSend.productName = productName;
+            dataToSend.name = $.jStorage.get("userData").name;
+            dataToSend.email = $.jStorage.get("userData").email;
             // console.log("dataToSend", dataToSend);
             NavigationService.apiCallWithData("Ticket/createNewTicket", dataToSend, function (data) {
-                console.log("data", data);
+                // console.log("data", data);
                 if (data.value == true) {
                     $scope.ticketId = data.data._id;
                     // $scope.ticketDetails = data.data;

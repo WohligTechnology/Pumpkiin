@@ -50,6 +50,9 @@ schema.plugin(deepPopulate, {
         product: {
             select: ""
         },
+        user: {
+            select: ""
+        },
         "product.brand": {
             select: ""
         },
@@ -114,18 +117,113 @@ var model = {
         }).deepPopulate('product product.brand product.user').exec(callback);
     },
 
+
     createNewTicket: function (data, callback) {
-        Ticket.TicketIdGenerate(function (err, data2) {
-            data.ticketNumber = data2;
-            // console.log("data", data);
-            Ticket.saveData(data, function (err, data) {
-                sails.sockets.blast("ticketChat", {
-                    ticketChatData: data
+        async.waterfall([
+            function (callback) {
+                Ticket.TicketIdGenerate(function (err, data2) {
+                    data.ticketNumber = data2;
+                    // console.log("data", data);
+                    Ticket.saveData(data, function (err, data) {
+                        sails.sockets.blast("ticketChat", {
+                            ticketChatData: data
+                        });
+                        callback(err, data);
+                    });
                 });
-                callback(err, data);
-            });
-        });
+            },
+            function (finalData, callback) {
+                var emailData = {};
+                var time = new Date().getHours();
+                var greeting;
+                if (time < 10) {
+                    greeting = "Good morning";
+                } else if (time < 17) {
+                    greeting = "Good Afternoon";
+                } else {
+                    greeting = "Good evening";
+                }
+                emailData.from = "sahil@pumpkiin.com";
+                emailData.name = data.name;
+                emailData.email = data.email;
+                emailData.greeting = greeting;
+                emailData.productName = data.productName;
+                emailData.ticketID = finalData.ticketNumber;
+                emailData.filename = "ticketcreation.ejs";
+                emailData.subject = "Ticket Creation";
+                // console.log("emailData", emailData);
+                Config.email(emailData, function (err, emailRespo) {
+                    // console.log("err", err);
+                    // console.log("emailRespo", emailRespo);
+                    callback(null, emailRespo);
+                });
+            }
+        ], callback);
     },
+
+    changeTicketStatus: function (data, callback) {
+        async.waterfall([
+            function (callback) {
+                Ticket.saveData(data, callback);
+            },
+            function (ticketData, callback) {
+                Ticket.findOne({
+                    _id: data._id
+                }).deepPopulate('user product').exec(callback);
+            },
+            function (finalData, callback) {
+                var emailData = {};
+                var time = new Date().getHours();
+                var greeting;
+                if (finalData.status == 'Active') {
+                    if (time < 10) {
+                        greeting = "Good morning";
+                    } else if (time < 17) {
+                        greeting = "Good Afternoon";
+                    } else {
+                        greeting = "Good evening";
+                    }
+                    emailData.from = "sahil@pumpkiin.com";
+                    emailData.name = finalData.user.name;
+                    emailData.email = finalData.user.email;
+                    emailData.greeting = greeting;
+                    emailData.productName = finalData.product.productName;
+                    emailData.ticketID = finalData.ticketNumber;
+                    emailData.statusMsg = finalData.subStatus;
+                    emailData.filename = "Ticketstatus.ejs";
+                    emailData.subject = "Ticket Status Changed";
+                    // console.log("emailData", emailData);
+                    Config.email(emailData, function (err, emailRespo) {
+                        // console.log("err", err);
+                        // console.log("emailRespo", emailRespo);
+                        callback(null, emailRespo);
+                    });
+                } else {
+                    if (time < 10) {
+                        greeting = "Good morning";
+                    } else if (time < 17) {
+                        greeting = "Good Afternoon";
+                    } else {
+                        greeting = "Good evening";
+                    }
+                    emailData.from = "sahil@pumpkiin.com";
+                    emailData.name = finalData.user.name;
+                    emailData.email = finalData.user.email;
+                    emailData.greeting = greeting;
+                    emailData.ticketID = finalData.ticketNumber;
+                    emailData.filename = "ticket-closure.ejs";
+                    emailData.subject = "Ticket closure email";
+                    // console.log("emailData", emailData);
+                    Config.email(emailData, function (err, emailRespo) {
+                        // console.log("err", err);
+                        // console.log("emailRespo", emailRespo);
+                        callback(null, emailRespo);
+                    });
+                }
+            }
+        ], callback);
+    },
+
 
     TicketIdGenerate: function (callback) {
         Ticket.find({}).sort({
@@ -216,63 +314,6 @@ var model = {
         this.find({
             user: data.user
         }).exec(callback);
-    },
-
-    ticketCreationMail: function (data, callback) {
-        var emailData = {};
-        emailData.from = "admin@clickmania.in";
-        emailData.name = data.name;
-        emailData.email = data.email;
-        emailData.filename = "featuredpht.ejs";
-        emailData.subject = "welcome to pumpkiin";
-        Config.email(emailData, function (err, emailRespo) {
-            if (err) {
-                console.log(err);
-                callback(err);
-            } else if (emailRespo) {
-                callback(null, emailRespo);
-            } else {
-                callback(null, "Invalid data");
-            }
-        });
-    },
-
-    ticketStatusChangeMail: function (data, callback) {
-        var emailData = {};
-        emailData.from = "admin@clickmania.in";
-        emailData.name = data.name;
-        emailData.email = data.email;
-        emailData.filename = "featuredpht.ejs";
-        emailData.subject = "welcome to pumpkiin";
-        Config.email(emailData, function (err, emailRespo) {
-            if (err) {
-                console.log(err);
-                callback(err);
-            } else if (emailRespo) {
-                callback(null, emailRespo);
-            } else {
-                callback(null, "Invalid data");
-            }
-        });
-    },
-
-    ticketCloserMail: function (data, callback) {
-        var emailData = {};
-        emailData.from = "admin@clickmania.in";
-        emailData.name = data.name;
-        emailData.email = data.email;
-        emailData.filename = "featuredpht.ejs";
-        emailData.subject = "welcome to pumpkiin";
-        Config.email(emailData, function (err, emailRespo) {
-            if (err) {
-                console.log(err);
-                callback(err);
-            } else if (emailRespo) {
-                callback(null, emailRespo);
-            } else {
-                callback(null, "Invalid data");
-            }
-        });
     }
 
 };
