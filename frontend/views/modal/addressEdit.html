@@ -22,23 +22,25 @@
         </div>
         <div class="form-group">
             <label for="state">State * </label>
-            <ui-select class="input-border" ng-model="data.state" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a state"
-                ng-change="updateState(data.state)">
+            <ui-select name="state" class="input-border" ng-model="data.state" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a state"
+                ng-change="updateState(data.state)" ng-required="true">
                 <ui-select-match placeholder="Select or search a state in the list...">{{$select.selected.region}}</ui-select-match>
                 <ui-select-choices class="background-blue text-white" repeat="state in states | filter: $select.search">
                     <span ng-bind-html="state.region | highlight: $select.search"></span>
                 </ui-select-choices>
             </ui-select>
+            <span class="error" ng-show="address.state.$invalid && address.state.$touched"> Please, select state</span>
         </div>
         <div class="form-group">
             <label for="title">City * </label>
-            <ui-select class="input-border" ng-model="data.city" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a state"
-                ng-change="updateState(data.city)">
+            <ui-select name="city" class="input-border" ng-model="data.city" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a state"
+                ng-change="updateState(data.city)" ng-required="true">
                 <ui-select-match placeholder="Select or search a city in the list...">{{$select.selected.city}}</ui-select-match>
                 <ui-select-choices class="background-blue text-white" repeat="city in cities | filter: $select.search">
                     <span ng-bind-html="city.city | highlight: $select.search"></span>
                 </ui-select-choices>
             </ui-select>
+            <span class="error" ng-show="address.city.$invalid && address.city.$touched"> Please, select city</span>
         </div>
         <div class="form-group">
             <label for="pin">Pincode * </label>
