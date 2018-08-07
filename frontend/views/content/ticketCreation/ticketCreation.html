@@ -79,9 +79,12 @@
                     <!-- <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
                     <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
                     <span class="badge badge-style ">{{totalNumberOfTickets}}</span>
-                    <span class="float-right">
-                        <img src="img/ticketCreation/search.png ">
-                    </span>
+                    <div class="float-right custom-searchbar">
+                        <form action="" autocomplete="on" class="position-relative">
+                            <input id="search" name="search" type="text" placeholder="">
+                            <input id="search_submit" value="Rechercher" type="submit">
+                        </form>
+                    </div>
                 </div>
                 <div class="border-top listed-openTickets openticket ">
                     <div class="d-flex py-1 element-list " ng-repeat="openticket in showLessOpenTickets">
@@ -121,11 +124,16 @@
                     </div>
                 </div>
                 <div class="my-3 open-tickets ">
+
                     <h5 class="d-inline ">Reminders</h5>
                     <span class="badge badge-style ml-auto">{{totalReminders}}</span>
-                    <span class="float-right">
-                        <img src="img/ticketCreation/search.png ">
-                    </span>
+
+                    <div class="float-right custom-searchbar">
+                        <form action="" autocomplete="on" class="position-relative">
+                            <input id="search" name="search" type="text" placeholder="">
+                            <input id="search_submit" value="Rechercher" type="submit">
+                        </form>
+                    </div>
                 </div>
 
                 <div class="border-top listed-openTickets openticket ">

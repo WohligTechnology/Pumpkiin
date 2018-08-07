@@ -27,10 +27,15 @@
     </div>
     <div class="d-flex mt-3" ng-if="model && isMultiple" ng-hide="noShow">
         <div class="img-box mr-1" ng-repeat="sImage in model track by $index">
-            <a fancybox class="fancybox">
-                <!-- <img alt="" ng-src="{{sImage|uploadpath}}" class="img-fluid uploadingImage img-thumbnail" /> -->
-                <img ng-src="{{sImage|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" ng-if="type=='image'" />
+            <!-- <img alt="" ng-src="{{sImage|uploadpath}}" class="img-fluid uploadingImage img-thumbnail" /> -->
+
+
+            <a fancybox-box data-fancybox="gallery" href="{{sImage|uploadpath}}" rel="gal">
+                <div class="">
+                    <img ng-src="{{sImage|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" ng-if="type=='image'" />
+                </div>
             </a>
+
             <i class="fas fa-file-pdf fa-4x" ng-if="type=='pdf'"></i>
             <!-- <iframe src="{{sImage|uploadpath}}" style="width:400px; height:400px;" frameborder="0" ng-if="type=='pdf'"></iframe> -->
             <div class="img-delete cursor-point" ng-click="removeIndex($index)">
