@@ -11,8 +11,14 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
 
     NavigationService.apiCallWithoutData("User/getConfig", function (res) {
         $scope.url = res.realHost;
-        // console.log(" $scope.url----", $scope.url);
+        $scope.googleUrl = $scope.url + "/api/user/loginGoogle?returnUrl=" + $scope.url + "/#!/login/";
+        $scope.fbUrl = $scope.url + "/api/user/loginFacebook?returnUrl=" + $scope.url + "/#!/login/";
+        console.log("$scope.googleUrl", $scope.googleUrl)
+        console.log("$scope.fbUrl", $scope.fbUrl)
+
     });
+
+
 
     if ($stateParams.id) {
         if ($stateParams.id === "AccessNotAvailable") {
