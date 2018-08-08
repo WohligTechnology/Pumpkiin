@@ -26,7 +26,7 @@ module.exports = function (profile) {
                             data.accessToken[0] = "AccessNotAvailable";
                         }
                         console.log("-----------", req.session.returnUrl);
-                        res.redirect(req.session.returnUrl + "/" + data.accessToken[0]);
+                        res.redirect(req.session.returnUrl + "#!/login/" + data.accessToken[0]);
                         req.session.destroy(function () {});
                     }
                 }
