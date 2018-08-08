@@ -7,14 +7,14 @@
         <div class="d-table w-100 h-100">
             <div class="d-table-cell align-middle">
                 <div class="row align-items-center">
-                    <div class="col-sm-12 col-md-7 text-white padl150">
+                    <div class="col-sm-12 col-md-8 text-white padd-250">
                         <h2 class="fontRobotoBold mb-0">
                             Simplified Customer Care
                         </h2>
                         <p class="fontRobotoLight">Your customer care personal assistant</p>
                     </div>
-                    <div class="col-sm-12 col-md-5" ng-if="showLogin">
-                        <div class="w-75 float-right border rounded bg-white mb-2 pb-2 loginsignup">
+                    <div class="col-sm-12 col-md-4" ng-if="showLogin">
+                        <div class="w-100 float-right border rounded bg-white mb-2 pb-2 loginsignup">
                             <div class="p-3 border-bottom text-center fontRobotoBold">Login / Signup</div>
                             <div class="p-3 text-center">
                                 <form name="formName">
@@ -30,9 +30,9 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="w-75 float-right border rounded bg-white pt-4 p-3">
+                        <div class="w-100 float-right border rounded bg-white pt-4 p-3 social-section">
                             <a class="btn btn-google btn-icon btn-block" ng-if="url" href="{{fbUrl}}">
-                                <div class="d-flex social mb-3 facebook">
+                                <div class="d-flex social facebook">
                                     <span class="social_icon">
                                         <i class="fab fa-facebook-f"></i>
                                     </span>
@@ -49,8 +49,8 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-5" ng-if="showsignUp">
-                        <div class="w-75 float-right border rounded bg-white mb-2 pb-3">
+                    <div class="col-sm-12 col-md-4" ng-if="showsignUp">
+                        <div class="w-100 float-right border rounded bg-white mb-2 pb-3">
                             <div class="p-3 border-bottom text-center fontRobotoBold">Enter OTP * </div>
                             <div class="px-3 py-2">
                                 <form class="">

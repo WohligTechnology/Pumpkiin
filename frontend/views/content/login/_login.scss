@@ -1,6 +1,6 @@
 .bg-image {
     // background: url("../img/bg.jpg");
-    height: 91.8vh;
+    height: 91.5vh;
     background-size: cover;
     background-position: top left;
     .bg_overlay {
@@ -64,9 +64,15 @@
     }
 }
 
+.social-section{
+    a{
+        padding: 0;
+    }
+}
+
 .facebook {
     .social_icon {
-        padding: 8px 15px;
+        padding: 8px 14px;
         background: #4267b2;
     }
     .social-text {
@@ -88,7 +94,7 @@
 
 .google {
     .social_icon {
-        padding: 8px 12px;
+        padding: 8px 11px;
         background-color: #D44E3D;
     }
     .social-text {
@@ -134,7 +140,6 @@
     }
 }
 
-.padl150 {
-    padding-left: 150px;
+.padd-250{
+    padding-left: 250px;
 }
-

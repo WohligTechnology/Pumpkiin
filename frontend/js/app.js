@@ -90,6 +90,16 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: tempateURL,
             controller: 'NotificationCtrl'
         })
+        .state('terms', {
+            url: "/terms-conditions",
+            templateUrl: tempateURL,
+            controller: 'TermsCtrl'
+        })
+        .state('privacy', {
+            url: "/privacy-policy",
+            templateUrl: tempateURL,
+            controller: 'PrivacyCtrl'
+        })
         .state('links', {
             url: "/links",
             templateUrl: tempateURL,

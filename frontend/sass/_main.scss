@@ -633,7 +633,7 @@ fieldset:disabled {
         color: white;
         position: absolute;
         left: -2px;
-        top: 1px;
+        top: -1px;
     }
     .social-text {
         padding: 8px 10px;
@@ -974,7 +974,7 @@ fieldset:disabled {
 }
 
 .width-girl {
-    width: 61.5vh;
+    width: 61vh;
 }
 
 .reminder-body {
@@ -1033,5 +1033,14 @@ fieldset:disabled {
         border: solid 1px #ced4db;
         border-radius: 0.25em;
         color: black;
+    }
+}
+.terms{
+    @extend .font14;
+    h5{
+        font-family: Roboto-Bold;
+    }
+    p{
+        text-align: justify;
     }
 }
