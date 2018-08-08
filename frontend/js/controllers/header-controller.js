@@ -79,7 +79,6 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
                 }
             });
         }
-
     };
 
 

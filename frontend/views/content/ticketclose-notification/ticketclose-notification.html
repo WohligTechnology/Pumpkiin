@@ -69,7 +69,8 @@
                     </div>
                 </div>
                 <div class="my-3 open-tickets ">
-                    <h5 class="d-inline">Open Tickets</h5>
+                    <h5 class="d-inline" ng-if="ticketDetails[0].status!='Closed'">Open Tickets</h5>
+                    <h5 class="d-inline" ng-if="ticketDetails[0].status=='Closed'">Closed Tickets</h5>
                     <!-- <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
                         <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
                     <span class="badge badge-style ">{{totalNumberOfTickets}}</span>
@@ -93,12 +94,12 @@
                             </span> -->
                     </div>
                 </div>
-                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Active'" ui-sref='ticketopen-notification'>View All
+                <div class="text-right  view mt-2" ng-if="ticketDetails.length==5 && ticketDetails[0].status=='Active'" ui-sref='ticketopen-notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
                 </div>
-                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Closed'" ui-sref='ticketclose-notification'>View All
+                <div class="text-right  view mt-2" ng-if="ticketDetails.length==5 && ticketDetails[0].status=='Closed'" ui-sref='ticketclose-notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>

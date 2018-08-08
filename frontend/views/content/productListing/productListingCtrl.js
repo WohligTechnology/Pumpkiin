@@ -157,7 +157,22 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
                 toastr.success("Product deleted successfully");
             }
         });
-    }
+    };
+
+    $scope.searchData = function (data) {
+        console.log("data", data);
+        // $scope.productList = []
+        // if (data.length > 0) {
+        //     var dataToSend = {};
+        //     dataToSend.keyword = data;
+        //     NavigationService.apiCallWithData("Product/getSearchProductAndBrand", dataToSend, function (response) {
+        //         if (response.value) {
+        //             $scope.productList = response.data;
+        //         }
+        //     });
+        // }
+
+    };
 
     // $scope.addTicket = function (data) {
     //     var dataToSend = {};
