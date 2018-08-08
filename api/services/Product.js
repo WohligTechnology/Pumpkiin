@@ -250,6 +250,92 @@ var model = {
         });
     },
 
+    //sorting brand and product
+
+    sortProductsByBrands: function (data, callback) {
+        Product.aggregate([
+            // Stage 1
+            {
+                $lookup: {
+                    from: "brands",
+                    localField: "brand",
+                    foreignField: "_id",
+                    as: "brandss"
+                }
+            },
+
+            // Stage 2
+            {
+                $unwind: {
+                    path: "$brandss",
+                    preserveNullAndEmptyArrays: false // optional
+                }
+            },
+
+            // Stage 3
+            {
+                $project: {
+                    brandName: "$brandss.name"
+                }
+            },
+
+            // Stage 4
+            {
+                $sort: {
+                    "brandName": 1
+                }
+            },
+
+        ], function (err, found) {
+            if (err || _.isEmpty(found)) {
+                callback(err, null);
+            } else {
+                callback(null, found)
+            }
+        });
+
+    },
+
+    sortByProducts: function (data, callback) {
+        Product.find({
+            status: 'Confirmed',
+            user: data.user
+        }).sort({
+            productName: 1
+        }).exec(callback);
+    },
+
+    excelProductList: function (data, callback) {
+        Product.find({
+            status: 'Confirmed',
+            user: data
+        }, function (err, found) {
+            if (err || _.isEmpty(found)) {
+                callback(err, null);
+            } else {
+                callback(null, found);
+            }
+        });
+    },
+
+    generateExcelforProduct: function (match, callback) {
+        // console.log("match", match)
+        async.concatSeries(match, function (mainData, callback) {
+                var obj = {};
+                obj["Product Name"] = mainData.productName;
+                obj["Serial No"] = mainData.serialNo;
+                obj["Model No"] = mainData.modelNo;
+                obj["Retailer"] = mainData.retailer;
+                obj["Model No"] = mainData.modelNo;
+                obj["Purchase Price"] = mainData.purchasePrice;
+                obj["Model No"] = mainData.modelNo;
+                callback(null, obj);
+            },
+            function (err, singleData) {
+                callback(null, singleData);
+            });
+    },
+
 
 };
 module.exports = _.assign(module.exports, exports, model);

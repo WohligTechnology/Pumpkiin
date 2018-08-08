@@ -6,7 +6,6 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
     $scope.jstrgValue = $.jStorage.get('userData');
 
-
     $scope.productInfo = [{
         "largeimage": "img/iphone.jpeg",
         "smallimage": "img/ticketCreation/mobile.png",
@@ -159,20 +158,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
         });
     };
 
-    $scope.searchData = function (data) {
-        console.log("data", data);
-        // $scope.productList = []
-        // if (data.length > 0) {
-        //     var dataToSend = {};
-        //     dataToSend.keyword = data;
-        //     NavigationService.apiCallWithData("Product/getSearchProductAndBrand", dataToSend, function (response) {
-        //         if (response.value) {
-        //             $scope.productList = response.data;
-        //         }
-        //     });
-        // }
 
-    };
 
     // $scope.addTicket = function (data) {
     //     var dataToSend = {};
@@ -188,5 +174,47 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
     //         }
     //     });
     // }
+
+    $scope.searchForData = function (data, data1) {
+        var dataToSend = {};
+        if (data.length > 0) {
+            if (data1 == 'open') {
+                dataToSend.keyword = data;
+                NavigationService.apiCallWithData("Ticket/searchOpenTickets", dataToSend, function (response) {
+                    if (response.value) {
+                        $scope.ticketDetails = response.data;
+                        console.log(" $scope.ticketDetails", $scope.ticketDetails);
+                    }
+                });
+            } else {
+                console.log("data", data);
+                dataToSend.keyword = data;
+                NavigationService.apiCallWithData("Ticket/searchClosedTickets", dataToSend, function (response) {
+                    console.log(" response", response);
+
+                    if (response.value) {
+                        $scope.ticketDetails = response.data;
+                        console.log(" $scope.ticketDetails", $scope.ticketDetails);
+                    }
+                });
+            }
+        }
+    };
+
+    $scope.generateExcel = function () {
+        var dataToSend = $scope.jstrgValue._id;
+        window.open(adminurl + 'Product/excelProductList/' + dataToSend, '_blank');
+    };
+
+    $scope.sortByProduct = function () {
+        var dataToSend = {};
+        dataToSend.user = $scope.jstrgValue._id;
+        NavigationService.apiCallWithData("Product/sortByProducts", dataToSend, function (response) {
+            if (response.value) {
+                $scope.allProducts = response.data;
+                console.log("  $scope.allProducts", $scope.allProducts);
+            }
+        });
+    };
 
 });

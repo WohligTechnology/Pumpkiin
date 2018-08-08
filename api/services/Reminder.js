@@ -110,5 +110,43 @@ var model = {
         ], callback);
     },
 
+    //searchBar
+
+    searchClosedReminders: function (data, callback) {
+        Reminder.aggregate([{
+            $match: {
+                "title": {
+                    $regex: data.keyword,
+                    $options: "i"
+                },
+                "status": "Completed",
+            }
+        }], function (err, found) {
+            if (err || _.isEmpty(found)) {
+                callback(err, null);
+            } else {
+                callback(null, found)
+            }
+        });
+    },
+
+    searchOpenReminders: function (data, callback) {
+        Reminder.aggregate([{
+            $match: {
+                "title": {
+                    $regex: data.keyword,
+                    $options: "i"
+                },
+                "status": "Pending",
+            }
+        }], function (err, found) {
+            if (err || _.isEmpty(found)) {
+                callback(err, null);
+            } else {
+                callback(null, found)
+            }
+        });
+    },
+
 };
 module.exports = _.assign(module.exports, exports, model);

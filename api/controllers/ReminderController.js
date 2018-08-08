@@ -79,5 +79,31 @@ var controller = {
             });
         }
     },
+
+    searchClosedReminders: function (req, res) {
+        if (req.body) {
+            Reminder.searchClosedReminders(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
+    searchOpenReminders: function (req, res) {
+        if (req.body) {
+            Reminder.searchOpenReminders(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
 };
 module.exports = _.assign(module.exports, controller);

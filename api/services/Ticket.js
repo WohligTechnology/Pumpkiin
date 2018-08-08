@@ -314,7 +314,87 @@ var model = {
         this.find({
             user: data.user
         }).exec(callback);
-    }
+    },
+
+    searchClosedTickets: function (data, callback) {
+        Ticket.aggregate([
+            // Stage 1
+            {
+                $lookup: {
+                    from: "products",
+                    localField: "product",
+                    foreignField: "_id",
+                    as: "product"
+                }
+            },
+
+            // Stage 2
+            {
+                $unwind: {
+                    path: "$product",
+                    preserveNullAndEmptyArrays: false // optional
+                }
+            },
+
+            // Stage 3
+            {
+                $match: {
+                    "product.productName": {
+                        $regex: data.keyword,
+                        $options: "i"
+                    },
+                    "status": "Closed",
+                }
+            },
+
+        ], function (err, found) {
+            if (err || _.isEmpty(found)) {
+                callback(err, null);
+            } else {
+                callback(null, found)
+            }
+        });
+    },
+
+    searchOpenTickets: function (data, callback) {
+        Ticket.aggregate([
+            // Stage 1
+            {
+                $lookup: {
+                    from: "products",
+                    localField: "product",
+                    foreignField: "_id",
+                    as: "productss"
+                }
+            },
+
+            // Stage 2
+            {
+                $unwind: {
+                    path: "$productss",
+                    preserveNullAndEmptyArrays: false // optional
+                }
+            },
+
+            // Stage 3
+            {
+                $match: {
+                    "productss.productName": {
+                        $regex: data.keyword,
+                        $options: "i"
+                    },
+                    "status": "Active",
+                }
+            },
+
+        ], function (err, found) {
+            if (err || _.isEmpty(found)) {
+                callback(err, null);
+            } else {
+                callback(null, found)
+            }
+        });
+    },
 
 };
 module.exports = _.assign(module.exports, exports, model);
