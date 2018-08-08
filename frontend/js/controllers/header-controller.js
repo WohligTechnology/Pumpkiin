@@ -82,4 +82,10 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
 
     };
 
+
+    $scope.logout = function (data) {
+        $.jStorage.flush();
+        $state.go("home");
+    };
+
 });
