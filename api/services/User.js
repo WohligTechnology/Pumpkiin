@@ -369,6 +369,7 @@ var model = {
                         delete data3.password;
                         delete data3.forgotPassword;
                         delete data3.otp;
+                        console.log("data3 if console inside existsSocialFrontendFbLogin", data3)
                         callback(err, data3);
                     }
                 });
@@ -385,6 +386,8 @@ var model = {
                         socialProvider: user.provider,
                     }]
                 data.save(function () {});
+                console.log("data3 else console inside existsSocialFrontendFbLogin", data)
+
                 callback(err, data);
             }
         });

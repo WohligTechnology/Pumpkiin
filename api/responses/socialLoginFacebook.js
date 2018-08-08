@@ -7,9 +7,12 @@ module.exports = function (profile) {
         res.callback("Error fetching profile in Social Login", profile);
         // res.serverError();
     } else {
+        console.log("********************req.session.returnUrl*********************", req.session.returnUrl)
+
         if (req.session.returnUrl) {
+
             User.existsSocialFrontendFbLogin(profile, function (err, data) {
-                // console.log("*****************************************")
+                console.log("*****************************************")
                 // console.log("data22222222222222222222222222222222", data)
                 if (data.name == "noAccess") {
                     data.accessToken[0] = "AccessNotAvailable";
@@ -22,7 +25,7 @@ module.exports = function (profile) {
                         if (!data.accessLevel) {
                             data.accessToken[0] = "AccessNotAvailable";
                         }
-                        console.log(req.session.returnUrl);
+                        console.log("-----------", req.session.returnUrl);
                         res.redirect(req.session.returnUrl + "/" + data.accessToken[0]);
                         req.session.destroy(function () {});
                     }

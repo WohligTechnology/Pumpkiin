@@ -7,6 +7,8 @@ module.exports = function (profile) {
         res.callback("Error fetching profile in Social Login", profile);
         // res.serverError();
     } else {
+        console.log("********************req.session.returnUrl*********************", req.session.returnUrl)
+
         if (req.session.returnUrl) {
             User.existsSocialFrontendLogin(profile, function (err, data) {
                 // console.log("*****************************************")
