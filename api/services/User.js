@@ -616,20 +616,20 @@ var model = {
                 delete data3.accessToken;
                 delete data3.password;
                 delete data3.forgotPassword;
-                // var smsData = {};
-                // smsData.message = 'Your verification code is ' + data3.otp;
-                // smsData.senderId = 'PUMPKIIN';
-                // smsData.mobile = data.mobile;
+                var smsData = {};
+                smsData.message = 'Your verification code is ' + data3.otp;
+                smsData.senderId = 'PUMPKIIN';
+                smsData.mobile = data.mobile;
                 delete data3.otp;
-                // Config.sendSms(smsData, function (err, smsRespo) {
-                //     if (err) {
-                //         console.log("*************************************************sms gateway error in photographer***********************************************", err);
-                //     } else if (smsRespo) {
-                //         console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
-                //     } else {
-                //         console.log("invalid data");
-                //     }
-                // });
+                Config.sendSms(smsData, function (err, smsRespo) {
+                    if (err) {
+                        console.log("*************************************************sms gateway error in photographer***********************************************", err);
+                    } else if (smsRespo) {
+                        console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
+                    } else {
+                        console.log("invalid data");
+                    }
+                });
                 callback(null, data3);
             }
         });
@@ -691,7 +691,63 @@ var model = {
             }
         });
 
-    }
+    },
+
+    //for edit mobileNumber
+
+    sendMobileOtp: function (data, callback) {
+        var otpNumber = (Math.random() + "").substring(2, 6);
+        User.findOneAndUpdate({
+            _id: data._id
+        }, {
+            otp: otpNumber,
+            otpTime: new Date(),
+            mobile: data.mobile
+        }, {
+            new: true,
+        }).exec(function (err, found) {
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(found)) {
+                callback("noDataFound", null);
+            } else {
+                data3 = found.toObject();
+                delete data3.accessToken;
+                delete data3.password;
+                delete data3.forgotPassword;
+                var smsData = {};
+                smsData.message = 'Your verification code is ' + data3.otp;
+                smsData.senderId = 'PUMPKIIN';
+                smsData.mobile = data.mobile;
+                delete data3.otp;
+                Config.sendSms(smsData, function (err, smsRespo) {
+                    if (err) {
+                        console.log("*************************************************sms gateway error in photographer***********************************************", err);
+                    } else if (smsRespo) {
+                        console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
+                    } else {
+                        console.log("invalid data");
+                    }
+                });
+                callback(null, data3);
+            }
+        });
+    },
+
+
+    verifyMobileOtp: function (data, callback) {
+        User.findOne({
+            mobile: data.mobile,
+            otp: data.otp
+        }).exec(function (err, found) {
+            if (err || _.isEmpty(found)) {
+                callback(err, null);
+            } else {
+                callback(null, found);
+            }
+        });
+
+    },
 
 };
 module.exports = _.assign(module.exports, exports, model);

@@ -16,13 +16,13 @@
 
             <div class="form-group mb-2">
                 <label class="constant-text">
-                    <input type="tel" class="form-control rounded custom_input" id="contact" ng-model="mobile" placeholder=""
-                        maxlength="10" readOnly required>
+                    <input type="tel" class="form-control rounded custom_input" id="contact" ng-model="mobile" placeholder="" maxlength="10"
+                        readOnly required>
                 </label>
             </div>
 
             <div class="mb-1 text-center">
-                <button type="submit" class="btn w-50 login-btn form-control" ng-click="saveUser(formName)" ng-disabled="!(formName.name && formName.email)">Submit</button>
+                <button type="submit" class="btn w-50 login-btn form-control" ng-click="saveMobileData(formName)">Submit</button>
             </div>
         </form>
     </div>

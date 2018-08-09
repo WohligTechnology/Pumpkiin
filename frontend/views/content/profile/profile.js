@@ -5,6 +5,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     $scope.navigation = NavigationService.getNavigation();
     $scope.jstrgValue = $.jStorage.get('userData');
     $scope.genderData = {};
+    $scope.mobile = {};
     // console.log("$scope.jstrgValue", $scope.jstrgValue);
 
     $scope.relation = [{
@@ -82,19 +83,57 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     }
 
     $scope.changeInfo = function () {
-        $scope.otp = $uibModal.open({
-            animation: true,
-            templateUrl: "views/modal/otpModal.html",
-            scope: $scope,
-        });
         // console.log("data", $scope.genderData);
-        // $scope.genderData._id = $scope.jstrgValue._id;
-        // NavigationService.apiCallWithData("User/save", $scope.genderData, function (response) {
-        //     if (response.value == true) {
-        //         $state.reload();
-        //     }
-        // });
+        $scope.mobile = $scope.genderData.mobile;
+        if ($scope.genderData.mobile) {
+            var dataToSend = {};
+            dataToSend._id = $scope.jstrgValue._id;
+            dataToSend.mobile = $scope.genderData.mobile;
+            NavigationService.apiCallWithData("User/sendMobileOtp", dataToSend, function (response) {
+                if (response.value == true) {
+                    $scope.otp = $uibModal.open({
+                        animation: true,
+                        templateUrl: "views/modal/otpModal.html",
+                        scope: $scope,
+                    });
+                }
+            });
+        } else {
+            $scope.genderData._id = $scope.jstrgValue._id;
+            NavigationService.apiCallWithData("User/save", $scope.genderData, function (response) {
+                if (response.value == true) {
+                    $state.reload();
+                }
+            });
+        }
     }
+
+    //saveForOtpModal
+
+    $scope.saveMobileData = function (info) {
+        if (info.digit1 >= 0 && info.digit2 >= 0 && info.digit3 >= 0 && info.digit4 >= 0) {
+            $scope.data = {};
+
+            $scope.data.otp = info.digit1.toString() + info.digit2.toString() + info.digit3.toString() + info.digit4.toString();
+            $scope.data.mobile = $scope.mobile;
+
+            NavigationService.apiCallWithData("User/verifyMobileOtp", $scope.data, function (response) {
+                if (response.value == true) {
+                    $scope.genderData._id = $scope.jstrgValue._id;
+                    NavigationService.apiCallWithData("User/save", $scope.genderData, function (response) {
+                        if (response.value == true) {
+                            $scope.otp.close();
+                            $state.reload();
+                        }
+                    });
+                }
+            });
+
+        } else {
+            toastr.warning('Enter all fields');
+        }
+
+    };
 
 
     $scope.$watch("userDataForProfile.profilePic", function (newVal, oldVal) {

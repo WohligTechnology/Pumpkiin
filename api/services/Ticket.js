@@ -286,7 +286,7 @@ var model = {
     getAllStatesOfIndia: function (data, callback) {
         var options = {
             method: 'GET',
-            url: 'http://battuta.medunes.net/api/region/in/all/?key=fa11e38b7e2861e75f8554ac562d4e06'
+            url: 'http://battuta.medunes.net/api/region/in/all/?key=9eccdee51d4fed50a9b3b56c7c2bbb26'
         };
         request(options, function (err, response, body) {
             // console.log("body", body);
@@ -299,7 +299,7 @@ var model = {
     getCity: function (data, callback) {
         var options = {
             method: 'GET',
-            url: 'http://battuta.medunes.net/api/city/in/search/?region=' + data.region + '&key=fa11e38b7e2861e75f8554ac562d4e06'
+            url: 'http://battuta.medunes.net/api/city/in/search/?region=' + data.region + '&key=9eccdee51d4fed50a9b3b56c7c2bbb26'
         };
         request(options, function (err, response, body) {
             // console.log("body", body);

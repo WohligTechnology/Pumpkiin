@@ -254,7 +254,33 @@ var controller = {
 
     getConfig: function (req, res) {
         res.json(env);
-    }
+    },
+
+    sendMobileOtp: function (req, res) {
+        if (req.body) {
+            User.sendMobileOtp(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
+    verifyMobileOtp: function (req, res) {
+        if (req.body) {
+            User.verifyMobileOtp(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
 
 };
 module.exports = _.assign(module.exports, controller);

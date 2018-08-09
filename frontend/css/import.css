@@ -9715,7 +9715,7 @@ footer p {
   right: 10px !important; }
 
 .content {
-  min-height: calc(100vh - 8.5vh); }
+  min-height: calc(100vh - 13vh); }
 
 .img-full {
   width: 100%;
@@ -9854,7 +9854,7 @@ input[type=number]::-webkit-outer-spin-button {
 .font12 {
   font-size: 12px; }
 
-.font14, .modal-body, .terms, .header-dropdown .dropdown-menu {
+.font14, .modal-body, .privacy, .terms, .header-dropdown .dropdown-menu {
   font-size: 14px; }
 
 .font16 {
@@ -10277,11 +10277,15 @@ fieldset:disabled {
   border-radius: 0.25em;
   color: black; }
 
-.terms h5 {
+.privacy h5, .terms h5 {
   font-family: Roboto-Bold; }
 
-.terms p {
+.privacy p, .terms p {
   text-align: justify; }
+
+.privacy a, .terms a {
+  text-decoration: none;
+  color: red; }
 
 .profile-page .profile-image {
   position: relative;
@@ -10585,6 +10589,10 @@ fieldset:disabled {
       display: none; }
     .openticket-circle:hover .showhover {
       display: block; }
+
+.check-text {
+  padding-top: 130px;
+  color: #747d95; }
 
 .reminder-btn {
   cursor: pointer;
@@ -11469,6 +11477,10 @@ fieldset:disabled {
   width: 30px;
   height: 30px;
   overflow: hidden; }
+  .user-profile img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; }
 
 .product-search {
   position: relative;
