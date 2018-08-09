@@ -82,13 +82,18 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     }
 
     $scope.changeInfo = function () {
-        console.log("data", $scope.genderData);
-        $scope.genderData._id = $scope.jstrgValue._id;
-        NavigationService.apiCallWithData("User/save", $scope.genderData, function (response) {
-            if (response.value == true) {
-                $state.reload();
-            }
+        $scope.otp = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/otpModal.html",
+            scope: $scope,
         });
+        // console.log("data", $scope.genderData);
+        // $scope.genderData._id = $scope.jstrgValue._id;
+        // NavigationService.apiCallWithData("User/save", $scope.genderData, function (response) {
+        //     if (response.value == true) {
+        //         $state.reload();
+        //     }
+        // });
     }
 
 

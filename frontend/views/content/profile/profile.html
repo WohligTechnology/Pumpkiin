@@ -1,7 +1,6 @@
 <div class="background-blue p-4 profile-page">
     <div class="container">
         <div class="d-flex profile-details mb-3 ">
-
             <div class="profile-image" class="img-fluid">
                 <img class="img-uploaded" src="img/emptyProfile.png" ng-if="!userDataForProfile.profilePic">
                 <img class="img-uploaded" src="{{userDataForProfile.profilePic | serverimage}}" ng-if="userDataForProfile.profilePic">
@@ -11,7 +10,6 @@
                 </div>
             </div>
             <div class="text-white fontRobotoRegular font14 ml-5">
-
                 <div class="font20">{{userDataForProfile.name}}</div>
                 <!-- <div class="my-1">(Code: 123456)</div> -->
                 <div class="d-flex my-1">
@@ -33,7 +31,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -55,10 +52,10 @@
                 </div>
                 <div class="col-10">
                     <div class="fontRobotoLight font14">
-                        <div ng-if="!personalInfo && userDataForProfile.gender " class="mb-2 w-20 custom-input">
+                        <div ng-if="!personalInfo && userDataForProfile.gender" class="mb-2 w-20 custom-input">
                             {{userDataForProfile.gender}}
                         </div>
-                        <div ng-if="!personalInfo && !userDataForProfile.gender " class="mb-2 w-20 custom-input">
+                        <div ng-if="!personalInfo && !userDataForProfile.gender" class="mb-2 w-20 custom-input">
                             - - -
                         </div>
                         <div ng-if="personalInfo">
@@ -87,7 +84,6 @@
                         <div ng-if="personalInfo" class="mb-2 w-20 custom-input">
                             <input type="number" class="mt-2 p-1" ng-model="genderData.mobile">
                         </div>
-
                     </div>
                 </div>
                 <fieldset class="d-flex ml-3 social mt-3 mb-0 save" ng-if="personalInfo">
