@@ -326,7 +326,7 @@ footer {
 }
 
 .content {
-    min-height: calc(100vh - 8.5vh);
+    min-height: calc(100vh - 13vh);
 }
 
 .img-full {
@@ -1035,7 +1035,7 @@ fieldset:disabled {
         color: black;
     }
 }
-.policy,.terms{
+.privacy,.terms{
     @extend .font14;
     h5{
         font-family: Roboto-Bold;
