@@ -256,18 +256,24 @@ var model = {
         Product.aggregate([
             // Stage 1
             {
-                $lookup: {
+                $match: {
+                    "user": ObjectId(data.user),
+                }
+            },
+            {
+                $lookup: // Equality Match
+                {
                     from: "brands",
                     localField: "brand",
                     foreignField: "_id",
-                    as: "brandss"
+                    as: "brands"
                 }
             },
 
             // Stage 2
             {
                 $unwind: {
-                    path: "$brandss",
+                    path: "$brands",
                     preserveNullAndEmptyArrays: false // optional
                 }
             },
@@ -275,7 +281,26 @@ var model = {
             // Stage 3
             {
                 $project: {
-                    brandName: "$brandss.name"
+                    brandName: "$brands.name",
+                    _id: "$_id",
+                    productName: "$productName",
+                    brand: "$brand",
+                    serialNo: "$serialNo",
+                    modelNo: "$modelNo",
+                    user: "$user",
+                    pendingRequest: "$pendingRequest",
+                    productAccessory: "$productAccessory",
+                    productImages: "$productImages",
+                    status: "$status",
+                    insuranceProofImage: "$insuranceProofImage",
+                    warrantyCardImage: "$warrantyCardImage",
+                    relatedUser: "$relatedUser",
+                    purchaseProof: "$purchaseProof",
+                    retailer: "$retailer",
+                    purchasePrice: "$purchasePrice",
+                    purchaseDate: "$purchaseDate",
+                    insuranceExpDate: "$insuranceExpDate",
+                    warrantyExpDate: "$warrantyExpDate"
                 }
             },
 
@@ -283,14 +308,14 @@ var model = {
             {
                 $sort: {
                     "brandName": 1
-                }
-            },
 
+                }
+            }
         ], function (err, found) {
             if (err || _.isEmpty(found)) {
                 callback(err, null);
             } else {
-                callback(null, found)
+                callback(null, found);
             }
         });
 

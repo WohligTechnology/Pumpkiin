@@ -143,6 +143,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
         if (res.value == true) {
             // console.log("res-----", res.data.results);
             $scope.allProducts = res.data;
+            $scope.products = _.slice($scope.allProducts, 0, 7);
         }
     });
 
@@ -175,7 +176,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
     //     });
     // }
 
-    $scope.searchForData = function (data, data1) {
+    $scope.searchForTicketData = function (data, data1) {
         var dataToSend = {};
         if (data.length > 0) {
             if (data1 == 'open') {
@@ -201,6 +202,31 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
         }
     };
 
+    $scope.searchForReminderData = function (data, data1) {
+        var dataToSend = {};
+        if (data.length > 0) {
+            if (data1 == 'open') {
+                dataToSend.keyword = data;
+                NavigationService.apiCallWithData("Reminder/searchOpenReminders", dataToSend, function (response) {
+                    if (response.value) {
+                        $scope.allReminders = response.data;
+                        $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+                    }
+                });
+            } else {
+                dataToSend.keyword = data;
+                NavigationService.apiCallWithData("Reminder/searchClosedReminders", dataToSend, function (response) {
+                    console.log(" response", response);
+
+                    if (response.value) {
+                        $scope.allReminders = response.data;
+                        $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+                    }
+                });
+            }
+        }
+    };
+
     $scope.generateExcel = function () {
         var dataToSend = $scope.jstrgValue._id;
         window.open(adminurl + 'Product/excelProductList/' + dataToSend, '_blank');
@@ -212,9 +238,26 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
         NavigationService.apiCallWithData("Product/sortByProducts", dataToSend, function (response) {
             if (response.value) {
                 $scope.allProducts = response.data;
+                $scope.products = _.slice($scope.allProducts, 0, 7);
                 console.log("  $scope.allProducts", $scope.allProducts);
             }
         });
+    };
+
+    $scope.sortByBrand = function () {
+        var dataToSend = {};
+        dataToSend.user = $scope.jstrgValue._id;
+        NavigationService.apiCallWithData("Product/sortProductsByBrands", dataToSend, function (response) {
+            if (response.value) {
+                $scope.allProducts = response.data;
+                $scope.products = _.slice($scope.allProducts, 0, 7);
+                console.log("  $scope.allProducts", $scope.allProducts);
+            }
+        });
+    };
+
+    $scope.loadMore = function () {
+        $scope.products = $scope.allProducts;
     };
 
 });

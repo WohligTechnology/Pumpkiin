@@ -8,9 +8,9 @@
 
 var MaxImageSize = 1600;
 
-// var requrl = "http://wohlig.io:80/api/";
+var requrl = "http://wohlig.io:80/api/";
 
-var requrl = "https://pumpkiin.wohlig.co.in/api/";
+// var requrl = "https://pumpkiin.wohlig.co.in/api/";
 
 
 var schema = new Schema({

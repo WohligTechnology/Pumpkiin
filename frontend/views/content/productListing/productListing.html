@@ -2,7 +2,7 @@
     <div class="filters">
         <span>Sort : </span>
         <div class="d-inline-block">
-            <button type="button" class="btn btn-default">Brand</button>
+            <button type="button" class="btn btn-default" ng-click="sortByBrand()">Brand</button>
         </div>
         <div class="d-inline-block">
             <button type="button" class="btn btn-default" ng-click="sortByProduct()">Product</button>
@@ -29,7 +29,7 @@
                         <button class="my-3 support-btn">SUPPORT</button>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-3 mb-3 px-2" ng-repeat="product in allProducts track by $index">
+                <div class="col-xs-12 col-md-3 mb-3 px-2" ng-repeat="product in products track by $index">
                     <div class="bg-white border border-rounded text-center effectonhover">
                         <span class="float-right product-icon" ng-click="deleteProduct($index)">
                             <i class="fas fa-trash-alt"></i>
@@ -60,7 +60,7 @@
                     <i class="fas fa-plus-circle"></i>
                 </div>
                 <div class="font-color  d-inline-block">
-                    <p class="load-more">Load More</p>
+                    <p class="load-more" ng-click="loadMore()">Load More</p>
                 </div>
             </div>
         </div>
@@ -94,9 +94,14 @@
                         <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
                     <span class="badge badge-style ">{{totalNumberOfTickets}}</span>
                     <div class="float-right custom-searchbar">
-                        <form autocomplete="on" class="position-relative">
-                            <input type="text " ng-change="searchForData(ticketSearch,'closed')" ng-model="ticketSearch" />
-                            <!-- <input id="search" name="search" type="text" placeholder="" ng-model="ticketSearch" ng-change="searchData(ticketSearch)"> -->
+                        <form autocomplete="on" class="position-relative" ng-if="ticketDetails[0].status!='Closed'">
+                            <!-- <input type="text " ng-change="searchForTicketData(ticketSearch,'open')" ng-model="ticketSearch" /> -->
+                            <input name="search" type="text" ng-change="searchForTicketData(ticketSearch,'open')" ng-model="ticketSearch" />
+                            <input id="search_submit" value="Rechercher" type="submit">
+                        </form>
+                        <form autocomplete="on" class="position-relative" ng-if="ticketDetails[0].status=='Closed'">
+                            <!-- <input type="text " ng-change="searchForTicketData(ticketSearch,'closed')" ng-model="ticketSearch" /> -->
+                            <input name="search" type="text" ng-change="searchForTicketData(ticketSearch,'closed')" ng-model="ticketSearch" />
                             <input id="search_submit" value="Rechercher" type="submit">
                         </form>
                     </div>
@@ -151,10 +156,18 @@
                     <h5 class="d-inline ">Reminders</h5>
                     <span class="badge badge-style ml-auto">{{totalReminders}}</span>
                     <div class="float-right custom-searchbar">
-                        <form action="" autocomplete="on" class="position-relative">
-                            <input id="search" name="search" type="text" placeholder="">
-                            <input id="search_submit" value="Rechercher" type="submit">
-                        </form>
+                        <div class="float-right custom-searchbar">
+                            <form autocomplete="on" class="position-relative" ng-if="ticketDetails[0].status!='Closed'">
+                                <!-- <input type="text " ng-change="searchForReminderData(reminderSearch,'open')" ng-model="reminderSearch" /> -->
+                                <input name="search" type="text" ng-change="searchForReminderData(reminderSearch,'open')" ng-model="reminderSearch" />
+                                <input id="search_submit" value="Rechercher" type="submit">
+                            </form>
+                            <form autocomplete="on" class="position-relative" ng-if="ticketDetails[0].status=='Closed'">
+                                <!-- <input type="text " ng-change="searchForReminderData(reminderSearch,'closed')" ng-model="reminderSearch" /> -->
+                                <input name="search" type="text" ng-change="searchForReminderData(reminderSearch,'closed')" ng-model="reminderSearch" />
+                                <input id="search_submit" value="Rechercher" type="submit">
+                            </form>
+                        </div>
                     </div>
                 </div>
 
