@@ -43,19 +43,33 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
 
 
         $scope.product = [{
+                name: 'AC'
+            },
+            {
+                name: 'Desktop'
+            },
+            {
+                name: 'Geyser'
+            },
+            {
                 name: 'Laptop'
             },
             {
-                name: 'PC'
-            },
-            {
-                name: 'Phone'
-            },
-            {
+                name: 'Microwave'
+            }, {
+                name: 'Mobiles'
+            }, {
+                name: 'Musical instruments'
+            }, {
+                name: 'Refrigerator'
+            }, {
+                name: 'Tablet'
+            }, {
                 name: 'TV'
-            },
-            {
-                name: 'Head Phone'
+            }, {
+                name: 'Washing Machine'
+            }, {
+                name: 'l. Water Purifier'
             }
         ];
         $scope.service = [{
