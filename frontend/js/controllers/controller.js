@@ -32,15 +32,34 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             })
         }, 500);
 
-        $scope.rate = 7;
-        $scope.max = 10;
-        $scope.isReadonly = false;
+        // $scope.rate = 7;
+        // $scope.max = 10;
+        // $scope.isReadonly = false;
 
-        $scope.hoveringOver = function (value) {
-            $scope.overStar = value;
-            $scope.percent = 100 * (value / $scope.max);
-        };
+        // $scope.hoveringOver = function(value) {
+        //   $scope.overStar = value;
+        //   $scope.percent = 100 * (value / $scope.max);
+        // };
 
+        $scope.ratingStates = [{
+                stateOn: 'glyphicon-ok-sign',
+                stateOff: 'glyphicon-ok-circle'
+            },
+            {
+                stateOn: 'glyphicon-star',
+                stateOff: 'glyphicon-star-empty'
+            },
+            {
+                stateOn: 'glyphicon-heart',
+                stateOff: 'glyphicon-ban-circle'
+            },
+            {
+                stateOn: 'glyphicon-heart'
+            },
+            {
+                stateOff: 'glyphicon-off'
+            }
+        ];
 
         $scope.product = [{
                 name: 'AC'
@@ -76,6 +95,32 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             name: 'Service'
         }, {
             name: 'Retail'
+        }]
+
+        $scope.testimonials = [{
+            "name": "Parth",
+            "message": "Fantastic service, peace of mind.",
+            "rate":"5"
+        }, {
+            "name": "Priyanka",
+            "message": "Just one message, and Pumpkiin took care of the rest. So useful!",
+            "rate":"5"
+        },{
+            "name": "Shreyas",
+            "message": "In such busy times, Pumpkiin is a boon. Loved it!",
+            "rate":"5"
+        },{
+            "name": "Priti",
+            "message": "No more going through IVRs, or coordinating with service personnel. Pumpkiin does it all! Wonderful!",
+            "rate":"5"
+        },{
+            "name": "Masud Rana",
+            "message": "“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete”",
+            "rate":"5"
+        },{
+            "name": "Masud Rana",
+            "message": "“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete”",
+            "rate":"5"
         }]
 
     })

@@ -355,22 +355,7 @@
         border-radius: 10px;
         border-bottom: 0;
         border: 0;
-        position: relative; // &:after {
-        //     content: "";
-        //     background-image: url("../img/ticketCreation/caret-up.png");
-        //     background-position: center center;
-        //     background-repeat: no-repeat;
-        //     background-size: 50%;
-        //     width: 35px;
-        //     height: 35px;
-        //     right: 60px;
-        //     bottom: -22px;
-        //     position: absolute;
-        //     z-index: 1;
-        //     background-color: #f6a244;
-        //     border: solid 5px #ecf0f2;
-        //     border-radius: 50%;
-        // }
+        position: relative;
     }
     .panel-default:last-child {
         &:after {
@@ -394,10 +379,8 @@
     }
 }
 
-.star-color-change {
-    svg {
-        fill: $orange;
-    }
+svg {
+    fill: $orange;
 }
 
 .custom-file {

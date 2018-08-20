@@ -811,7 +811,7 @@ fieldset:disabled {
     background-position: center center;
     height: 100vh;
     .about-pumpkin {
-        padding: 200px 0 100px 0;
+        padding: 100px 0;
         .about-content {
             width: 50%;
             margin: 0 auto;
@@ -830,6 +830,7 @@ fieldset:disabled {
 .customer-care {
     @extend .fontRobotoRegular;
     box-shadow: 0 -6px 0 #fff, 0 1px 6px rgba(0, 0, 0, .35);
+    min-height: 107px;
     .customer-care-img {
         width: 80px;
         height: 80px;
@@ -848,7 +849,11 @@ fieldset:disabled {
         }
     }
 }
-
+.star-color-change {
+    svg {
+        fill: $orange;
+    }
+}
 .pumpkin-plans {
     background-color: #F9F9F9;
     .plans-list {
