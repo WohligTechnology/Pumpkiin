@@ -1,3 +1,16 @@
 /* Breakpoint for medium viewport */
 
-@include media-breakpoint-down(md) {}
+@include media-breakpoint-down(md) {
+    .navbar{
+        background-color: #142c5b !important;
+    }
+    h2{
+        font-size: 1.7rem;
+    }    
+    .section-spacing{
+        margin: 0;
+    }
+    .padd-250 {
+        padding-left: 15px;
+    }
+}

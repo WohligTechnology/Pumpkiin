@@ -88,13 +88,13 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             }, {
                 name: 'Washing Machine'
             }, {
-                name: 'l. Water Purifier'
+                name: 'Water Purifier'
             }
         ];
         $scope.service = [{
             name: 'Service'
         }, {
-            name: 'Retail'
+            name: 'Repair'
         }]
 
         $scope.testimonials = [{
@@ -112,14 +112,6 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         },{
             "name": "Priti",
             "message": "No more going through IVRs, or coordinating with service personnel. Pumpkiin does it all! Wonderful!",
-            "rate":"5"
-        },{
-            "name": "Masud Rana",
-            "message": "“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete”",
-            "rate":"5"
-        },{
-            "name": "Masud Rana",
-            "message": "“But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete”",
             "rate":"5"
         }]
 

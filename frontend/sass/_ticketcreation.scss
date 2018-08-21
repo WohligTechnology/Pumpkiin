@@ -349,6 +349,8 @@
 }
 
 .support-chat-history {
+    height: 90vh;
+    overflow: auto;
     .panel-default {
         margin: 10px 0;
         background-color: white;

@@ -410,8 +410,8 @@ header {
     line-height: 1.8;
 }
 
-.mx-6 {
-    margin: 0 9rem !important;
+.section-spacing{
+    margin: 0 9rem;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -734,7 +734,7 @@ fieldset:disabled {
                 }
             }
             .dropdown-menu {
-                background: transparent;
+                background: #142c5b;
                 color: white;
                 border: 0;
             }
@@ -807,7 +807,7 @@ fieldset:disabled {
     background-position: center center;
     height: 100vh;
     .about-pumpkin {
-        padding: 100px 0;
+        padding: 200px 0;
         .about-content {
             width: 50%;
             margin: 0 auto;
