@@ -6,7 +6,34 @@
     }
     h2{
         font-size: 1.7rem;
-    }    
+    }   
+    .timeline{
+        width: 100%;
+        .circle1{
+            &:before{
+                left: -5px;
+            }
+        }
+        .circle2{
+            &:before{
+                left: -32px;
+            }
+        }
+        .circle3{
+            &:before{
+                left: -35px;
+            }
+        }
+        .circle4{
+            left: 94.5%;
+            &:before{
+                left: -35px;
+            }
+        }
+        .circle:before {
+            font-size: 8px;
+        }
+    } 
     .section-spacing{
         margin: 0;
     }

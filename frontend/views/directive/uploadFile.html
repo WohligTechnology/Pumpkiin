@@ -1,10 +1,10 @@
 <div class="form-group d-flex image-upload {{imageclass}}">
     <br ng-show="isMultiple">
     <!-- <button ng-show="isMultiple" class="btn btn-danger btn-outline btn-small create-btn" ng-click="clearOld()">CLEAR FILES</button> -->
-    <span class="label label-success mr-3 mt-3 noShow" ng-if="uploadStatus == 'uploaded'" ng-show="!isMultiple ">Documents Uploaded - {{image.file.name}}</span>
-    <span class="label label-success mr-3 mt-3 noShow" ng-if="uploadStatus == 'uploaded'" ng-show="isMultiple ">Documents Uploaded - {{model.length}}</span>
-    <span class="label label-warning mr-3 mt-3 noShow" ng-if="uploadStatus == 'uploading'" ng-show="!isMultiple ">Uploading Documents {{image.file.name}}</span>
-    <span class="label label-warning mr-3 mt-3 noShow" ng-if="uploadStatus == 'uploading'" ng-show="isMultiple ">Uploading Documents {{image.length}}</span>
+    <span class="label label-success mr-3 mt-3 noShow" ng-if="uploadStatus == 'uploaded'" ng-show="!isMultiple && !noStatus">Documents Uploaded - {{image.file.name}}</span>
+    <span class="label label-success mr-3 mt-3 noShow" ng-if="uploadStatus == 'uploaded'" ng-show="isMultiple && !noStatus">Documents Uploaded - {{model.length}}</span>
+    <span class="label label-warning mr-3 mt-3 noShow" ng-if="uploadStatus == 'uploading'" ng-show="!isMultiple && !noStatus">Uploading Documents {{image.file.name}}</span>
+    <span class="label label-warning mr-3 mt-3 noShow" ng-if="uploadStatus == 'uploading'" ng-show="isMultiple && !noStatus">Uploading Documents {{image.length}}</span>
     <div class="upload-btn-wrapper mr-1 mt-3 float-left">
         <img ng-if="imagesrc && imageclass" src="{{imagesrc}}">
         <button ng-if="!(imagesrc && imageclass)" class="btn">+</button>

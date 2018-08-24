@@ -1,5 +1,5 @@
 var mySwiper;
-myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http) {
+myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http,$uibModal) {
         $scope.template = TemplateService.getHTML("content/home.html");
         TemplateService.title = "Home"; //This is the Title of the Website
         TemplateService.header = "";
@@ -15,12 +15,21 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             });
         };
 
+        $scope.openContact = function () {
+            $scope.contactModal = $uibModal.open({
+                animation: true,
+                templateUrl: "views/modal/contact.html",
+                scope: $scope,
+                backdrop:'static'
+            });
+        }
+
         $timeout(function () {
             mySwiper = new Swiper('.swiper-container', {
                 // Optional parameters
                 width: '800',
                 direction: 'horizontal',
-                loop: true,
+                loop: false,
                 slidesPerView: 2,
                 slidesPerGroup: 2,
 
@@ -98,21 +107,21 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         }]
 
         $scope.testimonials = [{
+            "name": "Shreyas",
+            "message": "In such busy times, Pumpkiin is a boon. Loved it!",
+            "rate": "5"
+        }, {
+            "name": "Priti",
+            "message": "No more going through IVRs, or coordinating with service personnel. Pumpkiin does it all! Wonderful!",
+            "rate": "5"
+        },{
             "name": "Parth",
             "message": "Fantastic service, peace of mind.",
-            "rate":"5"
+            "rate": "5"
         }, {
             "name": "Priyanka",
             "message": "Just one message, and Pumpkiin took care of the rest. So useful!",
-            "rate":"5"
-        },{
-            "name": "Shreyas",
-            "message": "In such busy times, Pumpkiin is a boon. Loved it!",
-            "rate":"5"
-        },{
-            "name": "Priti",
-            "message": "No more going through IVRs, or coordinating with service personnel. Pumpkiin does it all! Wonderful!",
-            "rate":"5"
+            "rate": "5"
         }]
 
     })

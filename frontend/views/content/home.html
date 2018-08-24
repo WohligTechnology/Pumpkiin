@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="text-center py-3">
-                <button ui-sref="productdetailunregistered" class="btn w-25 border-rounded fontRobotoBold text-white orange-btn">Submit</button>
+                <a ng-click="openContact()" class="btn w-25 border-rounded fontRobotoBold text-white orange-btn" target="_top">Submit</a>
             </div>
         </div>
     </div>
@@ -144,7 +144,7 @@
                 <li class="list-inline-item" ui-sref="terms">Terms and Conditions</li>
                 <!-- <li class="list-inline-item">Careers</li>
                 <li class="list-inline-item">Cities</li> -->
-                <li class="list-inline-item">Contact us</li>
+                <li class="list-inline-item" ng-click="openContact()">Contact Us</li>
             </ul>
             <div>
                 <span class="facebook-logo">

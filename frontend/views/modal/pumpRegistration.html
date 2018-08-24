@@ -5,17 +5,17 @@
     </span>
 </div>
 <div class="modal-body fontRobotoLight invoicewarranty" id="modal-body">
-    <div class="mb-2 fontRobotoRegular">Upload Product Invioce</div>
+    <div class="mb-2 fontRobotoRegular">Upload Product Invioce <span class="green-color" ng-if="data.productInvoicePR">({{data.productInvoicePR.length}})</span></div>
 
     <div class="scrollbar">
         <div>
-            <upload-image multiple ng-model="data.productInvoicePR" required></upload-image>
+            <upload-image multiple ng-model="data.productInvoicePR" no-status="true"></upload-image>
         </div>
     </div>
-    <div class="mb-2 mt-3 fontRobotoRegular">Upload Warranty Card</div>
+    <div class="mb-2 mt-3 fontRobotoRegular">Upload Warranty Card <span class="green-color" ng-if="data.warrantyCardPR">({{data.warrantyCardPR.length}})</span></div>
     <div class="scrollbar">
         <div>
-            <upload-image multiple ng-model="data.warrantyCardPR"></upload-image>
+            <upload-image multiple ng-model="data.warrantyCardPR" no-status="true"></upload-image>
         </div>
     </div>
     <div class="d-flex justify-content-center text-center my-3 fontRobotoRegular" ng-click="submitDocuments(data)">

@@ -107,8 +107,7 @@
             </div>
         </div>
 
-        <div class="col col-md-9 " ng-init="modelNo=false ">
-
+        <div class="col col-md-9" ng-init="modelNo=false">
             <div class="support-chat-history">
                 <h6 class="fontRobotoBold blue-color mb-4 text-uppercase">Reminders
                 </h6>
@@ -144,6 +143,20 @@
                     </div>
                 </uib-accordion>
             </div>
+            <div class="float-right">
+            <ul>
+                <li ng-repeat="item in data | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    {{item}}
+                </li>
+            </ul>
+            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                Previous
+            </button>
+            {{currentPage+1}}/{{numberOfPages()}}
+            <button ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                Next
+            </button>
+        </div>
             <a role="button" class="button w-25 py-1 float-right fontRobotoBold text-center orange-btn" ng-click="reminderModalOpen()"
                 ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Add Reminder
             </a>

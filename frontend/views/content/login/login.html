@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="mb-3" ng-if="shownameEmail">
                                         <input type="email" class="form-control rounded custom_input" id="email" ng-model="formName.email" placeholder="Enter Email Address (Dont worry we dont spam) * "
-                                            required>
+                                            required email-validation>
                                     </div>
                                     <div class="mb-1 text-center">
                                         <button type="submit" class="btn w-90 login-btn form-control" ng-click="saveUser(formName)" ng-disabled="!(formName.name && formName.email)">Submit</button>

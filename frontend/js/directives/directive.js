@@ -154,7 +154,7 @@ myApp.directive('img', function ($compile, $parse) {
                 callback: "&ngCallback",
                 imagesrc: '@imageSrc',
                 imageclass: '@imageClass',
-                // noStatus: '@noStatus'
+                noStatus: '@noStatus'
             },
             link: function ($scope, element, attrs) {
                 console.log($scope.imagesrc, $scope.imageclass);
@@ -329,6 +329,25 @@ myApp.directive('img', function ($compile, $parse) {
             }
         };
     })
+
+    // .directive('emailValidation', function () {
+    //     return {
+    //         require: 'ngModel',
+    //         restrict: 'A',
+    //         link: function (scope, element, attr, ngModelCtrl) {
+    //             function fromUser(text) {
+    //                 var transformedInput = text.replace(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/g, '');
+    //                 //console.log(transformedInput);
+    //                 if (transformedInput !== text) {
+    //                     ngModelCtrl.$setViewValue(transformedInput);
+    //                     ngModelCtrl.$render();
+    //                 }
+    //                 return transformedInput;
+    //             }
+    //             ngModelCtrl.$parsers.push(fromUser);
+    //         }
+    //     };
+    // })
 
     .directive("moveNextOnMaxlength", function () {
         return {

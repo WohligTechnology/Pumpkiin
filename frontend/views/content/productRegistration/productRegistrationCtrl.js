@@ -25,7 +25,8 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         animation: true,
         templateUrl: "views/modal/registration.html",
         scope: $scope,
-        windowClass: 'app-modal-window'
+        windowClass: 'app-modal-window',
+        backdrop: 'static'
     });
 
     $scope.pumpkinRegistration = function () {
