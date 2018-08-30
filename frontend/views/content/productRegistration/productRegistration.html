@@ -39,14 +39,14 @@
                 </div>
                 <div class="col-12 col-md-6 brand-div">
                     <label class="mb-0">Brand Name * </label>
-                    <!-- <ui-select name="brandSelect" ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a brand" ng-required="true">
+                    <ui-select name="brandSelect" ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a brand" ng-required="true">
                         <ui-select-match class="selected-tags" placeholder="Select a brand from the list...">{{$select.selected.name}}</ui-select-match>
                         <ui-select-choices class="background-blue text-white" repeat="brand in brandsData | filter: $select.search">
                             <span ng-bind-html="brand.name | highlight: $select.search"></span>
                         </ui-select-choices>
-                    </ui-select> -->
-                    <input value="cwsdh7889" ng-model="data.brand" class="form-control form-control-sm" type="text" name="brandSelect" placeholder="Brand Name"
-                    required>
+                    </ui-select>
+                    <!-- <input value="cwsdh7889" ng-model="data.brand" class="form-control form-control-sm" type="text" name="brandSelect" placeholder="Brand Name"
+                    required> -->
                     <span class="error" ng-show="product.brandSelect.$invalid && product.brandSelect.$touched"> Please, enter brand name</span>
                 </div>
             </div>
@@ -168,6 +168,8 @@
             <div class="col-12 col-md-6">
                 <label class="mb-0">Mobile Number * </label>
                 <input name="mobile" ng-model="userData.mobile" class="form-control form-control-sm" type="text" required only-digits>
+                {{adduser.mobile}}
+                
                 <span class="error" ng-show="adduser.mobile.$invalid && adduser.mobile.$touched"> Please, enter contact</span> 
             </div>
             <div class="col-12 col-md-6">
@@ -184,7 +186,7 @@
                 <span class="error" ng-show="adduser.sellist1.$invalid && adduser.sellist1.$touched"> Please, select relationship</span> 
             </div>
         </div>
-        <fieldset class="row form-group" ng-click="addUser(userData)" ng-disabled="adduser.$invalid">
+        <fieldset class="row form-group" ng-click="addUser()" ng-disabled="adduser.$invalid">
             <div class="d-flex social m-3 add">
                 <span class="social_icon">
                     <i class="fas fa-plus"></i>
@@ -207,7 +209,7 @@
     <form name="Warranty">
         <div class="bg-white mx-0 mx-lg-3 p-4 border-rounded product-desc productreg">
             <h6 class="text-uppercase fontRobotoBold my-3">Warranty
-                <span class="orange-color ml-1">
+                <span class="orange-color ml-1" ng-if="data.warrantyExpDate">
                     <i class="far fa-check-circle font16"></i>
                 </span>
                 <!-- <span class="float-right info-icon">
@@ -234,7 +236,7 @@
         </div>
         <div class="bg-white mx-0 mx-lg-3 mt-1 p-4 border-rounded product-desc productreg">
             <h6 class="text-uppercase fontRobotoBold">Insurance
-                <span class="ml-3">
+                <span class="ml-3" ng-if="data.insuranceExpDate">
                     <i class="far fa-check-circle fa-lg"></i>
                 </span>
                 <!-- <span class="float-right info-icon">
@@ -243,7 +245,7 @@
             </h6>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Expiry Date * </label>
+                    <label class="mb-0">Expiry Date</label>
                     <input name="expdate" ng-model="data.insuranceExpDate" class="form-control form-control-sm" type="date">
                 </div>
             </div>

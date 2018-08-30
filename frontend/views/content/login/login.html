@@ -78,8 +78,8 @@
                                             required only-letters-input>
                                     </div>
                                     <div class="mb-3" ng-if="shownameEmail">
-                                        <input type="email" class="form-control rounded custom_input" id="email" ng-model="formName.email" placeholder="Enter Email Address (Dont worry we dont spam) * "
-                                            required email-validation>
+                                        <input type="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" class="form-control rounded custom_input" id="email" ng-model="formName.email" placeholder="Enter Email Address (Dont worry we dont spam) * "
+                                            required>
                                     </div>
                                     <div class="mb-1 text-center">
                                         <button type="submit" class="btn w-90 login-btn form-control" ng-click="saveUser(formName)" ng-disabled="!(formName.name && formName.email)">Submit</button>

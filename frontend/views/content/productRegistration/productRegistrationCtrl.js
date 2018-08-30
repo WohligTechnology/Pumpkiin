@@ -8,6 +8,8 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     $scope.activePage = 'circle1';
     $scope.productImages = [];
     $scope.productImages.image = {};
+    $scope.userData = {};
+    $scope.addeduser = [];
     $scope.data = {};
     $scope.jstrgValue = $.jStorage.get('userData');
     $scope.makeActive = function (click) {
@@ -54,7 +56,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         }
     });
 
-    if ($scope.jstrgValue._id) {
+    // if ($scope.jstrgValue._id) {
 
         $scope.getUserData = function () {
             var data = {};
@@ -91,22 +93,22 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         }
 
 
-        $scope.userData = {}
-        $scope.addeduser = []
-        $scope.addUser = function (data) {
+
+        $scope.addUser = function () {
             // console.log("$scope.product_id", $scope.product_id);
-            data._id = $scope.jstrgValue._id;
-            console.log("datae", data);
+            $scope.userData ._id = $scope.jstrgValue._id;
+            console.log("datae", $scope.userData );
 
             // data.productId = $scope.product_id;
-            NavigationService.apiCallWithData("User/addRelation", data, function (response) {
+            NavigationService.apiCallWithData("User/addRelation", $scope.userData , function (response) {
+                $scope.userData ={};         
                 // console.log("response", response);
                 if (response.value == true) {
+                               
                     toastr.success("Relation added successfully");
-                    $scope.userData = null;
                     $scope.getUserData();
                 } else {
-                    toastr.error("Check The Mobile Number");
+                    toastr.error("The Mobile Number is already a user");
                 }
             });
         }
@@ -230,6 +232,6 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             });
         }
 
-    }
+    // }
 
 });

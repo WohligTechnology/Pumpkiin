@@ -8,10 +8,15 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
     $scope.navigation = NavigationService.getNavigation();
 
     //REMINDER SECTION
-
+    $scope.changePage=function(pageno){
+        $scope.currentPage=pageno;
+        var start =(pageno-1)*6;
+        var end =(pageno-1)*6+6;
+        $scope.showLessReminders = _.slice($scope.allReminders, start,end);
+    }
     reminderService.findReminderOfPendingSnoozeByUser(function (data) {
         $scope.allReminders = data;
-        $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+        $scope.changePage(1);
     });
 
 
@@ -117,4 +122,17 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
         });
     }
 
+    //pagination
+
+    //end of pagination
+
+    // $scope.allRemindersPage[];
+    // $scope.currentPage = 0;
+    // $scope.pageSize = 6;
+    // $scope.numberOfPages=function(){
+    //     return Math.ceil($scope.allReminders.length/$scope.pageSize);                
+    // }
+    // for (var i=0; i<500; i++) {
+    //     $scope.allRemindersPage.push("Item"+i);
+    // }
 });

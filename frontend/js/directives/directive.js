@@ -330,25 +330,6 @@ myApp.directive('img', function ($compile, $parse) {
         };
     })
 
-    // .directive('emailValidation', function () {
-    //     return {
-    //         require: 'ngModel',
-    //         restrict: 'A',
-    //         link: function (scope, element, attr, ngModelCtrl) {
-    //             function fromUser(text) {
-    //                 var transformedInput = text.replace(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/g, '');
-    //                 //console.log(transformedInput);
-    //                 if (transformedInput !== text) {
-    //                     ngModelCtrl.$setViewValue(transformedInput);
-    //                     ngModelCtrl.$render();
-    //                 }
-    //                 return transformedInput;
-    //             }
-    //             ngModelCtrl.$parsers.push(fromUser);
-    //         }
-    //     };
-    // })
-
     .directive("moveNextOnMaxlength", function () {
         return {
             restrict: "A",
@@ -360,6 +341,13 @@ myApp.directive('img', function ($compile, $parse) {
                             $nextElement[0].focus();
                         }
                     }
+                });
+                $(':input').keyup(function(e)
+                {
+                    if($(this).val() =='' && e.which ==8)
+                    {
+                        $(this).prev('input').focus();
+                    }        
                 });
             }
         }
