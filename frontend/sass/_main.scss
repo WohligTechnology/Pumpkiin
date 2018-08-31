@@ -219,6 +219,16 @@ footer {
     p {
         margin: 0;
     }
+    .up-arrow{
+        border: 0;
+        bottom: 8px;
+        font-size: 30px;
+        padding: 5px 0;
+        cursor: pointer;
+        svg{
+            @extend .rotate-180;
+        }
+    }
 }
 
 .pumpkin-logo {
@@ -250,21 +260,6 @@ footer {
 .footer-style {
     height: 25px;
     box-shadow: 0 -5px 20px -5px #333;
-    &:after {
-        content: "";
-        background-image: url(../img/ticketCreation/caret-up.png);
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: 50%;
-        width: 30px;
-        height: 30px;
-        right: 60px;
-        bottom: 9px;
-        position: absolute;
-        z-index: 1;
-        background-color: #f6a244;
-        border-radius: 50%;
-    }
 }
 
 //end of footer 
@@ -326,7 +321,7 @@ footer {
 }
 
 .content {
-    min-height: calc(100vh - 13vh);
+    min-height: calc(100vh - 12vh);
 }
 
 .img-full {
@@ -680,9 +675,9 @@ fieldset:disabled {
 
 //scss for home page
 .home-section {
-    height: 92vh;
+    height: 93vh;
     .img-section {
-        width: 61.5vh;
+        width: 62vh;
     }
     .home-section-content {
         font-size: 40px;
@@ -737,6 +732,7 @@ fieldset:disabled {
                 background: #142c5b;
                 color: white;
                 border: 0;
+                // z-index: 9999;
             }
             .dropdown-item:hover,
             .dropdown-item:focus {
@@ -969,11 +965,6 @@ fieldset:disabled {
         vertical-align: 0;
     }
 }
-
-.support-chat-history {
-    margin-bottom: 22px;
-}
-
 .width-girl {
     width: 61vh;
 }

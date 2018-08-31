@@ -24,6 +24,7 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
             animation: true,
             templateUrl: "views/modal/addReminder.html",
             scope: $scope,
+            backdrop: 'static'
         });
     }
 
@@ -39,7 +40,6 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
             }
         });
     }
-
 
     $scope.saveReminder = function (data) {
         // console.log("----------", data);
@@ -67,7 +67,6 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
         }
     }
 
-
     $scope.searchData = function (data) {
         $scope.productList = []
         if (data.length > 0) {
@@ -81,10 +80,16 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
         }
     };
 
-
     $scope.logout = function (data) {
         $.jStorage.flush();
         $state.go("home");
     };
+
+    //for footer
+    $scope.scrollTop = function () {
+        $('html, body').animate({
+            scrollTop: $('body,html').offset().top - 100
+        }, 1000);
+    }
 
 });

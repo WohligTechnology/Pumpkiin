@@ -24,7 +24,7 @@
             <div class="col-12 col-md-6">
                 <label class="mb-0">Mobile Number * </label>
                 <input name="mobile" ng-model="userData.mobile" class="form-control form-control-sm"
-                    type="text" required only-digits>
+                    type="text" maxlength="10" required only-digits>
                     <span class="error" ng-show="newuser.mobile.$invalid && newuser.mobile.$touched"> Please, enter user contact</span> 
             </div>
             <div class="col-12 col-md-6">

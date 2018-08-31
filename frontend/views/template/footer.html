@@ -1,8 +1,11 @@
-<footer>
+<footer ng-controller="headerCtrl">
     <div class="bg-white position-relative footer-style">
         <div class="position-absolute pumpkin-logo">
             <img src="img/Pumpkiin.png" alt="Pumpkiin" class="img-fluid displaydefault">
             <img src="img/pumkiingray.png" alt="Pumpkiin" class="img-fluid displayclick">
+        </div>
+        <div class="position-absolute up-arrow" ng-click="scrollTop()">
+            <i class="fas fa-sort-down"></i>
         </div>
     </div>
 </footer>

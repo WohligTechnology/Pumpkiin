@@ -6,6 +6,10 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         TemplateService.footer = "";
         $scope.navigation = NavigationService.getNavigation();
 
+        // $('.select-box').selectpicker({
+        //     dropupAuto: false
+        // });
+
         $scope.submitForm = function (data) {
             console.log("This is it");
             return new Promise(function (callback) {

@@ -10,8 +10,8 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
     //REMINDER SECTION
     $scope.changePage=function(pageno){
         $scope.currentPage=pageno;
-        var start =(pageno-1)*6;
-        var end =(pageno-1)*6+6;
+        var start =(pageno-1)*5;
+        var end =(pageno-1)*5+5;
         $scope.showLessReminders = _.slice($scope.allReminders, start,end);
     }
     reminderService.findReminderOfPendingSnoozeByUser(function (data) {

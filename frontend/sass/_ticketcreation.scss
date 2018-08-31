@@ -43,10 +43,10 @@
         }
     }
     .openticket {
-        min-height: 23vh;
+            min-height: 36vh;
     }
     .reminderSection {
-        min-height: 23vh;
+            min-height: 36vh;
     }
     .info-div {
         // height: 200px;
@@ -349,6 +349,8 @@
 }
 
 .support-chat-history {
+    margin-bottom: 22px;
+    min-height: 65vh;
     .panel-default {
         margin: 10px 0;
         background-color: white;

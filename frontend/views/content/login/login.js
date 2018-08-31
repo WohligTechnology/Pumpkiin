@@ -18,8 +18,6 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
 
     });
 
-
-
     if ($stateParams.id) {
         if ($stateParams.id === "AccessNotAvailable") {
             toastr.error("You do not have access for the Backend.");

@@ -1,8 +1,11 @@
 .bg-image {
     // background: url("../img/bg.jpg");
-    height: 91.5vh;
+    height: 92.5vh;
     background-size: cover;
     background-position: top left;
+    .width-girl{
+        width: 61.5vh;
+    }
     .bg_overlay {
         background-color: rgba(255, 167, 78, 0.37);
         position: absolute;

@@ -145,10 +145,7 @@
             </div>
             <div class="float-right">
                 <nav aria-label="...">
-                    <ul  ng-change="changePage(currentPage); " uib-pagination total-items="allReminders.length
-                    " items-per-page="6 " ng-model="currentPage " max-size="10"
-    class="pagination-sm
-                    " boundary-links="true " force-ellipses="true "></ul>
+                    <ul ng-change="changePage(currentPage); " uib-pagination total-items="allReminders.length" items-per-page="5" ng-model="currentPage" max-size="10" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
                 </nav>
             </div>
             <a role="button" class="button w-25 py-1 float-right fontRobotoBold text-center orange-btn" ng-click="reminderModalOpen()"
