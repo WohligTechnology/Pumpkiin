@@ -729,10 +729,19 @@ fieldset:disabled {
                 }
             }
             .dropdown-menu {
+                transform: rotate(180deg) !important;
+                top: 50px !important;
+                left:-12px !important;
                 background: #142c5b;
                 color: white;
                 border: 0;
-                // z-index: 9999;
+                a{
+                    transform: rotate(180deg);
+                    &:hover{
+                        background-color: white;
+                        color: #142c5b;
+                    }
+                }
             }
             .dropdown-item:hover,
             .dropdown-item:focus {
