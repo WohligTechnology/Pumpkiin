@@ -1,0 +1,13 @@
+<div class="modal-header justify-content-center background-blue text-white">
+    <h5 class="modal-title fontRobotoRegular" id="modal-title">Delete</h5>
+    <span class="modal-close-icon" ng-click="$dismiss()">
+            <img src="img/modal/close_white.png" width="20">
+        </span>
+</div>
+<div class="modal-body fontRobotoLight text-center" id="modal-body">
+    <h5>Confirm Delete This Reminder ?</h5>
+    <div class="d-flex justify-content-center mt-3 fontRobotoRegular">
+        <a role="button" class="button btn-danger py-1 px-4 mr-4" ng-click="confirmDelete()">Yes</a>
+        <a role="button" class="button btn-success py-1 px-4" ng-click="$dismiss()">No</a>
+    </div>
+</div>

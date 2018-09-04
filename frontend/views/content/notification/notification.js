@@ -13,6 +13,7 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
         var start = (pageno - 1) * $scope.maxRow;
         var end = (pageno - 1) * $scope.maxRow + $scope.maxRow;
         $scope.showLessReminders = _.slice($scope.allReminders, start, end);
+        console.log(" $scope.showLessReminders", $scope.showLessReminders);
     }
     reminderService.findReminderOfPendingSnoozeByUser(function (data) {
         $scope.allReminders = data;
@@ -112,27 +113,25 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
     }
 
     $scope.deleteReminder = function (data) {
-        console.log("data", data);
-        var changeStatusData = {};
-        changeStatusData._id = data;
-        NavigationService.apiCallWithData("Reminder/delete", changeStatusData, function (res) {
-            if (res.value == true) {
-                $state.reload();
-            }
+        $scope.delete = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/cofirmDelete.html",
+            scope: $scope,
+            windowClass: 'app-modal-window',
+            backdrop: 'static'
         });
+        $scope.confirmDelete = function () {
+            var changeStatusData = {};
+            changeStatusData._id = data;
+            NavigationService.apiCallWithData("Reminder/delete", changeStatusData, function (res) {
+                if (res.value == true) {
+                    $state.reload();
+                }
+            });
+        }
     }
-
-    //pagination
-
-    //end of pagination
-
-    // $scope.allRemindersPage[];
-    // $scope.currentPage = 0;
-    // $scope.pageSize = 6;
-    // $scope.numberOfPages=function(){
-    //     return Math.ceil($scope.allReminders.length/$scope.pageSize);                
-    // }
-    // for (var i=0; i<500; i++) {
-    //     $scope.allRemindersPage.push("Item"+i);
-    // }
+    $scope.checkCircle = function (data) {
+        $(".blue-circle").toggleClass("selected");
+        console.log("circle", data);
+    }
 });

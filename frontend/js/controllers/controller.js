@@ -5,7 +5,6 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         TemplateService.header = "";
         TemplateService.footer = "";
         $scope.navigation = NavigationService.getNavigation();
-
         // $('.select-box').selectpicker({
         //     dropupAuto: false
         // });
@@ -19,7 +18,9 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             });
         };
 
-        $scope.openContact = function () {
+        $scope.openContact = function (product1, product2) {
+            $scope.userData = {};
+            $scope.userData.subject = "My " + product1 + ",needs " + product2;
             $scope.contactModal = $uibModal.open({
                 animation: true,
                 templateUrl: "views/modal/contact.html",

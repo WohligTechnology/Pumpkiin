@@ -219,13 +219,13 @@ footer {
     p {
         margin: 0;
     }
-    .up-arrow{
+    .up-arrow {
         border: 0;
         bottom: 8px;
         font-size: 30px;
         padding: 5px 0;
         cursor: pointer;
-        svg{
+        svg {
             @extend .rotate-180;
         }
     }
@@ -294,8 +294,11 @@ footer {
         }
     }
 }
-.error{color:red;
+
+.error {
+    color: red;
 }
+
 // input.ng-valid.ng-touched{
 //   border:1px solid #55b878;
 // }
@@ -405,7 +408,7 @@ header {
     line-height: 1.8;
 }
 
-.section-spacing{
+.section-spacing {
     margin: 0 9rem;
 }
 
@@ -731,13 +734,13 @@ fieldset:disabled {
             .dropdown-menu {
                 transform: rotate(180deg) !important;
                 top: 50px !important;
-                left:-12px !important;
+                left: -12px !important;
                 background: #142c5b;
                 color: white;
                 border: 0;
-                a{
+                a {
                     transform: rotate(180deg);
-                    &:hover{
+                    &:hover {
                         background-color: white;
                         color: #142c5b;
                     }
@@ -850,11 +853,13 @@ fieldset:disabled {
         }
     }
 }
+
 .star-color-change {
     svg {
         fill: $orange;
     }
 }
+
 .pumpkin-plans {
     background-color: #F9F9F9;
     .plans-list {
@@ -974,6 +979,7 @@ fieldset:disabled {
         vertical-align: 0;
     }
 }
+
 .width-girl {
     width: 61vh;
 }
@@ -1036,16 +1042,25 @@ fieldset:disabled {
         color: black;
     }
 }
-.privacy,.terms{
+
+.privacy,
+.terms {
     @extend .font14;
-    h5{
+    h5 {
         font-family: Roboto-Bold;
     }
-    p{
+    p {
         text-align: justify;
     }
-    a{
+    a {
         text-decoration: none;
         color: red;
     }
+}
+
+//accordian in notification page
+.selected {
+    background-color: $green !important;
+    border: solid 1px #142c5b;
+    transition: ease all 500ms;
 }
