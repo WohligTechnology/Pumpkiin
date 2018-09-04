@@ -1,6 +1,6 @@
 <div class="container my-3 product-creation" ng-controller="headerCtrl">
     <div class="filters">
-        <span>Sort : </span>
+        <span>Sort Alphabetically : </span>
         <div class="d-inline-block">
             <button type="button" class="btn btn-default" ng-click="sortByBrand()">Brand</button>
         </div>
@@ -55,29 +55,31 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center">
+            <!-- <div class="text-center">
                 <div class="d-inline-block pluse-circle">
                     <i class="fas fa-plus-circle"></i>
                 </div>
                 <div class="font-color  d-inline-block">
                     <p class="load-more" ng-click="loadMore()">Load More</p>
                 </div>
-            </div>
+            </div> -->
+            <!-- <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true"
+                rotate="false"></ul> -->
         </div>
         <div class="col col-md-3 openticketreminder">
             <div class="bg-white border-rounded p-3">
                 <div class="d-flex justify-content-between">
-                    <div class="closed-text" ng-click="getOpenTickets()">
+                    <div class="closed-text cursor-point" ng-click="getOpenTickets()">
                         <img src="img/ticketCreation/openTicket.png">
                         <div class="notification notification-orange" ng-if="!totalNumberOfOpenTickets">0</div>
                         <div class="notification notification-orange" ng-if="totalNumberOfOpenTickets">{{totalNumberOfOpenTickets}}</div>
                     </div>
-                    <div class="closed-text" ng-click="getClosedTickets()" ng-if="totalNumberOfClosedTickets">
+                    <div class="closed-text cursor-point" ng-click="getClosedTickets()" ng-if="totalNumberOfClosedTickets">
                         <img src="img/ticketCreation/closedTicket.png">
                         <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
                     </div>
-                    <div class="closed-text" ng-if="!totalNumberOfClosedTickets">
+                    <div class="closed-text cursor-point" ng-if="!totalNumberOfClosedTickets">
                         <img src="img/ticketCreation/closedTicket.png">
                         <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
@@ -132,23 +134,23 @@
             </div>
             <div class="bg-white border-rounded p-3 mt-2">
                 <div class="d-flex justify-content-between">
-                    <div class="closed-text" ng-click="pendingReminders()">
+                    <div class="closed-text cursor-point" ng-click="pendingReminders()">
                         <img src="img/header/Notification_circle-icon-orange.png">
                         <div class="notification notification-orange" ng-if="totalPendingReminders">{{totalPendingReminders}}</div>
                         <div class="notification notification-orange" ng-if="!totalPendingReminders">0</div>
 
                     </div>
-                    <div class="closed-text" ng-if="!totalCompletedReminder">
+                    <div class="closed-text cursor-point" ng-if="!totalCompletedReminder">
                         <img src="img/ticketCreation/Notification_circle-icon-green.png">
                         <div class="notification" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
                         <div class="notification" ng-if="!totalCompletedReminder">0</div>
                     </div>
-                    <div class="closed-text" ng-click="completedReminders()" ng-if="totalCompletedReminder">
+                    <div class="closed-text cursor-point" ng-click="completedReminders()" ng-if="totalCompletedReminder">
                         <img src="img/ticketCreation/Notification_circle-icon-green.png">
                         <div class="notification" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
                         <div class="notification" ng-if="!totalCompletedReminder">0</div>
                     </div>
-                    <div ng-click="reminderModalOpen()">
+                    <div class="cursor-point" ng-click="reminderModalOpen()">
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
@@ -180,7 +182,6 @@
                         </div>
 
                     </div>
-
                 </div>
                 <div class="text-right  view mt-2" ui-sref='notification'>View All
                     <span class="pl-2 ">

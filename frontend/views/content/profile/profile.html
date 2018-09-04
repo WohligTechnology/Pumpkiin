@@ -37,7 +37,7 @@
 <div class="container profile-page-subsection">
     <div class="bg-white border-rounded p-4 my-2 productreg">
         <h6 class="fontRobotoBold blue-color my-2 space-letter">PERSONAL INFORMATION
-            <span class="float-right info-icon" ng-click="personalInfo=!personalInfo">
+            <span class="float-right info-icon cursor-point" ng-click="personalInfo=!personalInfo">
                 <i class="fas fa-pencil-alt fa-xs"></i>
             </span>
         </h6>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-10">
                     <div class="fontRobotoLight font14">
-                        <div ng-if="!personalInfo && userDataForProfile.gender" class="mb-2 w-20 custom-input">
+                        <div ng-if="!personalInfo && userDataForProfile.gender" class="mb-2 w-20 custom-input text-capitalize">
                             {{userDataForProfile.gender}}
                         </div>
                         <div ng-if="!personalInfo && !userDataForProfile.gender" class="mb-2 w-20 custom-input">
@@ -82,7 +82,7 @@
                             - - -
                         </div>
                         <div ng-if="personalInfo" class="mb-2 w-20 custom-input">
-                            <input maxlength="10" type="text" class="mt-2 p-1" ng-model="genderData.mobile">
+                            <input maxlength="10" type="text" class="mt-2 p-1" ng-model="genderData.mobile" only-digits>
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 <div class="col-1">
-                    <span class="pl-3 float-right info-icon" ng-click="addressModalOpen();">
+                    <span class="pl-3 float-right info-icon cursor-point" ng-click="addressModalOpen();">
                         <i class="fas fa-plus"></i>
                     </span>
                 </div>

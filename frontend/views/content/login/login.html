@@ -75,11 +75,12 @@
 
                                     <div class="mb-3" ng-if="shownameEmail">
                                         <input type="text" class="form-control rounded custom_input" id="txtFirstName" ng-model="formName.name" placeholder="Enter First Last Name * "
-                                            required only-letters-input>
+                                            required only-letters-input ng-readonly="alreadyExists">
                                     </div>
                                     <div class="mb-3" ng-if="shownameEmail">
-                                        <input type="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" class="form-control rounded custom_input" id="email" ng-model="formName.email" placeholder="Enter Email Address (Dont worry we dont spam) * "
-                                            required>
+                                        <input type="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" class="form-control rounded custom_input" id="email"
+                                            ng-model="formName.email" placeholder="Enter Email Address (Dont worry we dont spam) * "
+                                            required ng-readonly="alreadyExists">
                                     </div>
                                     <div class="mb-1 text-center">
                                         <button type="submit" class="btn w-90 login-btn form-control" ng-click="saveUser(formName)" ng-disabled="!(formName.name && formName.email)">Submit</button>

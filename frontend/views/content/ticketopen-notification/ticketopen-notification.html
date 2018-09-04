@@ -4,22 +4,22 @@
 
             <div class="bg-white border-rounded p-3">
                 <div class="d-flex justify-content-between">
-                    <div class="closed-text" ng-click="getOpenTickets()">
+                    <div class="closed-text cursor-point" ng-click="getOpenTickets()">
                         <img src="img/ticketCreation/openTicket.png">
                         <div class="notification notification-orange" ng-if="!totalNumberOfOpenTickets">0</div>
                         <div class="notification notification-orange" ng-if="totalNumberOfOpenTickets">{{totalNumberOfOpenTickets}}</div>
                     </div>
-                    <div class="closed-text" ng-click="getClosedTickets()" ng-if="totalNumberOfClosedTickets">
+                    <div class="closed-text cursor-point" ng-click="getClosedTickets()" ng-if="totalNumberOfClosedTickets">
                         <img src="img/ticketCreation/closedTicket.png">
                         <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
                     </div>
-                    <div class="closed-text" ng-if="!totalNumberOfClosedTickets">
+                    <div class="closed-text cursor-point" ng-if="!totalNumberOfClosedTickets">
                         <img src="img/ticketCreation/closedTicket.png">
                         <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
                     </div>
-                    <div ui-sref="ticketcreation">
+                    <div class="cursor-point" ui-sref="ticketcreation">
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
@@ -61,18 +61,18 @@
             </div>
             <div class="bg-white border-rounded p-3 mt-2">
                 <div class="d-flex justify-content-between">
-                    <div class="closed-text" ng-click="pendingReminders()">
+                    <div class="closed-text cursor-point" ng-click="pendingReminders()">
                         <img src="img/header/Notification_circle-icon-orange.png">
                         <div class="notification notification-orange" ng-if="totalPendingReminders">{{totalPendingReminders}}</div>
                         <div class="notification notification-orange" ng-if="!totalPendingReminders">0</div>
 
                     </div>
-                    <div class="closed-text" ng-click="completedReminders()">
+                    <div class="closed-text cursor-point" ng-click="completedReminders()">
                         <img src="img/ticketCreation/Notification_circle-icon-green.png">
                         <div class="notification" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
                         <div class="notification" ng-if="!totalCompletedReminder">0</div>
                     </div>
-                    <div ng-click="reminderModalOpen()">
+                    <div class="cursor-point" ng-click="reminderModalOpen()">
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>

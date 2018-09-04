@@ -67,6 +67,14 @@
     }
 }
 
+.modal-font-color,
+.modal-body {
+    color: #292b2c;
+    span {
+        padding-left: 8px;
+    }
+}
+
 .profile-details {
     .noShow {
         display: none;

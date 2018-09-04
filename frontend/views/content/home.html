@@ -14,7 +14,7 @@
                                 {{product1}}
                             </span>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a ng-repeat="pro in product track by $index" class="dropdown-item" ng-click="$parent.product1 = pro.name">{{pro.name}}</a>
+                                <a ng-repeat="pro in product | orderBy : '-name'" class="dropdown-item" ng-click="$parent.product1 = pro.name">{{pro.name}}</a>
                             </div>
                         </div>
                     </div>, needs
@@ -25,7 +25,7 @@
                                 {{product2}}
                             </span>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a ng-repeat="ser in service track by $index" class="dropdown-item" ng-click="$parent.product2 = ser.name">{{ser.name }}</a>
+                                <a ng-repeat="ser in service | orderBy : '-name'" class="dropdown-item" ng-click="$parent.product2 = ser.name">{{ser.name }}</a>
                             </div>
                         </div>
                     </div>.

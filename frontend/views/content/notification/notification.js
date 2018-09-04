@@ -6,13 +6,13 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
 
     // TemplateService.header = " ";
     $scope.navigation = NavigationService.getNavigation();
-
+    $scope.maxRow = 5;
     //REMINDER SECTION
-    $scope.changePage=function(pageno){
-        $scope.currentPage=pageno;
-        var start =(pageno-1)*5;
-        var end =(pageno-1)*5+5;
-        $scope.showLessReminders = _.slice($scope.allReminders, start,end);
+    $scope.changePage = function (pageno) {
+        $scope.currentPage = pageno;
+        var start = (pageno - 1) * $scope.maxRow;
+        var end = (pageno - 1) * $scope.maxRow + $scope.maxRow;
+        $scope.showLessReminders = _.slice($scope.allReminders, start, end);
     }
     reminderService.findReminderOfPendingSnoozeByUser(function (data) {
         $scope.allReminders = data;

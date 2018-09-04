@@ -40,6 +40,11 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
         NavigationService.apiCallWithData("User/sendOtp", data, function (res1) {
             // console.log("res1", res1);
             if (res1.value == true) {
+                if (res1.data.name && res1.data.email) {
+                    $scope.formName.name = res1.data.name;
+                    $scope.formName.email = res1.data.email;
+                    $scope.alreadyExists = true;
+                }
                 $scope.showsignUp = true;
                 $scope.showLogin = false;
             } else {

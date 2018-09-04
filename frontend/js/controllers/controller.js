@@ -1,5 +1,5 @@
 var mySwiper;
-myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http,$uibModal) {
+myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal) {
         $scope.template = TemplateService.getHTML("content/home.html");
         TemplateService.title = "Home"; //This is the Title of the Website
         TemplateService.header = "";
@@ -24,7 +24,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                 animation: true,
                 templateUrl: "views/modal/contact.html",
                 scope: $scope,
-                backdrop:'static'
+                backdrop: 'static'
             });
         }
 
@@ -105,9 +105,9 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             }
         ];
         $scope.service = [{
-            name: 'Service'
-        }, {
             name: 'Repair'
+        }, {
+            name: 'Service'
         }]
 
         $scope.testimonials = [{
@@ -118,7 +118,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             "name": "Priti",
             "message": "No more going through IVRs, or coordinating with service personnel. Pumpkiin does it all! Wonderful!",
             "rate": "5"
-        },{
+        }, {
             "name": "Parth",
             "message": "Fantastic service, peace of mind.",
             "rate": "5"

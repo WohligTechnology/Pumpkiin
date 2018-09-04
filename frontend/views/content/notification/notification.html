@@ -4,18 +4,18 @@
 
             <div class="bg-white border-rounded p-3">
                 <div class="d-flex justify-content-between">
-                    <div class="closed-text" ng-click="pendingReminders()">
+                    <div class="closed-text cursor-point" ng-click="pendingReminders()">
                         <img src="img/header/Notification_circle-icon-orange.png">
                         <div class="notification notification-orange" ng-if="totalPendingReminders">{{totalPendingReminders}}</div>
                         <div class="notification notification-orange" ng-if="!totalPendingReminders">0</div>
 
                     </div>
-                    <div class="closed-text" ng-click="completedReminders()">
+                    <div class="closed-text cursor-point" ng-click="completedReminders()">
                         <img src="img/ticketCreation/Notification_circle-icon-green.png">
                         <div class="notification" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
                         <div class="notification" ng-if="!totalCompletedReminder">0</div>
                     </div>
-                    <div ng-click="reminderModalOpen()">
+                    <div class="cursor-point" ng-click="reminderModalOpen()">
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
@@ -49,22 +49,22 @@
             </div>
             <div class="bg-white border-rounded p-3 mt-2">
                 <div class="d-flex justify-content-between">
-                    <div class="closed-text" ng-click="getOpenTickets()">
+                    <div class="closed-text cursor-point" ng-click="getOpenTickets()">
                         <img src="img/ticketCreation/openTicket.png">
                         <div class="notification notification-orange" ng-if="!totalNumberOfOpenTickets">0</div>
                         <div class="notification notification-orange" ng-if="totalNumberOfOpenTickets">{{totalNumberOfOpenTickets}}</div>
                     </div>
-                    <div class="closed-text" ng-click="getClosedTickets()" ng-if="totalNumberOfClosedTickets">
+                    <div class="closed-text cursor-point" ng-click="getClosedTickets()" ng-if="totalNumberOfClosedTickets">
                         <img src="img/ticketCreation/closedTicket.png">
                         <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
                     </div>
-                    <div class="closed-text" ng-if="!totalNumberOfClosedTickets">
+                    <div class="closed-text cursor-point" ng-if="!totalNumberOfClosedTickets">
                         <img src="img/ticketCreation/closedTicket.png">
                         <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
                     </div>
-                    <div ui-sref="ticketcreation">
+                    <div class="cursor-point" ui-sref="ticketcreation">
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
@@ -144,8 +144,9 @@
                 </uib-accordion>
             </div>
             <div class="float-right">
-                <nav aria-label="...">
-                    <ul ng-change="changePage(currentPage); " uib-pagination total-items="allReminders.length" items-per-page="5" ng-model="currentPage" max-size="10" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
+                <nav aria-label="..." ng-if="(allReminders.length / maxRow) >1">
+                    <ul ng-change="changePage(currentPage); " uib-pagination total-items="allReminders.length" items-per-page="maxRow" ng-model="currentPage"
+                        max-size="10" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
                 </nav>
             </div>
             <a role="button" class="button w-25 py-1 float-right fontRobotoBold text-center orange-btn" ng-click="reminderModalOpen()"
