@@ -95,7 +95,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
     ticketService.totalOpenTickets(function (data) {
         // $scope.ticketDetails = data;
-        $scope.ticketDetails = _.slice(data, 0, 5);
+        $scope.ticketDetails = _.slice(data, 0, 8);
         console.log(" $scope.ticketDetails --", $scope.ticketDetails);
 
     });
@@ -123,14 +123,14 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
     $scope.getClosedTickets = function () {
         ticketService.totalClosedTickets(function (data) {
             // $scope.ticketDetails = data;
-            $scope.ticketDetails = _.slice(data, 0, 5);
+            $scope.ticketDetails = _.slice(data, 0, 8);
         });
     }
 
     $scope.getOpenTickets = function () {
         ticketService.totalOpenTickets(function (data) {
             // $scope.ticketDetails = data;
-            $scope.ticketDetails = _.slice(data, 0, 5);
+            $scope.ticketDetails = _.slice(data, 0, 8);
         });
     }
 

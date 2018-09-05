@@ -131,6 +131,7 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
         }
     }
     $scope.checkCircle = function (data) {
+        $scope.disabled = "true";
         $(".blue-circle").toggleClass("selected");
         console.log("circle", data);
     }

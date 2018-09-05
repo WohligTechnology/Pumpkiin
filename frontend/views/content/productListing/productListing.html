@@ -36,7 +36,7 @@
                         </span>
                         <div class="addedpromain" ui-sref="productdetailregistered({id: product._id})">
                             <div class="d-flex align-items-center justify-content-center addedproduct" ui-sref="productdetailregistered({id: product._id})">
-                                <img class="img-thumbnail" ng-src="{{product.productImages[0] | serverimage}}" alt="">
+                                <img class="img-fluid large-img" ng-src="{{product.productImages[0] | serverimage}}" alt="">
                                 <div class="background-blue small-circle">
                                     <img src="{{product.smallimage}}">
                                 </div>
@@ -55,6 +55,12 @@
                     </div>
                 </div>
             </div>
+            <div class="float-right mr-2">
+                <nav aria-label="..." ng-if="(ticketDetails.length / maxRow) >1">
+                    <ul ng-change="changePage(currentPage); " uib-pagination total-items="ticketDetails.length" items-per-page="8" ng-model="currentPage"
+                        max-size="10" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
+                </nav>
+            </div>
             <!-- <div class="text-center">
                 <div class="d-inline-block pluse-circle">
                     <i class="fas fa-plus-circle"></i>
@@ -63,8 +69,6 @@
                     <p class="load-more" ng-click="loadMore()">Load More</p>
                 </div>
             </div> -->
-            <!-- <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true"
-                rotate="false"></ul> -->
         </div>
         <div class="col col-md-3 openticketreminder">
             <div class="bg-white border-rounded p-3">
