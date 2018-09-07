@@ -5,20 +5,20 @@
     </span>
 </div>
 <div class="modal-body fontRobotoLight invoicewarranty" id="modal-body">
-    <div class="mb-2 fontRobotoRegular">Upload Product Invioce <span class="green-color" ng-if="data.productInvoicePR">({{data.productInvoicePR.length}})</span></div>
+    <div class="mb-0 mb-md-1 fontRobotoRegular">Upload Product Invioce <span class="green-color" ng-if="data.productInvoicePR">({{data.productInvoicePR.length}})</span></div>
 
     <div class="scrollbar">
         <div>
             <upload-image multiple ng-model="data.productInvoicePR" no-status="true"></upload-image>
         </div>
     </div>
-    <div class="mb-2 mt-3 fontRobotoRegular">Upload Warranty Card <span class="green-color" ng-if="data.warrantyCardPR">({{data.warrantyCardPR.length}})</span></div>
+    <div class="mb-md-1 mt-md-1 mt-0 mb-0 fontRobotoRegular">Upload Warranty Card <span class="green-color" ng-if="data.warrantyCardPR">({{data.warrantyCardPR.length}})</span></div>
     <div class="scrollbar">
         <div>
             <upload-image multiple ng-model="data.warrantyCardPR" no-status="true"></upload-image>
         </div>
     </div>
-    <fieldset class="d-flex my-3 fontRobotoRegular" ng-disabled="data.warrantyCardPR.length<=0" ng-click="submitDocuments(data)">
+    <fieldset class="d-flex my-0 my-md-1 fontRobotoRegular" ng-disabled="data.warrantyCardPR.length<=0" ng-click="submitDocuments(data)">
         <a role="button" class="button green-btn py-1 w-50 mx-auto text-center">UPLOAD FILES</a>
     </fieldset>
 </div>

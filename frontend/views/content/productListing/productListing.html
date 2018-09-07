@@ -7,16 +7,17 @@
         <div class="d-inline-block">
             <button type="button" class="btn btn-default" ng-click="sortByProduct()">Product</button>
         </div>
-        <button class="export float-right">
+        <button class="export">
             <span ng-click="generateExcel()">
                 <!-- <i class="far fa-file-pdf"></i> -->
                 <i class="far fa-file-excel"></i>
-            </span>Export Product List</button>
+            </span>Export Product List
+        </button>
     </div>
-    <div class="row mt-4">
+    <div class="row mt-4 spacing-top">
         <div class="col col-md-9">
             <div class="row no-gutters product-section">
-                <div class="col-xs-12 col-md-3 mb-3 px-2">
+                <div class="col-6 col-md-4 col-lg-3 mb-1 mb-md-3 px-0 px-lg-2">
                     <div class="bg-white orange-border border-rounded text-center effectonhover" ui-sref="productregistration">
                         <div class="pb-5 addpromain">
                             <div class="d-flex align-items-center justify-content-center addproduct">
@@ -28,7 +29,7 @@
                         <button class="my-3 support-btn">SUPPORT</button>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-3 mb-3 px-2" ng-repeat="product in productPerPage track by $index">
+                <div class="col-6 col-md-4 col-lg-3 mb-1 mb-md-3 px-0 px-lg-2" ng-repeat="product in productPerPage track by $index">
                     <div class="bg-white border border-rounded text-center effectonhover">
                         <span class="float-right product-icon" ng-click="deleteProduct($index)">
                             <i class="fas fa-trash-alt"></i>
@@ -70,7 +71,7 @@
                 </div>
             </div> -->
         </div>
-        <div class="col col-md-3 openticketreminder">
+        <div class="col col-md-3 openticketreminder d-none d-md-block">
             <div class="bg-white border-rounded p-3">
                 <div class="d-flex justify-content-between">
                     <div class="closed-text cursor-point" ng-click="getOpenTickets()">
@@ -191,5 +192,4 @@
             </div>
         </div>
     </div>
-
 </div>

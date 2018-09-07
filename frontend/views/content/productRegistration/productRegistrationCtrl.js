@@ -36,8 +36,8 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             animation: true,
             templateUrl: "views/modal/pumpRegistration.html",
             scope: $scope,
-            backdrop: 'static'
-            // windowClass: 'app-modal-window'
+            backdrop: 'static',
+            windowClass: 'app-modal-window'
         });
         $scope.registration.close();
     }

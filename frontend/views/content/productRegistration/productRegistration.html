@@ -1,5 +1,5 @@
-<div class="background-blue position-relative p-1 p-lg-3 pb-5 text-center fontRobotoRegular text-white">
-    <h5>Product Registration</h5>
+<div class="background-blue position-relative p-1 p-lg-3 pb-5 text-left text-lg-center fontRobotoRegular text-white">
+    <h5 class="my-2 my-md-0">Product Registration</h5>
     <div class="my-5 timeline">
         <div class="circle circle1 timeline-active" ng-click="makeActive('circle1')">
             <i class="fas fa-check check-icon" ng-if="activePage == 'circle2' && checkmark1"></i>
@@ -14,7 +14,7 @@
             <i class="fas fa-check check-icon" ng-if="activePage == 'circle5'"></i>
         </div>
     </div>
-    <div class="d-flex social m-3 cancel mx-5" ui-sref="productListingfcanf">
+    <div class="d-flex social my-3 m-md-3 cancel mx-0 mx-md-5" ui-sref="productListingfcanf">
         <span class="social_icon">
             <i class="fas fa-times"></i>
         </span>
@@ -76,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <fieldset class="d-flex social m-3 save ml-auto" role="button" ng-click="saveProduct(data)" ng-disabled="product.$invalid">
+        <fieldset class="d-flex social mx-auto m-md-3 my-3 save ml-auto" role="button" ng-click="saveProduct(data)" ng-disabled="product.$invalid">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
             </span>
@@ -188,7 +188,7 @@
             </div>
         </div>
         <fieldset class="row form-group" ng-click="addUser()" ng-disabled="adduser.$invalid">
-            <div class="d-flex social m-3 add">
+            <div class="d-flex social m-md-3 mx-auto my-3 add">
                 <span class="social_icon">
                     <i class="fas fa-plus"></i>
                 </span>
@@ -197,7 +197,7 @@
         </fieldset>
     </form>
     </div>
-    <fieldset class="d-flex social m-3 save ml-auto" ng-click="savepurchaseDetails(data)" ng-disabled="!(data.purchaseDate && data.purchasePrice && data.retailer && data.Users)">
+    <fieldset class="d-flex social mx-auto m-md-3 my-3 save ml-auto" ng-click="savepurchaseDetails(data)" ng-disabled="!(data.purchaseDate && data.purchasePrice && data.retailer && data.Users)">
         <span class="social_icon">
             <i class="fas fa-save"></i>
             </i>
@@ -266,7 +266,7 @@
             </div>
         </div>
 
-        <fieldset class="d-flex social m-3 save ml-auto" ng-click="goToNxtTab(data)" ng-disabled="Warranty.$invalid">
+        <fieldset class="d-flex social mx-auto m-md-3 my-3 save ml-auto" ng-click="goToNxtTab(data)" ng-disabled="Warranty.$invalid">
             <span class="social_icon">
                 <i class="fas fa-save"></i>
             </span>
@@ -304,7 +304,7 @@
         </div>
     </div>
 
-    <fieldset class="d-flex social m-3 save ml-auto" ng-click="addProduct()">
+    <fieldset class="d-flex social mx-auto m-md-3 my-3 save ml-auto" ng-click="addProduct()">
         <span class="social_icon">
             <i class="fas fa-save"></i>
         </span>

@@ -1,4 +1,4 @@
-<div class="background-blue p-4 profile-page">
+<div class="background-blue p-1 p-md-4 profile-page">
     <div class="container">
         <div class="d-flex profile-details mb-3 ">
             <div class="profile-image" class="img-fluid">
@@ -43,19 +43,19 @@
         </h6>
         <div class="pb-4 border-dashed-bottom">
             <div class="row">
-                <div class="col-2">
+                <div class="col-5 col-md-3 col-lg-2">
                     <div class="fontRobotoRegular dark-font-color font14">
                         <div class="mb-2">Gender</div>
                         <div class="mb-2">Date of Birth</div>
                         <div>Phone Number </div>
                     </div>
                 </div>
-                <div class="col-10">
+                <div class="col-7 col-md-9 col-lg-10">
                     <div class="fontRobotoLight font14">
-                        <div ng-if="!personalInfo && userDataForProfile.gender" class="mb-2 w-20 custom-input text-capitalize">
+                        <div ng-if="!personalInfo && userDataForProfile.gender" class="mb-2 custom-input text-capitalize">
                             {{userDataForProfile.gender}}
                         </div>
-                        <div ng-if="!personalInfo && !userDataForProfile.gender" class="mb-2 w-20 custom-input">
+                        <div ng-if="!personalInfo && !userDataForProfile.gender" class="mb-2 custom-input">
                             - - -
                         </div>
                         <div ng-if="personalInfo">
@@ -66,22 +66,22 @@
                                 <input type="radio" name="optradio" value="female" ng-model="genderData.gender"> Female
                             </label>
                         </div>
-                        <div class="w-20 custom-input" ng-if="personalInfo">
+                        <div class="custom-input" ng-if="personalInfo">
                             <input type="date" name="August" ng-model="genderData.dob">
                         </div>
-                        <div class="w-20 custom-input" ng-if="!personalInfo && userDataForProfile.dob ">
+                        <div class="custom-input" ng-if="!personalInfo && userDataForProfile.dob ">
                             {{ userDataForProfile.dob |date}}
                         </div>
-                        <div class="w-20 custom-input" ng-if="!personalInfo && !userDataForProfile.dob ">
+                        <div class="custom-input" ng-if="!personalInfo && !userDataForProfile.dob ">
                             - - -
                         </div>
-                        <div ng-if="!personalInfo && userDataForProfile.mobile " class="my-2 w-20 custom-input">
+                        <div ng-if="!personalInfo && userDataForProfile.mobile " class="my-2 custom-input">
                             {{userDataForProfile.mobile}}
                         </div>
-                        <div ng-if="!personalInfo && !userDataForProfile.mobile " class="mb-2 w-20 custom-input">
+                        <div ng-if="!personalInfo && !userDataForProfile.mobile " class="mb-2 custom-input">
                             - - -
                         </div>
-                        <div ng-if="personalInfo" class="mb-2 w-20 custom-input">
+                        <div ng-if="personalInfo" class="mb-2 custom-input">
                             <input maxlength="10" type="text" class="mt-2 p-1" ng-model="genderData.mobile" only-digits>
                         </div>
                     </div>

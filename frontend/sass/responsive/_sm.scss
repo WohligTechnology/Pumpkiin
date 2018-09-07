@@ -1,3 +1,26 @@
 /* Breakpoint for medium viewport */
 
-@include media-breakpoint-down(sm) {}
+@include media-breakpoint-down(sm) {
+    .save,
+    .add,
+    .reminder {
+        width: 70%;
+    }
+    .app-modal-window {
+        left: 50%;
+        width: 100%;
+        .button {
+            font-size: 12px;
+        }
+    }
+    .export {
+        margin: 10px 0px;
+        float: left;
+    }
+    .spacing-top {
+        margin-top: 4rem !important;
+    }
+    .custom-input {
+        width: 100% !important;
+    }
+}
