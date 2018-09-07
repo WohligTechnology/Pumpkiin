@@ -130,9 +130,17 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
             });
         }
     }
+    $scope.selectedReminders = [];
     $scope.checkCircle = function (data) {
-        $scope.disabled = "true";
-        $(".blue-circle").toggleClass("selected");
-        console.log("circle", data);
+        console.log("id", data);
+        console.log("$scope.showLessReminders", $scope.showLessReminders);
+
+        for (i = 0; i < 4; i++) {
+            if ($scope.showLessReminders[i]._id == data) {
+                $scope.selectedReminders.push(data);
+                console.log("$scope.selectedReminders", $scope.selectedReminders);
+                $(".blue-circle").toggleClass("selected");
+            }
+        }
     }
 });

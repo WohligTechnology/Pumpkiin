@@ -46,7 +46,8 @@
                                 <br>
                                 <span class="relation">{{product.relation}}</span>
                                 <br>
-                                <img src="img/ticketCreation/warranty.png">
+                                <img ng-if="product.warranty" src="img/ticketCreation/warranty.png">
+                                <img ng-if="!product.warranty" src="img/ticketCreation/red_warranty.png">
                                 <span class="expiry">{{product.warranty}}</span>
                             </div>
                         </div>
@@ -56,8 +57,8 @@
                 </div>
             </div>
             <div class="float-right mr-2">
-                <nav aria-label="..." ng-if="(ticketDetails.length / maxRow) >1">
-                    <ul ng-change="changePage(currentPage); " uib-pagination total-items="ticketDetails.length" items-per-page="8" ng-model="currentPage"
+                <nav aria-label="..." ng-if="(allProducts.length / maxRow) >1">
+                    <ul ng-change="changePage(currentPage);" uib-pagination total-items="allProductss.length" items-per-page="8" ng-model="currentPage"
                         max-size="10" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
                 </nav>
             </div>
@@ -112,10 +113,10 @@
                         </form>
                     </div>
                 </div>
-                <div class="border-top listed-openTickets openticket ">
-                    <div class="d-flex py-1 element-list " ng-repeat="tickets in ticketDetails">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4">
+                <div class="border-top listed-openTickets openticket">
+                    <div class="d-flex py-1 element-list" ng-repeat="tickets in ticketDetails">
+                        <div class="bullet"></div>
+                        <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
                             <div class="product-title text-truncate">{{tickets.product.productName}}</div>
                             <div class="date ">{{tickets.issueReported | date}}</div>
                         </div>

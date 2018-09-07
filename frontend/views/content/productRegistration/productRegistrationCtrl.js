@@ -58,179 +58,181 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
 
     // if ($scope.jstrgValue._id) {
 
-        $scope.getUserData = function () {
-            var data = {};
-            data._id = $scope.jstrgValue._id;
-            NavigationService.apiCallWithData("User/getOne", data, function (response) {
-                if (response.value == true) {
-                    $scope.userDataForRegist = response.data;
-                    // console.log("$scope.userDataForRegist ", $scope.userDataForRegist);
-                }
+    $scope.getUserData = function () {
+        var data = {};
+        data._id = $scope.jstrgValue._id;
+        NavigationService.apiCallWithData("User/getOne", data, function (response) {
+            if (response.value == true) {
+                $scope.userDataForRegist = response.data;
+                // console.log("$scope.userDataForRegist ", $scope.userDataForRegist);
+            }
+        });
+    }
+
+    $scope.getUserData();
+
+    $scope.saveProduct = function (product) {
+        // product.productImages = [];
+        // product.productImages = product.images;
+        product.user = $scope.jstrgValue._id;
+        product.brand = product.brand._id;
+        if ($scope.product_id) {
+            product._id = $scope.product_id;
+            NavigationService.apiCallWithData("Product/saveProduct", product, function (res) {
+                $scope.product_id = res.data._id;
+                // console.log("res.data", res.data);
+                $scope.makeActive('circle2');
+                $scope.checkmark1 = true;
+            });
+        } else {
+            NavigationService.apiCallWithData("Product/save", product, function (res) {
+                $scope.product_id = res.data._id;
+                // console.log("res.data", res.data);
+                $scope.makeActive('circle2');
+                $scope.checkmark1 = true;
             });
         }
+    }
 
-        $scope.getUserData();
+    $scope.addUser = function () {
+        // console.log("$scope.product_id", $scope.product_id);
+        $scope.userData._id = $scope.jstrgValue._id;
+        console.log("datae", $scope.userData);
 
-        $scope.saveProduct = function (product) {
-            // product.productImages = [];
-            // product.productImages = product.images;
-            product.user = $scope.jstrgValue._id;
-            product.brand = product.brand._id;
-            if ($scope.product_id) {
-                product._id = $scope.product_id;
-                NavigationService.apiCallWithData("Product/saveProduct", product, function (res) {
-                    $scope.product_id = res.data._id;
-                    // console.log("res.data", res.data);
-                    $scope.makeActive('circle2');
-                });
+        // data.productId = $scope.product_id;
+        NavigationService.apiCallWithData("User/addRelation", $scope.userData, function (response) {
+            $scope.userData = {};
+            // console.log("response", response);
+            if (response.value == true) {
+
+                toastr.success("Relation added successfully");
+                $scope.getUserData();
             } else {
-                NavigationService.apiCallWithData("Product/save", product, function (res) {
-                    $scope.product_id = res.data._id;
-                    // console.log("res.data", res.data);
-                    $scope.makeActive('circle2');
-                });
+                toastr.error("The Mobile Number is already a user");
             }
-        }
+        });
+    }
 
-
-
-        $scope.addUser = function () {
+    $scope.savepurchaseDetails = function (purchase) {
+        if (purchase) {
+            purchase.relatedUser = [];
+            console.log("purchase.Users----", purchase.Users)
+            // _.each(purchase.Users, function (x) {
+            //     var dataToSend = {};
+            //     dataToSend.relationType = null;
+            //     dataToSend.user = x._id;
+            //     purchase.relatedUser.push(dataToSend);
+            // });
+            purchase.relatedUser = purchase.Users;
+            delete purchase.Users;
+            // console.log("purchase----", purchase)
             // console.log("$scope.product_id", $scope.product_id);
-            $scope.userData ._id = $scope.jstrgValue._id;
-            console.log("datae", $scope.userData );
+            purchase._id = $scope.product_id;
+            NavigationService.apiCallWithData("Product/saveProduct", purchase, function (res) {
+                $scope.makeActive('circle3');
+                $scope.checkmark2 = true;
+            });
+        }
+    }
 
-            // data.productId = $scope.product_id;
-            NavigationService.apiCallWithData("User/addRelation", $scope.userData , function (response) {
-                $scope.userData ={};         
-                // console.log("response", response);
-                if (response.value == true) {
-                               
-                    toastr.success("Relation added successfully");
-                    $scope.getUserData();
-                } else {
-                    toastr.error("The Mobile Number is already a user");
-                }
+    $scope.goToNxtTab = function (data) {
+        // console.log("data---", data);
+        if ($scope.product_id) {
+            data._id = $scope.product_id;
+            NavigationService.apiCallWithData("Product/saveProduct", data, function (res) {
+                console.log("res.data", res.data);
+                $scope.makeActive('circle4');
+                $scope.checkmark3 = true;
             });
         }
 
-        $scope.savepurchaseDetails = function (purchase) {
-            if (purchase) {
-                purchase.relatedUser = [];
-                console.log("purchase.Users----", purchase.Users)
-                // _.each(purchase.Users, function (x) {
-                //     var dataToSend = {};
-                //     dataToSend.relationType = null;
-                //     dataToSend.user = x._id;
-                //     purchase.relatedUser.push(dataToSend);
-                // });
-                purchase.relatedUser = purchase.Users;
-                delete purchase.Users;
-                // console.log("purchase----", purchase)
-                // console.log("$scope.product_id", $scope.product_id);
-                purchase._id = $scope.product_id;
-                NavigationService.apiCallWithData("Product/saveProduct", purchase, function (res) {
-                    $scope.makeActive('circle3');
-                });
+        var dataForReminderWarranty = {};
+        dataForReminderWarranty.user = $scope.jstrgValue._id;
+        dataForReminderWarranty.email = $scope.jstrgValue.email;
+        dataForReminderWarranty.name = $scope.jstrgValue.name;
+        dataForReminderWarranty.title = "Warranty expiry";
+        dataForReminderWarranty.status = "Pending";
+        dataForReminderWarranty.description = "End of warranty period";
+        dataForReminderWarranty.dateOfReminder = data.warrantyExpDate;
+        NavigationService.apiCallWithData("Reminder/reminderMail", dataForReminderWarranty, function (res) {});
+
+        var dataForReminderInsurance = {};
+        dataForReminderInsurance.user = $scope.jstrgValue._id;
+        dataForReminderWarranty.email = $scope.jstrgValue.email;
+        dataForReminderWarranty.name = $scope.jstrgValue.name;
+        dataForReminderInsurance.title = "Insurance expiry";
+        dataForReminderInsurance.status = "Pending";
+        dataForReminderInsurance.description = "End of insurance period";
+        dataForReminderInsurance.dateOfReminder = data.insuranceExpDate;
+        NavigationService.apiCallWithData("Reminder/reminderMail", dataForReminderInsurance, function (res) {});
+    }
+
+    $scope.accessoriesMain = [];
+
+    $scope.addAccessories = function (data) {
+        if (data.accessories) {
+            $scope.accessoriesMain.push(data.accessories);
+            data.accessories = "";
+        }
+    }
+
+    $scope.remove = function (index) {
+        $scope.accessoriesMain.splice(index, 1);
+    }
+
+    $scope.addProduct = function () {
+        // console.log("$scope.accessoriesMain", $scope.accessoriesMain);
+        var accessoriesToSave = {};
+        accessoriesToSave._id = $scope.product_id;
+        accessoriesToSave.productAccessory = $scope.accessoriesMain;
+        accessoriesToSave.status = 'Confirmed';
+        accessoriesToSave.name = $scope.jstrgValue.name;
+        accessoriesToSave.email = $scope.jstrgValue.email;
+        NavigationService.apiCallWithData("Product/saveFinalProduct", accessoriesToSave, function (res) {
+            toastr.success("Accessory added successfully");
+            $state.go("productListing");
+        });
+    }
+
+    $scope.callProduct = function () {
+        $scope.dataToGet = {};
+        $scope.dataToGet._id = $scope.product_id;
+        NavigationService.apiCallWithData("Product/getOne", $scope.dataToGet, function (res) {
+            $scope.data = res.data;
+            console.log("$scope.data")
+            if (res.data.purchaseDate) {
+                $scope.data.purchaseDate = new Date(res.data.purchaseDate);
             }
-        }
-
-        $scope.goToNxtTab = function (data) {
-            // console.log("data---", data);
-            if ($scope.product_id) {
-                data._id = $scope.product_id;
-                NavigationService.apiCallWithData("Product/saveProduct", data, function (res) {
-                    console.log("res.data", res.data);
-                    $scope.makeActive('circle4');
-                });
+            if (res.data.productImages) {
+                $scope.data.getImages = res.data.productImages;
             }
-
-            var dataForReminderWarranty = {};
-            dataForReminderWarranty.user = $scope.jstrgValue._id;
-            dataForReminderWarranty.email = $scope.jstrgValue.email;
-            dataForReminderWarranty.name = $scope.jstrgValue.name;
-            dataForReminderWarranty.title = "Warranty expiry";
-            dataForReminderWarranty.status = "Pending";
-            dataForReminderWarranty.description = "End of warranty period";
-            dataForReminderWarranty.dateOfReminder = data.warrantyExpDate;
-            NavigationService.apiCallWithData("Reminder/reminderMail", dataForReminderWarranty, function (res) {});
-
-            var dataForReminderInsurance = {};
-            dataForReminderInsurance.user = $scope.jstrgValue._id;
-            dataForReminderWarranty.email = $scope.jstrgValue.email;
-            dataForReminderWarranty.name = $scope.jstrgValue.name;
-            dataForReminderInsurance.title = "Insurance expiry";
-            dataForReminderInsurance.status = "Pending";
-            dataForReminderInsurance.description = "End of insurance period";
-            dataForReminderInsurance.dateOfReminder = data.insuranceExpDate;
-            NavigationService.apiCallWithData("Reminder/reminderMail", dataForReminderInsurance, function (res) {});
-        }
-
-        $scope.accessoriesMain = [];
-
-        $scope.addAccessories = function (data) {
-            if (data.accessories) {
-                $scope.accessoriesMain.push(data.accessories);
-                data.accessories = "";
+            if (res.data.purchaseProof) {
+                $scope.data.purchaseProof = res.data.purchaseProof;
             }
-        }
+            if (res.data.insuranceExpDate) {
+                $scope.data.insuranceExpDate = new Date(res.data.insuranceExpDate);
+            }
+            if (res.data.warrantyExpDate) {
+                $scope.data.warrantyExpDate = new Date(res.data.warrantyExpDate);
+            }
+        });
+    }
 
-        $scope.remove = function (index) {
-            $scope.accessoriesMain.splice(index, 1);
-        }
 
-        $scope.addProduct = function () {
-            // console.log("$scope.accessoriesMain", $scope.accessoriesMain);
-            var accessoriesToSave = {};
-            accessoriesToSave._id = $scope.product_id;
-            accessoriesToSave.productAccessory = $scope.accessoriesMain;
-            accessoriesToSave.status = 'Confirmed';
-            accessoriesToSave.name = $scope.jstrgValue.name;
-            accessoriesToSave.email = $scope.jstrgValue.email;
-            NavigationService.apiCallWithData("Product/saveFinalProduct", accessoriesToSave, function (res) {
-                toastr.success("Accessory added successfully");
-                $state.go("productListing");
+    $scope.submitDocuments = function (docs) {
+        // console.log("*************", docs);
+        docs.status = "Pending";
+        NavigationService.apiCallWithData("Product/save", docs, function (res) {
+            // console.log("inside submit documents api", res);
+            $scope.pumpRegistration.close();
+            $scope.thanks = $uibModal.open({
+                animation: true,
+                templateUrl: "views/modal/upload-thanks.html",
+                scope: $scope,
+                windowClass: 'app-modal-window'
             });
-        }
-
-        $scope.callProduct = function () {
-            $scope.dataToGet = {};
-            $scope.dataToGet._id = $scope.product_id;
-            NavigationService.apiCallWithData("Product/getOne", $scope.dataToGet, function (res) {
-                $scope.data = res.data;
-                console.log("$scope.data")
-                if (res.data.purchaseDate) {
-                    $scope.data.purchaseDate = new Date(res.data.purchaseDate);
-                }
-                if (res.data.productImages) {
-                    $scope.data.getImages = res.data.productImages;
-                }
-                if (res.data.purchaseProof) {
-                    $scope.data.purchaseProof = res.data.purchaseProof;
-                }
-                if (res.data.insuranceExpDate) {
-                    $scope.data.insuranceExpDate = new Date(res.data.insuranceExpDate);
-                }
-                if (res.data.warrantyExpDate) {
-                    $scope.data.warrantyExpDate = new Date(res.data.warrantyExpDate);
-                }
-            });
-        }
-
-
-        $scope.submitDocuments = function (docs) {
-            // console.log("*************", docs);
-            docs.status = "Pending";
-            NavigationService.apiCallWithData("Product/save", docs, function (res) {
-                // console.log("inside submit documents api", res);
-                $scope.pumpRegistration.close();
-                $scope.thanks = $uibModal.open({
-                    animation: true,
-                    templateUrl: "views/modal/upload-thanks.html",
-                    scope: $scope,
-                    windowClass: 'app-modal-window'
-                });
-            });
-        }
+        });
+    }
 
     // }
 

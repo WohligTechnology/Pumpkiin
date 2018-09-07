@@ -95,6 +95,12 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
     });
 
     //for ticket block end
-
-
+    // $scope.checkifRead = function (data) {
+    //     console.log("data", $scope.ticketDetails);
+    //     if ($scope.ticketDetails._id = data) {
+    //         $scope.read = true;
+    //     } else if ($scope.showLessReminders._id = data) {
+    //         $scope.read = true;
+    //     }
+    // }
 });

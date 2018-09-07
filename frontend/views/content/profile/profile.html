@@ -135,6 +135,13 @@
                 </div>
                 <div class="col-10">
                     <div class="d-flex main-users scrollbar">
+                        <div ng-click="newUserModalOpen()" class="d-flex align-items-center bg-white border rounded existing-user p-2 mr-3 cursor-point">
+                            <div class="user-circle"></div>
+                            <div class="mx-2 fontRobotoRegular name-rel">Add New Member</div>
+                            <div class="fontRobotoLight">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
                         <div class="d-flex align-items-center existing-user p-2 mr-3" ng-repeat="rel in userDataForProfile.relations">
                             <div class="user-circle"></div>
                             <div class="mx-2 fontRobotoRegular name-rel">
@@ -143,13 +150,6 @@
                             </div>
                             <div class="fontRobotoLight" ng-click="removeRelation(rel._id)">
                                 <i class="fas fa-times"></i>
-                            </div>
-                        </div>
-                        <div ng-click="newUserModalOpen()" class="d-flex align-items-center bg-white border rounded existing-user p-2 mr-3 cursor-point">
-                            <div class="user-circle"></div>
-                            <div class="mx-2 fontRobotoRegular name-rel">Add New Member</div>
-                            <div class="fontRobotoLight">
-                                <i class="fas fa-plus"></i>
                             </div>
                         </div>
                     </div>

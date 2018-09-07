@@ -121,9 +121,8 @@
                     <div uib-accordion-group class="panel-default reminder-body" is-open="status1.open" is-disabled="disabled" ng-repeat="reminders in showLessReminders">
                         <uib-accordion-heading>
                             <div class="d-flex align-items-center">
-                                <div ng-click="checkCircle(reminders._id)" class="blue-circle"></div>
-                                <h6 class="fontRobotoBold font14 ml-2 mb-0 text-uppercase">{{reminders.title}}
-                                </h6>
+                                <div ng-click="checkCircle(reminders._id)" class="blue-circle p-1"><i class="fas fa-check text-white"></i></div>
+                                <h6 class="fontRobotoBold font14 ml-2 mb-0 text-uppercase">{{reminders.title}}</h6>
                                 <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate" ng-if="!status1.open">{{reminders.description}}</span>
                                 <div class="ml-auto date-supportchat ">
                                     <span class="font12 ">{{reminders.dateOfReminder | date}}</span>

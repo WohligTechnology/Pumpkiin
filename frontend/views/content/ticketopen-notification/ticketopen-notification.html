@@ -37,8 +37,8 @@
                 </div>
                 <div class="border-top listed-openTickets openticket ">
                     <div class="d-flex py-1 element-list " ng-repeat="tickets in ticketDetails">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4">
+                        <div ng-if="!read" class="bullet"></div>
+                        <div class="d-block pl-4 cursor-point" ng-click="checkifRead(tickets.product._id)">
                             <div class="product-title text-truncate">{{tickets.product.productName}}</div>
                             <div class="date ">{{tickets.issueReported | date}}</div>
                         </div>
@@ -76,7 +76,7 @@
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
-                <div class="my-3 open-tickets ">
+                <div class="my-3 open-tickets">
                     <h5 class="d-inline ">Reminders</h5>
                     <span class="badge badge-style ml-auto">{{totalReminders}}</span>
                     <div class="float-right custom-searchbar">
@@ -89,8 +89,8 @@
 
                 <div class="border-top listed-openTickets openticket ">
                     <div class="d-flex py-1 element-list " ng-repeat="reminders in showLessReminders">
-                        <div class="bullet "></div>
-                        <div class="d-block pl-4 ">
+                        <div ng-if="!read" class="bullet"></div>
+                        <div class="d-block pl-4 cursor-point" ng-click="checkifRead(reminders._id)">
                             <div class="product-title text-truncate">{{reminders.title}}</div>
                             <div class="date ">{{reminders.dateOfReminder | date}}</div>
                         </div>
@@ -106,10 +106,9 @@
             </div>
         </div>
 
-        <div class="col col-md-9 ">
+        <div class="col col-md-9">
             <div class="support-chat-history">
-                <h6 class="fontRobotoBold blue-color mb-4 text-uppercase">Open Tickets
-                </h6>
+                <h6 class="fontRobotoBold blue-color mb-4 text-uppercase">Open Tickets</h6>
                 <div class="bg-white border-rounded p-4 my-2 " ng-repeat="tickets in ticketData" ui-sref="ticketcreation">
                     <div class="d-flex align-items-center ">
                         <div class="blue-circle "></div>

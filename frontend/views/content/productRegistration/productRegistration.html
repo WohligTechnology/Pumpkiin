@@ -2,13 +2,13 @@
     <h5>Product Registration</h5>
     <div class="my-5 timeline">
         <div class="circle circle1 timeline-active" ng-click="makeActive('circle1')">
-            <i class="fas fa-check check-icon" ng-if="activePage == 'circle2'"></i>
+            <i class="fas fa-check check-icon" ng-if="activePage == 'circle2' && checkmark1"></i>
         </div>
         <div class="circle circle2" ng-click="makeActive('circle2')">
-            <i class="fas fa-check check-icon" ng-if="activePage == 'circle3'"></i>
+            <i class="fas fa-check check-icon" ng-if="activePage == 'circle3' && checkmark2"></i>
         </div>
         <div class="circle circle3" ng-click="makeActive('circle3')">
-            <i class="fas fa-check check-icon" ng-if="activePage == 'circle4'"></i>
+            <i class="fas fa-check check-icon" ng-if="activePage == 'circle4' && checkmark3"></i>
         </div>
         <div class="circle circle4" ng-click="makeActive('circle4')">
             <i class="fas fa-check check-icon" ng-if="activePage == 'circle5'"></i>
@@ -35,11 +35,12 @@
                     <label class="mb-0">Product Name * </label>
                     <input ng-model="data.productName" class="form-control form-control-sm" type="text" name="productName" placeholder="Product Name"
                         required>
-                        <span class="error" ng-show="product.productName.$invalid && product.productName.$touched"> Please, enter product name</span>
+                    <span class="error" ng-show="product.productName.$invalid && product.productName.$touched"> Please, enter product name</span>
                 </div>
                 <div class="col-12 col-md-6 brand-div">
                     <label class="mb-0">Brand Name * </label>
-                    <ui-select name="brandSelect" ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a brand" ng-required="true">
+                    <ui-select name="brandSelect" ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a brand"
+                        ng-required="true">
                         <ui-select-match class="selected-tags" placeholder="Select a brand from the list...">{{$select.selected.name}}</ui-select-match>
                         <ui-select-choices class="background-blue text-white" repeat="brand in brandsData | filter: $select.search">
                             <span ng-bind-html="brand.name | highlight: $select.search"></span>
@@ -54,19 +55,20 @@
                     <label class="mb-0">Serial Number * </label>
                     <input ng-model="data.serialNo" class="form-control form-control-sm" type="text" name="srno" placeholder="Serial Number"
                         required>
-                        <span class="error" ng-show="product.srno.$invalid && product.srno.$touched"> Please, enter serial number</span>
+                    <span class="error" ng-show="product.srno.$invalid && product.srno.$touched"> Please, enter serial number</span>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Model Number * </label>
                     <input ng-model="data.modelNo" class="form-control form-control-sm" type="text" name="modelno" placeholder="Model Number"
                         required>
-                        <span class="error" ng-show="product.modelno.$invalid && product.modelno.$touched"> Please, enter model number</span>
+                    <span class="error" ng-show="product.modelno.$invalid && product.modelno.$touched"> Please, enter model number</span>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12">
                     <label class="mb-0">Product Picture</label>
-                    <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span> <span class="green-color" ng-if="data.productImages">({{data.productImages.length}})</span>
+                    <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span> <span class="green-color"
+                        ng-if="data.productImages">({{data.productImages.length}})</span>
                     <br>
                     <div class="scrollbar">
                         <upload-image multiple ng-model="data.productImages" no-status="true"></upload-image>
@@ -92,7 +94,7 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Purchase Date * </label>
                     <input ng-model="data.purchaseDate" name="date" class="form-control form-control-sm" type="date" required>
-                    <span class="error" ng-show="purchase.date.$invalid && purchase.date.$touched"> Please, enter purchase date</span> 
+                    <span class="error" ng-show="purchase.date.$invalid && purchase.date.$touched"> Please, enter purchase date</span>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Purchase Price * </label>
@@ -104,13 +106,14 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Retailer * </label>
                     <input ng-model="data.retailer" name="retailer" class="form-control form-control-sm" type="text" required>
-                    <span class="error" ng-show="purchase.retailer.$invalid && purchase.retailer.$touched"> Please, enter retailer</span> 
+                    <span class="error" ng-show="purchase.retailer.$invalid && purchase.retailer.$touched"> Please, enter retailer</span>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12">
                     <label class="mb-0">Proof of Purchase</label>
-                    <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span> <span class="green-color" ng-if="data.purchaseProof">({{data.purchaseProof.length}})</span>
+                    <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span> <span class="green-color"
+                        ng-if="data.purchaseProof">({{data.purchaseProof.length}})</span>
                     <br>
                     <div class="scrollbar">
                         <upload-image multiple ng-model="data.purchaseProof" no-status="true"></upload-image>
@@ -154,20 +157,21 @@
         <div class="row form-group">
             <div class="col-12 col-md-6">
                 <label class="mb-0">Name * </label>
-                    <input ng-model="userData.name" name="username" class="form-control form-control-sm" type="text" only-letters-input required>
-                    <span class="error" ng-show="adduser.username.$invalid && adduser.username.$touched"> Please, enter name</span> 
+                <input ng-model="userData.name" name="username" class="form-control form-control-sm" type="text" only-letters-input required>
+                <span class="error" ng-show="adduser.username.$invalid && adduser.username.$touched"> Please, enter name</span>
             </div>
             <div class="col-12 col-md-6">
                 <label class="mb-0">Email * </label>
                 <input name="useremail" ng-model="userData.email" class="form-control form-control-sm" type="email" required>
-                <span class="error" ng-show="adduser.useremail.$invalid && adduser.useremail.$touched"> Please, enter email</span> 
+                <span class="error" ng-show="adduser.useremail.$invalid && adduser.useremail.$touched"> Please, enter email</span>
             </div>
         </div>
         <div class="row form-group">
             <div class="col-12 col-md-6">
                 <label class="mb-0">Mobile Number * </label>
-                <input name="mobile" ng-model="userData.mobile" class="form-control form-control-sm" type="text" maxlength="10" required only-digits>
-                <span class="error" ng-show="adduser.mobile.$invalid && adduser.mobile.$touched"> Please, enter contact</span> 
+                <input name="mobile" ng-model="userData.mobile" class="form-control form-control-sm" type="text" maxlength="10" required
+                    only-digits>
+                <span class="error" ng-show="adduser.mobile.$invalid && adduser.mobile.$touched"> Please, enter contact</span>
             </div>
             <div class="col-12 col-md-6">
                 <label class="mb-0">NickName</label>
@@ -180,7 +184,7 @@
                 <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation" required>
                     <option ng-repeat="relations in relationsForUser">{{relations}}</option>
                 </select>
-                <span class="error" ng-show="adduser.sellist1.$invalid && adduser.sellist1.$touched"> Please, select relationship</span> 
+                <span class="error" ng-show="adduser.sellist1.$invalid && adduser.sellist1.$touched"> Please, select relationship</span>
             </div>
         </div>
         <fieldset class="row form-group" ng-click="addUser()" ng-disabled="adduser.$invalid">
@@ -217,13 +221,14 @@
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Expiry Date * </label>
                     <input name="warrdate" ng-model="data.warrantyExpDate" class="form-control form-control-sm" type="date" required>
-                    <span class="error" ng-show="Warranty.warrdate.$invalid && Warranty.warrdate.$touched"> Please, select warranty expiry date</span> 
+                    <span class="error" ng-show="Warranty.warrdate.$invalid && Warranty.warrdate.$touched"> Please, select warranty expiry date</span>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12">
                     <label class="mb-0">Warranty Card</label>
-                    <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span> <span class="green-color" ng-if="data.warrantyCardImage">({{data.warrantyCardImage.length}})</span>
+                    <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span> <span class="green-color"
+                        ng-if="data.warrantyCardImage">({{data.warrantyCardImage.length}})</span>
                     <br>
                     <div class="scrollbar">
                         <upload-image multiple ng-model="data.warrantyCardImage" no-status="true"></upload-image>
@@ -249,7 +254,8 @@
             <div class="row form-group">
                 <div class="col-12">
                     <label class="mb-0">Insurance document</label>
-                    <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span> <span class="green-color" ng-if="data.insuranceProofImage">({{data.insuranceProofImage.length}})</span>
+                    <span> (only jpg, jpeg, png, doc or pdf file allowed and maximum size is 5Mb)</span> <span class="green-color"
+                        ng-if="data.insuranceProofImage">({{data.insuranceProofImage.length}})</span>
                     <br>
                     <div class="scrollbar">
                         <div>

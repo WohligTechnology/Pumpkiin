@@ -43,10 +43,10 @@
         }
     }
     .openticket {
-            min-height: 36vh;
+        min-height: 36vh;
     }
     .reminderSection {
-            min-height: 36vh;
+        min-height: 36vh;
     }
     .info-div {
         // height: 200px;
@@ -378,6 +378,9 @@
         height: 30px;
         border-radius: 50%;
         background: $blue;
+        .fa-check {
+            display: none;
+        }
     }
 }
 
