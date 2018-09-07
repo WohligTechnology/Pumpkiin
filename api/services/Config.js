@@ -476,5 +476,62 @@ var models = {
             }
         });
     },
+
+    sendEmail: function (fromEmail, toEmail, subject, html, attachments, callback) {
+        Password.find({}).lean().exec(function (err, data) {
+            console.log("key", data[0].name)
+            console.log("fromEmail, toEmail, subject, html, attachments", fromEmail, toEmail, subject, html, attachments)
+            if (err) {
+                callback(err);
+            } else {
+                var helper = require('sendgrid').mail;
+                var sg = require('sendgrid')(data[0].name);
+                var mail = new helper.Mail();
+
+                var email = new helper.Email(fromEmail.email, fromEmail.name);
+                mail.setFrom(email);
+                mail.setSubject(subject);
+
+                var personalization = new helper.Personalization();
+                _.each(toEmail, function (n) {
+                    var email = new helper.Email(n.email, n.name);
+                    personalization.addTo(email);
+                });
+
+
+                mail.addPersonalization(personalization);
+
+                var content = new helper.Content('text/html', html);
+                mail.addContent(content);
+                async.each(attachments, function (filename, callback) {
+                    console.log("2")
+                    var attachment = new helper.Attachment();
+                    Config.readAttachment(filename, function (err, data) {
+                        if (err) {
+                            callback(err);
+                        } else {
+                            var base64File = new Buffer(data).toString('base64');
+                            attachment.setContent(base64File);
+                            attachment.setFilename(filename);
+                            attachment.setDisposition('attachment');
+                            mail.addAttachment(attachment);
+                            callback();
+                        }
+                    });
+                }, function (err, attachments) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        var request = sg.emptyRequest({
+                            method: 'POST',
+                            path: '/v3/mail/send',
+                            body: mail.toJSON(),
+                        });
+                        sg.API(request, callback);
+                    }
+                });
+            }
+        })
+    }
 };
 module.exports = _.assign(module.exports, models);

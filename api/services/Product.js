@@ -1,10 +1,11 @@
 var schema = new Schema({
-    brand: {
-        type: Schema.Types.ObjectId,
-        ref: 'Brand'
-    },
+    // brand: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Brand'
+    // },
+    brand: String,
     productName: String,
-    serialNo: Number,
+    serialNo: String,
     modelNo: String,
     retailer: String,
     // retailer: {

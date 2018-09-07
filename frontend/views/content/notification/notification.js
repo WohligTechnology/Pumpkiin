@@ -136,6 +136,7 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
         console.log("$scope.showLessReminders", $scope.showLessReminders);
 
         for (i = 0; i < 4; i++) {
+            console.log("hafadfafhgf", $scope.showLessReminders[i])
             if ($scope.showLessReminders[i]._id == data) {
                 $scope.selectedReminders.push(data);
                 console.log("$scope.selectedReminders", $scope.selectedReminders);

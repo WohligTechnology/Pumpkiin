@@ -10,7 +10,8 @@
                     <div class="select-box" ng-init="product1='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'">
                         <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
                         <div class="dropdown">
-                            <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
                                 {{product1}}
                             </span>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -21,18 +22,21 @@
                     <div class="select-box" ng-init="product2='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'">
                         <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
                         <div class="dropdown">
-                            <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
                                 {{product2}}
                             </span>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a ng-repeat="ser in service | orderBy : '-name'" class="dropdown-item" ng-click="$parent.product2 = ser.name">{{ser.name }}</a>
+                                <a ng-repeat="ser in service | orderBy : '-name'" class="dropdown-item" ng-click="$parent.product2 = ser.name">{{ser.name
+                                    }}</a>
                             </div>
                         </div>
                     </div>.
                 </div>
             </div>
             <div class="text-center py-3">
-                <a ng-click="openContact(product1,product2)" class="btn w-25 border-rounded fontRobotoBold text-white orange-btn" target="_top">Submit</a>
+                <a ng-click="openContact(product1,product2)" class="btn w-25 border-rounded fontRobotoBold text-white orange-btn"
+                    target="_top">Submit</a>
             </div>
         </div>
     </div>
@@ -65,7 +69,8 @@
                             <div class="media-body pl-3 text-left">
                                 <h5 class="mt-0 font16">{{testimonial.name}}
                                     <span class="ml-2 font14">
-                                        <span uib-rating ng-model="testimonial.rate" rating-states="ratingStates" aria-labelledby="custom-icons-2"></span>
+                                        <span uib-rating ng-model="testimonial.rate" rating-states="ratingStates"
+                                            aria-labelledby="custom-icons-2"></span>
                                     </span>
                                 </h5>
                                 <p class="font12 mb-0 l-height">{{testimonial.message}}</p>

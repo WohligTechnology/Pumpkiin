@@ -1,5 +1,5 @@
 var mySwiper;
-myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal) {
+myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state) {
         $scope.template = TemplateService.getHTML("content/home.html");
         TemplateService.title = "Home"; //This is the Title of the Website
         TemplateService.header = "";
@@ -8,6 +8,8 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         // $('.select-box').selectpicker({
         //     dropupAuto: false
         // });
+
+        console.log("hey")
 
         $scope.submitForm = function (data) {
             console.log("This is it");
@@ -27,6 +29,19 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                 scope: $scope,
                 backdrop: 'static'
             });
+        }
+
+        $scope.addUser = function (data) {
+            console.log("data", data);
+            $.jStorage.set("UserName", data);
+
+            NavigationService.apiCallWithData("ContactUs/sendEmail", data, function (result) {
+                console.log("result", result);
+                if (result.value) {
+                    toastr.success("We will Contact you soon")
+                    $state.reload();
+                }
+            })
         }
 
         $timeout(function () {
