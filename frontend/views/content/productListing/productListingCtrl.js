@@ -51,12 +51,13 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
     }];
 
     //REMINDER SECTION
+    $scope.maxRow = 7;
     $scope.changePage = function (pageno) {
         $scope.currentPage = pageno;
         var start = (pageno - 1) * $scope.maxRow;
         var end = (pageno - 1) * $scope.maxRow + $scope.maxRow;
-        $scope.showLessReminders = _.slice($scope.allReminders, start, end);
-        console.log(" $scope.showLessReminders", $scope.showLessReminders);
+        $scope.productPerPage = _.slice($scope.allProducts, start, end);
+        console.log(" $scope.productPerPage", $scope.productPerPage);
     }
 
     reminderService.findReminderOfPendingSnoozeByUser(function (data) {
@@ -146,7 +147,6 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
     var dataToSendForProduct = {};
     dataToSendForProduct.user = $scope.jstrgValue._id;
-    $scope.maxRow = 8;
     NavigationService.apiCallWithData("Product/getAllProducts", dataToSendForProduct, function (res) {
         if (res.value == true) {
             // console.log("res-----", res.data.results);
@@ -258,11 +258,13 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
         NavigationService.apiCallWithData("Product/sortProductsByBrands", dataToSend, function (response) {
             if (response.value) {
                 $scope.allProducts = response.data;
-                $scope.products = _.slice($scope.allProducts, 0, 7);
-                console.log("  $scope.allProducts", $scope.allProducts);
+                $scope.changePage(1);
+                // $scope.products = _.slice($scope.allProducts, 0, 7);
+                // console.log("  $scope.allProducts", $scope.allProducts);
             }
         });
     };
+    $scope.sortByBrand();
     // $scope.checkifRead() = function () {
     //     $state.go("ticketopen-notification");
     // }

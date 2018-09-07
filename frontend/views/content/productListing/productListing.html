@@ -11,12 +11,11 @@
             <span ng-click="generateExcel()">
                 <!-- <i class="far fa-file-pdf"></i> -->
                 <i class="far fa-file-excel"></i>
-
             </span>Export Product List</button>
     </div>
     <div class="row mt-4">
         <div class="col col-md-9">
-            <div class="row no-gutters">
+            <div class="row no-gutters product-section">
                 <div class="col-xs-12 col-md-3 mb-3 px-2">
                     <div class="bg-white orange-border border-rounded text-center effectonhover" ui-sref="productregistration">
                         <div class="pb-5 addpromain">
@@ -29,7 +28,7 @@
                         <button class="my-3 support-btn">SUPPORT</button>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-3 mb-3 px-2" ng-repeat="product in products track by $index">
+                <div class="col-xs-12 col-md-3 mb-3 px-2" ng-repeat="product in productPerPage track by $index">
                     <div class="bg-white border border-rounded text-center effectonhover">
                         <span class="float-right product-icon" ng-click="deleteProduct($index)">
                             <i class="fas fa-trash-alt"></i>
@@ -57,8 +56,8 @@
                 </div>
             </div>
             <div class="float-right mr-2">
-                <nav aria-label="..." ng-if="(allProducts.length / maxRow) >1">
-                    <ul ng-change="changePage(currentPage);" uib-pagination total-items="allProductss.length" items-per-page="8" ng-model="currentPage"
+                <nav ng-if="(allProducts.length / maxRow) >1">
+                    <ul ng-change="changePage(currentPage);" uib-pagination total-items="allProducts.length" items-per-page="maxRow" ng-model="currentPage"
                         max-size="10" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
                 </nav>
             </div>
