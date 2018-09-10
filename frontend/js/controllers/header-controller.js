@@ -91,5 +91,12 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
             scrollTop: $('body,html').offset().top - 100
         }, 1000);
     }
-
+    $scope.showMenu = false;
+    $scope.toggleMenu = function () {
+      $scope.showMenu = !$scope.showMenu;
+      console.log("inside menu");
+    };
+    $scope.closeMenu = function () {
+      $scope.showMenu = false;
+    };
 });

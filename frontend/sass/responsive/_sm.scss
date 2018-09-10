@@ -23,4 +23,19 @@
     .custom-input {
         width: 100% !important;
     }
+    .support-timeline{
+        transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        top: 240px;
+        width: 160%;
+        left: -175px;
+    }
+    .profile-page-subsection .social .social-text {
+        width: 55%;
+    }
+    .product-search input {
+        width: 330px !important;
+    }
 }
