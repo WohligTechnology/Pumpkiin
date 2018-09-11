@@ -106,7 +106,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             controller: 'LinksCtrl'
         });
     $urlRouterProvider.otherwise("/");
-    // $locationProvider.html5Mode(isproduction);
+    $locationProvider.html5Mode(isproduction);
 });
 
 // For Language JS
