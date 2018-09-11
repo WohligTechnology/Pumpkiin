@@ -4,6 +4,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         TemplateService.title = "Home"; //This is the Title of the Website
         TemplateService.header = "";
         TemplateService.footer = "";
+        TemplateService.cssMain = "main";
         $scope.navigation = NavigationService.getNavigation();
         // $('.select-box').selectpicker({
         //     dropupAuto: false
@@ -47,12 +48,27 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         $timeout(function () {
             mySwiper = new Swiper('.swiper-container', {
                 // Optional parameters
-                width: '800',
                 direction: 'horizontal',
                 loop: false,
                 slidesPerView: 2,
                 slidesPerGroup: 2,
-
+                breakpoints: {
+                    // when window width is <= 320px
+                    320: {
+                      slidesPerView: 1,
+                      spaceBetween: 10
+                    },
+                    // when window width is <= 480px
+                    480: {
+                      slidesPerView: 1,
+                      spaceBetween: 10
+                    },
+                    // when window width is <= 640px
+                    640: {
+                      slidesPerView: 2,
+                      spaceBetween: 20
+                    }
+                  },
                 // Navigation arrows
                 navigation: {
                     nextEl: '.swiper-button-next',

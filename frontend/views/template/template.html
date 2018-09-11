@@ -1,4 +1,6 @@
-<div ng-include="template.header" class="template header" ng-controller="headerCtrl"></div>
-<div ng-include="template.landingheader" class="template landingheader"></div>
-<div ng-include="template.content" class="template content"></div>
-<div ng-include="template.footer" class="template footer"></div>
+<div class="{{template.cssMain}}">
+    <div ng-include="template.header" class="template header" ng-controller="headerCtrl"></div>
+    <div ng-include="template.landingheader" class="template landingheader"></div>
+    <div ng-include="template.content" class="template content"></div>
+    <div ng-include="template.footer" class="template footer"></div>
+</div>

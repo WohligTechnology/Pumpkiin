@@ -1,6 +1,20 @@
 /* Breakpoint for medium viewport */
 
 @include media-breakpoint-down(md) {
+    .main{
+        .content{
+            padding-top: 10px;
+        }
+    }
+    .content {
+        padding-top: 38px;
+    }
+    .about-pumpkin-section{
+        height: 50vh;
+        .about-pumpkin {
+            padding: 100px 0;
+        }        
+    }
     .navbar {
         background-color: #142c5b !important;
     }
@@ -34,7 +48,7 @@
             font-size: 8px;
         }
     }
-    .support-timeline{
+    .support-timeline {
         transform: rotate(90deg);
         -webkit-transform: rotate(90deg);
         -moz-transform: rotate(90deg);
@@ -42,9 +56,9 @@
         top: 365px;
         width: 160%;
         left: -320px;
-        .circle{
+        .circle {
             transform: rotate(-90deg);
-            &:before{
+            &:before {
                 top: 0;
                 left: 30px;
             }
@@ -66,107 +80,131 @@
         top: -6%;
         right: 2%;
     }
-    .navbar-collapse{
-        position: fixed;
-        width: 80%;
-        right: 0;
-        height: 185%;
-        background-color: white;
-        z-index: 3;
-        .nav-item{
-            z-index: 4;
+    .home-section {
+        text-align: center;
+        .img-section {
+            width: 38vh !important;
+            margin: 0 auto;
+            transform: rotate(180deg);
+        }
+        .home-section-content {
+            font-size: 34px;
+            .select-box {
+                font-size: 34px;
+            }
         }
     }
     header {
         .navbar-default .navbar-nav {
-          padding-left: 15px !important;
+            padding-left: 15px !important;
         }
-    
         .menu-new {
-          position: fixed;
-          top: 0;
-          right: -161%;
-          width: 80%;
-          height: 100%;
-          padding: 15px 0;
-          z-index: 999;
-          background-color: white;
-          text-align: left;
-          color: #333;
-           transition:all 700ms ease;
-          transform:translateX(-100%);
-    
-          &.show {
-             transform:translateX(0);
-            right: 0%;
-          }
-    
-          a {
-            color: white;
-            padding: 10px 0;
-            display: block;
-            max-width: 230px;
-            text-align: left;
-            margin: 0 auto;
-            font-size: 12px;
-            @include transition(all 700ms ease);
-          }
-    
-          .navbar-default .navbar-nav {
-            padding-left: 15px;
-          }
-        }
-    
-        .menu-circle {
-          background-color: transparent;
-          height: 30px;
-          width: 30px;
-          padding: 2px;
-          position: fixed;
-          right: 5%;
-          top: 3%;
-          z-index: 9999;
-          /* border-radius: 100%; */
-          cursor: pointer;
-          text-align: center;
-    
-    
-          i.fa-angle-up {
-            color: white;
-            font-size: 35px;
-            line-height: 23px;
-          }
-    
-          &.bottom {
-            top: auto;
-            bottom: 35px;
-          }
-    
-          .bar {
-            display: block;
-            height: 2px;
-            width: 24px;
+            position: fixed;
+            top: 0;
+            right: -161%;
+            width: 80%;
+            height: 100%;
+            padding: 15px 0;
+            z-index: 999;
             background-color: white;
-            margin: 5px auto;
-        transition:all 700ms ease;
-          }
+            text-align: left;
+            color: #333;
+            transition: all 700ms ease;
+            transform: translateX(-100%);
+            .profile-border {
+                border-bottom: dashed 1px #7c7c7c;
+            }
+            .user-profile {
+                width: 70px;
+                height: 70px;
+            }
+            ul {
+                -webkit-margin-before: 0;
+                -webkit-padding-start: 10px;
+            }
+            &.show {
+                transform: translateX(0);
+                right: 0%;
+            }
+            li {
+                cursor: pointer;
+                &:hover {
+                    background-color: $darkblue;
+                    color: white !important;
+                }
+            }
+            .btn-logout {
+                height: 710px;
+                display: flex;
+                align-items: flex-end;
+                a {
+                    border: solid 1px $orange;
+                }
+            }
+            a {
+                color: $darkblue;
+                padding: 10px 0;
+                display: block;
+                text-align: left;
+                margin: 0 auto;
+                font-size: 14px;
+                @include transition(all 700ms ease);
+            }
+            .navbar-default .navbar-nav {
+                padding-left: 15px;
+            }
         }
-    
+        .menu-circle {
+            background-color: transparent;
+            height: 30px;
+            width: 30px;
+            padding: 2px;
+            position: fixed;
+            right: 1%;
+            top: 1%;
+            z-index: 9999;
+            /* border-radius: 100%; */
+            cursor: pointer;
+            text-align: center;
+            i.fa-angle-up {
+                color: white;
+                font-size: 35px;
+                line-height: 23px;
+            }
+            &.bottom {
+                top: auto;
+                bottom: 35px;
+            }
+            .bar {
+                display: block;
+                height: 2px;
+                width: 24px;
+                background-color: white;
+                margin: 5px auto;
+                transition: all 700ms ease;
+            }
+        }
         .closer {
-          .bar2 {
-            opacity: 0;
-          }
-    
-          .bar1 {
-            transform: rotate(45deg) translate(4px, 6px);
-            background-color: gray;
-          }
-    
-          .bar3 {
-            transform: rotate(-45deg) translate(4px, -6px);
-            background-color: gray;            
-          }
+            .bar2 {
+                opacity: 0;
+            }
+            .bar1 {
+                transform: rotate(45deg) translate(4px, 6px);
+                background-color: gray;
+            }
+            .bar3 {
+                transform: rotate(-45deg) translate(4px, -6px);
+                background-color: gray;
+            }
         }
-      }
-    
+    }
+    .up-arrow {
+        right: 13px;
+    }
+    .product-search input {
+        width: 400px !important;
+    }
+    .support-chat-history {
+        min-height: 50vh;
+    }
 }
