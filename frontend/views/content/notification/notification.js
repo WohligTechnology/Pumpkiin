@@ -1,6 +1,7 @@
 myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketService, NavigationService, $timeout, toastr, $http, $uibModal, $state, reminderService) {
     $scope.template = TemplateService.getHTML("content/notification/notification.html");
     TemplateService.landingheader = "";
+    TemplateService.cssMain="notification-main"    
     TemplateService.title = "Notification"; //This is the Title of the Website
     $scope.jstrgValue = $.jStorage.get('userData');
 
@@ -144,4 +145,5 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
             }
         }
     }
+    
 });

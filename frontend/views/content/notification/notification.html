@@ -1,4 +1,4 @@
-<div class="container py-5" ng-controller="headerCtrl">
+<div class="container py-md-5 pb-0" ng-controller="headerCtrl">
     <div class="row ticket-creation-main">
         <div class="col col-md-3 openticketreminder">
             <div class="bg-white border-rounded p-3">
@@ -17,7 +17,7 @@
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
-                <div class="my-3 open-tickets ">
+                <div class="my-3 open-tickets">
                     <h5 class="d-inline ">Reminders</h5>
                     <span class="badge badge-style ml-auto">{{totalReminders}}</span>
                     <div class="float-right custom-searchbar">
@@ -42,7 +42,7 @@
                     </span>
                 </div> -->
             </div>
-            <div class="bg-white border-rounded p-3 mt-2">
+            <div class="bg-white border-rounded p-3 mt-2 d-none d-md-block">
                 <div class="d-flex justify-content-between">
                     <div class="closed-text cursor-point" ng-click="getOpenTickets()">
                         <img src="img/ticketCreation/openTicket.png">
@@ -63,7 +63,7 @@
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
-                <div class="my-3 open-tickets ">
+                <div class="my-3 open-tickets">
                     <h5 class="d-inline" ng-if="ticketDetails[0].status!='Closed'">Open Tickets</h5>
                     <h5 class="d-inline" ng-if="ticketDetails[0].status=='Closed'">Closed Tickets</h5>
                     <!-- <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
@@ -76,7 +76,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="border-top listed-openTickets openticket ">
+                <div class="border-top listed-openTickets openticket">
                     <div class="d-flex py-1 element-list " ng-repeat="tickets in ticketDetails">
                         <div class="bullet "></div>
                         <div class="d-block pl-4">
@@ -102,7 +102,7 @@
             </div>
         </div>
 
-        <div class="col col-md-9" ng-init="modelNo=false">
+        <div class="col col-md-9 d-none d-md-block" ng-init="modelNo=false">
             <div class="support-chat-history">
                 <div class="d-flex">
                     <h6 class="fontRobotoBold blue-color mb-4 text-uppercase">Reminders</h6>

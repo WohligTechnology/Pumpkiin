@@ -2,7 +2,7 @@ myApp.controller('OpenTicketCtrl', function ($scope, TemplateService, Navigation
     $scope.template = TemplateService.getHTML("content/openTicket/openTicket.html");
     TemplateService.landingheader = "";
     TemplateService.title = "Open Ticket"; //This is the Title of the Website
-    // TemplateService.header = " ";
+    TemplateService.cssMain="main"
     $scope.navigation = NavigationService.getNavigation();
     $scope.jstrgValue = $.jStorage.get('userData');
 

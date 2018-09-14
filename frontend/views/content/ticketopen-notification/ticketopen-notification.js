@@ -2,6 +2,7 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
     $scope.template = TemplateService.getHTML("content/ticketopen-notification/ticketopen-notification.html");
     TemplateService.title = "Ticketopen Notification"; //This is the Title of the Website
     TemplateService.landingheader = "";
+    TemplateService.cssMain="other"        
     $scope.navigation = NavigationService.getNavigation();
     // TemplateService.header = " ";
     $scope.navigation = NavigationService.getNavigation();

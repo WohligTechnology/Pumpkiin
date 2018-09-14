@@ -1,7 +1,8 @@
 myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticketService, NavigationService, $timeout, toastr, $http, $uibModal, $state, reminderService) {
     $scope.template = TemplateService.getHTML("content/productListing/productListing.html");
     TemplateService.title = "Product Listing"; //This is the Title of the Website
-    TemplateService.landingheader = "";
+    TemplateService.landingheader = "";    
+    TemplateService.cssMain="main"
     $scope.navigation = NavigationService.getNavigation();
 
     $scope.jstrgValue = $.jStorage.get('userData');

@@ -20,6 +20,9 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                 }, 5000);
             });
         };
+        // if(product1 && product2){
+        //     $("#clickSubmit").removeClass("disabled");
+        // }
 
         $scope.openContact = function (product1, product2) {
             $scope.userData = {};
