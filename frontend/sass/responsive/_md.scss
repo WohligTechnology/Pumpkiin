@@ -1,6 +1,7 @@
 /* Breakpoint for medium viewport */
 
 @include media-breakpoint-down(md) {
+
     // .main{
     //     .content{
     //         padding-top: 10px;
@@ -9,45 +10,56 @@
     // .content {
     //     padding-top: 38px;
     // }
-    .about-pumpkin-section{
+    .about-pumpkin-section {
         height: 50vh;
+
         .about-pumpkin {
             padding: 100px 0;
-        }        
+        }
     }
+
     .navbar {
         background-color: #142c5b !important;
     }
+
     h2 {
         font-size: 1.7rem;
     }
+
     .timeline {
         width: 100%;
+
         .circle1 {
             &:before {
                 left: -5px;
             }
         }
+
         .circle2 {
             &:before {
                 left: -32px;
             }
         }
+
         .circle3 {
             &:before {
                 left: -35px;
             }
         }
+
         .circle4 {
             left: 94.5%;
+
             &:before {
                 left: -35px;
             }
         }
+
         .circle:before {
             font-size: 8px;
         }
     }
+
     .support-timeline {
         transform: rotate(90deg);
         -webkit-transform: rotate(90deg);
@@ -56,48 +68,60 @@
         top: 365px;
         width: 160%;
         left: -320px;
+
         .circle {
             transform: rotate(-90deg);
+
             &:before {
                 top: 0;
                 left: 30px;
             }
         }
     }
+
     .section-spacing {
         margin: 0;
     }
+
     .padd-250 {
         padding-left: 15px;
     }
+
     .save,
     .add,
     .reminder {
         width: 40%;
     }
+
     .cancel {
         width: 35%;
         top: -6%;
         right: 2%;
     }
+
     .home-section {
         text-align: center;
+
         .img-section {
             width: 38vh !important;
             margin: 0 auto;
             transform: rotate(180deg);
         }
+
         .home-section-content {
             font-size: 34px;
+
             .select-box {
                 font-size: 34px;
             }
         }
     }
+
     header {
         .navbar-default .navbar-nav {
             padding-left: 15px !important;
         }
+
         .menu-new {
             position: fixed;
             top: 0;
@@ -111,36 +135,45 @@
             color: #333;
             transition: all 700ms ease;
             transform: translateX(-100%);
+
             .profile-border {
                 border-bottom: dashed 1px #7c7c7c;
             }
+
             .user-profile {
                 width: 100px;
                 height: 100px;
             }
+
             ul {
                 -webkit-margin-before: 0;
                 -webkit-padding-start: 10px;
             }
+
             &.show {
                 transform: translateX(0);
                 right: 0%;
             }
+
             li {
                 cursor: pointer;
+
                 &:hover {
                     background-color: $darkblue;
                     color: white !important;
                 }
             }
+
             .btn-logout {
                 height: 710px;
                 display: flex;
                 align-items: flex-end;
+
                 a {
                     border: solid 1px $orange;
                 }
             }
+
             a {
                 color: $darkblue;
                 padding: 10px 0;
@@ -150,10 +183,12 @@
                 font-size: 14px;
                 @include transition(all 700ms ease);
             }
+
             .navbar-default .navbar-nav {
                 padding-left: 15px;
             }
         }
+
         .menu-circle {
             background-color: transparent;
             height: 30px;
@@ -166,15 +201,18 @@
             /* border-radius: 100%; */
             cursor: pointer;
             text-align: center;
+
             i.fa-angle-up {
                 color: white;
                 font-size: 35px;
                 line-height: 23px;
             }
+
             &.bottom {
                 top: auto;
                 bottom: 35px;
             }
+
             .bar {
                 display: block;
                 height: 2px;
@@ -184,30 +222,47 @@
                 transition: all 700ms ease;
             }
         }
+
         .closer {
             .bar2 {
                 opacity: 0;
             }
+
             .bar1 {
                 transform: rotate(45deg) translate(4px, 6px);
                 background-color: gray;
             }
+
             .bar3 {
                 transform: rotate(-45deg) translate(4px, -6px);
                 background-color: gray;
             }
         }
     }
+
     .up-arrow {
         right: 13px;
     }
+
     .product-search input {
         width: 400px !important;
     }
+
     .support-chat-history {
         min-height: 50vh;
     }
+
     .listed-openTickets .element-list .product-title {
         width: 95px;
+    }
+
+    .closedticketcreation-main {
+        .closedticketcreation {
+            padding: 0.5rem !important;
+        }
+
+        .support-chat-history {
+            min-height: 12vh !important
+        }
     }
 }

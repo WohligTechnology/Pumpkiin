@@ -1,6 +1,6 @@
 <div class="container py-5">
-    <div class="row ticket-creation-main">
-        <div class="col col-md-3 openticketreminder">
+    <div class="row ticket-creation-main closedticketcreation-main">
+        <div class="col col-md-3 openticketreminder d-none d-sm-block">
             <div class="bg-white border-rounded p-3 mb-2">
                 <div class="d-flex justify-content-between">
                     <div class="closed-text">
@@ -43,12 +43,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Active'" ui-sref='ticketopen-notification'>View All
+                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Active'" ui-sref='ticketopen-notification'>View
+                    All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
                 </div>
-                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Closed'" ui-sref='ticketclose-notification'>View All
+                <div class="text-right  view mt-2" ng-if="ticketDetails[0].status=='Closed'" ui-sref='ticketclose-notification'>View
+                    All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
@@ -107,7 +109,7 @@
         </div>
 
         <div class="col col-md-9 " ng-init="modelNo=false ">
-            <div class="background-blue border-rounded p-5">
+            <div class="background-blue border-rounded p-5 closedticketcreation">
                 <div class="media">
                     <div class="img-div ">
                         <img src="img/iphone.jpeg " class="img-fluid large-img ">
@@ -116,7 +118,8 @@
                         </div>
                     </div>
                     <div class="media-body pl-4 text-white ">
-                        <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">Support ID: {{ticketDetails.ticketNumber}}
+                        <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">Support
+                            ID: {{ticketDetails.ticketNumber}}
                             <div class="position-absolute clock">
                                 <i class="far fa-clock"></i>
                                 </i>{{ticketDetails.issueReported | date}}</div>
@@ -125,7 +128,7 @@
                                     <span ng-show="modelNo">
                                         <i class="fas fa-angle-up"></i>
                                     </span>
-                                <span ng-show="!modelNo">
+                                    <span ng-show="!modelNo">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
                                 </span>
@@ -170,7 +173,8 @@
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Warranty : </span>
-                                    <span class="d-inline-block w-60 green-color "> {{ticketDetails.product.warrantyExpDate}}</span>
+                                    <span class="d-inline-block w-60 green-color ">
+                                        {{ticketDetails.product.warrantyExpDate}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Relation : </span>
@@ -178,10 +182,10 @@
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
                                             <!-- <i class="fas fa-times "></i> -->
                                         </span>
-                                    <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
+                                        <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
                                         </span> -->
-                                    <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
+                                        <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
                                             <i class="fas fa-plus "></i>
                                         </button> -->
                                     </span>
@@ -241,8 +245,10 @@
                 <form>
                     <h6 class="fontRobotoBold blue-color pump-support-text ">Pumpkiin Support</h6>
                     <div class="fontRobotoRegular font12 font-color ">Dear
-                        <br> Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Nullam quis
-                        risus eget urna mollis ornare vel eu leo. Nulla vitae elit libero, a pharetra augue. Cras justo odio,
+                        <br> Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Nullam
+                        quis
+                        risus eget urna mollis ornare vel eu leo. Nulla vitae elit libero, a pharetra augue. Cras justo
+                        odio,
                         dapibus ac facilisis in, egestas eget quam.
                         <br>
                         <br> Thanks you,
@@ -251,23 +257,25 @@
                     <br>
                     <h6 class="fontRobotoBold blue-color ">FEEDBACK</h6>
                     <br>
-                    <div class="font14 font-color mb-2 ">How would you rate your experience on scale of 1 to 5 stars based on the following parameters?</div>
+                    <div class="font14 font-color mb-2 ">How would you rate your experience on scale of 1 to 5 stars
+                        based on the following parameters?</div>
                     <div class="d-flex font14 fontRobotoRegular font-color my-2 ">
                         <div class="mr-3 ">
                             <span class="mr-2">Ease </span>
-                            <span uib-rating ng-model="rate" max="max " read-only="isReadonly " on-hover="hoveringOver(value) " on-leave="overStar=null "
-                                titles="[ 'one',
-                            'two', 'three'] " aria-labelledby="default-rating "></span>
+                            <span uib-rating ng-model="rate" max="max " read-only="isReadonly " on-hover="hoveringOver(value) "
+                                on-leave="overStar=null " titles="[ 'one',
+                            'two', 'three'] "
+                                aria-labelledby="default-rating "></span>
                         </div>
                         <div class="mr-3 ">
                             <span class="mr-2 ">Interaction </span>
-                            <span uib-rating ng-model="rate" max="max " read-only="isReadonly " on-hover="hoveringOver(value) " on-leave="overStar=null "
-                                titles="[ 'one','two', 'three'] " aria-labelledby="default-rating "></span>
+                            <span uib-rating ng-model="rate" max="max " read-only="isReadonly " on-hover="hoveringOver(value) "
+                                on-leave="overStar=null " titles="[ 'one','two', 'three'] " aria-labelledby="default-rating "></span>
                         </div>
                         <div class="mr-3 ">
                             <span class="mr-2 ">Resolution </span>
-                            <span uib-rating ng-model="rate" max="max " read-only="isReadonly " on-hover="hoveringOver(value) " on-leave="overStar=null "
-                                titles="[ 'one','two', 'three'] " aria-labelledby="default-rating "></span>
+                            <span uib-rating ng-model="rate" max="max " read-only="isReadonly " on-hover="hoveringOver(value) "
+                                on-leave="overStar=null " titles="[ 'one','two', 'three'] " aria-labelledby="default-rating "></span>
                         </div>
                     </div>
                     <div class="font14 font-color my-2 ">Describe your experience with us</div>

@@ -1,0 +1,60 @@
+<div class="modal-header justify-content-center background-blue text-white">
+    <h5 class="modal-title fontRobotoRegular" id="modal-title">Reminders</h5>
+    <span class="modal-close-icon" ng-click="$dismiss()">
+        <img src="img/modal/close_white.png" width="20">
+    </span>
+</div>
+<div class="notificationaccordian-modal" ng-init="modelNo=false">
+    <div class="support-chat-history">
+        <!-- <div class="d-flex"> -->
+        <!-- <h6 class="fontRobotoBold blue-color mb-4 text-uppercase">Reminders</h6> -->
+        <!-- <div class="ml-auto">
+                <a role="button" class="button  px-3 py-1 fontRobotoBold text-center snooze-color" ng-click="reminderModalOpen(reminders._id);">Snooze
+                    / Edit</a>
+                <a role="button" class="button  px-3 py-1 fontRobotoBold text-center completed-color" ng-click="chnageStatus(reminders._id);">Completed</a>
+                <a role="button" class="button  px-3 py-1 fontRobotoBold text-center delete-btn" ng-click="deleteReminder(reminders._id);">Delete</a>
+            </div> -->
+        <!-- </div> -->
+        <uib-accordion close-others="true">
+            <div uib-accordion-group class="panel-default reminder-body" is-open="status1.open" is-disabled="disabled"
+                ng-repeat="reminders in showLessReminders">
+                <uib-accordion-heading>
+                    <div class="d-flex align-items-center">
+                        <div ng-click="checkCircle(reminders._id)" class="blue-circle p-1"><i class="fas fa-check text-white"></i></div>
+                        <h6 class="fontRobotoBold font14 ml-2 mb-0 text-uppercase">{{reminders.title}}</h6>
+                        <span class="font12 font-color ml-2 d-inline-block w-40 text-truncate" ng-if="!status1.open">{{reminders.description}}</span>
+                        <div class="ml-auto date-supportchat ">
+                            <span class="font12 ">{{reminders.dateOfReminder | date}}</span>
+                        </div>
+                    </div>
+                    <div class="up-arrow" ng-class="{'rotate-180':status1.open==true}">
+                        <i class="fas fa-sort-down"></i>
+                    </div>
+                </uib-accordion-heading>
+                <div class="pt-0 px-4 pb-4">
+                    <p>{{reminders.description}}</p>
+                    <div class="text-right">
+                        <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center snooze-color"
+                            ng-click="reminderModalOpen(reminders._id);" ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Snooze
+                            / Edit
+                        </a>
+                        <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center completed-color"
+                            ng-click="chnageStatus(reminders._id);" ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Completed
+                        </a>
+                        <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center delete-btn" ng-click="deleteReminder(reminders._id);">Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </uib-accordion>
+    </div>
+    <div class="float-right">
+        <nav aria-label="..." ng-if="(allReminders.length / maxRow) >1">
+            <ul ng-change="changePage(currentPage); " uib-pagination total-items="allReminders.length" items-per-page="maxRow"
+                ng-model="currentPage" max-size="10" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
+        </nav>
+    </div>
+    <a role="button" class="button w-25 py-1 float-right fontRobotoBold text-center orange-btn" ng-click="reminderModalOpen()"
+        ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Add Reminder
+    </a>
+</div>

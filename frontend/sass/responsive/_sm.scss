@@ -1,57 +1,71 @@
 /* Breakpoint for medium viewport */
 
 @include media-breakpoint-down(sm) {
+
     //padding top for content in all pages
     .user-profile {
         width: 70px;
         height: 70px;
     }
+
     .main {
         .content {
             padding-top: 35px;
         }
     }
+
     .other {
         .content {
             margin-top: -10px;
         }
     }
+
     .notification-main {
         padding-top: 35px;
         min-height: calc(100vh - 20vh);
     }
+
     .openticketreminder {
         padding-right: 0;
         padding-left: 0;
     }
+
     .border-rounded {
         border-radius: 0;
     }
+
     .ticket-creation-main .openticket {
         min-height: 62.5vh;
     }
+
     .save,
     .add,
     .reminder {
         width: 70%;
     }
+
     .app-modal-window {
         left: 50%;
         width: 100%;
+
         .button {
             font-size: 12px;
         }
     }
+
     .export {
         margin: 10px 0px;
         float: left;
     }
+
     .spacing-top {
         margin-top: 4rem !important;
     }
+
     .custom-input {
         width: 100% !important;
     }
+
     .support-timeline {
         transform: rotate(90deg);
         -webkit-transform: rotate(90deg);
@@ -61,17 +75,36 @@
         width: 160%;
         left: -175px;
     }
+
     .profile-page-subsection .social .social-text {
         width: 55%;
     }
+
     .product-search input {
         width: 330px !important;
     }
+
     .menu-circle {
         right: 5% !important;
         top: 3% !important;
     }
+
     .btn-logout {
         height: 370px !important;
+    }
+
+    .closedticketcreation {
+        padding: 0.5rem !important;
+
+    }
+
+    .support-chat-history {
+        min-height: 18vh !important;
+    }
+
+    .notificationaccordian-modal {
+        .button {
+            font-size: 0.5rem;
+        }
     }
 }
