@@ -2,6 +2,7 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
     $scope.template = TemplateService.getHTML("content/login/login.html");
     TemplateService.title = "Login"; //This is the Title of the Website
     TemplateService.header = "";
+    TemplateService.cssMain = "without-padding";
     TemplateService.footer = "";
     $scope.formName = {};
     $scope.showsignUp = false;

@@ -2,7 +2,7 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
     $scope.template = TemplateService.getHTML("content/ticketopen-notification/ticketopen-notification.html");
     TemplateService.title = "Ticketopen Notification"; //This is the Title of the Website
     TemplateService.landingheader = "";
-    TemplateService.cssMain="other"        
+    TemplateService.cssMain = "notification-main"
     $scope.navigation = NavigationService.getNavigation();
     // TemplateService.header = " ";
     $scope.navigation = NavigationService.getNavigation();
@@ -94,6 +94,24 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
     ticketService.totalOpenTickets(function (data) {
         $scope.ticketData = data;
     });
+    $scope.notificationmodalOpen = function (notification) {
+        $scope.singleNotification = notification;
+        $scope.accordianNotification = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/notificationaccordian.html",
+            scope: $scope,
+            backdrop: 'static'
+        });
+    }
+    $scope.openmodalOpen = function (tickets) {
+        $scope.singleTicket = tickets;
+        $scope.openTicket = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/openticket.html",
+            scope: $scope,
+            backdrop: 'static'
+        });
+    }
 
     //for ticket block end
     // $scope.checkifRead = function (data) {

@@ -2,6 +2,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     $scope.template = TemplateService.getHTML("content/profile/profile.html");
     TemplateService.title = "Profile"; //This is the Title of the Website
     TemplateService.landingheader = "";
+    TemplateService.cssMain = "main";
     $scope.navigation = NavigationService.getNavigation();
     $scope.jstrgValue = $.jStorage.get('userData');
     $scope.genderData = {};

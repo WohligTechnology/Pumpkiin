@@ -145,12 +145,29 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
             }
         }
     }
-
-    $scope.notificationaccordianOpen = function () {
+    $scope.notificationmodalOpen = function (notification) {
+        $scope.singleNotification = notification;
         $scope.accordianNotification = $uibModal.open({
             animation: true,
             templateUrl: "views/modal/notificationaccordian.html",
             scope: $scope,
+            backdrop: 'static'
         });
     }
+    $scope.openmodalOpen = function (tickets) {
+        $scope.singleTicket = tickets;
+        $scope.openTicket = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/openticket.html",
+            scope: $scope,
+            backdrop: 'static'
+        });
+    }
+
+    if ($(window).width() <= 400) {
+
+        console.log("mobile view");
+
+    }
+
 });
