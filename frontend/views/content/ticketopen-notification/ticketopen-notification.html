@@ -125,12 +125,13 @@
                         <div class="ml-auto date-supportchat ">
                             <span class="font12 ">{{tickets.product._id}}</span>
                         </div>
-                        <div class="ml-auto date-supportchat ">
-                            <span class="font12 ">{{tickets.issueReported | date}}</span>
-                        </div>
-                        <div class="ml-auto green-color ">
-                            <span class="font12 " ng-if="tickets.status=='Active'">Open</span>
-                            <span class="font12 " ng-if="tickets.status=='Closed'">Closed</span>
+                        <!-- <div class="ml-auto date-supportchat">
+                            <div class="font12 ">{{tickets.issueReported | date}}</div>
+                        </div> -->
+                        <div class="ml-auto">
+                            <div class="font12">{{tickets.issueReported | date}}</div>
+                            <div class="font12 green-color" ng-if="tickets.status=='Active'">Open</div>
+                            <div class="font12 green-color" ng-if="tickets.status=='Closed'">Closed</div>
                         </div>
                     </div>
                 </div>

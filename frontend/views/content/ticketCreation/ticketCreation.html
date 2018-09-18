@@ -50,7 +50,7 @@
         right: 0;
     }
 </style>
-<div class="container py-5" ng-controller="headerCtrl">
+<div class="container py-0 py-md-5" ng-controller="headerCtrl">
     <div class="row ticket-creation-main">
         <div class="col col-md-3 openticketreminder">
             <div class="bg-white border-rounded p-3">
@@ -256,10 +256,10 @@
                 <div class="position-relative d-lg-none">
                     <uib-accordion>
                         <div uib-accordion-group class="panel-default" is-open="status.open">
-                            <uib-accordion-heading class="bg-white border-0">
-                                <div class="accor-status"></div>
-                                <div class="float-right accor-head">
-                                    View Timeline<i class="fas" ng-class="{'fa-chevron-right': status.open, 'fa-chevron-down': !status.open}"></i>
+                            <uib-accordion-heading id="accordian-head" class="bg-white border-0">
+                                <div class="accor-status"></div><span class="status">{{ticketDetails.status}}<br>12/9/2018</span>
+                                <div class="accor-head font-color">
+                                    View Timeline<i class="fas orange-color ml-2" ng-class="{'fa-chevron-right': status.open, 'fa-chevron-down': !status.open}"></i>
                                 </div>
                             </uib-accordion-heading>
                             <div class="my-5 support-timeline">
