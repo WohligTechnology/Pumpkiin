@@ -36,7 +36,8 @@
                         </span>
                         <div class="addedpromain" ui-sref="productdetailregistered({id: product._id})">
                             <div class="d-flex align-items-center justify-content-center addedproduct" ui-sref="productdetailregistered({id: product._id})">
-                                <img class="img-fluid large-img" ng-src="{{product.productImages[0] | serverimage}}" alt="">
+                                <img class="img-fluid large-img" ng-src="{{product.productImages[0] | serverimage}}"
+                                    alt="">
                                 <div class="background-blue small-circle">
                                     <img src="{{product.smallimage}}">
                                 </div>
@@ -46,8 +47,8 @@
                                 <br>
                                 <span class="relation">{{product.relation}}</span>
                                 <br>
-                                <img ng-if="product.warranty" src="img/ticketCreation/warranty.png">
-                                <img ng-if="!product.warranty" src="img/ticketCreation/red_warranty.png">
+                                <img ng-if="!product.ribbon" src="img/ticketCreation/warranty.png">
+                                <img ng-if="product.ribbon" src="img/ticketCreation/red_warranty.png">
                                 <span class="expiry">{{product.warranty}}</span>
                             </div>
                         </div>
@@ -58,8 +59,9 @@
             </div>
             <div class="float-right mr-2">
                 <nav ng-if="(allProducts.length / maxRow) >1">
-                    <ul ng-change="changePage(currentPage);" uib-pagination total-items="allProducts.length" items-per-page="maxRow" ng-model="currentPage"
-                        max-size="10" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
+                    <ul ng-change="changePage(currentPage);" uib-pagination total-items="allProducts.length"
+                        items-per-page="maxRow" ng-model="currentPage" max-size="10" class="pagination-sm"
+                        boundary-links="true" force-ellipses="true"></ul>
                 </nav>
             </div>
             <!-- <div class="text-center">
@@ -103,12 +105,14 @@
                     <div class="float-right custom-searchbar">
                         <form autocomplete="on" class="position-relative" ng-if="ticketDetails[0].status!='Closed'">
                             <!-- <input type="text " ng-change="searchForTicketData(ticketSearch,'open')" ng-model="ticketSearch" /> -->
-                            <input name="search" type="text" ng-change="searchForTicketData(ticketSearch,'open')" ng-model="ticketSearch" />
+                            <input name="search" type="text" ng-change="searchForTicketData(ticketSearch,'open')"
+                                ng-model="ticketSearch" />
                             <input id="search_submit" value="Rechercher" type="submit">
                         </form>
                         <form autocomplete="on" class="position-relative" ng-if="ticketDetails[0].status=='Closed'">
                             <!-- <input type="text " ng-change="searchForTicketData(ticketSearch,'closed')" ng-model="ticketSearch" /> -->
-                            <input name="search" type="text" ng-change="searchForTicketData(ticketSearch,'closed')" ng-model="ticketSearch" />
+                            <input name="search" type="text" ng-change="searchForTicketData(ticketSearch,'closed')"
+                                ng-model="ticketSearch" />
                             <input id="search_submit" value="Rechercher" type="submit">
                         </form>
                     </div>
@@ -122,12 +126,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-right view mt-2" ng-if="ticketDetails.length==5 && ticketDetails[0].status=='Active'" ui-sref='ticketopen-notification'>View All
+                <div class="text-right view mt-2" ng-if="ticketDetails.length==5 && ticketDetails[0].status=='Active'"
+                    ui-sref='ticketopen-notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
                 </div>
-                <div class="text-right  view mt-2" ng-if="ticketDetails.length==5  && ticketDetails[0].status=='Closed'" ui-sref='ticketclose-notification'>View All
+                <div class="text-right  view mt-2" ng-if="ticketDetails.length==5  && ticketDetails[0].status=='Closed'"
+                    ui-sref='ticketclose-notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
@@ -162,12 +168,14 @@
                         <div class="float-right custom-searchbar">
                             <form autocomplete="on" class="position-relative" ng-if="ticketDetails[0].status!='Closed'">
                                 <!-- <input type="text " ng-change="searchForReminderData(reminderSearch,'open')" ng-model="reminderSearch" /> -->
-                                <input name="search" type="text" ng-change="searchForReminderData(reminderSearch,'open')" ng-model="reminderSearch" />
+                                <input name="search" type="text" ng-change="searchForReminderData(reminderSearch,'open')"
+                                    ng-model="reminderSearch" />
                                 <input id="search_submit" value="Rechercher" type="submit">
                             </form>
                             <form autocomplete="on" class="position-relative" ng-if="ticketDetails[0].status=='Closed'">
                                 <!-- <input type="text " ng-change="searchForReminderData(reminderSearch,'closed')" ng-model="reminderSearch" /> -->
-                                <input name="search" type="text" ng-change="searchForReminderData(reminderSearch,'closed')" ng-model="reminderSearch" />
+                                <input name="search" type="text" ng-change="searchForReminderData(reminderSearch,'closed')"
+                                    ng-model="reminderSearch" />
                                 <input id="search_submit" value="Rechercher" type="submit">
                             </form>
                         </div>
@@ -175,7 +183,8 @@
                 </div>
 
                 <div class="border-top listed-openTickets openticket">
-                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="reminders in showLessReminders" ng-click="notificationmodalOpen(reminders);">
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="reminders in showLessReminders"
+                        ng-click="notificationmodalOpen(reminders);">
                         <div class="bullet "></div>
                         <div class="d-block pl-4 ">
                             <div class="product-title text-truncate">{{reminders.title}}</div>

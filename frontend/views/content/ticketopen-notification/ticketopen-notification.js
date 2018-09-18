@@ -130,6 +130,7 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
     }
 
     ticketService.totalOpenTickets(function (data) {
+        console.log("ticketData", data)
         $scope.ticketData = data;
     });
     $scope.notificationmodalOpen = function (notification) {

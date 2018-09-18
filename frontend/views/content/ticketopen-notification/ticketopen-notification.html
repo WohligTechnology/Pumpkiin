@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="border-top listed-openTickets openticket ">
-                    <div class="d-flex py-1 element-list " ng-repeat="tickets in ticketDetails" ng-click="openmodalOpen(tickets);">
+                    <div class="d-flex py-1 element-list " ng-repeat="tickets in ticketDetails">
                         <div ng-if="!read" class="bullet"></div>
                         <div class="d-block pl-4 cursor-point" ng-click="checkifRead(tickets.product._id)">
                             <div class="product-title text-truncate">{{tickets.product.productName}}</div>
@@ -58,6 +58,11 @@
                         <i class="fas fa-caret-right "></i>
                     </span>
                 </div> -->
+
+
+
+                <!-- to be included when pop up is required -->
+                <!-- ng-click="openmodalOpen(tickets);"  -->
             </div>
             <div class="bg-white border-rounded p-3 mt-2 d-none d-md-block">
                 <div class="d-flex justify-content-between">
@@ -109,11 +114,17 @@
         <div class="col col-md-9 d-none d-md-block">
             <div class="support-chat-history">
                 <h6 class="fontRobotoBold blue-color mb-4 text-uppercase">Open Tickets</h6>
-                <div class="bg-white border-rounded p-4 my-2 " ng-repeat="tickets in ticketData" ui-sref="ticketcreation">
+                <div class="bg-white border-rounded p-4 my-2" ng-repeat="tickets in ticketData track by $index" ui-sref="ticketcreation({id:tickets.product._id})">
                     <div class="d-flex align-items-center ">
                         <div class="blue-circle "></div>
                         <h6 class="fontRobotoBold font14 ml-2 mb-0 ">{{tickets.ticketNumber}}</h6>
                         <!-- <span class="font12 font-color ml-2 d-inline-block w-25 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span> -->
+                        <div class="ml-auto date-supportchat ">
+                            <span class="font12 ">{{tickets.product.productName}}</span>
+                        </div>
+                        <div class="ml-auto date-supportchat ">
+                            <span class="font12 ">{{tickets.product._id}}</span>
+                        </div>
                         <div class="ml-auto date-supportchat ">
                             <span class="font12 ">{{tickets.issueReported | date}}</span>
                         </div>

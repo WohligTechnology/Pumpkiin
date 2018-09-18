@@ -58,7 +58,23 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
         var start = (pageno - 1) * $scope.maxRow;
         var end = (pageno - 1) * $scope.maxRow + $scope.maxRow;
         $scope.productPerPage = _.slice($scope.allProducts, start, end);
+
+        _.each($scope.productPerPage, function (n) {
+            var now = moment(new Date()),
+                end = moment(n.warrantyExpDate),
+                days = end.diff(now, 'days');
+            console.log("----days-----", days)
+            if (days <= 30) {
+                n.ribbon = true;
+            } else {
+                n.ribbon = false;
+            }
+        });
+
+
+
         console.log("$scope.productPerPage", $scope.productPerPage);
+
     }
 
     reminderService.findReminderOfPendingSnoozeByUser(function (data) {
