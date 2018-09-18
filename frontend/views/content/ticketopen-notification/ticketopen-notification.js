@@ -91,7 +91,7 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
     ticketService.totalOpenTickets(function (data) {
         // $scope.ticketDetails = data;
         $scope.ticketDetails = _.slice(data, 0, 5);
-        console.log(" $scope.ticketDetails --", $scope.ticketDetails);
+        console.log(" 1 ", $scope.ticketDetails);
 
     });
 
@@ -119,6 +119,8 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
         ticketService.totalClosedTickets(function (data) {
             // $scope.ticketDetails = data;
             $scope.ticketDetails = _.slice(data, 0, 5);
+            console.log(" 2 ", $scope.ticketDetails);
+
         });
     }
 
@@ -126,6 +128,8 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
         ticketService.totalOpenTickets(function (data) {
             // $scope.ticketDetails = data;
             $scope.ticketDetails = _.slice(data, 0, 5);
+            console.log(" 3 ", $scope.ticketDetails);
+
         });
     }
 

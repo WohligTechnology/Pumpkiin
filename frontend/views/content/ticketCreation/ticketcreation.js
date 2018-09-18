@@ -132,6 +132,13 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                         })
                     })
 
+                    ticketService.totalOpenTickets(function (data) {
+                        // $scope.ticketDetails = data;
+                        $scope.ticketDetails1 = _.slice(data, 0, 8);
+                        console.log("1 $scope.ticketDetails --", $scope.ticketDetails1);
+
+                    });
+
                     //timeline end
 
                 });
