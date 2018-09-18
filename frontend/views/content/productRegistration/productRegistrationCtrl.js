@@ -1,7 +1,8 @@
 myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $uibModal, NavigationService, $timeout, toastr, $http, $state) {
     $scope.template = TemplateService.getHTML("content/productRegistration/productRegistration.html");
     TemplateService.title = "product Registration"; //This is the Title of the Website
-    TemplateService.landingheader = "";
+    TemplateService.landingheader = "";   
+    TemplateService.cssMain="main"
     // TemplateService.header = " ";
     $scope.navigation = NavigationService.getNavigation();
     var circle1;

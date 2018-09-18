@@ -2,6 +2,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
     $scope.template = TemplateService.getHTML("content/productListing/productListing.html");
     TemplateService.title = "Product Listing"; //This is the Title of the Website
     TemplateService.landingheader = "";
+    TemplateService.cssMain = "main"
     $scope.navigation = NavigationService.getNavigation();
 
     $scope.jstrgValue = $.jStorage.get('userData');
@@ -290,5 +291,22 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
     // $scope.checkifRead() = function () {
     //     $state.go("ticketopen-notification");
     // }
-
+    $scope.notificationmodalOpen = function (notification) {
+        $scope.singleNotification = notification;
+        $scope.accordianNotification = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/notificationaccordian.html",
+            scope: $scope,
+            backdrop: 'static'
+        });
+    }
+    $scope.openmodalOpen = function (tickets) {
+        $scope.singleTicket = tickets;
+        $scope.openTicket = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/openticket.html",
+            scope: $scope,
+            backdrop: 'static'
+        });
+    }
 });

@@ -1,15 +1,79 @@
 <header>
     <div class="navbar navbar-expand-lg navbar-primary fixed-top custom-header bg-primary">
-        <a class="navbar-brand ml-4" ui-sref="openticket">
-            <img src="img/header/Pumpkiinwhite.png" alt="logo" width="130">
+        <a class="navbar-brand" ui-sref="openticket">
+            <img class="d-none d-md-block" src="img/header/Pumpkiinwhite.png" alt="logo" width="130">
+            <img class="d-block d-md-none" src="img/pumpapple.png" alt="logo" width="40">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <ul class="my-2 my-lg-0 d-block d-lg-none">
+            <li class="list-inline-item nav-item right-icon-width" ui-sref="ticketopen-notification">
+                <img src="img/header/Ticket_circle-icon.png" alt="Ticket_circle-icon" class="w-100" ng-if="currentState!=='ticketcreation' && currentState!=='closedTicketcreation' && currentState!=='ticketopen-notification'"
+                    data-toggle="tooltip" data-placement="bottom" title="Open Tickets">
+                <img src="img/header/Ticket_circle-icon-orange.png" alt="Ticket_circle-icon-orange" class="w-100" ng-if="currentState=='ticketcreation' || currentState=='closedTicketcreation' || currentState=='ticketopen-notification'"
+                    data-toggle="tooltip" data-placement="bottom" title="Open Tickets">
+            </li>
+            <li class="list-inline-item nav-item right-icon-width" ui-sref="productListing">
+                <img src="img/header/Products_circle-icon.png" alt="Products_circle-icon" class="w-100" ng-if="currentState!=='productListing'"
+                    data-toggle="tooltip" data-placement="bottom" title="Product List">
+                <img src="img/header/Products_circle-icon-orange.png" alt="Products_circle-icon" class="w-100" ng-if="currentState=='productListing'"
+                    data-toggle="tooltip" data-placement="bottom" title="Product List">
+            </li>
+            <li class="list-inline-item nav-item right-icon-width" ui-sref="notification">
+                <img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState!=='notification'"
+                    data-toggle="tooltip" data-placement="bottom" title="Reminders">
+                <img src="img/header/Notification_circle-icon-orange.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState=='notification'"
+                    data-toggle="tooltip" data-placement="bottom" title="Reminders">
+            </li>
+        </ul>
+        <div class="navbar-header tab-menu">
+            <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse"
+                    aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button> -->
+            <div class="menu-circle" ng-class="{'closer': showMenu == true}" ng-click="toggleMenu();">
+                <span class="bar bar1"></span>
+                <span class="bar bar2"></span>
+                <span class="bar bar3"></span>
+            </div>
 
+        </div>
+        <div class="menu-new d-lg-none" ng-class="{'show': showMenu == true}">
+            <div class="d-flex align-items-center pl-2 pb-3 profile-border">
+                <div class="user-profile rounded-circle">
+                    <img ng-src="{{jstrgValue.profilePic | serverimage}}" alt="Ticket_circle-icon" width="100%" ng-if="jstrgValue.profilePic">
+                    <img src="img/emptyProfile.png" ng-if="!jstrgValue.profilePic" alt="Ticket_circle-icon">
+                </div>
+                <div class="ml-2">
+                    <h5 class="mb-0">Margaret Mead</h5>
+                    <p>(Code: 123456)</p>
+                </div>
+            </div>
+           <div class="m-2 menu-list">
+               <ul class="list-unstyled">
+                   <li><a ui-sref="profile">Profile</a></li>
+                   <li><a ui-sref="terms">Terms &amp; Conditions</a></li>
+                   <li><a ui-sref="privacy">Privacy Policy</a></li>
+               </ul>
+               <div class="btn-logout" ng-click="logout()"><a class="text-white text-center w-50 py-1 background-orange border-rounded">Log Out</a></div>
+            </div>
+        </div>
+
+        <form class="form-inline mr-auto mx-auto position-relative d-block d-lg-none">
+            <div class="product-search">
+                <img src="img/header/Search-icon.png" alt="Search-icon" class="search-icon">
+                <input class="mr-sm-6" type="text" placeholder="Search for brands of product" ng-model="productSearch" ng-change="searchData(productSearch)">
+            </div>
+            <div class="product-drop" ng-if="productList.length>0">
+                <!-- asdads {{productList.length}} -->
+                <div class="product" ng-repeat="product in productList | filter:productSearch track by $index" ui-sref="productdetailregistered({id: product._id})">{{product.productName}}
+                    <!-- <img ng-src="{{product.img}}" ng-if="product.img"> -->
+                </div>
+            </div>
+        </form>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline mr-auto mx-auto position-relative">
+            <form class="form-inline mr-auto mx-auto position-relative d-none d-lg-block">
                 <div class="product-search">
                     <img src="img/header/Search-icon.png" alt="Search-icon" class="search-icon">
                     <input class="mr-sm-6" type="text" placeholder="Search for brands of product" ng-model="productSearch" ng-change="searchData(productSearch)">
@@ -22,19 +86,19 @@
                 </div>
             </form>
             <ul class="navbar-nav my-2 my-lg-0 mr-4">
-                <li class="list-inline-item nav-item right-icon-width mx-2" ui-sref="ticketopen-notification">
+                <li class="list-inline-item nav-item right-icon-width mx-2 d-none d-lg-block" ui-sref="ticketopen-notification">
                     <img src="img/header/Ticket_circle-icon.png" alt="Ticket_circle-icon" class="w-100" ng-if="currentState!=='ticketcreation' && currentState!=='closedTicketcreation' && currentState!=='ticketopen-notification'"
                         data-toggle="tooltip" data-placement="bottom" title="Open Tickets">
                     <img src="img/header/Ticket_circle-icon-orange.png" alt="Ticket_circle-icon" class="w-100" ng-if="currentState=='ticketcreation' || currentState=='closedTicketcreation' || currentState=='ticketopen-notification'"
                         data-toggle="tooltip" data-placement="bottom" title="Open Tickets">
                 </li>
-                <li class="list-inline-item nav-item right-icon-width mx-2" ui-sref="productListing">
+                <li class="list-inline-item nav-item right-icon-width mx-2 d-none d-lg-block" ui-sref="productListing">
                     <img src="img/header/Products_circle-icon.png" alt="Products_circle-icon" class="w-100" ng-if="currentState!=='productListing'"
                         data-toggle="tooltip" data-placement="bottom" title="Product List">
                     <img src="img/header/Products_circle-icon-orange.png" alt="Products_circle-icon" class="w-100" ng-if="currentState=='productListing'"
                         data-toggle="tooltip" data-placement="bottom" title="Product List">
                 </li>
-                <li class="list-inline-item nav-item right-icon-width mx-2" ui-sref="notification">
+                <li class="list-inline-item nav-item right-icon-width mx-2 d-none d-lg-block" ui-sref="notification">
                     <img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState!=='notification'"
                         data-toggle="tooltip" data-placement="bottom" title="Reminders">
                     <img src="img/header/Notification_circle-icon-orange.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState=='notification'"

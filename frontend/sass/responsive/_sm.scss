@@ -1,6 +1,44 @@
 /* Breakpoint for medium viewport */
 
 @include media-breakpoint-down(sm) {
+    //padding top for content in all pages
+    .bg-image {
+        height: 91vh;
+    }
+    .user-profile {
+        width: 70px !important;
+        height: 70px !important;
+    }
+    .main {
+        .content {
+            padding-top: 35px;
+        }
+    }
+    .other {
+        .content {
+            margin-top: -10px;
+        }
+    }
+    .without-padding {
+        .content {
+            padding-top: 0;
+        }
+    }
+    .notification-main {
+        padding-top: 35px;
+        .content {
+            min-height: calc(100vh - 20vh);
+        }
+    }
+    .openticketreminder {
+        padding-right: 0;
+        padding-left: 0;
+    } // .border-rounded {
+    //     border-radius: 0;
+    // }
+    .ticket-creation-main .openticket {
+        min-height: 62.5vh;
+    }
     .save,
     .add,
     .reminder {
@@ -22,5 +60,41 @@
     }
     .custom-input {
         width: 100% !important;
+    }
+    .support-timeline {
+        transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        top: 240px;
+        width: 160%;
+        left: -175px;
+    }
+    .profile-page-subsection .social .social-text {
+        width: 55%;
+    }
+    .product-search input {
+        width: 330px !important;
+    }
+    .menu-circle {
+        right: 5% !important;
+        top: 3% !important;
+    }
+    .btn-logout {
+        height: 333px !important;
+    }
+    .closedticketcreation {
+        padding: 0.5rem !important;
+    }
+    .support-chat-history {
+        min-height: 18vh !important;
+    }
+    .notificationaccordian-modal {
+        .button {
+            font-size: 0.5rem;
+        }
+    }
+    .listed-openTickets .element-list .product-title {
+        width: 310px;
     }
 }

@@ -1,6 +1,6 @@
 <div class="container py-5">
-    <div class="row ticket-creation-main">
-        <div class="col col-md-3 openticketreminder">
+    <div class="row ticket-creation-main closedticketcreation-main">
+        <div class="col col-md-3 openticketreminder d-none d-sm-block">
             <div class="bg-white border-rounded p-3 mb-2">
                 <div class="d-flex justify-content-between">
                     <div class="closed-text">
@@ -69,8 +69,8 @@
                     </div>
                     <div class="closed-text" ng-click="completedReminders()" ng-if="totalCompletedReminder">
                         <img src="img/ticketCreation/Notification_circle-icon-green.png">
-                        <div class="notification notification-orange" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
-                        <div class="notification notification-orange" ng-if="!totalCompletedReminder">0</div>
+                        <div class="notification notification-green" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
+                        <div class="notification notification-green" ng-if="!totalCompletedReminder">0</div>
                     </div>
                     <div ng-click="reminderModalOpen()">
                         <img src="img/ticketCreation/addButton.png ">
@@ -107,7 +107,7 @@
         </div>
 
         <div class="col col-md-9 " ng-init="modelNo=false ">
-            <div class="background-blue border-rounded p-5">
+            <div class="background-blue border-rounded p-5 closedticketcreation">
                 <div class="media">
                     <div class="img-div ">
                         <img src="img/iphone.jpeg " class="img-fluid large-img ">
@@ -170,7 +170,8 @@
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Warranty : </span>
-                                    <span class="d-inline-block w-60 green-color "> {{ticketDetails.product.warrantyExpDate}}</span>
+                                    <span class="d-inline-block w-60 green-color ">
+                                        {{ticketDetails.product.warrantyExpDate}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-40 ">Relation : </span>

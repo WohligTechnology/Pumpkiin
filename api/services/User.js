@@ -72,8 +72,7 @@ var schema = new Schema({
         default: ""
     },
     mobile: {
-        type: Number,
-        unique: true
+        type: Number
     },
     otp: {
         type: String,
