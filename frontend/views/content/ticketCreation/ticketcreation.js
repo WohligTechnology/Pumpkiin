@@ -2,6 +2,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
     $scope.template = TemplateService.getHTML("content/ticketCreation/ticketCreation.html");
     TemplateService.title = "Ticket Creation"; //This is the Title of the Website
     TemplateService.landingheader = "";
+    TemplateService.cssMain = "main";
     $scope.navigation = NavigationService.getNavigation();
     $scope.rate = 2;
     $scope.max = 5;
