@@ -24,8 +24,6 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
         });
     };
 
-
-
     //REMINDER SECTION
 
     reminderService.findReminderOfPendingSnoozeByUser(function (data) {
