@@ -470,7 +470,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             dataTofilter.status = $stateParams.status;
             $scope.formData.filter = dataTofilter;
             $scope.url = "Product/search";
-            $scope.formData.page = $scope.formData.page++;
+            // $scope.formData.page = $scope.formData.page;
             NavigationService.apiCall($scope.url, $scope.formData, function (data) {
                 // console.log("data.value", data);
                 if (data.value) {
@@ -482,6 +482,10 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                 $scope.maxRow = data.data.options.count;
             });
         }
+        // $scope.changePage = function (page) {
+        //     $scope.viewTable(page);
+        // }
+
         $scope.viewTable();
 
     })
@@ -696,7 +700,10 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                 });
             },
             $scope.viewTable();
+
+
         $scope.saveProduct = function (data) {
+            console.log("save first page", data)
             data.productImages = [];
             _.forEach(data.image, function (img) {
                 data.productImages.push({

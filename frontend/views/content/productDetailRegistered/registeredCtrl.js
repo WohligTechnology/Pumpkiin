@@ -119,9 +119,11 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
                 data.relatedUser = usersData;
                 if (data1.brand) {
                     data.brand = data1.brand._id;
+                    console.log("IF data.brand", data.brand);
                 }
                 if (data1.retailer) {
                     data.retailer = data1.retailer._id;
+                    console.log("IF data.retailer", data.retailer);
                 }
             }
             // console.log("------------", data);

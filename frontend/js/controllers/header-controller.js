@@ -28,6 +28,7 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
         });
     }
 
+
     $scope.getReminder = function (data) {
         console.log("----------", data);
         var getReminder = {};

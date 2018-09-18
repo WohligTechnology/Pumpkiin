@@ -78,6 +78,21 @@ var controller = {
         }
     },
 
+
+
+    sortFunction: function (req, res) {
+        if (req.body) {
+            Product.sortFunction(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+
     sortProductsByBrands: function (req, res) {
         if (req.body) {
             Product.sortProductsByBrands(req.body, res.callback);

@@ -13,6 +13,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     $scope.data = {};
     $scope.jstrgValue = $.jStorage.get('userData');
     $scope.makeActive = function (click) {
+        console.log("click", click)
         $('.' + click).addClass("timeline-active");
         $scope.activePage = click;
         if (click) {
@@ -72,22 +73,28 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     $scope.getUserData();
 
     $scope.saveProduct = function (product) {
+        // $scope.product_id = {};
+
+        console.log("saveProduct-------------------", product)
+        console.log("$scope.product_id-------------------", $scope.product_id)
         // product.productImages = [];
         // product.productImages = product.images;
         product.user = $scope.jstrgValue._id;
-        product.brand = product.brand._id;
+        // product.brand = product.brand._id;
         if ($scope.product_id) {
             product._id = $scope.product_id;
+            console.log("product id when back", $scope.product_id)
             NavigationService.apiCallWithData("Product/saveProduct", product, function (res) {
                 $scope.product_id = res.data._id;
-                // console.log("res.data", res.data);
+                console.log("if", res.data);
                 $scope.makeActive('circle2');
                 $scope.checkmark1 = true;
             });
         } else {
             NavigationService.apiCallWithData("Product/save", product, function (res) {
+                console.log("else", res);
                 $scope.product_id = res.data._id;
-                // console.log("res.data", res.data);
+                console.log("res.data", res.data);
                 $scope.makeActive('circle2');
                 $scope.checkmark1 = true;
             });
@@ -125,10 +132,11 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             // });
             purchase.relatedUser = purchase.Users;
             delete purchase.Users;
-            // console.log("purchase----", purchase)
+            console.log("purchase----", purchase)
             // console.log("$scope.product_id", $scope.product_id);
             purchase._id = $scope.product_id;
             NavigationService.apiCallWithData("Product/saveProduct", purchase, function (res) {
+                console.log("savepurchaseDetails---", res)
                 $scope.makeActive('circle3');
                 $scope.checkmark2 = true;
             });
@@ -136,7 +144,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     }
 
     $scope.goToNxtTab = function (data) {
-        // console.log("data---", data);
+        console.log("data---", data);
         if ($scope.product_id) {
             data._id = $scope.product_id;
             NavigationService.apiCallWithData("Product/saveProduct", data, function (res) {

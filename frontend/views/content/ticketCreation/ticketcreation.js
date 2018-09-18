@@ -84,7 +84,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                 // console.log("$scope.ticketData-----------", ticketData);
                 NavigationService.apiCallWithData("Ticket/findActiveTicketOfUser", ticketData, function (res) {
                     $scope.ticketDetails = res.data;
-                    // console.log("$scope.ticketDetails-----------", $scope.ticketDetails);
+                    console.log("/////////////////////////////////////////////////////////////  $scope.ticketDetails-----------", $scope.ticketDetails);
 
                     //timeline
 
@@ -118,6 +118,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                     }];
 
                     _.each($scope.statusArray, function (x) {
+                        console.log("1 $scope.ticketDetails", $scope.ticketDetails);
                         _.each($scope.ticketDetails.substat, function (y) {
                             if (y.status == x.status) {
                                 // console.log("-", _.findIndex($scope.statusArray, function (o) {
@@ -187,6 +188,8 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                 }];
 
                 _.each($scope.statusArray, function (x) {
+                    console.log("2 $scope.ticketDetails", $scope.ticketDetails);
+
                     _.each($scope.ticketDetails.substat, function (y) {
                         if (y.status == x.status) {
                             // console.log("-", _.findIndex($scope.statusArray, function (o) {

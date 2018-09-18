@@ -57,7 +57,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
         var start = (pageno - 1) * $scope.maxRow;
         var end = (pageno - 1) * $scope.maxRow + $scope.maxRow;
         $scope.productPerPage = _.slice($scope.allProducts, start, end);
-        console.log(" $scope.productPerPage", $scope.productPerPage);
+        console.log("$scope.productPerPage", $scope.productPerPage);
     }
 
     reminderService.findReminderOfPendingSnoozeByUser(function (data) {
@@ -243,11 +243,23 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
     $scope.sortByProduct = function () {
         var dataToSend = {};
         dataToSend.user = $scope.jstrgValue._id;
-        NavigationService.apiCallWithData("Product/sortByProducts", dataToSend, function (response) {
+        dataToSend.name = "productName";
+        /*  NavigationService.apiCallWithData("Product/sortByProducts", dataToSend, function (response) {
+             if (response.value) {
+                 $scope.allProducts = response.data;
+                 $scope.products = _.slice($scope.allProducts, 0, 7);
+                 console.log("  $scope.allProducts", $scope.allProducts);
+             }
+         }); */
+
+
+
+        NavigationService.apiCallWithData("Product/sortFunction", dataToSend, function (response) {
             if (response.value) {
                 $scope.allProducts = response.data;
-                $scope.products = _.slice($scope.allProducts, 0, 7);
-                console.log("  $scope.allProducts", $scope.allProducts);
+                $scope.changePage(1);
+                //$scope.products = _.slice($scope.allProducts, 0, 7);
+                console.log("sortByProduct", response.data);
             }
         });
     };
@@ -255,14 +267,24 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
     $scope.sortByBrand = function () {
         var dataToSend = {};
         dataToSend.user = $scope.jstrgValue._id;
-        NavigationService.apiCallWithData("Product/sortProductsByBrands", dataToSend, function (response) {
+        dataToSend.name = "brand";
+        console.log("sortByBrand", dataToSend);
+        NavigationService.apiCallWithData("Product/sortFunction", dataToSend, function (response) {
             if (response.value) {
                 $scope.allProducts = response.data;
                 $scope.changePage(1);
                 // $scope.products = _.slice($scope.allProducts, 0, 7);
-                // console.log("  $scope.allProducts", $scope.allProducts);
+                console.log("sortByBrand1", response.data);
             }
-        });
+        })
+        /* NavigationService.apiCallWithData("Product/sortProductsByBrands", dataToSend, function (response) {
+            if (response.value) {
+                $scope.allProducts = response.data;
+                $scope.changePage(1);
+                // $scope.products = _.slice($scope.allProducts, 0, 7);
+                console.log(" result", response.data);
+            }
+        }); */
     };
     $scope.sortByBrand();
     // $scope.checkifRead() = function () {

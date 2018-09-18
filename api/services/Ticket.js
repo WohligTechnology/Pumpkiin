@@ -53,9 +53,6 @@ schema.plugin(deepPopulate, {
         user: {
             select: ""
         },
-        "product.brand": {
-            select: ""
-        },
         "product.user": {
             select: ""
         },
@@ -65,7 +62,7 @@ schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('Ticket', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "product product.brand product.user user", "product product.brand product.user user"));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "product product.user user", "product product.user user"));
 var model = {
 
     totalNumberOfTickets: function (data, callback) {
@@ -75,17 +72,18 @@ var model = {
     },
 
     totalOpenTickets: function (data, callback) {
+        console.log("totalOpenTickets----------", data)
         this.find({
             user: data.user,
             status: "Active"
-        }).deepPopulate('product product.brand product.user').exec(callback);
+        }).deepPopulate('product product.user').exec(callback);
     },
 
     totalClosedTickets: function (data, callback) {
         this.find({
             user: data.user,
             status: "Closed"
-        }).deepPopulate('product product.brand product.user').exec(callback);
+        }).deepPopulate('product product.user').exec(callback);
     },
 
     totalNumberOfOpenTickets: function (data, callback) {
@@ -107,14 +105,14 @@ var model = {
             product: data.product,
             user: data.user,
             status: 'Active'
-        }).deepPopulate('product product.brand product.user').exec(callback);
+        }).deepPopulate('product product.user').exec(callback);
     },
 
     findClosedTicketOfUser: function (data, callback) {
         this.findOne({
             _id: data.ticketId,
             user: data.user,
-        }).deepPopulate('product product.brand product.user').exec(callback);
+        }).deepPopulate('product product.user').exec(callback);
     },
 
 

@@ -31,6 +31,7 @@ myApp.service('ticketService', function (NavigationService) {
     };
 
     this.totalOpenTickets = function (callback) {
+        console.log("totalOpenTickets", ticketData)
         NavigationService.apiCallWithData("Ticket/totalOpenTickets", ticketData, function (res) {
             if (res.value == true) {
                 callback(res.data);

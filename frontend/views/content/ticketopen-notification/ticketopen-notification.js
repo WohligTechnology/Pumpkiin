@@ -5,6 +5,44 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
     $scope.navigation = NavigationService.getNavigation();
     // TemplateService.header = " ";
     $scope.navigation = NavigationService.getNavigation();
+    $scope.ticketService = ticketService;
+
+    $scope.askRegistration = function () {
+        console.log("hey");
+        $scope.productCheck = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/productCheck.html",
+            scope: $scope,
+            backdrop: 'static',
+            windowClass: 'app-modal-window'
+        });
+    }
+    $scope.pumpkinRegistration = function () {
+        $scope.pumpRegistration = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/pumpRegistration.html",
+            scope: $scope,
+            backdrop: 'static',
+            windowClass: 'app-modal-window'
+        });
+        $scope.productCheck.close();
+    }
+
+    $scope.submitDocuments = function (docs) {
+        // console.log("*************", docs);
+        docs.status = "Pending";
+        NavigationService.apiCallWithData("Product/save", docs, function (res) {
+            // console.log("inside submit documents api", res);
+            $scope.pumpRegistration.close();
+            $scope.thanks = $uibModal.open({
+                animation: true,
+                templateUrl: "views/modal/upload-thanks.html",
+                scope: $scope,
+                windowClass: 'app-modal-window'
+            });
+        });
+    }
+
 
     //REMINDER SECTION
 
@@ -62,7 +100,7 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
 
     ticketService.totalNumberOfTickets(function (data) {
         $scope.totalNumberOfTickets = data;
-        // console.log("res--totalNumberOfTickets---", data);
+        console.log("res--totalNumberOfTickets---", data);
     });
 
     ticketService.totalNumberOfOpenTickets(function (data) {

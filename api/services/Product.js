@@ -79,9 +79,6 @@ var schema = new Schema({
 
 schema.plugin(deepPopulate, {
     populate: {
-        'brand': {
-            select: ''
-        },
         'retailer': {
             select: ''
         },
@@ -97,10 +94,12 @@ schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
 module.exports = mongoose.model('Product', schema);
 
-var exports = _.cloneDeep(require("sails-wohlig-service")(schema, "brand retailer user relatedUser.user", "brand retailer user relatedUser.user"));
+var exports = _.cloneDeep(require("sails-wohlig-service")(schema, " retailer user relatedUser.user", " retailer user relatedUser.user"));
 var model = {
 
     saveProduct: function (data, callback) {
+        console.log("----------------------------")
+        console.log(data);
         Product.saveData(data, function (err, found) {
             if (err || _.isEmpty(found)) {
                 callback(err, null);
@@ -252,8 +251,7 @@ var model = {
     },
 
     //sorting brand and product
-
-    sortProductsByBrands: function (data, callback) {
+    /* sortProductsByBrands: function (data, callback) {
         Product.aggregate([
             // Stage 1
             {
@@ -320,7 +318,63 @@ var model = {
             }
         });
 
+    }, */
+
+
+
+    /* sortFunction1: function (data, callback) {
+        var Model = this;
+        var Const = this(data);
+        var maxRow = Config.maxRow;
+
+        var page = 1;
+        if (data.page) {
+            page = data.page;
+        }
+        var field = data.field;
+
+
+
+
+        var options = {
+            field: data.field,
+            filters: {
+                keyword: {
+                    fields: ['name'],
+                    term: data.keyword
+                }
+            },
+            sort: {
+                asc: 'productName'
+            },
+            start: (page - 1) * maxRow,
+            count: maxRow
+        };
+
+        console.log("sortFunction", data);
+        var name = data.name;
+        console.log("nmae ", name);
+        Product.find({
+                user: data.user,
+                status: 'Confirmed'
+            }).order(options)
+            .keyword(options)
+            .page(options, callback);
+    }, */
+
+    sortFunction: function (data, callback) {
+
+        console.log("sortFunction", data);
+        var name = data.name;
+        console.log("name ", name);
+        Product.find({
+            user: data.user,
+            status: 'Confirmed'
+        }).sort({
+            [name]: 1
+        }).exec(callback)
     },
+
 
     sortByProducts: function (data, callback) {
         Product.find({

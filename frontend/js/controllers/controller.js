@@ -9,7 +9,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         //     dropupAuto: false
         // });
 
-        console.log("hey")
+        // console.log("hey")
 
         $scope.submitForm = function (data) {
             console.log("This is it");
