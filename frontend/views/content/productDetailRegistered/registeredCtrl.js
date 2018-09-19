@@ -2,6 +2,7 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
     $scope.template = TemplateService.getHTML("content/productDetailRegistered/registered.html");
     TemplateService.title = "Product Detail Registered"; //This is the Title of the Website
     TemplateService.landingheader = "";
+    TemplateService.cssMain = "registration";
     $scope.navigation = NavigationService.getNavigation();
     var usersData = [];
     $scope.jstrgValue = $.jStorage.get('userData');

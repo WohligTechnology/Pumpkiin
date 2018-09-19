@@ -112,7 +112,6 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             $scope.userData = {};
             // console.log("response", response);
             if (response.value == true) {
-
                 toastr.success("Relation added successfully");
                 $scope.getUserData();
             } else {

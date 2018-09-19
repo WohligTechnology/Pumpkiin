@@ -96,6 +96,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
                         animation: true,
                         templateUrl: "views/modal/otpModal.html",
                         scope: $scope,
+                        backdrop: 'static'
                     });
                 }
             });

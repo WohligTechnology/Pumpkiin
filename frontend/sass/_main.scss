@@ -167,7 +167,7 @@ h2 {
 }
 
 body {
-    padding-top: 56px;
+    padding-top: 52px;
     background-color: $gray-lighter;
 }
 
@@ -646,10 +646,9 @@ fieldset:disabled {
     pointer-events: none;
 }
 
-.swiper-container {
-    width: 800px;
-}
-
+// .swiper-container {
+//     width: 800px;
+// }
 //scss for modal
 .modal-close-icon {
     position: absolute;
@@ -906,7 +905,7 @@ fieldset:disabled {
 
 .main-swiper-container {
     position: relative;
-    width: 900px;
+    width: 800px;
     margin: 0 auto;
     .swiper-button-prev,
     .swiper-button-next {
@@ -920,10 +919,12 @@ fieldset:disabled {
     .swiper-button-prev,
     .swiper-container-rtl .swiper-button-next {
         background-image: url("../img/left-arrow.png");
+        left: -45px;
     }
     .swiper-button-next,
     .swiper-container-rtl .swiper-button-prev {
         background-image: url("../img/right-arrow.png");
+        right: -45px;
     }
 }
 

@@ -22,7 +22,7 @@
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
-                <div class="my-3 open-tickets ">
+                <div class="mt-3 mb-4 open-tickets">
                     <h5 class="d-inline">Closed Tickets</h5>
                     <!-- <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
                             <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
@@ -76,7 +76,7 @@
                         <img src="img/ticketCreation/addButton.png ">
                     </div>
                 </div>
-                <div class="my-3 open-tickets ">
+                <div class="mt-3 mb-4 open-tickets">
                     <h5 class="d-inline ">Reminders</h5>
                     <span class="badge badge-style ml-auto">{{totalReminders}}</span>
                     <div class="float-right custom-searchbar">
@@ -106,7 +106,7 @@
             </div>
         </div>
 
-        <div class="col col-md-9 " ng-init="modelNo=false ">
+        <div class="col col-md-9" ng-init="modelNo=false ">
             <div class="background-blue border-rounded p-5 closedticketcreation">
                 <div class="media">
                     <div class="img-div ">
@@ -135,23 +135,23 @@
                         <p class="fontRobotoRegular font20 m-0">{{ticketDetails.product.productName}}
                             <span class="pl-2 fontRobotoLight "> ({{ticketDetails.product.brand.name}})</span>
                         </p>
-                        <div class="row fontRobotoRegular font14 info-div mt-1" ng-show="modelNo ">
-                            <div class="col col-md-6 ">
+                        <div class="row no-gutters fontRobotoRegular font14 info-div mt-1" ng-show="modelNo ">
+                            <div class="col-12 col-lg-6">
                                 <p class="d-flex align-items-top ">
-                                    <span class="d-inline-block w-40 ">Model Number : </span>
-                                    <span class="d-inline-block w-60 ">{{ticketDetails.product.modelNo}}</span>
+                                    <span class="d-inline-block w-50">Model Number : </span>
+                                    <span class="d-inline-block w-50">{{ticketDetails.product.modelNo}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
-                                    <span class="d-inline-block w-40 ">Purchase Price : </span>
-                                    <span class="d-inline-block w-60 "> {{ticketDetails.product.purchasePrice}}</span>
+                                    <span class="d-inline-block w-50">Purchase Price : </span>
+                                    <span class="d-inline-block w-50"> {{ticketDetails.product.purchasePrice}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
-                                    <span class="d-inline-block w-40 ">Store : </span>
-                                    <span class="d-inline-block w-60 ">{{ticketDetails.product.purchasePrice}}</span>
+                                    <span class="d-inline-block w-50">Store : </span>
+                                    <span class="d-inline-block w-50">{{ticketDetails.product.purchasePrice}}</span>
                                 </p>
                                 <!-- <p class="d-flex align-items-top ">
-                                    <span class="d-inline-block w-40 ">Attached Files : </span>
-                                    <span class="d-inline-block w-60 ">
+                                    <span class="d-inline-block w-50">Attached Files : </span>
+                                    <span class="d-inline-block w-50">
                                         <span class="d-inline-block img-uploaded "></span>
                                         <span class="d-inline-block img-uploaded "></span>
                                         <span class="d-inline-block img-uploaded "></span>
@@ -159,23 +159,23 @@
                                     </span>
                                 </p> -->
                             </div>
-                            <div class="col col-md-6 ">
+                            <div class="col-12 col-lg-6">
                                 <p class="d-flex align-items-top ">
-                                    <span class="d-inline-block w-40 ">Serial Number : </span>
-                                    <span class="d-inline-block w-60 ">{{ticketDetails.product.serialNo}}</span>
+                                    <span class="d-inline-block w-50">Serial Number : </span>
+                                    <span class="d-inline-block w-50">{{ticketDetails.product.serialNo}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
-                                    <span class="d-inline-block w-40 ">Purchase Date : </span>
-                                    <span class="d-inline-block w-60 "> {{ticketDetails.product.purchaseDate}}</span>
+                                    <span class="d-inline-block w-50">Purchase Date : </span>
+                                    <span class="d-inline-block w-50"> {{ticketDetails.product.purchaseDate}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
-                                    <span class="d-inline-block w-40 ">Warranty : </span>
-                                    <span class="d-inline-block w-60 green-color ">
+                                    <span class="d-inline-block w-50">Warranty : </span>
+                                    <span class="d-inline-block w-50green-color ">
                                         {{ticketDetails.product.warrantyExpDate}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
-                                    <span class="d-inline-block w-40 ">Relation : </span>
-                                    <span class="d-inline-block w-60 " ng-repeat="relatives in ticketDetails.product.user.relations">
+                                    <span class="d-inline-block w-50">Relation : </span>
+                                    <span class="d-inline-block w-50" ng-repeat="relatives in ticketDetails.product.user.relations">
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
                                             <!-- <i class="fas fa-times "></i> -->
                                         </span>

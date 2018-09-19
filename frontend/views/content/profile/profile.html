@@ -1,4 +1,4 @@
-<div class="background-blue p-1 p-md-4 profile-page">
+<div class="background-blue p-1 p-md-4 profile-page pt-3 pt-md-0">
     <div class="container">
         <div class="d-flex profile-details mb-3 ">
             <div class="profile-image" class="img-fluid">
@@ -9,7 +9,7 @@
                         no-view></upload-image>
                 </div>
             </div>
-            <div class="text-white fontRobotoRegular font14 ml-5">
+            <div class="text-white fontRobotoRegular font14 ml-3 ml-md-5">
                 <div class="font20">{{userDataForProfile.name}}</div>
                 <!-- <div class="my-1">(Code: 123456)</div> -->
                 <div class="d-block d-md-flex my-1">
@@ -45,17 +45,18 @@
             <div class="row">
                 <div class="col-5 col-md-3 col-lg-2">
                     <div class="fontRobotoRegular dark-font-color font14">
-                        <div class="mb-2">Gender</div>
-                        <div class="mb-2">Date of Birth</div>
-                        <div>Phone Number </div>
+                        <div class="my-2">Gender</div>
+                        <div class="my-2">Date of Birth</div>
+                        <div class="my-2">Phone Number </div>
+                        <div class="my-2">Email Address</div>
                     </div>
                 </div>
                 <div class="col-7 col-md-9 col-lg-10">
                     <div class="fontRobotoLight font14">
-                        <div ng-if="!personalInfo && userDataForProfile.gender" class="mb-2 custom-input text-capitalize">
+                        <div ng-if="!personalInfo && userDataForProfile.gender" class="my-2 custom-input text-capitalize">
                             {{userDataForProfile.gender}}
                         </div>
-                        <div ng-if="!personalInfo && !userDataForProfile.gender" class="mb-2 custom-input">
+                        <div ng-if="!personalInfo && !userDataForProfile.gender" class="my-2 custom-input">
                             - - -
                         </div>
                         <div ng-if="personalInfo">
@@ -84,32 +85,36 @@
                         <div ng-if="personalInfo" class="mb-2 custom-input">
                             <input maxlength="10" type="text" class="mt-2 p-1" ng-model="genderData.mobile" only-digits>
                         </div>
+                        <div ng-if="!personalInfo" class="mb-2 custom-input">{{userDataForProfile.email}}</div>
+                        <div ng-if="personalInfo" class="mb-2 custom-input">
+                            <input type="email" ng-model="genderData.email">
+                        </div>
                     </div>
                 </div>
-                <fieldset class="d-flex ml-3 social mt-3 mb-0 save" ng-if="personalInfo">
-                    <span class="social_icon">
-                        <i class="fas fa-save"></i>
+                <fieldset class="d-flex ml-3 social mt-3 mb-0 save " ng-if="personalInfo ">
+                    <span class="social_icon ">
+                        <i class="fas fa-save "></i>
                     </span>
-                    <div class="social-text" ng-click="changeInfo(genderData)">Save</div>
+                    <div class="social-text " ng-click="changeInfo(genderData) ">Save</div>
                 </fieldset>
             </div>
         </div>
-        <div class="py-4 border-dashed-bottom">
-            <div class="row no-gutters">
-                <div class="col-12 col-md-2">
-                    <div class="fontRobotoRegular dark-font-color font14">
+        <div class="py-4 border-dashed-bottom ">
+            <div class="row no-gutters ">
+                <div class="col-12 col-md-2 ">
+                    <div class="fontRobotoRegular dark-font-color font14 ">
                         <div>Address</div>
                     </div>
                 </div>
-                <div class="col-11 col-md-9">
-                    <div class="d-flex fontRobotoLight font-color font12">
-                        <div class="p-2 background-gray mr-2 text-capitalize address-box" ng-repeat="addressData in userDataForProfile.address">
-                            <div class="font14 dark-font-color fontRobotoRegular">{{addressData.title}}
-                                <span class="float-right p3" ng-click="removeAddress($index)">
-                                    <i class="fas fa-times fa-sm"></i>
+                <div class="col-11 col-md-9 ">
+                    <div class="d-flex fontRobotoLight font-color font12 ">
+                        <div class="p-2 background-gray mr-2 text-capitalize address-box " ng-repeat="addressData in userDataForProfile.address ">
+                            <div class="font14 dark-font-color fontRobotoRegular ">{{addressData.title}}
+                                <span class="float-right p3 " ng-click="removeAddress($index) ">
+                                    <i class="fas fa-times fa-sm "></i>
                                 </span>
-                                <!-- <span class=" float-right p3" ng-click="addressModalOpen();">
-                                    <i class="fas fa-pencil-alt fa-xs"></i>
+                                <!-- <span class=" float-right p3 " ng-click="addressModalOpen(); ">
+                                    <i class="fas fa-pencil-alt fa-xs "></i>
                                 </span> -->
                             </div>
                             <div>{{addressData.addressLine}}</div>
@@ -119,37 +124,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-1 col-md-1">
-                    <span class="pl-0 pl-md-3 float-right info-icon cursor-point" ng-click="addressModalOpen();">
-                        <i class="fas fa-plus"></i>
+                <div class="col-1 col-md-1 ">
+                    <span class="pl-0 pl-md-3 float-right info-icon cursor-point " ng-click="addressModalOpen(); ">
+                        <i class="fas fa-plus "></i>
                     </span>
                 </div>
             </div>
         </div>
-        <div class="py-4">
-            <div class="row">
-                <div class="col-md-2 col-12">
-                    <div class="fontRobotoRegular dark-font-color font14">
+        <div class="py-4 ">
+            <div class="row ">
+                <div class="col-md-2 col-12 ">
+                    <div class="fontRobotoRegular dark-font-color font14 ">
                         <div>Family Members</div>
                     </div>
                 </div>
-                <div class="col-md-10 col-12">
-                    <div class="d-flex main-users scrollbar">
-                        <div ng-click="newUserModalOpen()" class="d-flex align-items-center bg-white border rounded existing-user p-2 mr-3 cursor-point">
-                            <div class="user-circle"></div>
-                            <div class="mx-2 fontRobotoRegular name-rel">Add New Member</div>
-                            <div class="fontRobotoLight">
-                                <i class="fas fa-plus"></i>
+                <div class="col-md-10 col-12 ">
+                    <div class="d-flex main-users scrollbar ">
+                        <div ng-click="newUserModalOpen() " class="d-flex align-items-center bg-white border rounded existing-user
+                            p-2 mr-3 cursor-point ">
+                            <div class="user-circle "></div>
+                            <div class="mx-2 fontRobotoRegular name-rel ">Add New Member</div>
+                            <div class="fontRobotoLight ">
+                                <i class="fas fa-plus "></i>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center existing-user p-2 mr-3" ng-repeat="rel in userDataForProfile.relations">
-                            <div class="user-circle"></div>
-                            <div class="mx-2 fontRobotoRegular name-rel">
+                        <div class="d-flex align-items-center existing-user p-2 mr-3 " ng-repeat="rel in userDataForProfile.relations ">
+                            <div class="user-circle "></div>
+                            <div class="mx-2 fontRobotoRegular name-rel ">
                                 <div>{{rel.user.name}}</div>
-                                <span class="fontRobotoLight">{{rel.relationType}}</span>
+                                <span class="fontRobotoLight ">{{rel.relationType}}</span>
                             </div>
-                            <div class="fontRobotoLight" ng-click="removeRelation(rel._id)">
-                                <i class="fas fa-times"></i>
+                            <div class="fontRobotoLight " ng-click="removeRelation(rel._id) ">
+                                <i class="fas fa-times "></i>
                             </div>
                         </div>
                     </div>
