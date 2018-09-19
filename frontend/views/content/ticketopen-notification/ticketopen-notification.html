@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="border-top listed-openTickets openticket ">
-                    <div class="d-flex py-1 element-list " ng-repeat="tickets in ticketDetails">
+                    <div class="d-flex py-1 element-list " ng-repeat="tickets in ticketDetails" ng-click="openmodalOpen(tickets);">
                         <div ng-if="!read" class="bullet"></div>
                         <div class="d-block pl-4 cursor-point" ng-click="checkifRead(tickets.product._id)">
                             <div class="product-title text-truncate">{{tickets.product.productName}}</div>
@@ -122,9 +122,6 @@
                         <div class="ml-auto date-supportchat ">
                             <span class="font12 ">{{tickets.product.productName}}</span>
                         </div>
-                        <div class="ml-auto date-supportchat ">
-                            <span class="font12 ">{{tickets.product._id}}</span>
-                        </div>
                         <!-- <div class="ml-auto date-supportchat">
                             <div class="font12 ">{{tickets.issueReported | date}}</div>
                         </div> -->
@@ -135,6 +132,14 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="float-right">
+                <nav aria-label="...">
+
+                    <ul ng-change="changePage(currentPage); " uib-pagination total-items="totalitems" items-per-page="maxRow"
+                        ng-model="currentPage" max-size="maxRow" class="pagination-sm" boundary-links="true"
+                        force-ellipses="true"></ul>
+                </nav>
             </div>
         </div>
     </div>

@@ -72,11 +72,38 @@ var model = {
     },
 
     totalOpenTickets: function (data, callback) {
-        console.log("totalOpenTickets----------", data)
+        console.log("totalOpenTickets", data)
+        //take the page in data
+        var page = 1;
+        // var Model = this;
+        // var Const = this(data);
+        var maxRow = 5;
+        if (data.page) {
+            page = data.page;
+        }
+        var field = data.field;
+
+        var options = {
+            field: data.field,
+            filters: {
+                keyword: {
+                    fields: [''],
+                    term: data.keyword
+                }
+            },
+            sort: {
+                asc: ''
+            },
+            start: (page - 1) * maxRow,
+            count: maxRow
+        };
+
         this.find({
-            user: data.user,
-            status: "Active"
-        }).deepPopulate('product product.user').exec(callback);
+                user: data.user,
+                status: "Active"
+            }).deepPopulate('product product.user').order(options)
+            .keyword(options)
+            .page(options, callback);
     },
 
     totalClosedTickets: function (data, callback) {

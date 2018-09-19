@@ -120,7 +120,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
     ticketService.totalOpenTickets(function (data) {
         // $scope.ticketDetails = data;
-        $scope.ticketDetails = _.slice(data, 0, 8);
+        $scope.ticketDetails = _.slice(data.results, 0, 8);
         console.log("1 $scope.ticketDetails --", $scope.ticketDetails);
 
     });
@@ -328,5 +328,21 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
             scope: $scope,
             backdrop: 'static'
         });
+    }
+
+
+    $scope.askRegistration = function () {
+        console.log("hey");
+        $scope.productCheck = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/productCheck.html",
+            scope: $scope,
+            backdrop: 'static',
+            windowClass: 'app-modal-window'
+        });
+    }
+
+    $scope.yesno = function () {
+        $scope.yes = true;
     }
 });

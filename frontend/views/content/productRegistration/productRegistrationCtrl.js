@@ -110,7 +110,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         // data.productId = $scope.product_id;
         NavigationService.apiCallWithData("User/addRelation", $scope.userData, function (response) {
             $scope.userData = {};
-            // console.log("response", response);
+            console.log("response", response);
             if (response.value == true) {
 
                 toastr.success("Relation added successfully");

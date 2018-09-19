@@ -6,8 +6,8 @@ var myApp = angular.module('myApp', [
     'angulartics.google.analytics',
     'imageupload',
     'ui.bootstrap',
-    'ngAnimate',
-    'ngSanitize',
+    // 'ngAnimate',
+    // 'ngSanitize',
     'angularPromiseButtons',
     'toastr',
     'ui.select'

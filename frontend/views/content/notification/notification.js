@@ -59,7 +59,7 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
 
     ticketService.totalOpenTickets(function (data) {
         // $scope.ticketDetails = data;
-        $scope.ticketDetails = _.slice(data, 0, 5);
+        $scope.ticketDetails = _.slice(data.results, 0, 5);
         console.log(" $scope.ticketDetails --", $scope.ticketDetails);
 
     });
@@ -168,6 +168,21 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
 
         console.log("mobile view");
 
+    }
+
+    $scope.askRegistration = function () {
+        console.log("hey");
+        $scope.productCheck = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/productCheck.html",
+            scope: $scope,
+            backdrop: 'static',
+            windowClass: 'app-modal-window'
+        });
+    }
+
+    $scope.yesno = function () {
+        $scope.yes = true;
     }
 
 });
