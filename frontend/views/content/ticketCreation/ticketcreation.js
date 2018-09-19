@@ -135,8 +135,8 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
                     ticketService.totalOpenTickets(function (data) {
                         // $scope.ticketDetails = data;
-                        $scope.ticketDetails1 = _.slice(data, 0, 8);
-                        console.log("1 $scope.ticketDetails --", $scope.ticketDetails1);
+                        $scope.ticketDetails1 = _.slice(data.results, 0, 8);
+                        console.log("1 $scope.ticketDetails --", data);
 
                     });
 
@@ -148,7 +148,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                 NavigationService.apiCallWithData("Product/getOne", productData, function (res) {
                     $scope.productDetails = res.data;
                     productName = $scope.productDetails.productName;
-                    // console.log("$scope.productDetails-----------", $scope.productDetails);
+                    console.log("$scope.productDetails-----------", $scope.productDetails);
                 });
             } else {
                 if ($scope.totalOpenTickets[0]) {
@@ -158,7 +158,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                     NavigationService.apiCallWithData("Product/getOne", productData, function (res) {
                         $scope.productDetails = res.data;
                         productName = $scope.productDetails.productName;
-                        // console.log("$scope.productDetails-----------", $scope.productDetails);
+                        console.log("$scope.productDetails-----------", $scope.productDetails);
                     });
                 }
 
@@ -318,6 +318,23 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             });
         }
     };
+
+
+
+    $scope.askRegistration = function () {
+        console.log("hey");
+        $scope.productCheck = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/productCheck.html",
+            scope: $scope,
+            backdrop: 'static',
+            windowClass: 'app-modal-window'
+        });
+    }
+
+    $scope.yesno = function () {
+        $scope.yes = true;
+    }
 
 
 

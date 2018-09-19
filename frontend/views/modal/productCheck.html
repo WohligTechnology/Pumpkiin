@@ -5,9 +5,37 @@
     </span>
 </div>
 <div class="modal-body fontRobotoLight text-center" id="modal-body">
+    <div ng-if="!yes">Is your product registered?</div>
+    <div class="d-flex mt-3 fontRobotoRegular" ng-if="!yes">
+        <a role="button" class="button orange-btn py-1 w-50 mr-4" ng-click="yesno()">Yes</a>
+        <a role="button" class="button green-btn py-1 w-50" ui-sref="productregistration">No</a>
+    </div>
+    <div class="modal-body fontRobotoLight text-center" id="modal-body" ng-if="yes">
+        <!-- <div>Is your product registered?</div> -->
+        <label class="mb-0">Select the product</label>
+        <ui-select class="mx-auto border" tagging tagging-label="(custom 'new' label)" ng-model="data.Users" theme="bootstrap"
+            sortable="true" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a color">
+            <ui-select-match class="selected-tags" placeholder="">
+                <span ng-if="$item.user.name"> {{$item.user.name}}</span>
+                <span ng-if="!$item.user.name"> {{$item}}</span>
+            </ui-select-match>
+            <ui-select-choices repeat="users in userDetails.relations | filter:$select.search">
+                {{users.user.name}}
+            </ui-select-choices>
+        </ui-select>
+    </div>
+</div>
+
+<!-- <div class="modal-header justify-content-center background-blue text-white">
+    <h5 class="modal-title fontRobotoRegular" id="modal-title">Product Registration</h5>
+    <span class="modal-close-icon" ng-click="$dismiss()">
+        <img src="img/modal/close_white.png" width="20">
+    </span>
+</div>
+<div class="modal-body fontRobotoLight text-center" id="modal-body">
     <div>Is your product registered?</div>
     <div class="d-flex mt-3 fontRobotoRegular">
         <a role="button" class="button orange-btn py-1 w-50 mr-4" ng-click="registration.dismiss()">Yes</a>
-        <a role="button" class="button green-btn py-1 w-50" ng-click="pumpkinRegistration()">No</a>
+        <a role="button" class="button green-btn py-1 w-50" ui-sref="productregistration">No</a>
     </div>
-</div>
+</div> -->

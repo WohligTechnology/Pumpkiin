@@ -30,8 +30,20 @@ myApp.service('ticketService', function (NavigationService) {
         });
     };
 
+    this.totalOpenTickets1 = function (data, callback) {
+        // console.log("totalOpenTickets-------------", callback);
+        if (data) {
+            ticketData.page = data;
+        }
+        NavigationService.apiCallWithData("Ticket/totalOpenTickets", ticketData, function (res) {
+            if (res.value == true) {
+                console.log("----------------res----", res)
+                callback(res.data);
+            }
+        });
+    };
+
     this.totalOpenTickets = function (callback) {
-        console.log("totalOpenTickets", ticketData)
         NavigationService.apiCallWithData("Ticket/totalOpenTickets", ticketData, function (res) {
             if (res.value == true) {
                 callback(res.data);

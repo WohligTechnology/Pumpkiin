@@ -96,6 +96,21 @@ myApp.controller('TicketcloseNotificationCtrl', function ($scope, TemplateServic
         $scope.ticketData = data;
     });
 
+
+    $scope.askRegistration = function () {
+        console.log("hey");
+        $scope.productCheck = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/productCheck.html",
+            scope: $scope,
+            backdrop: 'static',
+            windowClass: 'app-modal-window'
+        });
+    }
+
+    $scope.yesno = function () {
+        $scope.yes = true;
+    }
     //for ticket block end
 
 });
