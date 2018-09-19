@@ -88,15 +88,13 @@
                 </div>
 
                 <div class="border-top listed-openTickets openticket ">
-                    <div class="d-flex py-1 element-list " ng-repeat="reminders in showLessReminders">
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="reminders in showLessReminders" ng-click="notificationmodalOpen(reminders);">
                         <div class="bullet "></div>
                         <div class="d-block pl-4 ">
                             <div class="product-title text-truncate">{{reminders.title}}</div>
                             <div class="date ">{{reminders.dateOfReminder | date}}</div>
                         </div>
-
                     </div>
-
                 </div>
                 <div class="text-right  view mt-2" ui-sref='notification'>View All
                     <span class="pl-2 ">
