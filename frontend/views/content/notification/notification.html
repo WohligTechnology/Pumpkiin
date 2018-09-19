@@ -28,8 +28,7 @@
                     </div>
                 </div>
                 <div class="border-top listed-openTickets openticket">
-                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="reminders in showLessReminders"
-                        ng-click="notificationmodalOpen(reminders);">
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="reminders in showLessReminders" ng-click="notificationmodalOpen(reminders);">
                         <div class="bullet"></div>
                         <div class="d-block pl-4">
                             <div class="product-title text-truncate">{{reminders.title}}</div>
@@ -69,7 +68,7 @@
                     <h5 class="d-inline" ng-if="ticketDetails[0].status=='Closed'">Closed Tickets</h5>
                     <!-- <h5 class="d-inline" ng-show="!show">Open Tickets</h5>
                                 <h5 class="d-inline" ng-show="show">closed Tickets</h5> -->
-                    <span class="badge badge-style ">{{totalNumberOfTickets}}</span>
+                    <span class="badge badge-style">{{totalNumberOfTickets}}</span>
                     <div class="float-right custom-searchbar">
                         <form action="" autocomplete="on" class="position-relative">
                             <input id="search" name="search" type="text" placeholder="">
@@ -90,14 +89,12 @@
                                     </span> -->
                     </div>
                 </div>
-                <div class="text-right  view mt-2" ng-if="ticketDetails.length==5 && ticketDetails[0].status=='Active'"
-                    ui-sref='ticketopen-notification'>View All
+                <div class="text-right  view mt-2" ng-if="ticketDetails.length==5 && ticketDetails[0].status=='Active'" ui-sref='ticketopen-notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
                 </div>
-                <div class="text-right  view mt-2" ng-if="ticketDetails.length==1 && ticketDetails[0].status=='Closed'"
-                    ui-sref='ticketclose-notification'>View All
+                <div class="text-right  view mt-2" ng-if="ticketDetails.length==1 && ticketDetails[0].status=='Closed'" ui-sref='ticketclose-notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
@@ -117,8 +114,7 @@
                     </div>
                 </div>
                 <uib-accordion close-others="true">
-                    <div uib-accordion-group class="panel-default reminder-body" is-open="status1.open" is-disabled="disabled"
-                        ng-repeat="reminders in showLessReminders">
+                    <div uib-accordion-group class="panel-default reminder-body" is-open="status1.open" is-disabled="disabled" ng-repeat="reminders in showLessReminders">
                         <uib-accordion-heading>
                             <div class="d-flex align-items-center">
                                 <div ng-click="checkCircle(reminders._id)" class="blue-circle p-1"><i class="fas fa-check text-white"></i></div>
@@ -135,15 +131,14 @@
                         <div class="pt-0 px-4 pb-4">
                             <p>{{reminders.description}}</p>
                             <div class="text-right">
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center snooze-color"
-                                    ng-click="reminderModalOpen(reminders._id);" ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Snooze
+                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center snooze-color" ng-click="reminderModalOpen(reminders._id);"
+                                    ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Snooze
                                     / Edit
                                 </a>
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center completed-color"
-                                    ng-click="chnageStatus(reminders._id);" ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Completed
+                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center completed-color" ng-click="chnageStatus(reminders._id);"
+                                    ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Completed
                                 </a>
-                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center delete-btn"
-                                    ng-click="deleteReminder(reminders._id);">Delete
+                                <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center delete-btn" ng-click="deleteReminder(reminders._id);">Delete
                                 </a>
                             </div>
                         </div>
@@ -152,9 +147,8 @@
             </div>
             <div class="float-right">
                 <nav aria-label="..." ng-if="(allReminders.length / maxRow) >1">
-                    <ul ng-change="changePage(currentPage); " uib-pagination total-items="allReminders.length"
-                        items-per-page="maxRow" ng-model="currentPage" max-size="10" class="pagination-sm"
-                        boundary-links="true" force-ellipses="true"></ul>
+                    <ul ng-change="changePage(currentPage); " uib-pagination total-items="allReminders.length" items-per-page="maxRow" ng-model="currentPage"
+                        max-size="10" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
                 </nav>
             </div>
             <a role="button" class="button w-25 py-1 float-right fontRobotoBold text-center orange-btn" ng-click="reminderModalOpen()"

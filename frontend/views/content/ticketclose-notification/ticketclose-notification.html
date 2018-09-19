@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="border-top listed-openTickets openticket ">
-                    <div class="d-flex py-1 element-list " ng-repeat="tickets in ticketDetails">
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails" ng-click="openmodalOpen(tickets);">
                         <div class="bullet "></div>
                         <div class="d-block pl-4">
                             <div class="product-title text-truncate">{{tickets.product.productName}}</div>
