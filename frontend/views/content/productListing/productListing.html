@@ -7,8 +7,8 @@
         <div class="d-inline-block">
             <button type="button" class="btn btn-default" ng-click="sortByProduct()">Product</button>
         </div>
-        <button class="export">
-            <span ng-click="generateExcel()">
+        <button class="export" ng-click="generateExcel()">
+            <span>
                 <!-- <i class="far fa-file-pdf"></i> -->
                 <i class="far fa-file-excel"></i>
             </span>Export Product List
@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-6 col-md-4 col-lg-3 mb-1 mb-md-3 px-0 px-lg-2" ng-repeat="product in productPerPage track by $index">
                     <div class="bg-white border border-rounded text-center effectonhover">
-                        <span class="float-right product-icon" ng-click="deleteProduct($index)">
+                        <span class="float-right product-icon" ng-click="productDelete($index)">
                             <i class="fas fa-trash-alt"></i>
                         </span>
                         <div class="addedpromain" ui-sref="productdetailregistered({id: product._id})">
@@ -47,7 +47,12 @@
                                 <span class="relation">{{product.relation}}</span>
                                 <br>
                                 <img ng-if="!product.ribbon" src="img/ticketCreation/warranty.png">
+                                <font ng-if="!product.ribbon" class="font12 green-color">Warranty exp in
+                                    {{product.months}} months</font>
                                 <img ng-if="product.ribbon" src="img/ticketCreation/red_warranty.png">
+                                <font ng-if="product.ribbon" class="font12" color="red">Warranty exp in
+                                    {{product.daysLeft}} days</font>
+
                                 <span class="expiry">{{product.warranty}}</span>
                             </div>
                         </div>

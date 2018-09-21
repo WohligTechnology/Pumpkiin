@@ -1,4 +1,4 @@
-myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state) {
+myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state, $sce) {
     $scope.template = TemplateService.getHTML("content/profile/profile.html");
     TemplateService.title = "Profile"; //This is the Title of the Website
     TemplateService.landingheader = "";
@@ -159,18 +159,23 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     });
 
     NavigationService.apiCallWithoutData("Ticket/getAllStatesOfIndia", function (response) {
-        $scope.states = response.data;
+        console.log("response of State", response)
+        $scope.states = (response.data);
     });
 
+    $scope.trustAsHtml = function (value) {
+        return $sce.trustAsHtml(value);
+    };
 
     $scope.updateState = function (data) {
         NavigationService.apiCallWithData("Ticket/getCity", data, function (response) {
             $scope.cities = response.data;
+            console.log("response of City", response)
         });
     };
 
     $scope.saveAddressData = function (data) {
-        // console.log("data", data)
+        console.log("data", data)
         var addData = {};
         var addressData = {};
         var add = [];

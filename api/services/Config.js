@@ -324,8 +324,11 @@ var models = {
             callback(null, Config.import(buffer));
         });
     },
+
+
     generateExcel: function (name, found, res) {
         // name = _.kebabCase(name);
+        console.log(".9999999999", name, found);
         var excelData = [];
         _.each(found, function (singleData) {
             var singleExcel = {};

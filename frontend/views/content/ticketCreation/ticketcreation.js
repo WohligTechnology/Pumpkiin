@@ -117,7 +117,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                     }];
 
                     _.each($scope.statusArray, function (x) {
-                        console.log("1 $scope.ticketDetails", $scope.ticketDetails);
+                        // console.log("1 $scope.ticketDetails", $scope.ticketDetails);
                         _.each($scope.ticketDetails.substat, function (y) {
                             if (y.status == x.status) {
                                 // console.log("-", _.findIndex($scope.statusArray, function (o) {
@@ -234,16 +234,21 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
         $scope.getClosedTickets = function () {
             ticketService.totalClosedTickets(function (data) {
                 // $scope.ticketDetails = data;
-                $scope.ticketDetails = _.slice(data, 0, 5);
+                $scope.ticketDetails1 = _.slice(data, 0, 8);
+                console.log("2 $scope.ticketDetails --", $scope.ticketDetails);
+
             });
         }
 
         $scope.getOpenTickets = function () {
             ticketService.totalOpenTickets(function (data) {
                 // $scope.ticketDetails = data;
-                $scope.ticketDetails = _.slice(data, 0, 5);
+                console.log("----109----", data.results);
+                $scope.ticketDetails1 = _.slice(data.results, 0, 5);
+
             });
         }
+
 
         ticketService.totalOpenTickets(function (data) {
             // $scope.ticketDetails = data;
@@ -292,9 +297,9 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             dataToSend.productName = productName;
             dataToSend.name = $.jStorage.get("userData").name;
             dataToSend.email = $.jStorage.get("userData").email;
-            // console.log("dataToSend", dataToSend);
+            console.log("dataToSend", dataToSend);
             NavigationService.apiCallWithData("Ticket/createNewTicket", dataToSend, function (data) {
-                // console.log("data", data);
+                console.log("callback", data);
                 if (data.value == true) {
                     $scope.ticketId = data.data._id;
                     // $scope.ticketDetails = data.data;
@@ -349,14 +354,19 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             backdrop: 'static'
         });
     }
+
+
+    $scope.data = {};
     $scope.yesno = function () {
         $scope.yes = true;
-    }
 
-    $scope.hideText = function () {
-        console.log("inside");
-        $scope.hidetext = true;
+        var user = $.jStorage.get("userData")._id;
+        NavigationService.apiCallWithData("Product/ticketNotGenerated", {
+            user
+        }, function (data) {
+            $scope.remainingProduct = data.data;
+            console.log("hjhsakf", $scope.remainingProduct)
+        })
     }
-
 
 });

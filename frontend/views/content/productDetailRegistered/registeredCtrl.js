@@ -74,6 +74,18 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
                     }
                     // console.log(" $scope.productDetails", $scope.productDetails);
 
+                    var now = moment(new Date()),
+                        end = moment($scope.productDetails.warrantyExpDate),
+                        days = end.diff(now, 'days');
+                    // console.log("----days-----", days)
+                    if (days <= 30) {
+                        $scope.productDetails.ribbon = true;
+                    } else {
+                        $scope.productDetails.ribbon = false;
+                    }
+
+                    console.log("days left", $scope.productDetails.ribbon)
+
                     var getUserDetails = {};
                     getUserDetails._id = $scope.productDetails.user._id;
                     NavigationService.apiCallWithData("User/getOne", getUserDetails, function (res) {

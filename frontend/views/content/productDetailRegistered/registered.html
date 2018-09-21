@@ -179,7 +179,8 @@
                 <div class="bg-white p-4 my-2 border-rounded position-relative reg-product-det">
                     <h6 class="fontRobotoBold blue-color">WARRANTY
                         <span class="ml-2">
-                            <img src="img/ticketCreation/warranty.png ">
+                            <img ng-if="!productDetails.ribbon" src="img/ticketCreation/warranty.png">
+                            <img ng-if="productDetails.ribbon" src="img/ticketCreation/red_warranty.png">
                         </span>
                         <span class="float-right info-icon" ng-click="warranty=!warranty;">
                             <i class="fas fa-pencil-alt fa-xs cursor-point"></i>

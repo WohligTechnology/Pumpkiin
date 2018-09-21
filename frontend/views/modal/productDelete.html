@@ -5,10 +5,10 @@
     </span>
 </div>
 <div class="modal-body fontRobotoLight text-center" id="modal-body">
-    <div ng-if="!yes">Is your product registered?</div>
+    <div ng-if="!yes">Are you sure you want to delete this product?</div>
     <div class="d-flex mt-3 fontRobotoRegular" ng-if="!yes">
-        <a role="button" class="button orange-btn py-1 w-50 mr-4" ng-click="yesno()">Yes</a>
-        <a role="button" class="button green-btn py-1 w-50" ui-sref="productregistration">No</a>
+        <a role="button" class="button orange-btn py-1 w-50 mr-4" ng-click="deleteProduct()">Yes</a>
+        <a role="button" class="button green-btn py-1 w-50" ng-click="$dismiss()">No</a>
     </div>
     <div class="modal-body fontRobotoLight text-center" id="modal-body" ng-if="yes">
         <!-- <div>Is your product registered?</div> -->
