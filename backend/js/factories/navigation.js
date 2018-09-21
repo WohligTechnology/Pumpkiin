@@ -31,20 +31,21 @@ myApp.factory('NavigationService', function ($http) {
 
             ]
 
-        }, {
-            name: "Brands",
-            classis: "active",
-            sref: "#!/page/viewBrand//",
-            access: false
-
         },
-        {
+        /* {
+                   name: "Brands",
+                   classis: "active",
+                   sref: "#!/page/viewBrand//",
+                   access: false
+
+               }, */
+        /* {
             name: "Retailer",
             classis: "active",
             sref: "#!/page/viewRetailer//",
             access: false
 
-        },
+        }, */
         // {
         //     name: "Ticket",
         //     classis: "active",

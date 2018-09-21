@@ -13,10 +13,13 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     $scope.addeduser = [];
     $scope.data = {};
     $scope.jstrgValue = $.jStorage.get('userData');
+
+
     $scope.makeActive = function (click) {
-        console.log("click", click)
+        console.log("click", click);
         $('.' + click).addClass("timeline-active");
         $scope.activePage = click;
+
         if (click) {
             $('.' + click).nextAll().removeClass("timeline-active");
         }
@@ -88,7 +91,8 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             NavigationService.apiCallWithData("Product/saveProduct", product, function (res) {
                 $scope.product_id = res.data._id;
                 console.log("if", res.data);
-                $scope.makeActive('circle2');
+                $scope.activePage = 'circle2';
+                // $scope.makeActive('circle2');
                 $scope.checkmark1 = true;
             });
         } else {
@@ -96,7 +100,8 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
                 console.log("else", res);
                 $scope.product_id = res.data._id;
                 console.log("res.data", res.data);
-                $scope.makeActive('circle2');
+                $scope.activePage = 'circle2';
+                // $scope.makeActive('circle2');
                 $scope.checkmark1 = true;
             });
         }
@@ -148,7 +153,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         console.log("data---", data);
         if ($scope.product_id) {
             data._id = $scope.product_id;
-            NavigationService.apiCallWithData("Product/saveProduct", data, function (res) {
+            NavigationService.apiCallWithData("Product/saveProduct", data, res => {
                 console.log("res.data", res.data);
                 $scope.makeActive('circle4');
                 $scope.checkmark3 = true;

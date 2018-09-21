@@ -1,16 +1,16 @@
 <div class="background-blue position-relative p-1 p-lg-3 pb-5 text-left text-lg-center fontRobotoRegular text-white">
     <h5 class="my-2 my-md-0">Product Registration</h5>
     <div class="my-5 timeline">
-        <div class="circle circle1 timeline-active" ng-click="makeActive('circle1')">
+        <div class="circle circle1 " ng-click="activePage = 'circle1'" ng-class="{'timeline-active': activePage == 'circle1' || checkmark1}">
             <i class="fas fa-check check-icon" ng-if="activePage == 'circle2' && checkmark1"></i>
         </div>
-        <div class="circle circle2" ng-click="makeActive('circle2')">
+        <div class="circle circle2" ng-click="activePage = 'circle2'" ng-class="{'timeline-active': activePage == 'circle2' || checkmark2}">
             <i class="fas fa-check check-icon" ng-if="activePage == 'circle3' && checkmark2"></i>
         </div>
-        <div class="circle circle3" ng-click="makeActive('circle3')">
+        <div class="circle circle3" ng-click="activePage = 'circle3'" ng-class="{'timeline-active': activePage == 'circle3' || checkmark3}">
             <i class="fas fa-check check-icon" ng-if="activePage == 'circle4' && checkmark3"></i>
         </div>
-        <div class="circle circle4" ng-click="makeActive('circle4')">
+        <div class="circle circle4" ng-click="activePage = 'circle4'" ng-class="{'timeline-active': activePage == 'circle4' || checkmark4}">
             <i class="fas fa-check check-icon" ng-if="activePage == 'circle5'"></i>
         </div>
     </div>

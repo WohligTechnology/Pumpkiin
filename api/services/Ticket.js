@@ -146,9 +146,20 @@ var model = {
     createNewTicket: function (data, callback) {
         async.waterfall([
             function (callback) {
+                console.log("-------------------------", data);
+                Product.findOneAndUpdate({
+                    _id: data.product
+                }, {
+                    ticketGenerated: true
+                }, {
+                    new: true
+                }).exec(callback)
+            },
+            function (ticketData, callback) {
+                console.log("----------", ticketData)
                 Ticket.TicketIdGenerate(function (err, data2) {
                     data.ticketNumber = data2;
-                    // console.log("data", data);
+                    console.log("data", data);
                     Ticket.saveData(data, function (err, data) {
                         sails.sockets.blast("ticketChat", {
                             ticketChatData: data
@@ -311,7 +322,7 @@ var model = {
     getAllStatesOfIndia: function (data, callback) {
         var options = {
             method: 'GET',
-            url: 'http://battuta.medunes.net/api/region/in/all/?key=9eccdee51d4fed50a9b3b56c7c2bbb26'
+            url: 'http://battuta.medunes.net/api/region/in/all/?key=22a150276213c37158de228744183164'
         };
         request(options, function (err, response, body) {
             // console.log("body", body);
@@ -324,7 +335,7 @@ var model = {
     getCity: function (data, callback) {
         var options = {
             method: 'GET',
-            url: 'http://battuta.medunes.net/api/city/in/search/?region=' + data.region + '&key=9eccdee51d4fed50a9b3b56c7c2bbb26'
+            url: 'http://battuta.medunes.net/api/city/in/search/?region=' + data.region + '&key=22a150276213c37158de228744183164'
         };
         request(options, function (err, response, body) {
             // console.log("body", body);

@@ -55,6 +55,7 @@ myApp.filter('indianCurrency', function () {
 myApp.filter('serverimage', function () {
   return function (image) {
     // console.log("imageimageimage", adminurl + "upload/readFile?file=" + image)
+    // "https://pumpkiin.wohlig.co.in/api/"  (use this to check on localhost)
     if (image && image !== null) {
       return adminurl + "upload/readFile?file=" + image;
     } else {

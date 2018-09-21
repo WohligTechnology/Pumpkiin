@@ -23,12 +23,7 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
         $scope.getTickets();
     }
 
-    $scope.yesno = function () {
-        $scope.yes = true;
-    }
-
     $scope.askRegistration = function () {
-        console.log("hey");
         $scope.productCheck = $uibModal.open({
             animation: true,
             templateUrl: "views/modal/productCheck.html",
@@ -37,6 +32,22 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
             windowClass: 'app-modal-window'
         });
     }
+
+
+    $scope.data = {};
+    $scope.yesno = function () {
+        $scope.yes = true;
+
+        var user = $.jStorage.get("userData")._id;
+        NavigationService.apiCallWithData("Product/ticketNotGenerated", {
+            user
+        }, function (data) {
+            $scope.remainingProduct = data.data;
+            console.log("hjhsakf", $scope.remainingProduct)
+        })
+    }
+
+
     $scope.pumpkinRegistration = function () {
         $scope.pumpRegistration = $uibModal.open({
             animation: true,
@@ -146,10 +157,9 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
 
     $scope.getOpenTickets = function () {
         ticketService.totalOpenTickets(function (data) {
-            console.log("========2=======", data)
             // $scope.ticketDetails = data;
-            $scope.ticketDetails = _.slice(data, 0, 5);
-            console.log(" 3 ", $scope.ticketDetails);
+            // console.log("----109----", data.results);
+            $scope.ticketDetails = _.slice(data.results, 0, 5);
 
         });
     }

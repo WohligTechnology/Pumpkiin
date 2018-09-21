@@ -4,6 +4,10 @@ var schema = new Schema({
         ref: 'User'
     },
     title: String,
+    isRead: {
+        type: Boolean,
+        default: false
+    },
     description: String,
     // datefrom: Date,
     // dateTo: Date,
@@ -147,6 +151,17 @@ var model = {
             }
         });
     },
+
+    changeIsReadStatus: function (data, callback) {
+        console.log("-----------", data);
+        this.findOneAndUpdate({
+            _id: data.id
+        }, {
+            isRead: data.isRead
+        }, {
+            new: true
+        }).exec(callback);
+    }
 
 };
 module.exports = _.assign(module.exports, exports, model);

@@ -84,12 +84,16 @@ myApp.controller('TicketcloseNotificationCtrl', function ($scope, TemplateServic
         });
     }
 
+
     $scope.getOpenTickets = function () {
         ticketService.totalOpenTickets(function (data) {
             // $scope.ticketDetails = data;
-            $scope.ticketDetails = _.slice(data, 0, 5);
+            // console.log("----109----", data.results);
+            $scope.ticketDetails = _.slice(data.results, 0, 5);
+
         });
     }
+
 
 
     ticketService.totalClosedTickets(function (data) {
@@ -98,7 +102,6 @@ myApp.controller('TicketcloseNotificationCtrl', function ($scope, TemplateServic
 
 
     $scope.askRegistration = function () {
-        console.log("hey");
         $scope.productCheck = $uibModal.open({
             animation: true,
             templateUrl: "views/modal/productCheck.html",
@@ -108,8 +111,18 @@ myApp.controller('TicketcloseNotificationCtrl', function ($scope, TemplateServic
         });
     }
 
+
+    $scope.data = {};
     $scope.yesno = function () {
         $scope.yes = true;
+
+        var user = $.jStorage.get("userData")._id;
+        NavigationService.apiCallWithData("Product/ticketNotGenerated", {
+            user
+        }, function (data) {
+            $scope.remainingProduct = data.data;
+            console.log("hjhsakf", $scope.remainingProduct)
+        })
     }
     //for ticket block end
 

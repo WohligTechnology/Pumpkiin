@@ -75,6 +75,10 @@ var schema = new Schema({
     },
     productInvoicePR: String,
     warrantyCardPR: String,
+    ticketGenerated: {
+        type: Boolean,
+        default: false
+    }
 });
 
 schema.plugin(deepPopulate, {
@@ -415,6 +419,17 @@ var model = {
                 callback(null, singleData);
             });
     },
+
+    ticketNotGenerated: function (data, callback) {
+        Product.find({
+            user: data.user,
+            ticketGenerated: false,
+            status: "Confirmed"
+        }).sort({
+            productName: 1
+        }).exec(callback);
+
+    }
 
 
 };

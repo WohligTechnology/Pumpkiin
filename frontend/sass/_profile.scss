@@ -5,6 +5,7 @@
         height: 130px;
         border-radius: 50%;
         border: solid 1px $green;
+
         .upload-btn-wrapper {
             padding: 25px 25px;
             margin-top: 0 !important;
@@ -13,6 +14,7 @@
             display: inline-block;
             cursor: pointer;
         }
+
         .upload-btn-wrapper input[type=file] {
             width: 130px;
             height: 130px;
@@ -24,17 +26,20 @@
             opacity: 0;
             cursor: pointer;
         }
+
         .img-uploaded {
             max-width: 130px;
             height: 130px;
             border-radius: 50%;
         }
+
         &:hover {
             .profile-photo-upload {
                 opacity: 1;
             }
         }
     }
+
     .profile-photo-upload {
         position: absolute;
         top: 0;
@@ -54,17 +59,21 @@
             left: 3%;
         }
     }
+
     .p3 {
         padding: 0 3px;
     }
+
     .social {
         .social_icon {
             border: solid 2px white;
         }
+
         .social-text {
             width: 40%;
         }
     }
+
     .custom-input {
         width: 20%;
     }
@@ -73,10 +82,12 @@
 .modal-font-color,
 .modal-body {
     color: #292b2c;
+
     span {
         padding-left: 8px;
     }
 }
+
 
 .profile-details {
     .noShow {
@@ -89,6 +100,7 @@
     border: none;
     color: white;
     border-bottom: 1px solid #cccccc;
+
     &:focus {
         outline: none;
     }
