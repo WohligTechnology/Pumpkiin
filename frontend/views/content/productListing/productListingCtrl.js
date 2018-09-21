@@ -100,7 +100,6 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
     reminderService.totalNumberOfPendingReminders(function (data) {
         $scope.totalPendingReminders = data;
-        // console.log("$scope.totalPendingReminders--", $scope.totalPendingReminders);
     });
 
 
@@ -122,34 +121,42 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
     //for ticket block
 
-    $scope.ticketsFunction = function () {
-        ticketService.totalOpenTickets(function (data) {
-            // $scope.ticketDetails = data;
-            $scope.ticketDetails = _.slice(data.results, 0, 8);
-            console.log("1 $scope.ticketDetails --", $scope.ticketDetails);
+    ticketService.totalOpenTickets(function (data) {
+        // $scope.ticketDetails = data;
+        $scope.ticketDetails = _.slice(data.results, 0, 8);
+        console.log("1 $scope.ticketDetails --", $scope.ticketDetails);
 
-        });
+    });
 
-        // ticketService.totalClosedTickets(function (data) {
-        //     $scope.ticketDetails = data;
-        // });
+    // ticketService.totalClosedTickets(function (data) {
+    //     $scope.ticketDetails = data;
+    // });
 
-        ticketService.totalNumberOfTickets(function (data) {
-            $scope.totalNumberOfTickets = data;
-            // console.log("res--totalNumberOfTickets---", data);
-        });
+    ticketService.totalNumberOfTickets(function (data) {
+        $scope.totalNumberOfTickets = data;
+        // console.log("res--totalNumberOfTickets---", data);
+    });
 
-        ticketService.totalNumberOfOpenTickets(function (data) {
-            $scope.totalNumberOfOpenTickets = data;
-            // console.log("res---totalNumberOfOpenTickets--", data);
-        });
+    ticketService.totalNumberOfOpenTickets(function (data) {
+        $scope.totalNumberOfOpenTickets = data;
+        // console.log("res---totalNumberOfOpenTickets--", data);
+    });
 
-        ticketService.totalNumberOfClosedTickets(function (data) {
-            $scope.totalNumberOfClosedTickets = data;
-            // console.log("res---totalNumberOfClosedTickets--", data);
-        });
-    }
-    $scope.ticketsFunction();
+    ticketService.totalNumberOfClosedTickets(function (data) {
+        $scope.totalNumberOfClosedTickets = data;
+        // console.log("res---totalNumberOfClosedTickets--", data);
+    });
+
+    var dataToSendForProduct = {};
+    dataToSendForProduct.user = $scope.jstrgValue._id;
+    NavigationService.apiCallWithData("Product/getAllProducts", dataToSendForProduct, function (res) {
+        if (res.value == true) {
+            // console.log("res-----", res.data.results);
+            $scope.allProducts = res.data;
+            $scope.products = _.slice($scope.allProducts, 0, 7);
+        }
+    });
+
 
 
     $scope.getClosedTickets = function () {
@@ -176,15 +183,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
     //for ticket block end
 
 
-    var dataToSendForProduct = {};
-    dataToSendForProduct.user = $scope.jstrgValue._id;
-    NavigationService.apiCallWithData("Product/getAllProducts", dataToSendForProduct, function (res) {
-        if (res.value == true) {
-            // console.log("res-----", res.data.results);
-            $scope.allProducts = res.data;
-            $scope.products = _.slice($scope.allProducts, 0, 7);
-        }
-    });
+
 
     /*  $scope.deleteProduct = function (index) {
 
@@ -218,7 +217,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
                 if (res.value == true) {
                     toastr.success("Product deleted successfully");
                     $scope.productCheck.close();
-                    $scope.ticketsFunction();
+                    $scope.changePage($scope.currentPage);
                 }
             });
         };

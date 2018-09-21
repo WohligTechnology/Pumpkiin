@@ -163,7 +163,7 @@ var model = {
                 });
             },
             function (productData, callback) {
-                // console.log("productData", productData)
+                console.log("productData", productData)
                 productdata = productData;
                 var accessoriesToSave = {};
                 accessoriesToSave._id = data._id;
