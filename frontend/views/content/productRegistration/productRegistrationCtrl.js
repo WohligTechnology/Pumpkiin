@@ -228,18 +228,23 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
 
 
     $scope.submitDocuments = function (docs) {
-        // console.log("*************", docs);
-        docs.status = "Pending";
-        NavigationService.apiCallWithData("Product/save", docs, function (res) {
-            // console.log("inside submit documents api", res);
-            $scope.pumpRegistration.close();
-            $scope.thanks = $uibModal.open({
-                animation: true,
-                templateUrl: "views/modal/upload-thanks.html",
-                scope: $scope,
-                windowClass: 'app-modal-window'
+        $scope.productInvoicePRError = false;
+        if (docs.productInvoicePR) {
+            // console.log("*************", docs);
+            docs.status = "Pending";
+            NavigationService.apiCallWithData("Product/save", docs, function (res) {
+                // console.log("inside submit documents api", res);
+                $scope.pumpRegistration.close();
+                $scope.thanks = $uibModal.open({
+                    animation: true,
+                    templateUrl: "views/modal/upload-thanks.html",
+                    scope: $scope,
+                    windowClass: 'app-modal-window'
+                });
             });
-        });
+        } else {
+            $scope.productInvoicePRError = true;
+        }
     }
 
     // }

@@ -1,16 +1,20 @@
-.product-registration-detail{
-    .add{
-        .social_icon{
+.product-registration-detail {
+    .add {
+        .social_icon {
             padding: 3px 8px !important;
         }
     }
+    a {
+        text-decoration: none;
+    }
 }
-.reg-product-det{
-    .file-upload{
-    top: 20px;
-    right: 50px;
-}
-.image-style{
-    width: 75px;
-}
+
+.reg-product-det {
+    .file-upload {
+        top: 20px;
+        right: 50px;
+    }
+    .image-style {
+        width: 75px;
+    }
 }

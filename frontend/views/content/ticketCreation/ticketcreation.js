@@ -322,7 +322,6 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
 
     $scope.askRegistration = function () {
-        console.log("hey");
         $scope.productCheck = $uibModal.open({
             animation: true,
             templateUrl: "views/modal/productCheck.html",
@@ -330,12 +329,34 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             backdrop: 'static',
             windowClass: 'app-modal-window'
         });
+        $scope.yes = false;
     }
-
+    $scope.notificationmodalOpen = function (notification) {
+        $scope.singleNotification = notification;
+        $scope.accordianNotification = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/notificationaccordian.html",
+            scope: $scope,
+            backdrop: 'static'
+        });
+    }
+    $scope.openmodalOpen = function (tickets) {
+        $scope.singleTicket = tickets;
+        $scope.openTicket = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/openticket.html",
+            scope: $scope,
+            backdrop: 'static'
+        });
+    }
     $scope.yesno = function () {
         $scope.yes = true;
     }
 
+    $scope.hideText = function () {
+        console.log("inside");
+        $scope.hidetext = true;
+    }
 
 
 });

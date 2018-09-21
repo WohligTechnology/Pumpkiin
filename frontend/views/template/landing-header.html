@@ -4,14 +4,15 @@
             <a class="navbar-brand d-none d-lg-block" ui-sref="home">
                 <img src="img/header/Pumpkiinlogo.png" width="170" class="img-fluid">               
             </a>
-            <a class="navbar-brand d-block d-lg-none ml-auto" ui-sref="home">
+            <a class="navbar-brand d-block d-lg-none" ui-sref="home">
                 <img src="img/header/Pumpkiinwhite.png" width="200" class="img-fluid">                
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+            <div class="float-right d-md-none" ui-sref="login"><i class="fas fa-sign-in-alt text-white"></i></div>
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse  justify-content-center" id="navbarText">
+            </button> -->
+            <div class="collapse navbar-collapse justify-content-center d-none d-md-block" id="navbarText">
                 <ul class="navbar-nav header-text ml-auto">
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="#">Become a Service Provider</a>

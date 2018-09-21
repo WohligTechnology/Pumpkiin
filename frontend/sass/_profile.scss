@@ -58,13 +58,16 @@
         padding: 0 3px;
     }
     .social {
+        width: 10%;
         .social_icon {
             border: solid 2px white;
         }
         .social-text {
-            width: 40%;
             padding-left: 30px !important;
         }
+    }
+    .save:hover .social-text {
+        padding-left: 30px !important
     }
     .custom-input {
         width: 20%;

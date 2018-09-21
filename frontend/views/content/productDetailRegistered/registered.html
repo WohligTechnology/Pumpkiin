@@ -14,21 +14,21 @@
                     </div>
                     <div class="w-85 p-3 float-right position-relative">
                         <img class="img-thumbnail" ng-src="{{setImg | serverimage}}" alt="">
-                        <div class="position-absolute favourite">
+                        <!-- <div class="position-absolute favourite">
                             <i class="fas fa-heart"></i>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="d-flex my-3">
-                    <a role="button" class="button added-btn py-1 mr-1 w-50 text-center">Product Added</a>
-                    <a role="button" ui-sref="ticketcreation({id: productDetails._id})" class="button orange-btn py-1 w-50 text-center">Support</a>
+                    <!-- <a role="button" class="button added-btn py-1 mr-1 w-50 text-center">Product Added</a> -->
+                    <a role="button" ui-sref="ticketcreation({id: productDetails._id})" class="button orange-btn py-1 w-50 mx-auto text-center">Support</a>
                 </div>
             </div>
             <div class="col-12 col-md-8">
                 <div class="bg-white p-4 border-rounded fontRobotoRegular font14">
                     <h6 class="fontRobotoBold blue-color mb-2">PRODUCT INFORMATION
                         <span class="float-right info-icon" ng-click="personalInfo=!personalInfo;">
-                            <i class="fas fa-pencil-alt fa-xs"></i>
+                            <i class="fas fa-pencil-alt fa-xs cursor-point"></i>
                         </span>
                     </h6>
                     <div class="row">
@@ -178,8 +178,11 @@
                 </div>
                 <div class="bg-white p-4 my-2 border-rounded position-relative reg-product-det">
                     <h6 class="fontRobotoBold blue-color">WARRANTY
+                        <span class="ml-2">
+                            <img src="img/ticketCreation/warranty.png ">
+                        </span>
                         <span class="float-right info-icon" ng-click="warranty=!warranty;">
-                            <i class="fas fa-pencil-alt fa-xs"></i>
+                            <i class="fas fa-pencil-alt fa-xs cursor-point"></i>
                         </span>
                     </h6>
                     <div>
@@ -188,8 +191,7 @@
                             <input type="date" id="warrantyExpDate" name="" ng-model="productDetails.warrantyExpDate" readonly="readonly " ng-readonly="!warranty ">
                         </div>
                     </div>
-                    <span class="green-color" ng-if="productDetails.warrantyCardImage">({{productDetails.warrantyCardImage.length}}
-                        files uploaded)</span>
+                    <span class="green-color" ng-if="productDetails.warrantyCardImage">({{productDetails.warrantyCardImage.length}})</span>
                     <div class="scrollbar d-flex">
                         <div class="" id="scrollbar" ng-if="warranty">
                             <div class="mt-2">
@@ -211,11 +213,8 @@
                 </div>
                 <div class="bg-white p-4 my-2 border-rounded position-relative reg-product-det ">
                     <h6 class="fontRobotoBold blue-color ">INSURANCE
-                        <span class="ml-2">
-                            <img src="img/ticketCreation/warranty.png ">
-                        </span>
                         <span class="float-right info-icon" ng-click="insurance=!insurance ">
-                            <i class="fas fa-pencil-alt fa-xs "></i>
+                            <i class="fas fa-pencil-alt fa-xs cursor-point"></i>
                         </span>
                     </h6>
                     <div>
@@ -224,8 +223,7 @@
                             <input type="date" id="insuranceExpDate" name="" ng-model="productDetails.insuranceExpDate" ng-readonly="!insurance">
                         </div>
                     </div>
-                    <span class="green-color" ng-if="productDetails.insuranceProofImage">({{productDetails.insuranceProofImage.length}}
-                        files uploaded)</span>
+                    <span class="green-color" ng-if="productDetails.insuranceProofImage">({{productDetails.insuranceProofImage.length}})</span>
                     <div class="scrollbar d-flex">
                         <div class="" id="scrollbar" ng-if="insurance">
                             <div class="mt-2">
@@ -248,7 +246,7 @@
                 <div class="bg-white p-4 my-2 border-rounded position-relative reg-product-det">
                     <h6 class="fontRobotoBold blue-color ">ACCESSORIES
                         <span class="float-right info-icon " ng-click="accessories=!accessories">
-                            <i class="fas fa-pencil-alt fa-xs "></i>
+                            <i class="fas fa-pencil-alt fa-xs cursor-point"></i>
                         </span>
                     </h6>
                     <div class="row form-group" ng-if="accessories">

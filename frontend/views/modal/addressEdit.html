@@ -33,7 +33,7 @@
         </div>
         <div class="form-group">
             <label for="title">City * </label>
-            <ui-select name="city" class="input-border" ng-model="data.city" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a state"
+            <ui-select name="city" class="input-border" ng-model="data.city" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a city"
                 ng-change="updateState(data.city)" ng-required="true">
                 <ui-select-match placeholder="Select or search a city in the list...">{{$select.selected.city}}</ui-select-match>
                 <ui-select-choices class="background-blue text-white" repeat="city in cities | filter: $select.search">

@@ -332,7 +332,6 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
 
     $scope.askRegistration = function () {
-        console.log("hey");
         $scope.productCheck = $uibModal.open({
             animation: true,
             templateUrl: "views/modal/productCheck.html",
@@ -340,9 +339,35 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
             backdrop: 'static',
             windowClass: 'app-modal-window'
         });
+        $scope.yes = false;
     }
-
+    $scope.showText = function () {
+        console.log("Csacd");
+        $scope.showContentText = true;
+    }
     $scope.yesno = function () {
         $scope.yes = true;
+    }
+
+
+    $scope.deleteReminder = function (data) {
+        $scope.accordianNotification.close();
+        $scope.delete = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/cofirmDelete.html",
+            scope: $scope,
+            windowClass: 'app-modal-window',
+            backdrop: 'static',
+        });
+        $scope.accordianNotification.close();
+        $scope.confirmDelete = function () {
+            var changeStatusData = {};
+            changeStatusData._id = data;
+            NavigationService.apiCallWithData("Reminder/delete", changeStatusData, function (res) {
+                if (res.value == true) {
+                    $state.reload();
+                }
+            });
+        }
     }
 });

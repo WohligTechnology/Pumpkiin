@@ -114,13 +114,15 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
     }
 
     $scope.deleteReminder = function (data) {
+        $scope.accordianNotification.close();
         $scope.delete = $uibModal.open({
             animation: true,
             templateUrl: "views/modal/cofirmDelete.html",
             scope: $scope,
             windowClass: 'app-modal-window',
-            backdrop: 'static'
+            backdrop: 'static',
         });
+        $scope.accordianNotification.close();
         $scope.confirmDelete = function () {
             var changeStatusData = {};
             changeStatusData._id = data;

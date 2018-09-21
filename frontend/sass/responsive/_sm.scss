@@ -1,12 +1,27 @@
 /* Breakpoint for medium viewport */
 
 @include media-breakpoint-down(sm) {
-    //padding top for content in all pages
+    //header
+    .fa-sign-in-alt {
+        font-size: 28px;
+    } //padding top for content in all pages
+    .align-middle {
+        vertical-align: top !important;
+    }
+    .w-md-50 {
+        width: 100%;
+    }
+    .button-reg {
+        a {
+            display: block;
+            margin-bottom: 10px;
+        }
+    }
     .home-section {
         padding-top: 0;
     }
     .bg-image {
-        height: 91vh;
+        height: 91.7vh;
     }
     .user-profile {
         width: 70px !important;
@@ -48,6 +63,7 @@
         width: 70%;
     }
     .app-modal-window {
+        top: 50%;
         left: 50%;
         width: 100%;
         .button {

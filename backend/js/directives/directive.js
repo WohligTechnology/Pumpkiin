@@ -45,6 +45,12 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
             if (!$scope.type) {
                 $scope.type = "image";
             }
+            $scope.isRequired = false;
+            $scope.inObject = false;
+            if (attrs.required || attrs.required === "") {
+                $scope.isRequired = true;
+                $("#inputImage").attr("required", "ADD");
+            }
             $scope.isMultiple = false;
             $scope.inObject = false;
             if (attrs.multiple || attrs.multiple === "") {

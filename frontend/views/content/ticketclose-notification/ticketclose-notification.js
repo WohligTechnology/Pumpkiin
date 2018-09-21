@@ -113,4 +113,25 @@ myApp.controller('TicketcloseNotificationCtrl', function ($scope, TemplateServic
     }
     //for ticket block end
 
+    $scope.deleteReminder = function (data) {
+        $scope.accordianNotification.close();
+        $scope.delete = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/cofirmDelete.html",
+            scope: $scope,
+            windowClass: 'app-modal-window',
+            backdrop: 'static',
+        });
+        $scope.accordianNotification.close();
+        $scope.confirmDelete = function () {
+            var changeStatusData = {};
+            changeStatusData._id = data;
+            NavigationService.apiCallWithData("Reminder/delete", changeStatusData, function (res) {
+                if (res.value == true) {
+                    $state.reload();
+                }
+            });
+        }
+    }
+
 });
