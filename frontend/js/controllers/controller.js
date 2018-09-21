@@ -26,7 +26,9 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
 
         $scope.openContact = function (product1, product2) {
             $scope.userData = {};
-            $scope.userData.subject = "My " + product1 + ",needs " + product2;
+            if (product1 && product2) {
+                $scope.userData.subject = "My " + product1 + " needs " + product2;
+            }
             $scope.contactModal = $uibModal.open({
                 animation: true,
                 templateUrl: "views/modal/contact.html",
@@ -59,11 +61,13 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
                     // when window width is <= 320px
                     320: {
                         slidesPerView: 1,
+                        slidesPerGroup: 1,
                         spaceBetween: 10
                     },
                     // when window width is <= 480px
                     480: {
                         slidesPerView: 1,
+                        slidesPerGroup: 1,
                         spaceBetween: 10
                     },
                     // when window width is <= 640px
@@ -124,9 +128,9 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
             {
                 name: 'Microwave'
             }, {
-                name: 'Mobiles'
+                name: 'Mobile'
             }, {
-                name: 'Musical instruments'
+                name: 'Musical instrument'
             }, {
                 name: 'Refrigerator'
             }, {

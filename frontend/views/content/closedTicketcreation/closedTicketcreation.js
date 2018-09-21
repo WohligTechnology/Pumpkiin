@@ -12,7 +12,15 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
             scope: $scope,
         });
     }
-
+    $scope.notificationmodalOpen = function (notification) {
+        $scope.singleNotification = notification;
+        $scope.accordianNotification = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/notificationaccordian.html",
+            scope: $scope,
+            backdrop: 'static'
+        });
+    }
     //REMINDER SECTION
 
     reminderService.findReminderOfPendingSnoozeByUser(function (data) {

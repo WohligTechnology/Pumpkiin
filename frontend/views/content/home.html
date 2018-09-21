@@ -1,17 +1,13 @@
 <div class="background-blue home-section">
     <div class="d-block d-lg-flex">
-        <div class="align-self-end img-section">
-            <img src="img/home/homeBanner.png" class="img-fluid">
-        </div>
-        <div class="align-self-center text-white home-section-content">
+        <div class="align-self-center order-2 text-white home-section-content">
             <div>
                 <div class="line-spacing-height text-center">Pumpkiin, please help!</div>
                 <div class="line-spacing-height">My
                     <div class="select-box" ng-init="product1='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'">
                         <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
                         <div class="dropdown">
-                            <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
+                            <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{product1}}
                             </span>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -22,8 +18,7 @@
                     <div class="select-box" ng-init="product2='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'">
                         <i class="fas fa-angle-down fa-xs ui-select-icon"></i>
                         <div class="dropdown">
-                            <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
+                            <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{product2}}
                             </span>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -38,6 +33,9 @@
                 <a id="clickSubmit" ng-click="openContact(product1,product2)" class="btn w-25 border-rounded fontRobotoBold text-white orange-btn"
                     target="_top">Submit</a>
             </div>
+        </div>
+        <div class="align-self-end order-1 img-section">
+            <img src="img/home/homeBanner.png" class="img-fluid">
         </div>
     </div>
 </div>
@@ -140,7 +138,7 @@
                 </div>
             </div>
         </div> -->
-        <div class="p-md-5 p-0 text-center home-footer">
+        <div class="p-md-5 py-5 px-1 text-center home-footer">
             <img src="img/header/Pumpkiinlogo.png" class="img-fluid my-2">
             <p>Copyright © Pumpkiin 2018. All Rights Reserved.</p>
             <ul class="list-unstyled list-inline">

@@ -94,9 +94,9 @@
                 </div>
 
                 <div class="border-top listed-openTickets openticket ">
-                    <div class="d-flex py-1 element-list " ng-repeat="reminders in showLessReminders" ng-click="notificationmodalOpen(reminders);">
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="reminders in showLessReminders" ng-click="notificationmodalOpen(reminders);">
                         <div ng-if="!read" class="bullet"></div>
-                        <div class="d-block pl-4 cursor-point" ng-click="checkifRead(reminders._id)">
+                        <div class="d-block pl-4" ng-click="checkifRead(reminders._id)">
                             <div class="product-title text-truncate">{{reminders.title}}</div>
                             <div class="date ">{{reminders.dateOfReminder | date}}</div>
                         </div>
@@ -137,9 +137,8 @@
             <div class="float-right">
                 <nav aria-label="...">
 
-                    <ul ng-change="changePage(currentPage); " uib-pagination total-items="totalitems" items-per-page="maxRow"
-                        ng-model="currentPage" max-size="maxRow" class="pagination-sm" boundary-links="true"
-                        force-ellipses="true"></ul>
+                    <ul ng-change="changePage(currentPage); " uib-pagination total-items="totalitems" items-per-page="maxRow" ng-model="currentPage"
+                        max-size="maxRow" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
                 </nav>
             </div>
         </div>

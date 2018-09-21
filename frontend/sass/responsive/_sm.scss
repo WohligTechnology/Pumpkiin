@@ -2,6 +2,9 @@
 
 @include media-breakpoint-down(sm) {
     //padding top for content in all pages
+    .home-section {
+        padding-top: 0;
+    }
     .bg-image {
         height: 91vh;
     }
@@ -25,7 +28,7 @@
         }
     }
     .notification-main {
-        padding-top: 35px;
+        padding-top: 40px;
         .content {
             min-height: calc(100vh - 20vh);
         }
@@ -85,10 +88,9 @@
     }
     .closedticketcreation {
         padding: 0.5rem !important;
-    }
-    .support-chat-history {
-        min-height: 18vh !important;
-    }
+    } // .support-chat-history {
+    //     min-height: 18vh !important;
+    // }
     .notificationaccordian-modal {
         .button {
             font-size: 0.5rem;
@@ -107,7 +109,29 @@
             left: -308px;
         }
     }
-    .font-mob {
-        font-size: 10px !important;
+    .img-section {
+        width: 37.5vh !important;
+    }
+    .main-swiper-container {
+        width: 290px;
+    }
+    .about-pumpkin-section {
+        height: 70vh;
+        .swiper-button-prev,
+        .swiper-container-rtl .swiper-button-next {
+            left: -35px;
+        }
+        .swiper-button-next,
+        .swiper-container-rtl .swiper-button-prev {
+            right: -35px;
+        }
+    }
+    .home-footer {
+        font-size: 12px;
+    }
+    .timeline {
+        .circle4 {
+            left: 94.5%;
+        }
     }
 }

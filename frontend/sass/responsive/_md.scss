@@ -9,17 +9,42 @@
     // .content {
     //     padding-top: 38px;
     // }
+    .openticket {
+        .content {
+            min-height: calc(100vh - 8vh);
+            padding-top: 35px;
+        }
+    }
+    .registration,
+    .unregistration {
+        .content {
+            min-height: calc(100vh - 9.5vh);
+        }
+    }
+    .header-text a {
+        color: white;
+    }
+    .home-section {
+        padding-top: 100px;
+    }
     .about-pumpkin-section {
+        background-image: none;
         height: 50vh;
         .about-pumpkin {
             padding: 100px 0;
         }
+    }
+    .main-swiper-container {
+        width: 600px;
     }
     .navbar {
         background-color: #142c5b !important;
     }
     h2 {
         font-size: 1.7rem;
+    }
+    .font-mob {
+        font-size: 10px !important;
     }
     .timeline {
         width: 100%;
@@ -39,7 +64,7 @@
             }
         }
         .circle4 {
-            left: 94.5%;
+            left: 97.5%;
             &:before {
                 left: -35px;
             }
@@ -77,15 +102,14 @@
     }
     .cancel {
         width: 35%;
-        top: -6%;
+        top: 0;
         right: 2%;
     }
     .home-section {
         text-align: center;
         .img-section {
-            width: 38vh !important;
+            width: 43.5vh;
             margin: 0 auto;
-            transform: rotate(180deg);
         }
         .home-section-content {
             font-size: 34px;
@@ -203,10 +227,9 @@
     }
     .product-search input {
         width: 400px !important;
-    }
-    .support-chat-history {
-        min-height: 50vh;
-    }
+    } // .support-chat-history {
+    //     min-height: 50vh;
+    // }
     .listed-openTickets .element-list .product-title {
         width: 95px;
     }
