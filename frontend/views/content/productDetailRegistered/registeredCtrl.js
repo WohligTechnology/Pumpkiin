@@ -11,10 +11,10 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
 
     $scope.relation = [{
         "name": "Andrew John",
-        "relation": "Brother",
+        "relation": "Brother"
     }, {
         "name": "Anther Bruter",
-        "relation": "Brother",
+        "relation": "Brother"
     }];
 
     $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew"]

@@ -11,10 +11,10 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
 
     $scope.relation = [{
         "name": "First Last Name",
-        "relation": "Brother",
+        "relation": "Brother"
     }, {
         "name": "First Last Name",
-        "relation": "Brother",
+        "relation": "Brother"
     }];
 
     $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew"]

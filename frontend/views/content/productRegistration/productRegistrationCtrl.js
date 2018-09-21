@@ -152,7 +152,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         console.log("data---", data);
         if ($scope.product_id) {
             data._id = $scope.product_id;
-            NavigationService.apiCallWithData("Product/saveProduct", data, res => {
+            NavigationService.apiCallWithData("Product/saveProduct", data, function (res) {
                 console.log("res.data", res.data);
                 $scope.makeActive('circle4');
                 $scope.checkmark3 = true;

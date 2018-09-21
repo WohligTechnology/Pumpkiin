@@ -389,7 +389,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
         var user = $.jStorage.get("userData")._id;
         NavigationService.apiCallWithData("Product/ticketNotGenerated", {
-            user
+            user: user
         }, function (data) {
             $scope.remainingProduct = data.data;
             console.log("hjhsakf", $scope.remainingProduct)
