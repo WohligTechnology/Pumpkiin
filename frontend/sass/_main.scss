@@ -1065,16 +1065,20 @@ fieldset:disabled {
     }
 }
 
-.notification,
-.ticket-open {
-    .view {
-        display: none;
-    }
-}
-
 //accordian in notification page
 .selected {
     background-color: $green !important;
     border: solid 1px #142c5b;
     transition: ease all 500ms;
+}
+
+.notification-accordions {
+    position: relative;
+}
+
+.notification,
+.ticket-open {
+    .view {
+        display: none;
+    }
 }
