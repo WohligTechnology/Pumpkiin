@@ -20,10 +20,15 @@
                 <div class="my-3 open-tickets">
                     <h5 class="d-inline ">Reminders</h5>
                     <span class="badge badge-style ml-auto">{{totalReminders}}</span>
-                    <div class="float-right custom-searchbar">
-                        <form action="" autocomplete="on" class="position-relative">
+                    <div class="float-right search-reminders">
+                        <form class="position-relative" ng-if="ticketDetails[0].status!='Closed'">
+                            <input id="search" name="search" type="text" placeholder="" ng-change="searchForReminderData(reminderSearch,'open')" ng-model="reminderSearch">
+                            <div class="search-btn" id="search_submit" value="" ng-click="showHide()"></div>
+                        </form>
+                        <form class="position-relative" ng-if="ticketDetails[0].status=='Closed'">
                             <input id="search" name="search" type="text" placeholder="">
-                            <input id="search_submit" value="Rechercher" type="submit">
+                            <div class="search-btn" id="search_submit" value="" ng-click="showHide()" ng-change="searchForReminderData(reminderSearch,'closed')"
+                                ng-model="reminderSearch"></div>
                         </form>
                     </div>
                 </div>
