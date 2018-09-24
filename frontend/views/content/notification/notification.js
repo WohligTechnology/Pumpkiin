@@ -13,7 +13,10 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
         $scope.isOpen = false;
     }
     // $scope.closeAccordian();
-
+    $scope.showHide = function () {
+        console.log("check");
+        $(".hide-on-click").toggleClass("invisible");
+    }
     $scope.currentPage = 1;
     $scope.changePage = function (pageno) {
         $scope.currentPage = pageno;
@@ -225,8 +228,6 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
                 backdrop: 'static'
             });
         }
-
-
 
         if (!notification.isRead) {
             var changeisRead = {};

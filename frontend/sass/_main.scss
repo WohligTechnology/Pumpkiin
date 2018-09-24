@@ -860,6 +860,7 @@ fieldset:disabled {
 .star-color-change {
     svg {
         fill: $orange;
+        outline: solid 1px $orange;
     }
 }
 
@@ -1069,4 +1070,15 @@ fieldset:disabled {
     background-color: $green !important;
     border: solid 1px #142c5b;
     transition: ease all 500ms;
+}
+
+.notification-accordions {
+    position: relative;
+}
+
+.notification,
+.ticket-open {
+    .view {
+        display: none;
+    }
 }

@@ -342,15 +342,23 @@ myApp.directive('img', function ($compile, $parse) {
                         }
                     }
                 });
-                $(':input').keyup(function(e)
-                {
-                    if($(this).val() =='' && e.which ==8)
-                    {
+                $(':input').keyup(function (e) {
+                    if ($(this).val() == '' && e.which == 8) {
                         $(this).prev('input').focus();
-                    }        
+                    }
                 });
             }
         }
     })
-
-;
+    .directive('reminders', function ($http, $filter) {
+        return {
+            templateUrl: 'views/directive/reminders.html',
+            link: function ($scope, element, attrs) {}
+        };
+    })
+    .directive('tickets', function ($http, $filter) {
+        return {
+            templateUrl: 'views/directive/tickets.html',
+            link: function ($scope, element, attrs) {}
+        };
+    });

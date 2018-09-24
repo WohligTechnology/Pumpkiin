@@ -22,6 +22,11 @@ $body-color-font: #505050;
     src: url("../fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url("../fonts/Roboto-Bold.ttf");
+}
+
 button,
 div,
 input {
@@ -33,6 +38,10 @@ img.loading {
     opacity: 1;
     width: 32px !important;
     height: auto;
+}
+
+.fontRobotoBold {
+    font-family: Roboto-Bold;
 }
 
 img {
@@ -133,6 +142,14 @@ a,
             font-weight: bold;
         }
     }
+}
+
+.blue-color {
+    color: #142C5C;
+}
+
+.space-letter {
+    letter-spacing: 1px;
 }
 
 .who-post-this {
