@@ -860,6 +860,7 @@ fieldset:disabled {
 .star-color-change {
     svg {
         fill: $orange;
+        outline: solid 1px $orange;
     }
 }
 
@@ -1061,6 +1062,13 @@ fieldset:disabled {
     a {
         text-decoration: none;
         color: red;
+    }
+}
+
+.notification,
+.ticket-open {
+    .view {
+        display: none;
     }
 }
 
