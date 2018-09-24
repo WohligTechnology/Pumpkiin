@@ -175,7 +175,7 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
             backdrop: 'static',
         });
         console.log("deleteReminder", data, index)
-        if (!index) {
+        if (index == null) {
             $scope.accordianNotification.close();
         }
         $scope.confirmDelete = function () {
