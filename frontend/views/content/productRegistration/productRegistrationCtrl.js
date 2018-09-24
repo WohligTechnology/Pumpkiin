@@ -13,7 +13,9 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     $scope.addeduser = [];
     $scope.data = {};
     $scope.jstrgValue = $.jStorage.get('userData');
-
+    $scope.checkmark1 = false;
+    $scope.checkmark2 = false;
+    $scope.checkmark3 = false;
 
     $scope.makeActive = function (click) {
         console.log("click", click);
