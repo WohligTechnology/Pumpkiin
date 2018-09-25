@@ -47,6 +47,10 @@ module.exports.routes = {
     controller: "WebController",
     action: "index"
   },
+  "GET /login": {
+    controller: "WebController",
+    action: "index"
+  },
   "GET /login/:id": {
     controller: "WebController",
     action: "index"
@@ -56,6 +60,10 @@ module.exports.routes = {
     action: "index"
   },
   "GET /productdetailregistered/:id": {
+    controller: "WebController",
+    action: "index"
+  },
+  "GET /productdetailregistered": {
     controller: "WebController",
     action: "index"
   },
