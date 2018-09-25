@@ -374,15 +374,10 @@
         padding: 25px;
     }
     .blue-circle {
-        position: absolute;
-        top: 17px;
-        left: 15px;
         width: 30px;
         height: 30px;
         border-radius: 50%;
         background: $blue;
-        z-index: 5;
-        cursor: pointer;
         .fa-check {
             display: none;
         }

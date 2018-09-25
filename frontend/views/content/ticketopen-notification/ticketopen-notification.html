@@ -10,7 +10,7 @@
                 <h6 class="fontRobotoBold blue-color mb-4 text-uppercase">Open Tickets</h6>
                 <div class="bg-white border-rounded p-4 my-2" ng-repeat="tickets in ticketData track by $index" ui-sref="ticketcreation({id:tickets.product._id})">
                     <div class="d-flex align-items-center ">
-                        <div class="blue-circle "></div>
+                        <div class="blue-circle"></div>
                         <h6 class="fontRobotoBold font14 ml-2 mb-0 ">{{tickets.ticketNumber}}</h6>
                         <!-- <span class="font12 font-color ml-2 d-inline-block w-25 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span> -->
                         <div class="ml-auto date-supportchat ">

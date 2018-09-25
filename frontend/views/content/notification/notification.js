@@ -211,7 +211,8 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
             if ($scope.showLessReminders[i]._id == data) {
                 $scope.selectedReminders.push(data);
                 console.log("$scope.selectedReminders", $scope.selectedReminders);
-                $(".blue-circle").toggleClass("selected");
+                $(".inside-accordian").toggleClass("selected");
+                $(".check-icon").toggleClass("d-none");
             }
         }
     }

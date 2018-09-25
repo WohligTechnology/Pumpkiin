@@ -1067,18 +1067,43 @@ fieldset:disabled {
 
 //accordian in notification page
 .selected {
-    background-color: $green !important;
+    background-color: white !important;
     border: solid 1px #142c5b;
     transition: ease all 500ms;
+    &:after {
+        content: "\2713";
+        font-size: 33px;
+        position: absolute;
+        left: 0px;
+        top: -11px;
+    }
 }
 
 .notification-accordions {
     position: relative;
 }
 
+.inside-accordian {
+    position: absolute;
+    top: 17px;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: $blue;
+    z-index: 5;
+    cursor: pointer;
+}
+
 .notification,
 .ticket-open {
     .view {
         display: none;
+    }
+}
+
+.rates {
+    span:focus {
+        outline: none;
     }
 }
