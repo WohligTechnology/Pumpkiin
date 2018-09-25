@@ -51,35 +51,59 @@ module.exports.routes = {
     controller: "WebController",
     action: "index"
   },
-  "GET /profile": {
+  "GET /landing": {
     controller: "WebController",
     action: "index"
   },
-  "GET /profile": {
+  "GET /productdetailregistered/:id": {
     controller: "WebController",
     action: "index"
   },
-  "GET /profile": {
+  "GET /productdetailunregistered": {
     controller: "WebController",
     action: "index"
   },
-  "GET /profile": {
+  "GET /productregistration": {
     controller: "WebController",
     action: "index"
   },
-  "GET /profile": {
+  "GET /productListing": {
     controller: "WebController",
     action: "index"
   },
-  "GET /profile": {
+  "GET /ticketcreation/:id": {
     controller: "WebController",
     action: "index"
   },
-  "GET /profile": {
+  "GET /closedTicketcreation/:id": {
     controller: "WebController",
     action: "index"
   },
-  "GET /profile": {
+  "GET /openticket": {
+    controller: "WebController",
+    action: "index"
+  },
+  "GET /ticketopen-notification": {
+    controller: "WebController",
+    action: "index"
+  },
+  "GET /ticketclose-notification": {
+    controller: "WebController",
+    action: "index"
+  },
+  "GET /notification": {
+    controller: "WebController",
+    action: "index"
+  },
+  "GET /terms-conditions": {
+    controller: "WebController",
+    action: "index"
+  },
+  "GET /privacy-policy": {
+    controller: "WebController",
+    action: "index"
+  },
+  "GET /links": {
     controller: "WebController",
     action: "index"
   },
