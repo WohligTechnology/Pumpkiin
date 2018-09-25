@@ -17,11 +17,11 @@
     <title ng-bind="'Pumpkiin | '+template.title"></title>
     <script src="js/dependencies/sails.io.js"></script>
     <script>
-            var adminUUU = "<%= ((typeof adminUUU) == "undefined") ? "" : adminUUU  %>";
-            var adminurl = "<%= ((typeof adminurl) == "undefined") ? "" : adminurl  %>";
-            io.sails.url = adminUUU;
+        var adminUUU = "<%= ((typeof adminUUU) == "undefined") ? "" : adminUUU  %>";
+        var adminurl = "<%= ((typeof adminurl) == "undefined") ? "" : adminurl  %>";
+        io.sails.url = adminUUU;
     </script>
-      
+
 
     <!--[if IE]> <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script> <![endif]-->
     <!--[if IE]> <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script> <![endif]-->
@@ -35,7 +35,7 @@
 
     <script>
         var adminurl = "<%= ((typeof adminurl) == "undefined ") ? "" : adminurl  %>";
-        var isproduction = false;
+        var isproduction = true;
         var chintan = function (content) {
             console.log("%c ---------------------------------------", 'background: #222; color: #bada55');
             console.log(content);
