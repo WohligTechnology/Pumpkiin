@@ -19,8 +19,7 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
 
   });
   $scope.socialLogin = function (url) {
-    window.open(url, '_blank');
-    window.close();
+    window.location.replace(url);
   };
 
   if ($stateParams.id) {
