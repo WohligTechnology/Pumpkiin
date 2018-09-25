@@ -425,7 +425,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         };
 
     })
-    .controller('ViewProductPageCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, $uibModal) {
+    .controller('ViewProductPageCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, $uibModal, toastr) {
         $scope.json = JsonService;
         $scope.template = TemplateService.changecontent("viewproductpage");
         $scope.menutitle = NavigationService.makeactive("viewproductpage");
@@ -443,6 +443,22 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                 id: id
             })
         }
+
+
+        $scope.deleteProduct = function (data) {
+            NavigationService.apiCall("Product/delete", {
+                _id: data
+            }, function (result) {
+                if (result.value) {
+                    toastr.success("Product was deleted successfully");
+                    $scope.viewTable();
+                } else {
+                    toastr.error("There was a problem deleting a product")
+                }
+            });
+        }
+
+
         $scope.changeAll = function () {
             $scope.formData = {};
             $scope.formData.page = 1;
@@ -489,7 +505,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         $scope.viewTable();
 
     })
-    .controller('EditProductPageCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, $uibModal) {
+    .controller('EditProductPageCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, $uibModal, toastr) {
         $scope.json = JsonService;
         $scope.template = TemplateService.changecontent("userdetail");
         $scope.menutitle = NavigationService.makeactive("userdetail");
