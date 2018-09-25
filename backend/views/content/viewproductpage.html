@@ -40,6 +40,7 @@
                                         Product name
                                     </th>
                                     <th>Actions</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,11 +49,17 @@
                                     <!--<tr>-->
                                     <td>{{($index + 1)+((formData.page-1)*maxRow)}}</td>
                                     <!--<td>{{($index + 1)}}</td>-->
-                                    <td>{{item.productName}}</td>
+                                    <td>{{item.productInvoicePR}}</td>
                                     <td>
                                         </a>
                                         <a class="btn btn-success" ng-click="viewUserDetail(item._id)">
                                             View Detail
+                                        </a>
+                                    </td>
+                                    <td>
+                                        </a>
+                                        <a class="btn btn-danger" ng-click="deleteProduct(item._id)">
+                                            Deletel
                                         </a>
                                     </td>
 
