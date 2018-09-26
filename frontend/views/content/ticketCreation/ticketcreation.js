@@ -88,59 +88,52 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                 // console.log("$scope.ticketData-----------", ticketData);
                 NavigationService.apiCallWithData("Ticket/findActiveTicketOfUser", ticketData, function (res) {
                     $scope.ticketDetails = res.data;
-                    console.log("///////////////////////////////////////////////////////////$scope.ticketDetails-----------", $scope.ticketDetails);
+                    console.log("///////////////////////////////////////////////////////////$scope.ticketDetails-----------", res.data);
 
                     //timeline
 
                     $scope.statusArray = [{
                         status: "Repair/ Maintenance (On-site)",
-                        statusDate: '25/09/2018',
                         activeClass: ''
                     }, {
                         status: "Scheduling service with customer (Open)",
-                        statusDate: '25/09/2018',
                         activeClass: ''
                     }, {
                         status: "Coordinating with the service provider (Open)",
-                        statusDate: '25/09/2018',
                         activeClass: ''
                     }, {
                         status: "Service confirmed (In-progress)",
-                        statusDate: '25/09/2018',
                         activeClass: ''
                     }, {
                         status: "Service completed (Closed)",
-                        statusDate: '25/09/2018',
                         activeClass: ''
                     }, {
                         status: "Awaiting feedback (Closed)",
-                        statusDate: '25/09/2018',
                         activeClass: ''
                     }, {
                         status: "Appliance picked up (In-progress)",
-                        statusDate: '25/09/2018',
                         activeClass: ''
                     }, {
                         status: "Appliance returned (Closed)",
-                        statusDate: '25/09/2018',
                         activeClass: ''
                     }, {
                         status: "Completed (Completed)",
-                        statusDate: '25/09/2018',
                         activeClass: ''
                     }];
 
                     _.each($scope.statusArray, function (x) {
-                        // console.log("1 $scope.ticketDetails", $scope.ticketDetails);
+                        console.log("++++++++++++", x);
                         _.each($scope.ticketDetails.substat, function (y) {
+                            // console.log("===========", y)
                             if (y.status == x.status) {
-                                // console.log("-", _.findIndex($scope.statusArray, function (o) {
-                                //     return o == x;
-                                // }))
+                                console.log("-", _.findIndex($scope.statusArray, function (o) {
+                                    return o == x;
+                                }))
                                 var index = _.findIndex($scope.statusArray, function (o) {
                                     return o.status == x.status;
                                 });
                                 $scope.statusArray[index].activeClass = 'timeline-active';
+                                $scope.statusArray[index].statusDate = moment(y.statusDate).format("DD/MM/YYYY");
 
                                 // $(".circle6").addClass("timeline-active");
                             }
@@ -180,19 +173,17 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
                 $scope.statusArray = [{
                     status: "Repair/ Maintenance (On-site)",
-                    statusDate: '25/09/2018',
+                    statusDate: '',
                     activeClass: ''
                 }, {
                     status: "Scheduling service with customer (Open)",
-                    statusDate: '25/09/2018',
                     activeClass: ''
                 }, {
                     status: "Coordinating with the service provider (Open)",
-                    statusDate: '25/09/2018',
                     activeClass: ''
                 }, {
                     status: "Service confirmed (In-progress)",
-                    statusDate: '25/09/2018',
+
                     activeClass: ''
                 }, {
                     status: "Service completed (Closed)",
