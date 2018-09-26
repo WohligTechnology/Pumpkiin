@@ -189,8 +189,8 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
     $scope.getTickets();
 
 
-    $scope.openmodalOpen = function (tickets) {
-        console.log("tickets------------------", tickets)
+    $scope.openmodalOpen = function (tickets, index) {
+        console.log("tickets------------------", tickets);
         $scope.singleTicket = tickets;
         $scope.openTicket = $uibModal.open({
             animation: true,
@@ -204,14 +204,16 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
             changeisRead.id = tickets._id;
             changeisRead.isRead = true;
 
-            NavigationService.apiCallWithData("Product/changeIsReadStatus", changeisRead, function (data) {
+            console.log("changeisRead", changeisRead)
+
+            NavigationService.apiCallWithData("Ticket/changeIsReadStatus", changeisRead, function (data) {
                 console.log("changeIsReadStatus", data);
                 if (data.value) {
-                    if (modal) {
-                        $scope.callTickets();
-                    } else {
-                        $scope.showLessReminders[index].isRead = true;
-                    }
+                    // if (modal) {
+                    $scope.callTickets();
+                    // } else {
+                    //     $scope.showLessReminders[index].isRead = true;
+                    // }
                 }
             })
         }

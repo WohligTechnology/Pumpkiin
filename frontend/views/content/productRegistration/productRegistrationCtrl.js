@@ -214,7 +214,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         $scope.dataToGet._id = $scope.product_id;
         NavigationService.apiCallWithData("Product/getOne", $scope.dataToGet, function (res) {
             $scope.data = res.data;
-            console.log("$scope.data")
+            console.log("$scope.data", $scope.data, res.data)
             if (res.data.purchaseDate) {
                 $scope.data.purchaseDate = new Date(res.data.purchaseDate);
             }
@@ -232,6 +232,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             }
         });
     }
+
 
 
     $scope.submitDocuments = function (docs) {

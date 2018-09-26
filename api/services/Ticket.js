@@ -11,6 +11,10 @@ var schema = new Schema({
         type: Date,
         default: Date.now()
     },
+    isRead: {
+        type: Boolean,
+        default: false
+    },
     ticketNumber: String,
     status: {
         type: String,
@@ -462,6 +466,25 @@ var model = {
         this.find({}).deepPopulate('product product.user user').order(options)
             .keyword(options)
             .page(options, callback);
+    },
+    changeIsReadStatus: function (data, callback) {
+        console.log("-----------", data);
+        Ticket.findOneAndUpdate({
+            _id: data.id
+        }, {
+            isRead: data.isRead
+        }, {
+            new: true
+        }).exec(function (err, data) {
+            console.log("data111111", data)
+            if (err || _.isEmpty(data)) {
+                console.log("err------", err)
+                callback(err, "Error")
+            } else {
+                console.log("data", data)
+                callback(null, data)
+            }
+        });
     }
 
 };

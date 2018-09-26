@@ -150,18 +150,9 @@ var model = {
                 callback(null, found)
             }
         });
-    },
-
-    changeIsReadStatus: function (data, callback) {
-        console.log("-----------", data);
-        this.findOneAndUpdate({
-            _id: data.id
-        }, {
-            isRead: data.isRead
-        }, {
-            new: true
-        }).exec(callback);
     }
+
+
 
 };
 module.exports = _.assign(module.exports, exports, model);

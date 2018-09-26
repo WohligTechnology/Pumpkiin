@@ -130,9 +130,10 @@ var controller = {
             });
         }
     },
-    changeIsReadStatus: function (req, res) {
+
+    searchProductWithInvoice: function (req, res) {
         if (req.body) {
-            Product.changeIsReadStatus(req.body, res.callback);
+            Product.searchProductWithInvoice(req.body, res.callback);
         } else {
             res.json({
                 value: false,

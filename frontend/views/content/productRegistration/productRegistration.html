@@ -100,6 +100,7 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Purchase Date * </label>
+                    <pre>{{data}}</pre>
                     <input ng-model="data.purchaseDate" name="date" class="form-control form-control-sm" type="date"
                         required>
                     <span class="error" ng-show="purchase.date.$invalid && purchase.date.$touched"> Please, enter
@@ -227,6 +228,7 @@
     <form name="Warranty">
         <div class="bg-white mx-0 mx-lg-3 p-4 border-rounded product-desc productreg">
             <h6 class="text-uppercase fontRobotoBold my-3">Warranty *
+                <pre>{{data}}</pre>
                 <span class="orange-color ml-1" ng-if="data.warrantyExpDate">
                     <i class="far fa-check-circle font16"></i>
                 </span>

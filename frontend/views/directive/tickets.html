@@ -41,7 +41,7 @@
     <div class="border-top listed-openTickets openticket">
         <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails track by $index"
             ng-click="openmodalOpen(tickets, $index);">
-            <div class="bullet"></div>
+            <div class="bullet" ng-if="!tickets.isRead"></div>
             <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
                 <div class="product-title text-truncate">{{tickets.product.productName}}</div>
                 <div class="date ">{{tickets.issueReported | date}}</div>

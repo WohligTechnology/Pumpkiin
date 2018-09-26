@@ -73,10 +73,7 @@ var schema = new Schema({
         type: Boolean,
         default: false
     },
-    isRead: {
-        type: Boolean,
-        default: false
-    },
+
     productInvoicePR: String,
     warrantyCardPR: String,
     ticketGenerated: {
@@ -435,14 +432,13 @@ var model = {
 
     },
 
-    changeIsReadStatus: function (data, callback) {
+    searchProductWithInvoice: function (data, callback) {
         console.log("-----------", data);
-        this.findOneAndUpdate({
-            _id: data.id
-        }, {
-            isRead: data.isRead
-        }, {
-            new: true
+        this.find({
+            status: "Pending",
+            productInvoicePR: {
+                $exists: true
+            }
         }).exec(callback);
     }
 
