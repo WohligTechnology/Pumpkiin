@@ -4,7 +4,7 @@ module.exports = function (profile) {
     var sails = req._sails;
     // console.log("profileprofileprofile", profile)
     if (_.isEmpty(profile)) {
-        res.callback("Error fetching profile in Social Login", profile);
+        res.redirect(env.realHost + "/login/");
         // res.serverError();
     } else {
         console.log("********************req.session.returnUrl*********************", req.session.returnUrl)
