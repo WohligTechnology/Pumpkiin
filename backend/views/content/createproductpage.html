@@ -13,8 +13,8 @@
             <div class="sec">
                 <div class="form-group" fields>
                     <label>User</label>
-                    <ui-select tagging tagging-label="(custom 'new' label)" ng-model="formdata.user" theme="bootstrap"
-                        sortable="true" ng-disabled="ctrl.disabled" title="Choose a color" ng-required="true">
+                    <ui-select tagging tagging-label="(custom 'new' label)" ng-model="formdata.user" theme="bootstrap" sortable="true" ng-disabled="ctrl.disabled"
+                        title="Choose a product" ng-required="true">
                         <ui-select-match class="selected-tags" placeholder="Select users">
                             <span ng-if="$select.selected.name">{{$select.selected.name}}</span>
                             <span ng-if="!$select.selected.name">{{$select.selected}}</span>
@@ -28,8 +28,7 @@
 
                 <div class="form-group" fields>
                     <label>Product Name * </label>
-                    <input type="text" name="productname" placeholder="product name" ng-model="formdata.productName"
-                        class="form-control" required>
+                    <input type="text" name="productname" placeholder="product name" ng-model="formdata.productName" class="form-control" required>
                 </div>
 
                 <div class="form-group" fields>
@@ -53,13 +52,11 @@
 
                 <div class="form-group">
                     <label>Serial No * </label>
-                    <input type="text" name="serialNo" placeholder="serial No" ng-model="formdata.serialNo" class="form-control"
-                        required>
+                    <input type="text" name="serialNo" placeholder="serial No" ng-model="formdata.serialNo" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label>Model No * </label>
-                    <input type="text" name="modelNo" placeholder="model No" ng-model="formdata.modelNo" class="form-control"
-                        required>
+                    <input type="text" name="modelNo" placeholder="model No" ng-model="formdata.modelNo" class="form-control" required>
                 </div>
                 <div class="form-group" fields ng-if="!showSaveButton">
                     <label>Product Image * </label>
@@ -75,14 +72,14 @@
                 </div>
                 <div class="form-group">
                     <label>Purchase date * </label>
-                    <input type="date" name="purchasedate" placeholder="purchase date" ng-model="formdata.purchaseDate"
-                        class="form-control" required>
+                    <input type="date" name="purchasedate" placeholder="purchase date" ng-model="formdata.purchaseDate" class="form-control"
+                        required>
 
                 </div>
                 <div class="form-group">
                     <label>Purchase Price * </label>
-                    <input type="number" name="purchaseprice" placeholder="purchaseprice" ng-model="formdata.purchasePrice"
-                        class="form-control" required>
+                    <input type="number" name="purchaseprice" placeholder="purchaseprice" ng-model="formdata.purchasePrice" class="form-control"
+                        required>
                 </div>
 
                 <div class="form-group" fields>
@@ -104,8 +101,8 @@
                 </div> -->
                 <div class="form-group">
                     <label>Warranty Expiry Date * </label>
-                    <input type="date" name="warrantyExpDate" placeholder="warranty ExpDate" ng-model="formdata.warrantyExpDate"
-                        class="form-control" required>
+                    <input type="date" name="warrantyExpDate" placeholder="warranty ExpDate" ng-model="formdata.warrantyExpDate" class="form-control"
+                        required>
                 </div>
                 <!-- <div class="form-group" fields>
                     <label>Warranty Card</label>
@@ -121,8 +118,7 @@
 
                 <div class="form-group">
                     <label>Insurance Expiry Date </label>
-                    <input type="date" name="insuranceExpDate" placeholder="insuranceExpDate" ng-model="formdata.insuranceExpDate"
-                        class="form-control">
+                    <input type="date" name="insuranceExpDate" placeholder="insuranceExpDate" ng-model="formdata.insuranceExpDate" class="form-control">
                 </div>
                 <div class="form-group" fields>
                     <label>Insurance Card</label>

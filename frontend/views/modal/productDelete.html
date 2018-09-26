@@ -1,48 +1,13 @@
 <div class="modal-header justify-content-center background-blue text-white">
-    <h5 class="modal-title fontRobotoRegular" id="modal-title">Product Registration</h5>
+    <h5 class="modal-title fontRobotoRegular" id="modal-title">Product Delete Confirmation</h5>
     <span class="modal-close-icon" ng-click="$dismiss()">
         <img src="img/modal/close_white.png" width="20">
     </span>
 </div>
 <div class="modal-body fontRobotoLight text-center" id="modal-body">
-    <div ng-if="!yes">Are you sure you want to delete this product?</div>
-    <div class="d-flex mt-3 fontRobotoRegular" ng-if="!yes">
+    <div>Are you sure you want to delete this product?</div>
+    <div class="d-flex mt-3 fontRobotoRegular">
         <a role="button" class="button orange-btn py-1 w-50 mr-4" ng-click="deleteProduct()">Yes</a>
         <a role="button" class="button green-btn py-1 w-50" ng-click="$dismiss()">No</a>
     </div>
-    <div class="modal-body fontRobotoLight text-center" id="modal-body" ng-if="yes">
-        <!-- <div>Is your product registered?</div> -->
-        <label class="mb-0">Select the product</label>
-        <!-- <ui-select ng-model="product" theme="bootstrap" style="width: 300px;" class="form-control"> -->
-        <ui-select class="mx-auto border " tagging tagging-label="(custom 'new' label)" ng-model="data.product" theme="bootstrap"
-            sortable="true" ng-disabled="ctrl.disabled" title="Choose a color" ng-required="true">
-            <ui-select-match>
-                <span ng-bind="$select.selected.productName"></span>
-            </ui-select-match>
-            <ui-select-choices repeat="product._id as product in (remainingProduct | filter: $select.search)">
-                <span ng-bind="product.productName"></span>
-            </ui-select-choices>
-        </ui-select>
-
-        <div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary py-1 mt-2 border-rounded" ui-sref="ticketcreation({id:data.product})">Submit</button>
-            </div>
-        </div>
-    </div>
 </div>
-
-<!-- <div class="
-                    modal-header justify-content-center background-blue text-white">
-                    <h5 class="modal-title fontRobotoRegular" id="modal-title">Product Registration</h5>
-                    <span class="modal-close-icon" ng-click="$dismiss()">
-                        <img src="img/modal/close_white.png" width="20">
-                    </span>
-            </div>
-            <div class="modal-body fontRobotoLight text-center" id="modal-body">
-                <div>Is your product registered?</div>
-                <div class="d-flex mt-3 fontRobotoRegular">
-                    <a role="button" class="button orange-btn py-1 w-50 mr-4" ng-click="registration.dismiss()">Yes</a>
-                    <a role="button" class="button green-btn py-1 w-50" ui-sref="productregistration">No</a>
-                </div>
-            </div> -->
