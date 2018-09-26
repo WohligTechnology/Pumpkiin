@@ -9054,6 +9054,12 @@ fieldset:disabled {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px; }
 
+.ui-select-bootstrap .ui-select-match-text {
+  padding-right: 0; }
+
+.ui-select-bootstrap .ui-select-match-text span {
+  width: 95%; }
+
 .home-section {
   height: 93vh; }
   .home-section .img-section {
