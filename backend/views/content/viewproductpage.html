@@ -20,7 +20,8 @@
                              "
                                     ng-model="search" />
                             </form>
-                            <a class="btn btn-success" ui-sref="createproductpage">
+                            <!-- ng-if="checkStatus==Pending" -->
+                            <a class="btn btn-success" ui-sref="createproductpage" ng-if="checkStatus=='Pending'">
                                 Create
                             </a>
 
@@ -49,7 +50,7 @@
                                     <!--<tr>-->
                                     <td>{{($index + 1)+((formData.page-1)*maxRow)}}</td>
                                     <!--<td>{{($index + 1)}}</td>-->
-                                    <td>{{item.productInvoicePR}}</td>
+                                    <td>{{item.productName}}</td>
                                     <td>
                                         </a>
                                         <a class="btn btn-success" ng-click="viewUserDetail(item._id)">

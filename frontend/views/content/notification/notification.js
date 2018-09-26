@@ -246,11 +246,9 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
                 }
             })
         }
-
-
-
-
     }
+
+
     $scope.openmodalOpen = function (tickets) {
         $scope.singleTicket = tickets;
         $scope.openTicket = $uibModal.open({

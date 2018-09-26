@@ -431,6 +431,8 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         $scope.menutitle = NavigationService.makeactive("viewproductpage");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
+        $scope.checkStatus = $stateParams.status;
+
         $scope.changeInput = function () {
             if ($scope.formData.input != '') {
                 $scope.formData.input = '';
@@ -662,6 +664,8 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         $scope.menutitle = NavigationService.makeactive("createproductpage");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
+        $scope.checkStatus = $stateParams.status;
+        console.log("----------", $stateParams)
         $scope.changeInput = function () {
             if ($scope.formData.input != '') {
                 $scope.formData.input = '';
@@ -738,7 +742,9 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                     $scope.formdata = data.data;
                 }
             });
-            $state.go("viewproductpage");
+            $state.go("viewproductpage", {
+                status: 'Confirmed'
+            });
         }
 
         $scope.removeProductImage = function (index) {
@@ -750,6 +756,14 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             });
 
         }
+
+
+        NavigationService.apiCallWithoutData("User/searchUser", function (data) {
+            console.log("user details", data.data);
+            $scope.users = data.data;
+        })
+
+
 
 
     })
@@ -1686,13 +1700,45 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         $scope.menutitle = NavigationService.makeactive("Ticket List");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
+        $scope.pageNumber = 1;
+        $scope.totalitems = 10;
+        var page = {
+            page: 1
+        };
+        $scope.search = {
+            keyword: ""
+        };
 
-        NavigationService.apiCallWithoutData("Ticket/search", function (res) {
-            if (res.value == true) {
-                $scope.allTickets = res.data.results;
-                // console.log("$scope.allTickets-----", $scope.allTickets);
-            }
-        });
+
+        $scope.getAllItems = function (searchData) {
+            $scope.keyword = searchData;
+            $scope.ticketsSearch();
+        };
+
+
+
+
+        $scope.ticketsSearch = function () {
+            NavigationService.apiCall("Ticket/searchTickets", {
+                page: $scope.currentPage,
+                keyword: $scope.search.keyword
+            }, function (res) {
+                if (res.value == true) {
+                    $scope.allTickets = res.data.results;
+                    console.log("$scope.allTickets-----", res);
+                    $scope.totalitems = res.data.total;
+                    $scope.maxRow = res.data.options.count;
+                }
+            });
+        }
+        $scope.ticketsSearch();
+
+        $scope.changePage = function (pageno) {
+            // console.log("hey", pageno)
+            $scope.currentPage = pageno;
+            page.page = pageno;
+            $scope.ticketsSearch();
+        }
     })
 
     .controller('TicketcreationCtrl', function ($scope, TemplateService, NavigationService, $timeout, $stateParams, $state, toastr, $uibModal) {
@@ -1795,6 +1841,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
                 arr.status = data;
                 arr.statusDate = new Date();
                 $scope.ticketData.substat.push(arr);
+                console.log("------------------", data);
                 NavigationService.apiCall("Ticket/changeTicketStatus", $scope.ticketData, function (data) {
                     if (data.value == true) {
                         toastr.success("status changed Sucessfully");

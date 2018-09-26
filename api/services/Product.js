@@ -73,6 +73,10 @@ var schema = new Schema({
         type: Boolean,
         default: false
     },
+    isRead: {
+        type: Boolean,
+        default: false
+    },
     productInvoicePR: String,
     warrantyCardPR: String,
     ticketGenerated: {
@@ -429,6 +433,17 @@ var model = {
             productName: 1
         }).exec(callback);
 
+    },
+
+    changeIsReadStatus: function (data, callback) {
+        console.log("-----------", data);
+        this.findOneAndUpdate({
+            _id: data.id
+        }, {
+            isRead: data.isRead
+        }, {
+            new: true
+        }).exec(callback);
     }
 
 

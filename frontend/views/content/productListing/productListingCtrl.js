@@ -81,41 +81,46 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
     }
 
-    reminderService.findReminderOfPendingSnoozeByUser(function (data) {
-        $scope.allReminders = data;
-        $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
-    });
 
-
-    reminderService.totalNumberOfReminders(function (data) {
-        $scope.totalReminders = data;
-        // console.log("$scope.totalReminders", $scope.totalReminders);
-    });
-
-    reminderService.totalNumberOfCompletedReminders(function (data) {
-        $scope.totalCompletedReminder = data;
-        // console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
-    });
-
-
-    reminderService.totalNumberOfPendingReminders(function (data) {
-        $scope.totalPendingReminders = data;
-    });
-
-
-    $scope.completedReminders = function (data) {
-        reminderService.findReminderOfCompletedByUser(function (data) {
-            $scope.allReminders = data;
-            $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
-        });
-    }
-
-    $scope.pendingReminders = function (data) {
+    $scope.getReminder = function () {
         reminderService.findReminderOfPendingSnoozeByUser(function (data) {
             $scope.allReminders = data;
             $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
         });
+
+
+        reminderService.totalNumberOfReminders(function (data) {
+            $scope.totalReminders = data;
+            // console.log("$scope.totalReminders", $scope.totalReminders);
+        });
+
+        reminderService.totalNumberOfCompletedReminders(function (data) {
+            $scope.totalCompletedReminder = data;
+            // console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
+        });
+
+
+        reminderService.totalNumberOfPendingReminders(function (data) {
+            $scope.totalPendingReminders = data;
+        });
+
+
+        $scope.completedReminders = function (data) {
+            reminderService.findReminderOfCompletedByUser(function (data) {
+                $scope.allReminders = data;
+                $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+            });
+        }
+
+        $scope.pendingReminders = function (data) {
+            reminderService.findReminderOfPendingSnoozeByUser(function (data) {
+                $scope.allReminders = data;
+                $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+            });
+        }
     }
+    $scope.getReminder();
+
 
     //REMINDER SECTION END
 
@@ -134,12 +139,12 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
     ticketService.totalNumberOfTickets(function (data) {
         $scope.totalNumberOfTickets = data;
-        // console.log("res--totalNumberOfTickets---", data);
+        console.log("res--totalNumberOfTickets---", data);
     });
 
     ticketService.totalNumberOfOpenTickets(function (data) {
         $scope.totalNumberOfOpenTickets = data;
-        // console.log("res---totalNumberOfOpenTickets--", data);
+        console.log("res---totalNumberOfOpenTickets--", data);
     });
 
     ticketService.totalNumberOfClosedTickets(function (data) {
@@ -172,7 +177,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
     $scope.getOpenTickets = function () {
         ticketService.totalOpenTickets(function (data) {
             // $scope.ticketDetails = data;
-            // console.log("----109----", data.results);
+            console.log("----109----", data.results);
             $scope.ticketDetails = _.slice(data.results, 0, 5);
 
         });
@@ -414,6 +419,36 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
                     $state.reload();
                 }
             });
+        }
+    }
+
+    $scope.notificationmodalOpen = function (notification, index, modal) {
+        console.log("notification", notification);
+        if (modal) {
+            $scope.singleNotification = notification;
+            $scope.accordianNotification = $uibModal.open({
+                animation: true,
+                templateUrl: "views/modal/notificationaccordian.html",
+                scope: $scope,
+                backdrop: 'static'
+            });
+        }
+
+        if (!notification.isRead) {
+            var changeisRead = {};
+            changeisRead.id = notification._id;
+            changeisRead.isRead = true;
+
+            NavigationService.apiCallWithData("Reminder/changeIsReadStatus", changeisRead, function (data) {
+                console.log("changeIsReadStatus", data);
+                if (data.value) {
+                    if (modal) {
+                        $scope.getReminder();
+                    } else {
+                        $scope.showLessReminders[index].isRead = true;
+                    }
+                }
+            })
         }
     }
 });

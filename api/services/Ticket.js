@@ -432,5 +432,37 @@ var model = {
         });
     },
 
+    searchTickets: function (data, callback) {
+        console.log("searchTickets", data)
+        //take the page in data
+        var page = 1;
+        // var Model = this;
+        // var Const = this(data);
+        var maxRow = 10;
+        if (data.page) {
+            page = data.page;
+        }
+        var field = data.field;
+
+        var options = {
+            field: data.field,
+            filters: {
+                keyword: {
+                    fields: ['ticketNumber', 'status'],
+                    term: data.keyword
+                }
+            },
+            sort: {
+                asc: ''
+            },
+            start: (page - 1) * maxRow,
+            count: maxRow
+        };
+
+        this.find({}).deepPopulate('product product.user user').order(options)
+            .keyword(options)
+            .page(options, callback);
+    }
+
 };
 module.exports = _.assign(module.exports, exports, model);

@@ -20,14 +20,14 @@
                                 <div class="col-lg-9">
                                     <div class="d-flex">
                                         <div class="mr-2 clock text-right">
-                                            <div class="d-inline-block px-1">
+                                            <!-- <div class="d-inline-block px-1">
                                                 <a class="btn btn-success pickup-btn" href="" ng-click="pickupOpen();">
                                                     Pick Up Time
                                                 </a>
-                                            </div>
+                                            </div> -->
                                             <label>Current Status : </label>
-                                            <select ng-model="ticketData.subStatus" ng-change="updateStatus(ticketData.subStatus)" ng-options="x for x in statusArr"
-                                                ng-selected="ticketData.subStatus">
+                                            <select ng-model="ticketData.subStatus" ng-change="updateStatus(ticketData.subStatus)"
+                                                ng-options="x for x in statusArr" ng-selected="ticketData.subStatus">
                                             </select>
                                             <!-- <select class="ml-5">
                                                 <option value="8">Repair (Off-site)</option>
@@ -40,12 +40,12 @@
                                                 <option value="15">Completed (Completed)</option>
                                             </select> -->
                                         </div>
-                                        <div class="d-flex clock px-1">
+                                        <!-- <div class="d-flex clock px-1">
                                             <span>
                                                 <i class="far fa-clock mr-1"></i>
                                             </span>
                                             <span>5.30pm</span>
-                                        </div>
+                                        </div> -->
                                     </div>
 
                                 </div>
@@ -86,7 +86,8 @@
                                                 <i class="fas fa-file-download" style="font-size: 40px"></i>
                                             </a>
                                         </div>
-                                        <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact Person:{{chat.pickUpDetails.contactPerson}}
+                                        <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact
+                                            Person:{{chat.pickUpDetails.contactPerson}}
                                             <br>Contact Number:{{chat.pickUpDetails.contactNumber}}
                                             <br> Address:{{chat.pickUpDetails.pickUpAddress}}
                                         </div>
@@ -96,14 +97,15 @@
                                         <div class="img-fluid image ">
                                             <img src="img/profile.jpeg ">
                                         </div>
-                                        <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
+                                        <div class="mr-2 px-3 py-1 chat-content" ng-if="chat.comment">{{chat.comment}}</div>
                                         <div ng-if="chat.file">
                                             <!-- <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt=""> -->
                                             <a ng-href="http://wohlig.io/api/upload/readFile?file={{chat.file}}" target="blank">
                                                 <i class="fas fa-file-download" style="font-size: 40px"></i>
                                             </a>
                                         </div>
-                                        <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact Person:{{chat.pickUpDetails.contactPerson}}
+                                        <div class="mr-2 px-3 py-1 chat-content" ng-if="chat.pickUpDetails">Contact
+                                            Person:{{chat.pickUpDetails.contactPerson}}
                                             <br>Contact Number:{{chat.pickUpDetails.contactNumber}}
                                             <br> Address:{{chat.pickUpDetails.pickUpAddress}}
                                         </div>
@@ -132,18 +134,20 @@
                                     <img src="img/submit.png " ng-click="addComment(chatData)">
                                 </div>
                                 <div class="scrollbar-tcreation">
-                                    <upload-image ng-model="chatData.image" image-src="../img/attachment.png" image-class="attachment" no-view></upload-image>
+                                    <upload-image ng-model="chatData.image" image-src="../img/attachment.png"
+                                        image-class="attachment" no-view></upload-image>
                                 </div>
                                 <!-- <div class="attachment">
                                     <img class=" " src="img/ticketCreation/attachment.png ">
                                     <input type="file" name="pic" accept="" class="custom-file">
                                 </div> -->
-                                <input class="form-control message mt-5 " type="text " placeholder="Type your message ... " ng-model="chatData.comment">
+                                <input class="form-control message mt-5 " type="text " placeholder="Type your message ... "
+                                    ng-model="chatData.comment">
                             </div>
                         </div>
 
                     </div>
             </form>
-            </div>
         </div>
     </div>
+</div>

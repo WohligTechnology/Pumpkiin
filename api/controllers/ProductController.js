@@ -130,6 +130,18 @@ var controller = {
             });
         }
     },
+    changeIsReadStatus: function (req, res) {
+        if (req.body) {
+            Product.changeIsReadStatus(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
 
     excelProductList: function (req, res) {
         console.log(req.params.id)
