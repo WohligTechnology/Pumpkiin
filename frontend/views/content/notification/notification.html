@@ -55,15 +55,14 @@
                 <div class="d-flex">
                     <h6 class="fontRobotoBold blue-color mb-4 text-uppercase">Reminders</h6>
                     <div class="ml-auto">
-                        <a role="button" class="button  px-3 py-1 fontRobotoBold text-center snooze-color" ng-click="reminderModalOpen(reminders._id);">Snooze
-                            / Edit</a>
-                        <a role="button" class="button  px-3 py-1 fontRobotoBold text-center completed-color" ng-click="chnageStatus(reminders._id);">Completed</a>
-                        <a role="button" class="button  px-3 py-1 fontRobotoBold text-center delete-btn" ng-click="deleteReminder(reminders._id);">Delete</a>
+
+                        <a role="button" class="button  px-3 py-1 fontRobotoBold text-center completed-color" ng-click="multiCompleted();">Completed</a>
+                        <a role="button" class="button  px-3 py-1 fontRobotoBold text-center delete-btn" ng-click="deleteMultipleReminder(reminders._id);">Delete</a>
                     </div>
                 </div>
                 <uib-accordion close-others="true">
                     <div ng-repeat="reminders in showLessReminders track by $index" class="notification-accordions">
-                        <div ng-click="checkCircle(reminders._id)" class="inside-accordian p-1"></div>
+                        <div ng-click="checkCircle(reminders._id)" ng-class="getClass(reminders._id)"></div>
                         <div uib-accordion-group class="panel-default reminder-body" is-open="statuses[$index].isOpen" is-disabled="disabled">
                             <uib-accordion-heading>
                                 <div class="pl-4" ng-click="statuses[$index].isOpen = !statuses[$index].isOpen">
@@ -84,14 +83,13 @@
                                 <p>{{reminders.description}}</p>
                                 <div class="text-right">
                                     <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center snooze-color" ng-click="reminderModalOpen(reminders._id);"
-                                        ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Snooze
-                            / Edit
-                        </a>
+                                        ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Snooze / Edit
+                                    </a>
                                     <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center completed-color" ng-click="chnageStatus(reminders._id);"
                                         ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Completed
-                        </a>
+                                    </a>
                                     <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center delete-btn" ng-click="deleteReminder(reminders._id, $index);">Delete
-                        </a>
+                                    </a>
                                 </div>
                             </div>
                         </div>

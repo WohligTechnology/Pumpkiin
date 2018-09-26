@@ -161,7 +161,26 @@ var model = {
         }, {
             new: true
         }).exec(callback);
+    },
+    deleteMultiple: function (data, callback) {
+        console.log("-----------", data);
+        this.remove({
+            _id: {
+                $in: data.data
+            }
+        }).exec(callback);
+    },
+    multiCompleted: function (data, callback) {
+        console.log("-----------", data);
+        this.update({
+            _id: {
+                $in: data.data
+            }
+        }, {
+            status: "Completed"
+        }).exec(callback);
     }
+
 
 };
 module.exports = _.assign(module.exports, exports, model);

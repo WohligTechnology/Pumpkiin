@@ -72,7 +72,6 @@ var model = {
     },
 
     totalOpenTickets: function (data, callback) {
-        console.log("totalOpenTickets", data)
         //take the page in data
         var page = 1;
         // var Model = this;
