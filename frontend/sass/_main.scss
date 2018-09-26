@@ -679,6 +679,19 @@ fieldset:disabled {
     border-bottom-right-radius: 20px;
 }
 
+.ui-select-bootstrap .ui-select-match-text {
+    padding-right: 0;
+} // .pro-modal {
+//     .ui-select-bootstrap {
+//         .ui-select-match-text {
+//             padding-right: 0px !important;
+//         }
+//     }
+// }
+.ui-select-bootstrap .ui-select-match-text span {
+    width: 95%;
+}
+
 //scss for home page
 .home-section {
     height: 93vh;
