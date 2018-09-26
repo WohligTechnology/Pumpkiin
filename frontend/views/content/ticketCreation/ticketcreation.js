@@ -150,7 +150,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                     ticketService.totalOpenTickets(function (data) {
                         // $scope.ticketDetails = data;
                         $scope.ticketDetails1 = _.slice(data.results, 0, 8);
-                        console.log("1 $scope.ticketDetails --", data);
+                        console.log("1 $scope.ticketDetails --", $scope.ticketDetails1);
 
                     });
 
@@ -180,15 +180,19 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
                 $scope.statusArray = [{
                     status: "Repair/ Maintenance (On-site)",
+                    statusDate: '25/09/2018',
                     activeClass: ''
                 }, {
                     status: "Scheduling service with customer (Open)",
+                    statusDate: '25/09/2018',
                     activeClass: ''
                 }, {
                     status: "Coordinating with the service provider (Open)",
+                    statusDate: '25/09/2018',
                     activeClass: ''
                 }, {
                     status: "Service confirmed (In-progress)",
+                    statusDate: '25/09/2018',
                     activeClass: ''
                 }, {
                     status: "Service completed (Closed)",
@@ -351,7 +355,17 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
         $scope.yes = false;
     }
 
-    $scope.openmodalOpen = function (tickets) {
+    // $scope.openmodalOpen = function (tickets) {
+    //     $scope.singleTicket = tickets;
+    //     $scope.openTicket = $uibModal.open({
+    //         animation: true,
+    //         templateUrl: "views/modal/openticket.html",
+    //         scope: $scope,
+    //         backdrop: 'static'
+    //     });
+    // }
+    $scope.openmodalOpen = function (tickets, index) {
+        console.log("tickets------------------", tickets);
         $scope.singleTicket = tickets;
         $scope.openTicket = $uibModal.open({
             animation: true,
@@ -359,6 +373,25 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             scope: $scope,
             backdrop: 'static'
         });
+
+        if (!tickets.isRead) {
+            var changeisRead = {};
+            changeisRead.id = tickets._id;
+            changeisRead.isRead = true;
+
+            console.log("changeisRead", changeisRead)
+
+            NavigationService.apiCallWithData("Ticket/changeIsReadStatus", changeisRead, function (data) {
+                console.log("changeIsReadStatus", data);
+                if (data.value) {
+                    // if (modal) {
+                    $scope.getTicket();
+                    // } else {
+                    //     $scope.showLessReminders[index].isRead = true;
+                    // }
+                }
+            })
+        }
     }
 
 
