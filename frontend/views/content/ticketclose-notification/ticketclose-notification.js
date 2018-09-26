@@ -51,50 +51,53 @@ myApp.controller('TicketcloseNotificationCtrl', function ($scope, TemplateServic
     //REMINDER SECTION END
 
     //for ticket block
-
-    ticketService.totalOpenTickets(function (data) {
-        // $scope.ticketDetails = data;
-        $scope.ticketDetails = _.slice(data, 0, 5);
-        console.log(" $scope.ticketDetails --", $scope.ticketDetails);
-
-    });
-
-    // ticketService.totalClosedTickets(function (data) {
-    //     $scope.ticketDetails = data;
-    // });
-
-    ticketService.totalNumberOfTickets(function (data) {
-        $scope.totalNumberOfTickets = data;
-        // console.log("res--totalNumberOfTickets---", data);
-    });
-
-    ticketService.totalNumberOfOpenTickets(function (data) {
-        $scope.totalNumberOfOpenTickets = data;
-        // console.log("res---totalNumberOfOpenTickets--", data);
-    });
-
-    ticketService.totalNumberOfClosedTickets(function (data) {
-        $scope.totalNumberOfClosedTickets = data;
-        // console.log("res---totalNumberOfClosedTickets--", data);
-    });
-
-
-    $scope.getClosedTickets = function () {
-        ticketService.totalClosedTickets(function (data) {
-            // $scope.ticketDetails = data;
-            $scope.ticketDetails = _.slice(data, 0, 5);
-        });
-    }
-
-
-    $scope.getOpenTickets = function () {
+    $scope.callTickets = function () {
         ticketService.totalOpenTickets(function (data) {
             // $scope.ticketDetails = data;
-            // console.log("----109----", data.results);
-            $scope.ticketDetails = _.slice(data.results, 0, 5);
+            $scope.ticketDetails = _.slice(data, 0, 5);
+            console.log(" $scope.ticketDetails --", $scope.ticketDetails);
 
         });
+
+        // ticketService.totalClosedTickets(function (data) {
+        //     $scope.ticketDetails = data;
+        // });
+
+        ticketService.totalNumberOfTickets(function (data) {
+            $scope.totalNumberOfTickets = data;
+            // console.log("res--totalNumberOfTickets---", data);
+        });
+
+        ticketService.totalNumberOfOpenTickets(function (data) {
+            $scope.totalNumberOfOpenTickets = data;
+            // console.log("res---totalNumberOfOpenTickets--", data);
+        });
+
+        ticketService.totalNumberOfClosedTickets(function (data) {
+            $scope.totalNumberOfClosedTickets = data;
+            // console.log("res---totalNumberOfClosedTickets--", data);
+        });
+
+
+        $scope.getClosedTickets = function () {
+            ticketService.totalClosedTickets(function (data) {
+                // $scope.ticketDetails = data;
+                $scope.ticketDetails = _.slice(data, 0, 5);
+            });
+        }
+
+
+        $scope.getOpenTickets = function () {
+            ticketService.totalOpenTickets(function (data) {
+                // $scope.ticketDetails = data;
+                // console.log("----109----", data.results);
+                $scope.ticketDetails = _.slice(data.results, 0, 5);
+
+            });
+        }
     }
+
+    $scope.callTickets();
 
 
 
@@ -173,6 +176,35 @@ myApp.controller('TicketcloseNotificationCtrl', function ($scope, TemplateServic
                     } else {
                         $scope.showLessReminders[index].isRead = true;
                     }
+                }
+            })
+        }
+    }
+    $scope.openmodalOpen = function (tickets, index) {
+        console.log("tickets------------------", tickets);
+        $scope.singleTicket = tickets;
+        $scope.openTicket = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/openticket.html",
+            scope: $scope,
+            backdrop: 'static'
+        });
+
+        if (!tickets.isRead) {
+            var changeisRead = {};
+            changeisRead.id = tickets._id;
+            changeisRead.isRead = true;
+
+            console.log("changeisRead", changeisRead)
+
+            NavigationService.apiCallWithData("Ticket/changeIsReadStatus", changeisRead, function (data) {
+                console.log("changeIsReadStatus", data);
+                if (data.value) {
+                    // if (modal) {
+                    $scope.callTickets();
+                    // } else {
+                    //     $scope.showLessReminders[index].isRead = true;
+                    // }
                 }
             })
         }

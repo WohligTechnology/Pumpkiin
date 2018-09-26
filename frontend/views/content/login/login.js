@@ -19,6 +19,7 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
 
   });
   $scope.socialLogin = function (url) {
+    console.log("url", url);
     window.location.replace(url);
   };
 

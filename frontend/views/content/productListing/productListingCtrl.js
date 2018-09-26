@@ -125,63 +125,66 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
     //REMINDER SECTION END
 
     //for ticket block
+    $scope.callTickets = function () {
 
-    ticketService.totalOpenTickets(function (data) {
-        // $scope.ticketDetails = data;
-        $scope.ticketDetails = _.slice(data.results, 0, 8);
-        console.log("1 $scope.ticketDetails --", $scope.ticketDetails);
-
-    });
-
-    // ticketService.totalClosedTickets(function (data) {
-    //     $scope.ticketDetails = data;
-    // });
-
-    ticketService.totalNumberOfTickets(function (data) {
-        $scope.totalNumberOfTickets = data;
-        console.log("res--totalNumberOfTickets---", data);
-    });
-
-    ticketService.totalNumberOfOpenTickets(function (data) {
-        $scope.totalNumberOfOpenTickets = data;
-        console.log("res---totalNumberOfOpenTickets--", data);
-    });
-
-    ticketService.totalNumberOfClosedTickets(function (data) {
-        $scope.totalNumberOfClosedTickets = data;
-        // console.log("res---totalNumberOfClosedTickets--", data);
-    });
-
-    var dataToSendForProduct = {};
-    dataToSendForProduct.user = $scope.jstrgValue._id;
-    NavigationService.apiCallWithData("Product/getAllProducts", dataToSendForProduct, function (res) {
-        if (res.value == true) {
-            // console.log("res-----", res.data.results);
-            $scope.allProducts = res.data;
-            $scope.products = _.slice($scope.allProducts, 0, 7);
-        }
-    });
-
-
-
-    $scope.getClosedTickets = function () {
-        ticketService.totalClosedTickets(function (data) {
-            // $scope.ticketDetails = data;
-            $scope.ticketDetails = _.slice(data, 0, 8);
-            console.log("2 $scope.ticketDetails --", $scope.ticketDetails);
-
-        });
-    }
-
-
-    $scope.getOpenTickets = function () {
         ticketService.totalOpenTickets(function (data) {
-            // $scope.ticketDetails = data;
-            console.log("----109----", data.results);
-            $scope.ticketDetails = _.slice(data.results, 0, 5);
+            $scope.ticketDetails = _.slice(data.results, 0, 8);
+            console.log("1 $scope.ticketDetails --", $scope.ticketDetails);
 
         });
+
+        ticketService.totalNumberOfTickets(function (data) {
+            $scope.totalNumberOfTickets = data;
+            console.log("res--totalNumberOfTickets---", data);
+        });
+
+        ticketService.totalNumberOfOpenTickets(function (data) {
+            $scope.totalNumberOfOpenTickets = data;
+            console.log("res---totalNumberOfOpenTickets--", data);
+        });
+
+        ticketService.totalNumberOfClosedTickets(function (data) {
+            $scope.totalNumberOfClosedTickets = data;
+        });
+
+        var dataToSendForProduct = {};
+        dataToSendForProduct.user = $scope.jstrgValue._id;
+        NavigationService.apiCallWithData("Product/getAllProducts", dataToSendForProduct, function (res) {
+            if (res.value == true) {
+                // console.log("res-----", res.data.results);
+                $scope.allProducts = res.data;
+                $scope.products = _.slice($scope.allProducts, 0, 7);
+            }
+        });
+
+
+
+        $scope.getClosedTickets = function () {
+            // $scope.gotoUrl = EditUrl;
+            ticketService.totalClosedTickets(function (data) {
+                // $scope.ticketDetails = data;
+                $scope.ticketDetails = _.slice(data, 0, 8);
+                console.log("2 $scope.ticketDetails --", $scope.ticketDetails);
+
+            });
+        }
+
+
+        $scope.getOpenTickets = function () {
+            // $scope.gotoUrl = CreateUrl;
+            ticketService.totalOpenTickets(function (data) {
+                // $scope.ticketDetails = data;
+                console.log("----109----", data.results);
+                $scope.ticketDetails = _.slice(data.results, 0, 5);
+
+            });
+        }
     }
+
+
+    $scope.callTickets();
+
+
 
 
 
@@ -360,7 +363,18 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
             backdrop: 'static'
         });
     }
-    $scope.openmodalOpen = function (tickets) {
+    // $scope.openmodalOpen = function (tickets) {
+    //     $scope.singleTicket = tickets;
+    //     $scope.openTicket = $uibModal.open({
+    //         animation: true,
+    //         templateUrl: "views/modal/openticket.html",
+    //         scope: $scope,
+    //         backdrop: 'static'
+    //     });
+    // }
+
+    $scope.openmodalOpen = function (tickets, index) {
+        console.log("tickets------------------", tickets);
         $scope.singleTicket = tickets;
         $scope.openTicket = $uibModal.open({
             animation: true,
@@ -368,6 +382,25 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
             scope: $scope,
             backdrop: 'static'
         });
+
+        if (!tickets.isRead) {
+            var changeisRead = {};
+            changeisRead.id = tickets._id;
+            changeisRead.isRead = true;
+
+            console.log("changeisRead", changeisRead)
+
+            NavigationService.apiCallWithData("Ticket/changeIsReadStatus", changeisRead, function (data) {
+                console.log("changeIsReadStatus", data);
+                if (data.value) {
+                    // if (modal) {
+                    $scope.callTickets();
+                    // } else {
+                    //     $scope.showLessReminders[index].isRead = true;
+                    // }
+                }
+            })
+        }
     }
 
 

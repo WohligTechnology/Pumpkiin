@@ -6,6 +6,29 @@ myApp.controller('OpenTicketCtrl', function ($scope, TemplateService, Navigation
     $scope.navigation = NavigationService.getNavigation();
     $scope.jstrgValue = $.jStorage.get('userData');
 
+    $scope.askRegistration = function () {
+        $scope.productCheck = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/productCheck.html",
+            scope: $scope,
+            backdrop: 'static',
+            windowClass: 'app-modal-window'
+        });
+    }
+
+
+    $scope.data = {};
+    $scope.yesno = function () {
+        $scope.yes = true;
+
+        var user = $.jStorage.get("userData")._id;
+        NavigationService.apiCallWithData("Product/ticketNotGenerated", {
+            user: user
+        }, function (data) {
+            $scope.remainingProduct = data.data;
+            console.log("hjhsakf", $scope.remainingProduct)
+        })
+    }
     // $scope.reminderModalOpen = function () {
     //     $scope.addReminder = $uibModal.open({
     //         animation: true,

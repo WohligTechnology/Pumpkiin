@@ -487,17 +487,17 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             var dataTofilter = {};
             dataTofilter.status = $stateParams.status;
             $scope.formData.filter = dataTofilter;
-            $scope.url = "Product/search";
+            $scope.url = "Product/searchProductWithInvoice";
             // $scope.formData.page = $scope.formData.page;
             NavigationService.apiCall($scope.url, $scope.formData, function (data) {
-                // console.log("data.value", data);
+                console.log("data.value", data);
                 if (data.value) {
-                    $scope.items = data.data.results;
+                    $scope.items = data.data;
                     console.log(" $scope.items", $scope.items);
                 }
 
-                $scope.totalItems = data.data.total;
-                $scope.maxRow = data.data.options.count;
+                $scope.totalItems = data.data.length;
+                $scope.maxRow = 10;
             });
         }
         // $scope.changePage = function (page) {

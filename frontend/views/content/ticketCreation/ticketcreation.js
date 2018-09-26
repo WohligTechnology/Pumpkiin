@@ -122,13 +122,13 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
                     }];
 
                     _.each($scope.statusArray, function (x) {
-                        console.log("++++++++++++", x);
+                        // console.log("++++++++++++", x);
                         _.each($scope.ticketDetails.substat, function (y) {
                             // console.log("===========", y)
                             if (y.status == x.status) {
-                                console.log("-", _.findIndex($scope.statusArray, function (o) {
-                                    return o == x;
-                                }))
+                                // console.log("-", _.findIndex($scope.statusArray, function (o) {
+                                //     return o == x;
+                                // }))
                                 var index = _.findIndex($scope.statusArray, function (o) {
                                     return o.status == x.status;
                                 });

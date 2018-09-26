@@ -679,6 +679,10 @@ fieldset:disabled {
     border-bottom-right-radius: 20px;
 }
 
+.ui-select-bootstrap .ui-select-match-text {
+    padding-right: 0px !important;
+}
+
 //scss for home page
 .home-section {
     height: 93vh;
