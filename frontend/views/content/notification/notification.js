@@ -23,7 +23,6 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
         var start = (pageno - 1) * $scope.maxRow;
         var end = (pageno - 1) * $scope.maxRow + $scope.maxRow;
         $scope.showLessReminders = _.slice($scope.allReminders, start, end);
-        console.log(" $scope.showLessReminders", $scope.showLessReminders);
     }
     $scope.getReminder = function () {
         reminderService.findReminderOfPendingSnoozeByUser(function (data) {
@@ -34,18 +33,15 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
 
         reminderService.totalNumberOfReminders(function (data) {
             $scope.totalReminders = data;
-            console.log("$scope.totalReminders", $scope.totalReminders);
         });
 
         reminderService.totalNumberOfCompletedReminders(function (data) {
             $scope.totalCompletedReminder = data;
-            console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
         });
 
 
         reminderService.totalNumberOfPendingReminders(function (data) {
             $scope.totalPendingReminders = data;
-            console.log("$scope.totalPendingReminders--", $scope.totalPendingReminders);
         });
 
     }
@@ -191,32 +187,65 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
                     if (index) {
                         $scope.statuses[$scope.deleteIndex].isOpen = false;
                     }
-
-
-
-                    console.log("-----------------------------------------------------------------------------");
-                    console.log($scope.status)
-                    // $scope.status.isItemOpen[0] = true;
-
                 }
             });
         }
-    }
-    $scope.selectedReminders = [];
-    $scope.checkCircle = function (data) {
-        console.log("id", data);
-        console.log("$scope.showLessReminders", $scope.showLessReminders);
-
-        for (i = 0; i < 4; i++) {
-            console.log("hafadfafhgf", $scope.showLessReminders[i])
-            if ($scope.showLessReminders[i]._id == data) {
-                $scope.selectedReminders.push(data);
-                console.log("$scope.selectedReminders", $scope.selectedReminders);
-                $(".inside-accordian").toggleClass("selected");
-                $(".check-icon").toggleClass("d-none");
+    };
+    $scope.multiCompleted = function () {
+        console.log("HI... BRO")
+        var changeStatusData = {};
+        changeStatusData.data = $scope.selectedReminders;
+        NavigationService.apiCallWithData("Reminder/multiCompleted", changeStatusData, function (res) {
+            if (res.value == true) {
+                $scope.getReminder();
             }
+        });
+    };
+    $scope.deleteMultipleReminder = function () {
+        console.log("HIIIII");
+        $scope.delete = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/cofirmDelete.html",
+            scope: $scope,
+            windowClass: 'app-modal-window',
+            backdrop: 'static',
+        });
+        $scope.confirmDelete = function () {
+            var changeStatusData = {};
+            changeStatusData.data = $scope.selectedReminders;
+            console.log("changeStatusData", changeStatusData);
+            NavigationService.apiCallWithData("Reminder/deleteMultiple", changeStatusData, function (res) {
+                if (res.value == true) {
+                    $scope.getReminder();
+                    $scope.delete.close();
+                    if (index) {
+                        $scope.statuses[$scope.deleteIndex].isOpen = false;
+                    }
+                }
+            });
         }
-    }
+    };
+    $scope.selectedReminders = [];
+    $scope.getClass = function (id) {
+        var a = _.findIndex($scope.selectedReminders, function (o) {
+            return o == id.toString();
+        });
+        if (a >= 0) {
+            return "inside-accordian p-1 selected";
+        } else {
+            return "inside-accordian p-1";
+        }
+    };
+    $scope.checkCircle = function (data) {
+        var a = _.findIndex($scope.selectedReminders, function (o) {
+            return o == data.toString();
+        });
+        if (a >= 0) {
+            _.pull($scope.selectedReminders, data);
+        } else {
+            $scope.selectedReminders.push(data);
+        }
+    };
 
 
     $scope.notificationmodalOpen = function (notification, index, modal) {

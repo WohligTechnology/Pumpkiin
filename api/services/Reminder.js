@@ -150,8 +150,36 @@ var model = {
                 callback(null, found)
             }
         });
-    }
+    },
 
+    changeIsReadStatus: function (data, callback) {
+        console.log("-----------", data);
+        this.findOneAndUpdate({
+            _id: data.id
+        }, {
+            isRead: data.isRead
+        }, {
+            new: true
+        }).exec(callback);
+    },
+    deleteMultiple: function (data, callback) {
+        console.log("-----------", data);
+        this.remove({
+            _id: {
+                $in: data.data
+            }
+        }).exec(callback);
+    },
+    multiCompleted: function (data, callback) {
+        console.log("-----------", data);
+        this.update({
+            _id: {
+                $in: data.data
+            }
+        }, {
+            status: "Completed"
+        }).exec(callback);
+    }
 
 
 };

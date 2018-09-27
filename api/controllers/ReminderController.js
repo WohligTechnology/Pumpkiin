@@ -117,6 +117,30 @@ var controller = {
                 }
             });
         }
-    }
+    },
+    deleteMultiple: function (req, res) {
+        if (req.body) {
+            Reminder.deleteMultiple(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+    multiCompleted: function (req, res) {
+        if (req.body) {
+            Reminder.multiCompleted(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
 };
 module.exports = _.assign(module.exports, controller);
