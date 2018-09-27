@@ -95,6 +95,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
         });
 
         reminderService.totalNumberOfCompletedReminders(function (data) {
+            $scope.showGreenImage = true;
             $scope.totalCompletedReminder = data;
             // console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
         });
@@ -106,6 +107,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
 
         $scope.completedReminders = function (data) {
+            $scope.showGreenImage = false;
             reminderService.findReminderOfCompletedByUser(function (data) {
                 $scope.allReminders = data;
                 $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
@@ -113,6 +115,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
         }
 
         $scope.pendingReminders = function (data) {
+            $scope.showGreenImage = true;
             reminderService.findReminderOfPendingSnoozeByUser(function (data) {
                 $scope.allReminders = data;
                 $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);

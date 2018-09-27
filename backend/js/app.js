@@ -56,6 +56,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             templateUrl: "views/template.html",
             controller: 'TicketcreationCtrl'
         })
+        .state("closedTicketcreation", {
+            url: "/closedTicketcreation/:id",
+            templateUrl: "views/template.html",
+            controller: "ClosedTicketcreationCtrl"
+        })
         .state('loginapp', {
             url: "/login/:id",
             templateUrl: "views/login.html",
@@ -115,11 +120,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             url: "/createproductpage/:id",
             controller: 'CreateProductPageCtrl'
         })
-        .state("closedTicketcreation", {
-            url: "/closedTicketcreation/:id",
-            templateUrl: tempateURL,
-            controller: "ClosedTicketcreationCtrl"
-        })
+
 
 
         .state('jagz', {

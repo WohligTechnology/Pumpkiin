@@ -83,7 +83,6 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
       } else {
         NavigationService.apiCallWithData("User/verifyUserWithOtp", $scope.data, function (data) {
           if (data.value == true) {
-            // toastr.success('You have been successfully logged in', 'Login Success');
             $.jStorage.set("userData", data.data);
             $scope.template.profile = data.data;
             $state.go("openticket");

@@ -57,12 +57,14 @@
             <div class="bg-white border-rounded p-3">
                 <div class="d-flex justify-content-between">
                     <div class="closed-text cursor-point" ng-click="getOpenTickets()">
-                        <img src="img/ticketCreation/openTicket.png">
+                        <img ng-if="ticketDetails1[0].status!='Closed'" src="img/ticketCreation/openTicket.png">
+                        <img ng-if="ticketDetails1[0].status=='Closed'" src="img/ticketCreation/open-ticket-name.png">
                         <div class="notification notification-orange" ng-if="!totalNumberOfOpenTickets">0</div>
                         <div class="notification notification-orange" ng-if="totalNumberOfOpenTickets">{{totalNumberOfOpenTickets}}</div>
                     </div>
-                    <div class="closed-text cursor-point" ng-click="getClosedTickets()" ng-if="totalNumberOfClosedTickets">
-                        <img src="img/ticketCreation/closedTicket.png">
+                    <div class="closed-text cursor-point" ng-click="getClosedTickets()">
+                        <img ng-if="ticketDetails1[0].status!='Closed'" src="img/ticketCreation/closedTicket.png">
+                        <img ng-if="ticketDetails1[0].status=='Closed'" src="img/ticketCreation/green-ticket.png">
                         <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
                     </div>

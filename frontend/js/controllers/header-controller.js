@@ -13,8 +13,8 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
     // }, {
     //     name: "Samsung s7 edge"
     // }];
-    $scope.jstrgValue = $.jStorage.get('userData');
-    // console.log("$scope.jstrgValue", $scope.jstrgValue)
+    $scope.userInfo = $.jStorage.get('userData');
+    // console.log("$scope.userInfo", $scope.userInfo)
     $scope.currentState = $state.current.name;
     $scope.reminderModalOpen = function (data) {
         if (data) {
@@ -55,9 +55,9 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
             });
         } else {
             // console.log("-----$scope.data-----", data);
-            data.user = $scope.jstrgValue._id;
-            data.name = $scope.jstrgValue.name;
-            data.email = $scope.jstrgValue.email;
+            data.user = $scope.userInfo._id;
+            data.name = $scope.userInfo.name;
+            data.email = $scope.userInfo.email;
             data.status = "Pending";
             NavigationService.apiCallWithData("Reminder/reminderMail", data, function (res) {
                 console.log("res.data", res.data);
@@ -73,6 +73,7 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
         if (data.length > 0) {
             var dataToSend = {};
             dataToSend.keyword = data;
+            dataToSend.user = $scope.userInfo._id;
             NavigationService.apiCallWithData("Product/getSearchProductAndBrand", dataToSend, function (response) {
                 if (response.value) {
                     $scope.productList = response.data;
@@ -94,10 +95,10 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
     }
     $scope.showMenu = false;
     $scope.toggleMenu = function () {
-      $scope.showMenu = !$scope.showMenu;
-      console.log("inside menu");
+        $scope.showMenu = !$scope.showMenu;
+        console.log("inside menu");
     };
     $scope.closeMenu = function () {
-      $scope.showMenu = false;
+        $scope.showMenu = false;
     };
 });

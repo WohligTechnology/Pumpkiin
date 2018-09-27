@@ -36,6 +36,7 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
         });
 
         reminderService.totalNumberOfCompletedReminders(function (data) {
+            $scope.showGreenImage = true;
             $scope.totalCompletedReminder = data;
         });
 
@@ -44,47 +45,28 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
             $scope.totalPendingReminders = data;
         });
 
+
+
+        $scope.completedReminders = function (data) {
+            $scope.showGreenImage = false;
+            reminderService.findReminderOfCompletedByUser(function (data) {
+                $scope.allReminders = data;
+                $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+                console.log("1");
+
+            });
+        }
+
+        $scope.pendingReminders = function (data) {
+            $scope.showGreenImage = true;
+            reminderService.findReminderOfPendingSnoozeByUser(function (data) {
+                $scope.allReminders = data;
+                $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+                console.log("2");
+            });
+        }
     }
     $scope.getReminder();
-    // reminderService.findReminderOfPendingSnoozeByUser(function (data) {
-    //     $scope.allReminders = data;
-    //     $scope.changePage(1);
-    // });
-
-
-    // reminderService.totalNumberOfReminders(function (data) {
-    //     $scope.totalReminders = data;
-    //     console.log("$scope.totalReminders", $scope.totalReminders);
-    // });
-
-    // reminderService.totalNumberOfCompletedReminders(function (data) {
-    //     $scope.totalCompletedReminder = data;
-    //     console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
-    // });
-
-
-    // reminderService.totalNumberOfPendingReminders(function (data) {
-    //     $scope.totalPendingReminders = data;
-    //     console.log("$scope.totalPendingReminders--", $scope.totalPendingReminders);
-    // });
-
-
-    $scope.completedReminders = function (data) {
-        reminderService.findReminderOfCompletedByUser(function (data) {
-            $scope.allReminders = data;
-            $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
-            console.log("1");
-
-        });
-    }
-
-    $scope.pendingReminders = function (data) {
-        reminderService.findReminderOfPendingSnoozeByUser(function (data) {
-            $scope.allReminders = data;
-            $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
-            console.log("2");
-        });
-    }
 
     //REMINDER SECTION END
 

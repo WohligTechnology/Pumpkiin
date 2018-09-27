@@ -393,7 +393,7 @@ var models = {
             }, function (err, http, body) {
                 if (err) {
                     console.log("*************************************************sms gateway error***********************************************")
-                    console.log(err);
+                    console.log(err.message);
                     callback(err, null);
                 } else {
                     console.log("*************************************************sms sent***********************************************", body);

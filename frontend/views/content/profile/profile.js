@@ -17,7 +17,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         "relation": "Brother"
     }];
 
-    $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew"]
+    $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Sister", "Brother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew", "Friend"]
 
 
     $scope.addressModalOpen = function () {
@@ -122,7 +122,9 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
             NavigationService.apiCallWithData("User/verifyMobileOtp", $scope.data, function (response) {
                 if (response.value == true) {
                     $scope.genderData._id = $scope.jstrgValue._id;
-                    NavigationService.apiCallWithData("User/save", $scope.genderData, function (response) {
+                    console.log("       Mobile Change      ", $scope.genderData)
+                    NavigationService.apiCallWithData("User/saveUpdatedData", $scope.genderData, function (response) {
+                        console.log("result -- ", response);
                         if (response.value == true) {
                             $scope.otp.close();
                             $state.reload();
