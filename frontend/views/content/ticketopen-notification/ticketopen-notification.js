@@ -8,6 +8,7 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
     $scope.navigation = NavigationService.getNavigation();
     $scope.ticketService = ticketService;
     $scope.pageNumber = 1;
+    // $scope.showGreenImage = false;
     // $scope.maxRow = 5;
 
     $scope.changePage = function (pageno) {
@@ -75,6 +76,7 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
     }
 
 
+
     //REMINDER SECTION
     $scope.getReminder = function () {
         reminderService.findReminderOfPendingSnoozeByUser(function (data) {
@@ -87,8 +89,8 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
             $scope.totalReminders = data;
             console.log("$scope.totalReminders", $scope.totalReminders);
         });
-
         reminderService.totalNumberOfCompletedReminders(function (data) {
+            $scope.showGreenImage = true;
             $scope.totalCompletedReminder = data;
             console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
         });
@@ -99,8 +101,8 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
             console.log("$scope.totalPendingReminders--", $scope.totalPendingReminders);
         });
 
-
         $scope.completedReminders = function (data) {
+            $scope.showGreenImage = false;
             reminderService.findReminderOfCompletedByUser(function (data) {
                 $scope.allReminders = data;
                 $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
@@ -108,6 +110,7 @@ myApp.controller('TicketopenNotificationCtrl', function ($scope, TemplateService
         }
 
         $scope.pendingReminders = function (data) {
+            $scope.showGreenImage = true;
             reminderService.findReminderOfPendingSnoozeByUser(function (data) {
                 $scope.allReminders = data;
                 $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);

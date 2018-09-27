@@ -66,9 +66,21 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
 
     $scope.callTickets = function () {
 
+        ticketService.totalOpenTickets(function (data) {
+            // $scope.ticketDetails = data;
+            console.log("----109----", data.results);
+            $scope.ticketDetails = _.slice(data.results, 0, 5);
+            console.log(" 1 ", $scope.ticketDetails);
+
+        });
+
+        // ticketService.totalClosedTickets(function (data) {
+        //     $scope.ticketDetails = data;
+        // });
+
         ticketService.totalNumberOfTickets(function (data) {
             $scope.totalNumberOfTickets = data;
-            // console.log("res--totalNumberOfTickets---", data);
+            console.log("res--totalNumberOfTickets---", data);
         });
 
         ticketService.totalNumberOfOpenTickets(function (data) {
@@ -76,32 +88,29 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
             // console.log("res---totalNumberOfOpenTickets--", data);
         });
 
-
         ticketService.totalNumberOfClosedTickets(function (data) {
             $scope.totalNumberOfClosedTickets = data;
             // console.log("res---totalNumberOfClosedTickets--", data);
         });
 
+
         $scope.getClosedTickets = function () {
             ticketService.totalClosedTickets(function (data) {
                 // $scope.ticketDetails = data;
-                $scope.ticketDetails = _.slice(data, 0, 5);
+                $scope.ticketDetails1 = _.slice(data, 0, 5);
+                console.log(" 2 ", $scope.ticketDetails);
+
             });
         }
 
         $scope.getOpenTickets = function () {
             ticketService.totalOpenTickets(function (data) {
                 // $scope.ticketDetails = data;
-                $scope.ticketDetails = _.slice(data, 0, 5);
+                // console.log("----109----", data.results);
+                $scope.ticketDetails1 = _.slice(data.results, 0, 5);
+
             });
         }
-
-        ticketService.totalOpenTickets(function (data) {
-            // $scope.ticketDetails = data;
-            $scope.ticketDetails = _.slice(data, 0, 5);
-            // console.log(" $scope.ticketDetails --", $scope.ticketDetails);
-
-        });
 
     }
 
