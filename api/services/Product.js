@@ -205,55 +205,69 @@ var model = {
 
     //searchApi
 
+    // getSearchProductAndBrand: function (data, callback) {
+    //     Product.aggregate([
+    //         // Stage 1
+    //         {
+    //             $lookup: {
+    //                 from: "brands",
+    //                 localField: "brand",
+    //                 foreignField: "_id",
+    //                 as: "brandss"
+    //             }
+    //         },
+
+    //         // Stage 2
+    //         {
+    //             $unwind: {
+    //                 path: "$brandss",
+    //                 preserveNullAndEmptyArrays: false // optional
+    //             }
+    //         },
+
+    //         // Stage 3
+    //         {
+    //             $match: {
+
+    //                 $or: [{
+    //                         "brandss.name": {
+    //                             $regex: data.keyword,
+    //                             $options: "i"
+    //                         },
+    //                     },
+    //                     {
+    //                         "productName": {
+    //                             $regex: data.keyword,
+    //                             $options: "i"
+    //                         },
+    //                     }
+    //                 ],
+    //                 "status": "Confirmed",
+    //             }
+    //         },
+
+    //     ], function (err, found) {
+    //         if (err || _.isEmpty(found)) {
+    //             callback(err, null);
+    //         } else {
+    //             callback(null, found)
+    //         }
+    //     });
+    // },
     getSearchProductAndBrand: function (data, callback) {
-        Product.aggregate([
-            // Stage 1
-            {
-                $lookup: {
-                    from: "brands",
-                    localField: "brand",
-                    foreignField: "_id",
-                    as: "brandss"
+        console.log(data.keyword);
+
+        Product.find({
+            $or: [{
+                    productName: new RegExp(data.keyword, "i")
+                },
+                {
+                    brand: new RegExp(data.keyword, "i")
                 }
-            },
-
-            // Stage 2
-            {
-                $unwind: {
-                    path: "$brandss",
-                    preserveNullAndEmptyArrays: false // optional
-                }
-            },
-
-            // Stage 3
-            {
-                $match: {
-
-                    $or: [{
-                            "brandss.name": {
-                                $regex: data.keyword,
-                                $options: "i"
-                            },
-                        },
-                        {
-                            "productName": {
-                                $regex: data.keyword,
-                                $options: "i"
-                            },
-                        }
-                    ],
-                    "status": "Confirmed",
-                }
-            },
-
-        ], function (err, found) {
-            if (err || _.isEmpty(found)) {
-                callback(err, null);
-            } else {
-                callback(null, found)
-            }
-        });
+            ]
+        }).exec(callback);
     },
+
 
     //sorting brand and product
     /* sortProductsByBrands: function (data, callback) {
