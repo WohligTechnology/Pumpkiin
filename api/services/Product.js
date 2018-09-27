@@ -255,9 +255,11 @@ var model = {
     //     });
     // },
     getSearchProductAndBrand: function (data, callback) {
-        console.log(data.keyword);
+        console.log(data);
 
         Product.find({
+            user: data.user,
+            status: 'Confirmed',
             $or: [{
                     productName: new RegExp(data.keyword, "i")
                 },
