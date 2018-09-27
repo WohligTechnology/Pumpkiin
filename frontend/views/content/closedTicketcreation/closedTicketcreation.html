@@ -1,7 +1,80 @@
 <div class="container py-5">
     <div class="row ticket-creation-main closedticketcreation-main">
         <div class="col col-md-3 openticketreminder d-none d-sm-block">
-            <tickets></tickets>
+            <div class="bg-white border-rounded p-3">
+                <div class="d-flex justify-content-between">
+                    <div class="closed-text cursor-point" ng-click="getOpenTickets()">
+                        <img src="img/ticketCreation/openTicket.png">
+                        <div class="notification notification-orange" ng-if="!totalNumberOfOpenTickets">0</div>
+                        <div class="notification notification-orange" ng-if="totalNumberOfOpenTickets">{{totalNumberOfOpenTickets}}</div>
+                    </div>
+                    <div class="closed-text cursor-point" ng-click="getClosedTickets()" ng-if="totalNumberOfClosedTickets">
+                        <img src="img/ticketCreation/closedTicket.png">
+                        <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
+                        <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
+                    </div>
+                    <div class="closed-text cursor-point" ng-if="!totalNumberOfClosedTickets">
+                        <img src="img/ticketCreation/closedTicket.png">
+                        <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
+                        <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
+                    </div>
+                    <div class="cursor-point" ng-click="askRegistration()">
+                        <img src="img/ticketCreation/addButton.png ">
+                    </div>
+                </div>
+                <div class="my-3 open-tickets ">
+                    <h5 class="d-inline cursor-point" ui-sref="ticketopen-notification" ng-if="ticketDetails[0].status!='Closed'">Open
+                        Tickets</h5>
+                    <h5 class="d-inline cursor-point" ui-sref="ticketclose-notification" ng-if="ticketDetails[0].status=='Closed'">Closed
+                        Tickets</h5>
+                    <span class="badge badge-style">{{totalNumberOfTickets}}</span>
+                    <div class="float-right search-reminders">
+                        <form class="position-relative" ng-if="ticketDetails[0].status!='Closed'">
+                            <input id="search" name="search" type="text" placeholder="" ng-change="searchForTicketData(ticketSearch,'open')"
+                                ng-model="ticketSearch">
+                            <div class="search-btn" id="search_submit" value="" ng-click="showHide()"></div>
+                        </form>
+                        <form class="position-relative" ng-if="ticketDetails[0].status=='Closed'">
+                            <input id="search" name="search" type="text" placeholder="">
+                            <div class="search-btn" id="search_submit" value="" ng-click="showHide()" ng-change="searchForTicketData(ticketSearch,'closed')"
+                                ng-model="ticketSearch"></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="border-top listed-openTickets openticket">
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails1 track by $index"
+                        ng-click="openmodalOpen(tickets, $index);" ng-if="ticketDetails[0].status == 'Active'">
+                        <div class="bullet" ng-if="!tickets.isRead"></div>
+                        <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
+                            <div class="product-title text-truncate">{{tickets.product.productName}}</div>
+                            <div class="date ">{{tickets.issueReported | date}}</div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails track by $index"
+                        ng-click="openmodalOpen(tickets, $index);" ng-if="ticketDetails[0].status == 'Closed'" ui-sref="closedTicketcreation({id:tickets._id})">
+                        <div class="bullet" ng-if="!tickets.isRead"></div>
+                        <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
+                            <div class="product-title text-truncate">{{tickets.product.productName}}</div>
+                            <div class="date ">{{tickets.issueReported | date}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right view mt-2" ng-if="ticketDetails.length==5 && ticketDetails[0].status=='Active'"
+                    ui-sref='ticketopen-notification'>View
+                    All
+                    <span class="pl-2 ">
+                        <i class="fas fa-caret-right "></i>
+                    </span>
+                </div>
+                <div class="text-right  view mt-2" ng-if="ticketDetails.length==5  && ticketDetails[0].status=='Closed'"
+                    ui-sref='ticketclose-notification'>View
+                    All
+                    <span class="pl-2 ">
+                        <i class="fas fa-caret-right "></i>
+                    </span>
+                </div>
+            </div>
             <reminders></reminders>
         </div>
 
@@ -15,7 +88,8 @@
                         </div>
                     </div>
                     <div class="media-body pl-4 text-white ">
-                        <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">Support ID: {{ticketDetails.ticketNumber}}
+                        <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">Support
+                            ID: {{ticketDetails.ticketNumber}}
                             <div class="position-absolute clock">
                                 <i class="far fa-clock"></i>
                                 </i>{{ticketDetails.issueReported | date}}</div>
@@ -24,7 +98,7 @@
                                     <span ng-show="modelNo">
                                         <i class="fas fa-angle-up"></i>
                                     </span>
-                                <span ng-show="!modelNo">
+                                    <span ng-show="!modelNo">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
                                 </span>
@@ -32,7 +106,7 @@
                         </h5>
                         <span class="fontRobotoBold font14 ">PRODUCT INFORMATION</span>
                         <p class="fontRobotoRegular font20 m-0">{{ticketDetails.product.productName}}
-                            <span class="pl-2 fontRobotoLight "> ({{ticketDetails.product.brand.name}})</span>
+                            <span class="pl-2 fontRobotoLight "> ({{ticketDetails.product.brand}})</span>
                         </p>
                         <div class="row no-gutters fontRobotoRegular font14 info-div mt-1" ng-show="modelNo ">
                             <div class="col-12 col-lg-6">
@@ -46,7 +120,7 @@
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-50">Store : </span>
-                                    <span class="d-inline-block w-50">{{ticketDetails.product.purchasePrice}}</span>
+                                    <span class="d-inline-block w-50">{{ticketDetails.product.retailer}}</span>
                                 </p>
                                 <!-- <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-50">Attached Files : </span>
@@ -78,10 +152,10 @@
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
                                             <!-- <i class="fas fa-times "></i> -->
                                         </span>
-                                    <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
+                                        <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
                                         </span> -->
-                                    <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
+                                        <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
                                             <i class="fas fa-plus "></i>
                                         </button> -->
                                     </span>
@@ -140,9 +214,11 @@
             <div class="bg-white border-rounded p-3 pumpkin-support-feedback">
                 <form>
                     <h6 class="fontRobotoBold blue-color pump-support-text ">Pumpkiin Support</h6>
-                    <div class="fontRobotoRegular font12 font-color ">Dear user,
-                        <br> Thank you for providing us with the opportunity to serve you. We hope we were able to do so
-                        with satisfaction. Request if you could kindly provide us with your valuable feedback below. This
+                    <div class="fontRobotoRegular font12 font-color ">Dear {{ticketDetails.product.user.name}},
+                        <br> Thank you for providing us with the opportunity to serve you. We hope we were able to do
+                        so
+                        with satisfaction. Request if you could kindly provide us with your valuable feedback below.
+                        This
                         will greatly help us improve our service.
                         <br>
                         <br> Thank you,
@@ -151,19 +227,23 @@
                     <br>
                     <h6 class="fontRobotoBold blue-color ">FEEDBACK</h6>
                     <br>
-                    <div class="font14 font-color mb-2 ">How would you rate your experience on scale of 1 to 5 stars based on the following parameters?</div>
+                    <div class="font14 font-color mb-2 ">How would you rate your experience on scale of 1 to 5 stars
+                        based on the following parameters?</div>
                     <div class="d-flex font14 fontRobotoRegular font-color my-2 ">
                         <div class="mr-3">
                             <span class="mr-2">Ease </span>
-                            <span class="rates" uib-rating ng-model="1" max="5" on-hover="hoveringOver(value)" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+                            <span class="rates" uib-rating ng-model="1" max="5" on-hover="hoveringOver(value)" titles="['one','two','three']"
+                                aria-labelledby="default-rating"></span>
                         </div>
                         <div class="mr-3">
                             <span class="mr-2 ">Interaction </span>
-                            <span class="rates" uib-rating ng-model="3" max="5" on-hover="hoveringOver(value) " titles="[ 'one','two','three'] " aria-labelledby="default-rating"></span>
+                            <span class="rates" uib-rating ng-model="3" max="5" on-hover="hoveringOver(value) " titles="[ 'one','two','three'] "
+                                aria-labelledby="default-rating"></span>
                         </div>
                         <div class="mr-3">
                             <span class="mr-2 ">Resolution </span>
-                            <span class="rates" uib-rating ng-model="2" max="5" on-hover="hoveringOver(value) " titles="[ 'one','two','three'] " aria-labelledby="default-rating"></span>
+                            <span class="rates" uib-rating ng-model="2" max="5" on-hover="hoveringOver(value) " titles="[ 'one','two','three'] "
+                                aria-labelledby="default-rating"></span>
                         </div>
                     </div>
                     <div class="font14 font-color my-2 ">Describe your experience with us</div>

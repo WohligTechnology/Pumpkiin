@@ -139,6 +139,7 @@ var model = {
     },
 
     findClosedTicketOfUser: function (data, callback) {
+        console.log("--------", data)
         this.findOne({
             _id: data.ticketId,
             user: data.user,

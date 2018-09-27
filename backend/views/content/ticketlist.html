@@ -46,6 +46,9 @@
                         <td ng-if="tickets.status=='Active'">
                             <span class="badge badge-pill badge-info p-2" ui-sref="ticketcreation({id: tickets._id})">Select</span>
                         </td>
+                        <td ng-if="tickets.status=='Closed'">
+                            <span class="badge badge-pill badge-success p-2" ui-sref="closedTicketcreation({id: tickets._id})">Closed</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>

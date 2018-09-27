@@ -115,6 +115,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             url: "/createproductpage/:id",
             controller: 'CreateProductPageCtrl'
         })
+        .state("closedTicketcreation", {
+            url: "/closedTicketcreation/:id",
+            templateUrl: tempateURL,
+            controller: "ClosedTicketcreationCtrl"
+        })
 
 
         .state('jagz', {

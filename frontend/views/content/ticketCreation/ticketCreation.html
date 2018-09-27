@@ -1,51 +1,51 @@
 <style>
     .circle1:before {
-        content: 'attr(data-before-content) \aTicket\00a0 Opened';
+        content: attr(data-before-content)'\aTicket\00a0 Opened';
         left: 0;
     }
 
     .circle2:before {
-        content: '13/2/2018\aRepair/\aMaintenance\A(On-site)';
+        content: attr(data-before-content)'\aRepair/\aMaintenance\A(On-site';
         left: 0;
     }
 
     .circle3:before {
-        content: '12/2/2018 \a Scheduling\00a0 \aservice\00a0with\00a0\a customer\00a0 (Open)';
+        content: attr(data-before-content)'\a Scheduling\00a0 \aservice\00a0with\00a0\a customer\00a0 (Open)';
         left: 0;
     }
 
     .circle4:before {
-        content: '12/2/2018 \a Coordinating \a with\00a0 the\00a0 service \a provider\00a0 (Open)';
+        content: attr(data-before-content)'\a Coordinating \a with\00a0 the\00a0 service \a provider\00a0 (Open)';
         left: 0;
     }
 
     .circle5:before {
-        content: '12/2/2018 \a Service\00a0 confirmed (In-progress)';
+        content: attr(data-before-content)'\a Service\00a0 confirmed (In-progress)';
         left: 0;
     }
 
     .circle6:before {
-        content: '12/2/2018 \a Service\00a0 completed (Closed)';
+        content: attr(data-before-content)'\a Service\00a0 completed (Closed)';
         left: 0;
     }
 
     .circle7:before {
-        content: '12/2/2018 \a Awaiting\00a0 feedback (Closed)';
+        content: attr(data-before-content)'\a Awaiting\00a0 feedback (Closed)';
         left: 0;
     }
 
     .circle8:before {
-        content: '12/2/2018 \a Appliance\00a0 picked \00a0up (In-progress)';
+        content: attr(data-before-content)'\a Appliance\00a0 picked \00a0up (In-progress)';
         left: 0;
     }
 
     .circle9:before {
-        content: '12/2/2018 \a Appliance \00a0 returned (Closed)';
+        content: attr(data-before-content)'\a Appliance \00a0 returned (Closed)';
         left: 0;
     }
 
     .circle10:before {
-        content: '12/2/2018 \a Completed (Completed)';
+        content: attr(data-before-content)'\a Completed (Completed)';
         text-align: right;
         right: 0;
     }
@@ -143,7 +143,7 @@
                                     <span ng-show="modelNo">
                                         <i class="fas fa-angle-up"></i>
                                     </span>
-                                <span ng-show="!modelNo">
+                                    <span ng-show="!modelNo">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
                                 </span>
@@ -197,10 +197,10 @@
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
                                             <!-- <i class="fas fa-times "></i> -->
                                         </span>
-                                    <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
+                                        <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
                                         </span> -->
-                                    <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
+                                        <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
                                             <i class="fas fa-plus "></i>
                                         </button> -->
                                     </span>
@@ -212,13 +212,16 @@
             </div>
 
             <div class="bg-white mt-2 p-4 border-rounded productreg">
-                {{subStatus[0].statusDate}}
+                {{statusArray[1].statusDate}}
                 <h6 class="fontRobotoLight d-inline font-mob">SUPPORT TIMELINE</h6>
-                <h6 class="fontRobotoLight d-inline orange-color float-right font-mob" ng-if="ticketDetails.status">SUPPORT STATUS: {{ticketDetails.status}}</h6>
-                <h6 class="fontRobotoLight d-inline orange-color float-right font-mob" ng-if="!ticketDetails.status">SUPPORT STATUS: Ticket Not Generated</h6>
+                <h6 class="fontRobotoLight d-inline orange-color float-right font-mob" ng-if="ticketDetails.status">SUPPORT
+                    STATUS: {{ticketDetails.status}}</h6>
+                <h6 class="fontRobotoLight d-inline orange-color float-right font-mob" ng-if="!ticketDetails.status">SUPPORT
+                    STATUS: Ticket Not Generated</h6>
                 <div class="my-5 support-timeline d-none d-lg-block">
                     <div class="circle circle1 timeline-active"></div>
-                    <div class="circle circle{{$index+2}} {{subStatus.activeClass}}" ng-repeat="subStatus in statusArray track by $index" data-before-content="{{subStatus.statusDate}}"></div>
+                    <div class="circle circle{{$index+2}} {{subStatus.activeClass}}" ng-repeat="subStatus in statusArray track by $index"
+                        data-before-content="{{subStatus.statusDate}}"></div>
                 </div>
                 <div class="position-relative d-lg-none">
                     <uib-accordion>
@@ -255,7 +258,8 @@
                                         </a>
                                         <!-- <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt=""> -->
                                     </div>
-                                    <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact Person:{{chat.pickUpDetails.contactPerson}}
+                                    <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact
+                                        Person:{{chat.pickUpDetails.contactPerson}}
                                         <br>Contact Number:{{chat.pickUpDetails.contactNumber}}
                                         <br> Address:{{chat.pickUpDetails.pickUpAddress}}
                                     </div>
@@ -271,7 +275,8 @@
                                         </a>
                                         <!-- <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt=""> -->
                                     </div>
-                                    <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact Person:{{chat.pickUpDetails.contactPerson}}
+                                    <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact
+                                        Person:{{chat.pickUpDetails.contactPerson}}
                                         <br>Contact Number:{{chat.pickUpDetails.contactNumber}}
                                         <br> Address:{{chat.pickUpDetails.pickUpAddress}}
                                     </div>
@@ -284,14 +289,16 @@
                                 <img src="img/ticketCreation/submit.png " ng-click="addComment(chatData)">
                             </div>
                             <div class="scrollbar-tcreation">
-                                <upload-image ng-model="chatData.image" image-src="../img/ticketCreation/attachment.png" image-class="attachment" no-view></upload-image>
+                                <upload-image ng-model="chatData.image" image-src="../img/ticketCreation/attachment.png"
+                                    image-class="attachment" no-view></upload-image>
                             </div>
                             <!-- <div class="attachment">
                                 <img class=" " src="img/ticketCreation/attachment.png ">
                                 <input type="file" name="pic" accept="" class="custom-file">
                             </div> -->
                             <form ng-submit="addComment(chatData)">
-                                <input type="text" class="form-control message mt-5" placeholder="Type your message ... " ng-model="chatData.comment" required>
+                                <input type="text" class="form-control message mt-5" placeholder="Type your message ... "
+                                    ng-model="chatData.comment" required>
                             </form>
                         </div>
                     </div>
