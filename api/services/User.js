@@ -759,6 +759,78 @@ var model = {
 
     },
 
+    /*  saveUpdatedData: function (data, callback) {
+         console.log("save the updated data", data)
+         User.findOneAndUpdate({
+             _id: data._id
+         }, {
+             gender: data.gender,
+             mobile: data.mobile,
+             email: data.email
+         }, {
+             new: true
+         }).exec(function (err, found) {
+             if (err || _.isEmpty(found)) {
+                 callback(err, null);
+             } else {
+                 // callback(null, found)
+                 // console.log("found", found)
+                 // var aa = moment().subtract(2, 'minute');
+                 // var bb = new Date();
+                 // var cc = moment(found.createdAt).isBetween(aa, bb);
+                 // if (true) {
+                 // data._id = found._id;
+                 // User.saveData(data, function () {});
+                 // data3 = found.toObject();
+                 // delete data3.accessToken;
+                 // delete data3.password;
+                 // delete data3.forgotPassword;
+                 // delete data3.otp;
+                 var emailData = {};
+                 var time = new Date().getHours();
+                 var greeting;
+                 if (time < 10) {
+                     greeting = "Good morning";
+                 } else if (time < 17) {
+                     greeting = "Good Afternoon";
+                 } else {
+                     greeting = "Good evening";
+                 }
+                 emailData.from = "sahil@pumpkiin.com";
+                 emailData.name = found.name;
+                 emailData.mobile = found.mobile;
+                 emailData.email = found.email;
+                 emailData.dob = found.dob;
+                 emailData.gender = found.gender;
+                 emailData.greeting = greeting;
+                 emailData.filename = "information-update.ejs";
+                 emailData.subject = "Following fields has been successfully updated!";
+                 // console.log("emailData---------", emailData)
+                 Config.email(emailData, function (err, emailRespo) {
+                     global.red(emailRespo)
+                 });
+                 // data3.email = data.email;
+                 // data3.name = data.name;
+                 callback(null, found)
+                 // } else {
+                 //     data._id = found._id;
+                 //     User.saveData(data, function () {});
+                 //     data3 = found.toObject();
+                 //     delete data3.accessToken;
+                 //     delete data3.password;
+                 //     delete data3.forgotPassword;
+                 //     delete data3.otp;
+                 //     data3.email = data.email;
+                 //     data3.name = data.name;
+                 //     callback(null, data3);
+                 // }
+
+             }
+         });
+
+     } */
+
+
     saveUpdatedData: function (data, callback) {
         console.log("save the updated data", data)
         User.findOneAndUpdate({
@@ -773,51 +845,51 @@ var model = {
             if (err || _.isEmpty(found)) {
                 callback(err, null);
             } else {
-                callback(null, found)
-                console.log("found", found)
-                // var aa = moment().subtract(2, 'minute');
-                // var bb = new Date();
-                // var cc = moment(found.createdAt).isBetween(aa, bb);
-                // if (cc == true) {
-                //     data._id = found._id;
-                //     User.saveData(data, function () {});
-                //     data3 = found.toObject();
-                //     delete data3.accessToken;
-                //     delete data3.password;
-                //     delete data3.forgotPassword;
-                //     delete data3.otp;
-                //     var emailData = {};
-                //     var time = new Date().getHours();
-                //     var greeting;
-                //     if (time < 10) {
-                //         greeting = "Good morning";
-                //     } else if (time < 17) {
-                //         greeting = "Good Afternoon";
-                //     } else {
-                //         greeting = "Good evening";
-                //     }
-                //     emailData.from = "sahil@pumpkiin.com";
-                //     emailData.name = data.name;
-                //     emailData.email = data.email;
-                //     emailData.greeting = greeting;
-                //     emailData.filename = "welcome.ejs";
-                //     emailData.subject = "welcome to pumpkiin";
-                //     Config.email(emailData, function (err, emailRespo) {});
-                //     data3.email = data.email;
-                //     data3.name = data.name;
-                //     callback(null, data3)
-                // } else {
-                //     data._id = found._id;
-                //     User.saveData(data, function () {});
-                //     data3 = found.toObject();
-                //     delete data3.accessToken;
-                //     delete data3.password;
-                //     delete data3.forgotPassword;
-                //     delete data3.otp;
-                //     data3.email = data.email;
-                //     data3.name = data.name;
-                //     callback(null, data3);
-                // }
+                var emailData = {};
+                var time = new Date().getHours();
+                var greeting;
+                if (time < 10) {
+                    greeting = "Good morning";
+                } else if (time < 17) {
+                    greeting = "Good Afternoon";
+                } else {
+                    greeting = "Good evening";
+                }
+                emailData.from = "sahil@pumpkiin.com";
+                emailData.name = found.name;
+                emailData.mobile = found.mobile;
+                emailData.email = found.email;
+                emailData.dob = found.dob;
+                emailData.gender = found.gender;
+                emailData.greeting = greeting;
+                emailData.filename = "information-update";
+                emailData.subject = "Following fields has been successfully updated!";
+                // console.log("emailData---------", emailData)
+                var email = {};
+                email = emailData.email
+                Config.sendEmail({
+                        //from
+                        email: 'sahil@pumpkiin.com',
+                        name: "Sahil"
+                    },
+                    //to                    
+                    //emailData,
+                    [{
+                        email
+                    }],
+                    //subject
+                    emailData.subject, "", emailData,
+                    function (err, emailResp) {
+                        if (err) {
+                            console.log("err", err);
+                            callback("canNotSendMail", null);
+                        } else {
+                            console.log("err", emailResp);
+                            callback(null, "mailSent");
+                        }
+                    });
+
+                // callback(null, found)
 
             }
         });

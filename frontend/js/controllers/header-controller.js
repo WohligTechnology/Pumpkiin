@@ -75,7 +75,23 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
             dataToSend.keyword = data;
             dataToSend.user = $scope.userInfo._id;
             NavigationService.apiCallWithData("Product/getSearchProductAndBrand", dataToSend, function (response) {
+                console.log("Search data", response.data)
                 if (response.value) {
+                    _.each(response.data, function (n) {
+                        var now = moment(new Date()),
+                            end = moment(n.warrantyExpDate),
+                            months = end.diff(now, 'months');
+
+                        if (months < 1) {
+                            n.ribbon = true;
+                            days = end.diff(now, 'days');
+                            n.daysLeft = days;
+                        } else {
+                            n.months = months;
+                            n.ribbon = false;
+                        }
+                        console.log("----days-----", days)
+                    });
                     $scope.productList = response.data;
                 }
             });

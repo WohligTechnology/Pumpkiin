@@ -255,8 +255,6 @@ var model = {
     //     });
     // },
     getSearchProductAndBrand: function (data, callback) {
-        console.log(data);
-
         Product.find({
             user: data.user,
             status: 'Confirmed',

@@ -19,22 +19,8 @@ var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
 var model = {
 
     sendEmail: function (data, callback) {
-        console.log("data for email", data);
-        // var emailData = {};
-        // emailData.from = "sahil@pumpkiin.com";
-        // emailData.name = data.name;
-        // emailData.email = "manish.patil@wohlig.com";
-        // emailData.greeting = "";
-        // emailData.productName = "a";
-        // emailData.ticketID = "1";
-        // emailData.filename = "userEnquiry.ejs";
-        // emailData.subject = "User Enquiry";
-        //console.log("emailData", emailData);
-        // Config.email(emailData, function (err, emailRespo) {
-        //     // console.log("err", err);
-        //     // console.log("emailRespo", emailRespo);
-        //     callback(null, callback);
-        // });
+        var email = {};
+        email = data.email;
         Config.sendEmail({
                 //from
                 email: 'sahil@pumpkiin.com',
@@ -43,7 +29,7 @@ var model = {
             //to                    
             //emailData,
             [{
-                email: "manish.patil@wohlig.com"
+                email
             }],
 
 
@@ -58,8 +44,6 @@ var model = {
                     callback(null, "mailSent");
                 }
             });
-
-
     }
 };
 module.exports = _.assign(module.exports, exports, model);
