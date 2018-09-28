@@ -448,12 +448,38 @@ var model = {
 
     searchProductWithInvoice: function (data, callback) {
         console.log("-----------", data);
+        var page = 1;
+        // var Model = this;
+        // var Const = this(data);
+        var maxRow = 10;
+        if (data.page) {
+            page = data.page;
+        }
+        var field = data.field;
+
+        var options = {
+            field: data.field,
+            filters: {
+                keyword: {
+                    fields: ['ticketNumber', 'status'],
+                    term: data.keyword
+                }
+            },
+            sort: {
+                asc: ''
+            },
+            start: (page - 1) * maxRow,
+            count: maxRow
+        };
+
         this.find({
-            status: "Pending",
-            productInvoicePR: {
-                $exists: true
-            }
-        }).exec(callback);
+                status: "Pending",
+                productInvoicePR: {
+                    $exists: true
+                }
+            }).order(options)
+            .keyword(options)
+            .page(options, callback);
     }
 
 

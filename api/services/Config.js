@@ -409,6 +409,7 @@ var models = {
     //sms end
 
     email: function (data, callback) {
+        console.log("------------------------------------", data);
         Password.find().exec(function (err, userdata) {
             if (err) {
                 console.log(err);

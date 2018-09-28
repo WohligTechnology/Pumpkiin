@@ -45,7 +45,7 @@
                 </div>
                 <div class="border-top listed-openTickets openticket">
                     <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails1 track by $index"
-                        ng-click="openmodalOpen(tickets, $index);">
+                        ng-click="openmodalOpen(tickets, $index);" ng-if="ticketDetails1[0].status == 'Active'">
                         <div class="bullet" ng-if="!tickets.isRead"></div>
                         <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
                             <div class="product-title text-truncate">{{tickets.product.productName}}</div>
@@ -54,7 +54,14 @@
                     </div>
 
 
-
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails1 track by $index"
+                        ng-if="ticketDetails1[0].status == 'Closed'" ui-sref="closedTicketcreation({id:tickets._id})">
+                        <div class="bullet" ng-if="!tickets.isRead"></div>
+                        <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
+                            <div class="product-title text-truncate">{{tickets.product.productName}}</div>
+                            <div class="date ">{{tickets.issueReported | date}}</div>
+                        </div>
+                    </div>
 
 
                 </div>
@@ -252,7 +259,7 @@
                         </span>Send</button> -->
                 </form>
             </div>
-            <a role="button" class="button mt-4 w-25 py-1 float-right fontRobotoBold text-center orange-btn" ui-sref="ticketcreation">Support</a>
+            <a role="button" class="button mt-4 w-25 py-1 float-right fontRobotoBold text-center orange-btn" ui-sref="ticketcreation({id: ticketDetails._id})">Support</a>
         </div>
     </div>
 </div>

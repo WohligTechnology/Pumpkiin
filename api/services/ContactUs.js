@@ -29,7 +29,7 @@ var model = {
             //to                    
             //emailData,
             [{
-                email
+                email: "sahil@pumpkiin.com"
             }],
 
 

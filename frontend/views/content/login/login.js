@@ -73,9 +73,14 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
           console.log("data", data);
           if (data.value == true) {
             // toastr.success('You have been successfully sign in', 'Sign in Success');
-            $.jStorage.set("userData", data.data);
-            $scope.template.profile = data.data;
-            $state.go("openticket");
+            if (data.data.verificationStatus) {
+              $.jStorage.set("userData", data.data);
+              $scope.template.profile = data.data;
+              $state.go("openticket");
+            } else {
+              $state.go("verifyEmail");
+            }
+
           } else {
             toastr.warning('Enter valid otp');
           }

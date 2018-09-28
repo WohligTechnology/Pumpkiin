@@ -70,4 +70,5 @@ module.exports = [
   'frontend/views/content/openTicket/openTicketCtrl.js',
   'frontend/views/content/privacy/privacy.js',
   'frontend/views/content/terms/terms.js',
+  'frontend/views/content/verifyEmail/verifyemailctrl.js',
 ];

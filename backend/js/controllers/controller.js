@@ -492,11 +492,11 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             NavigationService.apiCall($scope.url, $scope.formData, function (data) {
                 console.log("data.value", data);
                 if (data.value) {
-                    $scope.items = data.data;
+                    $scope.items = data.data.results;
                     console.log(" $scope.items", $scope.items);
                 }
 
-                $scope.totalItems = data.data.length;
+                $scope.totalItems = data.data.total;
                 $scope.maxRow = 10;
             });
         }

@@ -367,6 +367,9 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
             scope: $scope,
             backdrop: 'static'
         });
+        $scope.closeModal = function () {
+            $scope.openTicket.close();
+        }
 
         if (!tickets.isRead) {
             var changeisRead = {};

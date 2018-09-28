@@ -14,7 +14,7 @@ var myApp = angular.module("myApp", [
 ]);
 
 // Define all the routes below
-myApp.config(function(
+myApp.config(function (
   $stateProvider,
   $urlRouterProvider,
   $httpProvider,
@@ -95,6 +95,10 @@ myApp.config(function(
       templateUrl: tempateURL,
       controller: "NotificationCtrl"
     })
+    .state("verifyEmail", {
+      url: "/verifyEmail/:userId",
+      controller: "VerifyEmailCtrl"
+    })
     .state("terms", {
       url: "/terms-conditions",
       templateUrl: tempateURL,
@@ -115,7 +119,7 @@ myApp.config(function(
 });
 
 // For Language JS
-myApp.config(function($translateProvider) {
+myApp.config(function ($translateProvider) {
   $translateProvider.translations("en", LanguageEnglish);
   $translateProvider.translations("hi", LanguageHindi);
   $translateProvider.preferredLanguage("en");

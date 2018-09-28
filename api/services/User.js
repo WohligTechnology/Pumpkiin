@@ -94,7 +94,7 @@ var schema = new Schema({
     },
     accessLevel: {
         type: String,
-        enum: ['Retailer', 'Admin', 'Brand', 'User'],
+        enum: ['Admin', 'User'],
         default: 'User'
     },
     address: [{
@@ -104,7 +104,12 @@ var schema = new Schema({
         district: String,
         state: String,
         pincode: Number
-    }]
+    }],
+    verificationStatus: {
+        type: Boolean,
+        default: false
+    }
+
 });
 
 schema.plugin(deepPopulate, {
@@ -670,6 +675,7 @@ var model = {
                     emailData.greeting = greeting;
                     emailData.filename = "welcome.ejs";
                     emailData.subject = "welcome to pumpkiin";
+                    emailData.verificationUrl = env.realHost + "/verifyEmail/" + data._id;
                     Config.email(emailData, function (err, emailRespo) {});
                     data3.email = data.email;
                     data3.name = data.name;
@@ -894,6 +900,17 @@ var model = {
             }
         });
 
+    },
+
+
+    verifyEmail: function (data, callback) {
+        User.findOneAndUpdate({
+            _id: data.userId
+        }, {
+            verificationStatus: true
+        }, {
+            new: true
+        }).exec(callback);
     }
 
 
