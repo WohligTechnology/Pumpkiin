@@ -4,7 +4,9 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
         $(window).scrollTop(0);
     });
 
-    if (_.isEmpty($.jStorage.get("userData"))) {
+    $scope.currentState = $state.current.name;
+
+    if (_.isEmpty($.jStorage.get("userData")) && $scope.currentState !== 'login') {
         $state.go('home');
     }
     $.fancybox.close(true);
@@ -19,7 +21,6 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
     // }];
     $scope.userInfo = $.jStorage.get('userData');
     // console.log("$scope.userInfo", $scope.userInfo)
-    $scope.currentState = $state.current.name;
     $scope.reminderModalOpen = function (data) {
         if (data) {
             $scope.getReminder(data);
