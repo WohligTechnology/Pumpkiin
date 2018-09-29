@@ -353,7 +353,9 @@ myApp.directive('img', function ($compile, $parse) {
     .directive('reminders', function ($http, $filter) {
         return {
             templateUrl: 'views/directive/reminders.html',
-            link: function ($scope, element, attrs) {}
+            link: function ($scope, element, attrs) {
+
+            }
         };
     })
     .directive('tickets', function ($http, $filter) {

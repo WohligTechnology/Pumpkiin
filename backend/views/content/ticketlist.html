@@ -37,7 +37,7 @@
                 <tbody>
                     <tr ng-repeat="tickets in allTickets">
                         <td>{{tickets.ticketNumber}}</td>
-                        <td>{{tickets.issueReported}}</td>
+                        <td>{{tickets.issueReported|date}}</td>
                         <td>{{tickets.product.productName}}</td>
                         <td>{{tickets.user.name}}</td>
                         <td>{{tickets.user.email}}</td>
