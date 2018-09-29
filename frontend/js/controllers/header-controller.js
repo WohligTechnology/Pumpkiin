@@ -3,6 +3,10 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
     $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         $(window).scrollTop(0);
     });
+
+    if (_.isEmpty($.jStorage.get("userData"))) {
+        $state.go('home');
+    }
     $.fancybox.close(true);
     $scope.data = {};
     // $scope.productList = [{
