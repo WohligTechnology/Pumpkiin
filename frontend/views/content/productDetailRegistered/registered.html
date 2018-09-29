@@ -9,11 +9,20 @@
                 <div class="d-flex bg-white border-rounded">
                     <div class="w-15 border-right more-images">
                         <div class="p-2" ng-repeat="productImg in productDetails.productImages">
-                            <img class="img-thumbnail" ng-src="{{productImg | serverimage}}" alt="" ng-click="setImage(productImg)">
+                            <img class="img-thumbnail" ng-src="{{productImg | serverimage}}" alt="" ng-click="setImage(productImg)"
+                                ng-if="(productImg|checkimage) !='pdf'">
+                            <a fancybox-box data-fancybox="gallery" ng-href="{{productImg|uploadpath}}" ng-if="(productImg|checkimage) =='pdf'"
+                                rel="gal">
+                                <i class="fas fa-file-pdf fa-2x"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="w-85 p-3 float-right position-relative">
-                        <img class="img-thumbnail" ng-src="{{setImg | serverimage}}" alt="">
+                        <img class="img-thumbnail" ng-src="{{setImg | serverimage}}" alt="" ng-if="(setImg|checkimage) !='pdf'">
+                        <a fancybox-box data-fancybox="gallery" ng-href="{{setImg|uploadpath}}" ng-if="(setImg|checkimage) =='pdf'"
+                            rel="gal">
+                            <i class="fas fa-file-pdf fa-4x"></i>
+                        </a>
                         <!-- <div class="position-absolute favourite">
                             <i class="fas fa-heart"></i>
                         </div> -->
@@ -212,7 +221,11 @@
                         </div>
                         <div class="d-flex mt-2" ng-if="!warranty">
                             <div class="rounded mr-1 image-style" ng-repeat="warrantyImages in productDetails.warrantyCardImage">
-                                <img class="img-thumbnail" ng-src="{{warrantyImages | serverimage}}" alt="">
+                                <img class="img-thumbnail" ng-src="{{warrantyImages | serverimage}}" alt="" ng-if="(warrantyImages|checkimage) !='pdf'">
+                                <a fancybox-box data-fancybox="gallery" ng-href="{{warrantyImages|uploadpath}}" ng-if="(warrantyImages|checkimage) =='pdf'"
+                                    rel="gal">
+                                    <i class="fas fa-file-pdf fa-4x"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -245,7 +258,11 @@
                         </div>
                         <div class="d-flex mt-2" ng-if="!insurance">
                             <div class="rounded mr-1 image-style" ng-repeat="insuranceImages in productDetails.insuranceProofImage">
-                                <img class="img-thumbnail" ng-src="{{insuranceImages | serverimage}}" alt="">
+                                <img class="img-thumbnail" ng-src="{{insuranceImages | serverimage}}" alt="" ng-if="(insuranceImages|checkimage) !='pdf'">
+                                <a fancybox-box data-fancybox="gallery" ng-href="{{insuranceImages|uploadpath}}" ng-if="(insuranceImages|checkimage) =='pdf'"
+                                    rel="gal">
+                                    <i class="fas fa-file-pdf fa-4x"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
