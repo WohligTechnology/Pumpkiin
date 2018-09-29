@@ -673,7 +673,7 @@ var model = {
                     delete data3.forgotPassword;
                     delete data3.otp;
 
-                    User.sendIntroEmail(data, function () {});
+                    User.sendIntroEmail(data, function () {}, true);
 
                     data3.email = data.email;
                     data3.name = data.name;
