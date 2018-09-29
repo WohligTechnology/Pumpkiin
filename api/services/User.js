@@ -315,6 +315,7 @@ var model = {
                         callback(err, data2);
                     } else {
                         data3 = data2.toObject();
+                        User.sendIntroEmail(data3, function () {});
                         delete data3.oauthLogin;
                         delete data3.password;
                         delete data3.forgotPassword;
@@ -371,6 +372,7 @@ var model = {
                         callback(err, data2);
                     } else {
                         data3 = data2.toObject();
+                        User.sendIntroEmail(data3, function () {});
                         delete data3.oauthLogin;
                         delete data3.password;
                         delete data3.forgotPassword;
