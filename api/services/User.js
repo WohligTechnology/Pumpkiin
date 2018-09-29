@@ -360,7 +360,7 @@ var model = {
                     }]
 
                 };
-                modelUser.email = user.emails[0].value;
+                modelUser.email = user.photos[0].value;
                 modelUser.accessLevel = "User";
                 if (user.image && user.image.url) {
                     modelUser.photo = user.image.url;
