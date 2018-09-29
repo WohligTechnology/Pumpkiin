@@ -52,7 +52,10 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         NavigationService.apiCallWithData("User/getOne", data, function (response) {
             if (response.value == true) {
                 $scope.userDataForProfile = response.data;
-                // console.log("$scope.userDataForProfile ", $scope.userDataForProfile);
+                if ($scope.userDataForProfile.mobile) {
+                    $scope.verifyMobile = true;
+                }
+                console.log("$scope.userDataForProfile ", $scope.userDataForProfile);
             }
         });
     }
