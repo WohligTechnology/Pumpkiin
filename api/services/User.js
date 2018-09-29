@@ -922,7 +922,7 @@ var model = {
         emailData.email = data.email;
         emailData.greeting = greeting;
         emailData.filename = "welcome.ejs";
-        emailData.subject = "welcome to pumpkiin";
+        emailData.subject = "Welcome to Pumpkiin";
         emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
         Config.email(emailData, callback);
     }
