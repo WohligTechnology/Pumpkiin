@@ -20,8 +20,8 @@
             <li class="list-inline-item nav-item right-icon-width" ui-sref="notification">
                 <img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState!=='notification'"
                     data-toggle="tooltip" data-placement="bottom" title="Reminders">
-                <img src="img/header/Notification_circle-icon-orange.png" alt="Notification_circle-icon" class="w-100"
-                    ng-if="currentState=='notification'" data-toggle="tooltip" data-placement="bottom" title="Reminders">
+                <img src="img/header/Notification_circle-icon-orange.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState=='notification'"
+                    data-toggle="tooltip" data-placement="bottom" title="Reminders">
             </li>
         </ul>
         <div class="navbar-header tab-menu">
@@ -63,8 +63,7 @@
         <form class="form-inline mr-auto mx-auto position-relative d-block d-lg-none">
             <div class="product-search">
                 <img src="img/header/Search-icon.png" alt="Search-icon" class="search-icon">
-                <input class="mr-sm-6" type="text" placeholder="Search for brands or product" ng-model="productSearch"
-                    ng-change="searchData(productSearch)">
+                <input class="mr-sm-6" type="text" placeholder="Search for brands or product" ng-model="productSearch" ng-change="searchData(productSearch)">
             </div>
             <div class="product-drop" ng-if="productList.length>0">
                 <!-- asdads {{productList.length}} -->
@@ -73,17 +72,15 @@
                 </div>
             </div>
         </form>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" ng-if="currentState != 'verifyemail'">
             <form class="form-inline mr-auto mx-auto position-relative d-none d-lg-block">
                 <div class="product-search">
                     <img src="img/header/Search-icon.png" alt="Search-icon" class="search-icon">
-                    <input class="mr-sm-6" type="text" placeholder="Search for brands or products" ng-model="productSearch"
-                        ng-change="searchData(productSearch)">
+                    <input class="mr-sm-6" type="text" placeholder="Search for brands or products" ng-model="productSearch" ng-change="searchData(productSearch)">
                 </div>
                 <div class="product-drop" ng-if="productList.length>0">
                     <!-- asdads {{productList.length}} -->
-                    <div class="product" ng-repeat="product in productList | filter:productSearch track by $index"
-                        ui-sref="productdetailregistered({id: product._id})">{{product.productName}}
+                    <div class="product" ng-repeat="product in productList | filter:productSearch track by $index" ui-sref="productdetailregistered({id: product._id})">{{product.productName}}
                         <!-- <img ng-src="{{product.img}}" ng-if="product.img"> -->
                         <img ng-if="!product.ribbon" src="img/ticketCreation/warranty.png">
 
@@ -101,19 +98,18 @@
                 <li class="list-inline-item nav-item right-icon-width mx-2 d-none d-lg-block" ui-sref="productListing">
                     <img src="img/header/Products_circle-icon.png" alt="Products_circle-icon" class="w-100" ng-if="currentState!=='productListing'"
                         data-toggle="tooltip" data-placement="bottom" title="Product List">
-                    <img src="img/header/Products_circle-icon-orange.png" alt="Products_circle-icon" class="w-100"
-                        ng-if="currentState=='productListing'" data-toggle="tooltip" data-placement="bottom" title="Product List">
+                    <img src="img/header/Products_circle-icon-orange.png" alt="Products_circle-icon" class="w-100" ng-if="currentState=='productListing'"
+                        data-toggle="tooltip" data-placement="bottom" title="Product List">
                 </li>
                 <li class="list-inline-item nav-item right-icon-width mx-2 d-none d-lg-block" ui-sref="notification">
-                    <img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon" class="w-100"
-                        ng-if="currentState!=='notification'" data-toggle="tooltip" data-placement="bottom" title="Reminders">
-                    <img src="img/header/Notification_circle-icon-orange.png" alt="Notification_circle-icon" class="w-100"
-                        ng-if="currentState=='notification'" data-toggle="tooltip" data-placement="bottom" title="Reminders">
+                    <img src="img/header/Notification_circle-icon.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState!=='notification'"
+                        data-toggle="tooltip" data-placement="bottom" title="Reminders">
+                    <img src="img/header/Notification_circle-icon-orange.png" alt="Notification_circle-icon" class="w-100" ng-if="currentState=='notification'"
+                        data-toggle="tooltip" data-placement="bottom" title="Reminders">
                 </li>
                 <li class="list-inline-item nav-item mx-2" ui-sref="profile">
                     <div class="user-profile rounded-circle">
-                        <img ng-src="{{jstrgValue.profilePic | serverimage}}" alt="Ticket_circle-icon" width="100%"
-                            ng-if="jstrgValue.profilePic">
+                        <img ng-src="{{jstrgValue.profilePic | serverimage}}" alt="Ticket_circle-icon" width="100%" ng-if="jstrgValue.profilePic">
                         <img src="img/emptyProfile.png" ng-if="!jstrgValue.profilePic" alt="Ticket_circle-icon">
 
                         <!-- <img src="img/header/profile.png" alt="Ticket_circle-icon" width="100%"> -->

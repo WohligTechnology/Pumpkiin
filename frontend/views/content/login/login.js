@@ -69,33 +69,23 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
       if (info.email || info.name) {
         $scope.data.name = info.name;
         $scope.data.email = info.email;
-        NavigationService.apiCallWithData("User/verifyUserWithOtp", $scope.data, function (data) {
-          console.log("data", data);
-          if (data.value == true) {
-            // toastr.success('You have been successfully sign in', 'Sign in Success');
-            if (data.data.verificationStatus) {
-              $.jStorage.set("userData", data.data);
-              $scope.template.profile = data.data;
-              $state.go("openticket");
-            } else {
-              $state.go("verifyemail");
-            }
-
-          } else {
-            toastr.warning('Enter valid otp');
-          }
-        });
-      } else {
-        NavigationService.apiCallWithData("User/verifyUserWithOtp", $scope.data, function (data) {
-          if (data.value == true) {
+      }
+      NavigationService.apiCallWithData("User/verifyUserWithOtp", $scope.data, function (data) {
+        console.log("data", data);
+        if (data.value == true) {
+          // toastr.success('You have been successfully sign in', 'Sign in Success');
+          if (data.data.verificationStatus) {
             $.jStorage.set("userData", data.data);
             $scope.template.profile = data.data;
             $state.go("openticket");
           } else {
-            toastr.warning('Enter valid otp');
+            $state.go("verifyemail");
           }
-        });
-      }
+
+        } else {
+          toastr.warning('Enter valid otp');
+        }
+      });
 
     } else {
       toastr.warning('Enter all fields');

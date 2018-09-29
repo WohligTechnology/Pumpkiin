@@ -17,7 +17,8 @@ var schema = new Schema({
         }
     }],
     email: {
-        type: String
+        type: String,
+        unique: true
     },
     brand: {
         type: Schema.Types.ObjectId,
@@ -72,7 +73,8 @@ var schema = new Schema({
         default: ""
     },
     mobile: {
-        type: Number
+        type: Number,
+        unique: true
     },
     otp: {
         type: String,
@@ -100,9 +102,9 @@ var schema = new Schema({
     address: [{
         title: String,
         addressLine: String,
-        city: String,
+        city: Schema.Types.Mixed,
         district: String,
-        state: String,
+        state: Schema.Types.Mixed,
         pincode: Number
     }],
     verificationStatus: {
@@ -660,7 +662,7 @@ var model = {
                 var aa = moment().subtract(2, 'minute');
                 var bb = new Date();
                 var cc = moment(found.createdAt).isBetween(aa, bb);
-                if (cc == true) {
+                if (!found.verificationStatus) {
                     data._id = found._id;
                     User.saveData(data, function () {});
                     data3 = found.toObject();
@@ -691,11 +693,72 @@ var model = {
         });
 
     },
+    verifyUserWithFB: function (data, callback) {
+        User.findOne({
+            mobile: data.mobile,
+            otp: data.otp
+        }).exec(function (err, found) {
+            if (err || _.isEmpty(found)) {
+                callback(err, null);
+            } else {
+                var aa = moment().subtract(2, 'minute');
+                var bb = new Date();
+                var cc = moment(found.createdAt).isBetween(aa, bb);
+                if (!data.verificationStatus) {
+                    data._id = found._id;
+                    User.saveData(data, function () {});
+                    data3 = found.toObject();
+                    delete data3.accessToken;
+                    delete data3.password;
+                    delete data3.forgotPassword;
+                    delete data3.otp;
+                    var emailData = {};
+                    var time = new Date().getHours();
+                    var greeting;
+                    if (time < 10) {
+                        greeting = "Good morning";
+                    } else if (time < 17) {
+                        greeting = "Good Afternoon";
+                    } else {
+                        greeting = "Good evening";
+                    }
+                    emailData.from = "sahil@pumpkiin.com";
+                    emailData.name = data.name;
+                    emailData.email = data.email;
+                    emailData.greeting = greeting;
+                    emailData.filename = "welcomeFB.ejs";
+                    emailData.subject = "welcome to pumpkiin";
+                    emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
+                    Config.email(emailData, function (err, emailRespo) {});
+                    data3.email = data.email;
+                    data3.name = data.name;
+                    callback(null, data3)
+                } else {
+                    data._id = found._id;
+                    User.saveData(data, function () {});
+                    data3 = found.toObject();
+                    delete data3.accessToken;
+                    delete data3.password;
+                    delete data3.forgotPassword;
+                    delete data3.otp;
+                    data3.email = data.email;
+                    data3.name = data.name;
+                    callback(null, data3);
+                }
+
+            }
+        });
+
+    },
 
     //for edit mobileNumber
 
     sendMobileOtp: function (data, callback) {
-        var otpNumber = (Math.random() + "").substring(2, 6);
+        if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
+            var otpNumber = (Math.random() + "").substring(2, 6);
+        } else {
+            otpNumber = 1111;
+        }
         User.findOneAndUpdate({
             _id: data._id
         }, {
@@ -714,20 +777,24 @@ var model = {
                 delete data3.accessToken;
                 delete data3.password;
                 delete data3.forgotPassword;
-                var smsData = {};
-                smsData.message = 'Your verification code is ' + data3.otp;
-                smsData.senderId = 'PUMPKIIN';
-                smsData.mobile = data.mobile;
-                delete data3.otp;
-                Config.sendSms(smsData, function (err, smsRespo) {
-                    if (err) {
-                        console.log("*************************************************sms gateway error in photographer***********************************************", err);
-                    } else if (smsRespo) {
-                        console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
-                    } else {
-                        console.log("invalid data");
-                    }
-                });
+                if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
+                    var smsData = {};
+                    smsData.message = 'Your verification code is ' + data3.otp;
+                    smsData.senderId = 'PUMPKIIN';
+                    smsData.mobile = data.mobile;
+                    delete data3.otp;
+                    Config.sendSms(smsData, function (err, smsRespo) {
+                        if (err) {
+                            console.log("*************************************************sms gateway error in photographer***********************************************", err);
+                        } else if (smsRespo) {
+                            console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
+                        } else {
+                            console.log("invalid data");
+                        }
+                    });
+                } else {
+                    delete data3.otp;
+                }
                 callback(null, data3);
             }
         });
@@ -789,7 +856,7 @@ var model = {
                 emailData.name = found.name;
                 emailData.mobile = found.mobile;
                 emailData.email = found.email;
-                emailData.dob = found.dob;
+                emailData.dob = moment(found.dob).format("MMM DD YYYY");
                 emailData.gender = found.gender;
                 emailData.greeting = greeting;
                 emailData.filename = "information-update";

@@ -115,6 +115,10 @@ module.exports.routes = {
     controller: "WebController",
     action: "index"
   },
+  "GET /verifyemail/:userId": {
+    controller: "WebController",
+    action: "index"
+  },
   "/api/download/:filename": {
     controller: "WebController",
     action: "download"
