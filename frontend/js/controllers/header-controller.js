@@ -3,6 +3,12 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
     $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         $(window).scrollTop(0);
     });
+
+    $scope.currentState = $state.current.name;
+
+    if (_.isEmpty($.jStorage.get("userData")) && $scope.currentState !== 'login') {
+        $state.go('home');
+    }
     $.fancybox.close(true);
     $scope.data = {};
     // $scope.productList = [{
@@ -15,7 +21,6 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
     // }];
     $scope.userInfo = $.jStorage.get('userData');
     // console.log("$scope.userInfo", $scope.userInfo)
-    $scope.currentState = $state.current.name;
     $scope.reminderModalOpen = function (data) {
         if (data) {
             $scope.getReminder(data);

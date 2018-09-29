@@ -21,7 +21,7 @@ myApp.config(function (
   $locationProvider
 ) {
   var tempateURL = "views/template/template.html"; //Default Template URL
-
+  var tempateURLNew = "views/template/template2.html";
   // for http request with session
   $httpProvider.defaults.withCredentials = true;
   $stateProvider
@@ -95,8 +95,9 @@ myApp.config(function (
       templateUrl: tempateURL,
       controller: "NotificationCtrl"
     })
-    .state("verifyEmail", {
-      url: "/verifyEmail/:userId",
+    .state("verifyemail", {
+      url: "/verifyemail/:userId",
+      templateUrl: tempateURL,
       controller: "VerifyEmailCtrl"
     })
     .state("terms", {

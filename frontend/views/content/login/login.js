@@ -78,7 +78,7 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
               $scope.template.profile = data.data;
               $state.go("openticket");
             } else {
-              $state.go("verifyEmail");
+              $state.go("verifyemail");
             }
 
           } else {

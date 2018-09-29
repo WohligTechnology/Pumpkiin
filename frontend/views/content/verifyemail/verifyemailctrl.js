@@ -1,5 +1,5 @@
 myApp.controller('VerifyEmailCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $http, $uibModal, $state, $sce, $stateParams) {
-    $scope.template = TemplateService.getHTML("content/verifyEmail/verifyemail.html");
+    $scope.template = TemplateService.getHTML("content/verifyemail/verifyemail.html");
     TemplateService.title = "Verify Email"; //This is the Title of the Website
     TemplateService.landingheader = "";
     TemplateService.cssMain = "main";
