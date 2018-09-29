@@ -86,21 +86,6 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
           toastr.warning('Enter valid otp');
         }
       });
-      // } else {
-      //   NavigationService.apiCallWithData("User/verifyUserWithOtp", $scope.data, function (data) {
-      //     if (data.value == true) {
-      //       if (data.data.verificationStatus) {
-      //         $.jStorage.set("userData", data.data);
-      //         $scope.template.profile = data.data;
-      //         $state.go("openticket");
-      //       } else {
-      //         $state.go("verifyemail");
-      //       }
-      //     } else {
-      //       toastr.warning('Enter valid otp');
-      //     }
-      //   });
-      // }
 
     } else {
       toastr.warning('Enter all fields');
