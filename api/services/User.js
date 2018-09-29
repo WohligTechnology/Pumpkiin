@@ -675,7 +675,7 @@ var model = {
                     emailData.greeting = greeting;
                     emailData.filename = "welcome.ejs";
                     emailData.subject = "welcome to pumpkiin";
-                    emailData.verificationUrl = env.realHost + "/verifyEmail/" + data._id;
+                    emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
                     Config.email(emailData, function (err, emailRespo) {});
                     data3.email = data.email;
                     data3.name = data.name;
