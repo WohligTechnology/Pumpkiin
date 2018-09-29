@@ -2,7 +2,7 @@ module.exports = function (profile) {
     var req = this.req;
     var res = this.res;
     var sails = req._sails;
-    // console.log("profileprofileprofile", profile)
+    console.log("profileprofileprofile", profile)
     if (_.isEmpty(profile)) {
         res.redirect(env.realHost + "/login/");
         // res.serverError();
