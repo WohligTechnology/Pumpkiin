@@ -660,7 +660,7 @@ var model = {
                 var aa = moment().subtract(2, 'minute');
                 var bb = new Date();
                 var cc = moment(found.createdAt).isBetween(aa, bb);
-                if (!data.verificationStatus) {
+                if (data.verificationStatus) {
                     data._id = found._id;
                     User.saveData(data, function () {});
                     data3 = found.toObject();
@@ -710,7 +710,11 @@ var model = {
     //for edit mobileNumber
 
     sendMobileOtp: function (data, callback) {
-        var otpNumber = (Math.random() + "").substring(2, 6);
+        if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
+            var otpNumber = (Math.random() + "").substring(2, 6);
+        } else {
+            otpNumber = 1111;
+        }
         User.findOneAndUpdate({
             _id: data._id
         }, {
@@ -729,20 +733,24 @@ var model = {
                 delete data3.accessToken;
                 delete data3.password;
                 delete data3.forgotPassword;
-                var smsData = {};
-                smsData.message = 'Your verification code is ' + data3.otp;
-                smsData.senderId = 'PUMPKIIN';
-                smsData.mobile = data.mobile;
-                delete data3.otp;
-                Config.sendSms(smsData, function (err, smsRespo) {
-                    if (err) {
-                        console.log("*************************************************sms gateway error in photographer***********************************************", err);
-                    } else if (smsRespo) {
-                        console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
-                    } else {
-                        console.log("invalid data");
-                    }
-                });
+                if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
+                    var smsData = {};
+                    smsData.message = 'Your verification code is ' + data3.otp;
+                    smsData.senderId = 'PUMPKIIN';
+                    smsData.mobile = data.mobile;
+                    delete data3.otp;
+                    Config.sendSms(smsData, function (err, smsRespo) {
+                        if (err) {
+                            console.log("*************************************************sms gateway error in photographer***********************************************", err);
+                        } else if (smsRespo) {
+                            console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
+                        } else {
+                            console.log("invalid data");
+                        }
+                    });
+                } else {
+                    delete data3.otp;
+                }
                 callback(null, data3);
             }
         });
@@ -874,7 +882,7 @@ var model = {
                 emailData.name = found.name;
                 emailData.mobile = found.mobile;
                 emailData.email = found.email;
-                emailData.dob = found.dob;
+                emailData.dob = moment(found.dob).format("MMM DD YYYY");
                 emailData.gender = found.gender;
                 emailData.greeting = greeting;
                 emailData.filename = "information-update";
