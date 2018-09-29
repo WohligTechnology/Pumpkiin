@@ -731,7 +731,7 @@ var model = {
                     emailData.filename = "welcomeFB.ejs";
                     emailData.subject = "welcome to pumpkiin";
                     emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
-                    Config.email(emailData, function (err, emailRespo) {});
+                    Config.email(emailData, function (err, emailRespo) {}, true);
                     data3.email = data.email;
                     data3.name = data.name;
                     callback(null, data3)
@@ -906,7 +906,7 @@ var model = {
             new: true
         }).exec(callback);
     },
-    sendIntroEmail: function (data, callback) {
+    sendIntroEmail: function (data, callback, sendVerification) {
         var emailData = {};
         var time = new Date().getHours();
         var greeting;
@@ -921,14 +921,15 @@ var model = {
         emailData.name = data.name;
         emailData.email = data.email;
         emailData.greeting = greeting;
-        emailData.filename = "welcomeFB.ejs";
+        if (sendVerification) {
+            emailData.filename = "welcome.ejs";
+        } else {
+            emailData.filename = "welcomeFB.ejs";
+        }
+
         emailData.subject = "Welcome to Pumpkiin";
         emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
         Config.email(emailData, callback);
     }
-
-
-
-
 };
 module.exports = _.assign(module.exports, exports, model);
