@@ -4,20 +4,20 @@ myApp.controller('VerifyEmailCtrl', function ($scope, TemplateService, Navigatio
     TemplateService.landingheader = "";
     TemplateService.cssMain = "main";
     $scope.navigation = NavigationService.getNavigation();
-    // if ($stateParams.userId) {
-    //     console.log("state----", $stateParams.userId);
-    //     NavigationService.apiCallWithData("User/verifyEmail", {
-    //         userId: $stateParams.userId
-    //     }, function (result) {
-    //         if (result.value == true) {
-    //             $.jStorage.set("userData", result.data);
-    //             $state.go("openticket");
-    //         } else {
-    //             toastr.warning('Login with valid URL');
-    //         }
+    if ($stateParams.userId) {
+        console.log("state----", $stateParams.userId);
+        NavigationService.apiCallWithData("User/verifyEmail", {
+            userId: $stateParams.userId
+        }, function (result) {
+            if (result.value == true) {
+                $.jStorage.set("userData", result.data);
+                $state.go("openticket");
+            } else {
+                toastr.warning('Login with valid URL');
+            }
 
-    //     })
-    // }
+        })
+    }
 
 
 })
