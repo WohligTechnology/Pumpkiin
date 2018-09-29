@@ -472,7 +472,7 @@ var model = {
             count: maxRow
         };
 
-        this.find({
+        Product.find({
                 status: "Pending",
                 productInvoicePR: {
                     $exists: true
@@ -507,7 +507,7 @@ var model = {
             count: maxRow
         };
 
-        this.find({
+        Product.find({
                 status: "Confirmed"
             }).order(options)
             .keyword(options)
