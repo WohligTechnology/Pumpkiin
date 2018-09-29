@@ -1,0 +1,143 @@
+<div class="container py-5">
+    <div class="row ticket-creation-main closedticketcreation-main">
+        <div class="col col-md-3 openticketreminder d-none d-sm-block">
+        </div>
+
+        <div class="col col-md-12" ng-init="modelNo=false ">
+            <div class="background-blue border-rounded p-5 closedticketcreation">
+                <div class="media">
+                    <div class="img-div ">
+                        <img src="img/iphone.jpeg " class="img-fluid large-img ">
+                        <div class="d-flex align-items-center justify-content-center small-img ">
+                            <img src="img/ticketCreation/mobile.png " width="10 ">
+                        </div>
+                    </div>
+                    <div class="media-body pl-4 text-white">
+                        <h5 class="mt-0 fontRobotoMedium font20 position-relative text-white" ng-click="modelNo=! modelNo">Support
+                            ID: {{ticketDetails.ticketNumber}}
+                            <div class="position-absolute clock text-white">
+                                <i class="far fa-clock"></i>
+                                </i>{{ticketDetails.issueReported | date}}</div>
+                            <div class="text-white">
+                                <span class="float-right orange-color ">
+                                    <span ng-show="modelNo">
+                                        <i class="fas fa-angle-up"></i>
+                                    </span>
+                                    <span ng-show="!modelNo">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </h5>
+                        <span class="fontRobotoBold font14 text-white">PRODUCT INFORMATION</span>
+                        <p class="fontRobotoRegular font20 m-0 text-white">{{ticketDetails.product.productName}}
+                            <span class="pl-2 fontRobotoLight text-white"> ({{ticketDetails.product.brand}})</span>
+                        </p>
+                        <div class="row no-gutters fontRobotoRegular font14 info-div mt-1" ng-show="modelNo ">
+                            <div class="col-12 col-lg-6 ">
+                                <p class="d-flex align-items-top text-white">
+                                    <span class="d-inline-block w-50">Model Number : </span>
+                                    <span class="d-inline-block w-50">{{ticketDetails.product.modelNo}}</span>
+                                </p>
+                                <p class="d-flex align-items-top text-white">
+                                    <span class="d-inline-block w-50">Purchase Price : </span>
+                                    <span class="d-inline-block w-50"> {{ticketDetails.product.purchasePrice}}</span>
+                                </p>
+                                <p class="d-flex align-items-top text-white">
+                                    <span class="d-inline-block w-50">Store : </span>
+                                    <span class="d-inline-block w-50">{{ticketDetails.product.retailer}}</span>
+                                </p>
+                                <!-- <p class="d-flex align-items-top text-white">
+                                    <span class="d-inline-block w-50">Attached Files : </span>
+                                    <span class="d-inline-block w-50">
+                                        <span class="d-inline-block img-uploaded "></span>
+                                        <span class="d-inline-block img-uploaded "></span>
+                                        <span class="d-inline-block img-uploaded "></span>
+                                        <span class="d-inline-block img-uploaded "></span>
+                                    </span>
+                                </p> -->
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <p class="d-flex align-items-top text-white">
+                                    <span class="d-inline-block w-50">Serial Number : </span>
+                                    <span class="d-inline-block w-50">{{ticketDetails.product.serialNo}}</span>
+                                </p>
+                                <p class="d-flex align-items-top text-white">
+                                    <span class="d-inline-block w-50">Purchase Date : </span>
+                                    <span class="d-inline-block w-50"> {{ticketDetails.product.purchaseDate}}</span>
+                                </p>
+                                <p class="d-flex align-items-top text-white">
+                                    <span class="d-inline-block w-50">Warranty : </span>
+                                    <span class="d-inline-block w-50green-color ">
+                                        {{ticketDetails.product.warrantyExpDate}}</span>
+                                </p>
+                                <p class="d-flex align-items-top text-white">
+                                    <span class="d-inline-block w-50">Relation : </span>
+                                    <span class="d-inline-block w-50" ng-repeat="relatives in ticketDetails.product.user.relations">
+                                        <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
+                                            <!-- <i class="fas fa-times "></i> -->
+                                        </span>
+                                        <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
+                                            <i class="fas fa-times "></i>
+                                        </span> -->
+                                        <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
+                                            <i class="fas fa-plus "></i>
+                                        </button> -->
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="support-chat-history">
+                <h6 class="fontRobotoBold blue-color my-4">SUPPORT CHAT HISTORY</h6>
+                <uib-accordion close-others="true">
+                    <div uib-accordion-group class="panel-default" is-open="status1.open">
+                        <uib-accordion-heading>
+                            <div class="d-flex align-items-center ">
+                                <div class="blue-circle"></div>
+                                <h6 class="fontRobotoBold font14 ml-2 mb-0 ">{{ticketDetails.product.productName}}</h6>
+                                <!-- <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span> -->
+                                <div class="ml-auto date-supportchat ">
+                                    <span class="font12 ">{{ticketDetails.closureDate | date}}</span>
+                                </div>
+                            </div>
+                            <div class="up-arrow float-right" ng-class="{'rotate-180':status1.open==true}">
+                                <i class="fas fa-sort-down"></i>
+                            </div>
+                        </uib-accordion-heading>
+                        <div class="pt-0 px-4 pb-4 ">
+                            <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat ">SUPPORT CHAT</h6>
+                            <div class="chat my-2 ">
+                                <!-- <div class="d-flex align-items-center mb-2 you ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
+                                    </div>
+                                    <div class="ml-2 px-3 py-1 chat-content ">{{chat.comment}}</div>
+                                </div>
+                                <div class="text-center gray-color font14 mt-3 ">{{chat.date | date}}</div> -->
+                                <div class="d-flex align-items-center mb-2 flex-row-reverse me " ng-repeat="chat in ticketDetails.customerChat">
+                                    <div class="img-fluid image ">
+                                        <img src="img/profile.jpeg ">
+                                    </div>
+                                    <div class="mr-2 px-3 py-1 chat-content ">{{chat.comment}}</div>
+                                </div>
+                                <div class="text-center gray-color font14 mt-3 ">{{chat.date | date}}</div>
+                                <!-- <div class="d-flex align-items-center mb-2 you ">
+                                    <div class="img-fluid image ">
+                                        <img src="img/ticketCreation/profile.jpeg ">
+                                    </div>
+                                    <div class="ml-2 px-3 py-1 chat-content ">Thank you for Contact BOSE Support, How may I help you Today?</div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </uib-accordion>
+            </div>
+
+            <!-- <a role="button" class="button mt-4 w-25 py-1 float-right fontRobotoBold text-center orange-btn" ui-sref="ticketcreation">Support</a> -->
+        </div>
+    </div>
+</div>

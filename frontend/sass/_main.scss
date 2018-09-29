@@ -392,6 +392,11 @@ header {
 
 /****************common classes*********************/
 
+[type='file']::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+
 .cursor-point {
     cursor: pointer;
 }
@@ -680,16 +685,7 @@ fieldset:disabled {
 }
 
 .ui-select-bootstrap .ui-select-match-text {
-    padding-right: 0;
-} // .pro-modal {
-//     .ui-select-bootstrap {
-//         .ui-select-match-text {
-//             padding-right: 0px !important;
-//         }
-//     }
-// }
-.ui-select-bootstrap .ui-select-match-text span {
-    width: 95%;
+    padding-right: 0px !important;
 }
 
 //scss for home page
@@ -952,7 +948,7 @@ fieldset:disabled {
     border-radius: 50%;
     height: 13px;
     width: 13px;
-    padding: 10px 13px;
+    padding: 10px 12px 10px 16px;
     margin: 5px;
 }
 
@@ -1119,4 +1115,11 @@ fieldset:disabled {
     span:focus {
         outline: none;
     }
+}
+
+.verify-email {
+    margin: 15rem 0;
+    padding: 3rem;
+    font-size: 1.2rem;
+    border: 1px solid #142c5b;
 }

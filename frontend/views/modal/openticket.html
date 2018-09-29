@@ -9,7 +9,7 @@
     <div>
         <div class="date ">{{singleTicket.issueReported | date}}</div>
         <div class="text-center">
-            <button type="submit" class="btn btn-primary py-1 mt-2 border-rounded " ui-sref="ticketcreation({id:singleTicket.product._id})">Edit</button>
+            <button type="submit" class="btn btn-primary py-1 mt-2 border-rounded " ng-click="closeModal()" ui-sref="ticketcreation({id:singleTicket.product._id})">Edit</button>
         </div>
     </div>
 

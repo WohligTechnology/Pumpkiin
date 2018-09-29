@@ -11,7 +11,7 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         // });
 
         // console.log("hey")
-
+        console.log('show me produvt1', $scope.product1)
         $scope.submitForm = function (data) {
             console.log("This is it");
             return new Promise(function (callback) {
@@ -25,16 +25,24 @@ myApp.controller('HomeCtrl', function ($scope, TemplateService, NavigationServic
         // }
 
         $scope.openContact = function (product1, product2) {
-            $scope.userData = {};
-            if (product1 && product2) {
-                $scope.userData.subject = "My " + product1 + " needs " + product2;
+
+            if (product1 != '                  ' && product2 != '                  ') {
+                $scope.userData = {};
+                if (product1 && product2) {
+                    $scope.userData.subject = "My " + product1 + " needs " + product2;
+                }
+                $scope.contactModal = $uibModal.open({
+                    animation: true,
+                    templateUrl: "views/modal/contact.html",
+                    scope: $scope,
+                    backdrop: 'static'
+                });
+            } else {
+                toastr.error("Select all the fields")
             }
-            $scope.contactModal = $uibModal.open({
-                animation: true,
-                templateUrl: "views/modal/contact.html",
-                scope: $scope,
-                backdrop: 'static'
-            });
+
+
+
         }
 
         $scope.addUser = function (data) {

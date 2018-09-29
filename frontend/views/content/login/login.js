@@ -19,6 +19,7 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
 
   });
   $scope.socialLogin = function (url) {
+    console.log("url", url);
     window.location.replace(url);
   };
 
@@ -72,9 +73,14 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
           console.log("data", data);
           if (data.value == true) {
             // toastr.success('You have been successfully sign in', 'Sign in Success');
-            $.jStorage.set("userData", data.data);
-            $scope.template.profile = data.data;
-            $state.go("openticket");
+            if (data.data.verificationStatus) {
+              $.jStorage.set("userData", data.data);
+              $scope.template.profile = data.data;
+              $state.go("openticket");
+            } else {
+              $state.go("verifyemail");
+            }
+
           } else {
             toastr.warning('Enter valid otp');
           }
@@ -82,7 +88,6 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
       } else {
         NavigationService.apiCallWithData("User/verifyUserWithOtp", $scope.data, function (data) {
           if (data.value == true) {
-            // toastr.success('You have been successfully logged in', 'Login Success');
             $.jStorage.set("userData", data.data);
             $scope.template.profile = data.data;
             $state.go("openticket");

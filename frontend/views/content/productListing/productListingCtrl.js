@@ -95,6 +95,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
         });
 
         reminderService.totalNumberOfCompletedReminders(function (data) {
+            $scope.showGreenImage = true;
             $scope.totalCompletedReminder = data;
             // console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
         });
@@ -106,6 +107,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
 
         $scope.completedReminders = function (data) {
+            $scope.showGreenImage = false;
             reminderService.findReminderOfCompletedByUser(function (data) {
                 $scope.allReminders = data;
                 $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
@@ -113,6 +115,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
         }
 
         $scope.pendingReminders = function (data) {
+            $scope.showGreenImage = true;
             reminderService.findReminderOfPendingSnoozeByUser(function (data) {
                 $scope.allReminders = data;
                 $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
@@ -128,15 +131,10 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
     $scope.callTickets = function () {
 
         ticketService.totalOpenTickets(function (data) {
-            // $scope.ticketDetails = data;
             $scope.ticketDetails = _.slice(data.results, 0, 8);
             console.log("1 $scope.ticketDetails --", $scope.ticketDetails);
 
         });
-
-        // ticketService.totalClosedTickets(function (data) {
-        //     $scope.ticketDetails = data;
-        // });
 
         ticketService.totalNumberOfTickets(function (data) {
             $scope.totalNumberOfTickets = data;
@@ -150,7 +148,6 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
         ticketService.totalNumberOfClosedTickets(function (data) {
             $scope.totalNumberOfClosedTickets = data;
-            // console.log("res---totalNumberOfClosedTickets--", data);
         });
 
         var dataToSendForProduct = {};
@@ -166,6 +163,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
 
         $scope.getClosedTickets = function () {
+            // $scope.gotoUrl = EditUrl;
             ticketService.totalClosedTickets(function (data) {
                 // $scope.ticketDetails = data;
                 $scope.ticketDetails = _.slice(data, 0, 8);
@@ -176,6 +174,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
 
 
         $scope.getOpenTickets = function () {
+            // $scope.gotoUrl = CreateUrl;
             ticketService.totalOpenTickets(function (data) {
                 // $scope.ticketDetails = data;
                 console.log("----109----", data.results);

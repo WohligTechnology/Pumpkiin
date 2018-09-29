@@ -393,7 +393,7 @@ var models = {
             }, function (err, http, body) {
                 if (err) {
                     console.log("*************************************************sms gateway error***********************************************")
-                    console.log(err);
+                    console.log(err.message);
                     callback(err, null);
                 } else {
                     console.log("*************************************************sms sent***********************************************", body);
@@ -409,6 +409,7 @@ var models = {
     //sms end
 
     email: function (data, callback) {
+        console.log("------------------------------------", data);
         Password.find().exec(function (err, userdata) {
             if (err) {
                 console.log(err);
@@ -425,6 +426,7 @@ var models = {
                         } else {
                             // console.log('email else', body);
                             if (body && body.value != false) {
+                                global.red("1");
                                 var helper = require('sendgrid').mail;
 
                                 from_email = new helper.Email(data.from);
@@ -434,6 +436,7 @@ var models = {
                                 mail = new helper.Mail(from_email, subject, to_email, content);
 
                                 if (data.file) {
+                                    global.red("2");
                                     var attachment = new helper.Attachment();
                                     var file = fs.readFileSync('pdf/' + data.file);
                                     var base64File = new Buffer(file).toString('base64');
@@ -458,6 +461,7 @@ var models = {
                                         callback(error);
                                     } else {
                                         callback(null, response);
+                                        console.log("3     ", response)
                                     }
                                 });
                             } else {
@@ -468,11 +472,14 @@ var models = {
                         }
                     });
                 } else {
+                    console.log("4     ")
                     callback({
                         message: "Please provide params"
                     }, null);
                 }
             } else {
+                console.log("5     ")
+
                 callback({
                     message: "No api keys found"
                 }, null);
@@ -480,10 +487,10 @@ var models = {
         });
     },
 
-    sendEmail: function (fromEmail, toEmail, subject, html, attachments, callback) {
+    sendEmail: function (fromEmail, toEmail, subject, html, emailData, callback) {
         Password.find({}).lean().exec(function (err, data) {
-            console.log("key", data[0].name)
-            console.log("fromEmail, toEmail, subject, html, attachments", fromEmail, toEmail, subject, html, attachments)
+            // console.log("key", data[0].name)
+            console.log("fromEmail, toEmail, subject, html, emailData", emailData)
             if (err) {
                 callback(err);
             } else {
@@ -504,35 +511,48 @@ var models = {
 
                 mail.addPersonalization(personalization);
 
-                var content = new helper.Content('text/html', html);
-                mail.addContent(content);
-                async.each(attachments, function (filename, callback) {
-                    console.log("2")
-                    var attachment = new helper.Attachment();
-                    Config.readAttachment(filename, function (err, data) {
+                // var content = new helper.Content('text/html', html);
+
+                console.log("-----------------------------------------------------------------");
+                console.log(emailData.filename);
+                if (emailData.filename) {
+                    sails.hooks.views.render(emailData.filename, emailData, function (err, body) {
+                        // console.log("body : ", body);
+                        if (err) {
+                            console.log(err);
+                            callback(err, null);
+                        } else {
+                            var content = new helper.Content('text/html', body);
+                            mail.addContent(content);
+                            var request = sg.emptyRequest({
+                                method: 'POST',
+                                path: '/v3/mail/send',
+                                body: mail.toJSON(),
+                            });
+                            sg.API(request, callback);
+                        }
+                    });
+                } else {
+                    var content = new helper.Content('text/html', html);
+                    mail.addContent(content);
+                    async.each(emailData, function (filename, callback) {
+                        console.log("2");
+                    }, function (err, emailData) {
                         if (err) {
                             callback(err);
                         } else {
-                            var base64File = new Buffer(data).toString('base64');
-                            attachment.setContent(base64File);
-                            attachment.setFilename(filename);
-                            attachment.setDisposition('attachment');
-                            mail.addAttachment(attachment);
-                            callback();
+                            var request = sg.emptyRequest({
+                                method: 'POST',
+                                path: '/v3/mail/send',
+                                body: mail.toJSON(),
+                            });
+                            sg.API(request, callback);
                         }
                     });
-                }, function (err, attachments) {
-                    if (err) {
-                        callback(err);
-                    } else {
-                        var request = sg.emptyRequest({
-                            method: 'POST',
-                            path: '/v3/mail/send',
-                            body: mail.toJSON(),
-                        });
-                        sg.API(request, callback);
-                    }
-                });
+                }
+
+
+
             }
         })
     }

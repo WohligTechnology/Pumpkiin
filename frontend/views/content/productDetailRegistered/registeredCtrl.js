@@ -17,7 +17,7 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
         "relation": "Brother"
     }];
 
-    $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew"]
+    $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother","Sister","Brother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew","Friend"]
 
 
     $scope.makeEditable = function () {

@@ -27,7 +27,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         }
     };
 
-    $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew"]
+    $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Sister", "Brother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew", "Friend"]
 
 
     $scope.registration = $uibModal.open({
@@ -116,7 +116,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
 
         // data.productId = $scope.product_id;
         NavigationService.apiCallWithData("User/addRelation", $scope.userData, function (response) {
-            $scope.userData = {};
+            delete $scope.userData;
             console.log("response", response);
             if (response.value == true) {
                 toastr.success("Relation added successfully");

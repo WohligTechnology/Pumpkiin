@@ -1,18 +1,20 @@
 <div class="bg-white border-rounded p-3 my-2">
     <div class="d-flex justify-content-between">
         <div class="closed-text cursor-point" ng-click="pendingReminders()">
-            <img src="img/header/Notification_circle-icon-orange.png">
+            <img ng-if="showGreenImage" src="img/ticketCreation/pmkn-02.png">
+            <img ng-if="!showGreenImage" src="img/ticketCreation/pmkn-03.png">
             <div class="notification notification-orange" ng-if="totalPendingReminders">{{totalPendingReminders}}</div>
             <div class="notification notification-orange" ng-if="!totalPendingReminders">0</div>
-
         </div>
-        <div class="closed-text cursor-point" ng-if="!totalCompletedReminder">
-            <img src="img/ticketCreation/Notification_circle-icon-green.png">
+        <!-- <div class="closed-text cursor-point" ng-if="!totalCompletedReminder">
+            <img ng-if="!totalCompletedReminder" src="img/ticketCreation/pmkn-01.png">
+            <img ng-if="totalCompletedReminder" src="img/ticketCreation/pmkn-04.png">
             <div class="notification" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
             <div class="notification" ng-if="!totalCompletedReminder">0</div>
-        </div>
-        <div class="closed-text cursor-point" ng-click="completedReminders()" ng-if="totalCompletedReminder">
-            <img src="img/ticketCreation/Notification_circle-icon-green.png">
+        </div> -->
+        <div class="closed-text cursor-point" ng-click="completedReminders()">
+            <img ng-if="!showGreenImage" src="img/ticketCreation/pmkn-01.png">
+            <img ng-if="showGreenImage" src="img/ticketCreation/pmkn-04.png">
             <div class="notification" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
             <div class="notification" ng-if="!totalCompletedReminder">0</div>
         </div>

@@ -76,7 +76,6 @@ var model = {
     },
 
     totalOpenTickets: function (data, callback) {
-        console.log("totalOpenTickets", data)
         //take the page in data
         var page = 1;
         // var Model = this;
@@ -140,6 +139,7 @@ var model = {
     },
 
     findClosedTicketOfUser: function (data, callback) {
+        console.log("--------", data)
         this.findOne({
             _id: data.ticketId,
             user: data.user,

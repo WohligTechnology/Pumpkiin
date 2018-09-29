@@ -205,55 +205,69 @@ var model = {
 
     //searchApi
 
+    // getSearchProductAndBrand: function (data, callback) {
+    //     Product.aggregate([
+    //         // Stage 1
+    //         {
+    //             $lookup: {
+    //                 from: "brands",
+    //                 localField: "brand",
+    //                 foreignField: "_id",
+    //                 as: "brandss"
+    //             }
+    //         },
+
+    //         // Stage 2
+    //         {
+    //             $unwind: {
+    //                 path: "$brandss",
+    //                 preserveNullAndEmptyArrays: false // optional
+    //             }
+    //         },
+
+    //         // Stage 3
+    //         {
+    //             $match: {
+
+    //                 $or: [{
+    //                         "brandss.name": {
+    //                             $regex: data.keyword,
+    //                             $options: "i"
+    //                         },
+    //                     },
+    //                     {
+    //                         "productName": {
+    //                             $regex: data.keyword,
+    //                             $options: "i"
+    //                         },
+    //                     }
+    //                 ],
+    //                 "status": "Confirmed",
+    //             }
+    //         },
+
+    //     ], function (err, found) {
+    //         if (err || _.isEmpty(found)) {
+    //             callback(err, null);
+    //         } else {
+    //             callback(null, found)
+    //         }
+    //     });
+    // },
     getSearchProductAndBrand: function (data, callback) {
-        Product.aggregate([
-            // Stage 1
-            {
-                $lookup: {
-                    from: "brands",
-                    localField: "brand",
-                    foreignField: "_id",
-                    as: "brandss"
+        Product.find({
+            user: data.user,
+            status: 'Confirmed',
+            $or: [{
+                    productName: new RegExp(data.keyword, "i")
+                },
+                {
+                    brand: new RegExp(data.keyword, "i")
                 }
-            },
-
-            // Stage 2
-            {
-                $unwind: {
-                    path: "$brandss",
-                    preserveNullAndEmptyArrays: false // optional
-                }
-            },
-
-            // Stage 3
-            {
-                $match: {
-
-                    $or: [{
-                            "brandss.name": {
-                                $regex: data.keyword,
-                                $options: "i"
-                            },
-                        },
-                        {
-                            "productName": {
-                                $regex: data.keyword,
-                                $options: "i"
-                            },
-                        }
-                    ],
-                    "status": "Confirmed",
-                }
-            },
-
-        ], function (err, found) {
-            if (err || _.isEmpty(found)) {
-                callback(err, null);
-            } else {
-                callback(null, found)
-            }
-        });
+            ]
+        }).exec(callback);
     },
+
 
     //sorting brand and product
     /* sortProductsByBrands: function (data, callback) {
@@ -434,12 +448,70 @@ var model = {
 
     searchProductWithInvoice: function (data, callback) {
         console.log("-----------", data);
+        var page = 1;
+        // var Model = this;
+        // var Const = this(data);
+        var maxRow = 10;
+        if (data.page) {
+            page = data.page;
+        }
+        var field = data.field;
+
+        var options = {
+            field: data.field,
+            filters: {
+                keyword: {
+                    fields: ['ticketNumber', 'status'],
+                    term: data.keyword
+                }
+            },
+            sort: {
+                asc: ''
+            },
+            start: (page - 1) * maxRow,
+            count: maxRow
+        };
+
         this.find({
-            status: "Pending",
-            productInvoicePR: {
-                $exists: true
-            }
-        }).exec(callback);
+                status: "Pending",
+                productInvoicePR: {
+                    $exists: true
+                }
+            }).order(options)
+            .keyword(options)
+            .page(options, callback);
+    },
+    searchConfirmedProducts: function (data, callback) {
+        console.log("-----------", data);
+        var page = 1;
+        // var Model = this;
+        // var Const = this(data);
+        var maxRow = 10;
+        if (data.page) {
+            page = data.page;
+        }
+        var field = data.field;
+
+        var options = {
+            field: data.field,
+            filters: {
+                keyword: {
+                    fields: ['productName'],
+                    term: data.keyword
+                }
+            },
+            sort: {
+                asc: ''
+            },
+            start: (page - 1) * maxRow,
+            count: maxRow
+        };
+
+        this.find({
+                status: "Confirmed"
+            }).order(options)
+            .keyword(options)
+            .page(options, callback);
     }
 
 

@@ -489,17 +489,29 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             $scope.formData.filter = dataTofilter;
             $scope.url = "Product/searchProductWithInvoice";
             // $scope.formData.page = $scope.formData.page;
-            NavigationService.apiCall($scope.url, $scope.formData, function (data) {
-                console.log("data.value", data);
-                if (data.value) {
-                    $scope.items = data.data;
-                    console.log(" $scope.items", $scope.items);
-                }
 
-                $scope.totalItems = data.data.length;
-                $scope.maxRow = 10;
-            });
+            console.log("-----", $stateParams.status)
+            if ($stateParams.status == "Pending") {
+                NavigationService.apiCall($scope.url, $scope.formData, function (data) {
+                    console.log("data.value", data);
+                    if (data.value) {
+                        $scope.items = data.data.results;
+                        console.log(" $scope.items", $scope.items);
+                    }
+
+                    $scope.totalItems = data.data.total;
+                    $scope.maxRow = 10;
+                });
+            } else {
+                NavigationService.apiCall("Product/searchConfirmedProducts", $scope.formData, function (data) {
+                    console.log("confirmed", data)
+                    $scope.items = data.data.results;
+                    $scope.totalItems = data.data.total;
+                    $scope.maxRow = 10;
+                })
+            }
         }
+
         // $scope.changePage = function (page) {
         //     $scope.viewTable(page);
         // }
@@ -825,6 +837,59 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         };
         JsonService.refreshView = $scope.getAllItems;
         $scope.getAllItems();
+
+    })
+
+    .controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr, $uibModal, $stateParams) {
+        $scope.template = TemplateService.changecontent("closedTicketcreation");
+        $scope.menutitle = NavigationService.makeactive("Closed Ticket");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+
+        var formData = {};
+
+        $scope.jstrgData = $.jStorage.get('profile');
+        console.log("$stateParams----------", $scope.jstrgData);
+
+        $scope.getTicket = function () {
+            var sendData = {};
+            sendData._id = $stateParams.id;
+            NavigationService.apiCall("Ticket/getOne", sendData, function (res) {
+                if (res.value == true) {
+                    $scope.ticketData = res.data;
+                    // console.log("$scope.ticketData-----", $scope.ticketData);
+                }
+            });
+        }
+        $scope.getTicket();
+
+
+
+
+        //for ticket block
+
+
+        var userId = {};
+        userId.user = $scope.jstrgData._id
+        NavigationService.apiCall("Ticket/totalClosedTickets", userId, function (data) {
+            $scope.totalClosedTickets = data;
+            $scope.showLessClosedTickets = _.slice($scope.totalClosedTickets, 0, 5);
+            console.log("/////////////", data)
+            if ($stateParams.id) {
+                var ticketData = {};
+                ticketData.ticketId = $stateParams.id;
+                ticketData.user = userId.user;
+                console.log("------------", ticketData)
+                NavigationService.apiCall("Ticket/findClosedTicketOfUser", ticketData, function (res) {
+                    $scope.ticketDetails = res.data;
+                    console.log("$scope.ticketDetails-----------", res);
+                });
+            } else {
+                $scope.ticketDetails = $scope.totalClosedTickets[0];
+            }
+        })
+
+
 
     })
 

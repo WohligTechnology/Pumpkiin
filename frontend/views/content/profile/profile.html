@@ -62,14 +62,16 @@
                         </div>
                         <div ng-if="personalInfo">
                             <label class="radio-inline mr-3">
-                                <input type="radio" name="optradio" value="male" ng-model="genderData.gender"> Male
+                                <input type="radio" name="optradio" value="male" ng-model="userDataForProfile.gender">
+                                Male
                             </label>
                             <label class="radio-inline mr-3">
-                                <input type="radio" name="optradio" value="female" ng-model="genderData.gender"> Female
+                                <input type="radio" name="optradio" value="female" ng-model="userDataForProfile.gender">
+                                Female
                             </label>
                         </div>
                         <div class="custom-input" ng-if="personalInfo">
-                            <input type="date" name="August" ng-model="genderData.dob">
+                            <input type="date" name="August" ng-model="userDataForProfile.dob">
                         </div>
                         <div class="custom-input" ng-if="!personalInfo && userDataForProfile.dob ">
                             {{ userDataForProfile.dob |date}}
@@ -84,11 +86,12 @@
                             - - -
                         </div>
                         <div ng-if="personalInfo" class="mb-2 custom-input">
-                            <input maxlength="10" type="text" class="mt-2 p-1" ng-model="genderData.mobile" only-digits>
+                            <input maxlength="10" type="text" class="mt-2 p-1" ng-model="userDataForProfile.mobile"
+                                only-digits>
                         </div>
                         <div ng-if="!personalInfo" class="mb-2 custom-input">{{userDataForProfile.email}}</div>
                         <div ng-if="personalInfo" class="mb-2 custom-input">
-                            <input type="email" ng-model="genderData.email">
+                            <input type="email" ng-model="userDataForProfile.email">
                         </div>
                     </div>
                 </div>
@@ -96,7 +99,7 @@
                     <span class="social_icon ">
                         <i class="fas fa-save "></i>
                     </span>
-                    <div class="social-text " ng-click="changeInfo(genderData) ">Save</div>
+                    <div class="social-text " ng-click="changeInfo(userDataForProfile) ">Save</div>
                 </fieldset>
             </div>
         </div>
