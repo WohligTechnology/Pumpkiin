@@ -2,7 +2,7 @@ module.exports = function (profile) {
     var req = this.req;
     var res = this.res;
     var sails = req._sails;
-    // console.log("profileprofileprofile", profile)
+    console.log("profileprofileprofile", profile)
     if (_.isEmpty(profile)) {
         res.redirect(env.realHost + "/login/");
         // res.serverError();
@@ -13,6 +13,7 @@ module.exports = function (profile) {
             User.existsSocialFrontendLogin(profile, function (err, data) {
                 // console.log("*****************************************")
                 // console.log("data22222222222222222222222222222222", data)
+
                 if (data.name == "noAccess") {
                     data.accessToken[0] = "AccessNotAvailable";
                     res.redirect(req.session.returnUrl + "/" + data.accessToken[0]);

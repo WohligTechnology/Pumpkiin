@@ -46,6 +46,8 @@ var controller = {
   loginGoogle: function (req, res) {
     if (req.query.returnUrl) {
       req.session.returnUrl = req.query.returnUrl;
+    } else {
+      req.session.returnUrl = "";
     }
     var verifyUrl = req.session.returnUrl;
     var verifiedUrl = verifyUrl.match(/backend/g);
