@@ -17,8 +17,7 @@ var schema = new Schema({
         }
     }],
     email: {
-        type: String,
-        unique: true
+        type: String
     },
     brand: {
         type: Schema.Types.ObjectId,
@@ -73,8 +72,7 @@ var schema = new Schema({
         default: ""
     },
     mobile: {
-        type: Number,
-        unique: true
+        type: Number
     },
     otp: {
         type: String,
