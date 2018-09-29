@@ -7,6 +7,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     $scope.jstrgValue = $.jStorage.get('userData');
     $scope.genderData = {};
     $scope.mobile = {};
+    $scope.profileAddress = {};
     // console.log("$scope.jstrgValue", $scope.jstrgValue);
 
     $scope.relation = [{
@@ -20,7 +21,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Sister", "Brother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew", "Friend"]
 
     $scope.editressModalOpen = function (address) {
-        $scope.data = address;
+        $scope.profileAddress = address;
         $scope.addAddress = $uibModal.open({
             animation: true,
             templateUrl: "views/modal/addressEdit.html",
@@ -185,16 +186,10 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     };
 
     $scope.saveAddressData = function (data) {
-        console.log("data", data)
+        console.log(data);
         var addData = {};
-        var addressData = {};
         var add = $scope.userDataForProfile.address;
-        addressData.title = data.title;
-        addressData.addressLine = data.address;
-        addressData.city = data.city.city;
-        addressData.state = data.state.region;
-        addressData.pincode = data.pin;
-        add.push(addressData);
+        add.push(data);
         addData._id = $scope.jstrgValue._id;
         addData.address = add;
         NavigationService.apiCallWithData("user/save", addData, function (response) {
