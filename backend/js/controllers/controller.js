@@ -489,17 +489,29 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             $scope.formData.filter = dataTofilter;
             $scope.url = "Product/searchProductWithInvoice";
             // $scope.formData.page = $scope.formData.page;
-            NavigationService.apiCall($scope.url, $scope.formData, function (data) {
-                console.log("data.value", data);
-                if (data.value) {
-                    $scope.items = data.data.results;
-                    console.log(" $scope.items", $scope.items);
-                }
 
-                $scope.totalItems = data.data.total;
-                $scope.maxRow = 10;
-            });
+            console.log("-----", $stateParams.status)
+            if ($stateParams.status == "Pending") {
+                NavigationService.apiCall($scope.url, $scope.formData, function (data) {
+                    console.log("data.value", data);
+                    if (data.value) {
+                        $scope.items = data.data.results;
+                        console.log(" $scope.items", $scope.items);
+                    }
+
+                    $scope.totalItems = data.data.total;
+                    $scope.maxRow = 10;
+                });
+            } else {
+                NavigationService.apiCall("Product/searchConfirmedProducts", $scope.formData, function (data) {
+                    console.log("confirmed", data)
+                    $scope.items = data.data.results;
+                    $scope.totalItems = data.data.total;
+                    $scope.maxRow = 10;
+                })
+            }
         }
+
         // $scope.changePage = function (page) {
         //     $scope.viewTable(page);
         // }
