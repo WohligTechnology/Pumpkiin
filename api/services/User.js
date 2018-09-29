@@ -660,7 +660,7 @@ var model = {
                 var aa = moment().subtract(2, 'minute');
                 var bb = new Date();
                 var cc = moment(found.createdAt).isBetween(aa, bb);
-                if (cc == true) {
+                if (!data.verificationStatus) {
                     data._id = found._id;
                     User.saveData(data, function () {});
                     data3 = found.toObject();
