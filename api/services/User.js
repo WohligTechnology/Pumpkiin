@@ -360,10 +360,10 @@ var model = {
                     }]
 
                 };
-                modelUser.email = user.photos[0].value;
+                modelUser.email = user.emails[0].value;
                 modelUser.accessLevel = "User";
-                if (user.image && user.image.url) {
-                    modelUser.photo = user.image.url;
+                if (user.photos && user.photos[0] && user.photos[0].value) {
+                    modelUser.photo = user.photos[0].value;
                 }
                 Model.saveData(modelUser, function (err, data2) {
                     if (err) {
