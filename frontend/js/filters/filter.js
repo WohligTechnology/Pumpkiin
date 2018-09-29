@@ -11,8 +11,15 @@ myApp.filter('myFilter', function () {
   };
 
 });
+myApp.filter('checkimage', function () {
+  return function (input) {
+    console.log(input);
+    return _.split(input, '.')[1];
+  }
+});
 myApp.filter('uploadpath', function () {
   return function (input, width, height, style) {
+    console.log(input);
     var other = "";
     if (width && width !== "") {
       other += "&width=" + width;
