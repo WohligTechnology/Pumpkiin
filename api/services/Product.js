@@ -480,6 +480,38 @@ var model = {
             }).order(options)
             .keyword(options)
             .page(options, callback);
+    },
+    searchConfirmedProducts: function (data, callback) {
+        console.log("-----------", data);
+        var page = 1;
+        // var Model = this;
+        // var Const = this(data);
+        var maxRow = 10;
+        if (data.page) {
+            page = data.page;
+        }
+        var field = data.field;
+
+        var options = {
+            field: data.field,
+            filters: {
+                keyword: {
+                    fields: ['productName'],
+                    term: data.keyword
+                }
+            },
+            sort: {
+                asc: ''
+            },
+            start: (page - 1) * maxRow,
+            count: maxRow
+        };
+
+        this.find({
+                status: "Confirmed"
+            }).order(options)
+            .keyword(options)
+            .page(options, callback);
     }
 
 
