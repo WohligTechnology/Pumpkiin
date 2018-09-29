@@ -8,13 +8,15 @@
     <form name="address">
         <div class="form-group">
             <label for="title"> Address Title ( Home / Work ) * </label>
-            <input class="form-control form-control-sm" type="text" name="addressName" ng-model="data.title" required>
+            <input class="form-control form-control-sm" type="text" name="addressName" ng-model="profileAddress.title"
+                required>
             <span class="error" ng-show="address.addressName.$invalid && address.addressName.$touched"> Please, enter
                 address title</span>
         </div>
         <div class="form-group">
             <label for="fulladd">Full Address * </label>
-            <input class="form-control form-control-sm" type="text" name="address" required ng-model="data.address" required>
+            <input class="form-control form-control-sm" type="text" name="address" required ng-model="profileAddress.addressLine"
+                required>
             <span class="error" ng-show="address.address.$invalid && address.address.$touched"> Please, enter address</span>
         </div>
         <div class="form-group">
@@ -23,8 +25,8 @@
         </div>
         <div class="form-group">
             <label for="state">State * </label>
-            <ui-select name="state" class="input-border" ng-model="data.state" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a state"
-                ng-change="updateState(data.state)" ng-required="true">
+            <ui-select name="state" class="input-border" ng-model="profileAddress.state" theme="selectize" ng-disabled="ctrl.disabled"
+                title="Choose a state" ng-change="updateState(profileAddress.state)" ng-required="true">
                 <ui-select-match placeholder="Select or search a state in the list...">{{$select.selected.region}}</ui-select-match>
                 <ui-select-choices class="background-blue text-white" repeat="state in states | filter: $select.search">
                     <span ng-bind-html="trustAsHtml(state.region | highlight: $select.search)"></span>
@@ -34,8 +36,8 @@
         </div>
         <div class="form-group">
             <label for="title">City * </label>
-            <ui-select name="city" class="input-border" ng-model="data.city" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a city"
-                ng-change="updateState(data.city)" ng-required="true">
+            <ui-select name="city" class="input-border" ng-model="profileAddress.city" theme="selectize" ng-disabled="ctrl.disabled"
+                title="Choose a city" ng-change="updateState(profileAddress.city)" ng-required="true">
                 <ui-select-match placeholder="Select or search a city in the list...">{{$select.selected.city}}</ui-select-match>
                 <ui-select-choices class="background-blue text-white" repeat="city in cities | filter: $select.search">
                     <span ng-bind-html="trustAsHtml(city.city | highlight: $select.search)"></span>
@@ -45,11 +47,12 @@
         </div>
         <div class="form-group">
             <label for="pin">Pincode * </label>
-            <input name="pin" ng-model="data.pin" type="text" class="form-control form-control-sm" name="pin" required only-digits>
+            <input name="pin" ng-model="profileAddress.pincode" type="text" class="form-control form-control-sm" name="pin"
+                required only-digits>
             <span class="error" ng-show="address.pin.$invalid && address.pin.$touched"> Please, enter pincode</span>
         </div>
         <div>
-            <button class="form-control w-40 mx-auto reminder-btn" ng-disabled="address.$invalid" ng-click="saveAddressData(data)">Save</button>
+            <button class="form-control w-40 mx-auto reminder-btn" ng-disabled="address.$invalid" ng-click="saveAddressData(profileAddress)">Save</button>
         </div>
     </form>
 </div>

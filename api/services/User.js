@@ -100,9 +100,9 @@ var schema = new Schema({
     address: [{
         title: String,
         addressLine: String,
-        city: String,
+        city: Schema.Types.Mixed,
         district: String,
-        state: String,
+        state: Schema.Types.Mixed,
         pincode: Number
     }],
     verificationStatus: {
