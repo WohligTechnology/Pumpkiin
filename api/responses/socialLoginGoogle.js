@@ -13,6 +13,7 @@ module.exports = function (profile) {
             User.existsSocialFrontendLogin(profile, function (err, data) {
                 // console.log("*****************************************")
                 // console.log("data22222222222222222222222222222222", data)
+
                 if (data.name == "noAccess") {
                     data.accessToken[0] = "AccessNotAvailable";
                     res.redirect(req.session.returnUrl + "/" + data.accessToken[0]);
