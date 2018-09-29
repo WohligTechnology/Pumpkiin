@@ -11392,7 +11392,7 @@ svg {
 .reg-product-det .image-style {
   width: 75px; }
 
-.text-decoration-none {
+.text-decoration-none:hover {
   text-decoration: none; }
 
 .bg-image {
