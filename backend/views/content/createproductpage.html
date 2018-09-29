@@ -28,18 +28,18 @@
 
                 <div class="form-group" fields>
                     <label>Product Name * </label>
-                    <input type="text" name="productname" placeholder="product name" ng-model="formdata.productName"
+                    <input type="text" name="productname" placeholder="Enter Product Name" ng-model="formdata.productName"
                         class="form-control" required>
                 </div>
                 <div class="form-group" fields>
                     <label>Brand * </label>
-                    <input type="text" name="productname" placeholder="product name" ng-model="formdata.brand" class="form-control"
-                        required>
+                    <input type="text" name="productname" placeholder="Enter Brand Name" ng-model="formdata.brand"
+                        class="form-control" required>
                 </div>
                 <div class="form-group" fields>
                     <label>Retailer * </label>
-                    <input type="text" name="productname" placeholder="product name" ng-model="formdata.retailer" class="form-control"
-                        required>
+                    <input type="text" name="productname" placeholder="Enter Retailer" ng-model="formdata.retailer"
+                        class="form-control" required>
                 </div>
                 <div class="form-group" fields>
                     <label>Product Invoice </label>
@@ -62,13 +62,13 @@
 
                 <div class="form-group">
                     <label>Serial No * </label>
-                    <input type="text" name="serialNo" placeholder="serial No" ng-model="formdata.serialNo" class="form-control"
-                        required>
+                    <input type="text" name="serialNo" placeholder="Enter Serial Number" ng-model="formdata.serialNo"
+                        class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label>Model No * </label>
-                    <input type="text" name="modelNo" placeholder="model No" ng-model="formdata.modelNo" class="form-control"
-                        required>
+                    <input type="text" name="modelNo" placeholder="Enter Model Number" ng-model="formdata.modelNo"
+                        class="form-control" required>
                 </div>
                 <div class="form-group" fields ng-if="!showSaveButton">
                     <label>Product Image * </label>
@@ -90,13 +90,13 @@
                 </div>
                 <div class="form-group">
                     <label>Purchase Price * </label>
-                    <input type="number" name="purchaseprice" placeholder="purchaseprice" ng-model="formdata.purchasePrice"
+                    <input type="number" name="purchaseprice" placeholder="Enter Purchase Price" ng-model="formdata.purchasePrice"
                         class="form-control" required>
                 </div>
 
                 <div class="form-group" fields>
                     <label>Proof of Purchase</label>
-                    <div class="clearfix" ng-if="formdata.purchaseProof">
+                    <div class="clearfix">
                         <div class="img-box" style="float:left;" ng-repeat="pur in formdata.purchaseProof track by $index">
                             <img alt="" ng-src="{{pur|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
                         </div>
@@ -135,7 +135,7 @@
                 </div>
                 <div class="form-group" fields>
                     <label>Insurance Card</label>
-                    <div class="clearfix" ng-if="formdata.insuranceProofImage">
+                    <div class="clearfix">
                         <div class="img-box" style="float:left;" ng-repeat="insuranceImage in formdata.insuranceProofImage track by $index">
                             <img alt="" ng-src="{{insuranceImage|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" />
                         </div>
