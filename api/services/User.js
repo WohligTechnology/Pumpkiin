@@ -921,7 +921,7 @@ var model = {
         emailData.name = data.name;
         emailData.email = data.email;
         emailData.greeting = greeting;
-        emailData.filename = "welcome.ejs";
+        emailData.filename = "welcomeFB.ejs";
         emailData.subject = "Welcome to Pumpkiin";
         emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
         Config.email(emailData, callback);
