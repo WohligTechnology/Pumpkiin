@@ -6,7 +6,7 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
 
     $scope.currentState = $state.current.name;
 
-    if (_.isEmpty($.jStorage.get("userData")) && $scope.currentState !== 'login') {
+    if (_.isEmpty($.jStorage.get("userData")) && $scope.currentState !== 'login' && $scope.currentState !== 'verifyemail') {
         $state.go('home');
     }
     $.fancybox.close(true);
