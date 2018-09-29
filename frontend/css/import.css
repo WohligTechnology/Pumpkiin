@@ -10218,7 +10218,7 @@ fieldset:disabled {
   border-radius: 50%;
   height: 13px;
   width: 13px;
-  padding: 10px 13px;
+  padding: 10px 12px 10px 16px;
   margin: 5px; }
 
 .twitter-logo {
@@ -11391,6 +11391,9 @@ svg {
 
 .reg-product-det .image-style {
   width: 75px; }
+
+.text-decoration-none {
+  text-decoration: none; }
 
 .bg-image {
   height: 91.7vh;
