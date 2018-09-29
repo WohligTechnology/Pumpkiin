@@ -19,6 +19,14 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
 
     $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Sister", "Brother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew", "Friend"]
 
+    $scope.editressModalOpen = function (address) {
+        $scope.data = address;
+        $scope.addAddress = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/addressEdit.html",
+            scope: $scope,
+        });
+    }
 
     $scope.addressModalOpen = function () {
         $scope.addAddress = $uibModal.open({
@@ -180,7 +188,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         console.log("data", data)
         var addData = {};
         var addressData = {};
-        var add = [];
+        var add = $scope.userDataForProfile.address;
         addressData.title = data.title;
         addressData.addressLine = data.address;
         addressData.city = data.city.city;
