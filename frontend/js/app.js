@@ -96,7 +96,7 @@ myApp.config(function (
       controller: "NotificationCtrl"
     })
     .state("verifyemail", {
-      url: "/verifyemail",
+      url: "/verifyemail/:userId",
       templateUrl: tempateURL,
       controller: "VerifyEmailCtrl"
     })
