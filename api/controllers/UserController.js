@@ -352,26 +352,28 @@ var controller = {
       });
     }
   },
-  // verifyEmail: function (req, res) {
-  //   if (req.query) {
-  //     User.verifyEmail(req.query, function (err, data) {
-  //       if (err) {
-  //         res.send("There was some error Processing Request");
-  //       } else {
-  //         res.send("Your Email is verified Successfully");
-  //       }
-  //     })
-  //   }
-  // },
-
   verifyEmail: function (req, res) {
-    User.verifyEmail(req.query, function (err, data) {
-      if (err) {
-        res.send("There was some error Processing Request");
-      } else {
-        res.send("Your Email is verified Successfully");
-      }
-    });
+    if (req.body) {
+      User.verifyEmail(req.body, res.callback);
+    } else {
+      res.json({
+        value: false,
+        data: {
+          message: "Invalid Request"
+        }
+      });
+    }
   },
+
+
+  // verifyEmail: function (req, res) {
+  //   User.verifyEmail(req.query, function (err, data) {
+  //     if (err) {
+  //       res.send("There was some error Processing Request");
+  //     } else {
+  //       res.send("Your Email is verified Successfully");
+  //     }
+  //   });
+  // },
 };
 module.exports = _.assign(module.exports, controller);
