@@ -52,6 +52,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         NavigationService.apiCallWithData("User/getOne", data, function (response) {
             if (response.value == true) {
                 $scope.userDataForProfile = response.data;
+                $scope.userDataForProfile.dob = new Date($scope.userDataForProfile.dob);
                 if ($scope.userDataForProfile.mobile) {
                     $scope.verifyMobile = true;
                 }
@@ -167,6 +168,10 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
                     NavigationService.apiCallWithData("User/getOne", data, function (response) {
                         if (response.value == true) {
                             $.jStorage.set("userData", response.data);
+
+                            if ($scope.userDataForProfile.mobile) {
+                                $scope.mobile = true;
+                            }
                             // console.log("$scope.userDataForProfile ", $scope.userDataForProfile);
                         }
                     });
