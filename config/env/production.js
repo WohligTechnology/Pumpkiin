@@ -32,7 +32,7 @@ module.exports = {
     "tushar@wohlig.com",
     "chirag@wohlig.com",
     "harsh@wohlig.com",
-    "sahil@pumpkiin.com"
+    "sahil@pumpkiin.com", "manali.gada@wohlig.com"
   ]
 
   /***************************************************************************
