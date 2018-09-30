@@ -44,33 +44,22 @@ var controller = {
     )(req, res);
   },
   loginGoogle: function (req, res) {
-    if (req.query.returnUrl) {
-      req.session.returnUrl = req.query.returnUrl;
-    } else {
-      req.session.returnUrl = "";
-    }
-    console.log(req.session.returnUrl);
-
-    var verifyUrl = req.session.returnUrl;
-    var verifiedUrl = /backend/.test(verifyUrl);
-    console.log(verifiedUrl);
-    if (!verifiedUrl) {
-      passport.authenticate(
-        "google", {
-          scope: ["openid", "profile", "email"],
-          failureRedirect: "/"
-        },
-        res.socialLoginGoogle
-      )(req, res);
-    } else {
-      passport.authenticate(
-        "google", {
-          scope: ["openid", "profile", "email"],
-          failureRedirect: "/"
-        },
-        res.socialLogin
-      )(req, res);
-    }
+    passport.authenticate(
+      "google", {
+        scope: ["openid", "profile", "email"],
+        failureRedirect: "/"
+      },
+      res.socialLoginGoogle
+    )(req, res);
+  },
+  loginGoogleBackend: function (req, res) {
+    passport.authenticate(
+      "google", {
+        scope: ["openid", "profile", "email"],
+        failureRedirect: "/"
+      },
+      res.socialLogin
+    )(req, res);
   },
 
   profile: function (req, res) {
