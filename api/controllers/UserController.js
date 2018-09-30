@@ -47,12 +47,12 @@ var controller = {
     if (req.query.returnUrl) {
       req.session.returnUrl = req.query.returnUrl;
     } else {
-      req.query.returnUrl = "";
+      req.session.returnUrl = "";
     }
-    console.log(req.query.returnUrl);
+    console.log(req.session.returnUrl);
 
-    var verifyUrl = req.query.returnUrl;
-    var verifiedUrl = /backend/g.test(verifyUrl);
+    var verifyUrl = req.session.returnUrl;
+    var verifiedUrl = /backend/g.test();
     console.log(verifiedUrl);
     if (verifiedUrl) {
       passport.authenticate(
