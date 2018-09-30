@@ -2,8 +2,9 @@
     <div class="container">
         <div class="d-flex profile-details mb-3 ">
             <div class="profile-image" class="img-fluid">
-                <img class="img-uploaded" src="img/emptyProfile.png" ng-if="!userDataForProfile.profilePic">
-                <img class="img-uploaded" src="{{userDataForProfile.profilePic | serverimage}}" ng-if="userDataForProfile.profilePic">
+                <img ng-src="{{jstrgValue.profilePic | serverimage}}" alt="Ticket_circle-icon" width="100%" ng-if="jstrgValue.profilePic">
+                <img ng-src="{{jstrgValue.photo}}" alt="Ticket_circle-icon" width="100%" ng-if="jstrgValue.photo">
+                <img src="img/emptyProfile.png" ng-if="!(jstrgValue.profilePic || jstrgValue.photo)" alt="Ticket_circle-icon">
                 <div class="profile-photo-upload">
                     <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="userDataForProfile.profilePic"
                         noStatus="true" no-view></upload-image>
