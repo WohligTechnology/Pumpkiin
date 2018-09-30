@@ -7,30 +7,26 @@ module.exports = function (profile) {
         res.redirect(env.realHost + "/login/");
         // res.serverError();
     } else {
-        if (req.session.returnUrl) {
-            User.existsSocial(profile, function (err, data) {
-                console.log("*****************************************")
-                console.log("data22222222222222222222222222222222", data)
-                if (data.name == "noAccess") {
-                    data.accessToken[0] = "AccessNotAvailable";
+        User.existsSocial(profile, function (err, data) {
+            console.log("*****************************************")
+            console.log("data22222222222222222222222222222222", data)
+            if (data.name == "noAccess") {
+                data.accessToken[0] = "AccessNotAvailable";
+                res.redirect("https://pumpkiinbackend.wohlig.in/#!/login" + "/" + data.accessToken[0]);
+                req.session.destroy(function () {});
+            } else {
+                if (err || !data) {
+                    res.callback(err, data);
+                } else {
+                    if (!data.accessLevel) {
+                        data.accessToken[0] = "AccessNotAvailable";
+                    }
+                    console.log(req.session.returnUrl);
                     res.redirect("https://pumpkiinbackend.wohlig.in/#!/login" + "/" + data.accessToken[0]);
                     req.session.destroy(function () {});
-                } else {
-                    if (err || !data) {
-                        res.callback(err, data);
-                    } else {
-                        if (!data.accessLevel) {
-                            data.accessToken[0] = "AccessNotAvailable";
-                        }
-                        console.log(req.session.returnUrl);
-                        res.redirect("https://pumpkiinbackend.wohlig.in/#!/login" + "/" + data.accessToken[0]);
-                        req.session.destroy(function () {});
-                    }
                 }
+            }
 
-            });
-        } else {
-            User.existsSocial(profile, res.callback);
-        }
+        });
     }
 };
