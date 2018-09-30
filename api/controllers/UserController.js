@@ -49,9 +49,12 @@ var controller = {
     } else {
       req.query.returnUrl = "";
     }
+    console.log(req.query.returnUrl);
+
     var verifyUrl = req.query.returnUrl;
-    var verifiedUrl = verifyUrl.match(/backend/g);
-    if (_.isEmpty(verifiedUrl)) {
+    var verifiedUrl = verifyUrl.test(/backend/g);
+    console.log(verifiedUrl);
+    if (verifiedUrl) {
       passport.authenticate(
         "google", {
           scope: ["openid", "profile", "email"],
