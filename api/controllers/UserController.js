@@ -52,7 +52,7 @@ var controller = {
     console.log(req.query.returnUrl);
 
     var verifyUrl = req.query.returnUrl;
-    var verifiedUrl = verifyUrl.test(/backend/g);
+    var verifiedUrl = /backend/g.test(verifyUrl);
     console.log(verifiedUrl);
     if (verifiedUrl) {
       passport.authenticate(
