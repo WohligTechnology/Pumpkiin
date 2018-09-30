@@ -16,7 +16,7 @@ module.exports = function (profile) {
 
                 if (data.name == "noAccess") {
                     data.accessToken[0] = "AccessNotAvailable";
-                    res.redirect(req.session.returnUrl + "/" + data.accessToken[0]);
+                    res.redirect("https://pumpkiin.wohlig.co.in/login/" + "/" + data.accessToken[0]);
                     req.session.destroy(function () {});
                 } else {
                     if (err || !data) {
@@ -26,7 +26,7 @@ module.exports = function (profile) {
                             data.accessToken[0] = "AccessNotAvailable";
                         }
                         console.log(req.session.returnUrl);
-                        res.redirect(req.session.returnUrl + "#!/login/" + data.accessToken[0]);
+                        res.redirect("https://pumpkiin.wohlig.co.in/login/" + data.accessToken[0]);
                         req.session.destroy(function () {});
                     }
                 }
