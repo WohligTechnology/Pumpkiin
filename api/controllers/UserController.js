@@ -53,7 +53,7 @@ var controller = {
 
     var verifyUrl = req.session.returnUrl;
     var verifiedUrl = /backend/g.test();
-
+    console.log(verifiedUrl);
     if (verifiedUrl) {
       passport.authenticate(
         "google", {
