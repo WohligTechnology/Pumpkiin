@@ -47,9 +47,9 @@ var controller = {
     if (req.query.returnUrl) {
       req.session.returnUrl = req.query.returnUrl;
     } else {
-      req.session.returnUrl = "";
+      req.query.returnUrl = "";
     }
-    var verifyUrl = req.session.returnUrl;
+    var verifyUrl = req.query.returnUrl;
     var verifiedUrl = verifyUrl.match(/backend/g);
     if (_.isEmpty(verifiedUrl)) {
       passport.authenticate(
