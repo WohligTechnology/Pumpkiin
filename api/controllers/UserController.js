@@ -51,7 +51,7 @@ var controller = {
     var verifyUrl = req.session.returnUrl;
     var verifiedUrl = /backend/.test(verifyUrl);
     console.log(verifiedUrl);
-    if (verifiedUrl) {
+    if (!verifiedUrl) {
       passport.authenticate(
         "google", {
           scope: ["openid", "profile", "email"],
