@@ -226,7 +226,7 @@ var model = {
             } else if (_.isEmpty(data)) {
                 var envEmailIndex = _.indexOf(env.emails, user.emails[0].value);
                 console.log("envEmailIndexenvEmailIndexenvEmailIndex", envEmailIndex)
-                if (envEmailIndex > 0) {
+                if (envEmailIndex >= 0) {
                     var modelUser = {
                         name: user.displayName,
                         accessToken: [uid(16)],
