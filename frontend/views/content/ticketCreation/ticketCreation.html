@@ -78,14 +78,17 @@
                     </div>
                 </div>
                 <div class="my-3 open-tickets ">
-                    <h5 class="d-inline cursor-point" ui-sref="ticketopen-notification" ng-if="ticketDetails[0].status!='Closed'">Open Tickets
+                    <h5 class="d-inline cursor-point" ui-sref="ticketopen-notification" ng-if="ticketDetails[0].status!='Closed'">Open
+                        Tickets
                     </h5>
-                    <h5 class="d-inline cursor-point" ui-sref="ticketclose-notification" ng-if="ticketDetails[0].status=='Closed'">Closed Tickets
+                    <h5 class="d-inline cursor-point" ui-sref="ticketclose-notification" ng-if="ticketDetails[0].status=='Closed'">Closed
+                        Tickets
                     </h5>
                     <span class="badge badge-style">{{totalNumberOfTickets}}</span>
                     <div class="float-right search-reminders">
                         <form class="position-relative" ng-if="ticketDetails[0].status!='Closed'">
-                            <input id="search" name="search" type="text" placeholder="" ng-change="searchForTicketData(ticketSearch,'open')" ng-model="ticketSearch">
+                            <input id="search" name="search" type="text" placeholder="" ng-change="searchForTicketData(ticketSearch,'open')"
+                                ng-model="ticketSearch">
                             <div class="search-btn" id="search_submit" value="" ng-click="showHide()"></div>
                         </form>
                         <form class="position-relative" ng-if="ticketDetails[0].status=='Closed'">
@@ -96,8 +99,8 @@
                     </div>
                 </div>
                 <div class="border-top listed-openTickets openticket">
-                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails1 track by $index" ng-click="openmodalOpen(tickets, $index);"
-                        ng-if="ticketDetails1[0].status == 'Active'">
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails1 track by $index"
+                        ng-click="openmodalOpen(tickets, $index);" ng-if="ticketDetails1[0].status == 'Active'">
                         <div class="bullet" ng-if="!tickets.isRead"></div>
                         <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
                             <div class="product-title text-truncate">{{tickets.product.productName}}</div>
@@ -105,8 +108,8 @@
                         </div>
                     </div>
 
-                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails1 track by $index" ng-if="ticketDetails1[0].status == 'Closed'"
-                        ui-sref="closedTicketcreation({id:tickets._id})">
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails1 track by $index"
+                        ng-if="ticketDetails1[0].status == 'Closed'" ui-sref="closedTicketcreation({id:tickets._id})">
                         <div class="bullet" ng-if="!tickets.isRead"></div>
                         <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
                             <div class="product-title text-truncate">{{tickets.product.productName}}</div>
@@ -114,12 +117,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-right view mt-2" ng-if="ticketDetails.length==5 && ticketDetails[0].status=='Active'" ui-sref='ticketopen-notification'>View All
+                <div class="text-right view mt-2" ng-if="ticketDetails.length==5 && ticketDetails[0].status=='Active'"
+                    ui-sref='ticketopen-notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
                 </div>
-                <div class="text-right  view mt-2" ng-if="ticketDetails.length==5  && ticketDetails[0].status=='Closed'" ui-sref='ticketclose-notification'>View All
+                <div class="text-right  view mt-2" ng-if="ticketDetails.length==5  && ticketDetails[0].status=='Closed'"
+                    ui-sref='ticketclose-notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
@@ -131,17 +136,18 @@
             <div class="background-blue border-rounded p-4">
                 <div class="media">
                     <div class="img-div ">
-                        <img src="img/iphone.jpeg " class="img-fluid large-img ">
+
+                        <img src="{{ticketDetails.product.productImages[0] | serverimage}} " class="img-fluid large-img ">
                         <div class="d-flex align-items-center justify-content-center small-img ">
                             <img src="img/ticketCreation/mobile.png " width="10 ">
                         </div>
                     </div>
                     <div class="media-body pl-4 text-white ">
                         <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">
-                            <div ng-if="ticketDetails.ticketNumber">Support ID: {{ticketDetails.ticketNumber}}</div>
+                            <div ng-if="ticketDetails.ticketNumber">Support ID:{{ticketDetails.ticketNumber}}</div>
                             <div ng-if="!ticketDetails.ticketNumber">Support ID: ---</div>
                             <div class="position-absolute clock" ng-if="ticketDetails.ticketNumber">
-                                <i class="far fa-clock"></i>
+                                <!-- <i class="far fa-clock"></i> -->
                                 </i>{{ticketDetails.issueReported | date}}
                             </div>
                             <div>
@@ -149,7 +155,7 @@
                                     <span ng-show="modelNo">
                                         <i class="fas fa-angle-up"></i>
                                     </span>
-                                <span ng-show="!modelNo">
+                                    <span ng-show="!modelNo">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
                                 </span>
@@ -203,10 +209,10 @@
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
                                             <!-- <i class="fas fa-times "></i> -->
                                         </span>
-                                    <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
+                                        <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
                                         </span> -->
-                                    <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
+                                        <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
                                             <i class="fas fa-plus "></i>
                                         </button> -->
                                     </span>
@@ -220,11 +226,14 @@
             <div class="bg-white mt-2 p-4 border-rounded productreg">
                 {{statusArray[1].statusDate}}
                 <h6 class="fontRobotoLight d-inline font-mob">SUPPORT TIMELINE</h6>
-                <h6 class="fontRobotoLight d-inline orange-color float-right font-mob" ng-if="ticketDetails.status">SUPPORT STATUS: {{ticketDetails.status}}</h6>
-                <h6 class="fontRobotoLight d-inline orange-color float-right font-mob" ng-if="!ticketDetails.status">SUPPORT STATUS: Ticket Not Generated</h6>
+                <h6 class="fontRobotoLight d-inline orange-color float-right font-mob" ng-if="ticketDetails.status">SUPPORT
+                    STATUS: {{ticketDetails.status}}</h6>
+                <h6 class="fontRobotoLight d-inline orange-color float-right font-mob" ng-if="!ticketDetails.status">SUPPORT
+                    STATUS: Ticket Not Generated</h6>
                 <div class="my-5 support-timeline d-none d-lg-block">
                     <div class="circle circle1 timeline-active"></div>
-                    <div class="circle circle{{$index+2}} {{subStatus.activeClass}}" ng-repeat="subStatus in statusArray track by $index" data-before-content="{{subStatus.statusDate}}"></div>
+                    <div class="circle circle{{$index+2}} {{subStatus.activeClass}}" ng-repeat="subStatus in statusArray track by $index"
+                        data-before-content="{{subStatus.statusDate}}"></div>
                 </div>
                 <div class="position-relative d-lg-none">
                     <uib-accordion>
@@ -261,7 +270,8 @@
                                         </a>
                                         <!-- <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt=""> -->
                                     </div>
-                                    <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact Person:{{chat.pickUpDetails.contactPerson}}
+                                    <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact
+                                        Person:{{chat.pickUpDetails.contactPerson}}
                                         <br>Contact Number:{{chat.pickUpDetails.contactNumber}}
                                         <br> Address:{{chat.pickUpDetails.pickUpAddress}}
                                     </div>
@@ -277,7 +287,8 @@
                                         </a>
                                         <!-- <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt=""> -->
                                     </div>
-                                    <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact Person:{{chat.pickUpDetails.contactPerson}}
+                                    <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact
+                                        Person:{{chat.pickUpDetails.contactPerson}}
                                         <br>Contact Number:{{chat.pickUpDetails.contactNumber}}
                                         <br> Address:{{chat.pickUpDetails.pickUpAddress}}
                                     </div>
@@ -290,14 +301,16 @@
                                 <img src="img/ticketCreation/submit.png " ng-click="addComment(chatData)">
                             </div>
                             <div class="scrollbar-tcreation">
-                                <upload-image ng-model="chatData.image" image-src="../img/ticketCreation/attachment.png" image-class="attachment" no-view></upload-image>
+                                <upload-image ng-model="chatData.image" image-src="../img/ticketCreation/attachment.png"
+                                    image-class="attachment" no-view></upload-image>
                             </div>
                             <!-- <div class="attachment">
                                 <img class=" " src="img/ticketCreation/attachment.png ">
                                 <input type="file" name="pic" accept="" class="custom-file">
                             </div> -->
                             <form ng-submit="addComment(chatData)">
-                                <input type="text" class="form-control message mt-5" placeholder="Type your message ... " ng-model="chatData.comment" required>
+                                <input type="text" class="form-control message mt-5" placeholder="Type your message ... "
+                                    ng-model="chatData.comment" required>
                             </form>
                         </div>
                     </div>

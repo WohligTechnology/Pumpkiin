@@ -8,6 +8,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     $scope.genderData = {};
     $scope.mobile = {};
     $scope.profileAddress = {};
+    $scope.addressIndex = -1;
     // console.log("$scope.jstrgValue", $scope.jstrgValue);
 
     $scope.relation = [{
@@ -18,9 +19,14 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         "relation": "Brother"
     }];
 
+    $scope.reload = function () {
+        $state.reload();
+    }
+
     $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Sister", "Brother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew", "Friend"]
 
-    $scope.editressModalOpen = function (address) {
+    $scope.editressModalOpen = function (address, index) {
+        $scope.addressIndex = index;
         $scope.profileAddress = address;
         $scope.addAddress = $uibModal.open({
             animation: true,
@@ -30,6 +36,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     }
 
     $scope.addressModalOpen = function () {
+        $scope.addressIndex = -1;
         $scope.addAddress = $uibModal.open({
             animation: true,
             templateUrl: "views/modal/addressEdit.html",
@@ -52,7 +59,12 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         NavigationService.apiCallWithData("User/getOne", data, function (response) {
             if (response.value == true) {
                 $scope.userDataForProfile = response.data;
-                // console.log("$scope.userDataForProfile ", $scope.userDataForProfile);
+                $scope.userDataForProfile.dob = new Date($scope.userDataForProfile.dob);
+                if ($scope.userDataForProfile.mobile) {
+                    $scope.verifyMobile = true;
+                }
+                console.log("$scope.userDataForProfile ", $scope.userDataForProfile);
+                $scope.userDataForProfile.lastMobile = $scope.userDataForProfile.mobile;
             }
         });
     }
@@ -66,8 +78,6 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         var test = {};
         test.relatedUsers = $scope.userDataForProfile.relations;
         test.user = $scope.userDataForProfile._id;
-        // console.log("test", test);
-        // console.log("$scope.userDataForProfile.relations", $scope.userDataForProfile.relations);
         NavigationService.apiCallWithData("User/save", $scope.userDataForProfile, function (response) {
             if (response.value == true) {
                 toastr.error("Member removed successfully");
@@ -93,14 +103,15 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     }
 
     $scope.changeInfo = function () {
-        // console.log("data", $scope.genderData);
-        $scope.mobile = $scope.genderData.mobile;
-        if ($scope.genderData.mobile) {
-            var dataToSend = {};
-            dataToSend._id = $scope.jstrgValue._id;
-            dataToSend.mobile = $scope.genderData.mobile;
-            NavigationService.apiCallWithData("User/sendMobileOtp", dataToSend, function (response) {
+        if ($scope.userDataForProfile.lastMobile !== $scope.userDataForProfile.mobile) {
+            NavigationService.apiCallWithData("User/sendMobileOtp", {
+                _id: $scope.jstrgValue._id,
+                mobile: $scope.userDataForProfile.mobile
+            }, function (response) {
                 if (response.value == true) {
+                    $scope.formName = {
+                        mobile: $scope.userDataForProfile.mobile
+                    };
                     $scope.otp = $uibModal.open({
                         animation: true,
                         templateUrl: "views/modal/otpModal.html",
@@ -110,8 +121,9 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
                 }
             });
         } else {
-            $scope.genderData._id = $scope.jstrgValue._id;
-            NavigationService.apiCallWithData("User/save", $scope.genderData, function (response) {
+            // $scope.genderData._id = $scope.jstrgValue._id;
+            delete $scope.userDataForProfile.createdAt;
+            NavigationService.apiCallWithData("User/save", $scope.userDataForProfile, function (response) {
                 if (response.value == true) {
                     $state.reload();
                 }
@@ -126,13 +138,15 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
             $scope.data = {};
 
             $scope.data.otp = info.digit1.toString() + info.digit2.toString() + info.digit3.toString() + info.digit4.toString();
-            $scope.data.mobile = $scope.mobile;
+            $scope.data.mobile = info.mobile;
 
-            NavigationService.apiCallWithData("User/verifyMobileOtp", $scope.data, function (response) {
+            NavigationService.apiCallWithData("User/verifyMobileOtp", {
+                otp: info.digit1.toString() + info.digit2.toString() + info.digit3.toString() + info.digit4.toString(),
+                mobile: info.mobile,
+                _id: $scope.userDataForProfile._id
+            }, function (response) {
                 if (response.value == true) {
-                    $scope.genderData._id = $scope.jstrgValue._id;
-                    console.log("       Mobile Change      ", $scope.genderData)
-                    NavigationService.apiCallWithData("User/saveUpdatedData", $scope.genderData, function (response) {
+                    NavigationService.apiCallWithData("User/saveUpdatedData", $scope.userDataForProfile, function (response) {
                         console.log("result -- ", response);
                         if (response.value == true) {
                             $scope.otp.close();
@@ -161,6 +175,10 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
                     NavigationService.apiCallWithData("User/getOne", data, function (response) {
                         if (response.value == true) {
                             $.jStorage.set("userData", response.data);
+
+                            if ($scope.userDataForProfile.mobile) {
+                                $scope.mobile = true;
+                            }
                             // console.log("$scope.userDataForProfile ", $scope.userDataForProfile);
                         }
                     });
@@ -189,7 +207,11 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         console.log(data);
         var addData = {};
         var add = $scope.userDataForProfile.address;
-        add.push(data);
+        if ($scope.addressIndex != -1) {
+            add[$scope.addressIndex] = data
+        } else {
+            add.push(data);
+        }
         addData._id = $scope.jstrgValue._id;
         addData.address = add;
         NavigationService.apiCallWithData("user/save", addData, function (response) {
@@ -202,7 +224,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     $scope.removeAddress = function (index) {
         $scope.userDataForProfile.address = _.slice($scope.userDataForProfile.address, 0, index);
         NavigationService.apiCallWithData("User/save", $scope.userDataForProfile, function (response) {
-            toastr.error("Address deleted successfully");
+            toastr.success("Address deleted successfully");
         });
     };
 

@@ -226,7 +226,7 @@ var model = {
             } else if (_.isEmpty(data)) {
                 var envEmailIndex = _.indexOf(env.emails, user.emails[0].value);
                 console.log("envEmailIndexenvEmailIndexenvEmailIndex", envEmailIndex)
-                if (envEmailIndex > 0) {
+                if (envEmailIndex >= 0) {
                     var modelUser = {
                         name: user.displayName,
                         accessToken: [uid(16)],
@@ -313,6 +313,7 @@ var model = {
                         callback(err, data2);
                     } else {
                         data3 = data2.toObject();
+                        User.sendIntroEmail(data3, function () {});
                         delete data3.oauthLogin;
                         delete data3.password;
                         delete data3.forgotPassword;
@@ -361,14 +362,15 @@ var model = {
                 };
                 modelUser.email = user.emails[0].value;
                 modelUser.accessLevel = "User";
-                if (user.image && user.image.url) {
-                    modelUser.photo = user.image.url;
+                if (user.photos && user.photos[0] && user.photos[0].value) {
+                    modelUser.photo = user.photos[0].value;
                 }
                 Model.saveData(modelUser, function (err, data2) {
                     if (err) {
                         callback(err, data2);
                     } else {
                         data3 = data2.toObject();
+                        User.sendIntroEmail(data3, function () {});
                         delete data3.oauthLogin;
                         delete data3.password;
                         delete data3.forgotPassword;
@@ -660,7 +662,7 @@ var model = {
                 var aa = moment().subtract(2, 'minute');
                 var bb = new Date();
                 var cc = moment(found.createdAt).isBetween(aa, bb);
-                if (!data.verificationStatus) {
+                if (!found.verificationStatus) {
                     data._id = found._id;
                     User.saveData(data, function () {});
                     data3 = found.toObject();
@@ -668,24 +670,9 @@ var model = {
                     delete data3.password;
                     delete data3.forgotPassword;
                     delete data3.otp;
-                    var emailData = {};
-                    var time = new Date().getHours();
-                    var greeting;
-                    if (time < 10) {
-                        greeting = "Good morning";
-                    } else if (time < 17) {
-                        greeting = "Good Afternoon";
-                    } else {
-                        greeting = "Good evening";
-                    }
-                    emailData.from = "sahil@pumpkiin.com";
-                    emailData.name = data.name;
-                    emailData.email = data.email;
-                    emailData.greeting = greeting;
-                    emailData.filename = "welcome.ejs";
-                    emailData.subject = "welcome to pumpkiin";
-                    emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
-                    Config.email(emailData, function (err, emailRespo) {});
+
+                    User.sendIntroEmail(data, function () {}, true);
+
                     data3.email = data.email;
                     data3.name = data.name;
                     callback(null, data3)
@@ -742,7 +729,7 @@ var model = {
                     emailData.filename = "welcomeFB.ejs";
                     emailData.subject = "welcome to pumpkiin";
                     emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
-                    Config.email(emailData, function (err, emailRespo) {});
+                    Config.email(emailData, function (err, emailRespo) {}, true);
                     data3.email = data.email;
                     data3.name = data.name;
                     callback(null, data3)
@@ -767,7 +754,11 @@ var model = {
     //for edit mobileNumber
 
     sendMobileOtp: function (data, callback) {
-        var otpNumber = (Math.random() + "").substring(2, 6);
+        if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
+            var otpNumber = (Math.random() + "").substring(2, 6);
+        } else {
+            otpNumber = 1111;
+        }
         User.findOneAndUpdate({
             _id: data._id
         }, {
@@ -786,20 +777,24 @@ var model = {
                 delete data3.accessToken;
                 delete data3.password;
                 delete data3.forgotPassword;
-                var smsData = {};
-                smsData.message = 'Your verification code is ' + data3.otp;
-                smsData.senderId = 'PUMPKIIN';
-                smsData.mobile = data.mobile;
-                delete data3.otp;
-                Config.sendSms(smsData, function (err, smsRespo) {
-                    if (err) {
-                        console.log("*************************************************sms gateway error in photographer***********************************************", err);
-                    } else if (smsRespo) {
-                        console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
-                    } else {
-                        console.log("invalid data");
-                    }
-                });
+                if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
+                    var smsData = {};
+                    smsData.message = 'Your verification code is ' + data3.otp;
+                    smsData.senderId = 'PUMPKIIN';
+                    smsData.mobile = data.mobile;
+                    delete data3.otp;
+                    Config.sendSms(smsData, function (err, smsRespo) {
+                        if (err) {
+                            console.log("*************************************************sms gateway error in photographer***********************************************", err);
+                        } else if (smsRespo) {
+                            console.log(smsRespo, "*************************************************sms sent partyyy hupppieeee**********************************************");
+                        } else {
+                            console.log("invalid data");
+                        }
+                    });
+                } else {
+                    delete data3.otp;
+                }
                 callback(null, data3);
             }
         });
@@ -831,76 +826,6 @@ var model = {
 
     },
 
-    /*  saveUpdatedData: function (data, callback) {
-         console.log("save the updated data", data)
-         User.findOneAndUpdate({
-             _id: data._id
-         }, {
-             gender: data.gender,
-             mobile: data.mobile,
-             email: data.email
-         }, {
-             new: true
-         }).exec(function (err, found) {
-             if (err || _.isEmpty(found)) {
-                 callback(err, null);
-             } else {
-                 // callback(null, found)
-                 // console.log("found", found)
-                 // var aa = moment().subtract(2, 'minute');
-                 // var bb = new Date();
-                 // var cc = moment(found.createdAt).isBetween(aa, bb);
-                 // if (true) {
-                 // data._id = found._id;
-                 // User.saveData(data, function () {});
-                 // data3 = found.toObject();
-                 // delete data3.accessToken;
-                 // delete data3.password;
-                 // delete data3.forgotPassword;
-                 // delete data3.otp;
-                 var emailData = {};
-                 var time = new Date().getHours();
-                 var greeting;
-                 if (time < 10) {
-                     greeting = "Good morning";
-                 } else if (time < 17) {
-                     greeting = "Good Afternoon";
-                 } else {
-                     greeting = "Good evening";
-                 }
-                 emailData.from = "sahil@pumpkiin.com";
-                 emailData.name = found.name;
-                 emailData.mobile = found.mobile;
-                 emailData.email = found.email;
-                 emailData.dob = found.dob;
-                 emailData.gender = found.gender;
-                 emailData.greeting = greeting;
-                 emailData.filename = "information-update.ejs";
-                 emailData.subject = "Following fields has been successfully updated!";
-                 // console.log("emailData---------", emailData)
-                 Config.email(emailData, function (err, emailRespo) {
-                     global.red(emailRespo)
-                 });
-                 // data3.email = data.email;
-                 // data3.name = data.name;
-                 callback(null, found)
-                 // } else {
-                 //     data._id = found._id;
-                 //     User.saveData(data, function () {});
-                 //     data3 = found.toObject();
-                 //     delete data3.accessToken;
-                 //     delete data3.password;
-                 //     delete data3.forgotPassword;
-                 //     delete data3.otp;
-                 //     data3.email = data.email;
-                 //     data3.name = data.name;
-                 //     callback(null, data3);
-                 // }
-
-             }
-         });
-
-     } */
 
 
     saveUpdatedData: function (data, callback) {
@@ -931,7 +856,7 @@ var model = {
                 emailData.name = found.name;
                 emailData.mobile = found.mobile;
                 emailData.email = found.email;
-                emailData.dob = found.dob;
+                emailData.dob = moment(found.dob).format("MMM DD YYYY");
                 emailData.gender = found.gender;
                 emailData.greeting = greeting;
                 emailData.filename = "information-update";
@@ -978,9 +903,31 @@ var model = {
         }, {
             new: true
         }).exec(callback);
+    },
+    sendIntroEmail: function (data, callback, sendVerification) {
+        var emailData = {};
+        var time = new Date().getHours();
+        var greeting;
+        if (time < 10) {
+            greeting = "Good morning";
+        } else if (time < 17) {
+            greeting = "Good Afternoon";
+        } else {
+            greeting = "Good evening";
+        }
+        emailData.from = "sahil@pumpkiin.com";
+        emailData.name = data.name;
+        emailData.email = data.email;
+        emailData.greeting = greeting;
+        if (sendVerification) {
+            emailData.filename = "welcome.ejs";
+        } else {
+            emailData.filename = "welcomeFB.ejs";
+        }
+
+        emailData.subject = "Welcome to Pumpkiin";
+        emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
+        Config.email(emailData, callback);
     }
-
-
-
 };
 module.exports = _.assign(module.exports, exports, model);

@@ -203,8 +203,14 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
         accessoriesToSave.status = 'Confirmed';
         accessoriesToSave.name = $scope.jstrgValue.name;
         accessoriesToSave.email = $scope.jstrgValue.email;
+        console.log("ass---", accessoriesToSave)
         NavigationService.apiCallWithData("Product/saveFinalProduct", accessoriesToSave, function (res) {
-            toastr.success("Accessory added successfully");
+            if (!(_.isEmpty(accessoriesToSave.productAccessory))) {
+                toastr.success("Accessory added successfully");
+            }
+            console.log("res0", res)
+
+            toastr.success("Product added successfully");
             $state.go("productListing");
         });
     }

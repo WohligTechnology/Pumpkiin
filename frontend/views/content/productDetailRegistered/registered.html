@@ -9,11 +9,20 @@
                 <div class="d-flex bg-white border-rounded">
                     <div class="w-15 border-right more-images">
                         <div class="p-2" ng-repeat="productImg in productDetails.productImages">
-                            <img class="img-thumbnail" ng-src="{{productImg | serverimage}}" alt="" ng-click="setImage(productImg)">
+                            <img class="img-thumbnail" ng-src="{{productImg | serverimage}}" alt="" ng-click="setImage(productImg)"
+                                ng-if="(productImg|checkimage) !='pdf'">
+                            <a fancybox-box data-fancybox="gallery" ng-href="{{productImg|uploadpath}}" ng-if="(productImg|checkimage) =='pdf'"
+                                rel="gal">
+                                <i class="fas fa-file-pdf fa-2x"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="w-85 p-3 float-right position-relative">
-                        <img class="img-thumbnail" ng-src="{{setImg | serverimage}}" alt="">
+                        <img class="img-thumbnail" ng-src="{{setImg | serverimage}}" alt="" ng-if="(setImg|checkimage) !='pdf'">
+                        <a fancybox-box data-fancybox="gallery" ng-href="{{setImg|uploadpath}}" ng-if="(setImg|checkimage) =='pdf'"
+                            rel="gal">
+                            <i class="fas fa-file-pdf fa-4x"></i>
+                        </a>
                         <!-- <div class="position-absolute favourite">
                             <i class="fas fa-heart"></i>
                         </div> -->
@@ -110,21 +119,21 @@
                                 </ui-select>
                             </div>
                         </div>
-                        <form name="newuser">
+                        <form name="newuser" ng-submit="addUser(userData)">
                             <div class="row form-group">
                                 <div class="col-12 col-md-6">
                                     <label class="mb-0">Name * </label>
                                     <input name="user" ng-model="userData.name" class="form-control form-control-sm"
                                         type="text" required only-letters-input>
-                                    <span class="error" ng-show="newuser.user.$invalid && newuser.user.$touched">
-                                        Please, enter user name</span>
+                                    <!-- <span class="error" ng-show="newuser.user.$invalid && newuser.user.$touched">
+                                        Please, enter user name</span> -->
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="mb-0">Email * </label>
                                     <input name="email" ng-model="userData.email" class="form-control form-control-sm"
                                         type="email" required>
-                                    <span class="error" ng-show="newuser.email.$invalid && newuser.email.$touched">
-                                        Please, enter user email</span>
+                                    <!-- <span class="error" ng-show="newuser.email.$invalid && newuser.email.$touched">
+                                        Please, enter user email</span> -->
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -132,8 +141,8 @@
                                     <label class="mb-0">Mobile Number * </label>
                                     <input name="mobile" ng-model="userData.mobile" class="form-control form-control-sm"
                                         type="text" maxlength="10" required only-digits>
-                                    <span class="error" ng-show="newuser.mobile.$invalid && newuser.mobile.$touched">
-                                        Please, enter user contact</span>
+                                    <!-- <span class="error" ng-show="newuser.mobile.$invalid && newuser.mobile.$touched">
+                                        Please, enter user contact</span> -->
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="mb-0">NickName</label>
@@ -147,18 +156,26 @@
                                         required>
                                         <option ng-repeat="relations in relationsForUser">{{relations}}</option>
                                     </select>
-                                    <span class="error" ng-show="newuser.sellist1.$invalid && newuser.sellist1.$touched">
-                                        Please, select relationship</span>
+                                    <!-- <span class="error" ng-show="newuser.sellist1.$invalid && newuser.sellist1.$touched">
+                                        Please, select relationship</span> -->
                                 </div>
                             </div>
-                            <fieldset class="row form-group" ng-click="addUser(userData)" ng-disabled="newuser.$invalid">
+                            <!-- <fieldset class="row form-group" ng-click="addUser(userData)" ng-disabled="newuser.$invalid">
                                 <div class="d-flex social m-3 add">
                                     <span class="social_icon">
                                         <i class="fas fa-plus"></i>
                                     </span>
                                     <div class="social-text">Add User</div>
                                 </div>
-                            </fieldset>
+                            </fieldset> -->
+                            <button class="row form-group" type="submit">
+                                <div class="d-flex social m-md-3 mx-auto my-3 add">
+                                    <span class="social_icon">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                    <div class="social-text">Add User</div>
+                                </div>
+                            </button>
                             <div class="d-flex main-users">
                                 <div class="d-flex align-items-center existing-user p-2 mr-3" ng-repeat="rel in productDetails.relatedUser">
                                     <div class="mx-2 fontRobotoRegular name-rel">
@@ -212,7 +229,11 @@
                         </div>
                         <div class="d-flex mt-2" ng-if="!warranty">
                             <div class="rounded mr-1 image-style" ng-repeat="warrantyImages in productDetails.warrantyCardImage">
-                                <img class="img-thumbnail" ng-src="{{warrantyImages | serverimage}}" alt="">
+                                <img class="img-thumbnail" ng-src="{{warrantyImages | serverimage}}" alt="" ng-if="(warrantyImages|checkimage) !='pdf'">
+                                <a fancybox-box data-fancybox="gallery" ng-href="{{warrantyImages|uploadpath}}" ng-if="(warrantyImages|checkimage) =='pdf'"
+                                    rel="gal">
+                                    <i class="fas fa-file-pdf fa-4x"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -245,7 +266,11 @@
                         </div>
                         <div class="d-flex mt-2" ng-if="!insurance">
                             <div class="rounded mr-1 image-style" ng-repeat="insuranceImages in productDetails.insuranceProofImage">
-                                <img class="img-thumbnail" ng-src="{{insuranceImages | serverimage}}" alt="">
+                                <img class="img-thumbnail" ng-src="{{insuranceImages | serverimage}}" alt="" ng-if="(insuranceImages|checkimage) !='pdf'">
+                                <a fancybox-box data-fancybox="gallery" ng-href="{{insuranceImages|uploadpath}}" ng-if="(insuranceImages|checkimage) =='pdf'"
+                                    rel="gal">
+                                    <i class="fas fa-file-pdf fa-4x"></i>
+                                </a>
                             </div>
                         </div>
                     </div>

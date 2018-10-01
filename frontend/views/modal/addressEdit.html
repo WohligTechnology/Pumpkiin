@@ -28,7 +28,8 @@
             <ui-select name="state" class="input-border" ng-model="profileAddress.state" theme="selectize" ng-disabled="ctrl.disabled"
                 title="Choose a state" ng-change="updateState(profileAddress.state)" ng-required="true">
                 <ui-select-match placeholder="Select or search a state in the list...">{{$select.selected.region}}</ui-select-match>
-                <ui-select-choices class="background-blue text-white" repeat="state in states | filter: $select.search">
+                <ui-select-choices class="background-blue text-white" repeat="state in states | filter: $select.search"
+                    position="down">
                     <span ng-bind-html="trustAsHtml(state.region | highlight: $select.search)"></span>
                 </ui-select-choices>
             </ui-select>
@@ -39,7 +40,8 @@
             <ui-select name="city" class="input-border" ng-model="profileAddress.city" theme="selectize" ng-disabled="ctrl.disabled"
                 title="Choose a city" ng-change="updateState(profileAddress.city)" ng-required="true">
                 <ui-select-match placeholder="Select or search a city in the list...">{{$select.selected.city}}</ui-select-match>
-                <ui-select-choices class="background-blue text-white" repeat="city in cities | filter: $select.search">
+                <ui-select-choices class="background-blue text-white" repeat="city in cities | filter: $select.search"
+                    position="down">
                     <span ng-bind-html="trustAsHtml(city.city | highlight: $select.search)"></span>
                 </ui-select-choices>
             </ui-select>

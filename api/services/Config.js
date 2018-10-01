@@ -8,11 +8,6 @@
 
 var MaxImageSize = 1600;
 
-// var requrl = "http://wohlig.io:80/api/";
-
-var requrl = "https://pumpkiin.wohlig.co.in/api/";
-
-
 var schema = new Schema({
     name: String,
     content: String,
@@ -417,7 +412,7 @@ var models = {
             } else if (userdata && userdata.length > 0) {
                 if (data.filename && data.filename != "") {
                     request.post({
-                        url: requrl + "config/emailReader/",
+                        url: env.realHost + "/api/config/emailReader/",
                         json: data
                     }, function (err, http, body) {
                         if (err) {

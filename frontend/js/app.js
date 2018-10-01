@@ -10,7 +10,8 @@ var myApp = angular.module("myApp", [
   // 'ngSanitize',
   "angularPromiseButtons",
   "toastr",
-  "ui.select"
+  "ui.select",
+  "moment-picker"
 ]);
 
 // Define all the routes below
@@ -18,8 +19,35 @@ myApp.config(function (
   $stateProvider,
   $urlRouterProvider,
   $httpProvider,
-  $locationProvider
+  $locationProvider,
+  momentPickerProvider
 ) {
+
+
+  momentPickerProvider.options({
+    /* Picker properties */
+    locale: 'en',
+    format: 'L LTS',
+    minView: 'year',
+    maxView: 'minute',
+    startView: 'year',
+    autoclose: true,
+    today: true,
+    keyboard: true,
+
+    /* Extra: Views properties */
+    leftArrow: '&larr;',
+    rightArrow: '&rarr;',
+    yearsFormat: 'YYYY',
+    monthsFormat: 'MMM',
+    daysFormat: 'D',
+    hoursFormat: 'HH:[00]',
+    minutesFormat: moment.localeData().longDateFormat('LT').replace(/[aA]/, ''),
+    secondsFormat: 'ss',
+    minutesStep: 5,
+    secondsStep: 1
+  });
+
   var tempateURL = "views/template/template.html"; //Default Template URL
   var tempateURLNew = "views/template/template2.html";
   // for http request with session

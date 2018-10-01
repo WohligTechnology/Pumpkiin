@@ -188,7 +188,9 @@ myApp.directive('img', function ($compile, $parse) {
 
                         $timeout(function () {
                             _.each(newVal, function (newV, key) {
-                                console.log("newV", newV.file.size)
+                                console.log("newV", newV);
+                                console.log("------------------------------")
+                                console.log(newV.file.type);
                                 if (newV.file.size <= 5000000) {
                                     if (newV && newV.file || newV.file.type == 'application/pdf' || newV.file.type == 'image/jpeg ' || newV.file.type == 'image/png ' || newV.file.type == 'application/doc') {
                                         $scope.uploadNow(newV);
