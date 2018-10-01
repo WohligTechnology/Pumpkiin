@@ -4,7 +4,8 @@ module.exports = function (profile) {
     var sails = req._sails;
     console.log("profileprofileprofile", profile)
     if (_.isEmpty(profile)) {
-        res.redirect(env.realHost + "/login/");
+        console.log("prof")
+        res.redirect(env.realHost + "/loogin/");
         // res.serverError();
     } else {
         User.existsSocial(profile, function (err, data) {
@@ -12,7 +13,7 @@ module.exports = function (profile) {
             console.log("data22222222222222222222222222222222", data)
             if (data.name == "noAccess") {
                 data.accessToken[0] = "AccessNotAvailable";
-                res.redirect("https://pumpkiinbackend.wohlig.in/#!/login" + "/" + data.accessToken[0]);
+                res.redirect("http://localhost:8081/#!/login" + "/" + data.accessToken[0]);
                 req.session.destroy(function () {});
             } else {
                 if (err || !data) {
@@ -22,7 +23,9 @@ module.exports = function (profile) {
                         data.accessToken[0] = "AccessNotAvailable";
                     }
                     console.log(req.session.returnUrl);
-                    res.redirect("https://pumpkiinbackend.wohlig.in/#!/login" + "/" + data.accessToken[0]);
+                    console.log("asaasa")
+
+                    res.redirect("http://localhost:8081/#!/login" + "/" + data.accessToken[0]);
                     req.session.destroy(function () {});
                 }
             }

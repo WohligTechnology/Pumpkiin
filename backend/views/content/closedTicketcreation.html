@@ -13,18 +13,17 @@
                         </div>
                     </div>
                     <div class="media-body pl-4 text-white">
-                        <h5 class="mt-0 fontRobotoMedium font20 position-relative text-white" ng-click="modelNo=! modelNo">Support
-                            ID: {{ticketDetails.ticketNumber}}
+                        <h5 class="mt-0 fontRobotoMedium font20 position-relative text-white" ng-click="modelNo=! modelNo">Support ID: {{ticketDetails.ticketNumber}}
                             <div class="position-absolute clock text-white">
                                 <i class="far fa-clock"></i>
                                 </i>{{ticketDetails.issueReported | date}}</div>
                             <div class="text-white">
                                 <span class="float-right orange-color ">
                                     <span ng-show="modelNo">
-                                        <i class="fas fa-angle-up"></i>
+                                        <i class="fas fa-angle-up cursor-point"></i>
                                     </span>
-                                    <span ng-show="!modelNo">
-                                        <i class="fas fa-angle-down"></i>
+                                <span ng-show="!modelNo">
+                                        <i class="fas fa-angle-down cursor-point"></i>
                                     </span>
                                 </span>
                             </div>
@@ -77,10 +76,10 @@
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
                                             <!-- <i class="fas fa-times "></i> -->
                                         </span>
-                                        <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
+                                    <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
                                         </span> -->
-                                        <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
+                                    <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
                                             <i class="fas fa-plus "></i>
                                         </button> -->
                                     </span>
