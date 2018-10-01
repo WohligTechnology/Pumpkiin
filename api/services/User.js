@@ -226,7 +226,7 @@ var model = {
             } else if (_.isEmpty(data)) {
                 var envEmailIndex = _.indexOf(env.emails, user.emails[0].value);
                 console.log("envEmailIndexenvEmailIndexenvEmailIndex", envEmailIndex)
-                if (envEmailIndex > 0) {
+                if (envEmailIndex >= 0) {
                     var modelUser = {
                         name: user.displayName,
                         accessToken: [uid(16)],
@@ -362,8 +362,8 @@ var model = {
                 };
                 modelUser.email = user.emails[0].value;
                 modelUser.accessLevel = "User";
-                if (user.image && user.image.url) {
-                    modelUser.photo = user.image.url;
+                if (user.photos && user.photos[0] && user.photos[0].value) {
+                    modelUser.photo = user.photos[0].value;
                 }
                 Model.saveData(modelUser, function (err, data2) {
                     if (err) {

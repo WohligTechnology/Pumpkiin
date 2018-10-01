@@ -6,221 +6,53 @@
     "pageType": "edit",
     "urlFields": ["_id"],
     "fields": [{
-            "name": "Name",
-            "type": "text",
-            "tableRef": "name",
-            "placeholder": "Enter Name",
-            "id": "name",
-            "validation": ["required", "trim", ""],
-            "url": ""
-        },
-        {
-            "name": "AccessLevel",
-            "type": "tags",
-            "tableRef": "accessLevel",
-            "placeholder": "Enter Title",
-            "id": "status",
-            "validation": ["", "trim", ""],
-            "url": "",
-            "dropDownField": "",
-            "dropDownType": "single",
-            "onView": true,
-            "dropDown": ["Retailer", "Admin", "Brand"]
-        },
-        {
-            "name": "Retailer",
-            "type": "tags",
-            "tableRef": "retailer",
-            "dropDownType": "single",
-            "dropDownField": "name",
-            "searchApi": "searchCall",
-            "placeholder": "Enter Retailer Name",
-            "id": "retailer",
-            "validation": ["", "trim", ""],
-            "url": "Retailer/search"
-        }, {
-            "name": "Brand",
-            "type": "tags",
-            "tableRef": "brand",
-            "dropDownType": "single",
-            "dropDownField": "name",
-            "searchApi": "searchCall",
-            "placeholder": "Enter brand Name",
-            "id": "brand",
-            "validation": ["", "trim", ""],
-            "url": "Brand/search"
-        }, {
-            "name": "Email",
-            "type": "text",
-            "tableRef": "email",
-            "placeholder": "Enter Email",
-            "id": "email",
-            "validation": ["", "trim", ""],
-            "url": ""
-        },
-        {
-            "name": "Social Account",
-            "type": "box",
-            "tableRef": "socialAccount",
-            "validation": ["", "trim", ""],
-            "fields": [{
-                "name": "Account",
-                "type": "text",
-                "tableRef": "account",
-                "placeholder": "Enter Social Account Name",
-                "id": "account",
-                "validation": ["", "trim"],
-                "url": "",
-                "onView": true
-            }]
-        },
-        {
-            "name": "Balance",
-            "type": "text",
-            "tableRef": "balance",
-            "placeholder": "Enter Balance",
-            "id": "balance",
-            "validation": ["", "trim", ""],
-            "url": ""
-        }, {
-            "name": "DOB",
-            "type": "date",
-            "tableRef": "dob",
-            "placeholder": "Enter DOB",
-            "id": "dob",
-            "validation": ["", "trim", ""],
-            "url": ""
-        }, {
-            "name": "Photo",
-            "type": "image",
-            "tableRef": "photo",
-            "size": "250 x 250",
-            "placeholder": "Upload photo",
-            "id": "photo",
-            "view": true,
-            "disabled": true,
-            "validation": ["", "trim", ""],
-            "url": ""
-        }, {
-            "name": "Password",
-            "type": "password",
-            "tableRef": "password",
-            "placeholder": "Enter password",
-            "id": "password",
-            "validation": ["", "trim", ""],
-            "url": ""
-        }, {
-            "name": "Forgot Password",
-            "type": "password",
-            "tableRef": "forgotPassword",
-            "placeholder": "Enter forgot password",
-            "id": "forgotPassword",
-            "validation": ["", "trim", ""],
-            "url": ""
-        }, {
-            "name": "Mobile",
-            "type": "text",
-            "tableRef": "mobile",
-            "placeholder": "Enter mobile",
-            "id": "mobile",
-            "validation": ["reqired", "trim", ""],
-            "url": ""
-        },
-        {
-            "name": "Relations",
-            "type": "box",
-            "tableRef": "relations",
-            "validation": ["", "trim", ""],
-            "fields": [{
-                "name": "Relation",
-                "type": "text",
-                "tableRef": "relation",
-                "placeholder": "Enter Relation Name",
-                "id": "relation",
-                "validation": ["", "trim"],
-                "url": "",
-                "onView": true
-            }]
-        }, {
-            "name": "OTP",
-            "type": "text",
-            "tableRef": "otp",
-            "placeholder": "Enter Otp",
-            "id": "otp",
-            "disabled": false,
-            "validation": ["", "trim", ""],
-            "url": ""
-        }, {
-            "name": "All Addresses",
-            "type": "box",
-            "tableRef": "address",
-            "validation": ["", "trim", ""],
-            "fields": [{
-                "name": "Line 1",
-                "type": "text",
-                "tableRef": "lineOne",
-                "placeholder": "Enter Address Line One",
-                "id": "lineOne",
-                "validation": ["", "trim"],
-                "url": "",
-                "onView": true
-            }, {
-                "name": "Line 2",
-                "type": "text",
-                "tableRef": "lineTwo",
-                "placeholder": "Enter Address Line Two",
-                "id": "lineTwo",
-                "validation": ["", "trim"],
-                "url": "",
-                "onView": true
-            }, {
-                "name": "Line 3",
-                "type": "text",
-                "tableRef": "lineThree",
-                "placeholder": "Enter Address Line Three",
-                "id": "lineThree",
-                "validation": ["", "trim"],
-                "url": "",
-                "onView": true
-            }, {
-                "name": "City",
-                "type": "text",
-                "tableRef": "city",
-                "placeholder": "Enter City",
-                "id": "city",
-                "validation": ["", "trim"],
-                "url": "",
-                "onView": true
-            }, {
-                "name": "District",
-                "type": "text",
-                "tableRef": "district",
-                "placeholder": "Enter district",
-                "id": "district",
-                "validation": ["", "trim"],
-                "url": "",
-                "onView": true
-            }, {
-                "name": "State",
-                "type": "text",
-                "tableRef": "state",
-                "placeholder": "Enter state",
-                "id": "state",
-                "validation": ["", "trim"],
-                "url": "",
-                "onView": true
-            }, {
-                "name": "Pincode",
-                "type": "text",
-                "tableRef": "pincode",
-                "placeholder": "Enter Pincode",
-                "id": "pincode",
-                "validation": ["", "trim"],
-                "url": "",
-                "onView": true
-            }]
-        }
-    ],
+        "name": "Name",
+        "type": "text",
+        "tableRef": "name",
+        "placeholder": "Enter Name",
+        "id": "name",
+        "validation": ["required", "trim", ""],
+        "url": ""
+    }, {
+        "name": "Email",
+        "type": "text",
+        "tableRef": "email",
+        "placeholder": "Enter Email",
+        "id": "email",
+        "validation": ["required", "trim", ""],
+        "url": ""
+    }, {
+        "name": "Photo",
+        "type": "image",
+        "tableRef": "photo",
+        "size": "250 x 250",
+        "placeholder": "Upload photo",
+        "id": "photo",
+        "view": true,
+        "disabled": true,
+        "validation": ["", "trim", ""],
+        "url": ""
+    }, {
+        "name": "Mobile",
+        "type": "text",
+        "tableRef": "mobile",
+        "placeholder": "Enter mobile",
+        "id": "mobile",
+        "validation": ["", "trim", ""],
+        "url": ""
+    }, {
+        "name": "AccessLevel",
+        "type": "tags",
+        "tableRef": "accessLevel",
+        "placeholder": "Enter Title",
+        "id": "status",
+        "validation": ["required", "trim", ""],
+        "url": "",
+        "dropDownField": "",
+        "dropDownType": "single",
+        "onView": true,
+        "dropDown": ["User", "Admin"]
+    }],
     "action": [{
         "name": "submit",
         "action": "submitUser",

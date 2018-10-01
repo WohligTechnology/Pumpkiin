@@ -79,7 +79,7 @@ myApp.factory('NavigationService', function ($http) {
             access: false
         }, */
         {
-            name: "ticket",
+            name: "Ticket",
             classis: "active",
             uiSref: "ticketlist",
             access: false
