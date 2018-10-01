@@ -1,3 +1,4 @@
+var cron = require('node-cron');
 var schema = new Schema({
     // brand: {
     //     type: Schema.Types.ObjectId,
@@ -516,4 +517,5 @@ var model = {
 
 
 };
+
 module.exports = _.assign(module.exports, exports, model);
