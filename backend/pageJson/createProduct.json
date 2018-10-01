@@ -6,19 +6,6 @@
     "pageType": "create",
     "urlFields": ["Product"],
     "fields": [{
-            "name": "Brand",
-            "type": "tags",
-            "tableRef": "brand",
-            "dropDownType": "single",
-            "dropDownField": "name",
-            "searchApi": "searchCall",
-            "placeholder": "Enter brand Name",
-            "id": "brand",
-            "validation": ["", "trim", ""],
-            "url": "Brand/search"
-        },
-
-        {
             "name": "Product Name",
             "type": "text",
             "tableRef": "productName",
@@ -26,25 +13,68 @@
             "id": "productname",
             "validation": ["", "trim", ""],
             "url": ""
-        }, {
+        },
+        {
+            "name": "Brand",
+            "type": "text",
+            "tableRef": "brand",
+            "placeholder": "Enter productname",
+            "id": "brand",
+            "validation": ["", "trim", ""]
+        },
+
+        {
+            "name": "Retailer",
+            "type": "text",
+            "tableRef": "retailer",
+            "placeholder": "Enter productname",
+            "id": "retailer",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "Product Invoice",
+            "type": "text",
+            "tableRef": "retailer",
+            "placeholder": "Enter productname",
+            "id": "retailer",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "Warranty Card",
+            "type": "text",
+            "tableRef": "retailer",
+            "placeholder": "Enter productname",
+            "id": "retailer",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
             "name": "Serial No",
-            "type": "number",
+            "type": "text",
             "tableRef": "serialNo",
             "placeholder": "Enter serialno",
-            "id": "serialno",
+            "id": "serialNo",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "Model No",
+            "type": "text",
+            "tableRef": "modelNo",
+            "placeholder": "Enter serialno",
+            "id": "modelNo",
             "validation": ["", "trim", ""],
             "url": ""
         }, {
-            "name": "Retailer",
-            "type": "tags",
-            "tableRef": "retailer",
-            "dropDownType": "single",
-            "dropDownField": "name",
-            "searchApi": "searchCall",
-            "placeholder": "Enter Retailer Name",
-            "id": "retailer",
+            "name": "Model No",
+            "type": "text",
+            "tableRef": "modelNo",
+            "placeholder": "Enter serialno",
+            "id": "modelNo",
             "validation": ["", "trim", ""],
-            "url": "Retailer/search"
+            "url": ""
         }, {
             "name": "Purchase Date ",
             "type": "date",

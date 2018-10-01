@@ -145,7 +145,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
 
                     ticketService.totalOpenTickets(function (data) {
                         // $scope.ticketDetails = data;
-                        $scope.ticketDetails1 = _.slice(data.results, 0, 8);
+                        $scope.ticketDetails1 = _.slice(data.results, 0, 5);
                         console.log("1 $scope.ticketDetails --", $scope.ticketDetails1);
 
                     });
@@ -246,7 +246,7 @@ myApp.controller('TicketCreationCtrl', function ($scope, TemplateService, Naviga
         $scope.getClosedTickets = function () {
             ticketService.totalClosedTickets(function (data) {
                 // $scope.ticketDetails = data;
-                $scope.ticketDetails1 = _.slice(data, 0, 8);
+                $scope.ticketDetails1 = _.slice(data, 0, 5);
                 console.log("2 $scope.ticketDetails --", $scope.ticketDetails);
 
             });

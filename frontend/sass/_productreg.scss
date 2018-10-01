@@ -249,7 +249,12 @@
     display: block;
 }
 
-.purchase-section {
+.product-registration-detail .add .social_icon {
+    padding: 5px 10px !important;
+}
+
+.purchase-section,
+.product-registration-detail {
     button {
         border: 0;
         background-color: white;

@@ -12,16 +12,15 @@
     <div class="upload-btn-wrapper mr-1 mt-3 float-left">
         <img ng-if="imagesrc && imageclass" src="{{imagesrc}}">
         <button ng-if="!(imagesrc && imageclass)" class="btn">+</button>
-        <input id="inputImage" ng-show="!isMultiple && type=='image'" type="file" accept="image/*,application/pdf"
-            image="image" title="Choose Files" class="btn-primary">
-        <input id="inputImage" ng-show="!isMultiple && type=='pdf'" type="file" accept="application/pdf" image="image"
+        <input id="inputImage" ng-show="!isMultiple && type=='image'" type="file" accept="image/*,application/pdf" image="image"
             title="Choose Files" class="btn-primary">
-        <input id="inputImage" ng-show="!isMultiple && type=='image|pdf'" type="file" accept="image/*,application/pdf"
-            image="image" title="Choose Files" class="btn-primary">
+        <input id="inputImage" ng-show="!isMultiple && type=='pdf'" type="file" accept="application/pdf" image="image" title="Choose Files"
+            class="btn-primary">
+        <input id="inputImage" ng-show="!isMultiple && type=='image|pdf'" type="file" accept="image/*,application/pdf" image="image"
+            title="Choose Files" class="btn-primary">
         <input id="inputImage" ng-show="!isMultiple && type=='excel'" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
             image="image" title="Choose Files" class="btn-primary">
-        <input id="inputImage" ng-show="!isMultiple" type="file" ng-if="type=='all'" image="image" title="Choose Files"
-            class="btn-primary">
+        <input id="inputImage" ng-show="!isMultiple" type="file" ng-if="type=='all'" image="image" title="Choose Files" class="btn-primary">
         <input id="inputImage" ng-show="isMultiple" type="file" accept="image/*,application/pdf" image="image" title="Choose Multiple Files"
             class="btn-primary" multiple>
     </div>
@@ -33,14 +32,13 @@
     <div class="d-flex mt-3" ng-if="model && isMultiple" ng-hide="noShow">
         <div class="img-box mr-1" ng-repeat="sImage in model track by $index">
             <!-- <img alt="" ng-src="{{sImage|uploadpath}}" class="img-fluid uploadingImage img-thumbnail" /> -->
-            <a fancybox-box data-fancybox="gallery" ng-href="{{sImage|uploadpath}}" ng-if="(sImage|checkimage) !='pdf'"
-                rel="gal">
+            <a fancybox-box data-fancybox="gallery" ng-href="{{sImage|uploadpath}}" ng-if="(sImage|checkimage) !='pdf'" rel="gal">
                 <div class="">
-                    <img ng-src="{{sImage|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" ng-if="(sImage|checkimage) !='pdf'" />
+                    <img ng-src="{{sImage|uploadpath}}" class="img-responsive uploadingImage img-thumbnail" ng-if="(sImage|checkimage) !='pdf'"
+                    />
                 </div>
             </a>
-            <a fancybox-box data-fancybox="gallery" ng-href="{{sImage|uploadpath}}" ng-if="(sImage|checkimage) =='pdf'"
-                rel="gal">
+            <a fancybox-box data-fancybox="gallery" ng-href="{{sImage|uploadpath}}" ng-if="(sImage|checkimage) =='pdf'" rel="gal">
                 <i class="fas fa-file-pdf fa-4x"></i>
 
             </a>
