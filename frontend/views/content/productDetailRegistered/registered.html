@@ -9,18 +9,15 @@
                 <div class="d-flex bg-white border-rounded">
                     <div class="w-15 border-right more-images">
                         <div class="p-2" ng-repeat="productImg in productDetails.productImages">
-                            <img class="img-thumbnail" ng-src="{{productImg | serverimage}}" alt="" ng-click="setImage(productImg)"
-                                ng-if="(productImg|checkimage) !='pdf'">
-                            <a fancybox-box data-fancybox="gallery" ng-href="{{productImg|uploadpath}}" ng-if="(productImg|checkimage) =='pdf'"
-                                rel="gal">
+                            <img class="img-thumbnail" ng-src="{{productImg | serverimage}}" alt="" ng-click="setImage(productImg)" ng-if="(productImg|checkimage) !='pdf'">
+                            <a fancybox-box data-fancybox="gallery" ng-href="{{productImg|uploadpath}}" ng-if="(productImg|checkimage) =='pdf'" rel="gal">
                                 <i class="fas fa-file-pdf fa-2x"></i>
                             </a>
                         </div>
                     </div>
                     <div class="w-85 p-3 float-right position-relative">
                         <img class="img-thumbnail" ng-src="{{setImg | serverimage}}" alt="" ng-if="(setImg|checkimage) !='pdf'">
-                        <a fancybox-box data-fancybox="gallery" ng-href="{{setImg|uploadpath}}" ng-if="(setImg|checkimage) =='pdf'"
-                            rel="gal">
+                        <a fancybox-box data-fancybox="gallery" ng-href="{{setImg|uploadpath}}" ng-if="(setImg|checkimage) =='pdf'" rel="gal">
                             <i class="fas fa-file-pdf fa-4x"></i>
                         </a>
                         <!-- <div class="position-absolute favourite">
@@ -52,14 +49,12 @@
                         <div class="col-7 col-lg-9 fontRobotoRegular font-color text-capitalize">
                             <div class="my-2 height-label">
                                 <div class="custom-input">
-                                    <input type="text" id="productName" name="" ng-model="productDetails.productName"
-                                        ng-readonly="!personalInfo">
+                                    <input type="text" id="productName" name="" ng-model="productDetails.productName" ng-readonly="!personalInfo">
                                 </div>
                             </div>
                             <div class="my-2 height-label">
                                 <div class="custom-input">
-                                    <input type="text" id="productName" name="" ng-model="productDetails.brand"
-                                        ng-readonly="!personalInfo">
+                                    <input type="text" id="productName" name="" ng-model="productDetails.brand" ng-readonly="!personalInfo">
                                 </div>
                             </div>
                             <!-- <pre>{{productDetails|json}}</pre> -->
@@ -77,26 +72,22 @@
                             <!-- </div> -->
                             <div class="my-2 height-label">
                                 <div class="custom-input ">
-                                    <input type="text" id="serialNumber" name=" " ng-model="productDetails.serialNo"
-                                        ng-readonly="!personalInfo">
+                                    <input type="text" id="serialNumber" name=" " ng-model="productDetails.serialNo" ng-readonly="!personalInfo">
                                 </div>
                             </div>
                             <div class="my-2 height-label">
                                 <div class="custom-input ">
-                                    <input type="date" id="purchaseDate" name="" ng-model="productDetails.purchaseDate"
-                                        ng-readonly="!personalInfo">
+                                    <input type="date" id="purchaseDate" name="" ng-model="productDetails.purchaseDate" ng-readonly="!personalInfo">
                                 </div>
                             </div>
                             <div class="my-2 height-label">
                                 <div class="custom-input ">
-                                    <input type="text" id="purchasePrice" name=" " ng-model="productDetails.purchasePrice"
-                                        ng-readonly="!personalInfo">
+                                    <input type="text" id="purchasePrice" name=" " ng-model="productDetails.purchasePrice" ng-readonly="!personalInfo">
                                 </div>
                             </div>
                             <div class="my-2 height-label">
                                 <div class="custom-input ">
-                                    <input type="text" id="Retailer" name=" " ng-model="productDetails.retailer"
-                                        ng-readonly="!personalInfo">
+                                    <input type="text" id="Retailer" name=" " ng-model="productDetails.retailer" ng-readonly="!personalInfo">
                                 </div>
                             </div>
                         </div>
@@ -114,9 +105,8 @@
                         <div class="row form-group">
                             <div class="col-12 col-md-6">
                                 <label class="mb-0">Search for existing user</label>
-                                <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="data.Users"
-                                    theme="bootstrap" sortable="true" ng-disabled="ctrl.disabled" style="width: 300px;"
-                                    title="Choose a user">
+                                <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="data.Users" theme="bootstrap" sortable="true"
+                                    ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a user">
                                     <ui-select-match class="selected-tags" placeholder="">
                                         <span ng-if="$item.user.name"> {{$item.user.name}}</span>
                                         <span ng-if="!$item.user.name"> {{$item}}</span>
@@ -131,15 +121,13 @@
                             <div class="row form-group">
                                 <div class="col-12 col-md-6">
                                     <label class="mb-0">Name * </label>
-                                    <input name="user" ng-model="userData.name" class="form-control form-control-sm"
-                                        type="text" required only-letters-input>
+                                    <input name="user" ng-model="userData.name" class="form-control form-control-sm" type="text" required only-letters-input>
                                     <!-- <span class="error" ng-show="newuser.user.$invalid && newuser.user.$touched">
                                         Please, enter user name</span> -->
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="mb-0">Email * </label>
-                                    <input name="email" ng-model="userData.email" class="form-control form-control-sm"
-                                        type="email" required>
+                                    <input name="email" ng-model="userData.email" class="form-control form-control-sm" type="email" required>
                                     <!-- <span class="error" ng-show="newuser.email.$invalid && newuser.email.$touched">
                                         Please, enter user email</span> -->
                                 </div>
@@ -147,8 +135,8 @@
                             <div class="row form-group">
                                 <div class="col-12 col-md-6">
                                     <label class="mb-0">Mobile Number * </label>
-                                    <input name="mobile" ng-model="userData.mobile" class="form-control form-control-sm"
-                                        type="text" maxlength="10" required only-digits>
+                                    <input name="mobile" ng-model="userData.mobile" class="form-control form-control-sm" type="text" maxlength="10" required
+                                        only-digits>
                                     <!-- <span class="error" ng-show="newuser.mobile.$invalid && newuser.mobile.$touched">
                                         Please, enter user contact</span> -->
                                 </div>
@@ -160,8 +148,7 @@
                             <div class="row form-group">
                                 <div class="col-12 col-md-6">
                                     <label class="mb-0">Relationship * </label>
-                                    <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation"
-                                        required>
+                                    <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation" required>
                                         <option ng-repeat="relations in relationsForUser">{{relations}}</option>
                                     </select>
                                     <!-- <span class="error" ng-show="newuser.sellist1.$invalid && newuser.sellist1.$touched">
@@ -177,7 +164,7 @@
                                 </div>
                             </fieldset> -->
                             <button class="row form-group" type="submit">
-                                <div class="d-flex social m-md-3 mx-auto my-3 add">
+                                <div class="d-flex social m-md-3 mx-auto my-3 add add-user-purchase">
                                     <span class="social_icon">
                                         <i class="fas fa-plus"></i>
                                     </span>
@@ -224,8 +211,7 @@
                     <div>
                         <span class="fontRobotoRegular font14 dark-font-color ">Warranty expiration date</span>
                         <div class="custom-input font12 ml-0 ml-md-5 d-inline-block fontRobotoLight ">
-                            <input type="date" id="warrantyExpDate" name="" ng-model="productDetails.warrantyExpDate"
-                                readonly="readonly " ng-readonly="!warranty ">
+                            <input type="date" id="warrantyExpDate" name="" ng-model="productDetails.warrantyExpDate" readonly="readonly " ng-readonly="!warranty ">
                         </div>
                     </div>
                     <span class="green-color" ng-if="productDetails.warrantyCardImage">({{productDetails.warrantyCardImage.length}})</span>
@@ -261,8 +247,7 @@
                     <div>
                         <span class="fontRobotoRegular font14 dark-font-color ">Insurance expiration date</span>
                         <div class="custom-input font12 ml-0 ml-md-5 d-inline-block fontRobotoLight ">
-                            <input type="date" id="insuranceExpDate" name="" ng-model="productDetails.insuranceExpDate"
-                                ng-readonly="!insurance">
+                            <input type="date" id="insuranceExpDate" name="" ng-model="productDetails.insuranceExpDate" ng-readonly="!insurance">
                         </div>
                     </div>
                     <span class="green-color" ng-if="productDetails.insuranceProofImage">({{productDetails.insuranceProofImage.length}})</span>
@@ -298,8 +283,8 @@
                     <div class="row form-group" ng-if="accessories">
                         <div class="col-12 col-md-6">
                             <form ng-submit="addAccessories(formData)">
-                                <input class="form-control form-control-sm" ng-model="formData.accessories" type="text"
-                                    placeholder="Type Accessories And Enter To Add" required>
+                                <input class="form-control form-control-sm" ng-model="formData.accessories" type="text" placeholder="Type Accessories And Enter To Add"
+                                    required>
                             </form>
                         </div>
                     </div>
