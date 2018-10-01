@@ -9538,11 +9538,9 @@ fieldset:disabled {
   border: solid 1px #142c5b;
   transition: ease all 500ms; }
   .selected:after {
-    content: "\2713";
-    font-size: 33px;
-    position: absolute;
-    left: 0px;
-    top: -11px; }
+    content: url("../img/bluetick.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%; }
 
 .notification-accordions {
   position: relative; }
@@ -9557,10 +9555,6 @@ fieldset:disabled {
   background: #142C5C;
   z-index: 5;
   cursor: pointer; }
-
-.notification .view,
-.ticket-open .view {
-  display: none; }
 
 .rates span:focus {
   outline: none; }
@@ -9578,6 +9572,10 @@ fieldset:disabled {
   border-radius: 50%;
   border: solid 1px #14C177;
   overflow: hidden; }
+  .profile-page .profile-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; }
   .profile-page .profile-image .upload-btn-wrapper {
     padding: 25px 25px;
     margin-top: 0 !important;
@@ -9648,6 +9646,9 @@ fieldset:disabled {
   border-bottom: 1px solid #cccccc; }
   .mobile-edit:focus {
     outline: none; }
+
+.selectize-control.single > .selectize-input > input {
+  cursor: pointer; }
 
 .productreg {
   position: relative; }
@@ -9859,6 +9860,21 @@ fieldset:disabled {
 
 .ui-select-bootstrap.open .dropdown-menu {
   display: block; }
+
+.product-registration-detail .add .social_icon {
+  padding: 5px 10px !important; }
+
+.purchase-section button,
+.product-registration-detail button {
+  border: 0;
+  background-color: white; }
+  .purchase-section button:focus,
+  .product-registration-detail button:focus {
+    outline: 0; }
+
+.purchase-section .add-user-purchase .social-text,
+.product-registration-detail .add-user-purchase .social-text {
+  width: 840px; }
 
 .openticket-height {
   height: 70vh; }
@@ -10158,7 +10174,8 @@ fieldset:disabled {
   border: solid 2px white; }
   .ticket-creation-main .img-div .large-img {
     border-radius: 50%;
-    width: 80px; }
+    width: 100%;
+    height: 100%; }
   .ticket-creation-main .img-div .small-img {
     position: absolute;
     right: -15px;
@@ -11200,5 +11217,3 @@ svg {
     font-family: "Roboto-Bold";
     text-transform: uppercase;
     color: #657D95; }
-
-/*# sourceMappingURL=import.css.map */
