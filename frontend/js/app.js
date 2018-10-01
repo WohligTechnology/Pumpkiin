@@ -10,7 +10,8 @@ var myApp = angular.module("myApp", [
   // 'ngSanitize',
   "angularPromiseButtons",
   "toastr",
-  "ui.select"
+  "ui.select",
+  "moment-picker"
 ]);
 
 // Define all the routes below
