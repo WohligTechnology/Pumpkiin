@@ -7,7 +7,7 @@
                 <img src="img/emptyProfile.png" ng-if="!(jstrgValue.profilePic || jstrgValue.photo)" alt="Ticket_circle-icon">
                 <div class="profile-photo-upload">
                     <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="jstrgValue.profilePic"
-                        noStatus="true" no-view></upload-image>
+                        noStatus="true" no-view callback="reload();"></upload-image>
                     <!-- <upload-image ng-model="data.productImages" no-status="true"></upload-image> -->
                 </div>
             </div>

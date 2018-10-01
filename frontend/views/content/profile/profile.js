@@ -19,6 +19,10 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         "relation": "Brother"
     }];
 
+    $scope.reload = function () {
+        $state.reload();
+    }
+
     $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Sister", "Brother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew", "Friend"]
 
     $scope.editressModalOpen = function (address, index) {
