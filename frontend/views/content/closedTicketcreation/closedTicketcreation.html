@@ -16,7 +16,7 @@
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
                     </div>
                     <div class="closed-text cursor-point" ng-if="!totalNumberOfClosedTickets">
-                        <img src="img/ticketCreation/closedTicket.png">
+                        <img src="{{img/ticketCreation/closedTicket.png}}">
                         <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
                     </div>
@@ -87,7 +87,7 @@
             <div class="background-blue border-rounded p-5 closedticketcreation">
                 <div class="media">
                     <div class="img-div ">
-                        <img src="img/iphone.jpeg " class="img-fluid large-img ">
+                        <img src="{{ticketDetails.product.productImages[0] | serverimage}} " class="img-fluid large-img ">
                         <div class="d-flex align-items-center justify-content-center small-img ">
                             <img src="img/ticketCreation/mobile.png " width="10 ">
                         </div>
@@ -96,7 +96,7 @@
                         <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">Support
                             ID: {{ticketDetails.ticketNumber}}
                             <div class="position-absolute clock">
-                                <i class="far fa-clock"></i>
+                                <!-- <i class="far fa-clock"></i> -->
                                 </i>{{ticketDetails.issueReported | date}}</div>
                             <div>
                                 <span class="float-right orange-color ">

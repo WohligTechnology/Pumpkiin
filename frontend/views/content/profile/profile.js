@@ -8,6 +8,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     $scope.genderData = {};
     $scope.mobile = {};
     $scope.profileAddress = {};
+    $scope.addressIndex = -1;
     // console.log("$scope.jstrgValue", $scope.jstrgValue);
 
     $scope.relation = [{
@@ -18,9 +19,14 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         "relation": "Brother"
     }];
 
+    $scope.reload = function () {
+        $state.reload();
+    }
+
     $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Sister", "Brother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew", "Friend"]
 
-    $scope.editressModalOpen = function (address) {
+    $scope.editressModalOpen = function (address, index) {
+        $scope.addressIndex = index;
         $scope.profileAddress = address;
         $scope.addAddress = $uibModal.open({
             animation: true,
@@ -30,6 +36,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     }
 
     $scope.addressModalOpen = function () {
+        $scope.addressIndex = -1;
         $scope.addAddress = $uibModal.open({
             animation: true,
             templateUrl: "views/modal/addressEdit.html",
@@ -200,7 +207,11 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         console.log(data);
         var addData = {};
         var add = $scope.userDataForProfile.address;
-        add.push(data);
+        if ($scope.addressIndex != -1) {
+            add[$scope.addressIndex] = data
+        } else {
+            add.push(data);
+        }
         addData._id = $scope.jstrgValue._id;
         addData.address = add;
         NavigationService.apiCallWithData("user/save", addData, function (response) {
@@ -213,7 +224,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     $scope.removeAddress = function (index) {
         $scope.userDataForProfile.address = _.slice($scope.userDataForProfile.address, 0, index);
         NavigationService.apiCallWithData("User/save", $scope.userDataForProfile, function (response) {
-            toastr.error("Address deleted successfully");
+            toastr.success("Address deleted successfully");
         });
     };
 
