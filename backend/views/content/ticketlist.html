@@ -1,15 +1,15 @@
 <div class="">
     <div class="pt-5 clearfix">
         <div class="float-left">
-            <h6 class="m-0">List Of Tickets</h6>
+            <h6 class="m-0">List Of Tickets (Total : {{totalitems}})</h6>
         </div>
         <div class="float-right">
             <div class="d-inline-block">
                 <div class="d-inline-block">
                     <form class="form-inline mr-auto mx-auto position-relative d-inline-block">
                         <div class="product-search">
-                            <input class="form-control" ng-change="getAllItems(search.keyword) " ng-model="search.keyword"
-                                type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control" ng-change="getAllItems(search.keyword) " ng-model="search.keyword" type="search" placeholder="Search"
+                                aria-label="Search">
                         </div>
                     </form>
                     <div class="d-inline-block px-3">
@@ -38,10 +38,10 @@
                     <tr ng-repeat="tickets in allTickets">
                         <td>{{tickets.ticketNumber}}</td>
                         <td>{{tickets.issueReported|date}}</td>
-                        <td>{{tickets.product.productName}}</td>
-                        <td>{{tickets.user.name}}</td>
-                        <td>{{tickets.user.email}}</td>
-                        <td>{{tickets.user.mobile}}</td>
+                        <td>{{tickets.product}}</td>
+                        <td>{{tickets.userName}}</td>
+                        <td>{{tickets.userEmail}}</td>
+                        <td>{{tickets.userMobile}}</td>
                         <td>{{tickets.status}}</td>
                         <td ng-if="tickets.status=='Active'">
                             <span class="badge badge-pill badge-info p-2" ui-sref="ticketcreation({id: tickets._id})">Select</span>
@@ -55,8 +55,8 @@
         </div>
         <div ng-if="totalitems>5" class="float-right">
             <nav aria-label="...">
-                <ul ng-change="changePage(currentPage); " uib-pagination total-items="totalitems" items-per-page="maxRow"
-                    ng-model="currentPage" max-size="maxRow" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
+                <ul ng-change="changePage(currentPage); " uib-pagination total-items="totalitems" items-per-page="maxRow" ng-model="currentPage"
+                    max-size="maxRow" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
             </nav>
         </div>
     </div>
