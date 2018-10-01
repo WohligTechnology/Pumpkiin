@@ -61,6 +61,6 @@ myApp.filter('indianCurrency', function () {
 
 myApp.filter('serverimage', function () {
   return function (image) {
-    return imgpath + "?file=" + image + other;
+    return imgpath + "?file=" + image;
   }
 });
