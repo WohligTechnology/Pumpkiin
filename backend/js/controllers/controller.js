@@ -1784,7 +1784,8 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
 
 
         $scope.ticketsSearch = function () {
-            NavigationService.apiCall("Ticket/searchTickets", {
+            console.log("ticketsSearch---->>>>");
+            NavigationService.apiCall("Ticket/searchOnListPage", {
                 page: $scope.currentPage,
                 keyword: $scope.search.keyword
             }, function (res) {

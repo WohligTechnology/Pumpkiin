@@ -485,6 +485,207 @@ var model = {
                 callback(null, data)
             }
         });
+    },
+    searchOnListPage: function (data, callback) {
+        if (data.page == undefined) {
+            data.page = 1;
+        }
+        var pagestartfrom = (data.page - 1) * 10;
+        var aggArr = [{
+            $lookup: {
+                from: "products",
+                localField: "product",
+                foreignField: "_id",
+                as: "product"
+            }
+        }, {
+            $unwind: {
+                path: "$product"
+            }
+        }, {
+            $lookup: {
+                from: "users",
+                localField: "user",
+                foreignField: "_id",
+                as: "user"
+            }
+
+        }, {
+            $unwind: {
+                path: "$user"
+            }
+        }, {
+            $project: {
+                // specifications
+                _id: "$_id",
+                status: "$status",
+                ticketNumber: "$ticketNumber",
+                product: "$product.productName",
+                issueReported: "$issueReported",
+                userName: "$user.name",
+                userEmail: "$user.email",
+                userMobile: "$user.mobile",
+                createdAt: "$createdAt"
+            }
+        }, {
+            $match: {
+                $or: [{
+                    "ticketNumber": {
+                        $regex: data.keyword,
+                        $options: 'i'
+                    }
+                }, {
+                    "product": {
+                        $regex: data.keyword,
+                        $options: 'i'
+                    }
+                }, {
+                    "status": {
+                        $regex: data.keyword,
+                        $options: 'i'
+                    }
+                }, {
+                    "userEmail": {
+                        $regex: data.keyword,
+                        $options: 'i'
+                    }
+                }, {
+                    "userName": {
+                        $regex: data.keyword,
+                        $options: 'i'
+                    }
+                }]
+            }
+        }, {
+            $skip: parseInt(pagestartfrom)
+        }, {
+            $limit: 10
+        }]
+        async.parallel([
+            //Start 
+            function (callback) {
+                var Search = Ticket.aggregate(aggArr, function (err, data1) {
+                    if (err) {
+                        callback(err, null);
+                    } else {
+                        callback(null, data1);
+                    }
+                });
+
+            },
+
+            function (callback) {
+                var Search = Ticket.aggregate([{
+                    $lookup: {
+                        from: "products",
+                        localField: "product",
+                        foreignField: "_id",
+                        as: "product"
+                    }
+                }, {
+                    $unwind: {
+                        path: "$product"
+                    }
+                }, {
+                    $lookup: {
+                        from: "users",
+                        localField: "user",
+                        foreignField: "_id",
+                        as: "user"
+                    }
+
+                }, {
+                    $unwind: {
+                        path: "$user"
+                    }
+                }, {
+                    $project: {
+                        // specifications
+                        _id: "$_id",
+                        status: "$status",
+                        ticketNumber: "$ticketNumber",
+                        product: "$product.productName",
+                        issueReported: "$issueReported",
+                        userName: "$user.name",
+                        userEmail: "$user.email",
+                        userMobile: "$user.mobile",
+                        createdAt: "$createdAt"
+                    }
+                }, {
+                    $match: {
+                        $or: [{
+                            "ticketNumber": {
+                                $regex: data.keyword,
+                                $options: 'i'
+                            }
+                        }, {
+                            "product": {
+                                $regex: data.keyword,
+                                $options: 'i'
+                            }
+                        }, {
+                            "status": {
+                                $regex: data.keyword,
+                                $options: 'i'
+                            }
+                        }, {
+                            "userEmail": {
+                                $regex: data.keyword,
+                                $options: 'i'
+                            }
+                        }, {
+                            "userName": {
+                                $regex: data.keyword,
+                                $options: 'i'
+                            }
+                        }]
+                    }
+                }, {
+                    $group: {
+                        _id: null,
+                        count: {
+                            $sum: 1
+                        }
+                    }
+                }, {
+                    $project: {
+                        "_id": 1,
+                        "count": 1
+                    }
+                }], function (err, data2) {
+                    if (err) {
+                        callback(err, null);
+                    } else {
+                        callback(null, data2);
+                    }
+                });
+            }
+
+            //end
+        ], function (err, data4) {
+            var data5 = {};
+            if (err) {
+                callback(err, null);
+            } else if (_.isEmpty(data4[1])) {
+                data5 = {
+                    results: data4[0],
+                    options: {
+                        count: 0
+                    }
+                };
+                callback(null, data5);
+            } else {
+                data5 = {
+                    results: data4[0],
+                    options: {
+                        count: 10
+                    }
+                };
+                data5.total = data4[1][0].count;
+                callback(null, data5);
+            }
+
+        });
     }
 
 };
