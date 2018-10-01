@@ -3,11 +3,13 @@
         <div class="d-flex profile-details mb-3 ">
             <div class="profile-image" class="img-fluid">
                 <img ng-src="{{jstrgValue.profilePic | serverimage}}" alt="Ticket_circle-icon" width="100%" ng-if="jstrgValue.profilePic">
-                <img ng-src="{{jstrgValue.photo}}" alt="Ticket_circle-icon" width="100%" ng-if="jstrgValue.photo && !jstrgValue.profilePic">
+                <img ng-src="{{jstrgValue.photo |serverimage}}" alt="Ticket_circle-icon" width="100%" ng-if="jstrgValue.photo && !jstrgValue.profilePic">
                 <img src="img/emptyProfile.png" ng-if="!(jstrgValue.profilePic || jstrgValue.photo)" alt="Ticket_circle-icon">
                 <div class="profile-photo-upload">
-                    <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="jstrgValue.profilePic"
-                        noStatus="true" no-view callback="reload();"></upload-image>
+                    <!-- <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="userDataForProfile.profilePic" noStatus="true"
+                        no-view></upload-image> -->
+                    <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="jstrgValue.profilePic" noStatus="true"
+                        no-view callback="reload();"></upload-image>
                     <!-- <upload-image ng-model="data.productImages" no-status="true"></upload-image> -->
                 </div>
             </div>
@@ -87,8 +89,7 @@
                             - - -
                         </div>
                         <div ng-if="personalInfo" class="mb-2 custom-input">
-                            <input maxlength="10" type="text" class="mt-2 p-1" ng-model="userDataForProfile.mobile"
-                                only-digits>
+                            <input maxlength="10" type="text" class="mt-2 p-1" ng-model="userDataForProfile.mobile" only-digits>
                         </div>
                         <div ng-if="!personalInfo" class="mb-2 custom-input">{{userDataForProfile.email}}</div>
                         <div ng-if="personalInfo" class="mb-2 custom-input">
@@ -115,10 +116,10 @@
                     <div class="d-flex fontRobotoLight font-color font12 ">
                         <div class="p-2 background-gray mr-2 text-capitalize address-box " ng-repeat="addressData in userDataForProfile.address track by $index">
                             <div class="font14 dark-font-color fontRobotoRegular ">{{addressData.title}}
-                                <span class="float-right p3 " ng-click="removeAddress($index) ">
+                                <span class="float-right p3  cursor-point" ng-click="removeAddress($index) ">
                                     <i class="fas fa-times fa-sm "></i>
                                 </span>
-                                <span class=" float-right p3 " ng-click="editressModalOpen(addressData,$index); ">
+                                <span class=" float-right p3 cursor-point" ng-click="editressModalOpen(addressData,$index); ">
                                     <i class="fas fa-pencil-alt fa-xs "></i>
                                 </span>
                             </div>
@@ -130,7 +131,7 @@
                     </div>
                 </div>
                 <div class="col-1 col-md-1 ">
-                    <span class="pl-0 pl-md-3 float-right info-icon cursor-point " ng-click="addressModalOpen(); ">
+                    <span class="pl-0 pl-md-3 float-right info-icon cursor-point" ng-click="addressModalOpen(); ">
                         <i class="fas fa-plus "></i>
                     </span>
                 </div>
@@ -147,7 +148,6 @@
                     <div class="d-flex main-users scrollbar ">
                         <div ng-click="newUserModalOpen() " class="d-flex align-items-center bg-white border rounded existing-user
                             p-2 mr-3 cursor-point ">
-                            <div class="user-circle "></div>
                             <div class="mx-2 fontRobotoRegular name-rel ">Add New Member</div>
                             <div class="fontRobotoLight ">
                                 <i class="fas fa-plus "></i>

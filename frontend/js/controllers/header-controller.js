@@ -5,8 +5,11 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
     });
 
     $scope.currentState = $state.current.name;
-
-    if (_.isEmpty($.jStorage.get("userData")) && $scope.currentState !== 'login' && $scope.currentState !== 'verifyemail') {
+    var stateArray = ['login', 'verifyemail', 'privacy', 'terms'];
+    var stateIndex = _.findIndex(stateArray, function (state) {
+        return state == $scope.currentState;
+    })
+    if (_.isEmpty($.jStorage.get("userData")) && stateIndex == -1) {
         $state.go('home');
     }
     $.fancybox.close(true);
