@@ -115,7 +115,7 @@
                     <div class="user-profile rounded-circle">
                         <img ng-src="{{jstrgValue.profilePic | serverimage}}" alt="Ticket_circle-icon" width="100%"
                             ng-if="jstrgValue.profilePic">
-                        <img ng-src="{{jstrgValue.photo}}" alt="Ticket_circle-icon" width="100%" ng-if="jstrgValue.photo && !jstrgValue.profilePic">
+                        <img ng-src="{{jstrgValue.photo | serverimage}}" alt="Ticket_circle-icon" width="100%" ng-if="jstrgValue.photo && !jstrgValue.profilePic">
                         <img src="img/emptyProfile.png" ng-if="!(jstrgValue.profilePic || jstrgValue.photo)" alt="Ticket_circle-icon">
 
                         <!-- <img src="img/header/profile.png" alt="Ticket_circle-icon" width="100%"> -->
