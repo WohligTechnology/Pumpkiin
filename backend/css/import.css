@@ -38031,7 +38031,7 @@ body {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: #1fc8ec; }
+    background: #142c5b; }
     .support-chat-history .blue-circle .fa-check {
       display: none; }
 
@@ -38102,6 +38102,30 @@ svg {
   opacity: 0.4;
   transition: opacity .4s ease; }
 
+.border-rounded {
+  border-radius: 10px; }
+
+.rotate-180 {
+  transform: rotate(180deg); }
+
+.cursor-point {
+  cursor: pointer; }
+
+.up-arrow {
+  width: 36px;
+  height: 36px;
+  right: 60px;
+  text-align: center;
+  bottom: -22px;
+  position: absolute;
+  z-index: 1;
+  background-color: #f6a244;
+  border: solid 5px #ecf0f2;
+  border-radius: 50%; }
+  .up-arrow .fa-sort-down {
+    color: white;
+    vertical-align: 0; }
+
 /* Start writing sass here */
 #fancybox-loading, .fancybox-close, .fancybox-next span, .fancybox-prev span {
   background-image: url(../img/fancybox_sprite.png); }
@@ -38149,5 +38173,3 @@ svg {
     display: none; }
   .info-house {
     right: 28%; } }
-
-/*# sourceMappingURL=import.css.map */
