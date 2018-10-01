@@ -13,7 +13,7 @@ module.exports = function (profile) {
             console.log("data22222222222222222222222222222222", data)
             if (data.name == "noAccess") {
                 data.accessToken[0] = "AccessNotAvailable";
-                res.redirect("http://localhost:8081/#!/login" + "/" + data.accessToken[0]);
+                res.redirect("http://pumpkiinbackend.wohlig.in/#!/login" + "/" + data.accessToken[0]);
                 req.session.destroy(function () {});
             } else {
                 if (err || !data) {
@@ -25,7 +25,7 @@ module.exports = function (profile) {
                     console.log(req.session.returnUrl);
                     console.log("asaasa")
 
-                    res.redirect("http://localhost:8081/#!/login" + "/" + data.accessToken[0]);
+                    res.redirect("http://pumpkiinbackend.wohlig.in/#!/login" + "/" + data.accessToken[0]);
                     req.session.destroy(function () {});
                 }
             }
