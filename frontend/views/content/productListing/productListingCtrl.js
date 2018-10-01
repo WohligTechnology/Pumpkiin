@@ -166,7 +166,7 @@ myApp.controller('ProductlistingCtrl', function ($scope, TemplateService, ticket
             // $scope.gotoUrl = EditUrl;
             ticketService.totalClosedTickets(function (data) {
                 // $scope.ticketDetails = data;
-                $scope.ticketDetails = _.slice(data, 0, 8);
+                $scope.ticketDetails = _.slice(data, 0, 5);
                 console.log("2 $scope.ticketDetails --", $scope.ticketDetails);
 
             });

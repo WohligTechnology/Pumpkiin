@@ -104,10 +104,10 @@ var model = {
                 emailData.description = data.description;
                 emailData.filename = "Reminder.ejs";
                 emailData.subject = "Reminder Notification";
-                console.log("emailData", emailData);
+                console.log("emailData in reminder mail", emailData);
                 Config.email(emailData, function (err, emailRespo) {
-                    console.log("err", err);
-                    console.log("emailRespo", emailRespo);
+                    console.log("err------------------", err);
+                    console.log("emailRespo-----------", emailRespo);
                     callback(null, emailRespo);
                 });
             }
@@ -153,7 +153,7 @@ var model = {
     },
 
     changeIsReadStatus: function (data, callback) {
-        console.log("-----------", data);
+        // console.log("-----------", data);
         this.findOneAndUpdate({
             _id: data.id
         }, {
@@ -163,7 +163,7 @@ var model = {
         }).exec(callback);
     },
     deleteMultiple: function (data, callback) {
-        console.log("-----------", data);
+        // console.log("-----------", data);
         this.remove({
             _id: {
                 $in: data.data
@@ -171,7 +171,7 @@ var model = {
         }).exec(callback);
     },
     multiCompleted: function (data, callback) {
-        console.log("-----------", data);
+        // console.log("-----------", data);
         this.update({
             _id: {
                 $in: data.data

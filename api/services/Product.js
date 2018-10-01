@@ -103,8 +103,8 @@ var exports = _.cloneDeep(require("sails-wohlig-service")(schema, " retailer use
 var model = {
 
     saveProduct: function (data, callback) {
-        console.log("----------------------------")
-        console.log(data);
+        // console.log("----------------------------")
+        // console.log(data);
         Product.saveData(data, function (err, found) {
             if (err || _.isEmpty(found)) {
                 callback(err, null);
@@ -164,7 +164,7 @@ var model = {
                 });
             },
             function (productData, callback) {
-                console.log("productData", productData)
+                // console.log("productData", productData)
                 productdata = productData;
                 var accessoriesToSave = {};
                 accessoriesToSave._id = data._id;
@@ -383,9 +383,9 @@ var model = {
 
     sortFunction: function (data, callback) {
 
-        console.log("sortFunction", data);
+        // console.log("sortFunction", data);
         var name = data.name;
-        console.log("name ", name);
+        // console.log("name ", name);
         Product.find({
             user: data.user,
             status: 'Confirmed'
@@ -447,7 +447,7 @@ var model = {
     },
 
     searchProductWithInvoice: function (data, callback) {
-        console.log("-----------", data);
+        // console.log("-----------", data);
         var page = 1;
         // var Model = this;
         // var Const = this(data);
@@ -482,7 +482,7 @@ var model = {
             .page(options, callback);
     },
     searchConfirmedProducts: function (data, callback) {
-        console.log("-----------", data);
+        // console.log("-----------", data);
         var page = 1;
         // var Model = this;
         // var Const = this(data);
