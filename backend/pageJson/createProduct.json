@@ -69,7 +69,7 @@
             "url": ""
         }, {
             "name": "Product Image",
-            "type": "text",
+            "type": "image",
             "tableRef": "productImages",
             "placeholder": "Enter Product Image",
             "id": "productImages",
