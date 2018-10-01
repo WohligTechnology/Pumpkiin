@@ -9,37 +9,34 @@
         <div class="row form-group">
             <div class="col-12 col-md-6">
                 <label class="mb-0">Name * </label>
-                <input name="user" ng-model="userData.name" class="form-control form-control-sm"
-                    type="text" required only-letters-input>
+                <input name="user" ng-model="userData.name" class="form-control form-control-sm" type="text" required only-letters-input>
                 <span class="error" ng-show="newuser.user.$invalid && newuser.user.$touched"> Please, enter user name</span>
             </div>
             <div class="col-12 col-md-6">
                 <label class="mb-0">Email * </label>
-                <input name="email" ng-model="userData.email" class="form-control form-control-sm"
-                    type="email" required>
-                <span class="error" ng-show="newuser.email.$invalid && newuser.email.$touched"> Please, enter user email</span> 
+                <input name="email" ng-model="userData.email" class="form-control form-control-sm" type="email" required>
+                <span class="error" ng-show="newuser.email.$invalid && newuser.email.$touched"> Please, enter user email</span>
             </div>
         </div>
         <div class="row form-group">
             <div class="col-12 col-md-6">
                 <label class="mb-0">Mobile Number * </label>
-                <input name="mobile" ng-model="userData.mobile" class="form-control form-control-sm"
-                    type="text" maxlength="10" required only-digits>
-                    <span class="error" ng-show="newuser.mobile.$invalid && newuser.mobile.$touched"> Please, enter user contact</span> 
+                <input name="mobile" ng-model="userData.mobile" class="form-control form-control-sm" type="text" maxlength="10" required
+                    only-digits>
+                <span class="error" ng-show="newuser.mobile.$invalid && newuser.mobile.$touched"> Please, enter user contact</span>
             </div>
             <div class="col-12 col-md-6">
                 <label class="mb-0">NickName</label>
-                <input ng-model="userData.nickName" class="form-control form-control-sm"
-                    type="text">
+                <input ng-model="userData.nickName" class="form-control form-control-sm" type="text">
             </div>
         </div>
         <div class="row form-group">
             <div class="col-12 col-md-6">
                 <label class="mb-0">Relationship * </label>
-                <select class="form-control" id="sel1" name="sellist1" ng-model="userData.relation" required>
+                <select class="form-control cursor-point" id="sel1" name="sellist1" ng-model="userData.relation" required>
                     <option ng-repeat="relations in relationsForUser">{{relations}}</option>
                 </select>
-                <span class="error" ng-show="newuser.sellist1.$invalid && newuser.sellist1.$touched"> Please, select relationship</span> 
+                <span class="error" ng-show="newuser.sellist1.$invalid && newuser.sellist1.$touched"> Please, select relationship</span>
             </div>
         </div>
         <div class="text-center">

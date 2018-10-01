@@ -180,21 +180,11 @@
     "action": [{
         "name": "submit",
         "action": "submitProduct",
-        "stateName": {
-            "page": "page",
-            "json": {
-                "id": "viewProduct"
-            }
-        }
+        "stateName": null
     }, {
         "name": "cancel",
         "sideMenuRedirect": true,
-        "stateName": {
-            "page": "page",
-            "json": {
-                "id": "viewProduct"
-            }
-        }
+        "stateName": null
     }],
     "apiCall": {
         "url": "Product/save",

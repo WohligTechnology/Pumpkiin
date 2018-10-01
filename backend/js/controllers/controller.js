@@ -814,18 +814,15 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             if (keywordChange) {
                 $scope.currentPage = 1;
             }
-            var userData = $.jStorage.get("profile")
-            if (userData && userData.accessLevel) {
-                if (userData.accessLevel == "Brand" || userData.accessLevel == "Retailer") {
-
-                    filter[_.lowerCase(userData.accessLevel)] = userData[_.lowerCase(userData.accessLevel)]
-                }
-
+            var userData = $.jStorage.get("profile");
+            $scope.filter = {};
+            if ($scope.json.json.filter) {
+                $scope.filter = $scope.json.json.filter;
             }
             NavigationService.search($scope.json.json.apiCall.url, {
                     page: $scope.currentPage,
                     keyword: $scope.search.keyword,
-                    filter: filter
+                    filter: $scope.filter
                 }, ++i,
                 function (data, ini) {
                     if (ini == i) {
@@ -893,7 +890,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
 
     })
 
-    .controller('DetailCtrl', function ($scope, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, toastr) {
+    .controller('DetailCtrl', function ($scope, $window, TemplateService, NavigationService, JsonService, $timeout, $state, $stateParams, toastr) {
         $scope.json = JsonService;
         JsonService.setKeyword($stateParams.keyword);
         $scope.template = TemplateService;
@@ -916,22 +913,30 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         //  END FOR EDIT
 
         $scope.onCancel = function (sendTo) {
-            $scope.json.json.action[1].stateName.json.keyword = "";
-            $scope.json.json.action[1].stateName.json.page = "";
-            $state.go($scope.json.json.action[1].stateName.page, $scope.json.json.action[1].stateName.json);
+            if (sendTo == null) {
+                $window.history.back();
+            } else {
+                $scope.json.json.action[1].stateName.json.keyword = "";
+                $scope.json.json.action[1].stateName.json.page = "";
+                $state.go($scope.json.json.action[1].stateName.page, $scope.json.json.action[1].stateName.json);
+            }
         };
 
         $scope.saveData = function (formData) {
             NavigationService.apiCall($scope.json.json.apiCall.url, formData, function (data) {
                 var messText = "created";
                 if (data.value === true) {
-                    $scope.json.json.action[0].stateName.json.keyword = "";
-                    $scope.json.json.action[0].stateName.json.page = "";
-                    $state.go($scope.json.json.action[0].stateName.page, $scope.json.json.action[0].stateName.json);
-                    if ($scope.json.keyword._id) {
-                        messText = "edited";
+                    if ($scope.json.json.action[0].stateName == null) {
+                        $window.history.back();
+                    } else {
+                        $scope.json.json.action[0].stateName.json.keyword = "";
+                        $scope.json.json.action[0].stateName.json.page = "";
+                        $state.go($scope.json.json.action[0].stateName.page, $scope.json.json.action[0].stateName.json);
+                        if ($scope.json.keyword._id) {
+                            messText = "edited";
+                        }
+                        toastr.success($scope.json.json.name + " " + formData.name + " " + messText + " successfully.");
                     }
-                    toastr.success($scope.json.json.name + " " + formData.name + " " + messText + " successfully.");
                 } else {
                     messText = "creating";
                     if ($scope.json.keyword._id) {
@@ -1784,7 +1789,8 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
 
 
         $scope.ticketsSearch = function () {
-            NavigationService.apiCall("Ticket/searchTickets", {
+            console.log("ticketsSearch---->>>>");
+            NavigationService.apiCall("Ticket/searchOnListPage", {
                 page: $scope.currentPage,
                 keyword: $scope.search.keyword
             }, function (res) {

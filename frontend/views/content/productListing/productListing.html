@@ -36,9 +36,10 @@
                         </span>
                         <div class="addedpromain" ui-sref="productdetailregistered({id: product._id})">
                             <div class="d-flex align-items-center justify-content-center addedproduct" ui-sref="productdetailregistered({id: product._id})">
-                                <img class="img-fluid large-img" ng-src="{{product.productImages[0] | serverimage}}" alt="">
+                                <img class="img-fluid large-img" ng-src="{{product.productImages[0] | serverimage}}"
+                                    alt="">
                                 <div class="background-blue small-circle">
-                                    <img src="{{product.smallimage}}">
+                                    <img ng-src="{{product.productImages[0] | serverimage}}">
                                 </div>
                             </div>
                             <div class="addedproducttext pb-2">
@@ -47,9 +48,11 @@
                                 <span class="relation">{{product.relation}}</span>
                                 <br>
                                 <img ng-if="!product.ribbon" src="img/ticketCreation/warranty.png">
-                                <font ng-if="!product.ribbon" class="font12 green-color">Warranty exp in {{product.months}} months</font>
+                                <font ng-if="!product.ribbon" class="font12 green-color">Warranty exp in
+                                    {{product.months}} months</font>
                                 <img ng-if="product.ribbon" src="img/ticketCreation/red_warranty.png">
-                                <font ng-if="product.ribbon" class="font12" color="red">Warranty exp in {{product.daysLeft}} days</font>
+                                <font ng-if="product.ribbon" class="font12" color="red">Warranty exp in
+                                    {{product.daysLeft}} days</font>
 
                                 <span class="expiry">{{product.warranty}}</span>
                             </div>
@@ -61,8 +64,9 @@
             </div>
             <div class="float-right mr-2">
                 <nav ng-if="(allProducts.length / maxRow) >1">
-                    <ul ng-change="changePage(currentPage);" uib-pagination total-items="allProducts.length" items-per-page="maxRow" ng-model="currentPage"
-                        max-size="10" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
+                    <ul ng-change="changePage(currentPage);" uib-pagination total-items="allProducts.length"
+                        items-per-page="maxRow" ng-model="currentPage" max-size="10" class="pagination-sm"
+                        boundary-links="true" force-ellipses="true"></ul>
                 </nav>
             </div>
             <!-- <div class="text-center">

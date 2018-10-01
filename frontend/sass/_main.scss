@@ -1147,11 +1147,12 @@ fieldset:disabled {
     transition: ease all 500ms;
 
     &:after {
-        content: "\2713";
-        font-size: 33px;
-        position: absolute;
-        left: 0px;
-        top: -11px;
+        content: url('../img/bluetick.png'); // background: url("img/bluetick.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%; // font-size: 33px;
+        // position: absolute;
+        // left: 0px;
+        // top: -11px;
     }
 }
 

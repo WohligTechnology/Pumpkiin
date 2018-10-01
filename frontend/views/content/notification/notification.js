@@ -229,7 +229,17 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
         }
     };
 
-
+    $scope.reminderModalOpen = function (data) {
+        if (data) {
+            $scope.getReminder(data);
+        }
+        $scope.addReminder = $uibModal.open({
+            animation: true,
+            templateUrl: "views/modal/addReminder.html",
+            scope: $scope,
+            backdrop: 'static'
+        });
+    }
     $scope.notificationmodalOpen = function (notification, index, modal) {
         console.log("notification", notification);
         if (modal) {
