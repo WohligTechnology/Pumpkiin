@@ -28,6 +28,7 @@ module.exports = [
   "bower_components/angular-ui-select/dist/select.js",
   "bower_components/async/dist/async.min.js",
   "bower_components/jStorage/jstorage.min.js",
+  "bower_components/angular-moment-picker/dist/angular-moment-picker.js",
 
   //App.js
   'frontend/js/app.js',
