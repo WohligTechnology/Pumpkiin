@@ -13,24 +13,14 @@ myApp.factory('NavigationService', function ($http) {
             access: false
         },
         {
-            name: "Product",
+            name: "Product Confirmed",
             classis: "active",
-            sref: "",
-            subnav: [{
-                    name: "Confirmed",
-                    classis: "active",
-                    uiSref: "viewproductpage({status:'Confirmed'})",
-                    icon: "phone",
-                },
-                {
-                    name: "Pending",
-                    classis: "active",
-                    uiSref: "viewproductpage({status:'Pending'})",
-                    icon: "phone",
-                }
-
-            ]
-
+            sref: "#!/page/viewProductConfirmed//"
+        },
+        {
+            name: "Product Pending",
+            classis: "active",
+            sref: "#!/page/viewProductPending//"
         },
         /* {
                    name: "Brands",

@@ -31,6 +31,9 @@
             "value": "_id"
         }
     }],
+    "filter": {
+        "status": "Pending"
+    },
     "button": [{
         "name": "Create",
         "icon": "plus",
@@ -39,7 +42,7 @@
         "action": "createProduct"
     }],
     "apiCall": {
-        "url": "Product/search",
+        "url": "Product/searchProductWithInvoice",
         "params": "_id"
     }
 }
