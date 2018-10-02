@@ -24,6 +24,13 @@
                     </div>
                 </div>
             </div>
+            <div ng-if="totalitems>5" class="float-right">
+                <nav aria-label="...">
+                    <ul ng-change="changePage(currentPage); " uib-pagination total-items="totalitems" items-per-page="maxRow"
+                        ng-model="currentPage" max-size="maxRow" class="pagination-sm" boundary-links="true"
+                        force-ellipses="true"></ul>
+                </nav>
+            </div>
         </div>
     </div>
 </div>

@@ -109,6 +109,38 @@ var model = {
             .page(options, callback);
     },
 
+    totalClosedTickets1: function (data, callback) {
+        var page = 1;
+        // var Model = this;
+        // var Const = this(data);
+        var maxRow = 5;
+        if (data.page) {
+            page = data.page;
+        }
+        var field = data.field;
+
+        var options = {
+            field: data.field,
+            filters: {
+                keyword: {
+                    fields: [''],
+                    term: data.keyword
+                }
+            },
+            sort: {
+                asc: ''
+            },
+            start: (page - 1) * maxRow,
+            count: maxRow
+        };
+        this.find({
+                user: data.user,
+                status: "Closed"
+            }).deepPopulate('product product.user').order(options)
+            .keyword(options)
+            .page(options, callback);
+    },
+
     totalClosedTickets: function (data, callback) {
         this.find({
             user: data.user,
