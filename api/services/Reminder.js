@@ -230,8 +230,6 @@ var model = {
                                 console.log("emailRespo", emailRespo);
                                 callback(null, emailRespo);
                             });
-                        } else {
-                            callback();
                         }
                     },
                     function (err, data2) {

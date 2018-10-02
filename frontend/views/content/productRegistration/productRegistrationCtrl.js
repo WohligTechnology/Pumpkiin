@@ -18,13 +18,13 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     $scope.checkmark3 = false;
 
     $scope.makeActive = function (click) {
-        console.log("click", click);
+        // console.log("click", click);
         $('.' + click).addClass("timeline-active");
         $scope.activePage = click;
-
-        if (click) {
-            $('.' + click).nextAll().removeClass("timeline-active");
-        }
+        // console.log(click);
+        // if (click) {
+        //     $('.' + click).nextAll().removeClass("timeline-active");
+        // }
     };
 
     $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Sister", "Brother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew", "Friend"]
@@ -81,19 +81,19 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     $scope.saveProduct = function (product) {
         // $scope.product_id = {};
 
-        console.log("saveProduct-------------------", product)
-        console.log("$scope.product_id-------------------", $scope.product_id)
+        // console.log("saveProduct-------------------", product)
+        // console.log("$scope.product_id-------------------", $scope.product_id)
         // product.productImages = [];
         // product.productImages = product.images;
         product.user = $scope.jstrgValue._id;
         // product.brand = product.brand._id;
         if ($scope.product_id) {
             product._id = $scope.product_id;
-            console.log("product id when back", $scope.product_id)
+            // console.log("product id when back", $scope.product_id)
             NavigationService.apiCallWithData("Product/saveProduct", product, function (res) {
                 $scope.product_id = res.data._id;
-                console.log("if", res.data);
-                $scope.activePage = 'circle2';
+                //     console.log("if", res.data);
+                // $scope.activePage = 'circle2';
                 // $scope.makeActive('circle2');
                 $scope.checkmark1 = true;
             });
@@ -102,7 +102,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
                 console.log("else", res);
                 $scope.product_id = res.data._id;
                 console.log("res.data", res.data);
-                $scope.activePage = 'circle2';
+                // $scope.activePage = 'circle2';
                 // $scope.makeActive('circle2');
                 $scope.checkmark1 = true;
             });
@@ -158,8 +158,10 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             data._id = $scope.product_id;
             NavigationService.apiCallWithData("Product/saveProduct", data, function (res) {
                 console.log("res.data", res.data);
-                $scope.makeActive('circle4');
-                $scope.checkmark3 = true;
+                if (res.value) {
+                    $scope.makeActive('circle4');
+                    $scope.checkmark3 = true;
+                }
             });
         }
 
