@@ -74,12 +74,13 @@
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
-    "connect": "chmod 600 'wohlig.pem' && ssh -i wohlig.pem admin@ec2-35-154-182-49.ap-south-1.compute.amazonaws.com"
+    "connect": "chmod 600 'wohlig.pem' && ssh -i wohlig.pem admin@ec2-35-154-182-49.ap-south-1.compute.amazonaws.com",
+    "prod": "grunt ui --target=frontend --production && grunt ui --target=backend --production"
   },
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/wohligtechnology/nodeframework.git"
+    "url": "git://github.com/wohligtechnology/nodeframework.git",
   },
   "author": "wohlig",
   "license": "",
