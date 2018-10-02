@@ -9650,6 +9650,9 @@ fieldset:disabled {
 .selectize-control.single > .selectize-input > input {
   cursor: pointer; }
 
+.cursor-hand {
+  cursor: pointer; }
+
 .productreg {
   position: relative; }
   .productreg:before {
