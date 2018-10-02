@@ -67,7 +67,7 @@ myApp.controller('headerCtrl', function ($scope, TemplateService, $uibModal, $st
             data.name = $scope.userInfo.name;
             data.email = $scope.userInfo.email;
             data.status = "Pending";
-            NavigationService.apiCallWithData("Reminder/reminderMail", data, function (res) {
+            NavigationService.apiCallWithData("Reminder/sendReminderMail", data, function (res) {
                 console.log("res.data", res.data);
                 toastr.success("Reminder Added Successfully");
                 $scope.addReminder.close();

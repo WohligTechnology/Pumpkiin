@@ -185,15 +185,20 @@ var model = {
             status: "Completed"
         }).exec(callback);
     },
-    sendReminderMail: function () {
+
+
+    sendReminderMail: function (data, callback) {
+        // console.log("1-----", data);
         Reminder.find({
             reminderMailSent: false
         }).exec(function (err, data) {
             if (err || _.isEmpty(data)) {} else {
+                // console.log("2----", data);
                 async.eachSeries(data, function (singelData, callback) {
+                        // console.log("3----", singelData);
                         var reminderDate = moment(singelData.dateOfReminder);
                         var currentDate = moment(new Date());
-                        console.log("reminderDate", reminderDate, "currentDate", currentDate);
+                        // console.log("reminderDate", reminderDate, "currentDate", currentDate);
                         var day = reminderDate.diff(currentDate, "days");
                         if (singelData.email && day == 1) {
                             Reminder.update({
@@ -231,9 +236,9 @@ var model = {
                     },
                     function (err, data2) {
                         if (err) {
-                            console.log("In Err");
+                            callback("canNotSendMail", null);
                         } else {
-                            console.log("In HERE ");
+                            callback(null, "mailSent");
                         }
                     });
             }
