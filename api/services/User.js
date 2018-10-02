@@ -44,7 +44,10 @@ var schema = new Schema({
             }
         }
     },
-    gender: String,
+    gender: {
+        type: String,
+        enum: ['Female', 'Male']
+    },
     profilePic: String,
     photo: {
         type: String,
@@ -931,3 +934,59 @@ var model = {
     }
 };
 module.exports = _.assign(module.exports, exports, model);
+
+
+//     "name": "Addresses",
+//     "type": "box",
+//     "tableRef": "address",
+//     "validation": ["", "trim", ""],
+//     "fields": [{
+//         "name": "Title",
+//         "type": "text",
+//         "tableRef": "title",
+//         "placeholder": "Enter Title",
+//         "id": "title",
+//         "validation": ["", "trim"],
+//         "url": "",
+//         "onView": true
+//     }, {
+//         "name": "Address Line",
+//         "type": "text",
+//         "tableRef": "addressLine",
+//         "placeholder": "Enter Address Line",
+//         "id": "addressLine",
+//         "validation": ["", "trim"],
+//         "url": "",
+//         "onView": true
+//     }, {
+//         "name": "State",
+//         "type": "tags",
+//         "subType": "advance",
+//         "tableRef": "state",
+//         "placeholder": "Enter State",
+//         "id": "state",
+//         "validation": ["", "trim"],
+//         "url": "Ticket/getAllStatesOfIndia",
+//         "dropDownField": "region",
+//         "apiReteiveField": "data",
+//         "dropDownType": "single",
+//         "dependingOn": "city",
+//         "dependentUrl": "Ticket/getCity",
+//         "refresh": false,
+//         "onView": false
+//     }, {
+//         "name": "City",
+//         "type": "tags",
+//         "subType": "advance",
+//         "tableRef": "city",
+//         "placeholder": "Enter City",
+//         "id": "city",
+//         "validation": ["", "trim"],
+//         "url": "Ticket/getCity",
+//         "dropDownField": "city",
+//         "apiReteiveField": "data",
+//         "dropDownType": "single",
+//         "refresh": false,
+//         "onView": false
+//     }]
+// },

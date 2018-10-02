@@ -439,7 +439,7 @@ myApp.directive('viewField', function ($http, $filter) {
         templateUrl: 'views/directive/viewField.html',
         scope: {
             type: '=type',
-            value: "=value"
+            value: '=value'
         },
         link: function ($scope, element, attrs) {
             if (!$scope.type.type) {
@@ -457,13 +457,13 @@ myApp.directive('viewField', function ($http, $filter) {
                     }
                 }
             };
+
             if (_.isObjectLike($scope.value[$scope.type.tableRef])) {
                 $scope.storeObj = $scope.type;
                 $scope.storeValue = $scope.value;
                 $scope.objectDepth();
-
             } else {
-                $scope.form.model = $scope.value[$scope.type.tableRef];
+                $scope.form.model = _.first(_.at($scope.value, $scope.type.tableRef));
             }
 
             $scope.template = "views/viewField/" + $scope.type.type + ".html";
