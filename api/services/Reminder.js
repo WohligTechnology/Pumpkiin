@@ -176,13 +176,16 @@ var model = {
         }).exec(callback);
     },
     multiCompleted: function (data, callback) {
-        // console.log("-----------", data);
-        this.update({
+        Reminder.update({
             _id: {
                 $in: data.data
             }
         }, {
-            status: "Completed"
+            $set: {
+                status: "Completed"
+            }
+        }, {
+            "multi": true
         }).exec(callback);
     },
 
@@ -192,7 +195,9 @@ var model = {
         Reminder.find({
             reminderMailSent: false
         }).exec(function (err, data) {
-            if (err || _.isEmpty(data)) {} else {
+            if (err || _.isEmpty(data)) {
+                callback(err);
+            } else {
                 // console.log("2----", data);
                 async.eachSeries(data, function (singelData, callback) {
                         // console.log("3----", singelData);
@@ -231,7 +236,7 @@ var model = {
                                 callback(null, emailRespo);
                             });
                         } else {
-                            callback();
+                            callback(null, null);
                         }
                     },
                     function (err, data2) {
@@ -249,7 +254,7 @@ var model = {
 };
 sails.on("ready", function () {
     cron.schedule('*/5 * * * *', function () {
-        Reminder.sendReminderMail();
+        Reminder.sendReminderMail({}, callback);
     });
 });
 module.exports = _.assign(module.exports, exports, model);

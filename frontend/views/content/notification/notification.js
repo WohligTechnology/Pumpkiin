@@ -180,6 +180,7 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
         NavigationService.apiCallWithData("Reminder/multiCompleted", changeStatusData, function (res) {
             if (res.value == true) {
                 $scope.getReminder();
+                $scope.selectedReminders = [];
             }
         });
     };
@@ -222,11 +223,13 @@ myApp.controller('NotificationCtrl', function ($scope, TemplateService, ticketSe
         var a = _.findIndex($scope.selectedReminders, function (o) {
             return o == data.toString();
         });
+        console.log(a);
         if (a >= 0) {
             _.pull($scope.selectedReminders, data);
         } else {
             $scope.selectedReminders.push(data);
         }
+        console.log($scope.selectedReminders);
     };
 
     $scope.reminderModalOpen = function (data) {
