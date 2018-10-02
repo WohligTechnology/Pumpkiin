@@ -1,3 +1,4 @@
+var cron = require('node-cron');
 var schema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
@@ -17,6 +18,10 @@ var schema = new Schema({
         type: String,
         enum: ['Completed', 'Pending', 'Snooze']
     },
+    reminderMailSent: {
+        type: Boolean,
+        default: false
+    }
 });
 
 schema.plugin(deepPopulate, {});
@@ -104,10 +109,10 @@ var model = {
                 emailData.description = data.description;
                 emailData.filename = "Reminder.ejs";
                 emailData.subject = "Reminder Notification";
-                console.log("emailData", emailData);
+                console.log("emailData in reminder mail", emailData);
                 Config.email(emailData, function (err, emailRespo) {
-                    console.log("err", err);
-                    console.log("emailRespo", emailRespo);
+                    console.log("err------------------", err);
+                    console.log("emailRespo-----------", emailRespo);
                     callback(null, emailRespo);
                 });
             }
@@ -153,7 +158,7 @@ var model = {
     },
 
     changeIsReadStatus: function (data, callback) {
-        console.log("-----------", data);
+        // console.log("-----------", data);
         this.findOneAndUpdate({
             _id: data.id
         }, {
@@ -163,7 +168,7 @@ var model = {
         }).exec(callback);
     },
     deleteMultiple: function (data, callback) {
-        console.log("-----------", data);
+        // console.log("-----------", data);
         this.remove({
             _id: {
                 $in: data.data
@@ -171,7 +176,7 @@ var model = {
         }).exec(callback);
     },
     multiCompleted: function (data, callback) {
-        console.log("-----------", data);
+        // console.log("-----------", data);
         this.update({
             _id: {
                 $in: data.data
@@ -179,8 +184,67 @@ var model = {
         }, {
             status: "Completed"
         }).exec(callback);
+    },
+    sendReminderMail: function () {
+        Reminder.find({
+            reminderMailSent: false
+        }).exec(function (err, data) {
+            if (err || _.isEmpty(data)) {} else {
+                async.eachSeries(data, function (singelData, callback) {
+                        var reminderDate = moment(singelData.dateOfReminder);
+                        var currentDate = moment(new Date());
+                        console.log("reminderDate", reminderDate, "currentDate", currentDate);
+                        var day = reminderDate.diff(currentDate, "days");
+                        if (singelData.email && day == 1) {
+                            Reminder.update({
+                                _id: singelData._id
+                            }, {
+                                reminderMailSent: true
+                            }).exec(function (err, data3) {});
+
+                            var emailData = {};
+                            var time = new Date().getHours();
+                            var greeting;
+                            if (time < 10) {
+                                greeting = "Good morning";
+                            } else if (time < 17) {
+                                greeting = "Good Afternoon";
+                            } else {
+                                greeting = "Good evening";
+                            }
+                            emailData.from = "sahil@pumpkiin.com";
+                            emailData.name = singelData.name ? singelData.name : "";
+                            emailData.email = singelData.email;
+                            emailData.greeting = greeting;
+                            emailData.title = singelData.title ? singelData.title : "";
+                            emailData.description = singelData.description ? singelData.description : "";
+                            emailData.filename = "Reminder.ejs";
+                            emailData.subject = "Reminder Notification";
+                            Config.email(emailData, function (err, emailRespo) {
+                                console.log("err", err);
+                                console.log("emailRespo", emailRespo);
+                                callback(null, emailRespo);
+                            });
+                        } else {
+                            callback();
+                        }
+                    },
+                    function (err, data2) {
+                        if (err) {
+                            console.log("In Err");
+                        } else {
+                            console.log("In HERE ");
+                        }
+                    });
+            }
+        });
     }
 
 
 };
+sails.on("ready", function () {
+    cron.schedule('*/5 * * * *', function () {
+        Reminder.sendReminderMail();
+    });
+});
 module.exports = _.assign(module.exports, exports, model);

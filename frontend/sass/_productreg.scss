@@ -150,7 +150,8 @@
 .reminder {
     width: 25%;
     .social_icon {
-        padding: 5px 11px;;
+        padding: 5px 11px;
+        ;
         border: solid 2px #ecf0f2;
         background: $orange !important;
     }
@@ -246,4 +247,22 @@
 
 .ui-select-bootstrap.open .dropdown-menu {
     display: block;
+}
+
+.product-registration-detail .add .social_icon {
+    padding: 5px 10px !important;
+}
+
+.purchase-section,
+.product-registration-detail {
+    button {
+        border: 0;
+        background-color: white;
+        &:focus {
+            outline: 0;
+        }
+    }
+    .add-user-purchase .social-text {
+        width: 840px;
+    }
 }

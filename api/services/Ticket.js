@@ -557,6 +557,10 @@ var model = {
                 }]
             }
         }, {
+            $sort: {
+                createdAt: -1
+            }
+        }, {
             $skip: parseInt(pagestartfrom)
         }, {
             $limit: 10

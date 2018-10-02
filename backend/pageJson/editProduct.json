@@ -6,196 +6,151 @@
     "pageType": "edit",
     "urlFields": ["_id"],
     "fields": [{
-            "name": "Brand",
-            "type": "tags",
-            "tableRef": "brand",
-            "dropDownType": "single",
-            "dropDownField": "name",
-            "searchApi": "searchCall",
-            "placeholder": "Enter brand Name",
-            "id": "brand",
-            "validation": ["", "trim", ""],
-            "url": "Brand/search"
-        },
-
-        {
             "name": "Product Name",
             "type": "text",
             "tableRef": "productName",
-            "placeholder": "Enter productname",
+            "placeholder": "Enter Product Name",
             "id": "productname",
             "validation": ["", "trim", ""],
             "url": ""
-        }, {
+        },
+        {
+            "name": "Brand",
+            "type": "text",
+            "tableRef": "brand",
+            "placeholder": "Enter Brand Name",
+            "id": "brand",
+            "validation": ["", "trim", ""]
+        },
+
+        {
+            "name": "Retailer",
+            "type": "text",
+            "tableRef": "retailer",
+            "placeholder": "Enter Retailer",
+            "id": "retailer",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "Product Invoice",
+            "type": "image",
+            "tableRef": "productInvoicePR",
+            "placeholder": "Enter Product Invoice",
+            "id": "productInvoicePR",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "Warranty Card",
+            "type": "image",
+            "tableRef": "warrantyCardPR",
+            "placeholder": "Enter Warranty Card",
+            "id": "warrantyCardPR",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
             "name": "Serial No",
-            "type": "number",
+            "type": "text",
             "tableRef": "serialNo",
-            "placeholder": "Enter serialno",
-            "id": "serialno",
+            "placeholder": "Enter Serial No",
+            "id": "serialNo",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "Model No",
+            "type": "text",
+            "tableRef": "modelNo",
+            "placeholder": "Enter Model No",
+            "id": "modelNo",
             "validation": ["", "trim", ""],
             "url": ""
         }, {
-            "name": "Retailer",
-            "type": "tags",
-            "tableRef": "retailer",
-            "dropDownType": "single",
-            "dropDownField": "name",
-            "searchApi": "searchCall",
-            "placeholder": "Enter Retailer Name",
-            "id": "retailer",
+            "name": "Product Image",
+            "type": "text",
+            "tableRef": "productImages",
+            "placeholder": "Enter Product Image",
+            "id": "productImages",
             "validation": ["", "trim", ""],
-            "url": "Retailer/search"
+            "url": ""
         }, {
             "name": "Purchase Date ",
             "type": "date",
             "tableRef": "purchaseDate",
-            "placeholder": "Enter purchasedate",
-            "id": "purchasedate",
-            "validation": ["", "trim", ""],
-            "url": ""
-        }, {
-            "name": "Warranty Period",
-            "type": "text",
-            "tableRef": "warrantyPeriod",
-            "placeholder": "Enter Warranty Period",
-            "id": "warrantyperiod",
+            "placeholder": "Enter Purchase Date",
+            "id": "purchaseDate",
             "validation": ["", "trim", ""],
             "url": ""
         },
         {
-            "name": "Warranty End Date ",
-            "type": "date",
-            "tableRef": "warrantyExpDate",
-            "placeholder": "Enter Warranty End Date",
-            "id": "warrantyenddate",
-            "validation": ["", "trim", ""],
-            "url": ""
-        }, {
             "name": "Purchase Price",
             "type": "text",
             "tableRef": "purchasePrice",
-            "placeholder": "Enter purchasprice",
-            "id": "purchasprice",
+            "placeholder": "Enter Purchase Price",
+            "id": "purchasePrice",
             "validation": ["", "trim", ""],
             "url": ""
         }, {
-            "name": "Confirmation Code",
-            "type": "text",
-            "tableRef": "confirmationCode",
-            "placeholder": "Enter confirmationcode",
-            "id": "confirmationcode",
+            "name": "Proof of Purchase",
+            "type": "image",
+            "tableRef": "purchaseProof",
+            "placeholder": "Enter Proof of Purchase",
+            "id": "purchaseProof",
             "validation": ["", "trim", ""],
             "url": ""
-        }, {
+        },
+        {
+            "name": "Warranty Expiry Date",
+            "type": "date",
+            "tableRef": "warrantyExpDate",
+            "placeholder": "Enter Warranty Expiry Date",
+            "id": "warrantyExpDate",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "Insurance Expiry Date",
+            "type": "date",
+            "tableRef": "insuranceExpDate",
+            "placeholder": "Enter Insurance Expiry Date",
+            "id": "insuranceExpDate",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "Insurance Card",
+            "type": "image",
+            "tableRef": "insuranceProofImage",
+            "placeholder": "Enter Insurance Card",
+            "id": "insuranceProofImage",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
             "name": "Status",
             "type": "tags",
             "tableRef": "status",
-            "placeholder": "Enter status",
+            "placeholder": "Enter Status",
             "id": "status",
             "url": "",
             "dropDownField": "",
             "dropDownType": "single",
             "onView": true,
             "dropDown": ["Pending", "Confirmed"]
-        }, {
-            "name": "Local Support",
-            "type": "box",
-            "tableRef": "localSupport",
-            "validation": ["", "trim", ""],
-            "fields": [{
-                    "name": "Name",
-                    "type": "text",
-                    "tableRef": "name",
-                    "placeholder": "Enter  Name",
-                    "id": "name",
-                    "validation": ["", "trim"],
-                    "url": "",
-                    "onView": true
-                },
-                {
-                    "name": "Contact",
-                    "type": "text",
-                    "tableRef": "contact",
-                    "placeholder": "Enter contact Number",
-                    "id": "contact",
-                    "validation": ["", "trim"],
-                    "url": "",
-                    "onView": true
-                },
-                {
-                    "name": "Email",
-                    "type": "text",
-                    "tableRef": "email",
-                    "placeholder": "Enter Email",
-                    "id": "email",
-                    "validation": ["", "trim"],
-                    "url": "",
-                    "onView": true
-                }
-            ]
-        }, {
-            "name": "Warrenty Status",
-            "type": "text",
-            "tableRef": "warrentyStatus",
-            "placeholder": "Enter warrentystatus",
-            "id": "warrentystatus",
-            "validation": ["", "trim", ""],
-            "url": ""
-        }, {
-            "name": "Tags",
-            "type": "text",
-            "tableRef": "tags",
-            "placeholder": "Enter tags",
-            "id": "tags",
-            "validation": ["", "trim", ""],
-            "url": ""
-        }, {
-            "name": "Type",
-            "type": "tags",
-            "tableRef": "type",
-            "placeholder": "select type",
-            "id": "type",
-            "url": "",
-            "dropDownField": "",
-            "dropDownType": "single",
-            "onView": true,
-            "dropDown": ["Product", "Accessory"]
-        }, {
-            "name": "Product Accessory Map",
-            "type": "box",
-            "tableRef": "productAccessoryMap",
-            "validation": ["", "trim", ""],
-            "fields": [{
-                "name": "product",
-                "type": "text",
-                "tableRef": "product",
-                "placeholder": "Enter product",
-                "id": "product",
-                "validation": ["", "trim"],
-                "url": "",
-                "onView": true
-            }]
         }
     ],
     "action": [{
         "name": "submit",
         "action": "submitProduct",
-        "stateName": {
-            "page": "page",
-            "json": {
-                "id": "viewProduct"
-            }
-        }
+        "stateName": null
     }, {
         "name": "cancel",
         "sideMenuRedirect": true,
-        "stateName": {
-            "page": "page",
-            "json": {
-                "id": "viewProduct"
-            }
-        }
+        "stateName": null
     }],
+
     "apiCall": {
         "url": "Product/save",
         "params": "_id"
