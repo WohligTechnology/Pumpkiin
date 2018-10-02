@@ -19,7 +19,15 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         "relation": "Brother"
     }];
 
-    $scope.reload = function () {
+    $scope.saveImage = function () {
+        $.jStorage.set("userData", $scope.jstrgValue);
+        NavigationService.apiCallWithData("User/save", $scope.jstrgValue, function (response) {
+            if (response.value == true) {
+                toastr.success("Profile Image Saved successfully");
+            } else {
+                toastr.error("Error Updating Profile Image");
+            }
+        });
         $state.reload();
     }
 
@@ -86,7 +94,7 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         });
 
         NavigationService.apiCallWithData("Product/removeRelation", test, function (response) {
-            if (response.value == true) {}
+            if (response.value == true) { }
         });
     }
 
@@ -161,31 +169,6 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
         }
 
     };
-
-
-    $scope.$watch("userDataForProfile.profilePic", function (newVal, oldVal) {
-        // console.log("newVal----------", newVal);
-        if ($scope.userDataForProfile) {
-            $scope.userDataForProfile.profilePic = newVal;
-            // console.log("$scope.userDataForProfile----------", $scope.userDataForProfile);
-            NavigationService.apiCallWithData("User/save", $scope.userDataForProfile, function (response) {
-                if (response.value == true) {
-                    var data = {};
-                    data._id = $scope.jstrgValue._id;
-                    NavigationService.apiCallWithData("User/getOne", data, function (response) {
-                        if (response.value == true) {
-                            $.jStorage.set("userData", response.data);
-
-                            if ($scope.userDataForProfile.mobile) {
-                                $scope.mobile = true;
-                            }
-                            // console.log("$scope.userDataForProfile ", $scope.userDataForProfile);
-                        }
-                    });
-                }
-            });
-        }
-    });
 
     NavigationService.apiCallWithoutData("Ticket/getAllStatesOfIndia", function (response) {
         console.log("response of State", response)
