@@ -6,6 +6,20 @@ myApp.controller('TicketcloseNotificationCtrl', function ($scope, TemplateServic
     $scope.navigation = NavigationService.getNavigation();
     // TemplateService.header = " ";
     $scope.navigation = NavigationService.getNavigation();
+    $scope.pageNumber = 1;
+
+    $scope.changePage = function (pageno) {
+        console.log("hey")
+        $scope.currentPage = pageno;
+
+        var start = (pageno - 1) * $scope.maxRow;
+        var end = (pageno - 1) * $scope.maxRow + $scope.maxRow;
+        // $scope.ticketDetails.page = pageno;
+        $scope.ticketDetails = _.slice($scope.ticketData, start, end);
+        // console.log(" $scope.ticketDetails", $scope.ticketData);
+        $scope.pageNumber = pageno;
+        $scope.getTickets();
+    }
 
     //REMINDER SECTION
     $scope.getReminder = function () {
@@ -78,32 +92,71 @@ myApp.controller('TicketcloseNotificationCtrl', function ($scope, TemplateServic
             // console.log("res---totalNumberOfClosedTickets--", data);
         });
 
-
+        ticketService.totalClosedTickets(function (data) {
+            $scope.ticketDetails = data;
+            $scope.ticketDetails = _.slice(data, 0, 5);
+        });
         $scope.getClosedTickets = function () {
             ticketService.totalClosedTickets(function (data) {
-                // $scope.ticketDetails = data;
-                $scope.ticketDetails = _.slice(data, 0, 5);
+                $scope.ticketDetails = data;
+                console.log("getClosedTickets", data.results)
+                $scope.ticketDetails = _.slice(data.results, 0, 5);
             });
         }
 
+        ticketService.totalOpenTickets(function (data) {
+            $scope.ticketDetails = data;
+            // console.log("----109----", data.results);
+            $scope.ticketDetails = _.slice(data.results, 0, 5);
 
+        });
         $scope.getOpenTickets = function () {
             ticketService.totalOpenTickets(function (data) {
-                // $scope.ticketDetails = data;
+                $scope.ticketDetails = data;
                 // console.log("----109----", data.results);
                 $scope.ticketDetails = _.slice(data.results, 0, 5);
 
             });
         }
     }
+    // $scope.getOpenTickets = function () {
+    //     ticketService.totalOpenTickets(function (data) {
+    //         $scope.ticketDetails = data;
+    //         // console.log("----109----", data.results);
+    //         $scope.ticketDetails = _.slice(data.results, 0, 5);
 
+    //     });
+    // }
+    // $scope.getClosedTickets = function () {
+    //     ticketService.totalClosedTickets(function (data) {
+    //         console.log("getClosedTickets", data)
+    //         $scope.ticketDetails = data;
+    //         $scope.ticketDetails = _.slice(data, 0, 5);
+    //     });
+    // }
+    // $scope.getOpenTickets();
+    // $scope.getClosedTickets();
     $scope.callTickets();
 
+    $scope.getTickets = function () {
+        var pageData = $scope.pageNumber;
+        console.log("pageData", pageData)
+        ticketService.totalClosedTickets1(pageData, function (data) {
+            console.log("ticketData", data)
+            $scope.ticketData = data.results;
+            $scope.ticketDetails = _.slice(data.results, 0, 5);
+            $scope.totalitems = data.total;
+            $scope.maxRow = data.options.count;
+            // $scope.getOpenTickets();
+            // $scope.callTickets();
+        });
+    }
+    $scope.getTickets();
 
-
-    ticketService.totalClosedTickets(function (data) {
-        $scope.ticketData = data;
-    });
+    // ticketService.totalClosedTickets(function (data) {
+    //     console.log("data", data)
+    //     $scope.ticketData = data;
+    // });
 
 
     $scope.askRegistration = function () {
