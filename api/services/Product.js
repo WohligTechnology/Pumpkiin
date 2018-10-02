@@ -75,8 +75,8 @@ var schema = new Schema({
         default: false
     },
 
-    productInvoicePR: String,
-    warrantyCardPR: String,
+    productInvoicePR: [String],
+    warrantyCardPR: [String],
     ticketGenerated: {
         type: Boolean,
         default: false

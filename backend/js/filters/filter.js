@@ -10,12 +10,14 @@ myApp.filter('uploadpath', function () {
         if (style && style !== "") {
             other += "&style=" + style;
         }
-        if (input) {
+        if (input && !_.isEmpty(input)) {
             if (input.indexOf('https://') == -1) {
                 return imgpath + "?file=" + input + other;
             } else {
                 return input;
             }
+        } else {
+            return "/img/noImage.png";
         }
     };
 });
@@ -68,7 +70,12 @@ myApp.filter('propsFilter', function () {
         return out;
     };
 });
-
+myApp.filter('checkimage', function () {
+    return function (input) {
+        console.log(input);
+        return _.split(input, '.')[1];
+    }
+});
 myApp.filter('serverimage', function () {
     return function (input, width, height, style) {
         if (input) {
