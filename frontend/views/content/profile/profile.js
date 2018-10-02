@@ -22,7 +22,6 @@ myApp.controller('ProfileCtrl', function ($scope, TemplateService, NavigationSer
     $scope.saveImage = function () {
         $scope.jstrgValue.photo = null
         $.jStorage.set("userData", $scope.jstrgValue);
-
         NavigationService.apiCallWithData("User/save", $scope.jstrgValue, function (response) {
             if (response.value == true) {
                 toastr.success("Profile Image Saved successfully");
