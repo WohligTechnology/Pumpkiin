@@ -189,8 +189,10 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     }
 
     $scope.accessoriesMain = [];
+    $scope.formData = {};
 
     $scope.addAccessories = function (data) {
+        console.log(data);
         if (data.accessories) {
             $scope.accessoriesMain.push(data.accessories);
             data.accessories = "";
