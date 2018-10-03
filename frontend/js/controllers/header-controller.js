@@ -69,7 +69,12 @@ myApp.controller("headerCtrl", function(
   $scope.saveReminder = function(data) {
     // console.log("----------", data);
     data.user = $.jStorage.get("userData")._id;
-    data.status = "Pending";
+    if (data._id) {
+      data.status = "Snooze";
+    } else {
+      data.status = "Pending";
+    }
+
     NavigationService.apiCallWithData("Reminder/save", $scope.data, function(
       res
     ) {
