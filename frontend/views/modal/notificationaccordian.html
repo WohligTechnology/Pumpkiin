@@ -4,7 +4,7 @@
         <img src="img/modal/close_white.png" width="20">
     </span>
 </div>
-<div class="notificationaccordian-modal">
+<div class="notificationaccordian-modal" ng-controller="headerCtrl">
     <div class="text-center py-3">
         <h5 class="product-title text-truncate green-color">{{singleNotification.title}}</h5>
         <div class="date ">{{singleNotification.description}}</div>
@@ -12,11 +12,11 @@
     </div>
     <div class="text-center py-3">
         <a role="button" class="button  px-3 py-1 mx-2 fontRobotoBold text-center snooze-color" ng-click="reminderModalOpen(singleNotification._id);">Snooze
-                        / Edit
-                    </a>
+            / Edit
+        </a>
         <a role="button" class="button  px-3 py-1 mx-2 fontRobotoBold text-center completed-color" ng-click="chnageStatus(singleNotification._id);">Completed
-                    </a>
+        </a>
         <a role="button" class="button  px-3 py-1 mx-2 fontRobotoBold text-center delete-btn" ng-click="deleteReminder(singleNotification._id);">Delete
-                    </a>
+        </a>
     </div>
 </div>

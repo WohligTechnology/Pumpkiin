@@ -20,10 +20,11 @@
             <tbody>
                 <tr ng-repeat="data in model track by $index">
                     <td ng-repeat="field2 in type.fields" ng-if="field2.onView">
-                        {{data[field2.tableRef]}}
+                        {{data[field2.tableRef]|inner:field2}}
+                        <!-- <view-field type="field2" value="data"></view-field> -->
                     </td>
                     <td>
-                        <a  class="btn btn-primary" ng-click="editBox('Edit',data)">
+                        <a class="btn btn-primary" ng-click="editBox('Edit',data)">
                             <i class="fa fa-pencil"></i>
                         </a>
                         <!-- {{model}} -->

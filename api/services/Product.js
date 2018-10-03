@@ -1,3 +1,4 @@
+var cron = require('node-cron');
 var schema = new Schema({
     // brand: {
     //     type: Schema.Types.ObjectId,
@@ -74,8 +75,8 @@ var schema = new Schema({
         default: false
     },
 
-    productInvoicePR: String,
-    warrantyCardPR: String,
+    productInvoicePR: [String],
+    warrantyCardPR: [String],
     ticketGenerated: {
         type: Boolean,
         default: false
@@ -516,4 +517,5 @@ var model = {
 
 
 };
+
 module.exports = _.assign(module.exports, exports, model);

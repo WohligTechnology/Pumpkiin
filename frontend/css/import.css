@@ -9650,6 +9650,9 @@ fieldset:disabled {
 .selectize-control.single > .selectize-input > input {
   cursor: pointer; }
 
+.cursor-hand {
+  cursor: pointer; }
+
 .productreg {
   position: relative; }
   .productreg:before {
@@ -10134,7 +10137,7 @@ fieldset:disabled {
       border-radius: 50%;
       background: #FFA345;
       position: absolute;
-      top: 20px; }
+      top: 10px; }
     .listed-openTickets .element-list .caret-style {
       color: #B9C3C8;
       position: absolute;

@@ -61,10 +61,15 @@ myApp.filter('indianCurrency', function () {
 
 myApp.filter('serverimage', function () {
   return function (image) {
-    if (image.indexOf('https://') == -1) {
-      return imgpath + "?file=" + image + other;
+    if (image) {
+      if (image.indexOf('https://') == -1) {
+        return imgpath + "?file=" + image;
+      } else {
+        return image;
+      }
     } else {
-      return image;
+      return "/img/noImage.png";
     }
+
   }
 });

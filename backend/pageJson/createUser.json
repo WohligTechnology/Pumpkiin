@@ -7,53 +7,106 @@
     "urlFields": ["User"],
     "fields": [
         {
-        "name": "Name",
-        "type": "text",
-        "tableRef": "name",
-        "placeholder": "Enter Name",
-        "id": "name",
-        "validation": ["required", "trim", ""],
-        "url": ""
-    }, {
-        "name": "Email",
-        "type": "text",
-        "tableRef": "email",
-        "placeholder": "Enter Email",
-        "id": "email",
-        "validation": ["required", "trim", ""],
-        "url": ""
-    }, {
-        "name": "Photo",
-        "type": "image",
-        "tableRef": "photo",
-        "size": "250 x 250",
-        "placeholder": "Upload photo",
-        "id": "photo",
-        "view": true,
-        "disabled": true,
-        "validation": ["", "trim", ""],
-        "url": ""
-    }, {
-        "name": "Mobile",
-        "type": "text",
-        "tableRef": "mobile",
-        "placeholder": "Enter mobile",
-        "id": "mobile",
-        "validation": ["", "trim", ""],
-        "url": ""
-    }, {
-        "name": "AccessLevel",
-        "type": "tags",
-        "tableRef": "accessLevel",
-        "placeholder": "Enter Title",
-        "id": "status",
-        "validation": ["required", "trim", ""],
-        "url": "",
-        "dropDownField": "",
-        "dropDownType": "single",
-        "onView": true,
-        "dropDown": ["User", "Admin"]
-    }],
+            "name": "Name",
+            "type": "text",
+            "tableRef": "name",
+            "placeholder": "Enter Name",
+            "id": "name",
+            "validation": ["required", "trim", ""],
+            "url": ""
+        }, {
+            "name": "Email",
+            "type": "text",
+            "tableRef": "email",
+            "placeholder": "Enter Email",
+            "id": "email",
+            "validation": ["required", "trim", ""],
+            "url": ""
+        }, {
+            "name": "Profile pic",
+            "type": "image",
+            "tableRef": "profilePic",
+            "size": "250 x 250",
+            "placeholder": "Upload photo",
+            "id": "profilePic",
+            "view": true,
+            "disabled": true,
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "Gender",
+            "type": "tags",
+            "tableRef": "gender",
+            "placeholder": "Enter Gender",
+            "id": "gender",
+            "validation": ["", "trim", ""],
+            "url": "",
+            "dropDownField": "",
+            "dropDownType": "single",
+            "onView": true,
+            "dropDown": ["Female", "Male"]
+        }, {
+            "name": "Date Of Birth",
+            "type": "date",
+            "tableRef": "dob",
+            "placeholder": "Enter Date Of Birth",
+            "id": "emdobail",
+            "validation": ["", "trim", ""],
+            "url": ""
+        }, {
+            "name": "Mobile",
+            "type": "text",
+            "tableRef": "mobile",
+            "placeholder": "Enter mobile",
+            "id": "mobile",
+            "validation": ["", "trim", ""],
+            "url": ""
+        },
+        {
+            "name": "AccessLevel",
+            "type": "tags",
+            "tableRef": "accessLevel",
+            "placeholder": "Enter Title",
+            "id": "status",
+            "validation": ["required", "trim", ""],
+            "url": "",
+            "dropDownField": "",
+            "dropDownType": "single",
+            "onView": true,
+            "dropDown": ["User", "Admin"]
+        },
+        {
+            "name": "Family Members",
+            "type": "box",
+            "tableRef": "relations",
+            "validation": ["required", "trim", ""],
+            "fields": [{
+                "name": "Relation Type",
+                "type": "tags",
+                "tableRef": "relationType",
+                "placeholder": "Enter Relation Type",
+                "id": "relationType",
+                "validation": ["", "trim", ""],
+                "url": "",
+                "dropDownField": "",
+                "dropDownType": "single",
+                "onView": true,
+                "dropDown": ["Son", "Daughter", "Father", "Mother", "Sister", "Brother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew", "Friend"]
+            }, {
+                "name": "User",
+                "type": "tags",
+                "tableRef": "user",
+                "fieldName": "name",
+                "placeholder": "Enter User",
+                "id": "user",
+                "validation": ["", "trim", ""],
+                "url": "User/search",
+                "dropDownField": "name",
+                "dropDownType": "single",
+                "onView": true
+            }]
+        }
+    ],
     "action": [{
         "name": "submit",
         "action": "submitUser",

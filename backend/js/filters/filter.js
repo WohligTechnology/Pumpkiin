@@ -10,12 +10,14 @@ myApp.filter('uploadpath', function () {
         if (style && style !== "") {
             other += "&style=" + style;
         }
-        if (input) {
+        if (input && !_.isEmpty(input)) {
             if (input.indexOf('https://') == -1) {
                 return imgpath + "?file=" + input + other;
             } else {
                 return input;
             }
+        } else {
+            return "/img/noImage.png";
         }
     };
 });
@@ -68,7 +70,12 @@ myApp.filter('propsFilter', function () {
         return out;
     };
 });
-
+myApp.filter('checkimage', function () {
+    return function (input) {
+        console.log(input);
+        return _.split(input, '.')[1];
+    }
+});
 myApp.filter('serverimage', function () {
     return function (input, width, height, style) {
         if (input) {
@@ -138,23 +145,36 @@ myApp.filter('capitalize', function () {
     };
 });
 
+myApp.filter('inner', function () {
+    return function (input, data) {
+        console.log("----------------------------------------------");
+        console.log(input);
+        console.log(data);
+        if (data.fieldName) {
+            return _.first(_.at(input, data.fieldName));
+        } else {
+            return input;
+        }
+    }
+});
+
 
 myApp.filter('indianCurrency', function () {
-  return function (getNumber) {
-    if (!isNaN(getNumber)) {
-      var numberArr = getNumber.toString().split('.');
-      var lastThreeDigits = numberArr[0].substring(numberArr[0].length - 3);
-      var otherDigits = numberArr[0].substring(0, numberArr[0].length - 3);
-      if (otherDigits != '') {
-        lastThreeDigits = ',' + lastThreeDigits;
-      }
-      var finalNumber = otherDigits.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThreeDigits;
-      if (numberArr.length > 1) {
-        var getRoundedDecimal = parseInt(numberArr[1].substring(0, 2)) + 1;
-        finalNumber += "." + getRoundedDecimal;
-      }
-      // return '₹' + finalNumber;
-      return finalNumber;
+    return function (getNumber) {
+        if (!isNaN(getNumber)) {
+            var numberArr = getNumber.toString().split('.');
+            var lastThreeDigits = numberArr[0].substring(numberArr[0].length - 3);
+            var otherDigits = numberArr[0].substring(0, numberArr[0].length - 3);
+            if (otherDigits != '') {
+                lastThreeDigits = ',' + lastThreeDigits;
+            }
+            var finalNumber = otherDigits.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThreeDigits;
+            if (numberArr.length > 1) {
+                var getRoundedDecimal = parseInt(numberArr[1].substring(0, 2)) + 1;
+                finalNumber += "." + getRoundedDecimal;
+            }
+            // return '₹' + finalNumber;
+            return finalNumber;
+        }
     }
-  }
 });
