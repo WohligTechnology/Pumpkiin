@@ -477,7 +477,7 @@ var model = {
         }
       ],
       function(err, found) {
-        if (err || _.isEmpty(found)) {
+        if (err) {
           callback(err, null);
         } else {
           callback(null, found);
@@ -524,7 +524,7 @@ var model = {
         }
       ],
       function(err, found) {
-        if (err || _.isEmpty(found)) {
+        if (err) {
           callback(err, null);
         } else {
           callback(null, found);
