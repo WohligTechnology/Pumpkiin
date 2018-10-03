@@ -26,7 +26,6 @@ var controller = {
         }
     },
 
-
     totalNumberOfPendingReminders: function (req, res) {
         if (req.body) {
             Reminder.totalNumberOfPendingReminders(req.body, res.callback);
@@ -39,7 +38,6 @@ var controller = {
             });
         }
     },
-
 
     findReminderOfPendingSnoozeByUser: function (req, res) {
         if (req.body) {

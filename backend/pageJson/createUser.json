@@ -23,12 +23,12 @@
             "validation": ["required", "trim", ""],
             "url": ""
         }, {
-            "name": "Photo",
+            "name": "Profile pic",
             "type": "image",
-            "tableRef": "photo",
+            "tableRef": "profilePic",
             "size": "250 x 250",
             "placeholder": "Upload photo",
-            "id": "photo",
+            "id": "profilePic",
             "view": true,
             "disabled": true,
             "validation": ["", "trim", ""],

@@ -38,6 +38,8 @@
             "tableRef": "productInvoicePR",
             "placeholder": "Enter Product Invoice",
             "id": "productInvoicePR",
+            "view": true,
+            "multiple": true,
             "validation": ["", "trim", ""],
             "url": ""
         },
@@ -47,6 +49,8 @@
             "tableRef": "warrantyCardPR",
             "placeholder": "Enter Warranty Card",
             "id": "warrantyCardPR",
+            "view": true,
+            "multiple": true,
             "validation": ["", "trim", ""],
             "url": ""
         },
@@ -69,10 +73,12 @@
             "url": ""
         }, {
             "name": "Product Image",
-            "type": "text",
+            "type": "image",
             "tableRef": "productImages",
             "placeholder": "Enter Product Image",
             "id": "productImages",
+            "view": true,
+            "multiple": true,
             "validation": ["", "trim", ""],
             "url": ""
         }, {
@@ -98,6 +104,8 @@
             "tableRef": "purchaseProof",
             "placeholder": "Enter Proof of Purchase",
             "id": "purchaseProof",
+            "view": true,
+            "multiple": true,
             "validation": ["", "trim", ""],
             "url": ""
         },
@@ -125,6 +133,8 @@
             "tableRef": "insuranceProofImage",
             "placeholder": "Enter Insurance Card",
             "id": "insuranceProofImage",
+            "view": true,
+            "multiple": true,
             "validation": ["", "trim", ""],
             "url": ""
         },

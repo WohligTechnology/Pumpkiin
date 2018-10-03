@@ -23,13 +23,13 @@ var model = {
         email = data.email;
         Config.sendEmail({
                 //from
-                email: 'sahil@pumpkiin.com',
-                name: "Sahil"
+                email: 'jagruti@wohlig.com',
+                name: "Jagruti"
             },
             //to                    
             //emailData,
             [{
-                email: "sahil@pumpkiin.com"
+                email: "jagruti@wohlig.com"
             }],
 
 

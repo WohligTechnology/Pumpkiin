@@ -51,6 +51,7 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
                 $scope.isRequired = true;
                 $("#inputImage").attr("required", "ADD");
             }
+
             $scope.isMultiple = false;
             $scope.inObject = false;
             if (attrs.multiple || attrs.multiple === "") {
@@ -124,6 +125,11 @@ myApp.directive('uploadImage', function ($http, $filter, $timeout) {
                     data = data.data;
                     $scope.uploadStatus = "uploaded";
                     if ($scope.isMultiple) {
+                        if (_.endsWith(data.data[0], ".pdf")) {
+                            $scope.type = "pdf";
+                        } else {
+                            $scope.type = "image";
+                        }
                         if ($scope.inObject) {
                             $scope.model.push({
                                 "image": data.data[0]

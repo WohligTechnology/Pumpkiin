@@ -8,8 +8,8 @@
                 <div class="profile-photo-upload">
                     <!-- <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="userDataForProfile.profilePic" noStatus="true"
                         no-view></upload-image> -->
-                    <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="jstrgValue.profilePic" noStatus="true"
-                        no-view callback="reload();"></upload-image>
+                    <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="jstrgValue.profilePic"
+                        noStatus="true" no-view ng-callback="saveImage();"></upload-image>
                     <!-- <upload-image ng-model="data.productImages" no-status="true"></upload-image> -->
                 </div>
             </div>
@@ -89,7 +89,8 @@
                             - - -
                         </div>
                         <div ng-if="personalInfo" class="mb-2 custom-input">
-                            <input maxlength="10" type="text" class="mt-2 p-1" ng-model="userDataForProfile.mobile" only-digits>
+                            <input maxlength="10" type="text" class="mt-2 p-1" ng-model="userDataForProfile.mobile"
+                                only-digits>
                         </div>
                         <div ng-if="!personalInfo" class="mb-2 custom-input">{{userDataForProfile.email}}</div>
                         <div ng-if="personalInfo" class="mb-2 custom-input">

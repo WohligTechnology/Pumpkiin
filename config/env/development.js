@@ -11,16 +11,24 @@
  */
 
 module.exports = {
+  /***************************************************************************
+   * Set the default database connection for models in the development       *
+   * environment (see config/connections.js and config/models.js )           *
+   ***************************************************************************/
 
-    /***************************************************************************
-     * Set the default database connection for models in the development       *
-     * environment (see config/connections.js and config/models.js )           *
-     ***************************************************************************/
-
-    // models: {
-    //   connection: 'someMongodbServer'
-    // }
-    port: 80,
-    realHost: "http://wohlig.io",
-    emails: ["chintan@wohlig.com", "jagruti@wohlig.com", "tushar@wohlig.com", "chirag@wohlig.com", "harsh@wohlig.com", "sohan@wohlig.com", "sahil@pumpkiin.com", "manali.gada@wohlig.com"]
+  // models: {
+  //   connection: 'someMongodbServer'
+  // }
+  port: 80,
+  realHost: "https://pumpkiin.wohlig.co.in",
+  emails: [
+    "chintan@wohlig.com",
+    "jagruti@wohlig.com",
+    "tushar@wohlig.com",
+    "chirag@wohlig.com",
+    "harsh@wohlig.com",
+    "sohan@wohlig.com",
+    "sahil@pumpkiin.com",
+    "manali.gada@wohlig.com"
+  ]
 };
