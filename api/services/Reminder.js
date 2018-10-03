@@ -148,7 +148,8 @@ var model = {
               $regex: data.keyword,
               $options: "i"
             },
-            status: "Completed"
+            status: "Completed",
+            user: ObjectId(data.user)
           }
         }
       ],
@@ -171,12 +172,13 @@ var model = {
               $regex: data.keyword,
               $options: "i"
             },
-            status: "Pending"
+            status: "Pending",
+            user: ObjectId(data.user)
           }
         }
       ],
       function(err, found) {
-        if (err || _.isEmpty(found)) {
+        if (err) {
           callback(err, null);
         } else {
           callback(null, found);
