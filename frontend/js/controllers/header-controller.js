@@ -69,6 +69,7 @@ myApp.controller("headerCtrl", function(
         );
       } else {
         dataToSend.keyword = data;
+        dataToSend.user = $.jStorage.get("userData")._id;
         NavigationService.apiCallWithData(
           "Reminder/searchClosedReminders",
           dataToSend,
