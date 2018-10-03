@@ -297,7 +297,7 @@ var model = {
 };
 sails.on("ready", function() {
   cron.schedule("*/5 * * * *", function() {
-    Reminder.sendReminderMail({}, callback);
+    Reminder.sendReminderMail({}, () => {});
   });
 });
 module.exports = _.assign(module.exports, exports, model);
