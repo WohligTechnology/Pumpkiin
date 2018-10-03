@@ -370,8 +370,6 @@ $trans-black: rgba(black,
     right: -10px;
 }
 
-.info-btn {}
-
 .padder {
     padding-top: 5px;
 }
@@ -585,7 +583,9 @@ input[type=number]::-webkit-outer-spin-button {
     width: 24px !important;
     border: 0 !important;
     padding: 0;
-    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -os-appearance: none;
     margin: 0;
     position: relative;
     z-index: 9;
