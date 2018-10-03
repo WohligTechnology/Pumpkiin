@@ -66,6 +66,42 @@ myApp.controller("headerCtrl", function(
     });
   };
 
+  $scope.searchForTicketData = function(data, data1) {
+    var dataToSend = {};
+    if (data.length > 0) {
+      if (data1 == "open") {
+        dataToSend.user = $.jStorage.get("userData")._id;
+        dataToSend.keyword = data;
+        NavigationService.apiCallWithData(
+          "Ticket/searchOpenTickets",
+          dataToSend,
+          function(response) {
+            if (response.value) {
+              $scope.ticketDetails = response.data;
+              console.log(" $scope.ticketDetails", $scope.ticketDetails);
+            }
+          }
+        );
+      } else {
+        console.log("data", data);
+        dataToSend.user = $.jStorage.get("userData")._id;
+        dataToSend.keyword = data;
+        NavigationService.apiCallWithData(
+          "Ticket/searchClosedTickets",
+          dataToSend,
+          function(response) {
+            console.log(" response", response);
+
+            if (response.value) {
+              $scope.ticketDetails = response.data;
+              console.log(" $scope.ticketDetails", $scope.ticketDetails);
+            }
+          }
+        );
+      }
+    }
+  };
+
   $scope.saveReminder = function(data) {
     // console.log("----------", data);
     data.user = $.jStorage.get("userData")._id;
