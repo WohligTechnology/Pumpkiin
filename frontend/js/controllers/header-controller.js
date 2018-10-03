@@ -68,9 +68,7 @@ myApp.controller("headerCtrl", function(
 
   $scope.saveReminder = function(data) {
     // console.log("----------", data);
-    data.user = $scope.userInfo._id;
-    data.name = $scope.userInfo.name;
-    data.email = $scope.userInfo.email;
+    data.user = $.jStorage.get("userData")._id;
     data.status = "Pending";
     NavigationService.apiCallWithData("Reminder/save", $scope.data, function(
       res
