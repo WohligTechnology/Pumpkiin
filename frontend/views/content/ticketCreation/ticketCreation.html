@@ -20,27 +20,27 @@
     }
 
     .circle5:before {
-        content: attr(data-before-content)'\a Service\00a0 confirmed';
+        content: attr(data-before-content)'\a Service \00a0 confirmed';
         left: 0;
     }
 
     .circle6:before {
-        content: attr(data-before-content)'\a Service\00a0 completed ';
+        content: attr(data-before-content)'\a Service \00a0 completed ';
         left: 0;
     }
 
     .circle7:before {
-        content: attr(data-before-content)'\a Awaiting\00a0 feedback ';
+        content: attr(data-before-content)'\a Appliance \00a0 picked\00a0 up';
         left: 0;
     }
 
     .circle8:before {
-        content: attr(data-before-content)'\a Appliance\00a0 picked \00a0up';
+        content: attr(data-before-content)'\a Appliance \00a0 returned';
         left: 0;
     }
 
     .circle9:before {
-        content: attr(data-before-content)'\a Appliance \00a0 returned ';
+        content: attr(data-before-content)'\a Awaiting \00a0 feedback';
         left: 0;
     }
 
@@ -134,9 +134,9 @@
 
 
                         <img src="{{ticketDetails.product.productImages[0] | serverimage}} " class="img-fluid large-img ">
-                        <div class="d-flex align-items-center justify-content-center small-img ">
+                        <!-- <div class="d-flex align-items-center justify-content-center small-img ">
                             <img src="img/ticketCreation/mobile.png " width="10 ">
-                        </div>
+                        </div> -->
                     </div>
                     <div class="media-body pl-4 text-white ">
                         <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">

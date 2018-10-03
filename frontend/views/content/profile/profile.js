@@ -1,4 +1,4 @@
-myApp.controller("ProfileCtrl", function(
+myApp.controller("ProfileCtrl", function (
   $scope,
   TemplateService,
   NavigationService,
@@ -18,11 +18,11 @@ myApp.controller("ProfileCtrl", function(
   $scope.genderData = {};
   $scope.mobile = {};
   $scope.profileAddress = {};
+  $scope.userRel = {};
   $scope.addressIndex = -1;
   // console.log("$scope.jstrgValue", $scope.jstrgValue);
 
-  $scope.relation = [
-    {
+  $scope.relation = [{
       name: "First Last Name",
       relation: "Brother"
     },
@@ -32,10 +32,10 @@ myApp.controller("ProfileCtrl", function(
     }
   ];
 
-  $scope.saveImage = function() {
+  $scope.saveImage = function () {
     $scope.jstrgValue.photo = null;
     $.jStorage.set("userData", $scope.jstrgValue);
-    NavigationService.apiCallWithData("User/save", $scope.jstrgValue, function(
+    NavigationService.apiCallWithData("User/save", $scope.jstrgValue, function (
       response
     ) {
       if (response.value == true) {
@@ -63,7 +63,7 @@ myApp.controller("ProfileCtrl", function(
     "Friend"
   ];
 
-  $scope.editressModalOpen = function(address, index) {
+  $scope.editressModalOpen = function (address, index) {
     $scope.addressIndex = index;
     $scope.profileAddress = address;
     $scope.addAddress = $uibModal.open({
@@ -73,7 +73,7 @@ myApp.controller("ProfileCtrl", function(
     });
   };
 
-  $scope.addressModalOpen = function() {
+  $scope.addressModalOpen = function () {
     $scope.addressIndex = -1;
     $scope.addAddress = $uibModal.open({
       animation: true,
@@ -82,7 +82,7 @@ myApp.controller("ProfileCtrl", function(
     });
   };
 
-  $scope.newUserModalOpen = function() {
+  $scope.newUserModalOpen = function () {
     $scope.addNewUser = $uibModal.open({
       animation: true,
       templateUrl: "views/modal/addNewUser.html",
@@ -90,10 +90,10 @@ myApp.controller("ProfileCtrl", function(
     });
   };
 
-  $scope.getUserData = function() {
+  $scope.getUserData = function () {
     var data = {};
     data._id = $scope.jstrgValue._id;
-    NavigationService.apiCallWithData("User/getOne", data, function(response) {
+    NavigationService.apiCallWithData("User/getOne", data, function (response) {
       if (response.value == true) {
         $scope.userDataForProfile = response.data;
         $scope.userDataForProfile.dob = new Date($scope.userDataForProfile.dob);
@@ -108,8 +108,8 @@ myApp.controller("ProfileCtrl", function(
 
   $scope.getUserData();
 
-  $scope.removeRelation = function(data) {
-    _.remove($scope.userDataForProfile.relations, function(n) {
+  $scope.removeRelation = function (data) {
+    _.remove($scope.userDataForProfile.relations, function (n) {
       return n._id == data;
     });
     var test = {};
@@ -118,7 +118,7 @@ myApp.controller("ProfileCtrl", function(
     NavigationService.apiCallWithData(
       "User/save",
       $scope.userDataForProfile,
-      function(response) {
+      function (response) {
         if (response.value == true) {
           toastr.error("Member removed successfully");
           $scope.getUserData();
@@ -126,17 +126,16 @@ myApp.controller("ProfileCtrl", function(
       }
     );
 
-    NavigationService.apiCallWithData("Product/removeRelation", test, function(
+    NavigationService.apiCallWithData("Product/removeRelation", test, function (
       response
     ) {
-      if (response.value == true) {
-      }
+      if (response.value == true) {}
     });
   };
 
-  $scope.addUser = function(data) {
+  $scope.addUser = function (data) {
     data._id = $scope.jstrgValue._id;
-    NavigationService.apiCallWithData("User/addRelation", data, function(
+    NavigationService.apiCallWithData("User/addRelation", data, function (
       response
     ) {
       if (response.value == true) {
@@ -148,17 +147,16 @@ myApp.controller("ProfileCtrl", function(
     });
   };
 
-  $scope.changeInfo = function() {
+  $scope.changeInfo = function () {
     if (
       $scope.userDataForProfile.lastMobile !== $scope.userDataForProfile.mobile
     ) {
       NavigationService.apiCallWithData(
-        "User/sendMobileOtp",
-        {
+        "User/sendMobileOtp", {
           _id: $scope.jstrgValue._id,
           mobile: $scope.userDataForProfile.mobile
         },
-        function(response) {
+        function (response) {
           if (response.value == true) {
             $scope.formName = {
               mobile: $scope.userDataForProfile.mobile
@@ -178,7 +176,7 @@ myApp.controller("ProfileCtrl", function(
       NavigationService.apiCallWithData(
         "User/save",
         $scope.userDataForProfile,
-        function(response) {
+        function (response) {
           if (response.value == true) {
             $state.reload();
           }
@@ -189,7 +187,7 @@ myApp.controller("ProfileCtrl", function(
 
   //saveForOtpModal
 
-  $scope.saveMobileData = function(info) {
+  $scope.saveMobileData = function (info) {
     if (
       info.digit1 >= 0 &&
       info.digit2 >= 0 &&
@@ -206,22 +204,20 @@ myApp.controller("ProfileCtrl", function(
       $scope.data.mobile = info.mobile;
 
       NavigationService.apiCallWithData(
-        "User/verifyMobileOtp",
-        {
-          otp:
-            info.digit1.toString() +
+        "User/verifyMobileOtp", {
+          otp: info.digit1.toString() +
             info.digit2.toString() +
             info.digit3.toString() +
             info.digit4.toString(),
           mobile: info.mobile,
           _id: $scope.userDataForProfile._id
         },
-        function(response) {
+        function (response) {
           if (response.value == true) {
             NavigationService.apiCallWithData(
               "User/saveUpdatedData",
               $scope.userDataForProfile,
-              function(response) {
+              function (response) {
                 console.log("result -- ", response);
                 if (response.value == true) {
                   $scope.otp.close();
@@ -237,19 +233,19 @@ myApp.controller("ProfileCtrl", function(
     }
   };
 
-  NavigationService.apiCallWithoutData("Ticket/getAllStatesOfIndia", function(
+  NavigationService.apiCallWithoutData("Ticket/getAllStatesOfIndia", function (
     response
   ) {
     console.log("response of State", response);
     $scope.states = response.data;
   });
 
-  $scope.trustAsHtml = function(value) {
+  $scope.trustAsHtml = function (value) {
     return $sce.trustAsHtml(value);
   };
 
-  $scope.updateState = function(data) {
-    NavigationService.apiCallWithData("Ticket/getCity", data, function(
+  $scope.updateState = function (data) {
+    NavigationService.apiCallWithData("Ticket/getCity", data, function (
       response
     ) {
       $scope.cities = response.data;
@@ -257,7 +253,7 @@ myApp.controller("ProfileCtrl", function(
     });
   };
 
-  $scope.saveAddressData = function(data) {
+  $scope.saveAddressData = function (data) {
     console.log(data);
     var addData = {};
     var add = $scope.userDataForProfile.address;
@@ -268,14 +264,23 @@ myApp.controller("ProfileCtrl", function(
     }
     addData._id = $scope.jstrgValue._id;
     addData.address = add;
-    NavigationService.apiCallWithData("user/save", addData, function(response) {
+    NavigationService.apiCallWithData("user/save", addData, function (response) {
       $scope.addAddress.close();
       toastr.success("Address added successfully");
       $state.reload();
     });
   };
-
-  $scope.removeAddress = function(index) {
+  $scope.openUserEdit = function (data) {
+    console.log("inside", $scope.userDataForProfile.relations);
+    $scope.userRel = $scope.userDataForProfile.relations;
+    $scope.editUser = $uibModal.open({
+      animation: true,
+      templateUrl: "views/modal/editUser.html",
+      scope: $scope,
+      backdrop: 'static',
+    });
+  }
+  $scope.removeAddress = function (index) {
     $scope.userDataForProfile.address = _.slice(
       $scope.userDataForProfile.address,
       0,
@@ -284,7 +289,7 @@ myApp.controller("ProfileCtrl", function(
     NavigationService.apiCallWithData(
       "User/save",
       $scope.userDataForProfile,
-      function(response) {
+      function (response) {
         toastr.success("Address deleted successfully");
       }
     );

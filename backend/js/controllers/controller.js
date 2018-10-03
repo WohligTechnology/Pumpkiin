@@ -1891,7 +1891,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             });
         };
 
-        $scope.statusArr = ["Repair/ Maintenance (On-site)", "Scheduling service with customer (Open)", "Coordinating with the service provider (Open)", "Service confirmed (In-progress)", "Service completed (Closed)", "Awaiting feedback (Closed)", "Appliance picked up (In-progress)", "Appliance returned (Closed)", "Completed (Completed)"];
+        $scope.statusArr = ["Repair/ Maintenance (On-site)", "Scheduling service with customer (Open)", "Coordinating with the service provider (Open)", "Service confirmed (In-progress)", "Service completed (Closed)", "Appliance picked up (In-progress)", "Appliance returned (Closed)", "Awaiting feedback (Closed)", "Completed (Completed)"];
 
         $scope.updateStatus = function (data) {
             if (data == 'Completed (Completed)') {
