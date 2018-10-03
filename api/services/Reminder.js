@@ -179,7 +179,7 @@ var model = {
               $regex: data.keyword,
               $options: "i"
             },
-            status: { $in: ["Pending", "Snooze"] },
+            status: "Pending",
             user: ObjectId(data.user)
           }
         }
@@ -235,23 +235,31 @@ var model = {
   },
 
   sendReminderMail: function() {
-    // console.log("1-----", data);
     Reminder.find({
       reminderMailSent: false
-    }).exec(function(err, data) {
-      if (err || _.isEmpty(data)) {
-        callback(err);
-      } else {
-        // console.log("2----", data);
+    })
+      .populate("user")
+      .exec(function(err, data) {
+        // console.log("1----", data);
         async.eachSeries(
           data,
           function(singelData, callback) {
-            // console.log("3----", singelData);
             var reminderDate = moment(singelData.dateOfReminder);
             var currentDate = moment(new Date());
-            // console.log("reminderDate", reminderDate, "currentDate", currentDate);
+            console.log(
+              "reminderDate",
+              reminderDate,
+              "currentDate",
+              currentDate
+            );
+            // console.log(
+            //   "singelData",
+            //   singelData.user.name,
+            //   singelData.user.email
+            // );
             var day = reminderDate.diff(currentDate, "days");
             if (singelData.email && day == 1) {
+              console.log("HI In Here");
               Reminder.update(
                 {
                   _id: singelData._id
@@ -272,8 +280,10 @@ var model = {
                 greeting = "Good evening";
               }
               emailData.from = "sahil@pumpkiin.com";
-              emailData.name = singelData.name ? singelData.name : "";
-              emailData.email = singelData.email;
+              emailData.name = singelData.user.name ? singelData.user.name : "";
+              emailData.email = singelData.user.email
+                ? singelData.user.email
+                : "";
               emailData.greeting = greeting;
               emailData.title = singelData.title ? singelData.title : "";
               emailData.description = singelData.description
@@ -281,79 +291,24 @@ var model = {
                 : "";
               emailData.filename = "Reminder.ejs";
               emailData.subject = "Reminder Notification";
+              console.log("emailData", emailData);
               Config.email(emailData, function(err, emailRespo) {
                 console.log("err", err);
                 console.log("emailRespo", emailRespo);
                 callback(null, emailRespo);
               });
             } else {
-              callback(null, null);
+              callback();
             }
           },
-          function(err, data2) {}
+          function(err, data2) {
+            if (err) {
+              console.log("In Err");
+            } else {
+              console.log("In HERE ");
+            }
+          }
         );
-      }
-    });
-  },
-  sendReminderMail: function() {
-    Reminder.find({
-      reminderMailSent: false
-    })
-      .populate("user")
-      .exec(function(err, data) {
-        if (err || _.isEmpty(data)) {
-        } else {
-          console.log("2----", data);
-          async.eachSeries(
-            data,
-            function(singelData, callback) {
-              console.log("3----", singelData);
-              var reminderDate = moment(singelData.dateOfReminder);
-              var currentDate = moment(new Date());
-              // console.log("reminderDate", reminderDate, "currentDate", currentDate);
-              var day = reminderDate.diff(currentDate, "days");
-              if (singelData.email && day == 1) {
-                Reminder.update(
-                  {
-                    _id: singelData._id
-                  },
-                  {
-                    reminderMailSent: true
-                  }
-                ).exec(function(err, data3) {});
-
-                var emailData = {};
-                var time = new Date().getHours();
-                var greeting;
-                if (time < 10) {
-                  greeting = "Good morning";
-                } else if (time < 17) {
-                  greeting = "Good Afternoon";
-                } else {
-                  greeting = "Good evening";
-                }
-                emailData.from = "sahil@pumpkiin.com";
-                emailData.name = singelData.user.name
-                  ? singelData.user.name
-                  : "";
-                emailData.email = singelData.user.email;
-                emailData.greeting = greeting;
-                emailData.title = singelData.title ? singelData.title : "";
-                emailData.description = singelData.description
-                  ? singelData.description
-                  : "";
-                emailData.filename = "Reminder.ejs";
-                emailData.subject = "Reminder Notification";
-                Config.email(emailData, function(err, emailRespo) {
-                  console.log("err", err);
-                  console.log("emailRespo", emailRespo);
-                  callback(null, emailRespo);
-                });
-              }
-            },
-            function(err, data2) {}
-          );
-        }
       });
   },
 
@@ -478,9 +433,18 @@ var model = {
       });
   }
 };
-// sails.on("ready", function () {
-//     cron.schedule("*/5 * * * *", function () {
-//         Reminder.sendReminderMail({}, callback);
-//     });
+
+// sails.on("ready", function() {
+//   cron.schedule("*/1 * * * *", function() {
+//     Reminder.sendReminderMail({}, callback);
+//     console.log("===================================");
+//   });
 // });
+
+sails.on("ready", function() {
+  cron.schedule("*/1 * * * *", function() {
+    Reminder.sendReminderMail();
+    console.log("===================================");
+  });
+});
 module.exports = _.assign(module.exports, exports, model);
