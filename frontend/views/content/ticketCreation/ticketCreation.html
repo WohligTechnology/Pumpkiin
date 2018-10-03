@@ -137,6 +137,7 @@
                 <div class="media">
                     <div class="img-div ">
 
+
                         <img src="{{ticketDetails.product.productImages[0] | serverimage}} " class="img-fluid large-img ">
                         <div class="d-flex align-items-center justify-content-center small-img ">
                             <img src="img/ticketCreation/mobile.png " width="10 ">
@@ -144,7 +145,8 @@
                     </div>
                     <div class="media-body pl-4 text-white ">
                         <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">
-                            <div ng-if="ticketDetails.ticketNumber">Support ID:{{ticketDetails.ticketNumber}}</div>
+                            <div ng-if="ticketDetails.ticketNumber">Support ID:{{ticketDetails.ticketNumber}}
+                            </div>
                             <div ng-if="!ticketDetails.ticketNumber">Support ID: ---</div>
                             <div class="position-absolute clock" ng-if="ticketDetails.ticketNumber">
                                 <!-- <i class="far fa-clock"></i> -->

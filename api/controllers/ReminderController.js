@@ -153,6 +153,30 @@ var controller = {
                 }
             });
         }
+    },
+    sendWarrantyReminderMail: function (req, res) {
+        if (req.body) {
+            Reminder.sendWarrantyReminderMail(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
+    sendInsuranceReminderMail: function (req, res) {
+        if (req.body) {
+            Reminder.sendInsuranceReminderMail(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
     }
 };
 module.exports = _.assign(module.exports, controller);
