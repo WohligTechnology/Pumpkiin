@@ -1,5 +1,6 @@
 <div class="background-blue position-relative p-1 p-lg-3 pb-5 text-left text-lg-center fontRobotoRegular text-white">
-    <h5 class="my-2 my-md-0">Product Registration</h5>
+    <h5 class="my-2 mb-md-2 mt-md-0">Product Registration</h5>
+    <span class="font16">Please fill in the following sections in order</span>
     <div class="my-5 timeline">
         <div class="circle circle1 " ng-click="makeActive('circle1')" ng-class="{'timeline-active': activePage == 'circle1' || checkmark1}">
             <i class="fas fa-check check-icon" ng-if="activePage == 'circle2' && checkmark1"></i>
@@ -74,7 +75,7 @@
             <div class="row form-group">
                 <div class="col-12">
                     <label class="mb-0">Product Picture</label>
-                    <span> (only jpg, png, doc or pdf file allowed and maximum size is 5Mb)</span>
+                    <span> (only jpg and png file allowed and maximum size is 5Mb)</span>
                     <span class="green-color" ng-if="data.productImages">({{data.productImages.length}})</span>
                     <br>
                     <div class="scrollbar">
@@ -209,7 +210,7 @@
             <div class="col-12 col-md-6">
                 <label class="mb-0">Relationship * </label>
                 <select class="form-control cursor-point" id="sel1" name="sellist1" ng-model="userData.relation" required>
-                    <option ng-repeat="relations in relationsForUser">{{relations}}</option>
+                    <option class="cursor-point" ng-repeat="relations in relationsForUser">{{relations}}</option>
                 </select>
                 <!-- <span class="error" ng-show="adduser.sellist1.$invalid && adduser.sellist1.$touched"> Please, select relationship
                 </span> -->

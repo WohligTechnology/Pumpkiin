@@ -51,6 +51,41 @@ myApp.controller("headerCtrl", function (
         });
     };
 
+    $scope.searchForReminderData = function (data, data1) {
+        var dataToSend = {};
+        if (data.length > 0) {
+            if (data1 == "open") {
+                dataToSend.user = $.jStorage.get("userData")._id;
+                dataToSend.keyword = data;
+                NavigationService.apiCallWithData(
+                    "Reminder/searchOpenReminders",
+                    dataToSend,
+                    function (response) {
+                        if (response.value) {
+                            $scope.allReminders = response.data;
+                            $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+                        }
+                    }
+                );
+            } else {
+                dataToSend.keyword = data;
+                dataToSend.user = $.jStorage.get("userData")._id;
+                NavigationService.apiCallWithData(
+                    "Reminder/searchClosedReminders",
+                    dataToSend,
+                    function (response) {
+                        console.log(" response", response);
+
+                        if (response.value) {
+                            $scope.allReminders = response.data;
+                            $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+                        }
+                    }
+                );
+            }
+        }
+    };
+
     $scope.getReminder = function (data) {
         console.log("----------", data);
         var getReminder = {};
@@ -104,55 +139,38 @@ myApp.controller("headerCtrl", function (
 
     $scope.saveReminder = function (data) {
         // console.log("----------", data);
-        if ($scope.data._id) {
-            $scope.data.status = 'Snooze';
-            console.log("-----$scope.data-----", $scope.data);
-            NavigationService.apiCallWithData("Reminder/save", $scope.data, function (res) {
-                console.log("res.data", res.data);
-                toastr.success("Reminder Snoozed Successfully");
-                $scope.addReminder.close();
-                $state.reload();
-            });
+        data.user = $.jStorage.get("userData")._id;
+        if (data._id) {
+            data.status = "Snooze";
         } else {
-            // console.log("-----$scope.data-----", data);
-            data.user = $scope.userInfo._id;
-            data.name = $scope.userInfo.name;
-            data.email = $scope.userInfo.email;
             data.status = "Pending";
-            NavigationService.apiCallWithData("Reminder/save", data, function (res) {
-                console.log("res.data", res.data);
-                toastr.success("Reminder Added Successfully");
-                $scope.addReminder.close();
-                $state.reload();
-            });
         }
-    }
 
-    // NavigationService.apiCallWithData("Reminder/save", $scope.data, function(
-    //   res
-    // ) {
-    //   console.log("res.data", res.data);
-    //   toastr.success("Reminder Snoozed Successfully");
-    //   $scope.addReminder.close();
-    //   $state.reload();
-    // });
+        NavigationService.apiCallWithData("Reminder/save", $scope.data, function (
+            res
+        ) {
+            console.log("res.data", res.data);
+            toastr.success("Reminder Snoozed Successfully");
+            $scope.addReminder.close();
+            $state.reload();
+        });
 
-    // console.log("-----$scope.data-----", data);
-    //   data.user = $scope.userInfo._id;
-    //   data.name = $scope.userInfo.name;
-    //   data.email = $scope.userInfo.email;
-    //   data.status = "Pending";
-    //   NavigationService.apiCallWithData(
-    //     "Reminder/sendReminderMail",
-    //     data,
-    //     function(res) {
-    //       console.log("res.data", res.data);
-    //       toastr.success("Reminder Added Successfully");
-    //       $scope.addReminder.close();
-    //       $state.reload();
-    //     }
-    //   );
-
+        // console.log("-----$scope.data-----", data);
+        //   data.user = $scope.userInfo._id;
+        //   data.name = $scope.userInfo.name;
+        //   data.email = $scope.userInfo.email;
+        //   data.status = "Pending";
+        //   NavigationService.apiCallWithData(
+        //     "Reminder/sendReminderMail",
+        //     data,
+        //     function(res) {
+        //       console.log("res.data", res.data);
+        //       toastr.success("Reminder Added Successfully");
+        //       $scope.addReminder.close();
+        //       $state.reload();
+        //     }
+        //   );
+    };
 
     $scope.searchData = function (data) {
         $scope.productList = [];
