@@ -51,6 +51,40 @@ myApp.controller("headerCtrl", function(
     });
   };
 
+  $scope.searchForReminderData = function(data, data1) {
+    var dataToSend = {};
+    if (data.length > 0) {
+      if (data1 == "open") {
+        dataToSend.user = $.jStorage.get("userData")._id;
+        dataToSend.keyword = data;
+        NavigationService.apiCallWithData(
+          "Reminder/searchOpenReminders",
+          dataToSend,
+          function(response) {
+            if (response.value) {
+              $scope.allReminders = response.data;
+              $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+            }
+          }
+        );
+      } else {
+        dataToSend.keyword = data;
+        NavigationService.apiCallWithData(
+          "Reminder/searchClosedReminders",
+          dataToSend,
+          function(response) {
+            console.log(" response", response);
+
+            if (response.value) {
+              $scope.allReminders = response.data;
+              $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+            }
+          }
+        );
+      }
+    }
+  };
+
   $scope.getReminder = function(data) {
     console.log("----------", data);
     var getReminder = {};

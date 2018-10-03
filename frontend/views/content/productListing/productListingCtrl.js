@@ -292,6 +292,7 @@ myApp.controller("ProductlistingCtrl", function(
     var dataToSend = {};
     if (data.length > 0) {
       if (data1 == "open") {
+        dataToSend.user = $.jStorage.get("userData")._id;
         dataToSend.keyword = data;
         NavigationService.apiCallWithData(
           "Reminder/searchOpenReminders",
