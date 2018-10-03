@@ -500,14 +500,14 @@ var model = {
             from: "products",
             localField: "product",
             foreignField: "_id",
-            as: "productss"
+            as: "product"
           }
         },
 
         // Stage 2
         {
           $unwind: {
-            path: "$productss",
+            path: "$product",
             preserveNullAndEmptyArrays: false // optional
           }
         },
@@ -515,7 +515,7 @@ var model = {
         // Stage 3
         {
           $match: {
-            "productss.productName": {
+            "product.productName": {
               $regex: data.keyword,
               $options: "i"
             },
