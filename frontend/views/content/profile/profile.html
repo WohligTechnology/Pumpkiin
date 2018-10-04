@@ -2,9 +2,9 @@
     <div class="container">
         <div class="d-flex profile-details mb-3 ">
             <div class="profile-image" class="img-fluid">
-                <img ng-src="{{jstrgValue.profilePic | serverimage}}" alt="Ticket_circle-icon" width="100%" ng-if="jstrgValue.profilePic">
-                <img ng-src="{{jstrgValue.photo |serverimage}}" alt="Ticket_circle-icon" width="100%" ng-if="jstrgValue.photo && !jstrgValue.profilePic">
-                <img src="img/emptyProfile.png" ng-if="!(jstrgValue.profilePic || jstrgValue.photo)" alt="Ticket_circle-icon">
+                <img class="set-profile" ng-src="{{jstrgValue.profilePic | serverimage}}" alt="profile image" width="100%" ng-if="jstrgValue.profilePic">
+                <img class="set-profile" ng-src="{{jstrgValue.photo |serverimage}}" alt="profile image" width="100%" ng-if="jstrgValue.photo && !jstrgValue.profilePic">
+                <img class="set-profile" src="img/emptyProfile.png" ng-if="!(jstrgValue.profilePic || jstrgValue.photo)" alt="profile image">
                 <div class="profile-photo-upload">
                     <!-- <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="userDataForProfile.profilePic" noStatus="true"
                         no-view></upload-image> -->
@@ -152,7 +152,8 @@
                                 <i class="fas fa-plus "></i>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center existing-user p-2 mr-3 " ng-repeat="rel in userDataForProfile.relations ">
+                        <div class="d-flex align-items-center existing-user p-2 mr-3 cursor-point" ng-repeat="rel in userDataForProfile.relations"
+                            ng-click="openUserEdit(rel)">
                             <div class="user-circle "></div>
                             <div class="mx-2 fontRobotoRegular name-rel ">
                                 <div>{{rel.user.name}}</div>
