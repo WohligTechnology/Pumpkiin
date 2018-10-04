@@ -442,10 +442,10 @@ var model = {
 //   });
 // });
 
-sails.on("ready", function() {
-  cron.schedule("*/1 * * * *", function() {
-    Reminder.sendReminderMail();
-    console.log("===================================");
-  });
-});
+// sails.on("ready", function() {
+//   cron.schedule("*/1 * * * *", function() {
+//     Reminder.sendReminderMail();
+//     console.log("===================================");
+//   });
+// });
 module.exports = _.assign(module.exports, exports, model);

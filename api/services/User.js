@@ -991,61 +991,143 @@ var model = {
     emailData.subject = "Welcome to Pumpkiin";
     emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
     Config.email(emailData, callback);
+  },
+  addressEditEmail: function(data, callback) {
+    console.log("address --- ", data);
+    var emailData = {};
+    var time = new Date().getHours();
+    var greeting;
+    if (time < 10) {
+      greeting = "Good morning";
+    } else if (time < 17) {
+      greeting = "Good Afternoon";
+    } else {
+      greeting = "Good evening";
+    }
+    emailData.from = "sahil@pumpkiin.com";
+    emailData.name = data.user;
+    // emailData.mobile = found.mobile;
+    emailData.email = data.email;
+    emailData.title = data.address.title;
+    emailData.address = data.address.address;
+    // emailData.dob = moment(found.dob).format("MMM DD YYYY");
+    // emailData.gender = found.gender;
+    emailData.greeting = greeting;
+    emailData.filename = "addressEditMail";
+    emailData.subject = "Address successfully updated!";
+    // console.log("emailData---------", emailData)
+    var email = {};
+    email = emailData.email;
+    Config.sendEmail(
+      {
+        //from
+        email: "sahil@pumpkiin.com",
+        name: "Sahil"
+      },
+      //to
+      //emailData,
+      [
+        {
+          email
+        }
+      ],
+      //subject
+      emailData.subject,
+      "",
+      emailData,
+      function(err, emailResp) {
+        if (err) {
+          console.log("err", err);
+          callback("canNotSendMail", null);
+        } else {
+          console.log("err", emailResp);
+          callback(null, "mailSent");
+        }
+      }
+    );
+  },
+  sendEmailToFamily: function(data, callback) {
+    console.log("address --- ", data);
+    var emailData = {};
+    var time = new Date().getHours();
+    var greeting;
+    if (time < 10) {
+      greeting = "Good morning";
+    } else if (time < 17) {
+      greeting = "Good Afternoon";
+    } else {
+      greeting = "Good evening";
+    }
+    emailData.from = "sahil@pumpkiin.com";
+    emailData.name = data.name;
+    emailData.user = data.user.name;
+    emailData.email = data.user.email;
+    emailData.relation = data.user.relation;
+    // emailData.dob = moment(found.dob).format("MMM DD YYYY");
+    // emailData.gender = found.gender;
+    emailData.greeting = greeting;
+    emailData.filename = "addFamilyMemberMail";
+    emailData.subject = "Family member added successfully!";
+    // console.log("emailData---------", emailData)
+    var email = {};
+    email = emailData.email;
+    Config.sendEmail(
+      {
+        //from
+        email: "sahil@pumpkiin.com",
+        name: "Sahil"
+      },
+      //to
+      //emailData,
+      [
+        {
+          email
+        }
+      ],
+      //subject
+      emailData.subject,
+      "",
+      emailData,
+      function(err, emailResp) {
+        if (err) {
+          console.log("err", err);
+          callback("canNotSendMail", null);
+        } else {
+          console.log("err", emailResp);
+          callback(null, "mailSent");
+        }
+      }
+    );
+  },
+  saveEditedUSer: function(data, callback) {
+    console.log("saveEditedUSer", data.user._id);
+    async.parallel(
+      [
+        function(callback) {
+          User.findOneAndUpdate(
+            { _id: data.user._id },
+            {
+              // relationType: data.user.relationType,
+              name: data.user.name,
+              email: data.user.email,
+              mobile: data.user.mobile,
+              nickName: data.user.nickName
+            },
+            { new: true }
+          ).exec(callback);
+        },
+        function(callback) {
+          User.update(
+            {
+              _id: data.userId,
+              "relations.user": data.user._id
+            },
+            { "relations.$.relationType": data.relationType }
+          ).exec(callback);
+        }
+      ],
+      callback
+    );
   }
 };
 module.exports = _.assign(module.exports, exports, model);
-
-//     "name": "Addresses",
-//     "type": "box",
-//     "tableRef": "address",
-//     "validation": ["", "trim", ""],
-//     "fields": [{
-//         "name": "Title",
-//         "type": "text",
-//         "tableRef": "title",
-//         "placeholder": "Enter Title",
-//         "id": "title",
-//         "validation": ["", "trim"],
-//         "url": "",
-//         "onView": true
-//     }, {
-//         "name": "Address Line",
-//         "type": "text",
-//         "tableRef": "addressLine",
-//         "placeholder": "Enter Address Line",
-//         "id": "addressLine",
-//         "validation": ["", "trim"],
-//         "url": "",
-//         "onView": true
-//     }, {
-//         "name": "State",
-//         "type": "tags",
-//         "subType": "advance",
-//         "tableRef": "state",
-//         "placeholder": "Enter State",
-//         "id": "state",
-//         "validation": ["", "trim"],
-//         "url": "Ticket/getAllStatesOfIndia",
-//         "dropDownField": "region",
-//         "apiReteiveField": "data",
-//         "dropDownType": "single",
-//         "dependingOn": "city",
-//         "dependentUrl": "Ticket/getCity",
-//         "refresh": false,
-//         "onView": false
-//     }, {
-//         "name": "City",
-//         "type": "tags",
-//         "subType": "advance",
-//         "tableRef": "city",
-//         "placeholder": "Enter City",
-//         "id": "city",
-//         "validation": ["", "trim"],
-//         "url": "Ticket/getCity",
-//         "dropDownField": "city",
-//         "apiReteiveField": "data",
-//         "dropDownType": "single",
-//         "refresh": false,
-//         "onView": false
-//     }]
-// },
