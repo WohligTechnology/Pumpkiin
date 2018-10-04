@@ -117,6 +117,7 @@ var schema = new Schema({
   address: [
     {
       title: String,
+      address: String,
       addressLine: String,
       city: Schema.Types.Mixed,
       district: String,

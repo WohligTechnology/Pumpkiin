@@ -343,6 +343,9 @@ myApp.controller("TicketCreationCtrl", function(
       formData.user = $.jStorage.get("userData")._id;
       formData.comment = data.comment;
       formData.file = data.image;
+      if (!dataToSend.customerChat) {
+        dataToSend.customerChat = [];
+      }
       dataToSend.customerChat.push(formData);
       dataToSend.user = $scope.jstrgValue._id;
       dataToSend.product = $stateParams.id;
@@ -368,6 +371,10 @@ myApp.controller("TicketCreationCtrl", function(
       formData.user = $.jStorage.get("userData")._id;
       formData.comment = data.comment;
       formData.file = data.image;
+      console.log("formData", formData);
+      if (!$scope.ticketDetails.customerChat) {
+        $scope.ticketDetails.customerChat = [];
+      }
       $scope.ticketDetails.customerChat.push(formData);
       // console.log(" $scope.ticketDetails", $scope.ticketDetails);
       NavigationService.apiCallWithData(

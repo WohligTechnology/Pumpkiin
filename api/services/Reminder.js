@@ -250,7 +250,9 @@ var model = {
               "reminderDate",
               reminderDate,
               "currentDate",
-              currentDate
+              currentDate,
+              "new Date().getHours();",
+              new Date().getHours()
             );
             // console.log(
             //   "singelData",
@@ -259,7 +261,7 @@ var model = {
             // );
             var day = reminderDate.diff(currentDate, "days");
             if (singelData.email && day == 1) {
-              console.log("HI In Here");
+              console.log("@@@@@ MAIL SENT  @@@@@");
               Reminder.update(
                 {
                   _id: singelData._id
@@ -311,7 +313,6 @@ var model = {
         );
       });
   },
-
   sendWarrantyReminderMail: function() {
     Reminder.find({
       warrantyRemindermail: false,

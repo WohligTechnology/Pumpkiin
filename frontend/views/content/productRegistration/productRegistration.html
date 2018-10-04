@@ -36,8 +36,7 @@
                     <label class="mb-0">Product Name * </label>
                     <input ng-model="data.productName" class="form-control form-control-sm" type="text" name="productName" placeholder="Product Name"
                         required>
-                    <span class="error" ng-show="product.productName.$invalid && product.productName.$touched"> Please,
-                        enter product name</span>
+                    <span class="error" ng-show="product.productName.$invalid && product.productName.$touched"> Please, enter product name</span>
                 </div>
                 <div class="col-12 col-md-6 brand-div">
                     <label class="mb-0">Brand Name * </label>
@@ -51,8 +50,7 @@
                         </ui-select-choices>
                     </ui-select> -->
                     <!-- <input ng-model="data.brand" class="form-control form-control-sm" type="text" name="brandSelect" placeholder="Brand Name" required> -->
-                    <span class="error" ng-show="product.brandSelect.$invalid && product.brandSelect.$touched"> Please,
-                        enter brand name</span>
+                    <span class="error" ng-show="product.brandSelect.$invalid && product.brandSelect.$touched"> Please, enter brand name</span>
                 </div>
             </div>
             <div class="row form-group">
@@ -60,16 +58,14 @@
                     <label class="mb-0">Serial Number * </label>
                     <input ng-model="data.serialNo" class="form-control form-control-sm" type="text" name="srno" placeholder="Serial Number"
                         required>
-                    <span class="error" ng-show="product.srno.$invalid && product.srno.$touched"> Please, enter serial
-                        number
+                    <span class="error" ng-show="product.srno.$invalid && product.srno.$touched"> Please, enter serial number
                     </span>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Model Number * </label>
                     <input ng-model="data.modelNo" class="form-control form-control-sm" type="text" name="modelno" placeholder="Model Number"
                         required>
-                    <span class="error" ng-show="product.modelno.$invalid && product.modelno.$touched"> Please, enter
-                        model number</span>
+                    <span class="error" ng-show="product.modelno.$invalid && product.modelno.$touched"> Please, enter model number</span>
                 </div>
             </div>
             <div class="row form-group">
@@ -106,9 +102,7 @@
                         readonly>
                     <input ng-model="data.purchaseDate" name="date" class="form-control form-control-sm" type="date" required ng-if="checkmark1">
                     <span class="error" ng-show="purchase.date.$invalid && purchase.date.$touched" ng-if="checkmark1">
-                        Please,
-                        enter
-                        purchase date</span>
+                        Please, enter purchase date</span>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Purchase Price (Rupees) * </label>
@@ -116,8 +110,7 @@
                         readonly>
                     <input ng-model="data.purchasePrice" name="price" class="form-control form-control-sm" type="text" required only-digits ng-if="checkmark1">
                     <span class="error" ng-show="purchase.price.$invalid && purchase.price.$touched" ng-if="checkmark1">
-                        Please, enter
-                        purchase price</span>
+                        Please, enter purchase price</span>
                 </div>
             </div>
             <div class="row form-group">
@@ -127,8 +120,7 @@
                         readonly>
                     <input ng-model="data.retailer" name="retailer" class="form-control form-control-sm" type="text" required ng-if="checkmark1">
                     <span class="error" ng-show="purchase.retailer.$invalid && purchase.retailer.$touched" ng-if="checkmark1">
-                        Please,
-                        enter retailer</span>
+                        Please, enter retailer</span>
                 </div>
             </div>
             <div class="row form-group">
@@ -224,8 +216,8 @@
     </div>
     <fieldset class="d-flex social mx-auto m-md-3 my-3 save ml-auto" ng-click="savepurchaseDetails(data)" ng-disabled="!(data.purchaseDate && data.purchasePrice && data.retailer )">
         <span class="social_icon">
-        <i class="fas fa-save"></i>
-    </span>
+            <i class="fas fa-save"></i>
+        </span>
         <div class="social-text">Save and Continue</div>
     </fieldset>
 </div>
@@ -248,8 +240,7 @@
                         readonly>
                     <input name="warrdate" ng-model="data.warrantyExpDate" class="form-control form-control-sm" type="date" required ng-if="checkmark2">
                     <span class="error" ng-show="Warranty.warrdate.$invalid && Warranty.warrdate.$touched" ng-if="checkmark2">
-                        Please,
-                        select warranty expiry date</span>
+                        Please, select warranty expiry date</span>
                 </div>
             </div>
             <div class="row form-group">

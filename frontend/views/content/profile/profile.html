@@ -8,8 +8,8 @@
                 <div class="profile-photo-upload">
                     <!-- <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="userDataForProfile.profilePic" noStatus="true"
                         no-view></upload-image> -->
-                    <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="jstrgValue.profilePic"
-                        noStatus="true" no-view ng-callback="saveImage();"></upload-image>
+                    <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="jstrgValue.profilePic" noStatus="true"
+                        no-view ng-callback="saveImage();"></upload-image>
                     <!-- <upload-image ng-model="data.productImages" no-status="true"></upload-image> -->
                 </div>
             </div>
@@ -65,12 +65,10 @@
                         </div>
                         <div ng-if="personalInfo">
                             <label class="radio-inline mr-3">
-                                <input type="radio" name="optradio" value="Male" ng-model="userDataForProfile.gender">
-                                Male
+                                <input type="radio" name="optradio" value="Male" ng-model="userDataForProfile.gender"> Male
                             </label>
                             <label class="radio-inline mr-3">
-                                <input type="radio" name="optradio" value="Female" ng-model="userDataForProfile.gender">
-                                Female
+                                <input type="radio" name="optradio" value="Female" ng-model="userDataForProfile.gender"> Female
                             </label>
                         </div>
                         <div class="custom-input" ng-if="personalInfo">
@@ -89,8 +87,7 @@
                             - - -
                         </div>
                         <div ng-if="personalInfo" class="mb-2 custom-input">
-                            <input maxlength="10" type="text" class="mt-2 p-1" ng-model="userDataForProfile.mobile"
-                                only-digits>
+                            <input maxlength="10" type="text" class="mt-2 p-1" ng-model="userDataForProfile.mobile" only-digits>
                         </div>
                         <div ng-if="!personalInfo" class="mb-2 custom-input">{{userDataForProfile.email}}</div>
                         <div ng-if="personalInfo" class="mb-2 custom-input">
@@ -117,6 +114,7 @@
                     <div class="d-flex fontRobotoLight font-color font12 ">
                         <div class="p-2 background-gray mr-2 text-capitalize address-box " ng-repeat="addressData in userDataForProfile.address track by $index">
                             <div class="font14 dark-font-color fontRobotoRegular ">{{addressData.title}}
+
                                 <span class="float-right p3  cursor-point" ng-click="removeAddress($index) ">
                                     <i class="fas fa-times fa-sm "></i>
                                 </span>

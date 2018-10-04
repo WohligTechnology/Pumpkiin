@@ -11,39 +11,41 @@ var myApp = angular.module("myApp", [
   "angularPromiseButtons",
   "toastr",
   "ui.select",
-  "moment-picker"
+  "moment-picker",
+  "ngMap"
 ]);
 
 // Define all the routes below
-myApp.config(function (
+myApp.config(function(
   $stateProvider,
   $urlRouterProvider,
   $httpProvider,
   $locationProvider,
   momentPickerProvider
 ) {
-
-
   momentPickerProvider.options({
     /* Picker properties */
-    locale: 'en',
-    format: 'L LTS',
-    minView: 'year',
-    maxView: 'minute',
-    startView: 'year',
+    locale: "en",
+    format: "L LTS",
+    minView: "year",
+    maxView: "minute",
+    startView: "year",
     autoclose: true,
     today: true,
     keyboard: true,
 
     /* Extra: Views properties */
-    leftArrow: '&larr;',
-    rightArrow: '&rarr;',
-    yearsFormat: 'YYYY',
-    monthsFormat: 'MMM',
-    daysFormat: 'D',
-    hoursFormat: 'HH:[00]',
-    minutesFormat: moment.localeData().longDateFormat('LT').replace(/[aA]/, ''),
-    secondsFormat: 'ss',
+    leftArrow: "&larr;",
+    rightArrow: "&rarr;",
+    yearsFormat: "YYYY",
+    monthsFormat: "MMM",
+    daysFormat: "D",
+    hoursFormat: "HH:[00]",
+    minutesFormat: moment
+      .localeData()
+      .longDateFormat("LT")
+      .replace(/[aA]/, ""),
+    secondsFormat: "ss",
     minutesStep: 5,
     secondsStep: 1
   });
@@ -148,7 +150,7 @@ myApp.config(function (
 });
 
 // For Language JS
-myApp.config(function ($translateProvider) {
+myApp.config(function($translateProvider) {
   $translateProvider.translations("en", LanguageEnglish);
   $translateProvider.translations("hi", LanguageHindi);
   $translateProvider.preferredLanguage("en");

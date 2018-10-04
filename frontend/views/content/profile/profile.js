@@ -74,6 +74,8 @@ myApp.controller("ProfileCtrl", function(
   };
 
   $scope.addressModalOpen = function() {
+    console.log("111111111111111111");
+
     $scope.addressIndex = -1;
     $scope.addAddress = $uibModal.open({
       animation: true,
@@ -81,6 +83,15 @@ myApp.controller("ProfileCtrl", function(
       scope: $scope
     });
   };
+  console.log("111111111111111111");
+  // var vm = this;
+  // vm.types = "['establishment']";
+  // vm.placeChanged = function() {
+  //   vm.place = this.getPlace();
+  //   console.log(vm.place);
+  //   console.log("location", vm.place.geometry.location);
+  //   vm.map.setCenter(vm.place.geometry.location);
+  // };
 
   $scope.newUserModalOpen = function() {
     $scope.addNewUser = $uibModal.open({
@@ -256,13 +267,22 @@ myApp.controller("ProfileCtrl", function(
       console.log("response of City", response);
     });
   };
+  $scope.placeChanged = function() {
+    console.log("1111111111111111");
+    var place = this.getPlace();
+    console.log(place.formatted_address);
+    $scope.formattedAddress = place.formatted_address;
+    // console.log(vm.place);
+    // console.log("location", vm.place.geometry.location);
+  };
 
   $scope.saveAddressData = function(data) {
+    data.address = $scope.formattedAddress;
     console.log(data);
     var addData = {};
     var add = $scope.userDataForProfile.address;
     if ($scope.addressIndex != -1) {
-      add[$scope.addressIndex] = data;
+      add[$scope.addressIndex] = data.address;
     } else {
       add.push(data);
     }
@@ -276,10 +296,12 @@ myApp.controller("ProfileCtrl", function(
   };
 
   $scope.removeAddress = function(index) {
-    $scope.userDataForProfile.address = _.slice(
-      $scope.userDataForProfile.address,
-      0,
-      index
+    console.log("remove111", index);
+    console.log("$scope.userDataForProfile.address", $scope.userDataForProfile);
+    $scope.userDataForProfile.address.splice(index, 1);
+    console.log(
+      "$scope.userDataForProfile.address",
+      $scope.userDataForProfile.address
     );
     NavigationService.apiCallWithData(
       "User/save",
