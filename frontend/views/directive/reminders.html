@@ -4,7 +4,7 @@
             <img ng-if="showGreenImage" src="img/ticketCreation/pmkn-02.png">
             <img ng-if="!showGreenImage" src="img/ticketCreation/pmkn-03.png">
             <div class="notification notification-orange" ng-if="totalPendingReminders">{{totalPendingReminders}}</div>
-            <div class="notification notification-orange" ng-if="!totalPendingReminders">0</div>
+            <!-- <div class="notification notification-orange" ng-if="!totalPendingReminders">0</div> -->
         </div>
         <!-- <div class="closed-text cursor-point" ng-if="!totalCompletedReminder">
             <img ng-if="!totalCompletedReminder" src="img/ticketCreation/pmkn-01.png">
@@ -16,7 +16,7 @@
             <img ng-if="!showGreenImage" src="img/ticketCreation/pmkn-01.png">
             <img ng-if="showGreenImage" src="img/ticketCreation/pmkn-04.png">
             <div class="notification" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
-            <div class="notification" ng-if="!totalCompletedReminder">0</div>
+            <!-- <div class="notification" ng-if="!totalCompletedReminder">0</div> -->
         </div>
         <div class="cursor-point" ng-click="reminderModalOpen()">
             <img src="img/ticketCreation/addButton.png ">
@@ -27,8 +27,7 @@
         <span class="badge badge-style ml-auto">{{totalReminders}}</span>
         <div class="float-right search-reminders">
             <form class="position-relative" ng-if="ticketDetails[0].status!='Closed'">
-                <input id="search" name="search" type="text" placeholder="" ng-change="searchForReminderData(reminderSearch,'open')"
-                    ng-model="reminderSearch">
+                <input id="search" name="search" type="text" placeholder="" ng-change="searchForReminderData(reminderSearch,'open')" ng-model="reminderSearch">
                 <div class="search-btn" id="search_submit" value="" ng-click="showHide()"></div>
             </form>
             <form class="position-relative" ng-if="ticketDetails[0].status=='Closed'">
@@ -40,8 +39,7 @@
     </div>
 
     <div class="border-top listed-openTickets openticket">
-        <div class="d-flex py-1 element-list cursor-point" ng-repeat="reminders in showLessReminders track by $index"
-            ng-click="notificationmodalOpen(reminders,$index, 'modal');">
+        <div class="d-flex py-1 element-list cursor-point" ng-repeat="reminders in showLessReminders track by $index" ng-click="notificationmodalOpen(reminders,$index, 'modal');">
             <div class="bullet" ng-if="!reminders.isRead"></div>
             <div class="d-block pl-4">
                 <div class="product-title text-truncate">{{reminders.title}}</div>

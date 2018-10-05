@@ -8,14 +8,14 @@
                         <img ng-if="showGreenImage" src="img/ticketCreation/pmkn-02.png">
                         <img ng-if="!showGreenImage" src="img/ticketCreation/pmkn-03.png">
                         <div class="notification notification-orange" ng-if="totalPendingReminders">{{totalPendingReminders}}</div>
-                        <div class="notification notification-orange" ng-if="!totalPendingReminders">0</div>
+                        <!-- <div class="notification notification-orange" ng-if="!totalPendingReminders">0</div> -->
                     </div>
                     <div class="closed-text cursor-point" ng-click="completedReminders()">
                         <!-- <img src="img/ticketCreation/Notification_circle-icon-green.png"> -->
                         <img ng-if="!showGreenImage" src="img/ticketCreation/pmkn-01.png">
                         <img ng-if="showGreenImage" src="img/ticketCreation/pmkn-04.png">
                         <div class="notification" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
-                        <div class="notification" ng-if="!totalCompletedReminder">0</div>
+                        <!-- <div class="notification" ng-if="!totalCompletedReminder">0</div> -->
                     </div>
                     <div class="cursor-point" ng-click="reminderModalOpen()">
                         <img src="img/ticketCreation/addButton.png ">
@@ -88,8 +88,7 @@
                                 <p>{{reminders.description}}</p>
                                 <div class="text-right">
                                     <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center snooze-color" ng-click="reminderModalOpen(reminders._id);"
-                                        ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Snooze
-                                        / Edit
+                                        ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Snooze / Edit
                                     </a>
                                     <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center completed-color" ng-click="chnageStatus(reminders._id);"
                                         ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Completed

@@ -192,7 +192,7 @@ myApp.controller("TicketCreationCtrl", function(
         );
       } else {
         if ($scope.totalOpenTickets[0]) {
-          // console.log("res---totalOpenTickets--", $scope.totalOpenTickets[0]);
+          console.log("res---totalOpenTickets--", $scope.totalOpenTickets[0]);
           $scope.ticketDetails = $scope.totalOpenTickets[0];
           productData._id = $scope.totalOpenTickets[0].product._id;
           NavigationService.apiCallWithData(
@@ -343,9 +343,9 @@ myApp.controller("TicketCreationCtrl", function(
       formData.user = $.jStorage.get("userData")._id;
       formData.comment = data.comment;
       formData.file = data.image;
-      if (!dataToSend.customerChat) {
-        dataToSend.customerChat = [];
-      }
+      // if (!dataToSend.customerChat) {
+      //   dataToSend.customerChat = [];
+      // }
       dataToSend.customerChat.push(formData);
       dataToSend.user = $scope.jstrgValue._id;
       dataToSend.product = $stateParams.id;
@@ -372,11 +372,16 @@ myApp.controller("TicketCreationCtrl", function(
       formData.comment = data.comment;
       formData.file = data.image;
       console.log("formData", formData);
+      console.log(
+        "$scope.ticketDetails.customerChat",
+        $scope.ticketDetails.customerChat
+      );
       if (!$scope.ticketDetails.customerChat) {
         $scope.ticketDetails.customerChat = [];
       }
       $scope.ticketDetails.customerChat.push(formData);
-      // console.log(" $scope.ticketDetails", $scope.ticketDetails);
+      console.log(" $scope.ticketDetails", $scope.ticketDetails.customerChat);
+      
       NavigationService.apiCallWithData(
         "Ticket/addToChat",
         $scope.ticketDetails,
