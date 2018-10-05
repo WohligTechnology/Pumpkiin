@@ -100,7 +100,7 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
         $scope.getClosedTickets = function () {
             ticketService.totalClosedTickets(function (data) {
                 // $scope.ticketDetails = data;
-                $scope.ticketDetails = _.slice(data, 0, 5);
+                $scope.ticketDetails1 = _.slice(data, 0, 5);
                 console.log(" 2 ", $scope.ticketDetails);
 
             });
@@ -110,7 +110,7 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
             ticketService.totalOpenTickets(function (data) {
                 // $scope.ticketDetails = data;
                 console.log("----109----", data.results);
-                $scope.ticketDetails = _.slice(data.results, 0, 5);
+                $scope.ticketDetails1 = _.slice(data.results, 0, 5);
 
             });
         }

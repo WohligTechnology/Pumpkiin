@@ -62,7 +62,7 @@ myApp.controller("TicketCreationCtrl", function(
     });
 
     $scope.completedReminders = function(data) {
-      $scope.showGreenImage = false;
+      $scope.showGreenImage = true;
       reminderService.findReminderOfCompletedByUser(function(data) {
         $scope.allReminders = data;
         $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
@@ -70,7 +70,7 @@ myApp.controller("TicketCreationCtrl", function(
     };
 
     $scope.pendingReminders = function(data) {
-      $scope.showGreenImage = true;
+      $scope.showGreenImage = false;
       reminderService.findReminderOfPendingSnoozeByUser(function(data) {
         $scope.allReminders = data;
         $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
@@ -109,7 +109,7 @@ myApp.controller("TicketCreationCtrl", function(
 
             $scope.statusArray = [
               {
-                status: "Repair/ Maintenance (On-site)",
+                status: "Repair/ Maintenance",
                 activeClass: ""
               },
               {
@@ -141,7 +141,7 @@ myApp.controller("TicketCreationCtrl", function(
                 activeClass: ""
               },
               {
-                status: "Completed (Completed)",
+                status: "Completed",
                 activeClass: ""
               }
             ];
@@ -169,8 +169,8 @@ myApp.controller("TicketCreationCtrl", function(
 
             ticketService.totalOpenTickets(function(data) {
               // $scope.ticketDetails = data;
-              $scope.ticketDetails = _.slice(data.results, 0, 5);
-              console.log("1 $scope.ticketDetails --", $scope.ticketDetails);
+              $scope.ticketDetails1 = _.slice(data.results, 0, 5);
+              // console.log("1 $scope.ticketDetails --", $scope.ticketDetails);
             });
 
             //timeline end
@@ -213,7 +213,7 @@ myApp.controller("TicketCreationCtrl", function(
 
         $scope.statusArray = [
           {
-            status: "Repair/ Maintenance (On-site)",
+            status: "Repair/ Maintenance",
             statusDate: "",
             activeClass: ""
           },
@@ -247,7 +247,7 @@ myApp.controller("TicketCreationCtrl", function(
             activeClass: ""
           },
           {
-            status: "Completed (Completed)",
+            status: "Completed",
             activeClass: ""
           }
         ];
@@ -292,7 +292,7 @@ myApp.controller("TicketCreationCtrl", function(
     $scope.getClosedTickets = function() {
       ticketService.totalClosedTickets(function(data) {
         // $scope.ticketDetails = data;
-        $scope.ticketDetails = _.slice(data, 0, 5);
+        $scope.ticketDetails1 = _.slice(data, 0, 5);
         console.log("2 $scope.ticketDetails --", $scope.ticketDetails);
       });
     };
@@ -301,13 +301,13 @@ myApp.controller("TicketCreationCtrl", function(
       ticketService.totalOpenTickets(function(data) {
         // $scope.ticketDetails = data;
         console.log("----109----", data.results);
-        $scope.ticketDetails = _.slice(data.results, 0, 5);
+        $scope.ticketDetails1 = _.slice(data.results, 0, 5);
       });
     };
 
     ticketService.totalOpenTickets(function(data) {
       // $scope.ticketDetails = data;
-      $scope.ticketDetails = _.slice(data, 0, 5);
+      $scope.ticketDetails1 = _.slice(data, 0, 5);
       console.log(" $scope.ticketDetails --", $scope.ticketDetails);
     });
   };
@@ -381,7 +381,7 @@ myApp.controller("TicketCreationCtrl", function(
       }
       $scope.ticketDetails.customerChat.push(formData);
       console.log(" $scope.ticketDetails", $scope.ticketDetails.customerChat);
-      
+
       NavigationService.apiCallWithData(
         "Ticket/addToChat",
         $scope.ticketDetails,

@@ -100,11 +100,11 @@
                             </div>
                         </div>
                     </div> -->
-                    <div ng-repeat="user in userDetails.relations">
+                    <!-- <div ng-repeat="user in userDetails.relations">
                         <div class="custom-input font12 ml-0 ml-md-5 d-inline-block fontRobotoLight ">
                             <input type="text" id="warrantyExpDate" name="" ng-model="relation.name" readonly="readonly " ng-readonly="!warranty ">
                         </div>
-                    </div>
+                    </div> -->
                     <div ng-if="personalInfo">
                         <div class="row form-group">
                             <div class="col-12 col-md-6">
@@ -193,8 +193,9 @@
                             <div class="social-text" ng-click="updateData(productDetails,data)">Save</div>
                         </fieldset>
                     </div>
+                    <!-- <pre>{{userDetails.relations|json}}</pre> -->
                     <div class="d-flex main-users" ng-if="!personalInfo">
-                        <div class="d-flex align-items-center existing-user p-2 mr-3" ng-repeat="rel in productDetails.relatedUser ">
+                        <div class="d-flex align-items-center existing-user p-2 mr-3" ng-repeat="rel in userDetails.relations">
                             <div class="mx-2 fontRobotoRegular name-rel">
                                 <div>{{rel.user.name}}</div>
                             </div>

@@ -121,7 +121,7 @@ myApp.controller("ProductlistingCtrl", function(
     });
 
     $scope.completedReminders = function(data) {
-      $scope.showGreenImage = false;
+      $scope.showGreenImage = true;
       reminderService.findReminderOfCompletedByUser(function(data) {
         $scope.allReminders = data;
         $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
@@ -129,7 +129,7 @@ myApp.controller("ProductlistingCtrl", function(
     };
 
     $scope.pendingReminders = function(data) {
-      $scope.showGreenImage = true;
+      $scope.showGreenImage = false;
       reminderService.findReminderOfPendingSnoozeByUser(function(data) {
         $scope.allReminders = data;
         $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);

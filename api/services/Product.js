@@ -115,11 +115,11 @@ var exports = _.cloneDeep(
 var model = {
   saveProduct: function(data, callback) {
     console.log("----------------------------");
-    console.log(data);
+    // console.log(data);
     Product.saveData(data, function(err, found) {
       if (err || _.isEmpty(found)) {
         callback(err, null);
-      } else {
+      } else if (data.user.name) {
         var emailData = {};
         var time = new Date().getHours();
         var greeting;
@@ -135,11 +135,28 @@ var model = {
         emailData.email = data.user.email;
         emailData.greeting = greeting;
         emailData.productName = data.productName;
-        emailData.filename = "product-registration.ejs";
+        emailData.brand = data.brand;
+        emailData.serialNo = data.serialNo;
+        emailData.modelNo = data.modelNo;
+        emailData.purchaseDate = moment(data.purchaseDate).format(
+          "MMM-DD-YYYY"
+        );
+        emailData.purchasePrice = data.purchasePrice;
+        emailData.retailer = data.retailer;
+        // _.forEach(data.user.relations, function(relation, index) {
+        //   emailData.relations +=
+        //     relation.user.name +
+        //     (data.user.relations.length - 1 > index ? "," : "");
+        // });
+
+        emailData.filename = "update-product.ejs";
         emailData.subject = "Updated Product details";
+        console.log("emailData.relations--------------", emailData.relations);
         Config.email(emailData, function(err, emailRespo) {
           callback(null, emailRespo);
         });
+      } else {
+        callback(null, found);
       }
     });
   },
@@ -207,7 +224,7 @@ var model = {
           );
         },
         function(productData, callback) {
-          // console.log("productData", productData)
+          console.log("productData", productData);
           productdata = productData;
           var accessoriesToSave = {};
           accessoriesToSave._id = data._id;
@@ -472,7 +489,7 @@ var model = {
   },
 
   generateExcelforProduct: function(match, callback) {
-    console.log("match", match[0].user);
+    // console.log("match", match[0].user);
     async.concatSeries(
       match,
       function(mainData, callback) {

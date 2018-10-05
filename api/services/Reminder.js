@@ -254,13 +254,10 @@ var model = {
               "new Date().getHours();",
               new Date().getHours()
             );
-            // console.log(
-            //   "singelData",
-            //   singelData.user.name,
-            //   singelData.user.email
-            // );
+            console.log("singelData", singelData);
             var day = reminderDate.diff(currentDate, "days");
-            if (singelData.email && day == 1) {
+            console.log("day-->", day);
+            if (singelData.user.email && day == 0) {
               console.log("@@@@@ MAIL SENT  @@@@@");
               Reminder.update(
                 {
@@ -331,44 +328,55 @@ var model = {
               var currentDate = moment(new Date());
               // console.log("reminderDate", reminderDate, "currentDate", currentDate);
               var day = reminderDate.diff(currentDate, "days");
-              // if (singelData.email && day == 1 || singelData.email && day == 30 ) {
-              Reminder.update(
-                {
-                  _id: singelData._id
-                },
-                {
-                  warrantyRemindermail: true
-                }
-              ).exec(function(err, data3) {});
+              if (
+                (singelData.email && day == 0) ||
+                (singelData.email && day == 29)
+              ) {
+                Reminder.update(
+                  {
+                    _id: singelData._id
+                  },
+                  {
+                    warrantyRemindermail: true
+                  }
+                ).exec(function(err, data3) {});
 
-              var emailData = {};
-              var time = new Date().getHours();
-              var greeting;
-              if (time < 10) {
-                greeting = "Good morning";
-              } else if (time < 17) {
-                greeting = "Good Afternoon";
-              } else {
-                greeting = "Good evening";
+                var emailData = {};
+                var time = new Date().getHours();
+                var greeting;
+                if (time < 10) {
+                  greeting = "Good morning";
+                } else if (time < 17) {
+                  greeting = "Good Afternoon";
+                } else {
+                  greeting = "Good evening";
+                }
+                emailData.from = "sahil@pumpkiin.com";
+                emailData.name = singelData.user.name
+                  ? singelData.user.name
+                  : "";
+                emailData.email = singelData.user.email;
+                emailData.greeting = greeting;
+                emailData.title = singelData.title ? singelData.title : "";
+                emailData.description = singelData.description
+                  ? singelData.description
+                  : "";
+                emailData.filename = "warrantyReminder.ejs";
+                emailData.subject = "Reminder Notification";
+                Config.email(emailData, function(err, emailRespo) {
+                  console.log("err", err);
+                  console.log("emailRespo", emailRespo);
+                  callback(null, emailRespo);
+                });
               }
-              emailData.from = "sahil@pumpkiin.com";
-              emailData.name = singelData.user.name ? singelData.user.name : "";
-              emailData.email = singelData.user.email;
-              emailData.greeting = greeting;
-              emailData.title = singelData.title ? singelData.title : "";
-              emailData.description = singelData.description
-                ? singelData.description
-                : "";
-              emailData.filename = "warrantyReminder.ejs";
-              emailData.subject = "Reminder Notification";
-              Config.email(emailData, function(err, emailRespo) {
-                console.log("err", err);
-                console.log("emailRespo", emailRespo);
-                callback(null, emailRespo);
-              });
-              // }
             },
-            function(err, data2) {}
+            function(err, data2) {
+              if (err) {
+                console.log("In Err");
+              } else {
+                console.log("In HERE ");
+              }
+            }
           );
         }
       });
@@ -391,61 +399,80 @@ var model = {
               var currentDate = moment(new Date());
               // console.log("reminderDate", reminderDate, "currentDate", currentDate);
               var day = reminderDate.diff(currentDate, "days");
-              // if (singelData.email && day == 1 || singelData.email && day == 30 ) {
-              Reminder.update(
-                {
-                  _id: singelData._id
-                },
-                {
-                  insurranceRemindermail: true
-                }
-              ).exec(function(err, data3) {});
+              if (
+                (singelData.email && day == 1) ||
+                (singelData.email && day == 30)
+              ) {
+                Reminder.update(
+                  {
+                    _id: singelData._id
+                  },
+                  {
+                    insurranceRemindermail: true
+                  }
+                ).exec(function(err, data3) {});
 
-              var emailData = {};
-              var time = new Date().getHours();
-              var greeting;
-              if (time < 10) {
-                greeting = "Good morning";
-              } else if (time < 17) {
-                greeting = "Good Afternoon";
-              } else {
-                greeting = "Good evening";
+                var emailData = {};
+                var time = new Date().getHours();
+                var greeting;
+                if (time < 10) {
+                  greeting = "Good morning";
+                } else if (time < 17) {
+                  greeting = "Good Afternoon";
+                } else {
+                  greeting = "Good evening";
+                }
+                emailData.from = "sahil@pumpkiin.com";
+                emailData.name = singelData.user.name
+                  ? singelData.user.name
+                  : "";
+                emailData.email = singelData.user.email;
+                emailData.greeting = greeting;
+                emailData.title = singelData.title ? singelData.title : "";
+                emailData.description = singelData.description
+                  ? singelData.description
+                  : "";
+                emailData.filename = "warrantyReminder.ejs";
+                emailData.subject = "Reminder Notification";
+                Config.email(emailData, function(err, emailRespo) {
+                  console.log("err", err);
+                  console.log("emailRespo", emailRespo);
+                  callback(null, emailRespo);
+                });
               }
-              emailData.from = "sahil@pumpkiin.com";
-              emailData.name = singelData.user.name ? singelData.user.name : "";
-              emailData.email = singelData.user.email;
-              emailData.greeting = greeting;
-              emailData.title = singelData.title ? singelData.title : "";
-              emailData.description = singelData.description
-                ? singelData.description
-                : "";
-              emailData.filename = "warrantyReminder.ejs";
-              emailData.subject = "Reminder Notification";
-              Config.email(emailData, function(err, emailRespo) {
-                console.log("err", err);
-                console.log("emailRespo", emailRespo);
-                callback(null, emailRespo);
-              });
-              // }
             },
-            function(err, data2) {}
+            function(err, data2) {
+              if (err) {
+                console.log("In Err");
+              } else {
+                console.log("In HERE ");
+              }
+            }
           );
         }
       });
   }
 };
 
-// sails.on("ready", function() {
-//   cron.schedule("*/1 * * * *", function() {
-//     Reminder.sendReminderMail({}, callback);
-//     console.log("===================================");
-//   });
-// });
+sails.on("ready", function() {
+  cron.schedule("*/5 * * * *", function() {
+    Reminder.sendReminderMail({});
+    console.log("===================================");
+  });
+});
 
-// sails.on("ready", function() {
-//   cron.schedule("*/1 * * * *", function() {
-//     Reminder.sendReminderMail();
-//     console.log("===================================");
-//   });
-// });
+sails.on("ready", function() {
+  cron.schedule("*/5 * * * *", function() {
+    Reminder.sendWarrantyReminderMail({});
+    console.log("===================================");
+  });
+});
+
+sails.on("ready", function() {
+  cron.schedule("*/5 * * * *", function() {
+    Reminder.sendInsuranceReminderMail({});
+    console.log("===================================");
+  });
+});
+
 module.exports = _.assign(module.exports, exports, model);
