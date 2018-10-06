@@ -2070,13 +2070,13 @@ myApp
         }
       );
     };
-    // $scope.ticketsSearch();
+    $scope.ticketsSearch();
 
     $scope.changePage = function(pageno) {
       // console.log("hey", pageno)
       $scope.currentPage = pageno;
       page.page = pageno;
-      // $scope.ticketsSearch();
+      $scope.ticketsSearch();
     };
   })
 
