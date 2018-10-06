@@ -1,17 +1,17 @@
-<div class="container py-5">
+<div class="container py-5" ng-controller="headerCtrl">
     <div class="row ticket-creation-main closedticketcreation-main">
         <div class="col col-md-3 openticketreminder d-none d-sm-block">
             <div class="bg-white border-rounded p-3">
                 <div class="d-flex justify-content-between">
                     <div class="closed-text cursor-point" ng-click="getOpenTickets()">
-                        <img ng-if="ticketDetails1[0].status!='Closed'" src="img/ticketCreation/openTicket.png">
-                        <img ng-if="ticketDetails1[0].status=='Closed'" src="img/ticketCreation/open-ticket-name.png">
+                        <img ng-if="ticketDetails[0].status!='Closed'" src="img/ticketCreation/openTicket.png">
+                        <img ng-if="ticketDetails[0].status=='Closed'" src="img/ticketCreation/open-ticket-name.png">
                         <div class="notification notification-orange" ng-if="!totalNumberOfOpenTickets">0</div>
                         <div class="notification notification-orange" ng-if="totalNumberOfOpenTickets">{{totalNumberOfOpenTickets}}</div>
                     </div>
                     <div class="closed-text cursor-point" ng-click="getClosedTickets()">
-                        <img ng-if="ticketDetails1[0].status!='Closed'" src="img/ticketCreation/closedTicket.png">
-                        <img ng-if="ticketDetails1[0].status=='Closed'" src="img/ticketCreation/green-ticket.png">
+                        <img ng-if="ticketDetails[0].status!='Closed'" src="img/ticketCreation/closedTicket.png">
+                        <img ng-if="ticketDetails[0].status=='Closed'" src="img/ticketCreation/green-ticket.png">
                         <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div>
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
                     </div>
@@ -25,17 +25,17 @@
                     </div>
                 </div>
                 <div class="my-3 open-tickets ">
-                    <h5 class="d-inline cursor-point" ui-sref="ticketopen-notification" ng-if="ticketDetails1[0].status!='Closed'">Open Tickets
+                    <h5 class="d-inline cursor-point" ui-sref="ticketopen-notification" ng-if="ticketDetails[0].status!='Closed'">Open Tickets
                     </h5>
-                    <h5 class="d-inline cursor-point" ui-sref="ticketclose-notification" ng-if="ticketDetails1[0].status=='Closed'">Closed Tickets
+                    <h5 class="d-inline cursor-point" ui-sref="ticketclose-notification" ng-if="ticketDetails[0].status=='Closed'">Closed Tickets
                     </h5>
                     <span class="badge badge-style">{{totalNumberOfTickets}}</span>
                     <div class="float-right search-reminders">
-                        <form class="position-relative" ng-if="ticketDetails1[0].status!='Closed'">
+                        <form class="position-relative" ng-if="ticketDetails[0].status!='Closed'">
                             <input id="search" name="search" type="text" placeholder="" ng-change="searchForTicketData(ticketSearch,'open')" ng-model="ticketSearch">
                             <div class="search-btn" id="search_submit" value="" ng-click="showHide()"></div>
                         </form>
-                        <form class="position-relative" ng-if="ticketDetails1[0].status=='Closed'">
+                        <form class="position-relative" ng-if="ticketDetails[0].status=='Closed'">
                             <input id="search" name="search" type="text" placeholder="">
                             <div class="search-btn" id="search_submit" value="" ng-click="showHide()" ng-change="searchForTicketData(ticketSearch,'closed')"
                                 ng-model="ticketSearch"></div>
@@ -43,8 +43,8 @@
                     </div>
                 </div>
                 <div class="border-top listed-openTickets openticket">
-                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails1 track by $index" ng-click="openmodalOpen(tickets, $index);"
-                        ng-if="ticketDetails1[0].status == 'Active'">
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails track by $index" ng-click="openmodalOpen(tickets, $index);"
+                        ng-if="ticketDetails[0].status == 'Active'">
                         <div class="bullet" ng-if="!tickets.isRead"></div>
                         <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
                             <div class="product-title text-truncate">{{tickets.product.productName}}</div>
@@ -53,7 +53,7 @@
                     </div>
 
 
-                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails1 track by $index" ng-if="ticketDetails1[0].status == 'Closed'"
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails track by $index" ng-if="ticketDetails[0].status == 'Closed'"
                         ui-sref="closedTicketcreation({id:tickets._id})">
                         <div class="bullet" ng-if="!tickets.isRead"></div>
                         <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
@@ -64,12 +64,12 @@
 
 
                 </div>
-                <div class="text-right view mt-2" ng-if="ticketDetails1.length==5 && ticketDetails1[0].status=='Active'" ui-sref='ticketopen-notification'>View All
+                <div class="text-right view mt-2" ng-if="ticketDetails.length==5 && ticketDetails[0].status=='Active'" ui-sref='ticketopen-notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
                 </div>
-                <div class="text-right  view mt-2" ng-if="ticketDetails1.length==5  && ticketDetails1[0].status=='Closed'" ui-sref='ticketclose-notification'>View All
+                <div class="text-right  view mt-2" ng-if="ticketDetails.length==5  && ticketDetails[0].status=='Closed'" ui-sref='ticketclose-notification'>View All
                     <span class="pl-2 ">
                         <i class="fas fa-caret-right "></i>
                     </span>
@@ -82,16 +82,16 @@
             <div class="background-blue border-rounded p-5 closedticketcreation">
                 <div class="media">
                     <div class="img-div ">
-                        <img src="{{ticketDetails.product.productImages[0] | serverimage}} " class="img-fluid large-img ">
+                        <img src="{{ticketDetails1.product.productImages[0] | serverimage}} " class="img-fluid large-img ">
                         <div class="d-flex align-items-center justify-content-center small-img ">
                             <img src="img/ticketCreation/mobile.png " width="10 ">
                         </div>
                     </div>
                     <div class="media-body pl-4 text-white ">
-                        <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">Support ID: {{ticketDetails.ticketNumber}}
+                        <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">Support ID: {{ticketDetails1.ticketNumber}}
                             <div class="position-absolute clock">
                                 <!-- <i class="far fa-clock"></i> -->
-                                </i>{{ticketDetails.issueReported | date}}</div>
+                                </i>{{ticketDetails1.issueReported | date}}</div>
                             <div>
                                 <span class="float-right orange-color ">
                                     <span ng-show="modelNo">
@@ -104,22 +104,22 @@
                             </div>
                         </h5>
                         <span class="fontRobotoBold font14 ">PRODUCT INFORMATION</span>
-                        <p class="fontRobotoRegular font20 m-0">{{ticketDetails.product.productName}}
-                            <span class="pl-2 fontRobotoLight "> ({{ticketDetails.product.brand}})</span>
+                        <p class="fontRobotoRegular font20 m-0">{{ticketDetails1.product.productName}}
+                            <span class="pl-2 fontRobotoLight "> ({{ticketDetails1.product.brand}})</span>
                         </p>
                         <div class="row no-gutters fontRobotoRegular font14 info-div mt-1" ng-show="modelNo ">
                             <div class="col-12 col-lg-6">
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-50">Model Number : </span>
-                                    <span class="d-inline-block w-50">{{ticketDetails.product.modelNo}}</span>
+                                    <span class="d-inline-block w-50">{{ticketDetails1.product.modelNo}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-50">Purchase Price : </span>
-                                    <span class="d-inline-block w-50"> {{ticketDetails.product.purchasePrice}}</span>
+                                    <span class="d-inline-block w-50"> {{ticketDetails1.product.purchasePrice}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-50">Store : </span>
-                                    <span class="d-inline-block w-50">{{ticketDetails.product.retailer}}</span>
+                                    <span class="d-inline-block w-50">{{ticketDetails1.product.retailer}}</span>
                                 </p>
                                 <!-- <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-50">Attached Files : </span>
@@ -134,20 +134,20 @@
                             <div class="col-12 col-lg-6">
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-50">Serial Number : </span>
-                                    <span class="d-inline-block w-50">{{ticketDetails.product.serialNo}}</span>
+                                    <span class="d-inline-block w-50">{{ticketDetails1.product.serialNo}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-50">Purchase Date : </span>
-                                    <span class="d-inline-block w-50"> {{ticketDetails.product.purchaseDate | date}}</span>
+                                    <span class="d-inline-block w-50"> {{ticketDetails1.product.purchaseDate | date}}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-50">Warranty : </span>
                                     <span class="d-inline-block w-50green-color ">
-                                        {{ticketDetails.product.warrantyExpDate | date }}</span>
+                                        {{ticketDetails1.product.warrantyExpDate | date }}</span>
                                 </p>
                                 <p class="d-flex align-items-top ">
                                     <span class="d-inline-block w-50">Relation : </span>
-                                    <span class="d-inline-block w-50" ng-repeat="relatives in ticketDetails.product.user.relations">
+                                    <span class="d-inline-block w-50" ng-repeat="relatives in ticketDetails1.product.user.relations">
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
                                             <!-- <i class="fas fa-times "></i> -->
                                         </span>
@@ -172,10 +172,10 @@
                         <uib-accordion-heading>
                             <div class="d-flex align-items-center ">
                                 <div class="blue-circle"></div>
-                                <h6 class="fontRobotoBold font14 ml-2 mb-0 ">{{ticketDetails.product.productName}}</h6>
+                                <h6 class="fontRobotoBold font14 ml-2 mb-0 ">{{ticketDetails1.product.productName}}</h6>
                                 <!-- <span class="font12 font-color ml-2 d-inline-block w-50 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span> -->
                                 <div class="ml-auto date-supportchat ">
-                                    <span class="font12 ">{{ticketDetails.closureDate | date}}</span>
+                                    <span class="font12 ">{{ticketDetails1.closureDate | date}}</span>
                                 </div>
                             </div>
                             <div class="up-arrow" ng-class="{'rotate-180':status1.open==true}">
@@ -192,7 +192,7 @@
                                     <div class="ml-2 px-3 py-1 chat-content ">{{chat.comment}}</div>
                                 </div>
                                 <div class="text-center gray-color font14 mt-3 ">{{chat.date | date}}</div> -->
-                                <div class="d-flex align-items-center mb-2 flex-row-reverse me " ng-repeat="chat in ticketDetails.customerChat">
+                                <div class="d-flex align-items-center mb-2 flex-row-reverse me " ng-repeat="chat in ticketDetails1.customerChat">
                                     <div class="img-fluid image ">
                                         <img src="img/ticketCreation/profile.jpeg ">
                                     </div>
@@ -213,7 +213,7 @@
             <div class="bg-white border-rounded p-3 pumpkin-support-feedback">
                 <form>
                     <h6 class="fontRobotoBold blue-color pump-support-text ">Pumpkiin Support</h6>
-                    <div class="fontRobotoRegular font12 font-color ">Dear {{ticketDetails.product.user.name}},
+                    <div class="fontRobotoRegular font12 font-color ">Dear {{ticketDetails1.product.user.name}},
                         <br> Thank you for providing us with the opportunity to serve you. We hope we were able to do so with
                         satisfaction. Request if you could kindly provide us with your valuable feedback below. This will
                         greatly help us improve our service.
@@ -251,7 +251,7 @@
                         </span>Send</button> -->
                 </form>
             </div>
-            <a role="button" class="button mt-4 w-25 py-1 float-right fontRobotoBold text-center orange-btn" ui-sref="ticketcreation({id: ticketDetails.product._id})">Support</a>
+            <a role="button" class="button mt-4 w-25 py-1 float-right fontRobotoBold text-center orange-btn" ui-sref="ticketcreation({id: ticketDetails1.product._id})">Support</a>
         </div>
     </div>
 </div>
