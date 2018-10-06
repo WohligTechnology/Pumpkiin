@@ -35,7 +35,7 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
     });
 
     reminderService.totalNumberOfCompletedReminders(function (data) {
-        $scope.showGreenImage = true;
+        $scope.showGreenImage = false;
         $scope.totalCompletedReminder = data;
         console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
     });
@@ -48,7 +48,7 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
 
 
     $scope.completedReminders = function (data) {
-        $scope.showGreenImage = false;
+        $scope.showGreenImage = true;
         reminderService.findReminderOfCompletedByUser(function (data) {
             $scope.allReminders = data;
             $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
@@ -56,7 +56,7 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
     }
 
     $scope.pendingReminders = function (data) {
-        $scope.showGreenImage = true;
+        $scope.showGreenImage = false;
         reminderService.findReminderOfPendingSnoozeByUser(function (data) {
             $scope.allReminders = data;
             $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
@@ -72,7 +72,7 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
         ticketService.totalOpenTickets(function (data) {
             // $scope.ticketDetails = data;
             console.log("----109----", data.results);
-            // $scope.ticketDetails = _.slice(data.results, 0, 5);
+            $scope.ticketDetails = _.slice(data.results, 0, 5);
             console.log(" 1 ", $scope.ticketDetails);
 
         });
@@ -100,20 +100,21 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
         $scope.getClosedTickets = function () {
             ticketService.totalClosedTickets(function (data) {
                 // $scope.ticketDetails = data;
-                $scope.ticketDetails1 = _.slice(data, 0, 5);
+                $scope.ticketDetails = _.slice(data, 0, 5);
                 console.log(" 2 ", $scope.ticketDetails);
 
             });
         }
+        $scope.getClosedTickets();
 
         $scope.getOpenTickets = function () {
             ticketService.totalOpenTickets(function (data) {
                 // $scope.ticketDetails = data;
                 console.log("----109----", data.results);
-                $scope.ticketDetails1 = _.slice(data.results, 0, 5);
-
+                $scope.ticketDetails = _.slice(data.results, 0, 5);
             });
         }
+        $scope.getOpenTickets();
 
     }
     $scope.callTickets();
@@ -134,12 +135,12 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
             ticketData.user = $scope.jstrgValue._id;
             console.log("------------", $stateParams.id)
             NavigationService.apiCallWithData("Ticket/findClosedTicketOfUser", ticketData, function (res) {
-                $scope.ticketDetails = res.data;
-                console.log("$scope.ticketDetails-----------", res);
+                $scope.ticketDetails1 = res.data;
+                console.log("$scope.ticketDetails1-----------", res);
             });
         } else {
             // console.log("res---totalClosedTickets--", $scope.totalClosedTickets[0]);
-            $scope.ticketDetails = $scope.totalClosedTickets[0];
+            $scope.ticketDetails1 = $scope.totalClosedTickets[0];
         }
     });
 

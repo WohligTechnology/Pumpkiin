@@ -1,4 +1,4 @@
-myApp.controller("TicketCreationCtrl", function(
+myApp.controller("TicketCreationCtrl", function (
   $scope,
   TemplateService,
   NavigationService,
@@ -30,7 +30,7 @@ myApp.controller("TicketCreationCtrl", function(
 
   $scope.attachmentImage = true;
 
-  $scope.newUserModalOpen = function() {
+  $scope.newUserModalOpen = function () {
     $scope.addNewUser = $uibModal.open({
       animation: true,
       templateUrl: "views/modal/addNewUser.html",
@@ -39,39 +39,39 @@ myApp.controller("TicketCreationCtrl", function(
   };
 
   //REMINDER SECTION
-  $scope.getReminder = function() {
-    reminderService.findReminderOfPendingSnoozeByUser(function(data) {
+  $scope.getReminder = function () {
+    reminderService.findReminderOfPendingSnoozeByUser(function (data) {
       $scope.allReminders = data;
       $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
     });
 
-    reminderService.totalNumberOfReminders(function(data) {
+    reminderService.totalNumberOfReminders(function (data) {
       $scope.totalReminders = data;
       // console.log("$scope.totalReminders", $scope.totalReminders);
     });
 
-    reminderService.totalNumberOfCompletedReminders(function(data) {
+    reminderService.totalNumberOfCompletedReminders(function (data) {
       $scope.showGreenImage = true;
       $scope.totalCompletedReminder = data;
       // console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
     });
 
-    reminderService.totalNumberOfPendingReminders(function(data) {
+    reminderService.totalNumberOfPendingReminders(function (data) {
       $scope.totalPendingReminders = data;
       // console.log("$scope.totalPendingReminders--", $scope.totalPendingReminders);
     });
 
-    $scope.completedReminders = function(data) {
+    $scope.completedReminders = function (data) {
       $scope.showGreenImage = true;
-      reminderService.findReminderOfCompletedByUser(function(data) {
+      reminderService.findReminderOfCompletedByUser(function (data) {
         $scope.allReminders = data;
         $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
       });
     };
 
-    $scope.pendingReminders = function(data) {
+    $scope.pendingReminders = function (data) {
       $scope.showGreenImage = false;
-      reminderService.findReminderOfPendingSnoozeByUser(function(data) {
+      reminderService.findReminderOfPendingSnoozeByUser(function (data) {
         $scope.allReminders = data;
         $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
       });
@@ -84,8 +84,8 @@ myApp.controller("TicketCreationCtrl", function(
 
   //for ticket block
 
-  $scope.getTicket = function() {
-    ticketService.totalOpenTickets(function(data) {
+  $scope.getTicket = function () {
+    ticketService.totalOpenTickets(function (data) {
       $scope.totalOpenTickets = data;
       $scope.showLessOpenTickets = _.slice($scope.totalOpenTickets, 0, 5);
       // console.log("res---totalOpenTickets--", data);
@@ -98,13 +98,12 @@ myApp.controller("TicketCreationCtrl", function(
         NavigationService.apiCallWithData(
           "Ticket/findActiveTicketOfUser",
           ticketData,
-          function(res) {
-            $scope.ticketDetails = res.data;
+          function (res) {
+            $scope.ticketDetails1 = res.data;
 
             //timeline
 
-            $scope.statusArray = [
-              {
+            $scope.statusArray = [{
                 status: "Repair/ Maintenance",
                 activeClass: ""
               },
@@ -142,15 +141,15 @@ myApp.controller("TicketCreationCtrl", function(
               }
             ];
 
-            _.each($scope.statusArray, function(x) {
+            _.each($scope.statusArray, function (x) {
               // console.log("++++++++++++", x);
-              _.each($scope.ticketDetails.substat, function(y) {
+              _.each($scope.ticketDetails1.substat, function (y) {
                 // console.log("===========", y)
                 if (y.status == x.status) {
                   // console.log("-", _.findIndex($scope.statusArray, function (o) {
                   //     return o == x;
                   // }))
-                  var index = _.findIndex($scope.statusArray, function(o) {
+                  var index = _.findIndex($scope.statusArray, function (o) {
                     return o.status == x.status;
                   });
                   $scope.statusArray[index].activeClass = "timeline-active";
@@ -163,9 +162,9 @@ myApp.controller("TicketCreationCtrl", function(
               });
             });
 
-            ticketService.totalOpenTickets(function(data) {
+            ticketService.totalOpenTickets(function (data) {
               // $scope.ticketDetails = data;
-              $scope.ticketDetails1 = _.slice(data.results, 0, 5);
+              // $scope.ticketDetails1 = _.slice(data.results, 0, 5);
             });
 
             //timeline end
@@ -176,7 +175,7 @@ myApp.controller("TicketCreationCtrl", function(
         NavigationService.apiCallWithData(
           "Product/getOne",
           productData,
-          function(res) {
+          function (res) {
             $scope.productDetails = res.data;
             productName = $scope.productDetails.productName;
             console.log(
@@ -188,12 +187,12 @@ myApp.controller("TicketCreationCtrl", function(
       } else {
         if ($scope.totalOpenTickets[0]) {
           console.log("res---totalOpenTickets--", $scope.totalOpenTickets[0]);
-          $scope.ticketDetails = $scope.totalOpenTickets[0];
+          $scope.ticketDetails1 = $scope.totalOpenTickets[0];
           productData._id = $scope.totalOpenTickets[0].product._id;
           NavigationService.apiCallWithData(
             "Product/getOne",
             productData,
-            function(res) {
+            function (res) {
               $scope.productDetails = res.data;
               productName = $scope.productDetails.productName;
               console.log(
@@ -206,8 +205,7 @@ myApp.controller("TicketCreationCtrl", function(
 
         //timeline
 
-        $scope.statusArray = [
-          {
+        $scope.statusArray = [{
             status: "Repair/ Maintenance",
             statusDate: "",
             activeClass: ""
@@ -247,13 +245,13 @@ myApp.controller("TicketCreationCtrl", function(
           }
         ];
 
-        _.each($scope.statusArray, function(x) {
-          _.each($scope.ticketDetails.substat, function(y) {
+        _.each($scope.statusArray, function (x) {
+          _.each($scope.ticketDetails1.substat, function (y) {
             if (y.status == x.status) {
               // console.log("-", _.findIndex($scope.statusArray, function (o) {
               //     return o == x;
               // }))
-              var index = _.findIndex($scope.statusArray, function(o) {
+              var index = _.findIndex($scope.statusArray, function (o) {
                 return o.status == x.status;
               });
               $scope.statusArray[index].activeClass = "timeline-active";
@@ -267,47 +265,58 @@ myApp.controller("TicketCreationCtrl", function(
       }
     });
 
-    ticketService.totalNumberOfTickets(function(data) {
+    ticketService.totalNumberOfTickets(function (data) {
       $scope.totalNumberOfTickets = data;
       console.log("res--totalNumberOfTickets---", data);
     });
 
-    ticketService.totalNumberOfOpenTickets(function(data) {
+    ticketService.totalNumberOfOpenTickets(function (data) {
       $scope.totalNumberOfOpenTickets = data;
       console.log("res---totalNumberOfOpenTickets--", data);
     });
 
-    ticketService.totalNumberOfClosedTickets(function(data) {
+    ticketService.totalNumberOfClosedTickets(function (data) {
       $scope.totalNumberOfClosedTickets = data;
       // console.log("res---totalNumberOfClosedTickets--", data);
     });
 
-    $scope.getClosedTickets = function() {
-      ticketService.totalClosedTickets(function(data) {
-        $scope.ticketDetails1 = _.slice(data, 0, 5);
+    $scope.getClosedTickets = function () {
+      ticketService.totalClosedTickets(function (data) {
+        $scope.ticketDetails = _.slice(data, 0, 5);
       });
     };
+    $scope.getClosedTickets();
 
-    $scope.getOpenTickets = function() {
-      ticketService.totalOpenTickets(function(data) {
+    $scope.getOpenTickets = function () {
+      ticketService.totalOpenTickets(function (data) {
         // $scope.ticketDetails = data;
-        $scope.ticketDetails1 = _.slice(data.results, 0, 5);
+        $scope.ticketDetails = _.slice(data.results, 0, 5);
       });
     };
+    $scope.getOpenTickets();
 
-    ticketService.totalOpenTickets(function(data) {
+    ticketService.totalOpenTickets(function (data) {
       // $scope.ticketDetails = data;
-      $scope.ticketDetails1 = _.slice(data, 0, 5);
+      $scope.ticketDetails = _.slice(data, 0, 5);
     });
   };
 
   $scope.getTicket();
 
+  $scope.getOpenTickets = function () {
+    ticketService.totalOpenTickets(function (data) {
+      // $scope.ticketDetails = data;
+      $scope.ticketDetails = _.slice(data.results, 0, 5);
+    });
+  };
+  $scope.getOpenTickets();
+
+
   //for ticket block end
 
-  $scope.ticketChatSocket = function(data) {
+  $scope.ticketChatSocket = function (data) {
     if (data) {
-      $scope.ticketDetails = data.ticketChatData;
+      $scope.ticketDetails1 = data.ticketChatData;
       $scope.$apply();
     }
   };
@@ -315,7 +324,7 @@ myApp.controller("TicketCreationCtrl", function(
   $scope.ticketChatSocket();
   io.socket.on("ticketChat", $scope.ticketChatSocket);
 
-  $scope.addComment = function(data) {
+  $scope.addComment = function (data) {
     console.log("data", data);
     // console.log("  $.jStorage.get", $.jStorage.get("userData"));
     // console.log("$scope.ticketDetails-----------", $scope.ticketDetails);
@@ -326,7 +335,7 @@ myApp.controller("TicketCreationCtrl", function(
     dataToSend.customerChat = [];
     if (
       !_.isEmpty($.jStorage.get("userData")) &&
-      $scope.ticketDetails == "No Data Found"
+      $scope.ticketDetails1 == "No Data Found"
     ) {
       formData.user = $.jStorage.get("userData")._id;
       formData.comment = data.comment;
@@ -340,7 +349,7 @@ myApp.controller("TicketCreationCtrl", function(
       NavigationService.apiCallWithData(
         "Ticket/createNewTicket",
         dataToSend,
-        function(data) {
+        function (data) {
           if (data.value == true) {
             $scope.ticketId = data.data._id;
             // $scope.ticketDetails = data.data;
@@ -355,15 +364,15 @@ myApp.controller("TicketCreationCtrl", function(
       formData.comment = data.comment;
       formData.file = data.image;
 
-      if (!$scope.ticketDetails.customerChat) {
-        $scope.ticketDetails.customerChat = [];
+      if (!$scope.ticketDetails1.customerChat) {
+        $scope.ticketDetails1.customerChat = [];
       }
-      $scope.ticketDetails.customerChat.push(formData);
+      $scope.ticketDetails1.customerChat.push(formData);
 
       NavigationService.apiCallWithData(
         "Ticket/addToChat",
-        $scope.ticketDetails,
-        function(data) {
+        $scope.ticketDetails1,
+        function (data) {
           $scope.chatData.comment = null;
           $scope.chatData.image = null;
           if (data.value == true) {
@@ -374,7 +383,7 @@ myApp.controller("TicketCreationCtrl", function(
     }
   };
 
-  $scope.askRegistration = function() {
+  $scope.askRegistration = function () {
     $scope.productCheck = $uibModal.open({
       animation: true,
       templateUrl: "views/modal/productCheck.html",
@@ -385,7 +394,7 @@ myApp.controller("TicketCreationCtrl", function(
     $scope.yes = false;
   };
 
-  $scope.openmodalOpen = function(tickets, index) {
+  $scope.openmodalOpen = function (tickets, index) {
     $scope.singleTicket = tickets;
     $scope.openTicket = $uibModal.open({
       animation: true,
@@ -393,7 +402,7 @@ myApp.controller("TicketCreationCtrl", function(
       scope: $scope,
       backdrop: "static"
     });
-    $scope.closeModal = function() {
+    $scope.closeModal = function () {
       $scope.openTicket.close();
     };
 
@@ -404,7 +413,7 @@ myApp.controller("TicketCreationCtrl", function(
       NavigationService.apiCallWithData(
         "Ticket/changeIsReadStatus",
         changeisRead,
-        function(data) {
+        function (data) {
           console.log("changeIsReadStatus", data);
           if (data.value) {
             // if (modal) {
@@ -419,22 +428,21 @@ myApp.controller("TicketCreationCtrl", function(
   };
 
   $scope.data = {};
-  $scope.yesno = function() {
+  $scope.yesno = function () {
     $scope.yes = true;
     var user = $.jStorage.get("userData")._id;
     NavigationService.apiCallWithData(
-      "Product/ticketNotGenerated",
-      {
+      "Product/ticketNotGenerated", {
         user: user
       },
-      function(data) {
+      function (data) {
         $scope.remainingProduct = data.data;
         console.log("hjhsakf", $scope.remainingProduct);
       }
     );
   };
 
-  $scope.deleteReminder = function(data) {
+  $scope.deleteReminder = function (data) {
     $scope.accordianNotification.close();
     $scope.delete = $uibModal.open({
       animation: true,
@@ -444,13 +452,13 @@ myApp.controller("TicketCreationCtrl", function(
       backdrop: "static"
     });
     $scope.accordianNotification.close();
-    $scope.confirmDelete = function() {
+    $scope.confirmDelete = function () {
       var changeStatusData = {};
       changeStatusData._id = data;
       NavigationService.apiCallWithData(
         "Reminder/delete",
         changeStatusData,
-        function(res) {
+        function (res) {
           if (res.value == true) {
             $state.reload();
           }
@@ -459,7 +467,7 @@ myApp.controller("TicketCreationCtrl", function(
     };
   };
 
-  $scope.notificationmodalOpen = function(notification, index, modal) {
+  $scope.notificationmodalOpen = function (notification, index, modal) {
     console.log("notification", notification);
     if (modal) {
       $scope.singleNotification = notification;
@@ -479,7 +487,7 @@ myApp.controller("TicketCreationCtrl", function(
       NavigationService.apiCallWithData(
         "Reminder/changeIsReadStatus",
         changeisRead,
-        function(data) {
+        function (data) {
           console.log("changeIsReadStatus", data);
           if (data.value) {
             if (modal) {
