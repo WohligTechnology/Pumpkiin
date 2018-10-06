@@ -23,7 +23,7 @@ myApp
   ) {
     if ($.jStorage.get("accessToken")) {
     } else {
-      $state.go("page");
+      // $state.go("page");
     }
   })
 
@@ -2032,6 +2032,7 @@ myApp
     $state,
     toastr
   ) {
+    console.log("Ticket Controler");
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("ticketlist");
     $scope.menutitle = NavigationService.makeactive("Ticket List");
@@ -2069,13 +2070,13 @@ myApp
         }
       );
     };
-    $scope.ticketsSearch();
+    // $scope.ticketsSearch();
 
     $scope.changePage = function(pageno) {
       // console.log("hey", pageno)
       $scope.currentPage = pageno;
       page.page = pageno;
-      $scope.ticketsSearch();
+      // $scope.ticketsSearch();
     };
   })
 

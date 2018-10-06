@@ -70,7 +70,7 @@ myApp.factory("NavigationService", function($http) {
     {
       name: "Ticket",
       classis: "active",
-      sref: "ticketlist",
+      sref: "#!/ticketlist",
       access: false
     }
   ];
