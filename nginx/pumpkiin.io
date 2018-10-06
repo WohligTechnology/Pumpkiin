@@ -1,6 +1,6 @@
 server {
 	listen 80;
-	server_name pumpkiin.wohlig.co.in;
+	server_name pumpkiin.com;
 	location /api {
 		proxy_pass http://127.0.0.1:82;
 		proxy_set_header Host $host;

@@ -13,7 +13,7 @@ module.exports = function (profile) {
         User.existsSocialFrontendFbLogin(profile, function (err, data) {
             if (data.name == "noAccess") {
                 data.accessToken[0] = "AccessNotAvailable";
-                res.redirect("https://pumpkiin.wohlig.co.in/login/" + data.accessToken[0]);
+                res.redirect("https://pumpkiin.com/login/" + data.accessToken[0]);
                 req.session.destroy(function () {});
             } else {
                 if (err || !data) {
@@ -23,7 +23,7 @@ module.exports = function (profile) {
                         data.accessToken[0] = "AccessNotAvailable";
                     }
                     console.log("-----------", req.session.returnUrl);
-                    res.redirect("https://pumpkiin.wohlig.co.in/login/" + data.accessToken[0]);
+                    res.redirect("https://pumpkiin.com/login/" + data.accessToken[0]);
                     req.session.destroy(function () {});
                 }
             }

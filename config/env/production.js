@@ -25,7 +25,7 @@ module.exports = {
    ***************************************************************************/
 
   port: 82,
-  realHost: "https://pumpkiin.wohlig.co.in",
+  realHost: "https://pumpkiin.com",
   emails: [
     "chintan@wohlig.com",
     "jagruti@wohlig.com",
