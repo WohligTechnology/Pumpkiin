@@ -100,10 +100,6 @@ myApp.controller("TicketCreationCtrl", function(
           ticketData,
           function(res) {
             $scope.ticketDetails = res.data;
-            console.log(
-              "///////////////////////////////////////////////////////////$scope.ticketDetails-----------",
-              res.data
-            );
 
             //timeline
 
@@ -170,7 +166,6 @@ myApp.controller("TicketCreationCtrl", function(
             ticketService.totalOpenTickets(function(data) {
               // $scope.ticketDetails = data;
               $scope.ticketDetails1 = _.slice(data.results, 0, 5);
-              // console.log("1 $scope.ticketDetails --", $scope.ticketDetails);
             });
 
             //timeline end
@@ -253,8 +248,6 @@ myApp.controller("TicketCreationCtrl", function(
         ];
 
         _.each($scope.statusArray, function(x) {
-          console.log("2 $scope.ticketDetails", $scope.ticketDetails);
-
           _.each($scope.ticketDetails.substat, function(y) {
             if (y.status == x.status) {
               // console.log("-", _.findIndex($scope.statusArray, function (o) {
@@ -291,16 +284,13 @@ myApp.controller("TicketCreationCtrl", function(
 
     $scope.getClosedTickets = function() {
       ticketService.totalClosedTickets(function(data) {
-        // $scope.ticketDetails = data;
         $scope.ticketDetails1 = _.slice(data, 0, 5);
-        console.log("2 $scope.ticketDetails --", $scope.ticketDetails);
       });
     };
 
     $scope.getOpenTickets = function() {
       ticketService.totalOpenTickets(function(data) {
         // $scope.ticketDetails = data;
-        console.log("----109----", data.results);
         $scope.ticketDetails1 = _.slice(data.results, 0, 5);
       });
     };
@@ -308,7 +298,6 @@ myApp.controller("TicketCreationCtrl", function(
     ticketService.totalOpenTickets(function(data) {
       // $scope.ticketDetails = data;
       $scope.ticketDetails1 = _.slice(data, 0, 5);
-      console.log(" $scope.ticketDetails --", $scope.ticketDetails);
     });
   };
 
@@ -319,7 +308,6 @@ myApp.controller("TicketCreationCtrl", function(
   $scope.ticketChatSocket = function(data) {
     if (data) {
       $scope.ticketDetails = data.ticketChatData;
-      // console.log("$scope.ticketData$$$$$$$$$$------- ", $scope.ticketDetails);
       $scope.$apply();
     }
   };
@@ -343,21 +331,16 @@ myApp.controller("TicketCreationCtrl", function(
       formData.user = $.jStorage.get("userData")._id;
       formData.comment = data.comment;
       formData.file = data.image;
-      // if (!dataToSend.customerChat) {
-      //   dataToSend.customerChat = [];
-      // }
       dataToSend.customerChat.push(formData);
       dataToSend.user = $scope.jstrgValue._id;
       dataToSend.product = $stateParams.id;
       dataToSend.productName = productName;
       dataToSend.name = $.jStorage.get("userData").name;
       dataToSend.email = $.jStorage.get("userData").email;
-      console.log("dataToSend", dataToSend);
       NavigationService.apiCallWithData(
         "Ticket/createNewTicket",
         dataToSend,
         function(data) {
-          console.log("callback", data);
           if (data.value == true) {
             $scope.ticketId = data.data._id;
             // $scope.ticketDetails = data.data;
@@ -371,16 +354,11 @@ myApp.controller("TicketCreationCtrl", function(
       formData.user = $.jStorage.get("userData")._id;
       formData.comment = data.comment;
       formData.file = data.image;
-      console.log("formData", formData);
-      console.log(
-        "$scope.ticketDetails.customerChat",
-        $scope.ticketDetails.customerChat
-      );
+
       if (!$scope.ticketDetails.customerChat) {
         $scope.ticketDetails.customerChat = [];
       }
       $scope.ticketDetails.customerChat.push(formData);
-      console.log(" $scope.ticketDetails", $scope.ticketDetails.customerChat);
 
       NavigationService.apiCallWithData(
         "Ticket/addToChat",
@@ -407,17 +385,7 @@ myApp.controller("TicketCreationCtrl", function(
     $scope.yes = false;
   };
 
-  // $scope.openmodalOpen = function (tickets) {
-  //     $scope.singleTicket = tickets;
-  //     $scope.openTicket = $uibModal.open({
-  //         animation: true,
-  //         templateUrl: "views/modal/openticket.html",
-  //         scope: $scope,
-  //         backdrop: 'static'
-  //     });
-  // }
   $scope.openmodalOpen = function(tickets, index) {
-    console.log("tickets------------------", tickets);
     $scope.singleTicket = tickets;
     $scope.openTicket = $uibModal.open({
       animation: true,
@@ -433,9 +401,6 @@ myApp.controller("TicketCreationCtrl", function(
       var changeisRead = {};
       changeisRead.id = tickets._id;
       changeisRead.isRead = true;
-
-      console.log("changeisRead", changeisRead);
-
       NavigationService.apiCallWithData(
         "Ticket/changeIsReadStatus",
         changeisRead,
@@ -456,7 +421,6 @@ myApp.controller("TicketCreationCtrl", function(
   $scope.data = {};
   $scope.yesno = function() {
     $scope.yes = true;
-
     var user = $.jStorage.get("userData")._id;
     NavigationService.apiCallWithData(
       "Product/ticketNotGenerated",
@@ -494,6 +458,7 @@ myApp.controller("TicketCreationCtrl", function(
       );
     };
   };
+
   $scope.notificationmodalOpen = function(notification, index, modal) {
     console.log("notification", notification);
     if (modal) {

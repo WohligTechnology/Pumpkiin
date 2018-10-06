@@ -75,6 +75,7 @@ myApp.controller("ProfileCtrl", function(
   };
 
   $scope.addressModalOpen = function() {
+    $scope.profileAddress = {};
     $scope.addressIndex = -1;
     $scope.addAddress = $uibModal.open({
       animation: true,
@@ -82,7 +83,6 @@ myApp.controller("ProfileCtrl", function(
       scope: $scope
     });
   };
-  console.log("111111111111111111");
   // var vm = this;
   // vm.types = "['establishment']";
   // vm.placeChanged = function() {
@@ -110,7 +110,6 @@ myApp.controller("ProfileCtrl", function(
         if ($scope.userDataForProfile.mobile) {
           $scope.verifyMobile = true;
         }
-        // console.log("$scope.userDataForProfile ", $scope.userDataForProfile);
         $scope.userDataForProfile.lastMobile = $scope.userDataForProfile.mobile;
       }
     });
@@ -146,8 +145,6 @@ myApp.controller("ProfileCtrl", function(
 
   $scope.addUser = function(data) {
     data._id = $scope.jstrgValue._id;
-    console.log("send new user", $scope.userDataForProfile.name);
-    console.log("-------------", data);
     var familymember = {};
     familymember.name = $scope.userDataForProfile.name;
     familymember.user = data;
@@ -244,7 +241,6 @@ myApp.controller("ProfileCtrl", function(
               "User/saveUpdatedData",
               $scope.userDataForProfile,
               function(response) {
-                console.log("result -- ", response);
                 if (response.value == true) {
                   $scope.otp.close();
                   $state.reload();
@@ -279,17 +275,12 @@ myApp.controller("ProfileCtrl", function(
   //   });
   // };
   $scope.placeChanged = function() {
-    console.log("1111111111111111");
     var place = this.getPlace();
-    console.log(place.formatted_address);
     $scope.formattedAddress = place.formatted_address;
-    // console.log(vm.place);
-    // console.log("location", vm.place.geometry.location);
   };
 
   $scope.saveAddressData = function(data) {
     data.address = $scope.formattedAddress;
-    console.log("1", data);
     var addData = {};
     var add = $scope.userDataForProfile.address;
     if ($scope.addressIndex != -1) {
@@ -314,7 +305,6 @@ myApp.controller("ProfileCtrl", function(
           ];
       }
 
-      console.log("$scope.mailThisAddress", mailThisAddress);
 
       if (response.value) {
         NavigationService.apiCallWithData(
@@ -332,13 +322,7 @@ myApp.controller("ProfileCtrl", function(
   };
 
   $scope.removeAddress = function(index) {
-    console.log("remove111", index);
-    console.log("$scope.userDataForProfile.address", $scope.userDataForProfile);
     $scope.userDataForProfile.address.splice(index, 1);
-    console.log(
-      "$scope.userDataForProfile.address",
-      $scope.userDataForProfile.address
-    );
     NavigationService.apiCallWithData(
       "User/save",
       $scope.userDataForProfile,
@@ -358,8 +342,6 @@ myApp.controller("ProfileCtrl", function(
   };
 
   $scope.openFamilyUser = function(data) {
-    console.log("openFamilyUser", data);
-
     data.userId = $scope.userDataForProfile._id;
     NavigationService.apiCallWithData("User/saveEditedUSer", data, function(
       res
