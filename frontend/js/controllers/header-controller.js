@@ -1,4 +1,4 @@
-myApp.controller("headerCtrl", function(
+myApp.controller("headerCtrl", function (
   $scope,
   TemplateService,
   $uibModal,
@@ -9,7 +9,7 @@ myApp.controller("headerCtrl", function(
   $http
 ) {
   $scope.template = TemplateService;
-  $scope.$on("$stateChangeSuccess", function(
+  $scope.$on("$stateChangeSuccess", function (
     event,
     toState,
     toParams,
@@ -21,7 +21,7 @@ myApp.controller("headerCtrl", function(
 
   $scope.currentState = $state.current.name;
   var stateArray = ["login", "verifyemail", "privacy", "terms"];
-  var stateIndex = _.findIndex(stateArray, function(state) {
+  var stateIndex = _.findIndex(stateArray, function (state) {
     return state == $scope.currentState;
   });
   if (_.isEmpty($.jStorage.get("userData")) && stateIndex == -1) {
@@ -39,7 +39,7 @@ myApp.controller("headerCtrl", function(
   // }];
   $scope.userInfo = $.jStorage.get("userData");
   // console.log("$scope.userInfo", $scope.userInfo)
-  $scope.reminderModalOpen = function(data) {
+  $scope.reminderModalOpen = function (data) {
     if (data) {
       $scope.getReminder(data);
     }
@@ -51,7 +51,7 @@ myApp.controller("headerCtrl", function(
     });
   };
 
-  $scope.searchForReminderData = function(data, data1) {
+  $scope.searchForReminderData = function (data, data1) {
     var dataToSend = {};
     // if (data.length > 0) {
     if (data1 == "open") {
@@ -60,7 +60,7 @@ myApp.controller("headerCtrl", function(
       NavigationService.apiCallWithData(
         "Reminder/searchOpenReminders",
         dataToSend,
-        function(response) {
+        function (response) {
           if (response.value) {
             $scope.allReminders = response.data;
             $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
@@ -73,7 +73,7 @@ myApp.controller("headerCtrl", function(
       NavigationService.apiCallWithData(
         "Reminder/searchClosedReminders",
         dataToSend,
-        function(response) {
+        function (response) {
           console.log(" response", response);
 
           if (response.value) {
@@ -86,11 +86,11 @@ myApp.controller("headerCtrl", function(
     // }
   };
 
-  $scope.getReminder = function(data) {
+  $scope.getReminder = function (data) {
     console.log("----------", data);
     var getReminder = {};
     getReminder._id = data;
-    NavigationService.apiCallWithData("Reminder/getOne", getReminder, function(
+    NavigationService.apiCallWithData("Reminder/getOne", getReminder, function (
       res
     ) {
       console.log("res.data", res.data);
@@ -101,7 +101,7 @@ myApp.controller("headerCtrl", function(
     });
   };
 
-  $scope.searchForTicketData = function(data, data1) {
+  $scope.searchForTicketData = function (data, data1) {
     var dataToSend = {};
     if (data.length > 0) {
       if (data1 == "open") {
@@ -110,7 +110,7 @@ myApp.controller("headerCtrl", function(
         NavigationService.apiCallWithData(
           "Ticket/searchOpenTickets",
           dataToSend,
-          function(response) {
+          function (response) {
             if (response.value) {
               $scope.ticketDetails = response.data;
               console.log(" $scope.ticketDetails", $scope.ticketDetails);
@@ -124,7 +124,7 @@ myApp.controller("headerCtrl", function(
         NavigationService.apiCallWithData(
           "Ticket/searchClosedTickets",
           dataToSend,
-          function(response) {
+          function (response) {
             console.log(" response", response);
 
             if (response.value) {
@@ -137,7 +137,7 @@ myApp.controller("headerCtrl", function(
     }
   };
 
-  $scope.saveReminder = function(data) {
+  $scope.saveReminder = function (data) {
     // console.log("----------", data);
     data.user = $.jStorage.get("userData")._id;
     if (data._id) {
@@ -146,11 +146,11 @@ myApp.controller("headerCtrl", function(
       data.status = "Pending";
     }
 
-    NavigationService.apiCallWithData("Reminder/save", $scope.data, function(
+    NavigationService.apiCallWithData("Reminder/save", $scope.data, function (
       res
     ) {
       console.log("res.data", res.data);
-      toastr.success("Reminder Snoozed Successfully");
+      toastr.success("Reminder Added Successfully");
       $scope.addReminder.close();
       $state.reload();
     });
@@ -172,7 +172,7 @@ myApp.controller("headerCtrl", function(
     //   );
   };
 
-  $scope.searchData = function(data) {
+  $scope.searchData = function (data) {
     $scope.productList = [];
     if (data.length > 0) {
       var dataToSend = {};
@@ -181,10 +181,10 @@ myApp.controller("headerCtrl", function(
       NavigationService.apiCallWithData(
         "Product/getSearchProductAndBrand",
         dataToSend,
-        function(response) {
+        function (response) {
           console.log("Search data", response.data);
           if (response.value) {
-            _.each(response.data, function(n) {
+            _.each(response.data, function (n) {
               var now = moment(new Date()),
                 end = moment(n.warrantyExpDate),
                 months = end.diff(now, "months");
@@ -206,26 +206,25 @@ myApp.controller("headerCtrl", function(
     }
   };
 
-  $scope.logout = function(data) {
+  $scope.logout = function (data) {
     $.jStorage.flush();
     $state.go("home");
   };
 
   //for footer
-  $scope.scrollTop = function() {
-    $("html, body").animate(
-      {
+  $scope.scrollTop = function () {
+    $("html, body").animate({
         scrollTop: $("body,html").offset().top - 100
       },
       1000
     );
   };
   $scope.showMenu = false;
-  $scope.toggleMenu = function() {
+  $scope.toggleMenu = function () {
     $scope.showMenu = !$scope.showMenu;
     console.log("inside menu");
   };
-  $scope.closeMenu = function() {
+  $scope.closeMenu = function () {
     $scope.showMenu = false;
   };
 });

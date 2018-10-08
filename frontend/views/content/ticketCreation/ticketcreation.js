@@ -22,6 +22,10 @@ myApp.controller("TicketCreationCtrl", function (
   $scope.max = 5;
   $scope.isReadonly = false;
   $scope.jstrgValue = $.jStorage.get("userData");
+  // $scope.ticketDetails = [];
+  // $scope.ticketDetails[0] = {
+  //   status: "Open"
+  // };
 
   $scope.chatData = {};
   $scope.ticketId = {};
