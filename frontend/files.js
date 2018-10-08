@@ -28,6 +28,7 @@ module.exports = [
   "bower_components/async/dist/async.min.js",
   "bower_components/jStorage/jstorage.min.js",
   "bower_components/angular-moment-picker/dist/angular-moment-picker.js",
+  "https://maps.googleapis.com/maps/api/js?key=AIzaSyDfMk3yA1acPI2v_XvVcKixjj3hEApX0OY&?sensor=false&libraries=places&language=en",
   "bower_components/ngmap/build/scripts/ng-map.min.js",
 
   //App.js
@@ -71,5 +72,4 @@ module.exports = [
   "frontend/views/content/privacy/privacy.js",
   "frontend/views/content/terms/terms.js",
   "frontend/views/content/verifyemail/verifyemailctrl.js",
-  "https://maps.googleapis.com/maps/api/js?key=AIzaSyDfMk3yA1acPI2v_XvVcKixjj3hEApX0OY&?sensor=false&libraries=places&language=en"
 ];

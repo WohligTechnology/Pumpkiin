@@ -942,6 +942,7 @@ var model = {
     emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
     Config.email(emailData, callback);
   },
+
   addressEditEmail: function (data, callback) {
     console.log("address --- ", data);
     var emailData = {};

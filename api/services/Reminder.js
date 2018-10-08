@@ -39,73 +39,71 @@ module.exports = mongoose.model("Reminder", schema);
 
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
 var model = {
-  totalNumberOfReminders: function(data, callback) {
+  totalNumberOfReminders: function (data, callback) {
     this.find({
-      user: data.user
-    })
+        user: data.user
+      })
       .count()
       .exec(callback);
   },
 
-  totalNumberOfCompletedReminders: function(data, callback) {
+  totalNumberOfCompletedReminders: function (data, callback) {
     this.find({
-      user: data.user,
-      status: "Completed"
-    })
+        user: data.user,
+        status: "Completed"
+      })
       .count()
       .exec(callback);
   },
 
-  totalNumberOfPendingReminders: function(data, callback) {
+  totalNumberOfPendingReminders: function (data, callback) {
     this.find({
-      user: data.user,
-      $or: [
-        {
-          status: "Pending"
-        },
-        {
-          status: "Snooze"
-        }
-      ]
-    })
+        user: data.user,
+        $or: [{
+            status: "Pending"
+          },
+          {
+            status: "Snooze"
+          }
+        ]
+      })
       .count()
       .exec(callback);
   },
 
-  findReminderOfPendingSnoozeByUser: function(data, callback) {
+  findReminderOfPendingSnoozeByUser: function (data, callback) {
     this.find({
-      user: data.user,
-      $or: [
-        {
-          status: "Pending"
-        },
-        {
-          status: "Snooze"
-        }
-      ]
-    })
+        user: data.user,
+        $or: [{
+            status: "Pending"
+          },
+          {
+            status: "Snooze"
+          }
+        ]
+      })
       .sort({
         dateOfReminder: 1
       })
       .exec(callback);
   },
 
-  findReminderOfCompletedByUser: function(data, callback) {
+  findReminderOfCompletedByUser: function (data, callback) {
     this.find({
-      user: data.user,
-      status: "Completed"
-    })
+        user: data.user,
+        status: "Completed"
+      })
       .sort({
         dateOfReminder: 1
       })
       .exec(callback);
   },
 
-  reminderMail: function(data, callback) {
+  reminderMail: function (data, callback) {
     async.waterfall(
       [
-        function(callback) {
-          Reminder.saveData(data, function(err, found) {
+        function (callback) {
+          Reminder.saveData(data, function (err, found) {
             if (err || _.isEmpty(found)) {
               callback(err, null);
             } else {
@@ -113,7 +111,7 @@ var model = {
             }
           });
         },
-        function(finalData, callback) {
+        function (finalData, callback) {
           var emailData = {};
           var time = new Date().getHours();
           var greeting;
@@ -133,7 +131,7 @@ var model = {
           emailData.filename = "Reminder.ejs";
           emailData.subject = "Reminder Notification";
           console.log("emailData in reminder mail", emailData);
-          Config.email(emailData, function(err, emailRespo) {
+          Config.email(emailData, function (err, emailRespo) {
             console.log("err------------------", err);
             console.log("emailRespo-----------", emailRespo);
             callback(null, emailRespo);
@@ -146,21 +144,19 @@ var model = {
 
   //searchBar
 
-  searchClosedReminders: function(data, callback) {
+  searchClosedReminders: function (data, callback) {
     Reminder.aggregate(
-      [
-        {
-          $match: {
-            title: {
-              $regex: data.keyword,
-              $options: "i"
-            },
-            status: "Completed",
-            user: ObjectId(data.user)
-          }
+      [{
+        $match: {
+          title: {
+            $regex: data.keyword,
+            $options: "i"
+          },
+          status: "Completed",
+          user: ObjectId(data.user)
         }
-      ],
-      function(err, found) {
+      }],
+      function (err, found) {
         if (err || _.isEmpty(found)) {
           callback(err, null);
         } else {
@@ -170,21 +166,19 @@ var model = {
     );
   },
 
-  searchOpenReminders: function(data, callback) {
+  searchOpenReminders: function (data, callback) {
     Reminder.aggregate(
-      [
-        {
-          $match: {
-            title: {
-              $regex: data.keyword,
-              $options: "i"
-            },
-            status: "Pending",
-            user: ObjectId(data.user)
-          }
+      [{
+        $match: {
+          title: {
+            $regex: data.keyword,
+            $options: "i"
+          },
+          status: "Pending",
+          user: ObjectId(data.user)
         }
-      ],
-      function(err, found) {
+      }],
+      function (err, found) {
         if (err) {
           callback(err, null);
         } else {
@@ -194,21 +188,17 @@ var model = {
     );
   },
 
-  changeIsReadStatus: function(data, callback) {
+  changeIsReadStatus: function (data, callback) {
     // console.log("-----------", data);
-    this.findOneAndUpdate(
-      {
-        _id: data.id
-      },
-      {
-        isRead: data.isRead
-      },
-      {
-        new: true
-      }
-    ).exec(callback);
+    this.findOneAndUpdate({
+      _id: data.id
+    }, {
+      isRead: data.isRead
+    }, {
+      new: true
+    }).exec(callback);
   },
-  deleteMultiple: function(data, callback) {
+  deleteMultiple: function (data, callback) {
     // console.log("-----------", data);
     this.remove({
       _id: {
@@ -216,57 +206,56 @@ var model = {
       }
     }).exec(callback);
   },
-  multiCompleted: function(data, callback) {
-    Reminder.update(
-      {
-        _id: {
-          $in: data.data
-        }
-      },
-      {
-        $set: {
-          status: "Completed"
-        }
-      },
-      {
-        multi: true
+  multiCompleted: function (data, callback) {
+    Reminder.update({
+      _id: {
+        $in: data.data
       }
-    ).exec(callback);
+    }, {
+      $set: {
+        status: "Completed"
+      }
+    }, {
+      multi: true
+    }).exec(callback);
   },
 
-  sendReminderMail: function() {
+  sendReminderMail: function () {
     Reminder.find({
-      reminderMailSent: false
-    })
+        reminderMailSent: false
+      })
       .populate("user")
-      .exec(function(err, data) {
+      .exec(function (err, data) {
         // console.log("1----", data);
         async.eachSeries(
           data,
-          function(singelData, callback) {
+          function (singelData, callback) {
             var reminderDate = moment(singelData.dateOfReminder);
             var currentDate = moment(new Date());
-            console.log(
-              "reminderDate",
-              reminderDate,
-              "currentDate",
-              currentDate,
-              "new Date().getHours();",
-              new Date().getHours()
-            );
-            console.log("singelData", singelData);
+            // console.log(
+            //   "reminderDate",
+            //   reminderDate,
+            //   "currentDate",
+            //   currentDate,
+            //   "new Date().getHours();",
+            //   new Date().getHours()
+            // );
+            // console.log("singelData", singelData);
+
             var day = reminderDate.diff(currentDate, "days");
-            console.log("day-->", day);
-            if (singelData.user.email && day == 0) {
+            var reminderTime = new moment(singelData.dateOfReminder).format("HH:mm");
+            var currentTime = moment(new Date()).format("HH:mm");
+            if (day == 0 && currentTime == reminderTime) {
+              console.log("hey --");
+            }
+            console.log("day-->", day, reminderTime, currentTime);
+            if ((singelData.user.email && day == 0) || (day == 0 && currentTime == reminderTime)) {
               console.log("@@@@@ MAIL SENT  @@@@@");
-              Reminder.update(
-                {
-                  _id: singelData._id
-                },
-                {
-                  reminderMailSent: true
-                }
-              ).exec(function(err, data3) {});
+              Reminder.update({
+                _id: singelData._id
+              }, {
+                reminderMailSent: true
+              }).exec(function (err, data3) {});
 
               var emailData = {};
               var time = new Date().getHours();
@@ -280,27 +269,27 @@ var model = {
               }
               emailData.from = "sahil@pumpkiin.com";
               emailData.name = singelData.user.name ? singelData.user.name : "";
-              emailData.email = singelData.user.email
-                ? singelData.user.email
-                : "";
+              emailData.email = singelData.user.email ?
+                singelData.user.email :
+                "";
               emailData.greeting = greeting;
               emailData.title = singelData.title ? singelData.title : "";
-              emailData.description = singelData.description
-                ? singelData.description
-                : "";
+              emailData.description = singelData.description ?
+                singelData.description :
+                "";
               emailData.filename = "Reminder.ejs";
               emailData.subject = "Reminder Notification";
-              console.log("emailData", emailData);
-              Config.email(emailData, function(err, emailRespo) {
-                console.log("err", err);
-                console.log("emailRespo", emailRespo);
+              // console.log("emailData", emailData);
+              Config.email(emailData, function (err, emailRespo) {
+                // console.log("err", err);
+                // console.log("emailRespo", emailRespo);
                 callback(null, emailRespo);
               });
             } else {
               callback();
             }
           },
-          function(err, data2) {
+          function (err, data2) {
             if (err) {
               console.log("In Err");
             } else {
@@ -310,19 +299,18 @@ var model = {
         );
       });
   },
-  sendWarrantyReminderMail: function() {
+  sendWarrantyReminderMail: function () {
     Reminder.find({
-      warrantyRemindermail: false,
-      user: "5ba9d658803f451b9ccffc6a"
-    })
+        warrantyRemindermail: false,
+        user: "5ba9d658803f451b9ccffc6a"
+      })
       .populate("user")
-      .exec(function(err, data) {
-        if (err || _.isEmpty(data)) {
-        } else {
+      .exec(function (err, data) {
+        if (err || _.isEmpty(data)) {} else {
           console.log("2----", data[25]);
           async.eachSeries(
             data,
-            function(singelData, callback) {
+            function (singelData, callback) {
               console.log("3----", singelData);
               var reminderDate = moment(singelData.dateOfReminder);
               var currentDate = moment(new Date());
@@ -332,14 +320,11 @@ var model = {
                 (singelData.email && day == 0) ||
                 (singelData.email && day == 29)
               ) {
-                Reminder.update(
-                  {
-                    _id: singelData._id
-                  },
-                  {
-                    warrantyRemindermail: true
-                  }
-                ).exec(function(err, data3) {});
+                Reminder.update({
+                  _id: singelData._id
+                }, {
+                  warrantyRemindermail: true
+                }).exec(function (err, data3) {});
 
                 var emailData = {};
                 var time = new Date().getHours();
@@ -352,25 +337,25 @@ var model = {
                   greeting = "Good evening";
                 }
                 emailData.from = "sahil@pumpkiin.com";
-                emailData.name = singelData.user.name
-                  ? singelData.user.name
-                  : "";
+                emailData.name = singelData.user.name ?
+                  singelData.user.name :
+                  "";
                 emailData.email = singelData.user.email;
                 emailData.greeting = greeting;
                 emailData.title = singelData.title ? singelData.title : "";
-                emailData.description = singelData.description
-                  ? singelData.description
-                  : "";
+                emailData.description = singelData.description ?
+                  singelData.description :
+                  "";
                 emailData.filename = "warrantyReminder.ejs";
                 emailData.subject = "Reminder Notification";
-                Config.email(emailData, function(err, emailRespo) {
+                Config.email(emailData, function (err, emailRespo) {
                   console.log("err", err);
                   console.log("emailRespo", emailRespo);
                   callback(null, emailRespo);
                 });
               }
             },
-            function(err, data2) {
+            function (err, data2) {
               if (err) {
                 console.log("In Err");
               } else {
@@ -381,19 +366,18 @@ var model = {
         }
       });
   },
-  sendInsuranceReminderMail: function() {
+  sendInsuranceReminderMail: function () {
     Reminder.find({
-      insurranceRemindermail: false,
-      user: "5ba9d658803f451b9ccffc6a"
-    })
+        insurranceRemindermail: false,
+        user: "5ba9d658803f451b9ccffc6a"
+      })
       .populate("user")
-      .exec(function(err, data) {
-        if (err || _.isEmpty(data)) {
-        } else {
+      .exec(function (err, data) {
+        if (err || _.isEmpty(data)) {} else {
           console.log("2----", data[25]);
           async.eachSeries(
             data,
-            function(singelData, callback) {
+            function (singelData, callback) {
               console.log("3----", singelData);
               var reminderDate = moment(singelData.dateOfReminder);
               var currentDate = moment(new Date());
@@ -403,14 +387,11 @@ var model = {
                 (singelData.email && day == 1) ||
                 (singelData.email && day == 30)
               ) {
-                Reminder.update(
-                  {
-                    _id: singelData._id
-                  },
-                  {
-                    insurranceRemindermail: true
-                  }
-                ).exec(function(err, data3) {});
+                Reminder.update({
+                  _id: singelData._id
+                }, {
+                  insurranceRemindermail: true
+                }).exec(function (err, data3) {});
 
                 var emailData = {};
                 var time = new Date().getHours();
@@ -423,25 +404,25 @@ var model = {
                   greeting = "Good evening";
                 }
                 emailData.from = "sahil@pumpkiin.com";
-                emailData.name = singelData.user.name
-                  ? singelData.user.name
-                  : "";
+                emailData.name = singelData.user.name ?
+                  singelData.user.name :
+                  "";
                 emailData.email = singelData.user.email;
                 emailData.greeting = greeting;
                 emailData.title = singelData.title ? singelData.title : "";
-                emailData.description = singelData.description
-                  ? singelData.description
-                  : "";
+                emailData.description = singelData.description ?
+                  singelData.description :
+                  "";
                 emailData.filename = "warrantyReminder.ejs";
                 emailData.subject = "Reminder Notification";
-                Config.email(emailData, function(err, emailRespo) {
+                Config.email(emailData, function (err, emailRespo) {
                   console.log("err", err);
                   console.log("emailRespo", emailRespo);
                   callback(null, emailRespo);
                 });
               }
             },
-            function(err, data2) {
+            function (err, data2) {
               if (err) {
                 console.log("In Err");
               } else {
@@ -454,25 +435,25 @@ var model = {
   }
 };
 
-sails.on("ready", function() {
-  cron.schedule("*/5 * * * *", function() {
+sails.on("ready", function () {
+  cron.schedule("*/1 * * * *", function () {
     Reminder.sendReminderMail({});
     console.log("===================================");
   });
 });
 
-sails.on("ready", function() {
-  cron.schedule("*/5 * * * *", function() {
-    Reminder.sendWarrantyReminderMail({});
-    console.log("===================================");
-  });
-});
+// sails.on("ready", function() {
+//   cron.schedule("*/5 * * * *", function() {
+//     Reminder.sendWarrantyReminderMail({});
+//     console.log("===================================");
+//   });
+// });
 
-sails.on("ready", function() {
-  cron.schedule("*/5 * * * *", function() {
-    Reminder.sendInsuranceReminderMail({});
-    console.log("===================================");
-  });
-});
+// sails.on("ready", function() {
+//   cron.schedule("*/5 * * * *", function() {
+//     Reminder.sendInsuranceReminderMail({});
+//     console.log("===================================");
+//   });
+// });
 
 module.exports = _.assign(module.exports, exports, model);

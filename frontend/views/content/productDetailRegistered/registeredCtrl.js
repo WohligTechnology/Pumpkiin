@@ -7,6 +7,7 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
     var usersData = [];
     $scope.jstrgValue = $.jStorage.get('userData');
     $scope.userData = {};
+    $scope.data = {};
     $scope.productDetails = {};
 
     $scope.relation = [{
@@ -17,7 +18,7 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
         "relation": "Brother"
     }];
 
-    $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother","Sister","Brother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew","Friend"]
+    $scope.relationsForUser = ["Son", "Daughter", "Father", "Mother", "Sister", "Brother", "Grand Father", "Grand Mother", "Aunt", "Uncle", "Niece", "Nephew", "Friend"]
 
 
     $scope.makeEditable = function () {
@@ -62,7 +63,7 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
                     if ($scope.productDetails.productImages) {
                         $scope.setImg = $scope.productDetails.productImages[0];
                     }
-                    // console.log("$scope.productDetails", $scope.productDetails);
+                    console.log("$scope.productDetails", $scope.productDetails);
                     if (res.data.purchaseDate) {
                         $scope.productDetails.purchaseDate = new Date(res.data.purchaseDate);
                     }
@@ -104,6 +105,7 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
 
         $scope.addUser = function (data) {
             data._id = $scope.jstrgValue._id;
+            data.productId = $stateParams.id;
             console.log("datae", data);
 
             // data.productId = $scope.productDetails._id;
@@ -121,6 +123,7 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
 
 
         $scope.updateData = function (data, data1) {
+            console.log("data1 >>", data1)
             if (!_.isEmpty(data1)) {
                 _.each(data1.Users, function (x) {
                     var sendData1 = {};
