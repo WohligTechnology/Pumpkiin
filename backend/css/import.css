@@ -37031,7 +37031,9 @@ input[type=number]::-webkit-outer-spin-button {
   width: 24px !important;
   border: 0 !important;
   padding: 0;
-  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -os-appearance: none;
   margin: 0;
   position: relative;
   z-index: 9; }
@@ -37736,10 +37738,14 @@ body {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border: solid 2px white; }
+  border: solid 2px white;
+  overflow: hidden; }
   .ticket-creation-main .img-div .large-img {
-    border-radius: 50%;
-    width: 80px; }
+    position: absolute;
+    max-width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
   .ticket-creation-main .img-div .small-img {
     position: absolute;
     right: -15px;
@@ -37870,8 +37876,7 @@ body {
     margin: 6px; }
   .message-send-input .attachment {
     position: absolute;
-    right: 50px;
-    margin: -10px;
+    right: 40px;
     cursor: pointer; }
   .message-send-input .scrollbar-tcreation {
     /* optional: show position indicator in red */ }
@@ -38148,8 +38153,7 @@ svg {
   position: relative;
   overflow: hidden;
   display: inline-block;
-  cursor: pointer;
-  min-width: 75px; }
+  cursor: pointer; }
   .upload-btn-wrapper:hover .btn {
     color: white;
     background-color: orange; }
@@ -38172,6 +38176,11 @@ svg {
     top: 0;
     opacity: 0;
     cursor: pointer; }
+
+input[type=file],
+input[type=file]::-webkit-file-upload-button {
+  /* chromes and blink button */
+  cursor: pointer; }
 
 /* Start writing sass here */
 #fancybox-loading, .fancybox-close, .fancybox-next span, .fancybox-prev span {
@@ -38220,3 +38229,5 @@ svg {
     display: none; }
   .info-house {
     right: 28%; } }
+
+/*# sourceMappingURL=import.css.map */
