@@ -1,6 +1,5 @@
 module.exports = [
   //JS & jQuery Libs
-  "https://maps.googleapis.com/maps/api/js?key=AIzaSyDfMk3yA1acPI2v_XvVcKixjj3hEApX0OY&?sensor=false&libraries=places&language=en",
   "bower_components/jquery/dist/jquery.min.js",
   "bower_components/popper.js/dist/umd/popper.min.js",
   "bower_components/bootstrap/dist/js/bootstrap.min.js",
@@ -72,4 +71,5 @@ module.exports = [
   "frontend/views/content/privacy/privacy.js",
   "frontend/views/content/terms/terms.js",
   "frontend/views/content/verifyemail/verifyemailctrl.js",
+  "https://maps.googleapis.com/maps/api/js?key=AIzaSyDfMk3yA1acPI2v_XvVcKixjj3hEApX0OY&?sensor=false&libraries=places&language=en"
 ];
