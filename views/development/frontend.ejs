@@ -16,11 +16,11 @@
     <title ng-bind="'Pumpkiin | '+template.title"></title>
     <script src="js/dependencies/sails.io.js"></script>
     <script>
-      var adminUUU = "<%= ((typeof adminUUU) == "undefined") ? "" : adminUUU  %>";
-      var adminurl = "<%= ((typeof adminurl) == "undefined") ? "" : adminurl  %>";
-      io.sails.url = adminUUU;
+        var adminUUU = "<%= ((typeof adminUUU) == "undefined") ? "" : adminUUU  %>";
+        var adminurl = "<%= ((typeof adminurl) == "undefined") ? "" : adminurl  %>";
+        io.sails.url = adminUUU;
     </script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfMk3yA1acPI2v_XvVcKixjj3hEApX0OY&?sensor=false&libraries=places&language=en"></script>
     <!--[if IE]> <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script> <![endif]-->
     <!--[if IE]> <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script> <![endif]-->
 </head>
@@ -34,15 +34,15 @@
     <script>
         var adminurl = "<%= ((typeof adminurl) == "undefined") ? "" : adminurl  %>";
         var isproduction = true;
-        var chintan = function(content) {
+        var chintan = function (content) {
             console.log("%c ---------------------------------------", 'background: #222; color: #bada55');
             console.log(content);
             console.log("%c ---------------------------------------", 'background: #222; color: #bada55');
         };
     </script>
     <% _.each(jsFiles,function(file) {  %>
-        <script src="<%= file %>"></script>
-        <% }); %>
+    <script src="<%= file %>"></script>
+    <% }); %>
 </body>
 
 </html>

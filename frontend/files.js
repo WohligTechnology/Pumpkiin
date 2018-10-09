@@ -70,6 +70,5 @@ module.exports = [
   "frontend/views/content/openTicket/openTicketCtrl.js",
   "frontend/views/content/privacy/privacy.js",
   "frontend/views/content/terms/terms.js",
-  "frontend/views/content/verifyemail/verifyemailctrl.js",
-  "https://maps.googleapis.com/maps/api/js?key=AIzaSyDfMk3yA1acPI2v_XvVcKixjj3hEApX0OY&?sensor=false&libraries=places&language=en"
+  "frontend/views/content/verifyemail/verifyemailctrl.js"
 ];
