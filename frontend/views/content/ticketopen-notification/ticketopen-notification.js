@@ -23,7 +23,7 @@ myApp.controller("TicketopenNotificationCtrl", function (
   $scope.ticketService = ticketService;
   $scope.jstrgValue = $.jStorage.get('userData');
   $scope.pageNumber = 1;
-  // $scope.showGreenImage = false;
+  $scope.showGreenImage = false;
   // $scope.maxRow = 5;
 
   $scope.changePage = function (pageno) {
@@ -134,7 +134,6 @@ myApp.controller("TicketopenNotificationCtrl", function (
       console.log("$scope.totalReminders", $scope.totalReminders);
     });
     reminderService.totalNumberOfCompletedReminders(function (data) {
-      $scope.showGreenImage = true;
       $scope.totalCompletedReminder = data;
       console.log(
         "res---totalCompletedReminder--",

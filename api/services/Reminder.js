@@ -456,24 +456,24 @@ var model = {
 };
 
 sails.on("ready", function () {
-  cron.schedule("*/5 * * * *", function () {
+  cron.schedule("*/1 * * * *", function () {
     Reminder.sendReminderMail({});
     console.log("===================================");
   });
 });
 
-sails.on("ready", function () {
-  cron.schedule("*/5 * * * *", function () {
-    Reminder.sendWarrantyReminderMail({});
-    console.log("===================================");
-  });
-});
+// sails.on("ready", function () {
+//   cron.schedule("*/5 * * * *", function () {
+//     Reminder.sendWarrantyReminderMail({});
+//     console.log("===================================");
+//   });
+// });
 
-sails.on("ready", function () {
-  cron.schedule("*/5 * * * *", function () {
-    Reminder.sendInsuranceReminderMail({});
-    console.log("===================================");
-  });
-});
+// sails.on("ready", function () {
+//   cron.schedule("*/5 * * * *", function () {
+//     Reminder.sendInsuranceReminderMail({});
+//     console.log("===================================");
+//   });
+// });
 
 module.exports = _.assign(module.exports, exports, model);
