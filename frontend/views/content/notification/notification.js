@@ -179,7 +179,14 @@ myApp.controller("NotificationCtrl", function (
         changeStatusData,
         function (res) {
           if (res.value == true) {
-            $scope.getReminder();
+
+            $scope.showGreenImage = true;
+            reminderService.findReminderOfCompletedByUser(function (data) {
+              $scope.allReminders = data;
+              $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+            });
+
+
             $scope.delete.close();
 
             if (index) {

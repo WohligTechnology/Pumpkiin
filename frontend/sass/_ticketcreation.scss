@@ -141,10 +141,16 @@
         height: 40px;
         border-radius: 50%;
         background-color: #404A6E;
+        position: relative;
+        overflow: hidden;
 
         img {
-            border-radius: 50%;
-            width: 40px;
+            position: absolute;
+            max-width: 100%;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
         }
     }
 
@@ -332,6 +338,10 @@
     border-radius: 30px;
     font-family: Roboto-Medium;
 
+    .submit-button {
+        padding: 4px 10px;
+    }
+
     .close-icon {
         position: absolute;
         left: -5px;
@@ -354,6 +364,10 @@
         color: $orange;
         background-color: white;
         transition: ease all 300ms;
+
+        .submit-button {
+            padding: 4px 10px;
+        }
 
         .close-icon {
             background: white;

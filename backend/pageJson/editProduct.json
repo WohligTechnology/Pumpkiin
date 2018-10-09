@@ -6,6 +6,18 @@
     "pageType": "edit",
     "urlFields": ["_id"],
     "fields": [{
+            "name": "User",
+            "id": "user",
+            "type": "tags",
+            "tableRef": "user",
+            "placeholder": "Select the User",
+            "dropDownField": "name",
+            "dropDownType": "single",
+            "searchApi": "searchCall",
+            "url": "User/search",
+            "view": true,
+            "validation": ["required", "trim"]
+        }, {
             "name": "Product Name",
             "type": "text",
             "tableRef": "productName",

@@ -152,7 +152,8 @@ myApp
         callback: "&ngCallback",
         imagesrc: "@imageSrc",
         imageclass: "@imageClass",
-        noStatus: "@noStatus"
+        noStatus: "@noStatus",
+        hideStatus: "@hideStatus"
       },
       link: function($scope, element, attrs) {
         $scope.showImage = function() {};

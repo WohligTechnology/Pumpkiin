@@ -911,7 +911,7 @@ myApp
       NavigationService.apiCall("Ticket/getOne", sendData, function (res) {
         if (res.value == true) {
           $scope.ticketData = res.data;
-          // console.log("$scope.ticketData-----", $scope.ticketData);
+          console.log("$scope.ticketData-----", $scope.ticketData);
         }
       });
     };
@@ -2093,7 +2093,7 @@ myApp
     var formData = {};
 
     $scope.jstrgData = $.jStorage.get("profile");
-    // console.log("$stateParams----------", $stateParams.id);
+    console.log("$stateParams----------", $stateParams.id);
 
     $scope.getTicket = function () {
       var sendData = {};
@@ -2118,6 +2118,7 @@ myApp
     io.socket.on("ticketChat", $scope.ticketChatSocket);
 
     $scope.addComment = function (data) {
+      console.log($scope.jstrgData)
       formData.user = $scope.jstrgData._id;
       formData.comment = data.comment;
       formData.file = data.image;

@@ -128,15 +128,15 @@ myApp.controller("TicketCreationCtrl", function (
                 activeClass: ""
               },
               {
-                status: "Awaiting feedback",
-                activeClass: ""
-              },
-              {
                 status: "Appliance picked up",
                 activeClass: ""
               },
               {
                 status: "Appliance returned",
+                activeClass: ""
+              },
+              {
+                status: "Awaiting feedback",
                 activeClass: ""
               },
               {
@@ -232,15 +232,15 @@ myApp.controller("TicketCreationCtrl", function (
             activeClass: ""
           },
           {
-            status: "Awaiting feedback",
-            activeClass: ""
-          },
-          {
             status: "Appliance picked up",
             activeClass: ""
           },
           {
             status: "Appliance returned",
+            activeClass: ""
+          },
+          {
+            status: "Awaiting feedback",
             activeClass: ""
           },
           {
@@ -328,6 +328,8 @@ myApp.controller("TicketCreationCtrl", function (
   $scope.ticketChatSocket();
   io.socket.on("ticketChat", $scope.ticketChatSocket);
 
+ 
+
   $scope.addComment = function (data) {
     console.log("data", data);
     // console.log("  $.jStorage.get", $.jStorage.get("userData"));
@@ -377,8 +379,10 @@ myApp.controller("TicketCreationCtrl", function (
         "Ticket/addToChat",
         $scope.ticketDetails1,
         function (data) {
-          $scope.chatData.comment = null;
-          $scope.chatData.image = null;
+          console.log("-----------------$scope.chatData--------", $scope.chatData);
+          delete $scope.chatData.comment;
+          delete $scope.chatData.image;
+          $scope.sentValue = true;
           if (data.value == true) {
             $scope.getTicket();
           }

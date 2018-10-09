@@ -16,6 +16,7 @@ $body-color-font: #505050;
 @import "template/main";
 @import "template/responsive";
 @import "custom-switch";
+
 @font-face {
     font-family: 'Glyphicons Halflings';
     src: url("../fonts/glyphicons-halflings-regular.eot");
@@ -101,6 +102,7 @@ a,
 [ui-sref] {
     cursor: pointer;
     transition: all ease 300ms;
+
     &:focus {
         outline: none !important;
     }
@@ -177,9 +179,11 @@ a,
     >h3 {
         font-size: 16px;
     }
+
     >span {
         color: #202020;
         font-size: 12px;
+
         a {
             color: $blue;
             font-weight: bold;
@@ -197,12 +201,14 @@ a,
 
 .who-post-this {
     position: relative;
+
     .house {
         position: absolute;
         width: auto;
         bottom: -11px;
         left: 36px;
     }
+
     >span {
         border: 0 solid #ffffff;
     }
@@ -256,6 +262,7 @@ a,
 
 $trans-black: rgba(black,
 .15);
+
 .btn-darker {
     @include button-variant(white,
     $trans-black,
@@ -282,6 +289,7 @@ $trans-black: rgba(black,
     .btn-clear {
         color: #505050;
     }
+
     .btn {
         padding: 0 10px;
     }
@@ -295,10 +303,12 @@ $trans-black: rgba(black,
     border: none;
     padding: 0;
     overflow: hidden;
+
     li {
         +li {
             border-top: 1px solid $border-color;
         }
+
         >a {
             padding: 10px;
         }
@@ -316,6 +326,7 @@ $trans-black: rgba(black,
     border-radius: 5px;
     padding: 10px;
     height: 87px;
+
     .btn {
         font-size: 12px;
         min-width: 110px;
@@ -335,6 +346,7 @@ $trans-black: rgba(black,
         margin: 10px 0 5px;
         font-size: 14px;
     }
+
     p {
         margin: 0;
         line-height: 100%;
@@ -348,6 +360,7 @@ $trans-black: rgba(black,
     left: 50%;
     top: -7px;
     transform: translateX(-50%);
+
     >span {
         display: inline-block;
         -webkit-border-radius: 100%;
@@ -355,6 +368,7 @@ $trans-black: rgba(black,
         -ms-border-radius: 100%;
         border-radius: 100%;
     }
+
     .dp {
         height: 101px;
         -webkit-border-radius: 100%;
@@ -377,6 +391,7 @@ $trans-black: rgba(black,
 .first-half {
     width: 50%;
     padding-left: 65px;
+
     +.first-half {
         padding-left: 0 !important;
         padding-right: 65px !important;
@@ -394,9 +409,11 @@ $trans-black: rgba(black,
 
 .folder {
     text-align: center;
+
     img {
         max-width: 100%;
     }
+
     h6 {
         margin: 10px 0 0;
     }
@@ -434,9 +451,11 @@ $trans-black: rgba(black,
     text-align: center;
     padding: 6px;
     position: relative;
+
     i {
         font-size: 32px;
     }
+
     p {
         margin: 5px 0 0;
         line-height: 100%;
@@ -457,6 +476,7 @@ $trans-black: rgba(black,
     top: 5px;
     cursor: pointer;
     text-align: center;
+
     i {
         font-size: 14px;
         line-height: 23px;
@@ -478,6 +498,7 @@ $trans-black: rgba(black,
 
 .red-bg {
     background-color: $red;
+
     >* {
         color: white;
     }
@@ -485,6 +506,7 @@ $trans-black: rgba(black,
 
 .blue-bg {
     background-color: $blue;
+
     >* {
         color: white;
     }
@@ -492,6 +514,7 @@ $trans-black: rgba(black,
 
 .green-bg {
     background-color: $green;
+
     >* {
         color: white;
     }
@@ -514,6 +537,7 @@ $trans-black: rgba(black,
 .billing-sec .field {
     margin-bottom: 15px;
     border-radius: 5px;
+
     input {
         height: 37px;
         border-radius: 4px;
@@ -525,6 +549,7 @@ $trans-black: rgba(black,
 .billing-sec .field input,
 .billing-sec .field textarea {
     border: 1px solid $border-color !important;
+
     &:focus {
         outline: none !important;
     }
@@ -548,7 +573,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 .nav-tabs {
     border: 0;
+
     >li.active {
+
         >a:focus,
         >a:hover,
         >a {
@@ -557,10 +584,12 @@ input[type=number]::-webkit-outer-spin-button {
             border-bottom: 5px solid $red;
         }
     }
+
     >li>a {
         border: 0;
         border-bottom: 5px solid transparent;
         border-radius: 0;
+
         &:focus,
         &:hover {
             background: transparent;
@@ -589,9 +618,11 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
     position: relative;
     z-index: 9;
+
     +i {
         display: none;
     }
+
     &:checked+i {
         display: block;
     }
@@ -604,6 +635,7 @@ input[type=number]::-webkit-outer-spin-button {
     width: 24px;
     height: 24px;
     vertical-align: middle;
+
     .aired {
         top: 5px;
     }
@@ -620,6 +652,7 @@ input[type=number]::-webkit-outer-spin-button {
     overflow-x: auto;
     padding: 0 15px;
     margin: 0 -15px;
+
     .mter {
         margin-top: 10px;
     }
@@ -634,6 +667,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 5px;
     border-color: #e5e5e5;
     border-radius: 5px;
+
     input {
         border: none !important;
     }
@@ -705,13 +739,16 @@ input[type=number]::-webkit-outer-spin-button {
     max-height: 200px;
     overflow-x: hidden;
     overflow-y: auto;
+
     >li {
         padding: 10px;
         cursor: pointer;
+
         &:hover {
             background-color: $brand-primary;
             color: white;
         }
+
         &.arrow-down {
             background-color: lighten($brand-primary, 20%);
             color: white;
@@ -732,6 +769,7 @@ form.mr-form {
 form.search-form {
     border-radius: 0;
     height: 34px;
+
     >input {
         padding: 7px 26px 8px 10px;
     }
@@ -751,6 +789,7 @@ form.search-form {
 
 .btn-upload {
     position: relative;
+
     input[type="file"] {
         opacity: 0;
         position: absolute;
@@ -763,6 +802,7 @@ form.search-form {
 
 .form-group {
     position: relative;
+
     .error-msg {
         position: absolute;
         right: 0;
@@ -820,6 +860,7 @@ form.search-form {
         height: 22px;
         padding: 0 5px;
     }
+
     .form-control[readonly] {
         background-color: transparent;
         border: none;
@@ -846,10 +887,12 @@ form.search-form {
     color: #fff;
     background-color: $brand-success;
     border-color: $brand-success;
+
     &:hover {
         background-color: darken($brand-success, 10%);
         border-color: darken($brand-success, 10%);
     }
+
     &[disabled] {
         background-color: #c2c7cc;
         border-color: #c2c7cc;
@@ -862,18 +905,22 @@ form.search-form {
             color: #fff;
             background-color: $brand-success;
             border-color: $brand-success;
+
             &:hover {
                 background-color: darken($brand-success, 10%);
                 border-color: darken($brand-success, 10%);
             }
+
             &[disabled] {
                 background-color: #c2c7cc;
                 border-color: #c2c7cc;
             }
+
             +.btn-default {
                 color: #fff;
                 background-color: $brand-danger;
                 border-color: $brand-danger;
+
                 &:hover {
                     background-color: darken($brand-danger, 10%);
                     border-color: darken($brand-danger, 10%);
@@ -897,20 +944,24 @@ img.uploadingImage {
     td {
         vertical-align: middle !important;
     }
+
     tr {
         .btn-show {
             opacity: 0;
             transition: all 300ms ease;
         }
+
         &:hover {
             .btn-show {
                 opacity: 1;
             }
+
             td {
                 background-color: #f8f8f8;
             }
         }
     }
+
     .btn {
         padding: 6px;
     }
@@ -923,6 +974,7 @@ img.uploadingImage {
     position: relative;
     border-radius: 40px;
     display: inline;
+
     img {
         border-radius: 100%;
     }
@@ -936,11 +988,13 @@ img.uploadingImage {
     width: 200px;
     display: inline-block;
     margin-right: 10px;
+
     .form-control {
         background: transparent;
         border-color: white;
         border-radius: 10px;
         color: white;
+
         &::-webkit-input-placeholder {
             color: white;
         }
@@ -961,6 +1015,7 @@ img.uploadingImage {
 .form-builder {
     border: 1px solid $body-color-font;
     position: relative;
+
     p {
         color: $body-color-font;
         height: 34px;
@@ -969,53 +1024,65 @@ img.uploadingImage {
         font-size: 14px;
         margin: 0;
     }
+
     .form-control {
         border: none !important;
         padding: 0px 7px;
         text-transform: none;
+
         &::-webkit-input-placeholder {
             color: $body-color-font;
         }
     }
+
     textarea.form-control {
         padding: 5px 7px;
     }
+
     .form-builder-head {
         font-weight: bold;
         position: relative;
         text-transform: uppercase;
+
         &:hover {
             .mark-float {
                 width: 40px;
             }
         }
+
         +.form-builder-hr {
             border-top: 1px solid $body-color-font;
         }
     }
+
     .form-builder-hr {
         border-bottom: 1px solid $body-color-font;
         margin-bottom: -1px; // position: relative;
     }
+
     .form-repeater {
         +.form-repeater {
             margin-top: 35px;
             border-top: 1px solid $body-color-font;
         }
     }
+
     .form-builder-item {
         position: relative;
         padding-left: 20px;
+
         .mark-float {
             &.right-float {
                 width: 20px;
             }
         }
+
         &:hover {
             .mark-float {
                 width: 40px;
             }
         }
+
         +.form-builder-item {
             border-top: 1px solid $body-color-font;
         }
@@ -1024,16 +1091,20 @@ img.uploadingImage {
 
 .row-item {
     display: flex;
+
     .col-item {
         flex: 1;
         width: 100%;
+
         +.col-item {
             border-left: 1px solid $body-color-font;
         }
+
         &.col-item-25 {
             flex: 0 0 25%;
             width: 25%;
         }
+
         &.col-item-35 {
             flex: 0 0 35%;
             width: 35%;
@@ -1051,9 +1122,11 @@ img.uploadingImage {
     line-height: 34px;
     transition: all 300ms ease;
     overflow: hidden;
+
     i {
         cursor: pointer;
     }
+
     &.right-float {
         right: auto;
         left: 5px;
@@ -1089,6 +1162,7 @@ img.uploadingImage {
 .btn.btn-icon {
     position: relative;
     padding-left: 42px;
+
     i {
         position: absolute;
         left: -1px;
@@ -1098,6 +1172,7 @@ img.uploadingImage {
         background-color: rgba(0, 0, 0, 0.20);
         display: flex;
         align-items: center;
+
         &:before {
             margin: 0 auto;
         }
@@ -1115,19 +1190,23 @@ img.uploadingImage {
     position: relative;
     background: #fff none repeat scroll 0 0;
     transition: all 300ms ease;
+
     >a {
         padding: 10px 35px;
         float: none;
         display: block;
     }
+
     &.active,
     &:hover {
         border-color: $red;
         font-weight: bold;
+
         >a {
             color: $red;
         }
     }
+
     >span {
         background: $red none repeat scroll 0 0;
         position: absolute;
@@ -1143,16 +1222,21 @@ img.uploadingImage {
 .message-list {
     padding: 0;
     overflow-y: auto;
+
     >li {
         padding: 10px 15px;
+
         >.sender-name {
             margin-left: 10px;
         }
+
         >a {
             margin-left: 10px;
         }
+
         >p {
             font-weight: 300;
+
             .subject {
                 font-weight: 600;
             }
@@ -1166,10 +1250,12 @@ img.uploadingImage {
 
 .inbox-action>ul {
     padding: 14px 15px;
+
     >li>a,
     >li>label {
         padding-top: 7px;
     }
+
     .form-control {
         height: 32px;
         border-radius: 100px;
@@ -1229,19 +1315,23 @@ body {
 .field-repeat {
     position: relative;
     padding: 10px 10px 0;
+
     &:nth-child(even) {
         background-color: #f5f5f5;
     }
+
     .floating-right {
         position: absolute;
         right: 5px;
         top: 5px;
         z-index: 9;
+
         .btn {
             padding: 0 4px;
             font-size: 12px;
         }
     }
+
     .form-group {
         height: 55px;
     }
@@ -1259,8 +1349,10 @@ body {
 
 .pagination {
     display: block;
+
     li {
         display: inline-block;
+
         a {
             color: black;
             float: left;
@@ -1268,6 +1360,7 @@ body {
             text-decoration: none;
             border: 1px solid #ddd;
         }
+
         &.active {
             background-color: #4CAF50;
             color: white;
@@ -1292,12 +1385,29 @@ body {
 
 ///
 .chat {
+    height: 220px;
+    overflow-y: auto;
     align-items: center !important;
+
+    &::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+        /* optional: just make scrollbar invisible */
+    }
+
+    /* optional: show position indicator in red */
+    &::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
 }
 
 .chat .image img {
-    width: 60px;
-    border-radius: 50%;
+    position: absolute;
+    max-width: 100%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .chat .you .chat-content {
@@ -1320,38 +1430,45 @@ body {
 
 .message-send-input {
     position: relative;
+
     .send img {
         position: absolute;
         right: 0;
         width: 30px;
         margin: 6px;
     }
+
     .attachment {
         position: absolute;
         right: 40px;
         margin: 7px;
         cursor: pointer;
     }
+
     .scrollbar-tcreation {
         &::-webkit-scrollbar {
             width: 0px;
             background: transparent;
             /* optional: just make scrollbar invisible */
         }
+
         /* optional: show position indicator in red */
         &::-webkit-scrollbar-thumb {
             background: transparent;
         }
+
         .upload-btn-wrapper {
             position: relative;
             overflow: hidden;
             display: inline-block;
             cursor: pointer;
+
             &:hover .btn {
                 color: white;
                 background-color: orange;
             }
         }
+
         .btn {
             border: 1px solid orange;
             color: orange;
@@ -1361,6 +1478,7 @@ body {
             font-size: 40px;
             cursor: pointer;
         }
+
         .upload-btn-wrapper input[type=file] {
             font-size: 100px;
             position: absolute;
@@ -1381,12 +1499,14 @@ body {
         border: solid 1px $orange;
         border-radius: 30px;
         font-family: Roboto-Medium;
+
         &:hover {
             background-color: $orange;
             color: white;
             transition: ease all 300ms;
         }
     }
+
     .close-btn {
         cursor: pointer;
         position: relative;
@@ -1397,6 +1517,7 @@ body {
         border: solid 2px $orange;
         border-radius: 30px;
         font-family: Roboto-Medium;
+
         .close-icon {
             position: absolute;
             left: -5px;
@@ -1406,10 +1527,12 @@ body {
             border: solid 2px #ecf0f2;
             border-radius: 50%;
         }
+
         &:hover {
             color: $orange;
             background-color: white;
             transition: ease all 300ms;
+
             .close-icon {
                 background: white;
                 border: solid 2px $orange;
@@ -1429,6 +1552,7 @@ body {
     border: solid 2px $orange;
     border-radius: 30px;
     font-family: Roboto-Medium;
+
     .close-icon {
         position: absolute;
         left: -5px;
@@ -1437,24 +1561,30 @@ body {
         background: $orange;
         border: solid 2px white;
         border-radius: 50%;
+
         .showdefault {
             display: block;
         }
+
         .showhover {
             display: none;
         }
     }
+
     &:hover {
         color: $orange;
         background-color: white;
         transition: ease all 300ms;
+
         .close-icon {
             background: white;
             border: solid 2px $orange;
             transition: ease all 300ms;
+
             .showdefault {
                 display: none;
             }
+
             .showhover {
                 display: block;
             }
@@ -1483,9 +1613,11 @@ body {
         padding: 0.25rem;
         font-size: 0.75rem;
     }
+
     thead th {
         font-size: 0.75rem;
     }
+
     .badge {
         width: 100px;
     }
@@ -1503,6 +1635,7 @@ body {
         border-radius: 50%;
         border: solid 2px white;
         overflow: hidden;
+
         .large-img {
             position: absolute;
             max-width: 100%;
@@ -1510,6 +1643,7 @@ body {
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
         .small-img {
             position: absolute;
             right: -15px;
@@ -1521,6 +1655,7 @@ body {
             background-color: #142C5C;
         }
     }
+
     .img-uploaded {
         width: 30px;
         height: 30px;
@@ -1528,6 +1663,7 @@ body {
         margin: 0 3px;
         background-color: white;
     }
+
     .openticketreminder {
         .productreg {
             &:before {
@@ -1536,6 +1672,7 @@ body {
             }
         }
     }
+
     .productreg {
         &:before {
             left: 4%;
@@ -1543,12 +1680,15 @@ body {
             border: solid 5px #ECF0F2;
         }
     }
+
     .openticket {
         min-height: 33vh;
     }
+
     .reminderSection {
         min-height: 36vh;
     }
+
     .info-div {
         // height: 200px;
         overflow-y: auto;
@@ -1558,6 +1698,7 @@ body {
 .support-timeline {
     position: relative;
     border-bottom: solid 2px #CFD7DB;
+
     .circle {
         width: 20px;
         height: 20px;
@@ -1566,6 +1707,7 @@ body {
         border-radius: 50%;
         background-color: #CFD7DB;
         border: solid 3px #ECF0F2;
+
         &:before {
             font-size: 9px;
             @extend .fontRobotoRegular;
@@ -1573,33 +1715,43 @@ body {
             top: 20px;
         }
     }
+
     .circle1 {
         left: 0;
     }
+
     .circle2 {
         left: 11.11%;
     }
+
     .circle3 {
         left: 22.22%;
     }
+
     .circle4 {
         left: 33.3%;
     }
+
     .circle5 {
         left: 44.44%;
     }
+
     .circle6 {
         left: 55.55%;
     }
+
     .circle7 {
         left: 66.66%;
     }
+
     .circle8 {
         left: 77.77%;
     }
+
     .circle9 {
         left: 88.88%;
     }
+
     .circle10 {
         left: 100%;
     }
@@ -1610,28 +1762,39 @@ body {
 }
 
 .chat {
+
     // height: 70vh;
     .image {
         width: 40px;
         height: 40px;
         border-radius: 50%;
         background-color: #404A6E;
+        position: relative;
+        overflow: hidden;
+
         img {
-            border-radius: 50%;
-            width: 40px;
+            position: absolute;
+            max-width: 100%;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
         }
     }
+
     .chat-content {
         color: #142C5C;
         font-size: 14px;
         border-radius: 20px;
     }
+
     .you {
         .chat-content {
             border-top-left-radius: 0;
             background-color: rgba(20, 193, 119, 0.5);
         }
     }
+
     .me {
         .chat-content {
             border-top-right-radius: 0;
@@ -1675,37 +1838,44 @@ body {
 
 .message-send-input {
     position: relative;
+
     .send img {
         position: absolute;
         right: 0;
         width: 30px;
         margin: 6px;
     }
+
     .attachment {
         position: absolute;
         right: 40px;
         cursor: pointer;
     }
+
     .scrollbar-tcreation {
         &::-webkit-scrollbar {
             width: 0px;
             background: transparent;
             /* optional: just make scrollbar invisible */
         }
+
         /* optional: show position indicator in red */
         &::-webkit-scrollbar-thumb {
             background: transparent;
         }
+
         .upload-btn-wrapper {
             position: relative;
             overflow: hidden;
             display: inline-block;
             cursor: pointer;
+
             &:hover .btn {
                 color: white;
                 background-color: orange;
             }
         }
+
         .btn {
             border: 1px solid orange;
             color: orange;
@@ -1715,6 +1885,7 @@ body {
             font-size: 40px;
             cursor: pointer;
         }
+
         .upload-btn-wrapper input[type=file] {
             font-size: 100px;
             position: absolute;
@@ -1740,12 +1911,14 @@ body {
         border: solid 1px $orange;
         border-radius: 30px;
         font-family: Roboto-Medium;
+
         &:hover {
             background-color: $orange;
             color: white;
             transition: ease all 300ms;
         }
     }
+
     .close-btn {
         cursor: pointer;
         position: relative;
@@ -1756,6 +1929,7 @@ body {
         border: solid 2px $orange;
         border-radius: 30px;
         font-family: Roboto-Medium;
+
         .close-icon {
             position: absolute;
             left: -5px;
@@ -1765,10 +1939,12 @@ body {
             border: solid 2px #ecf0f2;
             border-radius: 50%;
         }
+
         &:hover {
             color: $orange;
             background-color: white;
             transition: ease all 300ms;
+
             .close-icon {
                 background: white;
                 border: solid 2px $orange;
@@ -1788,6 +1964,7 @@ body {
     border: solid 2px $orange;
     border-radius: 30px;
     font-family: Roboto-Medium;
+
     .close-icon {
         position: absolute;
         left: -5px;
@@ -1796,24 +1973,30 @@ body {
         background: $orange;
         border: solid 2px white;
         border-radius: 50%;
+
         .showdefault {
             display: block;
         }
+
         .showhover {
             display: none;
         }
     }
+
     &:hover {
         color: $orange;
         background-color: white;
         transition: ease all 300ms;
+
         .close-icon {
             background: white;
             border: solid 2px $orange;
             transition: ease all 300ms;
+
             .showdefault {
                 display: none;
             }
+
             .showhover {
                 display: block;
             }
@@ -1823,8 +2006,10 @@ body {
 
 .pumpkin-support-feedback {
     padding-left: 40px !important;
+
     .pump-support-text {
         position: relative;
+
         &:before {
             content: "";
             width: 30px;
@@ -1837,6 +2022,7 @@ body {
             top: -5px;
         }
     }
+
     .close-icon {
         bottom: -1px;
         padding: 2px 8px;
@@ -1851,6 +2037,7 @@ body {
 .support-chat-history {
     margin-bottom: 22px;
     min-height: 20vh;
+
     .panel-default {
         margin: 10px 0;
         background-color: white;
@@ -1859,25 +2046,30 @@ body {
         border: 0;
         position: relative;
     }
+
     .panel-default:last-child {
         &:after {
             display: none;
         }
     }
+
     .date-supportchat {
         color: #818587;
     }
+
     .card-header {
         background-color: white;
         border-bottom: 0;
         border-radius: 10px;
         padding: 25px;
     }
+
     .blue-circle {
         width: 30px;
         height: 30px;
         border-radius: 50%;
         background: #142c5b;
+
         .fa-check {
             display: none;
         }
@@ -1908,6 +2100,7 @@ svg {
         padding: 0;
         position: relative;
     }
+
     input[type="text"] {
         height: 27px;
         font-size: 18px;
@@ -1929,10 +2122,12 @@ svg {
         transition: width 0.4s cubic-bezier(0, 0.795, 0, 1);
         cursor: pointer;
     }
+
     input[type="text"]:focus:hover {
         background-color: white;
         border-bottom: 1px solid #BBB;
     }
+
     input[type="text"]:focus {
         width: 223px;
         z-index: 1;
@@ -1940,6 +2135,7 @@ svg {
         border-bottom: 1px solid #BBB;
         cursor: text;
     }
+
     .search-btn {
         height: 27px;
         width: 23px;
@@ -1986,6 +2182,7 @@ svg {
     background-color: #f6a244;
     border: solid 5px #ecf0f2;
     border-radius: 50%;
+
     .fa-sort-down {
         color: white;
         vertical-align: 0;
@@ -2002,6 +2199,7 @@ svg {
     border: 1px solid #dee2e6;
     border-radius: 0.25rem;
     position: relative;
+
     .img-delete {
         position: absolute;
         top: -12px;
@@ -2019,10 +2217,12 @@ svg {
     overflow: hidden;
     display: inline-block;
     cursor: pointer;
+
     &:hover .btn {
         color: white;
         background-color: orange;
     }
+
     .btn {
         border: 1px solid orange;
         color: orange;
@@ -2032,11 +2232,13 @@ svg {
         font-size: 40px;
         cursor: pointer;
     }
+
     input[type=file] {
         width: 100%;
         height: 100%;
         cursor: pointer;
     }
+
     input[type=file] {
         font-size: 100px;
         position: absolute;
