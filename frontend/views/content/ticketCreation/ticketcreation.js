@@ -22,6 +22,10 @@ myApp.controller("TicketCreationCtrl", function (
   $scope.max = 5;
   $scope.isReadonly = false;
   $scope.jstrgValue = $.jStorage.get("userData");
+  // $scope.ticketDetails = [];
+  // $scope.ticketDetails[0] = {
+  //   status: "Open"
+  // };
 
   $scope.chatData = {};
   $scope.ticketId = {};
@@ -108,31 +112,31 @@ myApp.controller("TicketCreationCtrl", function (
                 activeClass: ""
               },
               {
-                status: "Scheduling service with customer (Open)",
+                status: "Scheduling service with customer",
                 activeClass: ""
               },
               {
-                status: "Coordinating with the service provider (Open)",
+                status: "Coordinating with the service provider",
                 activeClass: ""
               },
               {
-                status: "Service confirmed (In-progress)",
+                status: "Service confirmed",
                 activeClass: ""
               },
               {
-                status: "Service completed (Closed)",
+                status: "Service completed",
                 activeClass: ""
               },
               {
-                status: "Awaiting feedback (Closed)",
+                status: "Awaiting feedback",
                 activeClass: ""
               },
               {
-                status: "Appliance picked up (In-progress)",
+                status: "Appliance picked up",
                 activeClass: ""
               },
               {
-                status: "Appliance returned (Closed)",
+                status: "Appliance returned",
                 activeClass: ""
               },
               {
@@ -211,32 +215,32 @@ myApp.controller("TicketCreationCtrl", function (
             activeClass: ""
           },
           {
-            status: "Scheduling service with customer (Open)",
+            status: "Scheduling service with customer",
             activeClass: ""
           },
           {
-            status: "Coordinating with the service provider (Open)",
+            status: "Coordinating with the service provider",
             activeClass: ""
           },
           {
-            status: "Service confirmed (In-progress)",
+            status: "Service confirmed",
 
             activeClass: ""
           },
           {
-            status: "Service completed (Closed)",
+            status: "Service completed",
             activeClass: ""
           },
           {
-            status: "Awaiting feedback (Closed)",
+            status: "Awaiting feedback",
             activeClass: ""
           },
           {
-            status: "Appliance picked up (In-progress)",
+            status: "Appliance picked up",
             activeClass: ""
           },
           {
-            status: "Appliance returned (Closed)",
+            status: "Appliance returned",
             activeClass: ""
           },
           {

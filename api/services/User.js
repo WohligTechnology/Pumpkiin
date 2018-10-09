@@ -6,20 +6,16 @@ var schema = new Schema({
   balance: {
     type: String
   },
-  socialAccount: [
-    {
-      account: String
+  socialAccount: [{
+    account: String
+  }],
+  relations: [{
+    relationType: String,
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
     }
-  ],
-  relations: [
-    {
-      relationType: String,
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-      }
-    }
-  ],
+  }],
   email: {
     type: String
   },
@@ -31,23 +27,19 @@ var schema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Retailer"
   },
-  location: [
-    {
-      location: String
-    }
-  ],
-  loginSession: [
-    {
-      timestamp: Date,
-      ip: String,
-      accessToken: String
-    }
-  ],
+  location: [{
+    location: String
+  }],
+  loginSession: [{
+    timestamp: Date,
+    ip: String,
+    accessToken: String
+  }],
   dob: {
     type: Date,
     excel: {
       name: "Birthday",
-      modify: function(val, data) {
+      modify: function (val, data) {
         return moment(val).format("MMM DD YYYY");
       }
     }
@@ -60,19 +52,18 @@ var schema = new Schema({
   photo: {
     type: String,
     default: "",
-    excel: [
-      {
+    excel: [{
         name: "Photo Val"
       },
       {
         name: "Photo String",
-        modify: function(val, data) {
+        modify: function (val, data) {
           return "http://abc/" + val;
         }
       },
       {
         name: "Photo Kebab",
-        modify: function(val, data) {
+        modify: function (val, data) {
           return data.name + " " + moment(data.dob).format("MMM DD YYYY");
         }
       }
@@ -101,12 +92,10 @@ var schema = new Schema({
   googleAccessToken: String,
   googleRefreshToken: String,
   oauthLogin: {
-    type: [
-      {
-        socialId: String,
-        socialProvider: String
-      }
-    ],
+    type: [{
+      socialId: String,
+      socialProvider: String
+    }],
     index: true
   },
   accessLevel: {
@@ -114,17 +103,15 @@ var schema = new Schema({
     enum: ["Admin", "User"],
     default: "User"
   },
-  address: [
-    {
-      title: String,
-      address: String,
-      addressLine: String,
-      city: Schema.Types.Mixed,
-      district: String,
-      state: Schema.Types.Mixed,
-      pincode: Number
-    }
-  ],
+  address: [{
+    title: String,
+    address: String,
+    addressLine: String,
+    city: Schema.Types.Mixed,
+    district: String,
+    state: Schema.Types.Mixed,
+    pincode: Number
+  }],
   verificationStatus: {
     type: Boolean,
     default: false
@@ -160,12 +147,12 @@ var exports = _.cloneDeep(
   )
 );
 var model = {
-  getOneUser: function(data, callback) {
+  getOneUser: function (data, callback) {
     User.findOne({
-      _id: data._id
-    })
+        _id: data._id
+      })
       .deepPopulate("retailer brand")
-      .exec(function(err, found) {
+      .exec(function (err, found) {
         if (err) {
           callback(err, null);
         } else if (_.isEmpty(found)) {
@@ -176,10 +163,10 @@ var model = {
       });
   },
 
-  saveUser: function(data, callback) {
+  saveUser: function (data, callback) {
     User.findOne({
       _id: data._id
-    }).exec(function(err, found) {
+    }).exec(function (err, found) {
       if (err) {
         callback(err, null);
       } else if (_.isEmpty(found)) {
@@ -188,7 +175,7 @@ var model = {
         if (data.accessLevel == "Brand") {
           if (found.retailer) {
             data.retailer = null;
-            User.saveData(data, function(err, data2) {
+            User.saveData(data, function (err, data2) {
               if (err) {
                 callback(err, data2);
               } else {
@@ -196,7 +183,7 @@ var model = {
               }
             });
           } else {
-            User.saveData(data, function(err, data2) {
+            User.saveData(data, function (err, data2) {
               if (err) {
                 callback(err, data2);
               } else {
@@ -208,7 +195,7 @@ var model = {
         if (data.accessLevel == "Retailer") {
           if (found.brand) {
             data.brand = null;
-            User.saveData(data, function(err, data2) {
+            User.saveData(data, function (err, data2) {
               if (err) {
                 callback(err, data2);
               } else {
@@ -216,7 +203,7 @@ var model = {
               }
             });
           } else {
-            User.saveData(data, function(err, data2) {
+            User.saveData(data, function (err, data2) {
               if (err) {
                 callback(err, data2);
               } else {
@@ -229,20 +216,20 @@ var model = {
     });
   },
 
-  add: function() {
+  add: function () {
     var sum = 0;
-    _.each(arguments, function(arg) {
+    _.each(arguments, function (arg) {
       sum += arg;
     });
     return sum;
   },
 
-  existsSocial: function(user, callback) {
+  existsSocial: function (user, callback) {
     var Model = this;
     console.log("existsSocial user: ", user);
     Model.findOne({
       email: user.emails[0].value
-    }).exec(function(err, data) {
+    }).exec(function (err, data) {
       console.log("existsSocial: ", err, data);
       if (err) {
         callback(err, data);
@@ -253,12 +240,10 @@ var model = {
           var modelUser = {
             name: user.displayName,
             accessToken: [uid(16)],
-            oauthLogin: [
-              {
-                socialId: user.id,
-                socialProvider: user.provider
-              }
-            ]
+            oauthLogin: [{
+              socialId: user.id,
+              socialProvider: user.provider
+            }]
           };
           modelUser.email = user.emails[0].value;
           modelUser.accessLevel = "Admin";
@@ -267,7 +252,7 @@ var model = {
           if (user.image && user.image.url) {
             modelUser.photo = user.image.url;
           }
-          Model.saveData(modelUser, function(err, data2) {
+          Model.saveData(modelUser, function (err, data2) {
             if (err) {
               callback(err, data2);
             } else {
@@ -294,25 +279,23 @@ var model = {
         data.googleAccessToken = user.googleAccessToken;
         data.googleRefreshToken = user.googleRefreshToken;
         (data.name = user.displayName),
-          (data.accessToken = [uid(16)]),
-          (data.oauthLogin = [
-            {
-              socialId: user.id,
-              socialProvider: user.provider
-            }
-          ]);
-        data.save(function() {});
+        (data.accessToken = [uid(16)]),
+        (data.oauthLogin = [{
+          socialId: user.id,
+          socialProvider: user.provider
+        }]);
+        data.save(function () {});
         callback(err, data);
       }
     });
   },
 
-  existsSocialFrontendLogin: function(user, callback) {
+  existsSocialFrontendLogin: function (user, callback) {
     var Model = this;
     // console.log("existsSocial user: ", user);
     Model.findOne({
       email: user.emails[0].value
-    }).exec(function(err, data) {
+    }).exec(function (err, data) {
       console.log("existsSocial: ", err, data);
       if (err) {
         callback(err, data);
@@ -320,12 +303,10 @@ var model = {
         var modelUser = {
           name: user.displayName,
           accessToken: [uid(16)],
-          oauthLogin: [
-            {
-              socialId: user.id,
-              socialProvider: user.provider
-            }
-          ]
+          oauthLogin: [{
+            socialId: user.id,
+            socialProvider: user.provider
+          }]
         };
         modelUser.email = user.emails[0].value;
         modelUser.accessLevel = "User";
@@ -334,12 +315,12 @@ var model = {
         if (user.image && user.image.url) {
           modelUser.photo = user.image.url;
         }
-        Model.saveData(modelUser, function(err, data2) {
+        Model.saveData(modelUser, function (err, data2) {
           if (err) {
             callback(err, data2);
           } else {
             data3 = data2.toObject();
-            User.sendIntroEmail(data3, function() {});
+            User.sendIntroEmail(data3, function () {});
             delete data3.oauthLogin;
             delete data3.password;
             delete data3.forgotPassword;
@@ -356,25 +337,23 @@ var model = {
         data.googleAccessToken = user.googleAccessToken;
         data.googleRefreshToken = user.googleRefreshToken;
         (data.name = user.displayName),
-          (data.accessToken = [uid(16)]),
-          (data.oauthLogin = [
-            {
-              socialId: user.id,
-              socialProvider: user.provider
-            }
-          ]);
-        data.save(function() {});
+        (data.accessToken = [uid(16)]),
+        (data.oauthLogin = [{
+          socialId: user.id,
+          socialProvider: user.provider
+        }]);
+        data.save(function () {});
         callback(err, data);
       }
     });
   },
 
-  existsSocialFrontendFbLogin: function(user, callback) {
+  existsSocialFrontendFbLogin: function (user, callback) {
     var Model = this;
     // console.log("existsSocial user: ", user);
     Model.findOne({
       email: user.emails[0].value
-    }).exec(function(err, data) {
+    }).exec(function (err, data) {
       console.log("existsSocial: ", err, data);
       if (err) {
         callback(err, data);
@@ -382,24 +361,22 @@ var model = {
         var modelUser = {
           name: user.name.givenName,
           accessToken: [uid(16)],
-          oauthLogin: [
-            {
-              socialId: user.id,
-              socialProvider: user.provider
-            }
-          ]
+          oauthLogin: [{
+            socialId: user.id,
+            socialProvider: user.provider
+          }]
         };
         modelUser.email = user.emails[0].value;
         modelUser.accessLevel = "User";
         if (user.photos && user.photos[0] && user.photos[0].value) {
           modelUser.photo = user.photos[0].value;
         }
-        Model.saveData(modelUser, function(err, data2) {
+        Model.saveData(modelUser, function (err, data2) {
           if (err) {
             callback(err, data2);
           } else {
             data3 = data2.toObject();
-            User.sendIntroEmail(data3, function() {});
+            User.sendIntroEmail(data3, function () {});
             delete data3.oauthLogin;
             delete data3.password;
             delete data3.forgotPassword;
@@ -418,14 +395,12 @@ var model = {
         delete data.forgotPassword;
         delete data.otp;
         (data.name = user.name.givenName),
-          (data.accessToken = [uid(16)]),
-          (data.oauthLogin = [
-            {
-              socialId: user.id,
-              socialProvider: user.provider
-            }
-          ]);
-        data.save(function() {});
+        (data.accessToken = [uid(16)]),
+        (data.oauthLogin = [{
+          socialId: user.id,
+          socialProvider: user.provider
+        }]);
+        data.save(function () {});
         console.log(
           "data3 else console inside existsSocialFrontendFbLogin",
           data
@@ -436,10 +411,10 @@ var model = {
     });
   },
 
-  profile: function(data, callback, getGoogle) {
+  profile: function (data, callback, getGoogle) {
     User.findOne({
       accessToken: data.accessToken
-    }).exec(function(err, data) {
+    }).exec(function (err, data) {
       if (err) {
         callback(err);
       } else if (data) {
@@ -450,12 +425,12 @@ var model = {
     });
   },
 
-  updateAccessToken: function(id, accessToken) {
+  updateAccessToken: function (id, accessToken) {
     User.findOne({
       _id: id
-    }).exec(function(err, data) {
+    }).exec(function (err, data) {
       data.googleAccessToken = accessToken;
-      data.save(function() {});
+      data.save(function () {});
     });
   },
 
@@ -465,15 +440,15 @@ var model = {
    * @param {callback} callback
    * @returns  that number, plus one.
    */
-  getAllMedia: function(data, callback) {},
+  getAllMedia: function (data, callback) {},
 
   //old api written
 
-  addUserRelationMember: function(data, callback) {
+  addUserRelationMember: function (data, callback) {
     var newuserData;
     async.waterfall(
       [
-        function(callback) {
+        function (callback) {
           console.log("data", data);
           var dataToSend = {};
           dataToSend.name = data.name;
@@ -482,7 +457,7 @@ var model = {
           dataToSend.mobile = data.contact;
           User.saveData(dataToSend, callback);
         },
-        function(newUserData, callback) {
+        function (newUserData, callback) {
           // console.log("newUserData", newUserData);
           newuserData = newUserData;
           if (!_.isEmpty(newUserData)) {
@@ -493,7 +468,7 @@ var model = {
             callback(err, "noData");
           }
         },
-        function(oldUserData, callback) {
+        function (oldUserData, callback) {
           // console.log("oldUserData", oldUserData);
           var sendData = {};
           sendData = oldUserData;
@@ -506,7 +481,7 @@ var model = {
           arrData.push(sendData1);
           sendData.relations = arrData;
           // console.log("arrData---------", arrData);
-          User.saveData(sendData, function(err, userData) {
+          User.saveData(sendData, function (err, userData) {
             var productDataToSave = {};
             productDataToSave._id = data.productId;
             productDataToSave.relatedUser = arrData;
@@ -519,11 +494,11 @@ var model = {
     );
   },
 
-  addRelation: function(data, callback) {
+  addRelation: function (data, callback) {
     var newuserData;
     async.waterfall(
       [
-        function(callback) {
+        function (callback) {
           console.log("data", data);
           var dataToSend = {};
           dataToSend.name = data.name;
@@ -532,7 +507,7 @@ var model = {
           dataToSend.mobile = data.mobile;
           User.saveData(dataToSend, callback);
         },
-        function(newUserData, callback) {
+        function (newUserData, callback) {
           // console.log("newUserData", newUserData);
           newuserData = newUserData;
           if (!_.isEmpty(newUserData)) {
@@ -543,7 +518,7 @@ var model = {
             callback(err, "noData");
           }
         },
-        function(oldUserData, callback) {
+        function (oldUserData, callback) {
           // console.log("oldUserData", oldUserData);
           var sendData = {};
           sendData = oldUserData;
@@ -563,14 +538,14 @@ var model = {
     );
   },
 
-  removeUserRelationMember: function(userId, mobile, callback) {
+  removeUserRelationMember: function (userId, mobile, callback) {
     console.log("inside api", userId, mobile);
     async.waterfall(
       [
-        function(callback1) {
+        function (callback1) {
           User.findOne({
             mobile: mobile
-          }).exec(function(err, found) {
+          }).exec(function (err, found) {
             console.log("found********", found);
             if (err) {
               callback1(err, null);
@@ -579,7 +554,7 @@ var model = {
             } else {
               var dataforDelete = {};
               dataforDelete._id = found._id;
-              User.deleteData(found, function(err, created) {
+              User.deleteData(found, function (err, created) {
                 if (err) {
                   callback1(err, null);
                 } else if (_.isEmpty(created)) {
@@ -591,23 +566,19 @@ var model = {
             }
           });
         },
-        function(id, callback2) {
+        function (id, callback2) {
           console.log("idddddddddddddd", id);
-          User.findOneAndUpdate(
-            {
-              _id: mongoose.Types.ObjectId(userId)
-            },
-            {
-              $pull: {
-                member: {
-                  memberId: id
-                }
+          User.findOneAndUpdate({
+            _id: mongoose.Types.ObjectId(userId)
+          }, {
+            $pull: {
+              member: {
+                memberId: id
               }
-            },
-            {
-              new: true
             }
-          ).exec(function(err, found) {
+          }, {
+            new: true
+          }).exec(function (err, found) {
             if (err) {
               callback2(err, null);
             } else if (_.isEmpty(found)) {
@@ -618,7 +589,7 @@ var model = {
           });
         }
       ],
-      function(err, data) {
+      function (err, data) {
         if (err || _.isEmpty(data)) {
           callback(err, []);
         } else {
@@ -628,41 +599,34 @@ var model = {
     );
   },
 
-  getAllMembersForSearch: function(data, callback) {
-    User.find(
-      {},
-      {
+  getAllMembersForSearch: function (data, callback) {
+    User.find({}, {
         name: 1,
         _id: 1,
         mobile: 1
-      }
-    )
+      })
       .lean()
-      .exec(function(err, data) {
+      .exec(function (err, data) {
         callback(null, data);
       });
   },
 
-  sendOtp: function(data, callback) {
+  sendOtp: function (data, callback) {
     if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
       var otpNumber = (Math.random() + "").substring(2, 6);
     } else {
       otpNumber = 1111;
     }
-    User.findOneAndUpdate(
-      {
-        mobile: data.mobile
-      },
-      {
-        otp: otpNumber,
-        accessToken: uid(16),
-        otpTime: new Date()
-      },
-      {
-        new: true,
-        upsert: true
-      }
-    ).exec(function(err, found) {
+    User.findOneAndUpdate({
+      mobile: data.mobile
+    }, {
+      otp: otpNumber,
+      accessToken: uid(16),
+      otpTime: new Date()
+    }, {
+      new: true,
+      upsert: true
+    }).exec(function (err, found) {
       if (err) {
         callback(err, null);
       } else if (_.isEmpty(found)) {
@@ -678,7 +642,7 @@ var model = {
           smsData.senderId = "PUMPKIIN";
           smsData.mobile = data.mobile;
           delete data3.otp;
-          Config.sendSms(smsData, function(err, smsRespo) {
+          Config.sendSms(smsData, function (err, smsRespo) {
             if (err) {
               console.log(
                 "*************************************************sms gateway error in photographer***********************************************",
@@ -702,11 +666,11 @@ var model = {
     });
   },
 
-  verifyUserWithOtp: function(data, callback) {
+  verifyUserWithOtp: function (data, callback) {
     User.findOne({
       mobile: data.mobile,
       otp: data.otp
-    }).exec(function(err, found) {
+    }).exec(function (err, found) {
       if (err || _.isEmpty(found)) {
         callback(err, null);
       } else {
@@ -715,21 +679,21 @@ var model = {
         var cc = moment(found.createdAt).isBetween(aa, bb);
         if (!found.verificationStatus) {
           data._id = found._id;
-          User.saveData(data, function() {});
+          User.saveData(data, function () {});
           data3 = found.toObject();
           delete data3.accessToken;
           delete data3.password;
           delete data3.forgotPassword;
           delete data3.otp;
 
-          User.sendIntroEmail(data, function() {}, true);
+          User.sendIntroEmail(data, function () {}, true);
 
           data3.email = data.email;
           data3.name = data.name;
           callback(null, data3);
         } else {
           data._id = found._id;
-          User.saveData(data, function() {});
+          User.saveData(data, function () {});
           data3 = found.toObject();
           delete data3.accessToken;
           delete data3.password;
@@ -742,11 +706,11 @@ var model = {
       }
     });
   },
-  verifyUserWithFB: function(data, callback) {
+  verifyUserWithFB: function (data, callback) {
     User.findOne({
       mobile: data.mobile,
       otp: data.otp
-    }).exec(function(err, found) {
+    }).exec(function (err, found) {
       if (err || _.isEmpty(found)) {
         callback(err, null);
       } else {
@@ -755,7 +719,7 @@ var model = {
         var cc = moment(found.createdAt).isBetween(aa, bb);
         if (!data.verificationStatus) {
           data._id = found._id;
-          User.saveData(data, function() {});
+          User.saveData(data, function () {});
           data3 = found.toObject();
           delete data3.accessToken;
           delete data3.password;
@@ -778,13 +742,13 @@ var model = {
           emailData.filename = "welcomeFB.ejs";
           emailData.subject = "Welcome to pumpkiin";
           emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
-          Config.email(emailData, function(err, emailRespo) {}, true);
+          Config.email(emailData, function (err, emailRespo) {}, true);
           data3.email = data.email;
           data3.name = data.name;
           callback(null, data3);
         } else {
           data._id = found._id;
-          User.saveData(data, function() {});
+          User.saveData(data, function () {});
           data3 = found.toObject();
           delete data3.accessToken;
           delete data3.password;
@@ -800,25 +764,21 @@ var model = {
 
   //for edit mobileNumber
 
-  sendMobileOtp: function(data, callback) {
+  sendMobileOtp: function (data, callback) {
     if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
       var otpNumber = (Math.random() + "").substring(2, 6);
     } else {
       otpNumber = 1111;
     }
-    User.findOneAndUpdate(
-      {
-        _id: data._id
-      },
-      {
-        otp: otpNumber,
-        otpTime: new Date(),
-        mobile: data.mobile
-      },
-      {
-        new: true
-      }
-    ).exec(function(err, found) {
+    User.findOneAndUpdate({
+      _id: data._id
+    }, {
+      otp: otpNumber,
+      otpTime: new Date(),
+      mobile: data.mobile
+    }, {
+      new: true
+    }).exec(function (err, found) {
       if (err) {
         callback(err, null);
       } else if (_.isEmpty(found)) {
@@ -834,7 +794,7 @@ var model = {
           smsData.senderId = "PUMPKIIN";
           smsData.mobile = data.mobile;
           delete data3.otp;
-          Config.sendSms(smsData, function(err, smsRespo) {
+          Config.sendSms(smsData, function (err, smsRespo) {
             if (err) {
               console.log(
                 "*************************************************sms gateway error in photographer***********************************************",
@@ -857,11 +817,11 @@ var model = {
     });
   },
 
-  verifyMobileOtp: function(data, callback) {
+  verifyMobileOtp: function (data, callback) {
     User.findOne({
       mobile: data.mobile,
       otp: data.otp
-    }).exec(function(err, found) {
+    }).exec(function (err, found) {
       if (err || _.isEmpty(found)) {
         callback(err, null);
       } else {
@@ -870,8 +830,8 @@ var model = {
     });
   },
 
-  searchUser: function(data, callback) {
-    User.find({}).exec(function(err, found) {
+  searchUser: function (data, callback) {
+    User.find({}).exec(function (err, found) {
       if (err || _.isEmpty(found)) {
         callback(err, null);
       } else {
@@ -880,21 +840,18 @@ var model = {
     });
   },
 
-  saveUpdatedData: function(data, callback) {
+  saveUpdatedData: function (data, callback) {
     console.log("save the updated data", data);
-    User.findOneAndUpdate(
-      {
-        _id: data._id
-      },
-      {
-        gender: data.gender,
-        mobile: data.mobile,
-        email: data.email
-      },
-      {
-        new: true
-      }
-    ).exec(function(err, found) {
+    User.findOneAndUpdate({
+      _id: data._id
+    }, {
+      dob: data.dob,
+      gender: data.gender,
+      mobile: data.mobile,
+      email: data.email
+    }, {
+      new: true
+    }).exec(function (err, found) {
       if (err || _.isEmpty(found)) {
         callback(err, null);
       } else {
@@ -920,24 +877,21 @@ var model = {
         // console.log("emailData---------", emailData)
         var email = {};
         email = emailData.email;
-        Config.sendEmail(
-          {
+        Config.sendEmail({
             //from
             email: "sahil@pumpkiin.com",
             name: "Sahil"
           },
           //to
           //emailData,
-          [
-            {
-              email
-            }
-          ],
+          [{
+            email
+          }],
           //subject
           emailData.subject,
           "",
           emailData,
-          function(err, emailResp) {
+          function (err, emailResp) {
             if (err) {
               console.log("err", err);
               callback("canNotSendMail", null);
@@ -953,21 +907,17 @@ var model = {
     });
   },
 
-  verifyEmail: function(data, callback) {
+  verifyEmail: function (data, callback) {
     console.log(data);
-    User.findOneAndUpdate(
-      {
-        _id: data.userId
-      },
-      {
-        verificationStatus: true
-      },
-      {
-        new: true
-      }
-    ).exec(callback);
+    User.findOneAndUpdate({
+      _id: data.userId
+    }, {
+      verificationStatus: true
+    }, {
+      new: true
+    }).exec(callback);
   },
-  sendIntroEmail: function(data, callback, sendVerification) {
+  sendIntroEmail: function (data, callback, sendVerification) {
     var emailData = {};
     var time = new Date().getHours();
     var greeting;
@@ -992,7 +942,8 @@ var model = {
     emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
     Config.email(emailData, callback);
   },
-  addressEditEmail: function(data, callback) {
+
+  addressEditEmail: function (data, callback) {
     console.log("address --- ", data);
     var emailData = {};
     var time = new Date().getHours();
@@ -1018,24 +969,21 @@ var model = {
     // console.log("emailData---------", emailData)
     var email = {};
     email = emailData.email;
-    Config.sendEmail(
-      {
+    Config.sendEmail({
         //from
         email: "sahil@pumpkiin.com",
         name: "Sahil"
       },
       //to
       //emailData,
-      [
-        {
-          email
-        }
-      ],
+      [{
+        email
+      }],
       //subject
       emailData.subject,
       "",
       emailData,
-      function(err, emailResp) {
+      function (err, emailResp) {
         if (err) {
           console.log("err", err);
           callback("canNotSendMail", null);
@@ -1046,7 +994,7 @@ var model = {
       }
     );
   },
-  sendEmailToFamily: function(data, callback) {
+  sendEmailToFamily: function (data, callback) {
     console.log("address --- ", data);
     var emailData = {};
     var time = new Date().getHours();
@@ -1071,24 +1019,21 @@ var model = {
     // console.log("emailData---------", emailData)
     var email = {};
     email = emailData.email;
-    Config.sendEmail(
-      {
+    Config.sendEmail({
         //from
         email: "sahil@pumpkiin.com",
         name: "Sahil"
       },
       //to
       //emailData,
-      [
-        {
-          email
-        }
-      ],
+      [{
+        email
+      }],
       //subject
       emailData.subject,
       "",
       emailData,
-      function(err, emailResp) {
+      function (err, emailResp) {
         if (err) {
           console.log("err", err);
           callback("canNotSendMail", null);
@@ -1099,31 +1044,30 @@ var model = {
       }
     );
   },
-  saveEditedUSer: function(data, callback) {
+  saveEditedUSer: function (data, callback) {
     console.log("saveEditedUSer", data.user._id);
     async.parallel(
       [
-        function(callback) {
-          User.findOneAndUpdate(
-            { _id: data.user._id },
-            {
-              // relationType: data.user.relationType,
-              name: data.user.name,
-              email: data.user.email,
-              mobile: data.user.mobile,
-              nickName: data.user.nickName
-            },
-            { new: true }
-          ).exec(callback);
+        function (callback) {
+          User.findOneAndUpdate({
+            _id: data.user._id
+          }, {
+            // relationType: data.user.relationType,
+            name: data.user.name,
+            email: data.user.email,
+            mobile: data.user.mobile,
+            nickName: data.user.nickName
+          }, {
+            new: true
+          }).exec(callback);
         },
-        function(callback) {
-          User.update(
-            {
-              _id: data.userId,
-              "relations.user": data.user._id
-            },
-            { "relations.$.relationType": data.relationType }
-          ).exec(callback);
+        function (callback) {
+          User.update({
+            _id: data.userId,
+            "relations.user": data.user._id
+          }, {
+            "relations.$.relationType": data.relationType
+          }).exec(callback);
         }
       ],
       callback

@@ -6273,7 +6273,8 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 body.compensate-for-scrollbar {
-  overflow: hidden; }
+  overflow: hidden;
+  -ms-overflow-style: none; }
 
 .fancybox-active {
   height: auto; }
@@ -6373,8 +6374,8 @@ body.compensate-for-scrollbar {
 .fancybox-stage {
   direction: ltr;
   overflow: visible;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
   z-index: 99994; }
 
 .fancybox-is-open .fancybox-stage {
@@ -6382,7 +6383,7 @@ body.compensate-for-scrollbar {
 
 .fancybox-slide {
   -webkit-backface-visibility: hidden;
-  /* Using without prefix would break IE11 */
+  backface-visibility: hidden;
   display: none;
   height: 100%;
   left: 0;
@@ -6418,8 +6419,10 @@ body.compensate-for-scrollbar {
   z-index: 99995; }
 
 .fancybox-slide--image {
-  overflow: hidden;
   padding: 44px 0 0 0; }
+
+.fancybox-slide--image {
+  overflow: visible; }
 
 .fancybox-slide--image::before {
   display: none; }
@@ -6443,6 +6446,7 @@ body.compensate-for-scrollbar {
   -webkit-animation-timing-function: cubic-bezier(0.5, 0, 0.14, 1);
   animation-timing-function: cubic-bezier(0.5, 0, 0.14, 1);
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   background: transparent;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -6556,13 +6560,11 @@ body.compensate-for-scrollbar {
   background: rgba(30, 30, 30, 0.6);
   border: 0;
   border-radius: 0;
-  box-shadow: none;
   cursor: pointer;
   display: inline-block;
   height: 44px;
   margin: 0;
   padding: 10px;
-  position: relative;
   transition: color .2s;
   vertical-align: top;
   visibility: inherit;
@@ -6608,25 +6610,6 @@ body.compensate-for-scrollbar {
 .fancybox-button--pause svg:nth-child(1),
 .fancybox-button--fsexit svg:nth-child(1) {
   display: none; }
-
-.fancybox-progress {
-  background: #ff5268;
-  height: 2px;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  -webkit-transform: scaleX(0);
-  -ms-transform: scaleX(0);
-  transform: scaleX(0);
-  -webkit-transform-origin: 0;
-  -ms-transform-origin: 0;
-  transform-origin: 0;
-  transition-property: -webkit-transform;
-  transition-property: transform;
-  transition-property: transform, -webkit-transform;
-  transition-timing-function: linear;
-  z-index: 99998; }
 
 /* Close button on the top right corner of html content */
 .fancybox-close-small {
@@ -6725,31 +6708,37 @@ body.compensate-for-scrollbar {
 
 /* Loading indicator */
 .fancybox-loading {
-  -webkit-animation: fancybox-rotate 1s linear infinite;
-  animation: fancybox-rotate 1s linear infinite;
+  -webkit-animation: fancybox-rotate .8s infinite linear;
+  animation: fancybox-rotate .8s infinite linear;
   background: transparent;
-  border: 4px solid #888;
-  border-bottom-color: #fff;
-  border-radius: 50%;
-  height: 50px;
+  border: 6px solid rgba(100, 100, 100, 0.5);
+  border-radius: 100%;
+  border-top-color: #fff;
+  height: 60px;
   left: 50%;
-  margin: -25px 0 0 -25px;
-  opacity: .7;
+  margin: -30px 0 0 -30px;
+  opacity: .6;
   padding: 0;
   position: absolute;
   top: 50%;
-  width: 50px;
+  width: 60px;
   z-index: 99999; }
 
 @-webkit-keyframes fancybox-rotate {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg); } }
 
 @keyframes fancybox-rotate {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg); } }
 
 /* Transition effects */
 .fancybox-animated {
@@ -6949,7 +6938,7 @@ body.compensate-for-scrollbar {
 
 /* Thumbs */
 .fancybox-thumbs {
-  background: #ddd;
+  background: #fff;
   bottom: 0;
   display: none;
   margin: 0;
@@ -7022,7 +7011,7 @@ body.compensate-for-scrollbar {
   width: 100px; }
 
 .fancybox-thumbs__list a::before {
-  border: 6px solid #ff5268;
+  border: 4px solid #4ea7f9;
   bottom: 0;
   content: '';
   left: 0;
@@ -37031,7 +37020,9 @@ input[type=number]::-webkit-outer-spin-button {
   width: 24px !important;
   border: 0 !important;
   padding: 0;
-  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -os-appearance: none;
   margin: 0;
   position: relative;
   z-index: 9; }
@@ -37736,10 +37727,14 @@ body {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border: solid 2px white; }
+  border: solid 2px white;
+  overflow: hidden; }
   .ticket-creation-main .img-div .large-img {
-    border-radius: 50%;
-    width: 80px; }
+    position: absolute;
+    max-width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
   .ticket-creation-main .img-div .small-img {
     position: absolute;
     right: -15px;
@@ -37870,8 +37865,7 @@ body {
     margin: 6px; }
   .message-send-input .attachment {
     position: absolute;
-    right: 50px;
-    margin: -10px;
+    right: 40px;
     cursor: pointer; }
   .message-send-input .scrollbar-tcreation {
     /* optional: show position indicator in red */ }
@@ -38148,8 +38142,7 @@ svg {
   position: relative;
   overflow: hidden;
   display: inline-block;
-  cursor: pointer;
-  min-width: 75px; }
+  cursor: pointer; }
   .upload-btn-wrapper:hover .btn {
     color: white;
     background-color: orange; }
@@ -38172,6 +38165,11 @@ svg {
     top: 0;
     opacity: 0;
     cursor: pointer; }
+
+input[type=file],
+input[type=file]::-webkit-file-upload-button {
+  /* chromes and blink button */
+  cursor: pointer; }
 
 /* Start writing sass here */
 #fancybox-loading, .fancybox-close, .fancybox-next span, .fancybox-prev span {

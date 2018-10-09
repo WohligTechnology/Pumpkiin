@@ -1,4 +1,4 @@
-myApp.controller("ProfileCtrl", function(
+myApp.controller("ProfileCtrl", function (
   $scope,
   TemplateService,
   NavigationService,
@@ -22,8 +22,7 @@ myApp.controller("ProfileCtrl", function(
   $scope.addressIndex = -1;
   // console.log("$scope.jstrgValue", $scope.jstrgValue);
 
-  $scope.relation = [
-    {
+  $scope.relation = [{
       name: "First Last Name",
       relation: "Brother"
     },
@@ -33,10 +32,10 @@ myApp.controller("ProfileCtrl", function(
     }
   ];
 
-  $scope.saveImage = function() {
+  $scope.saveImage = function () {
     $scope.jstrgValue.photo = null;
     $.jStorage.set("userData", $scope.jstrgValue);
-    NavigationService.apiCallWithData("User/save", $scope.jstrgValue, function(
+    NavigationService.apiCallWithData("User/save", $scope.jstrgValue, function (
       response
     ) {
       if (response.value == true) {
@@ -64,7 +63,7 @@ myApp.controller("ProfileCtrl", function(
     "Friend"
   ];
 
-  $scope.editressModalOpen = function(address, index) {
+  $scope.editressModalOpen = function (address, index) {
     $scope.addressIndex = index;
     $scope.profileAddress = address;
     $scope.addAddress = $uibModal.open({
@@ -74,7 +73,7 @@ myApp.controller("ProfileCtrl", function(
     });
   };
 
-  $scope.addressModalOpen = function() {
+  $scope.addressModalOpen = function () {
     $scope.profileAddress = {};
     $scope.addressIndex = -1;
     $scope.addAddress = $uibModal.open({
@@ -92,7 +91,7 @@ myApp.controller("ProfileCtrl", function(
   //   vm.map.setCenter(vm.place.geometry.location);
   // };
 
-  $scope.newUserModalOpen = function() {
+  $scope.newUserModalOpen = function () {
     $scope.addNewUser = $uibModal.open({
       animation: true,
       templateUrl: "views/modal/addNewUser.html",
@@ -100,10 +99,10 @@ myApp.controller("ProfileCtrl", function(
     });
   };
 
-  $scope.getUserData = function() {
+  $scope.getUserData = function () {
     var data = {};
     data._id = $scope.jstrgValue._id;
-    NavigationService.apiCallWithData("User/getOne", data, function(response) {
+    NavigationService.apiCallWithData("User/getOne", data, function (response) {
       if (response.value == true) {
         $scope.userDataForProfile = response.data;
         $scope.userDataForProfile.dob = new Date($scope.userDataForProfile.dob);
@@ -117,8 +116,8 @@ myApp.controller("ProfileCtrl", function(
 
   $scope.getUserData();
 
-  $scope.removeRelation = function(data) {
-    _.remove($scope.userDataForProfile.relations, function(n) {
+  $scope.removeRelation = function (data) {
+    _.remove($scope.userDataForProfile.relations, function (n) {
       return n._id == data;
     });
     var test = {};
@@ -127,7 +126,7 @@ myApp.controller("ProfileCtrl", function(
     NavigationService.apiCallWithData(
       "User/save",
       $scope.userDataForProfile,
-      function(response) {
+      function (response) {
         if (response.value == true) {
           toastr.error("Member removed successfully");
           $scope.getUserData();
@@ -135,27 +134,26 @@ myApp.controller("ProfileCtrl", function(
       }
     );
 
-    NavigationService.apiCallWithData("Product/removeRelation", test, function(
+    NavigationService.apiCallWithData("Product/removeRelation", test, function (
       response
     ) {
-      if (response.value == true) {
-      }
+      if (response.value == true) {}
     });
   };
 
-  $scope.addUser = function(data) {
+  $scope.addUser = function (data) {
     data._id = $scope.jstrgValue._id;
     var familymember = {};
     familymember.name = $scope.userDataForProfile.name;
     familymember.user = data;
-    NavigationService.apiCallWithData("User/addRelation", data, function(
+    NavigationService.apiCallWithData("User/addRelation", data, function (
       response
     ) {
       if (response.value == true) {
         NavigationService.apiCallWithData(
           "user/sendEmailToFamily",
           familymember,
-          function(res) {
+          function (res) {
             console.log(res.value);
           }
         );
@@ -167,17 +165,16 @@ myApp.controller("ProfileCtrl", function(
     });
   };
 
-  $scope.changeInfo = function() {
+  $scope.changeInfo = function () {
     if (
       $scope.userDataForProfile.lastMobile !== $scope.userDataForProfile.mobile
     ) {
       NavigationService.apiCallWithData(
-        "User/sendMobileOtp",
-        {
+        "User/sendMobileOtp", {
           _id: $scope.jstrgValue._id,
           mobile: $scope.userDataForProfile.mobile
         },
-        function(response) {
+        function (response) {
           if (response.value == true) {
             $scope.formName = {
               mobile: $scope.userDataForProfile.mobile
@@ -194,10 +191,20 @@ myApp.controller("ProfileCtrl", function(
     } else {
       // $scope.genderData._id = $scope.jstrgValue._id;
       delete $scope.userDataForProfile.createdAt;
+      // NavigationService.apiCallWithData(
+      //   "User/save",
+      //   $scope.userDataForProfile,
+      //   function (response) {
+      //     if (response.value == true) {
+      //       $state.reload();
+      //     }
+      //   }
+      // );
+      console.log("saveUpdatedData   >>", $scope.userDataForProfile);
       NavigationService.apiCallWithData(
-        "User/save",
+        "User/saveUpdatedData",
         $scope.userDataForProfile,
-        function(response) {
+        function (response) {
           if (response.value == true) {
             $state.reload();
           }
@@ -208,7 +215,7 @@ myApp.controller("ProfileCtrl", function(
 
   //saveForOtpModal
 
-  $scope.saveMobileData = function(info) {
+  $scope.saveMobileData = function (info) {
     if (
       info.digit1 >= 0 &&
       info.digit2 >= 0 &&
@@ -225,22 +232,22 @@ myApp.controller("ProfileCtrl", function(
       $scope.data.mobile = info.mobile;
 
       NavigationService.apiCallWithData(
-        "User/verifyMobileOtp",
-        {
-          otp:
-            info.digit1.toString() +
+        "User/verifyMobileOtp", {
+          otp: info.digit1.toString() +
             info.digit2.toString() +
             info.digit3.toString() +
             info.digit4.toString(),
           mobile: info.mobile,
           _id: $scope.userDataForProfile._id
         },
-        function(response) {
+        function (response) {
           if (response.value == true) {
+            console.log("saveUpdatedData   >>", $scope.userDataForProfile);
+
             NavigationService.apiCallWithData(
               "User/saveUpdatedData",
               $scope.userDataForProfile,
-              function(response) {
+              function (response) {
                 if (response.value == true) {
                   $scope.otp.close();
                   $state.reload();
@@ -262,7 +269,7 @@ myApp.controller("ProfileCtrl", function(
   //   $scope.states = response.data;
   // });
 
-  $scope.trustAsHtml = function(value) {
+  $scope.trustAsHtml = function (value) {
     return $sce.trustAsHtml(value);
   };
 
@@ -274,12 +281,12 @@ myApp.controller("ProfileCtrl", function(
   //     console.log("response of City", response);
   //   });
   // };
-  $scope.placeChanged = function() {
+  $scope.placeChanged = function () {
     var place = this.getPlace();
     $scope.formattedAddress = place.formatted_address;
   };
 
-  $scope.saveAddressData = function(data) {
+  $scope.saveAddressData = function (data) {
     data.address = $scope.formattedAddress;
     var addData = {};
     var add = $scope.userDataForProfile.address;
@@ -290,7 +297,7 @@ myApp.controller("ProfileCtrl", function(
     }
     addData._id = $scope.jstrgValue._id;
     addData.address = add;
-    NavigationService.apiCallWithData("user/save", addData, function(response) {
+    NavigationService.apiCallWithData("user/save", addData, function (response) {
       var mailThisAddress = {};
       mailThisAddress.user = $scope.userDataForProfile.name;
       mailThisAddress.email = $scope.userDataForProfile.email;
@@ -310,7 +317,7 @@ myApp.controller("ProfileCtrl", function(
         NavigationService.apiCallWithData(
           "user/addressEditEmail",
           mailThisAddress,
-          function(res) {
+          function (res) {
             console.log("response", res);
           }
         );
@@ -321,18 +328,18 @@ myApp.controller("ProfileCtrl", function(
     });
   };
 
-  $scope.removeAddress = function(index) {
+  $scope.removeAddress = function (index) {
     $scope.userDataForProfile.address.splice(index, 1);
     NavigationService.apiCallWithData(
       "User/save",
       $scope.userDataForProfile,
-      function(response) {
+      function (response) {
         toastr.success("Address deleted successfully");
       }
     );
   };
 
-  $scope.openUserEdit = function(data) {
+  $scope.openUserEdit = function (data) {
     $scope.addNewUser = $uibModal.open({
       animation: true,
       templateUrl: "views/modal/editUser.html",
@@ -341,9 +348,9 @@ myApp.controller("ProfileCtrl", function(
     $scope.user = data;
   };
 
-  $scope.openFamilyUser = function(data) {
+  $scope.openFamilyUser = function (data) {
     data.userId = $scope.userDataForProfile._id;
-    NavigationService.apiCallWithData("User/saveEditedUSer", data, function(
+    NavigationService.apiCallWithData("User/saveEditedUSer", data, function (
       res
     ) {
       $scope.addNewUser.close();

@@ -2,14 +2,17 @@
     <div class="container">
         <div class="d-flex profile-details mb-3 ">
             <div class="profile-image" class="img-fluid">
-                <img class="set-profile" ng-src="{{jstrgValue.profilePic | serverimage}}" alt="profile image" width="100%" ng-if="jstrgValue.profilePic">
-                <img class="set-profile" ng-src="{{jstrgValue.photo |serverimage}}" alt="profile image" width="100%" ng-if="jstrgValue.photo && !jstrgValue.profilePic">
-                <img class="set-profile" src="img/emptyProfile.png" ng-if="!(jstrgValue.profilePic || jstrgValue.photo)" alt="profile image">
+                <img class="set-profile" ng-src="{{jstrgValue.profilePic | serverimage}}" alt="profile image" width="100%"
+                    ng-if="jstrgValue.profilePic">
+                <img class="set-profile" ng-src="{{jstrgValue.photo |serverimage}}" alt="profile image" width="100%"
+                    ng-if="jstrgValue.photo && !jstrgValue.profilePic">
+                <img class="set-profile" src="img/emptyProfile.png" ng-if="!(jstrgValue.profilePic || jstrgValue.photo)"
+                    alt="profile image">
                 <div class="profile-photo-upload">
                     <!-- <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="userDataForProfile.profilePic" noStatus="true"
                         no-view></upload-image> -->
-                    <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="jstrgValue.profilePic" noStatus="true"
-                        no-view ng-callback="saveImage();"></upload-image>
+                    <upload-image image-src="../img/camera1.png" image-class="profile-upload" ng-model="jstrgValue.profilePic"
+                        noStatus="true" no-view ng-callback="saveImage();"></upload-image>
                     <!-- <upload-image ng-model="data.productImages" no-status="true"></upload-image> -->
                 </div>
             </div>
@@ -30,7 +33,7 @@
                     <div class="d-inline-block">Email Address : </div>
                     <div class="ml-0 ml-md-3" ng-if="userDataForProfile.email">{{userDataForProfile.email}}</div>
                     <div class="ml-0 ml-md-3" ng-if="!userDataForProfile.email"></div>
-                    <div class="d-none d-md-block ml-3">
+                    <div class="d-none d-md-block ml-3" ng-if="userDataForProfile.verificationStatus">
                         <img src="img/chekmark.png">
                     </div>
                 </div>
@@ -65,10 +68,12 @@
                         </div>
                         <div ng-if="personalInfo">
                             <label class="radio-inline mr-3">
-                                <input type="radio" name="optradio" value="Male" ng-model="userDataForProfile.gender"> Male
+                                <input type="radio" name="optradio" value="Male" ng-model="userDataForProfile.gender">
+                                Male
                             </label>
                             <label class="radio-inline mr-3">
-                                <input type="radio" name="optradio" value="Female" ng-model="userDataForProfile.gender"> Female
+                                <input type="radio" name="optradio" value="Female" ng-model="userDataForProfile.gender">
+                                Female
                             </label>
                         </div>
                         <div class="custom-input" ng-if="personalInfo">
@@ -87,7 +92,8 @@
                             - - -
                         </div>
                         <div ng-if="personalInfo" class="mb-2 custom-input">
-                            <input maxlength="10" type="text" class="mt-2 p-1" ng-model="userDataForProfile.mobile" only-digits>
+                            <input maxlength="10" type="text" class="mt-2 p-1" ng-model="userDataForProfile.mobile"
+                                only-digits>
                         </div>
                         <div ng-if="!personalInfo" class="mb-2 custom-input">{{userDataForProfile.email}}</div>
                         <div ng-if="personalInfo" class="mb-2 custom-input">
@@ -110,7 +116,7 @@
                         <div>Address</div>
                     </div>
                 </div>
-                <div class="col-11 col-md-9 ">
+                <div class="col-11 col-md-9 scrollbar">
                     <div class="d-flex fontRobotoLight font-color font12 ">
                         <div class="p-2 background-gray mr-2 text-capitalize address-box " ng-repeat="addressData in userDataForProfile.address track by $index">
                             <div class="font14 dark-font-color fontRobotoRegular ">{{addressData.title}}

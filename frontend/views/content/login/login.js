@@ -74,13 +74,13 @@ myApp.controller('LoginCtrl', function ($scope, TemplateService, NavigationServi
         console.log("data", data);
         if (data.value == true) {
           // toastr.success('You have been successfully sign in', 'Sign in Success');
-          if (data.data.verificationStatus) {
-            $.jStorage.set("userData", data.data);
-            $scope.template.profile = data.data;
-            $state.go("openticket");
-          } else {
-            $state.go("verifyemail");
-          }
+          // if (data.data.verificationStatus) {
+          $.jStorage.set("userData", data.data);
+          $scope.template.profile = data.data;
+          $state.go("openticket");
+          // } else {
+          //   $state.go("verifyemail");
+          // }
 
         } else {
           toastr.warning('Enter valid otp');

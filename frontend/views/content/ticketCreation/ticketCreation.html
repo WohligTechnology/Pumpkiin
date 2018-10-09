@@ -5,7 +5,7 @@
     }
 
     .circle2:before {
-        content: attr(data-before-content)'\aRepair/\aMaintenance\A(On-site';
+        content: attr(data-before-content)'\aRepair/\aMaintenance\A';
         left: 0;
     }
 
@@ -45,7 +45,7 @@
     }
 
     .circle10:before {
-        content: attr(data-before-content)'\a Completed (Completed)';
+        content: attr(data-before-content)'\a Completed';
         text-align: right;
         right: 0;
     }
@@ -63,8 +63,8 @@
                         <div class="notification notification-orange" ng-if="totalNumberOfOpenTickets">{{totalNumberOfOpenTickets}}</div>
                     </div>
                     <div class="closed-text cursor-point" ng-click="getClosedTickets()">
-                        <img ng-if="ticketDetails[0].status!='Closed'" src="img/ticketCreation/closedTicket.png">
-                        <img ng-if="ticketDetails[0].status=='Closed'" src="img/ticketCreation/green-ticket.png">
+                        <img ng-if="ticketDetails[0].status!='Closed'" src="img/ticketCreation/green-ticket-01.png">
+                        <img ng-if="ticketDetails[0].status=='Closed'" src="img/ticketCreation/green-ticket-02.png">
                         <!-- <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div> -->
                         <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
                     </div>
@@ -81,6 +81,7 @@
                     <h5 class="d-inline cursor-point" ui-sref="ticketopen-notification" ng-if="ticketDetails[0].status!='Closed'">Open
                         Tickets
                     </h5>
+
                     <h5 class="d-inline cursor-point" ui-sref="ticketclose-notification" ng-if="ticketDetails[0].status=='Closed'">Closed
                         Tickets
                     </h5>
@@ -315,10 +316,52 @@
                                 <input type="file" name="pic" accept="" class="custom-file">
                             </div> -->
                             <form ng-submit="addComment(chatData)">
-                                <input type="text" class="form-control message mt-5" placeholder="Type your message ... "
-                                    ng-model="chatData.comment" required>
+                                <input ng-if="!ticketDetails1.feedbackStatus" type="text" class="form-control message mt-5"
+                                    placeholder="Type your message ... " ng-model="chatData.comment" required>
+                                <br>
+                                <div ng-if="ticketDetails1.feedbackStatus">
+                                    <h6 class="fontRobotoBold blue-color ">FEEDBACK</h6>
+                                    <br>
+                                    <div class="font14 font-color my-2 ">Describe your experience with us</div>
+                                    <textarea rows="5 " name="feedback " class="form-control" ng-model="chatData.comment"
+                                        required></textarea>
+                                    <button class="mt-3 send-btn ">
+                                        <span class="close-icon ">
+                                            <i class="fas fa-times "></i>
+                                        </span>Send</button>
+                                </div>
+
                             </form>
                         </div>
+                        <!-- <br><br>
+                        <h6 class="fontRobotoBold blue-color ">FEEDBACK</h6>
+                        <br> -->
+                        <!-- <div class="font14 font-color mb-2 ">How would you rate your experience on scale of 1
+                                to 5 stars
+                                based on the following parameters?</div>
+                            <div class="d-flex font14 fontRobotoRegular font-color my-2 ">
+                                <div class="mr-3">
+                                    <span class="mr-2">Ease </span>
+                                    <span class="rates" uib-rating ng-model="1" max="5" on-hover="hoveringOver(value)"
+                                        titles="['one','two','three']" aria-labelledby="default-rating"></span>
+                                </div>
+                                <div class="mr-3">
+                                    <span class="mr-2 ">Interaction </span>
+                                    <span class="rates" uib-rating ng-model="3" max="5" on-hover="hoveringOver(value) "
+                                        titles="[ 'one','two','three'] " aria-labelledby="default-rating"></span>
+                                </div>
+                                <div class="mr-3">
+                                    <span class="mr-2 ">Resolution </span>
+                                    <span class="rates" uib-rating ng-model="2" max="5" on-hover="hoveringOver(value) "
+                                        titles="[ 'one','two','three'] " aria-labelledby="default-rating"></span>
+                                </div>
+                            </div> -->
+                        <!-- <div class="font14 font-color my-2 ">Describe your experience with us</div>
+                        <textarea rows="5 " name="feedback " class="form-control" ng-model="chatData.comment" required></textarea>
+                        <button class="mt-3 send-btn ">
+                            <span class="close-icon ">
+                                <i class="fas fa-times "></i>
+                            </span>Send</button> -->
                     </div>
                     <!-- <div class="text-center pb-4 border-dashed-bottom ">Ticket Closed on 15/2/2018</div> -->
                 </div>
