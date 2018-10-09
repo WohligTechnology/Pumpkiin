@@ -59,11 +59,24 @@ $link-hover-decoration: underline !default;
 // Fonts
 //
 // Font, line-height, and color for body text, headings, and more.
-$font-family-sans-serif: -apple-system, system-ui, BlinkMacSystemFont,
-  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
-$font-family-serif: Georgia, "Times New Roman", Times, serif !default;
-$font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono",
-  "Courier New", monospace !default;
+$font-family-sans-serif: -apple-system,
+system-ui,
+BlinkMacSystemFont,
+"Segoe UI",
+Roboto,
+"Helvetica Neue",
+Arial,
+sans-serif !default;
+$font-family-serif: Georgia,
+"Times New Roman",
+Times,
+serif !default;
+$font-family-monospace: Menlo,
+Monaco,
+Consolas,
+"Liberation Mono",
+"Courier New",
+monospace !default;
 $font-family-base: $font-family-sans-serif !default;
 $header-text: 0.9375rem !default; //added 15px for header
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
@@ -106,7 +119,8 @@ $btn-padding-x: 1rem !default;
 $btn-padding-y: 0.5rem !default;
 $btn-line-height: 1.25 !default;
 $btn-font-weight: $font-weight-normal !default;
-$btn-box-shadow: inset 0 1px 0 rgba($white, 0.15), 0 1px 1px rgba($black, 0.075) !default;
+$btn-box-shadow: inset 0 1px 0 rgba($white, 0.15),
+0 1px 1px rgba($black, 0.075) !default;
 $btn-focus-box-shadow: 0 0 0 2px rgba($brand-primary, 0.25) !default;
 $btn-active-box-shadow: inset 0 3px 5px rgba($black, 0.125) !default;
 // Forms
@@ -128,7 +142,6 @@ $dropdown-box-shadow: 0 0.5rem 1rem rgba($black, 0.175) !default;
 // @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../../bower_components/bootstrap/scss/bootstrap";
 @import "other/font-fix";
-
 @font-face {
   font-family: "Roboto-Regular";
   src: url("../fonts/Roboto-Regular.ttf");
@@ -206,14 +219,12 @@ footer {
   p {
     margin: 0;
   }
-
   .up-arrow {
     border: 0;
     bottom: 8px;
     font-size: 30px;
     padding: 5px 0;
     cursor: pointer;
-
     svg {
       @extend .rotate-180;
     }
@@ -224,22 +235,18 @@ footer {
   left: 2%;
   bottom: 50px;
   width: 60px;
-
   .displaydefault {
     display: block;
   }
-
   .displayclick {
     display: none;
   }
-
   &:hover,
   &:active,
   &:focus {
     .displaydefault {
       display: none;
     }
-
     .displayclick {
       display: block;
     }
@@ -258,9 +265,9 @@ footer {
 //end of footer
 //bootstrap forms
 .input-lg,
-.input-group-lg > .form-control,
-.input-group-lg > .input-group-addon,
-.input-group-lg > .input-group-btn > .btn,
+.input-group-lg>.form-control,
+.input-group-lg>.input-group-addon,
+.input-group-lg>.input-group-btn>.btn,
 .btn,
 .form-control {
   border-radius: 0;
@@ -279,11 +286,9 @@ footer {
 
 .form-invalid {
   color: $brand-danger;
-
   .form-control {
     border-color: $brand-danger;
     color: $brand-danger;
-
     &::-webkit-input-placeholder {
       color: $brand-danger;
     }
@@ -310,11 +315,9 @@ footer {
   a {
     height: auto;
   }
-
   .flex-prev {
     left: 10px !important;
   }
-
   .flex-next {
     right: 10px !important;
   }
@@ -371,7 +374,6 @@ header {
     border: 1px solid #dee2e6;
     border-radius: 0.25rem;
     position: relative;
-
     .img-delete {
       position: absolute;
       top: -12px;
@@ -383,7 +385,6 @@ header {
       cursor: pointer;
     }
   }
-
   .img-thumbnail {
     border: 0;
   }
@@ -402,7 +403,6 @@ header {
 
 .header-text {
   font-size: $header-text;
-
   a {
     text-decoration: none;
     color: #66686e;
@@ -432,16 +432,13 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 100%;
     border-width: 1px;
     border: solid 1px #ced4da;
-
     &:focus {
       outline: none;
     }
   }
-
   input[readonly="readonly"] {
     border: 0px;
   }
-
   input[disabled] {
     background: none;
     border: none;
@@ -589,6 +586,11 @@ input[type="number"]::-webkit-outer-spin-button {
   letter-spacing: 1px;
 }
 
+.show-full-image {
+  height: 65px;
+  overflow: hidden;
+}
+
 .button {
   border: solid 1px transparent;
   border-radius: 20px;
@@ -606,7 +608,6 @@ fieldset:disabled {
 .orange-btn {
   background-color: #ffa345;
   border: solid 1px #ffa345;
-
   &:hover {
     color: #ffa345 !important;
     border: solid 1px #ffa345;
@@ -617,7 +618,6 @@ fieldset:disabled {
 
 .green-btn {
   background-color: $green;
-
   &:hover {
     color: $green !important;
     border: solid 1px $green;
@@ -638,7 +638,6 @@ fieldset:disabled {
   position: relative;
   text-align: center;
   cursor: pointer;
-
   .social_icon {
     text-align: center;
     border-radius: 50%;
@@ -648,7 +647,6 @@ fieldset:disabled {
     left: -2px;
     top: -1px;
   }
-
   .social-text {
     padding: 8px 10px;
     color: white;
@@ -698,70 +696,58 @@ fieldset:disabled {
 //scss for home page
 .home-section {
   height: 93vh;
-
   .img-section {
     width: 62vh;
   }
-
   .home-section-content {
     font-size: 40px;
     font-family: Roboto-Bold;
-
     .select-box {
       position: relative;
       font-size: 40px;
       line-height: 1;
       display: inline-block;
-
       .ui-select-icon {
         position: absolute;
         right: 5px;
         bottom: 0px;
       }
-
       ::-webkit-input-placeholder {
         /* Chrome/Opera/Safari */
         color: white;
         font-size: 40px;
         line-height: 1;
       }
-
       ::-moz-placeholder {
         /* Firefox 19+ */
         color: white;
         font-size: 40px;
         line-height: 1;
       }
-
       :-ms-input-placeholder {
         /* IE 10+ */
         color: white;
         font-size: 40px;
         line-height: 1;
       }
-
       :-moz-placeholder {
         /* Firefox 18- */
         color: white;
         font-size: 40px;
         line-height: 1;
       }
-
       input:focus,
       input:active {
         color: white;
       }
-
       .dropdown-toggle {
         border-bottom: solid 2px white;
-
         &:after {
           background-color: transparent;
           margin-left: 0.55em;
           border: 0; // border-bottom: solid 2px white;
         }
       }
-
       .dropdown-menu {
         transform: rotate(180deg) !important;
         top: 50px !important;
@@ -769,17 +755,14 @@ fieldset:disabled {
         background: #142c5b;
         color: white;
         border: 0;
-
         a {
           transform: rotate(180deg);
-
           &:hover {
             background-color: white;
             color: #142c5b;
           }
         }
       }
-
       .dropdown-item:hover,
       .dropdown-item:focus {
         background: transparent;
@@ -792,18 +775,17 @@ fieldset:disabled {
   background-color: transparent !important;
 }
 
-.selectize-control > .selectize-dropdown {
+.selectize-control>.selectize-dropdown {
   background: transparent !important;
   color: white;
 }
 
-.selectize-control.single > .selectize-input > input {
+.selectize-control.single>.selectize-input>input {
   color: white;
   border-width: 1px;
   border-color: #ced4da;
   border-top: solid 1px #ced4da;
   border-left: solid 1px #ced4da;
-
   &::-webkit-input-placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #9ba1a6;
@@ -811,12 +793,10 @@ fieldset:disabled {
     opacity: 1;
     /* Firefox */
   }
-
   :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
     color: #9ba1a6;
   }
-
   ::-ms-input-placeholder {
     /* Microsoft Edge */
     color: #9ba1a6;
@@ -835,12 +815,10 @@ fieldset:disabled {
     opacity: 1;
     /* Firefox */
   }
-
   :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
     color: #9ba1a6;
   }
-
   ::-ms-input-placeholder {
     /* Microsoft Edge */
     color: #9ba1a6;
@@ -853,22 +831,18 @@ fieldset:disabled {
   background-repeat: no-repeat;
   background-position: center center;
   height: 100vh;
-
   .about-pumpkin {
     padding: 200px 0;
-
     .about-content {
       width: 50%;
       margin: 0 auto;
       font-family: Roboto-Light;
-
       a {
         text-decoration: none;
         color: #333;
       }
     }
   }
-
   .heading-fontsize {
     font-size: 1.3em;
   }
@@ -878,18 +852,15 @@ fieldset:disabled {
   @extend .fontRobotoRegular;
   box-shadow: 0 -6px 0 #fff, 0 1px 6px rgba(0, 0, 0, 0.35);
   min-height: 107px;
-
   .customer-care-img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-
     img {
       width: 80px;
       border-radius: 50%;
     }
   }
-
   .media-body {
     p {
       display: -webkit-box;
@@ -909,11 +880,9 @@ fieldset:disabled {
 
 .pumpkin-plans {
   background-color: #f9f9f9;
-
   .plans-list {
     min-height: 100px;
   }
-
   .card-image {
     height: 100px;
     max-height: 100px;
@@ -922,7 +891,6 @@ fieldset:disabled {
 
 .card-home {
   transition: transform 1s;
-
   &:hover {
     -ms-transform: scale(1.1);
     /* IE 9 */
@@ -940,16 +908,13 @@ fieldset:disabled {
   color: #222129;
   @extend .fontRobotoLight;
   font-size: 14px;
-
   li {
     cursor: pointer;
-
     &:after {
       content: "|";
       padding-left: 15px;
     }
   }
-
   li:last-child {
     &:after {
       display: none;
@@ -961,24 +926,20 @@ fieldset:disabled {
   position: relative;
   width: 800px;
   margin: 0 auto;
-
   .swiper-button-prev,
   .swiper-button-next {
     height: 20px;
     width: 50px;
     margin-top: -15px;
-
     &:focus {
       outline: none;
     }
   }
-
   .swiper-button-prev,
   .swiper-container-rtl .swiper-button-next {
     background-image: url("../img/left-arrow.png");
     left: -45px;
   }
-
   .swiper-button-next,
   .swiper-container-rtl .swiper-button-prev {
     background-image: url("../img/right-arrow.png");
@@ -1034,7 +995,6 @@ fieldset:disabled {
   background-color: #f6a244;
   border: solid 5px #ecf0f2;
   border-radius: 50%;
-
   .fa-sort-down {
     color: white;
     vertical-align: 0;
@@ -1054,7 +1014,6 @@ fieldset:disabled {
 .snooze-color {
   background: #142c5c;
   border: 1px solid #142c5c;
-
   &:hover {
     color: #142c5c !important;
     border: 1px solid #142c5c;
@@ -1066,7 +1025,6 @@ fieldset:disabled {
 .completed-color {
   background: #14c177;
   border: 1px solid #14c177;
-
   &:hover {
     color: #14c177 !important;
     border: 1px solid #14c177;
@@ -1078,7 +1036,6 @@ fieldset:disabled {
 .delete-btn {
   background: #d9534f;
   border: 1px solid #d9534f;
-
   &:hover {
     background: white;
     color: #d9534f !important;
@@ -1093,7 +1050,6 @@ fieldset:disabled {
     @extend .text-white;
     @extend .rounded;
   }
-
   .btn {
     padding: 0.2rem 0.3rem !important;
   }
@@ -1111,15 +1067,12 @@ fieldset:disabled {
 .privacy,
 .terms {
   @extend .font14;
-
   h5 {
     font-family: Roboto-Bold;
   }
-
   p {
     text-align: justify;
   }
-
   a {
     text-decoration: none;
     color: red;
@@ -1131,7 +1084,6 @@ fieldset:disabled {
   background-color: white !important;
   border: solid 1px #142c5b;
   transition: ease all 500ms;
-
   &:after {
     content: url("../img/bluetick.png"); // background: url("img/bluetick.png");
     background-repeat: no-repeat;
@@ -1164,7 +1116,6 @@ fieldset:disabled {
 //         display: none;
 //     }
 // }
-
 .rates {
   span:focus {
     outline: none;
@@ -1179,7 +1130,6 @@ fieldset:disabled {
 }
 
 //map
-
 .pac-container {
   z-index: 1051 !important;
 }
