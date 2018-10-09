@@ -16,15 +16,13 @@ var schema = new Schema({
   purchaseDate: Date,
   purchasePrice: Number,
   purchaseProof: [String],
-  relatedUser: [
-    {
-      relationType: String,
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-      }
+  relatedUser: [{
+    relationType: String,
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
     }
-  ],
+  }],
 
   warrantyPeriod: String,
   warrantyExpDate: Date,
@@ -42,20 +40,16 @@ var schema = new Schema({
     default: "Pending"
   },
   productImages: [String],
-  localSupport: [
-    {
-      name: String,
-      contact: Date,
-      email: String
-    }
-  ],
+  localSupport: [{
+    name: String,
+    contact: Date,
+    email: String
+  }],
   warrentyStatus: String,
-  document: [
-    {
-      name: String,
-      doc: String
-    }
-  ],
+  document: [{
+    name: String,
+    doc: String
+  }],
   invoiceImage: String,
   tags: String,
   type: {
@@ -113,10 +107,10 @@ var exports = _.cloneDeep(
   )
 );
 var model = {
-  saveProduct: function(data, callback) {
+  saveProduct: function (data, callback) {
     console.log("----------------------------");
     // console.log(data);
-    Product.saveData(data, function(err, found) {
+    Product.saveData(data, function (err, found) {
       if (err || _.isEmpty(found)) {
         callback(err, null);
       } else if (data.user.name) {
@@ -152,7 +146,7 @@ var model = {
         emailData.filename = "update-product.ejs";
         emailData.subject = "Updated Product details";
         console.log("emailData.relations--------------", emailData.relations);
-        Config.email(emailData, function(err, emailRespo) {
+        Config.email(emailData, function (err, emailRespo) {
           callback(null, emailRespo);
         });
       } else {
@@ -161,13 +155,12 @@ var model = {
     });
   },
 
-  getAllProducts: function(data, callback) {
-    Product.find(
-      {
+  getAllProducts: function (data, callback) {
+    Product.find({
         status: "Confirmed",
         user: data.user
       },
-      function(err, found) {
+      function (err, found) {
         if (err || _.isEmpty(found)) {
           callback(err, null);
         } else {
@@ -177,24 +170,20 @@ var model = {
     );
   },
 
-  removeRelation: function(data, callback) {
-    Product.find(
-      {
+  removeRelation: function (data, callback) {
+    Product.find({
         user: data.user
       },
-      function(err, found) {
+      function (err, found) {
         if (err || _.isEmpty(found)) {
           callback(err, null);
         } else {
-          _.each(found, function(x) {
-            Product.findOneAndUpdate(
-              {
-                _id: x._id
-              },
-              {
-                relatedUser: data.relatedUsers
-              }
-            ).exec(function(err, found1) {
+          _.each(found, function (x) {
+            Product.findOneAndUpdate({
+              _id: x._id
+            }, {
+              relatedUser: data.relatedUsers
+            }).exec(function (err, found1) {
               // callback(null, found1)
             });
           });
@@ -205,16 +194,15 @@ var model = {
   },
 
   //mailer
-  saveFinalProduct: function(data, callback) {
+  saveFinalProduct: function (data, callback) {
     var productdata = {};
     async.waterfall(
       [
-        function(callback) {
-          Product.findOne(
-            {
+        function (callback) {
+          Product.findOne({
               _id: data._id
             },
-            function(err, found) {
+            function (err, found) {
               if (err || _.isEmpty(found)) {
                 callback(err, null);
               } else {
@@ -223,14 +211,14 @@ var model = {
             }
           );
         },
-        function(productData, callback) {
+        function (productData, callback) {
           console.log("productData", productData);
           productdata = productData;
           var accessoriesToSave = {};
           accessoriesToSave._id = data._id;
           accessoriesToSave.productAccessory = data.productAccessory;
           accessoriesToSave.status = "Confirmed";
-          Product.saveData(accessoriesToSave, function(err, found) {
+          Product.saveData(accessoriesToSave, function (err, found) {
             if (err || _.isEmpty(found)) {
               callback(err, null);
             } else {
@@ -238,7 +226,7 @@ var model = {
             }
           });
         },
-        function(finalData, callback) {
+        function (finalData, callback) {
           var emailData = {};
           var time = new Date().getHours();
           var greeting;
@@ -256,7 +244,7 @@ var model = {
           emailData.productName = productdata.productName;
           emailData.filename = "product-registration.ejs";
           emailData.subject = "New Product Registered";
-          Config.email(emailData, function(err, emailRespo) {
+          Config.email(emailData, function (err, emailRespo) {
             callback(null, emailRespo);
           });
         }
@@ -316,12 +304,11 @@ var model = {
   //         }
   //     });
   // },
-  getSearchProductAndBrand: function(data, callback) {
+  getSearchProductAndBrand: function (data, callback) {
     Product.find({
       user: data.user,
       status: "Confirmed",
-      $or: [
-        {
+      $or: [{
           productName: new RegExp(data.keyword, "i")
         },
         {
@@ -441,36 +428,36 @@ var model = {
             .page(options, callback);
     }, */
 
-  sortFunction: function(data, callback) {
+  sortFunction: function (data, callback) {
     // console.log("sortFunction", data);
     var name = data.name;
     // console.log("name ", name);
     Product.find({
-      user: data.user,
-      status: "Confirmed"
-    })
+        user: data.user,
+        status: "Confirmed"
+      })
       .sort({
         [name]: 1
       })
       .exec(callback);
   },
 
-  sortByProducts: function(data, callback) {
+  sortByProducts: function (data, callback) {
     Product.find({
-      status: "Confirmed",
-      user: data.user
-    })
+        status: "Confirmed",
+        user: data.user
+      })
       .sort({
         productName: 1
       })
       .exec(callback);
   },
 
-  excelProductList: function(data, callback) {
+  excelProductList: function (data, callback) {
     Product.find({
-      status: "Confirmed",
-      user: data
-    })
+        status: "Confirmed",
+        user: data
+      })
       .deepPopulate(
         "user user.relations.user"
         //       {
@@ -479,7 +466,7 @@ var model = {
         //     select: "_id name relations relations.user"
         //   }
       )
-      .exec(function(err, found) {
+      .exec(function (err, found) {
         if (err || _.isEmpty(found)) {
           callback(err, null);
         } else {
@@ -488,11 +475,11 @@ var model = {
       });
   },
 
-  generateExcelforProduct: function(match, callback) {
+  generateExcelforProduct: function (match, callback) {
     // console.log("match", match[0].user);
     async.concatSeries(
       match,
-      function(mainData, callback) {
+      function (mainData, callback) {
         var obj = {};
         obj["Product Name"] = mainData.productName;
         obj["Brand Name"] = mainData.brand;
@@ -508,7 +495,7 @@ var model = {
         // obj["Relations"] = mainData.user.relations;
 
         obj["Relations"] = "";
-        _.forEach(mainData.user.relations, function(relation, index) {
+        _.forEach(mainData.user.relations, function (relation, index) {
           obj["Relations"] +=
             relation.user.name +
             (mainData.user.relations.length - 1 > index ? "," : "");
@@ -516,61 +503,25 @@ var model = {
 
         callback(null, obj);
       },
-      function(err, singleData) {
+      function (err, singleData) {
         callback(null, singleData);
       }
     );
   },
 
-  ticketNotGenerated: function(data, callback) {
+  ticketNotGenerated: function (data, callback) {
     Product.find({
-      user: data.user,
-      ticketGenerated: false,
-      status: "Confirmed"
-    })
+        user: data.user,
+        ticketGenerated: false,
+        status: "Confirmed"
+      })
       .sort({
         productName: 1
       })
       .exec(callback);
   },
 
-  searchProductWithInvoice: function(data, callback) {
-    // console.log("-----------", data);
-    var page = 1;
-    // var Model = this;
-    // var Const = this(data);
-    var maxRow = 10;
-    if (data.page) {
-      page = data.page;
-    }
-    var field = data.field;
-
-    var options = {
-      field: data.field,
-      filters: {
-        keyword: {
-          fields: ["ticketNumber", "status"],
-          term: data.keyword
-        }
-      },
-      sort: {
-        asc: ""
-      },
-      start: (page - 1) * maxRow,
-      count: maxRow
-    };
-
-    Product.find({
-      status: "Pending",
-      productInvoicePR: {
-        $exists: true
-      }
-    })
-      .order(options)
-      .keyword(options)
-      .page(options, callback);
-  },
-  searchConfirmedProducts: function(data, callback) {
+  searchProductWithInvoice: function (data, callback) {
     // console.log("-----------", data);
     var page = 1;
     // var Model = this;
@@ -597,8 +548,48 @@ var model = {
     };
 
     Product.find({
-      status: "Confirmed"
-    })
+        status: "Pending",
+        productInvoicePR: {
+          $exists: true
+        }
+      }).sort({
+        createdAt: -1
+      })
+      .order(options)
+      .keyword(options)
+      .page(options, callback);
+  },
+  searchConfirmedProducts: function (data, callback) {
+    // console.log("-----------", data);
+    var page = 1;
+    // var Model = this;
+    // var Const = this(data);
+    var maxRow = 10;
+    if (data.page) {
+      page = data.page;
+    }
+    var field = data.field;
+
+    var options = {
+      field: data.field,
+      filters: {
+        keyword: {
+          fields: ["productName"],
+          term: data.keyword
+        }
+      },
+      sort: {
+        asc: ""
+      },
+      start: (page - 1) * maxRow,
+      count: maxRow
+    };
+
+    Product.find({
+        status: "Confirmed"
+      }).sort({
+        createdAt: -1
+      })
       .order(options)
       .keyword(options)
       .page(options, callback);
