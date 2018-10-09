@@ -1957,6 +1957,12 @@ svg {
     }
 }
 
+.show-full-image {
+    height: 65px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
 .border-rounded {
     border-radius: 10px;
 }
