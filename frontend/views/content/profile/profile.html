@@ -120,13 +120,13 @@
                     <div class="d-flex fontRobotoLight font-color font12 ">
                         <div class="p-2 background-gray mr-2 text-capitalize address-box " ng-repeat="addressData in userDataForProfile.address track by $index">
                             <div class="font14 dark-font-color fontRobotoRegular ">{{addressData.title}}
-
                                 <span class="float-right p3  cursor-point" ng-click="removeAddress($index) ">
                                     <i class="fas fa-times fa-sm "></i>
                                 </span>
                                 <span class=" float-right p3 cursor-point" ng-click="editressModalOpen(addressData,$index); ">
                                     <i class="fas fa-pencil-alt fa-xs "></i>
                                 </span>
+                                <p>{{addressData.address}}</p>
                             </div>
                             <div>{{addressData.addressLine}}</div>
                             <div>{{addressData.state.region}}</div>
