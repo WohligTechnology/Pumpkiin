@@ -921,7 +921,9 @@ var model = {
       new: true
     }).exec(callback);
   },
+
   sendIntroEmail: function (data, callback, sendVerification) {
+    global.red(data);
     var emailData = {};
     var time = new Date().getHours();
     var greeting;
@@ -944,7 +946,12 @@ var model = {
 
     emailData.subject = "Welcome to Pumpkiin";
     emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
-    Config.email(emailData, callback);
+    Config.email(emailData, function (err, resultData) {
+      console.log("1111111111111111111111111111111")
+      console.log(resultData)
+      callback(null, resultData);
+    });
+    console.log("+++++++++++++++++++++++++++++++++", emailData, '++++++++++++++++++++++++', callback)
   },
 
   addressEditEmail: function (data, callback) {

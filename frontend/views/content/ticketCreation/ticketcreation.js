@@ -22,6 +22,7 @@ myApp.controller("TicketCreationCtrl", function (
   $scope.max = 5;
   $scope.isReadonly = false;
   $scope.jstrgValue = $.jStorage.get("userData");
+  $scope.showGreenImage = false;
   // $scope.ticketDetails = [];
   // $scope.ticketDetails[0] = {
   //   status: "Open"
@@ -55,7 +56,6 @@ myApp.controller("TicketCreationCtrl", function (
     });
 
     reminderService.totalNumberOfCompletedReminders(function (data) {
-      $scope.showGreenImage = true;
       $scope.totalCompletedReminder = data;
       // console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
     });
