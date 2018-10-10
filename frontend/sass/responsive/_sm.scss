@@ -119,7 +119,7 @@
         top: 3% !important;
     }
     .btn-logout {
-        height: 333px !important;
+        height: 250px !important;
     }
     .closedticketcreation {
         padding: 0.5rem !important;
@@ -167,6 +167,11 @@
     .timeline {
         .circle4 {
             left: 94.5%;
+        }
+    }
+    .attachment {
+        span {
+            font-size: 12px;
         }
     }
 }
