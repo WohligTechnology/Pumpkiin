@@ -572,15 +572,26 @@ var model = {
     }, {
       new: true
     }).exec(function (err, data) {
-      console.log("data111111", data);
       if (err || _.isEmpty(data)) {
-        console.log("err------", err);
         callback(err, "Error");
       } else {
-        console.log("data", data);
         callback(null, data);
       }
     });
+  },
+  getallOpenTicktes: function (data, callback) {
+    this.find({
+        user: data.user,
+        status: "Active"
+      }).deepPopulate("product product.user")
+      .exec(callback);
+  },
+  getallClosedTicktes: function (data, callback) {
+    this.find({
+        user: data.user,
+        status: "Active"
+      }).deepPopulate("product product.user")
+      .exec(callback);
   },
   searchOnListPage: function (data, callback) {
     if (data.page == undefined) {

@@ -9,7 +9,8 @@ myApp.controller("TicketopenNotificationCtrl", function (
   $uibModal,
   $stateParams,
   $state,
-  ticketService
+  ticketService,
+  $window
 ) {
   $scope.template = TemplateService.getHTML(
     "content/ticketopen-notification/ticketopen-notification.html"
@@ -24,10 +25,10 @@ myApp.controller("TicketopenNotificationCtrl", function (
   $scope.jstrgValue = $.jStorage.get('userData');
   $scope.pageNumber = 1;
   $scope.showGreenImage = false;
+  var windowscreen = $window;
   // $scope.maxRow = 5;
 
   $scope.changePage = function (pageno) {
-    console.log("hey");
     $scope.currentPage = pageno;
 
     var start = (pageno - 1) * $scope.maxRow;
@@ -76,10 +77,8 @@ myApp.controller("TicketopenNotificationCtrl", function (
   };
 
   $scope.submitDocuments = function (docs) {
-    // console.log("*************", docs);
     docs.status = "Pending";
     NavigationService.apiCallWithData("Product/save", docs, function (res) {
-      // console.log("inside submit documents api", res);
       $scope.pumpRegistration.close();
       $scope.thanks = $uibModal.open({
         animation: true,
@@ -131,22 +130,14 @@ myApp.controller("TicketopenNotificationCtrl", function (
 
     reminderService.totalNumberOfReminders(function (data) {
       $scope.totalReminders = data;
-      console.log("$scope.totalReminders", $scope.totalReminders);
     });
     reminderService.totalNumberOfCompletedReminders(function (data) {
       $scope.totalCompletedReminder = data;
-      console.log(
-        "res---totalCompletedReminder--",
-        $scope.totalCompletedReminder
-      );
+
     });
 
     reminderService.totalNumberOfPendingReminders(function (data) {
       $scope.totalPendingReminders = data;
-      console.log(
-        "$scope.totalPendingReminders--",
-        $scope.totalPendingReminders
-      );
     });
 
     $scope.completedReminders = function (data) {
@@ -174,9 +165,7 @@ myApp.controller("TicketopenNotificationCtrl", function (
   $scope.callTickets = function () {
     ticketService.totalOpenTickets(function (data) {
       // $scope.ticketDetails = data;
-      console.log("----109----", data.results);
-      $scope.ticketDetails = _.slice(data.results, 0, 5);
-      console.log(" 1 ", $scope.ticketDetails);
+      // $scope.ticketDetails = _.slice(data.results, 0, 5);
     });
 
     // ticketService.totalClosedTickets(function (data) {
@@ -185,7 +174,6 @@ myApp.controller("TicketopenNotificationCtrl", function (
 
     ticketService.totalNumberOfTickets(function (data) {
       $scope.totalNumberOfTickets = data;
-      console.log("res--totalNumberOfTickets---", data);
     });
 
     ticketService.totalNumberOfOpenTickets(function (data) {
@@ -198,42 +186,55 @@ myApp.controller("TicketopenNotificationCtrl", function (
       // console.log("res---totalNumberOfClosedTickets--", data);
     });
 
-    $scope.getClosedTickets = function () {
-      ticketService.totalClosedTickets(function (data) {
-        // $scope.ticketDetails = data;
-        $scope.ticketDetails = _.slice(data, 0, 5);
-        console.log(" 2 ", $scope.ticketDetails);
-      });
-    };
 
-    $scope.getOpenTickets = function () {
-      ticketService.totalOpenTickets(function (data) {
-        // $scope.ticketDetails = data;
-        // console.log("----109----", data.results);
-        $scope.ticketDetails = _.slice(data.results, 0, 5);
-      });
-    };
+  };
+  $scope.callTickets();
+
+  $scope.getClosedTickets = function () {
+    ticketService.totalClosedTickets(function (data) {
+      console.log("dtttttt", data)
+
+      if (windowscreen.screen.width < 768) {
+        $scope.ticketDetails = data;
+        console.log(" if responsive ", $scope.ticketDetails);
+      } else {
+        $scope.ticketDetails = _.slice(data, 0, 5);
+        console.log(" if desktop ", $scope.ticketDetails);
+      }
+    });
   };
 
-  $scope.callTickets();
+  $scope.getOpenTickets = function () {
+    ticketService.totalOpenTickets(function (data) {
+      if (windowscreen.screen.width < 768) {
+        $scope.ticketDetails = data;
+        console.log(" if responsive ", $scope.ticketDetails);
+      } else {
+        $scope.ticketDetails = _.slice(data, 0, 5);
+        console.log(" if desktop ", $scope.ticketDetails);
+      }
+    });
+  };
+  $scope.getClosedTickets();
+  $scope.getOpenTickets();
 
   $scope.getTickets = function () {
     // if (!pageData) {
     //     pageData = undefined;
     // }
-    var pageData = $scope.pageNumber;
-    ticketService.totalOpenTickets1(pageData, function (data) {
-      console.log("ticketData", data);
-      $scope.ticketData = data.results;
-      $scope.ticketDetails = _.slice(data.results, 0, 5);
-      $scope.totalitems = data.total;
-      $scope.maxRow = data.options.count;
-    });
+    if (windowscreen.screen.width > 768) {
+      var pageData = $scope.pageNumber;
+      ticketService.totalOpenTickets1(pageData, function (data) {
+        $scope.ticketData = data.results;
+        $scope.ticketDetails = _.slice(data.results, 0, 5);
+        $scope.totalitems = data.total;
+        $scope.maxRow = data.options.count;
+      });
+    }
   };
   $scope.getTickets();
 
   $scope.openmodalOpen = function (tickets, index) {
-    console.log("tickets------------------", tickets);
     $scope.singleTicket = tickets;
     $scope.openTicket = $uibModal.open({
       animation: true,
@@ -247,13 +248,11 @@ myApp.controller("TicketopenNotificationCtrl", function (
       changeisRead.id = tickets._id;
       changeisRead.isRead = true;
 
-      console.log("changeisRead", changeisRead);
 
       NavigationService.apiCallWithData(
         "Ticket/changeIsReadStatus",
         changeisRead,
         function (data) {
-          console.log("changeIsReadStatus", data);
           if (data.value) {
             // if (modal) {
             $scope.callTickets();
@@ -292,7 +291,6 @@ myApp.controller("TicketopenNotificationCtrl", function (
   };
 
   $scope.notificationmodalOpen = function (notification, index, modal) {
-    console.log("notification", notification);
     if (modal) {
       $scope.singleNotification = notification;
       $scope.accordianNotification = $uibModal.open({

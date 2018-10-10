@@ -51,6 +51,22 @@ myApp.controller("headerCtrl", function (
     });
   };
 
+  $scope.chnageStatus = function (data) {
+    console.log("data", data);
+    var changeStatusData = {};
+    changeStatusData.status = "Completed";
+    changeStatusData._id = data;
+    NavigationService.apiCallWithData(
+      "Reminder/save",
+      changeStatusData,
+      function (res) {
+        if (res.value == true) {
+          $state.reload();
+        }
+      }
+    );
+  };
+
   $scope.searchForReminderData = function (data, data1) {
     var dataToSend = {};
     // if (data.length > 0) {
@@ -230,4 +246,16 @@ myApp.controller("headerCtrl", function (
   $scope.closeMenu = function () {
     $scope.showMenu = false;
   };
+
+
+  $scope.getUserData = function () {
+    var data = {};
+    data._id = $scope.userInfo._id;
+    NavigationService.apiCallWithData("User/getOne", data, function (response) {
+      if (response.value == true) {
+        $scope.userDataForProfile = response.data;
+      }
+    });
+  };
+  $scope.getUserData();
 });
