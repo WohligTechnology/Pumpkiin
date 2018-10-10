@@ -310,8 +310,10 @@ var model = {
         };
         modelUser.email = user.emails[0].value;
         modelUser.accessLevel = "User";
+        modelUser.verificationStatus = true;
         modelUser.googleAccessToken = user.googleAccessToken;
         modelUser.googleRefreshToken = user.googleRefreshToken;
+        console.log("SOCIAL LOGIN-->", modelUser);
         if (user.image && user.image.url) {
           modelUser.photo = user.image.url;
         }
@@ -366,8 +368,11 @@ var model = {
             socialProvider: user.provider
           }]
         };
+        modelUser.verificationStatus = true;
         modelUser.email = user.emails[0].value;
         modelUser.accessLevel = "User";
+        console.log("SOCIAL LOGIN-->", modelUser);
+
         if (user.photos && user.photos[0] && user.photos[0].value) {
           modelUser.photo = user.photos[0].value;
         }
