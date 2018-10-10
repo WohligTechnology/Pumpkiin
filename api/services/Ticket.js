@@ -194,7 +194,6 @@ var model = {
   },
 
   findClosedTicketOfUser: function (data, callback) {
-    console.log("--------", data);
     this.findOne({
         _id: data.ticketId,
         user: data.user
@@ -207,7 +206,6 @@ var model = {
     async.waterfall(
       [
         function (callback) {
-          console.log("-------------------------", data);
           Product.findOneAndUpdate({
             _id: data.product
           }, {
@@ -217,7 +215,7 @@ var model = {
           }).exec(callback);
         },
         function (ticketData, callback) {
-          console.log("----------", ticketData);
+          console.log("----------Manish Rocks>>>>>>>", ticketData.user);
           Ticket.TicketIdGenerate(function (err, data2) {
             data.ticketNumber = data2;
             console.log("data", data);

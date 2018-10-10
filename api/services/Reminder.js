@@ -254,15 +254,17 @@ var model = {
             // );
             // console.log("singelData", singelData);
 
-            var day = reminderDate.diff(currentDate, "days");
+            var day = reminderDate.diff(currentDate, "minutes");
+            // console.log("------------>>", day);
             var reminderTime = new moment(singelData.dateOfReminder).format(
               "HH:mm"
             );
             var currentTime = moment(new Date()).format("HH:mm");
-            if (day == 0 && currentTime == reminderTime) {
-              console.log("hey --");
+            console.log("------------>>", reminderTime, currentTime);
+            if (day == 24 && currentTime == reminderTime) {
+              // console.log("hey --");
             }
-            console.log("day-->", day, reminderTime, currentTime);
+            // console.log("day-->", day, reminderTime, currentTime);
             if (
               (singelData &&
                 singelData.user &&
