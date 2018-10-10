@@ -262,28 +262,15 @@ myApp.controller("ProfileCtrl", function (
     }
   };
 
-  // NavigationService.apiCallWithoutData("Ticket/getAllStatesOfIndia", function(
-  //   response
-  // ) {
-  //   console.log("response of State", response);
-  //   $scope.states = response.data;
-  // });
-
   $scope.trustAsHtml = function (value) {
     return $sce.trustAsHtml(value);
   };
 
-  // $scope.updateState = function(data) {
-  //   NavigationService.apiCallWithData("Ticket/getCity", data, function(
-  //     response
-  //   ) {
-  //     $scope.cities = response.data;
-  //     console.log("response of City", response);
-  //   });
-  // };
+
   $scope.placeChanged = function () {
     var place = this.getPlace();
     $scope.formattedAddress = place.formatted_address;
+    console.log("ABC-->", $scope.formattedAddress);
   };
 
   $scope.saveAddressData = function (data) {
@@ -298,7 +285,9 @@ myApp.controller("ProfileCtrl", function (
     }
     addData._id = $scope.jstrgValue._id;
     addData.address = add;
+
     console.log("add data >>>>>>>", add);
+    console.log("add data >>>>>>>", addData);
     NavigationService.apiCallWithData("user/save", addData, function (response) {
       var mailThisAddress = {};
       mailThisAddress.user = $scope.userDataForProfile.name;
