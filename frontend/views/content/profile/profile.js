@@ -274,9 +274,13 @@ myApp.controller("ProfileCtrl", function (
   };
 
   $scope.saveAddressData = function (data) {
-    console.log("-------------", data);
-    data.address = $scope.formattedAddress;
+    console.log("-------------", data, $scope.formattedAddress);
+    if (_.isEmpty(data.address)) {
+      delete data.address;
+    }
+    // data.address = $scope.formattedAddress;
     var addData = {};
+
     var add = $scope.userDataForProfile.address;
     if ($scope.addressIndex != -1) {
       add[$scope.addressIndex] = data;
