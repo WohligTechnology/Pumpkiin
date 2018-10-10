@@ -138,7 +138,6 @@ myApp.controller("headerCtrl", function (
   };
 
   $scope.saveReminder = function (data) {
-    // console.log("----------", data);
     data.user = $.jStorage.get("userData")._id;
     if (data._id) {
       data.status = "Snooze";
@@ -149,8 +148,11 @@ myApp.controller("headerCtrl", function (
     NavigationService.apiCallWithData("Reminder/save", $scope.data, function (
       res
     ) {
-      console.log("res.data", res.data);
-      toastr.success("Reminder Added Successfully");
+      if (data._id) {
+        toastr.success("Reminder Edited Successfully");
+      } else {
+        toastr.success("Reminder Added Successfully");
+      }
       $scope.addReminder.close();
       $state.reload();
     });

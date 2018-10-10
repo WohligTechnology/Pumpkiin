@@ -23,9 +23,9 @@ module.exports = mongoose.model("Config", schema);
 
 var models = {
   maxRow: 10,
-  getForeignKeys: function(schema) {
+  getForeignKeys: function (schema) {
     var arr = [];
-    _.each(schema.tree, function(n, name) {
+    _.each(schema.tree, function (n, name) {
       if (n.key) {
         arr.push({
           name: name,
@@ -36,25 +36,24 @@ var models = {
     });
     return arr;
   },
-  checkRestrictedDelete: function(Model, schema, data, callback) {
+  checkRestrictedDelete: function (Model, schema, data, callback) {
     var values = schema.tree;
     var arr = [];
     var ret = true;
-    _.each(values, function(n, key) {
+    _.each(values, function (n, key) {
       if (n.restrictedDelete) {
         arr.push(key);
       }
     });
 
-    Model.findOne(
-      {
+    Model.findOne({
         _id: data._id
       },
-      function(err, data2) {
+      function (err, data2) {
         if (err) {
           callback(err, null);
         } else if (data2) {
-          _.each(arr, function(n) {
+          _.each(arr, function (n) {
             if (data2[n].length !== 0) {
               ret = false;
             }
@@ -66,12 +65,11 @@ var models = {
       }
     );
   },
-  manageArrayObject: function(Model, id, data, key, action, callback) {
-    Model.findOne(
-      {
+  manageArrayObject: function (Model, id, data, key, action, callback) {
+    Model.findOne({
         _id: id
       },
-      function(err, data2) {
+      function (err, data2) {
         if (err) {
           callback(err, null);
         } else if (data2) {
@@ -81,8 +79,7 @@ var models = {
                 data2[key].push(data);
                 data2[key] = _.uniq(data2[key]);
                 data2.update(
-                  data2,
-                  {
+                  data2, {
                     w: 1
                   },
                   callback
@@ -91,12 +88,11 @@ var models = {
               break;
             case "delete":
               {
-                _.remove(data2[key], function(n) {
+                _.remove(data2[key], function (n) {
                   return n + "" == data + "";
                 });
                 data2.update(
-                  data2,
-                  {
+                  data2, {
                     w: 1
                   },
                   callback
@@ -111,7 +107,7 @@ var models = {
     );
   },
 
-  uploadFile: function(filename, callback) {
+  uploadFile: function (filename, callback) {
     var id = mongoose.Types.ObjectId();
     var extension = filename.split(".").pop();
     extension = extension.toLowerCase();
@@ -123,7 +119,7 @@ var models = {
     var writestream = gfs.createWriteStream({
       filename: newFilename
     });
-    writestream.on("finish", function() {
+    writestream.on("finish", function () {
       callback(null, {
         name: newFilename
       });
@@ -133,7 +129,7 @@ var models = {
     var imageStream = fs.createReadStream(filename);
 
     if (extension == "png" || extension == "jpg" || extension == "gif") {
-      Jimp.read(filename, function(err, image) {
+      Jimp.read(filename, function (err, image) {
         if (err) {
           callback(err, null);
         } else {
@@ -143,13 +139,13 @@ var models = {
           ) {
             image
               .scaleToFit(MaxImageSize, MaxImageSize)
-              .getBuffer(Jimp.AUTO, function(err, imageBuf) {
+              .getBuffer(Jimp.AUTO, function (err, imageBuf) {
                 var bufferStream = new stream.PassThrough();
                 bufferStream.end(imageBuf);
                 bufferStream.pipe(writestream);
               });
           } else {
-            image.getBuffer(Jimp.AUTO, function(err, imageBuf) {
+            image.getBuffer(Jimp.AUTO, function (err, imageBuf) {
               var bufferStream = new stream.PassThrough();
               bufferStream.end(imageBuf);
               bufferStream.pipe(writestream);
@@ -161,25 +157,25 @@ var models = {
       imageStream.pipe(writestream);
     }
   },
-  readAttachment: function(filename, callback) {
+  readAttachment: function (filename, callback) {
     console.log("filename", filename);
     var readstream = gfs.createReadStream({
       filename: filename
     });
-    readstream.on("error", function(err) {
+    readstream.on("error", function (err) {
       callback(err, false);
     });
     var buf;
     var bufs = [];
-    readstream.on("data", function(d) {
+    readstream.on("data", function (d) {
       bufs.push(d);
     });
-    readstream.on("end", function() {
+    readstream.on("end", function () {
       buf = Buffer.concat(bufs);
       callback(null, buf);
     });
   },
-  readUploaded: function(filename, width, height, style, res) {
+  readUploaded: function (filename, width, height, style, res) {
     res.set({
       "Cache-Control": "public, max-age=31557600",
       Expires: new Date(Date.now() + 345600000).toUTCString()
@@ -187,7 +183,7 @@ var models = {
     var readstream = gfs.createReadStream({
       filename: filename
     });
-    readstream.on("error", function(err) {
+    readstream.on("error", function (err) {
       res.json({
         value: false,
         error: err
@@ -199,10 +195,10 @@ var models = {
     var proceedI = 0;
     var wi;
     var he;
-    readstream.on("data", function(d) {
+    readstream.on("data", function (d) {
       bufs.push(d);
     });
-    readstream.on("end", function() {
+    readstream.on("end", function () {
       buf = Buffer.concat(bufs);
       proceed();
     });
@@ -210,7 +206,7 @@ var models = {
     function proceed() {
       proceedI++;
       if (proceedI === 2) {
-        Jimp.read(buf, function(err, image) {
+        Jimp.read(buf, function (err, image) {
           if (err) {
             res.callback(err, null);
           } else {
@@ -248,7 +244,7 @@ var models = {
       var readstream2 = gfs.createReadStream({
         filename: filename2
       });
-      readstream2.on("error", function(err) {
+      readstream2.on("error", function (err) {
         res.json({
           value: false,
           error: err
@@ -280,11 +276,10 @@ var models = {
         newName += "-" + 0;
       }
       newNameExtire = newName + "." + extension;
-      gfs.exist(
-        {
+      gfs.exist({
           filename: newNameExtire
         },
-        function(err, found) {
+        function (err, found) {
           if (err) {
             res.json({
               value: false,
@@ -305,47 +300,47 @@ var models = {
     //error handling, e.g. file does not exist
   },
 
-  import: function(name) {
+  import: function (name) {
     var jsonExcel = xlsx.parse(name);
     var retVal = [];
     var firstRow = _.slice(jsonExcel[0].data, 0, 1)[0];
     var excelDataToExport = _.slice(jsonExcel[0].data, 1);
     var dataObj = [];
-    _.each(excelDataToExport, function(val, key) {
+    _.each(excelDataToExport, function (val, key) {
       dataObj.push({});
-      _.each(val, function(value, key2) {
+      _.each(val, function (value, key2) {
         dataObj[key][firstRow[key2]] = value;
       });
     });
     return dataObj;
   },
-  importGS: function(filename, callback) {
+  importGS: function (filename, callback) {
     var readstream = gfs.createReadStream({
       filename: filename
     });
-    readstream.on("error", function(err) {
+    readstream.on("error", function (err) {
       res.json({
         value: false,
         error: err
       });
     });
     var buffers = [];
-    readstream.on("data", function(buffer) {
+    readstream.on("data", function (buffer) {
       buffers.push(buffer);
     });
-    readstream.on("end", function() {
+    readstream.on("end", function () {
       var buffer = Buffer.concat(buffers);
       callback(null, Config.import(buffer));
     });
   },
 
-  generateExcel: function(name, found, res) {
+  generateExcel: function (name, found, res) {
     // name = _.kebabCase(name);
     console.log(".9999999999", name, found);
     var excelData = [];
-    _.each(found, function(singleData) {
+    _.each(found, function (singleData) {
       var singleExcel = {};
-      _.each(singleData, function(n, key) {
+      _.each(singleData, function (n, key) {
         if (key != "__v" && key != "createdAt" && key != "updatedAt") {
           singleExcel[key] = n;
         }
@@ -356,11 +351,11 @@ var models = {
     var folder = "./.tmp/";
     var path = name + "-" + moment().format("MMM-DD-YYYY-hh-mm-ss-a") + ".xlsx";
     var finalPath = folder + path;
-    fs.writeFile(finalPath, xls, "binary", function(err) {
+    fs.writeFile(finalPath, xls, "binary", function (err) {
       if (err) {
         res.callback(err, null);
       } else {
-        fs.readFile(finalPath, function(err, excel) {
+        fs.readFile(finalPath, function (err, excel) {
           if (err) {
             res.callback(err, null);
           } else {
@@ -383,36 +378,34 @@ var models = {
       return undefined;
     }
   },
-  downloadFromUrl: function(url, callback) {
+  downloadFromUrl: function (url, callback) {
     var dest = "./.tmp/" + moment().valueOf() + "-" + _.last(url.split("/"));
     var file = fs.createWriteStream(dest);
     var request = http
-      .get(url, function(response) {
+      .get(url, function (response) {
         response.pipe(file);
-        file.on("finish", function() {
+        file.on("finish", function () {
           Config.uploadFile(dest, callback);
         });
       })
-      .on("error", function(err) {
+      .on("error", function (err) {
         fs.unlink(dest);
         callback(err);
       });
   },
 
   //sms
-  sendSms: function(data, callback) {
+  sendSms: function (data, callback) {
     if (data.mobile) {
-      request.post(
-        {
-          url:
-            "http://api.msg91.com/api/sendhttp.php?sender=MSGIND&route=4&mobiles=" +
+      request.post({
+          url: "http://api.msg91.com/api/sendhttp.php?sender=MSGIND&route=4&mobiles=" +
             data.mobile +
             "&authkey=" +
             global.smsApi +
             "&country=91&message=" +
             data.message
         },
-        function(err, http, body) {
+        function (err, http, body) {
           if (err) {
             console.log(
               "*************************************************sms gateway error***********************************************"
@@ -429,8 +422,7 @@ var models = {
         }
       );
     } else {
-      callback(
-        {
+      callback({
           message: "Mobile number not found"
         },
         null
@@ -439,22 +431,21 @@ var models = {
   },
   //sms end
 
-  email: function(data, callback) {
+  email: function (data, callback) {
     console.log("------------------------------------", data);
-    Password.find().exec(function(err, userdata) {
+    Password.find().exec(function (err, userdata) {
       if (err) {
-        console.log(err);
+        console.log("446------>", err);
         callback(err, null);
       } else if (userdata && userdata.length > 0) {
         if (data.filename && data.filename != "") {
-          request.post(
-            {
+          request.post({
               url: env.realHost + "/api/config/emailReader/",
               json: data
             },
-            function(err, http, body) {
+            function (err, http, body) {
               if (err) {
-                console.log(err);
+                console.log("457----->", err);
                 callback(err, null);
               } else {
                 // console.log('email else', body);
@@ -494,17 +485,17 @@ var models = {
                     body: mail.toJSON()
                   });
 
-                  sg.API(request, function(error, response) {
+                  sg.API(request, function (error, response) {
                     if (error) {
+                      console.log("499------>", error);
                       callback(error);
                     } else {
                       callback(null, response);
-                      console.log("3     ", response);
+                      console.log("503------>", response);
                     }
                   });
                 } else {
-                  callback(
-                    {
+                  callback({
                       message: "Error while sending mail."
                     },
                     null
@@ -514,19 +505,17 @@ var models = {
             }
           );
         } else {
-          console.log("4     ");
-          callback(
-            {
+          console.log("518------>");
+          callback({
               message: "Please provide params"
             },
             null
           );
         }
       } else {
-        console.log("5     ");
+        console.log("527------>");
 
-        callback(
-          {
+        callback({
             message: "No api keys found"
           },
           null
@@ -535,10 +524,10 @@ var models = {
     });
   },
 
-  sendEmail: function(fromEmail, toEmail, subject, html, emailData, callback) {
+  sendEmail: function (fromEmail, toEmail, subject, html, emailData, callback) {
     Password.find({})
       .lean()
-      .exec(function(err, data) {
+      .exec(function (err, data) {
         // console.log("key", data[0].name)
         console.log("fromEmail, toEmail, subject, html, emailData", emailData);
         if (err) {
@@ -553,7 +542,7 @@ var models = {
           mail.setSubject(subject);
 
           var personalization = new helper.Personalization();
-          _.each(toEmail, function(n) {
+          _.each(toEmail, function (n) {
             var email = new helper.Email(n.email, n.name);
             personalization.addTo(email);
           });
@@ -567,7 +556,7 @@ var models = {
           );
           console.log(emailData.filename);
           if (emailData.filename) {
-            sails.hooks.views.render(emailData.filename, emailData, function(
+            sails.hooks.views.render(emailData.filename, emailData, function (
               err,
               body
             ) {
@@ -591,10 +580,10 @@ var models = {
             mail.addContent(content);
             async.each(
               emailData,
-              function(filename, callback) {
+              function (filename, callback) {
                 console.log("2");
               },
-              function(err, emailData) {
+              function (err, emailData) {
                 if (err) {
                   callback(err);
                 } else {
