@@ -6,7 +6,6 @@
         border-radius: 50%;
         border: solid 2px white;
         overflow: hidden;
-
         .large-img {
             position: absolute;
             max-width: 100%;
@@ -15,7 +14,6 @@
             transform: translate(-50%, -50%);
         }
     }
-
     .img-uploaded {
         width: 30px;
         height: 30px;
@@ -23,7 +21,6 @@
         margin: 0 3px;
         background-color: white;
     }
-
     .openticketreminder {
         .productreg {
             &:before {
@@ -32,7 +29,6 @@
             }
         }
     }
-
     .productreg {
         &:before {
             left: 4%;
@@ -40,15 +36,12 @@
             border: solid 5px #ECF0F2;
         }
     }
-
     .openticket {
         min-height: 33vh;
     }
-
     .reminderSection {
         min-height: 36vh;
     }
-
     .info-div {
         // height: 200px;
         overflow-y: auto;
@@ -58,7 +51,6 @@
 .support-timeline {
     position: relative;
     border-bottom: solid 2px #CFD7DB;
-
     .circle {
         width: 20px;
         height: 20px;
@@ -67,7 +59,6 @@
         border-radius: 50%;
         background-color: #CFD7DB;
         border: solid 3px #ECF0F2;
-
         &:before {
             font-size: 9px;
             @extend .fontRobotoRegular;
@@ -75,43 +66,33 @@
             top: 20px;
         }
     }
-
     .circle1 {
         left: 0;
     }
-
     .circle2 {
         left: 11.11%;
     }
-
     .circle3 {
         left: 22.22%;
     }
-
     .circle4 {
         left: 33.3%;
     }
-
     .circle5 {
         left: 44.44%;
     }
-
     .circle6 {
         left: 55.55%;
     }
-
     .circle7 {
         left: 66.66%;
     }
-
     .circle8 {
         left: 77.77%;
     }
-
     .circle9 {
         left: 88.88%;
     }
-
     .circle10 {
         left: 100%;
     }
@@ -124,26 +105,24 @@
 .chat {
     height: 220px;
     overflow-y: auto;
-
     &::-webkit-scrollbar {
         width: 0px;
         background: transparent;
         /* optional: just make scrollbar invisible */
     }
-
     /* optional: show position indicator in red */
     &::-webkit-scrollbar-thumb {
         background: transparent;
     }
-
     .image {
+        min-width: 40px;
+        margin-left: 10px;
         width: 40px;
         height: 40px;
         border-radius: 50%;
         background-color: #404A6E;
         position: relative;
         overflow: hidden;
-
         img {
             position: absolute;
             max-width: 100%;
@@ -153,20 +132,17 @@
             transform: translate(-50%, -50%);
         }
     }
-
     .chat-content {
         color: #142C5C;
         font-size: 14px;
         border-radius: 20px;
     }
-
     .you {
         .chat-content {
             border-top-left-radius: 0;
             background-color: rgba(20, 193, 119, 0.5);
         }
     }
-
     .me {
         .chat-content {
             border-top-right-radius: 0;
@@ -210,45 +186,38 @@
 
 .message-send-input {
     position: relative;
-
     .send img {
         position: absolute;
         right: 0;
         width: 30px;
         margin: 6px;
     }
-
     .attachment {
         position: absolute;
         right: 50px;
         margin: -10px;
         cursor: pointer;
     }
-
     .scrollbar-tcreation {
         &::-webkit-scrollbar {
             width: 0px;
             background: transparent;
             /* optional: just make scrollbar invisible */
         }
-
         /* optional: show position indicator in red */
         &::-webkit-scrollbar-thumb {
             background: transparent;
         }
-
         .upload-btn-wrapper {
             position: relative;
             overflow: hidden;
             display: inline-block;
             cursor: pointer;
-
             &:hover .btn {
                 color: white;
                 background-color: orange;
             }
         }
-
         .btn {
             border: 1px solid orange;
             color: orange;
@@ -258,7 +227,6 @@
             font-size: 40px;
             cursor: pointer;
         }
-
         .upload-btn-wrapper input[type=file] {
             font-size: 100px;
             position: absolute;
@@ -284,14 +252,12 @@
         border: solid 1px $orange;
         border-radius: 30px;
         font-family: Roboto-Medium;
-
         &:hover {
             background-color: $orange;
             color: white;
             transition: ease all 300ms;
         }
     }
-
     .close-btn {
         cursor: pointer;
         position: relative;
@@ -302,7 +268,6 @@
         border: solid 2px $orange;
         border-radius: 30px;
         font-family: Roboto-Medium;
-
         .close-icon {
             position: absolute;
             left: -5px;
@@ -312,12 +277,10 @@
             border: solid 2px #ecf0f2;
             border-radius: 50%;
         }
-
         &:hover {
             color: $orange;
             background-color: white;
             transition: ease all 300ms;
-
             .close-icon {
                 background: white;
                 border: solid 2px $orange;
@@ -337,11 +300,9 @@
     border: solid 2px $orange;
     border-radius: 30px;
     font-family: Roboto-Medium;
-
     .submit-button {
         padding: 4px 10px;
     }
-
     .close-icon {
         position: absolute;
         left: -5px;
@@ -350,34 +311,27 @@
         background: $orange;
         border: solid 2px white;
         border-radius: 50%;
-
         .showdefault {
             display: block;
         }
-
         .showhover {
             display: none;
         }
     }
-
     &:hover {
         color: $orange;
         background-color: white;
         transition: ease all 300ms;
-
         .submit-button {
             padding: 4px 10px;
         }
-
         .close-icon {
             background: white;
             border: solid 2px $orange;
             transition: ease all 300ms;
-
             .showdefault {
                 display: none;
             }
-
             .showhover {
                 display: block;
             }
@@ -387,10 +341,8 @@
 
 .pumpkin-support-feedback {
     padding-left: 40px !important;
-
     .pump-support-text {
         position: relative;
-
         &:before {
             content: "";
             width: 30px;
@@ -403,7 +355,6 @@
             top: -5px;
         }
     }
-
     .close-icon {
         bottom: -1px;
         padding: 2px 8px;
@@ -418,7 +369,6 @@
 .support-chat-history {
     margin-bottom: 22px;
     min-height: 20vh;
-
     .panel-default {
         margin: 10px 0;
         background-color: white;
@@ -427,30 +377,25 @@
         border: 0;
         position: relative;
     }
-
     .panel-default:last-child {
         &:after {
             display: none;
         }
     }
-
     .date-supportchat {
         color: #818587;
     }
-
     .card-header {
         background-color: white;
         border-bottom: 0;
         border-radius: 10px;
         padding: 25px;
     }
-
     .blue-circle {
         width: 30px;
         height: 30px;
         border-radius: 50%;
         background: $blue;
-
         .fa-check {
             display: none;
         }
@@ -481,7 +426,6 @@ svg {
         padding: 0;
         position: relative;
     }
-
     input[type="text"] {
         height: 27px;
         font-size: 18px;
@@ -503,12 +447,10 @@ svg {
         transition: width 0.4s cubic-bezier(0, 0.795, 0, 1);
         cursor: pointer;
     }
-
     input[type="text"]:focus:hover {
         background-color: white;
         border-bottom: 1px solid #BBB;
     }
-
     input[type="text"]:focus {
         width: 223px;
         z-index: 1;
@@ -516,7 +458,6 @@ svg {
         border-bottom: 1px solid #BBB;
         cursor: text;
     }
-
     .search-btn {
         height: 27px;
         width: 23px;
