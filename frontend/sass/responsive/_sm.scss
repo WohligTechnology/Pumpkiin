@@ -55,7 +55,17 @@
     //     border-radius: 0;
     // }
     .ticket-creation-main .openticket {
-        min-height: 62.5vh;
+        height: 62.5vh;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+            /* optional: just make scrollbar invisible */
+        }
+        /* optional: show position indicator in red */
+        &::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
     }
     .save,
     .add,
@@ -63,7 +73,7 @@
         width: 70%;
     }
     .app-modal-window {
-        top: 50%;
+        top: 45%;
         left: 50%;
         width: 100%;
         .button {
