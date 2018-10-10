@@ -23,6 +23,7 @@ myApp.controller("TicketCreationCtrl", function (
   $scope.isReadonly = false;
   $scope.jstrgValue = $.jStorage.get("userData");
   $scope.showGreenImage = false;
+
   // $scope.ticketDetails = [];
   // $scope.ticketDetails[0] = {
   //   status: "Open"
@@ -104,7 +105,8 @@ myApp.controller("TicketCreationCtrl", function (
           ticketData,
           function (res) {
             $scope.ticketDetails1 = res.data;
-
+            establishSocket();
+            console.log("check -------------------->>", $scope.newTicketId);
             //timeline
 
             $scope.statusArray = [{
@@ -326,8 +328,11 @@ myApp.controller("TicketCreationCtrl", function (
   };
 
   $scope.ticketChatSocket();
-  console.log("---------------->>>>>>>Kishori Rocks", $scope.jstrgValue)
-  io.socket.on("ticketChat" + $stateParams.id, $scope.ticketChatSocket);
+  console.log("---------------->>>>>>>Kishori Rocks", $scope.newTicketId);
+
+  function establishSocket() {
+    io.socket.on("ticketChat" + $scope.ticketDetails1._id, $scope.ticketChatSocket);
+  }
 
 
 
