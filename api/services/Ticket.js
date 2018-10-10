@@ -246,7 +246,7 @@ var model = {
           emailData.greeting = greeting;
           emailData.productName = data.productName;
           emailData.ticketID = finalData.ticketNumber;
-          emailData.filename = "ticketcreation.ejs";
+          emailData.filename = "ticketcreation";
           emailData.subject = "Ticket Creation";
           // console.log("emailData", emailData);
           Config.email(emailData, function (err, emailRespo) {
@@ -292,7 +292,7 @@ var model = {
             emailData.productName = finalData.product.productName;
             emailData.ticketID = finalData.ticketNumber;
             emailData.statusMsg = finalData.subStatus;
-            emailData.filename = "Ticketstatus.ejs";
+            emailData.filename = "Ticketstatus";
             emailData.subject = "Ticket Status Changed";
             // console.log("emailData", emailData);
             Config.email(emailData, function (err, emailRespo) {
@@ -313,7 +313,7 @@ var model = {
             emailData.email = finalData.user.email;
             emailData.greeting = greeting;
             emailData.ticketID = finalData.ticketNumber;
-            emailData.filename = "ticket-closure.ejs";
+            emailData.filename = "ticket-closure";
             emailData.subject = "Ticket closure email";
             // console.log("emailData", emailData);
             Config.email(emailData, function (err, emailRespo) {

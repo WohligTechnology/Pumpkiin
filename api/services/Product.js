@@ -143,7 +143,7 @@ var model = {
         //     (data.user.relations.length - 1 > index ? "," : "");
         // });
 
-        emailData.filename = "update-product.ejs";
+        emailData.filename = "update-product";
         emailData.subject = "Updated Product details";
         console.log("emailData.relations--------------", emailData.relations);
         Config.email(emailData, function (err, emailRespo) {
@@ -242,7 +242,7 @@ var model = {
           emailData.email = data.email;
           emailData.greeting = greeting;
           emailData.productName = productdata.productName;
-          emailData.filename = "product-registration.ejs";
+          emailData.filename = "product-registration";
           emailData.subject = "New Product Registered";
           Config.email(emailData, function (err, emailRespo) {
             callback(null, emailRespo);

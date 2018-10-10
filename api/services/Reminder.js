@@ -140,7 +140,7 @@ var model = {
           emailData.greeting = greeting;
           emailData.title = data.title;
           emailData.description = data.description;
-          emailData.filename = "Reminder.ejs";
+          emailData.filename = "Reminder";
           emailData.subject = "Reminder Notification";
           console.log("emailData in reminder mail", emailData);
           Config.email(emailData, function (err, emailRespo) {
@@ -297,7 +297,7 @@ var model = {
               emailData.description = singelData.description ?
                 singelData.description :
                 "";
-              emailData.filename = "Reminder.ejs";
+              emailData.filename = "Reminder";
               emailData.subject = "Reminder Notification";
               // console.log("emailData", emailData);
               Config.email(emailData, function (err, emailRespo) {
@@ -366,7 +366,7 @@ var model = {
                 emailData.description = singelData.description ?
                   singelData.description :
                   "";
-                emailData.filename = "warrantyReminder.ejs";
+                emailData.filename = "warrantyReminder";
                 emailData.subject = "Reminder Notification";
                 Config.email(emailData, function (err, emailRespo) {
                   console.log("err", err);
@@ -433,7 +433,7 @@ var model = {
                 emailData.description = singelData.description ?
                   singelData.description :
                   "";
-                emailData.filename = "warrantyReminder.ejs";
+                emailData.filename = "warrantyReminder";
                 emailData.subject = "Reminder Notification";
                 Config.email(emailData, function (err, emailRespo) {
                   console.log("err", err);

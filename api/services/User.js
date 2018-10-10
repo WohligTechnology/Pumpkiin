@@ -743,7 +743,7 @@ var model = {
           emailData.name = data.name;
           emailData.email = data.email;
           emailData.greeting = greeting;
-          emailData.filename = "welcomeFB.ejs";
+          emailData.filename = "welcomeFB";
           emailData.subject = "Welcome to pumpkiin";
           emailData.verificationUrl = env.realHost + "/verifyemail/" + data._id;
           Config.email(emailData, function (err, emailRespo) {}, true);
@@ -939,9 +939,9 @@ var model = {
     emailData.email = data.email;
     emailData.greeting = greeting;
     if (sendVerification) {
-      emailData.filename = "welcome.ejs";
+      emailData.filename = "welcome";
     } else {
-      emailData.filename = "welcomeFB.ejs";
+      emailData.filename = "welcomeFB";
     }
 
     emailData.subject = "Welcome to Pumpkiin";
