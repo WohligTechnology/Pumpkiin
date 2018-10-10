@@ -275,7 +275,7 @@ myApp.controller("ProfileCtrl", function (
 
   $scope.saveAddressData = function (data) {
     console.log("-------------", data, $scope.formattedAddress);
-    if (_.isEmpty(data.address) || data.address == undefined) {
+    if (_.isEmpty(data.address)) {
       console.log("1");
       delete data.address;
     }
