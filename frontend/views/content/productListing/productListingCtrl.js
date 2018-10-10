@@ -19,6 +19,7 @@ myApp.controller("ProductlistingCtrl", function(
   $scope.navigation = NavigationService.getNavigation();
 
   $scope.jstrgValue = $.jStorage.get("userData");
+  $scope.showGreenImage = false;
 
   $scope.productInfo = [
     {
@@ -111,7 +112,7 @@ myApp.controller("ProductlistingCtrl", function(
     });
 
     reminderService.totalNumberOfCompletedReminders(function(data) {
-      $scope.showGreenImage = true;
+    
       $scope.totalCompletedReminder = data;
       // console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
     });

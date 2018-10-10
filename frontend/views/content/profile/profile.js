@@ -287,16 +287,18 @@ myApp.controller("ProfileCtrl", function (
   };
 
   $scope.saveAddressData = function (data) {
+    console.log("-------------", data);
     data.address = $scope.formattedAddress;
     var addData = {};
     var add = $scope.userDataForProfile.address;
     if ($scope.addressIndex != -1) {
-      add[$scope.addressIndex] = data.address;
+      add[$scope.addressIndex] = data;
     } else {
       add.push(data);
     }
     addData._id = $scope.jstrgValue._id;
     addData.address = add;
+    console.log("add data >>>>>>>", add);
     NavigationService.apiCallWithData("user/save", addData, function (response) {
       var mailThisAddress = {};
       mailThisAddress.user = $scope.userDataForProfile.name;

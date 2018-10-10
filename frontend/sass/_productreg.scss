@@ -1,5 +1,6 @@
 .productreg {
     position: relative;
+
     &:before {
         content: "";
         background-image: url(../img/pdf.png);
@@ -22,6 +23,7 @@
     border-bottom: solid 2px white;
     width: 60%;
     margin: 0 auto;
+
     .circle {
         width: 20px;
         height: 20px;
@@ -31,6 +33,7 @@
         background-color: #CFCFCF;
         border: solid 3px white;
         cursor: pointer;
+
         &:before {
             text-transform: uppercase;
             font-size: 12px;
@@ -39,29 +42,37 @@
             bottom: -23px;
         }
     }
+
     .circle1 {
         left: 0;
+
         &:before {
             content: 'product\00a0 details';
             left: -45px;
         }
     }
+
     .circle2 {
         left: 33.33%;
+
         &:before {
             content: 'PURCHASE\00a0 DETAILS';
             left: -47px;
         }
     }
+
     .circle3 {
         left: 66.66%;
+
         &:before {
             content: 'PROTECTION\00a0 DETAILS';
             left: -55px;
         }
     }
+
     .circle4 {
         left: 99.99%;
+
         &:before {
             content: 'ACCESSORIES';
             left: -32px;
@@ -73,14 +84,17 @@
     h6 {
         color: #404A6E;
     }
+
     label {
         @extend .fontRobotoRegular;
         color: #657D95;
     }
+
     span {
         // color: #D1D1D1;
         font-size: 12px;
     }
+
     input {
         @extend .fontRobotoLight;
         border-radius: 3px;
@@ -96,26 +110,31 @@
     display: flex;
     width: 100%;
     overflow: auto;
+
     &::-webkit-scrollbar {
         width: 0px;
         background: transparent;
         /* optional: just make scrollbar invisible */
     }
+
     /* optional: show position indicator in red */
     &::-webkit-scrollbar-thumb {
         background: transparent;
     }
+
     .upload-btn-wrapper {
         position: relative;
         overflow: hidden;
         display: inline-block;
         cursor: pointer;
         min-width: 75px;
+
         &:hover .btn {
             color: white;
             background-color: orange;
         }
     }
+
     .btn {
         border: 1px solid orange;
         color: orange;
@@ -125,6 +144,7 @@
         font-size: 40px;
         cursor: pointer;
     }
+
     .upload-btn-wrapper input[type=file] {
         font-size: 100px;
         position: absolute;
@@ -137,6 +157,7 @@
 
 .image-upload {
     cursor: pointer;
+
     .upload-btn-wrapper input[type=file] {
         width: 100%;
         height: 100%;
@@ -149,16 +170,19 @@
 .add,
 .reminder {
     width: 25%;
+
     .social_icon {
         padding: 5px 11px;
         ;
         border: solid 2px #ecf0f2;
         background: $orange !important;
     }
+
     .social-text {
         padding: 5px 0 !important;
         background: $orange !important;
     }
+
     &:hover {
         .social_icon {
             background: white !important;
@@ -166,6 +190,7 @@
             border: solid 2px $orange !important;
             transition: ease all 300ms;
         }
+
         .social-text {
             padding: 4px 0 !important;
             background: white !important;
@@ -181,6 +206,7 @@
     position: absolute;
     top: 15%;
     right: 5%;
+
     .social_icon {
         padding: 5px 11px;
         border: solid 2px #142c5b;
@@ -190,6 +216,7 @@
 .add,
 .reminder {
     width: 17%;
+
     .social_icon {
         padding: 8px 11px !important;
     }
@@ -197,21 +224,35 @@
 
 .main-users {
     overflow: auto;
+
     .existing-user {
         background: #EBEDF1;
         border-radius: 5px;
         min-width: auto;
         color: #657D95;
+
         .user-circle {
-            min-width: 30px;
-            min-height: 30px;
+            position: relative;
+            width: 30px;
+            height: 30px;
             background: white;
             border-radius: 50%;
             border: solid 1px #707070;
+            overflow: hidden;
+
+            .user-circle-image {
+                position: absolute;
+                max-width: 100%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
         }
+
         .name-rel {
             line-height: 18px; // min-width: 87px;
         }
+
         span {
             font-size: 14px;
             color: #657D95;
@@ -257,10 +298,12 @@
     button {
         border: 0;
         background-color: white;
+
         &:focus {
             outline: 0;
         }
     }
+
     .add-user-purchase .social-text {
         width: 840px;
     }

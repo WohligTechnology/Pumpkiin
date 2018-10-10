@@ -36,7 +36,7 @@
     },
     "button": [],
     "apiCall": {
-        "url": "Product/search",
+        "url": "Product/searchConfirmedProducts",
         "params": "_id"
     }
 }

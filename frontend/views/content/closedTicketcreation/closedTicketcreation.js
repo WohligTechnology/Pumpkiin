@@ -4,6 +4,7 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
     TemplateService.landingheader = "";
     $scope.navigation = NavigationService.getNavigation();
     $scope.jstrgValue = $.jStorage.get('userData');
+    $scope.showGreenImage = false;
 
     $scope.newUserModalOpen = function () {
         $scope.addNewUser = $uibModal.open({
@@ -35,7 +36,6 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
     });
 
     reminderService.totalNumberOfCompletedReminders(function (data) {
-        $scope.showGreenImage = false;
         $scope.totalCompletedReminder = data;
         console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
     });

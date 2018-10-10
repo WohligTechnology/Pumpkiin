@@ -355,6 +355,7 @@ var model = {
 
             callback(null, ticketNumber);
           } else {
+            console.log("ticketNumber", found, found[0]);
             var ticketNum = found[0].ticketNumber.split("-");
             var num = parseInt(ticketNum[1]);
             var nextNum = num + 1;
@@ -370,7 +371,7 @@ var model = {
             } else if (m == 2) {
               var ticketNumber = "T" + year + month + "-" + nextNum;
             }
-            // console.log("ticketNumber", ticketNumber)
+            console.log("ticketNumber", ticketNumber)
             callback(null, ticketNumber);
           }
         }
