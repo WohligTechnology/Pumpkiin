@@ -223,6 +223,7 @@ var model = {
               if (err) {
                 callback(err, null)
               } else {
+                console.log("ticketChat" + data._id);
                 sails.sockets.blast("ticketChat" + data._id, {
                   ticketChatData: data
                 });
@@ -391,7 +392,7 @@ var model = {
           Ticket.findOne({
             _id: data._id
           }).exec(function (err, data) {
-            sails.sockets.blast("ticketChat", {
+            sails.sockets.blast("ticketChat" + data._id, {
               ticketChatData: data
             });
             callback(err, data);
