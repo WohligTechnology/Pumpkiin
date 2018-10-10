@@ -327,7 +327,7 @@ myApp.controller("TicketCreationCtrl", function (
 
   $scope.ticketChatSocket();
   console.log("---------------->>>>>>>Kishori Rocks", $scope.jstrgValue)
-  io.socket.on("ticketChat" + $scope.jstrgValue._id, $scope.ticketChatSocket);
+  io.socket.on("ticketChat" + $stateParams.id, $scope.ticketChatSocket);
 
 
 

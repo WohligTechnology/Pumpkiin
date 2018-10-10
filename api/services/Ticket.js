@@ -215,15 +215,20 @@ var model = {
           }).exec(callback);
         },
         function (ticketData, callback) {
-          console.log("----------Manish Rocks>>>>>>>", ticketData.user);
+          console.log("----------Manish Rocks>>>>>>>", ticketData);
           Ticket.TicketIdGenerate(function (err, data2) {
             data.ticketNumber = data2;
             console.log("data", data);
             Ticket.saveData(data, function (err, data) {
-              sails.sockets.blast("ticketChat" + ticketData.user, {
-                ticketChatData: data
-              });
-              callback(err, data);
+              if (err) {
+                callback(err, null)
+              } else {
+                sails.sockets.blast("ticketChat" + data._id, {
+                  ticketChatData: data
+                });
+                callback(null, data);
+              }
+
             });
           });
         },
