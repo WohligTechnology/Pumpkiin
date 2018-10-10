@@ -443,65 +443,65 @@ var models = {
               url: env.realHost + "/api/config/emailReader/",
               json: data
             },
-            function (err, http, body) {
-              if (err) {
-                console.log("457----->", err);
-                callback(err, null);
-              } else {
-                // console.log('email else', body);
-                if (body && body.value != false) {
-                  global.red("1");
-                  var helper = require("sendgrid").mail;
+            function (http, body) {
+              // if (err) {
+              //   console.log("457----->", err);
+              //   callback(err, null);
+              // } else {
+              console.log('email else', body);
+              if (body && body.value != false) {
+                global.red("1");
+                var helper = require("sendgrid").mail;
 
-                  from_email = new helper.Email(data.from);
-                  to_email = new helper.Email(data.email);
-                  subject = data.subject;
-                  content = new helper.Content("text/html", body);
-                  mail = new helper.Mail(
-                    from_email,
-                    subject,
-                    to_email,
-                    content
-                  );
+                from_email = new helper.Email(data.from);
+                to_email = new helper.Email(data.email);
+                subject = data.subject;
+                content = new helper.Content("text/html", body);
+                mail = new helper.Mail(
+                  from_email,
+                  subject,
+                  to_email,
+                  content
+                );
 
-                  if (data.file) {
-                    global.red("2");
-                    var attachment = new helper.Attachment();
-                    var file = fs.readFileSync("pdf/" + data.file);
-                    var base64File = new Buffer(file).toString("base64");
-                    attachment.setContent(base64File);
-                    // attachment.setType('application/text');
-                    var pdfgen = data.filename.split(".");
-                    data.filename = pdfgen[0] + ".pdf";
-                    attachment.setFilename(data.filename);
-                    attachment.setDisposition("attachment");
-                    mail.addAttachment(attachment);
-                  }
-
-                  var sg = require("sendgrid")(userdata[0].name);
-                  var request = sg.emptyRequest({
-                    method: "POST",
-                    path: "/v3/mail/send",
-                    body: mail.toJSON()
-                  });
-
-                  sg.API(request, function (error, response) {
-                    if (error) {
-                      console.log("499------>", error);
-                      callback(error);
-                    } else {
-                      callback(null, response);
-                      console.log("503------>", response);
-                    }
-                  });
-                } else {
-                  callback({
-                      message: "Error while sending mail."
-                    },
-                    null
-                  );
+                if (data.file) {
+                  global.red("2");
+                  var attachment = new helper.Attachment();
+                  var file = fs.readFileSync("pdf/" + data.file);
+                  var base64File = new Buffer(file).toString("base64");
+                  attachment.setContent(base64File);
+                  // attachment.setType('application/text');
+                  var pdfgen = data.filename.split(".");
+                  data.filename = pdfgen[0] + ".pdf";
+                  attachment.setFilename(data.filename);
+                  attachment.setDisposition("attachment");
+                  mail.addAttachment(attachment);
                 }
+
+                var sg = require("sendgrid")(userdata[0].name);
+                var request = sg.emptyRequest({
+                  method: "POST",
+                  path: "/v3/mail/send",
+                  body: mail.toJSON()
+                });
+
+                sg.API(request, function (error, response) {
+                  if (error) {
+                    console.log("499------>", error);
+                    callback(error);
+                  } else {
+                    callback(null, response);
+                    console.log("503------>", response);
+                  }
+                });
+              } else {
+                callback({
+                    message: "Error while sending mail."
+                  },
+                  null
+                );
               }
+              // }
             }
           );
         } else {
