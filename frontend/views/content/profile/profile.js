@@ -275,7 +275,8 @@ myApp.controller("ProfileCtrl", function (
 
   $scope.saveAddressData = function (data) {
     console.log("-------------", data, $scope.formattedAddress);
-    if (_.isEmpty(data.address)) {
+    if (_.isEmpty(data.address) || data.address == undefined) {
+      console.log("1");
       delete data.address;
     }
     // data.address = $scope.formattedAddress;
@@ -283,8 +284,10 @@ myApp.controller("ProfileCtrl", function (
 
     var add = $scope.userDataForProfile.address;
     if ($scope.addressIndex != -1) {
+      console.log("2", data);
       add[$scope.addressIndex] = data;
     } else {
+      console.log("3", data);
       add.push(data);
     }
     addData._id = $scope.jstrgValue._id;
