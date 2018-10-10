@@ -98,7 +98,7 @@ myApp.controller("TicketCreationCtrl", function (
         // ticketData.ticketId = $scope.ticketId;
         ticketData.user = $scope.jstrgValue._id;
         ticketData.product = $stateParams.id;
-        // console.log("$scope.ticketData-----------", ticketData);
+        console.log("$scope.ticketData-----------", ticketData);
         NavigationService.apiCallWithData(
           "Ticket/findActiveTicketOfUser",
           ticketData,
@@ -326,9 +326,9 @@ myApp.controller("TicketCreationCtrl", function (
   };
 
   $scope.ticketChatSocket();
-  io.socket.on("ticketChat", $scope.ticketChatSocket);
+  io.socket.on("ticketChat" + $scope.jstrgValue, $scope.ticketChatSocket);
 
- 
+
 
   $scope.addComment = function (data) {
     console.log("data", data);

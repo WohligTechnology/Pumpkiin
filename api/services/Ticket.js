@@ -222,7 +222,7 @@ var model = {
             data.ticketNumber = data2;
             console.log("data", data);
             Ticket.saveData(data, function (err, data) {
-              sails.sockets.blast("ticketChat", {
+              sails.sockets.blast("ticketChat" + ticketData.user, {
                 ticketChatData: data
               });
               callback(err, data);

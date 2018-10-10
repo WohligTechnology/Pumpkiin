@@ -93,11 +93,12 @@ myApp.controller("headerCtrl", function (
     NavigationService.apiCallWithData("Reminder/getOne", getReminder, function (
       res
     ) {
-      console.log("res.data", res.data);
+
       $scope.data = res.data;
       if (res.data.dateOfReminder) {
         $scope.data.dateOfReminder = new Date(res.data.dateOfReminder);
       }
+      console.log("$scope.data", $scope.data.dateOfReminder);
     });
   };
 
