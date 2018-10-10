@@ -443,7 +443,7 @@ var models = {
               url: env.realHost + "/api/config/emailReader/",
               json: data
             },
-            function (http, body) {
+            function (err, http, body) {
               // if (err) {
               //   console.log("457----->", err);
               //   callback(err, null);
