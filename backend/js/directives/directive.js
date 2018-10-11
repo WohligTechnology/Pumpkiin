@@ -6,16 +6,7 @@ myApp.directive("dateModel", function($filter, $timeout) {
     link: function($scope, element, attrs) {
       console.log("in date model", $scope.model);
       $timeout(function() {
-        // if (_.isEmpty($scope.model)) {
-        //   console.log("$scope.model1", $scope.model);
-        //   $scope.model = "";
-        // } else {
-        //   console.log(
-        //     "hi",
-        //     $filter("date")(new Date($scope.model), "dd/MM/yyyy")
-        //   );
-        //   $scope.model = new Date($scope.model);
-        // }
+        console.log($filter("date")(new Date($scope.model), "dd/MM/yyyy"));
         $scope.model = new Date($scope.model);
       }, 100);
     }

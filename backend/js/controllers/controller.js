@@ -1144,18 +1144,9 @@ myApp
     }
     // BOX
     if ($scope.type.type == "date") {
-      console.log("HI In Here.................");
-      if (
-        $scope.formData[$scope.type.tableRef] == undefined ||
-        _.isEmpty($scope.formData[$scope.type.tableRef])
-      ) {
-        console.log("HI In Here1");
-      } else {
-        console.log("HI In Here2");
-        $scope.formData[$scope.type.tableRef] = moment(
-          $scope.formData[$scope.type.tableRef]
-        ).toDate();
-      }
+      $scope.formData[$scope.type.tableRef] = moment(
+        $scope.formData[$scope.type.tableRef]
+      ).toDate();
     }
     if ($scope.type.type == "password") {
       $scope.formData[$scope.type.tableRef] = "";
