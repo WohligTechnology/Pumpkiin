@@ -215,8 +215,9 @@ myApp.controller("TicketopenNotificationCtrl", function (
       }
     });
   };
-  $scope.getClosedTickets();
   $scope.getOpenTickets();
+  $scope.getClosedTickets();
+
 
   $scope.getTickets = function () {
     // if (!pageData) {

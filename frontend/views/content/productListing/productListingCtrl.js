@@ -1,4 +1,4 @@
-myApp.controller("ProductlistingCtrl", function(
+myApp.controller("ProductlistingCtrl", function (
   $scope,
   TemplateService,
   ticketService,
@@ -21,8 +21,7 @@ myApp.controller("ProductlistingCtrl", function(
   $scope.jstrgValue = $.jStorage.get("userData");
   $scope.showGreenImage = false;
 
-  $scope.productInfo = [
-    {
+  $scope.productInfo = [{
       largeimage: "img/iphone.jpeg",
       smallimage: "img/ticketCreation/mobile.png",
       productname: "Apple iPhone X 1",
@@ -75,13 +74,13 @@ myApp.controller("ProductlistingCtrl", function(
 
   //REMINDER SECTION
   $scope.maxRow = 7;
-  $scope.changePage = function(pageno) {
+  $scope.changePage = function (pageno) {
     $scope.currentPage = pageno;
     var start = (pageno - 1) * $scope.maxRow;
     var end = (pageno - 1) * $scope.maxRow + $scope.maxRow;
     $scope.productPerPage = _.slice($scope.allProducts, start, end);
 
-    _.each($scope.productPerPage, function(n) {
+    _.each($scope.productPerPage, function (n) {
       var now = moment(new Date()),
         end = moment(n.warrantyExpDate),
         months = end.diff(now, "months");
@@ -100,38 +99,38 @@ myApp.controller("ProductlistingCtrl", function(
     // console.log("$scope.productPerPage", $scope.productPerPage);
   };
 
-  $scope.getReminder = function() {
-    reminderService.findReminderOfPendingSnoozeByUser(function(data) {
+  $scope.getReminder = function () {
+    reminderService.findReminderOfPendingSnoozeByUser(function (data) {
       $scope.allReminders = data;
       $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
     });
 
-    reminderService.totalNumberOfReminders(function(data) {
+    reminderService.totalNumberOfReminders(function (data) {
       $scope.totalReminders = data;
       // console.log("$scope.totalReminders", $scope.totalReminders);
     });
 
-    reminderService.totalNumberOfCompletedReminders(function(data) {
-    
+    reminderService.totalNumberOfCompletedReminders(function (data) {
+
       $scope.totalCompletedReminder = data;
       // console.log("res---totalCompletedReminder--", $scope.totalCompletedReminder);
     });
 
-    reminderService.totalNumberOfPendingReminders(function(data) {
+    reminderService.totalNumberOfPendingReminders(function (data) {
       $scope.totalPendingReminders = data;
     });
 
-    $scope.completedReminders = function(data) {
+    $scope.completedReminders = function (data) {
       $scope.showGreenImage = true;
-      reminderService.findReminderOfCompletedByUser(function(data) {
+      reminderService.findReminderOfCompletedByUser(function (data) {
         $scope.allReminders = data;
         $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
       });
     };
 
-    $scope.pendingReminders = function(data) {
+    $scope.pendingReminders = function (data) {
       $scope.showGreenImage = false;
-      reminderService.findReminderOfPendingSnoozeByUser(function(data) {
+      reminderService.findReminderOfPendingSnoozeByUser(function (data) {
         $scope.allReminders = data;
         $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
       });
@@ -142,23 +141,23 @@ myApp.controller("ProductlistingCtrl", function(
   //REMINDER SECTION END
 
   //for ticket block
-  $scope.callTickets = function() {
-    ticketService.totalOpenTickets(function(data) {
-      $scope.ticketDetails = _.slice(data.results, 0, 8);
-      console.log("1 $scope.ticketDetails --", $scope.ticketDetails);
+  $scope.callTickets = function () {
+    ticketService.totalOpenTickets(function (data) {
+      $scope.ticketDetails = _.slice(data, 0, 5);
+      console.log("1 $scope.ticketDetails --", data);
     });
 
-    ticketService.totalNumberOfTickets(function(data) {
+    ticketService.totalNumberOfTickets(function (data) {
       $scope.totalNumberOfTickets = data;
       console.log("res--totalNumberOfTickets---", data);
     });
 
-    ticketService.totalNumberOfOpenTickets(function(data) {
+    ticketService.totalNumberOfOpenTickets(function (data) {
       $scope.totalNumberOfOpenTickets = data;
       console.log("res---totalNumberOfOpenTickets--", data);
     });
 
-    ticketService.totalNumberOfClosedTickets(function(data) {
+    ticketService.totalNumberOfClosedTickets(function (data) {
       $scope.totalNumberOfClosedTickets = data;
     });
 
@@ -167,7 +166,7 @@ myApp.controller("ProductlistingCtrl", function(
     NavigationService.apiCallWithData(
       "Product/getAllProducts",
       dataToSendForProduct,
-      function(res) {
+      function (res) {
         if (res.value == true) {
           // console.log("res-----", res.data.results);
           $scope.allProducts = res.data;
@@ -176,26 +175,27 @@ myApp.controller("ProductlistingCtrl", function(
       }
     );
 
-    $scope.getClosedTickets = function() {
+    $scope.getClosedTickets = function () {
       // $scope.gotoUrl = EditUrl;
-      ticketService.totalClosedTickets(function(data) {
+      ticketService.totalClosedTickets(function (data) {
         // $scope.ticketDetails = data;
         $scope.ticketDetails = _.slice(data, 0, 5);
         console.log("2 $scope.ticketDetails --", $scope.ticketDetails);
       });
     };
 
-    $scope.getOpenTickets = function() {
+    $scope.getOpenTickets = function () {
       // $scope.gotoUrl = CreateUrl;
-      ticketService.totalOpenTickets(function(data) {
+      ticketService.totalOpenTickets(function (data) {
         // $scope.ticketDetails = data;
-        console.log("----109----", data.results);
-        $scope.ticketDetails = _.slice(data.results, 0, 5);
+        console.log("----109----", data);
+        $scope.ticketDetails = _.slice(data, 0, 5);
       });
     };
   };
 
   $scope.callTickets();
+
 
   //for ticket block end
 
@@ -212,7 +212,7 @@ myApp.controller("ProductlistingCtrl", function(
          });
      }; */
 
-  $scope.productDelete = function(index) {
+  $scope.productDelete = function (index) {
     $scope.productCheck = $uibModal.open({
       animation: true,
       templateUrl: "views/modal/productDelete.html",
@@ -221,12 +221,12 @@ myApp.controller("ProductlistingCtrl", function(
       windowClass: "app-modal-window"
     });
 
-    $scope.deleteProduct = function() {
+    $scope.deleteProduct = function () {
       var teest = $scope.allProducts.splice(index, 1);
       var dataToSend = {};
       dataToSend._id = teest[0]._id;
       // console.log("dataToSend", dataToSend);
-      NavigationService.apiCallWithData("Product/delete", dataToSend, function(
+      NavigationService.apiCallWithData("Product/delete", dataToSend, function (
         res
       ) {
         if (res.value == true) {
@@ -253,7 +253,7 @@ myApp.controller("ProductlistingCtrl", function(
   //     });
   // }
 
-  $scope.searchForTicketData = function(data, data1) {
+  $scope.searchForTicketData = function (data, data1) {
     var dataToSend = {};
     if (data.length > 0) {
       if (data1 == "open") {
@@ -262,7 +262,7 @@ myApp.controller("ProductlistingCtrl", function(
         NavigationService.apiCallWithData(
           "Ticket/searchOpenTickets",
           dataToSend,
-          function(response) {
+          function (response) {
             if (response.value) {
               $scope.ticketDetails = response.data;
               console.log(" $scope.ticketDetails", $scope.ticketDetails);
@@ -276,7 +276,7 @@ myApp.controller("ProductlistingCtrl", function(
         NavigationService.apiCallWithData(
           "Ticket/searchClosedTickets",
           dataToSend,
-          function(response) {
+          function (response) {
             console.log(" response", response);
 
             if (response.value) {
@@ -289,7 +289,7 @@ myApp.controller("ProductlistingCtrl", function(
     }
   };
 
-  $scope.searchForReminderData = function(data, data1) {
+  $scope.searchForReminderData = function (data, data1) {
     var dataToSend = {};
     if (data.length > 0) {
       if (data1 == "open") {
@@ -298,7 +298,7 @@ myApp.controller("ProductlistingCtrl", function(
         NavigationService.apiCallWithData(
           "Reminder/searchOpenReminders",
           dataToSend,
-          function(response) {
+          function (response) {
             if (response.value) {
               $scope.allReminders = response.data;
               $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
@@ -310,7 +310,7 @@ myApp.controller("ProductlistingCtrl", function(
         NavigationService.apiCallWithData(
           "Reminder/searchClosedReminders",
           dataToSend,
-          function(response) {
+          function (response) {
             console.log(" response", response);
 
             if (response.value) {
@@ -323,12 +323,12 @@ myApp.controller("ProductlistingCtrl", function(
     }
   };
 
-  $scope.generateExcel = function() {
+  $scope.generateExcel = function () {
     var dataToSend = $scope.jstrgValue._id;
     window.open(adminurl + "Product/excelProductList/" + dataToSend, "_blank");
   };
 
-  $scope.sortByProduct = function() {
+  $scope.sortByProduct = function () {
     var dataToSend = {};
     dataToSend.user = $scope.jstrgValue._id;
     dataToSend.name = "productName";
@@ -343,7 +343,7 @@ myApp.controller("ProductlistingCtrl", function(
     NavigationService.apiCallWithData(
       "Product/sortFunction",
       dataToSend,
-      function(response) {
+      function (response) {
         if (response.value) {
           $scope.allProducts = response.data;
           $scope.changePage(1);
@@ -354,7 +354,7 @@ myApp.controller("ProductlistingCtrl", function(
     );
   };
 
-  $scope.sortByBrand = function() {
+  $scope.sortByBrand = function () {
     var dataToSend = {};
     dataToSend.user = $scope.jstrgValue._id;
     dataToSend.name = "brand";
@@ -362,7 +362,7 @@ myApp.controller("ProductlistingCtrl", function(
     NavigationService.apiCallWithData(
       "Product/sortFunction",
       dataToSend,
-      function(response) {
+      function (response) {
         if (response.value) {
           $scope.allProducts = response.data;
           $scope.changePage(1);
@@ -384,7 +384,7 @@ myApp.controller("ProductlistingCtrl", function(
   // $scope.checkifRead() = function () {
   //     $state.go("ticketopen-notification");
   // }
-  $scope.notificationmodalOpen = function(notification) {
+  $scope.notificationmodalOpen = function (notification) {
     $scope.singleNotification = notification;
     $scope.accordianNotification = $uibModal.open({
       animation: true,
@@ -403,7 +403,7 @@ myApp.controller("ProductlistingCtrl", function(
   //     });
   // }
 
-  $scope.openmodalOpen = function(tickets, index) {
+  $scope.openmodalOpen = function (tickets, index) {
     console.log("tickets------------------", tickets);
     $scope.singleTicket = tickets;
     $scope.openTicket = $uibModal.open({
@@ -423,7 +423,7 @@ myApp.controller("ProductlistingCtrl", function(
       NavigationService.apiCallWithData(
         "Ticket/changeIsReadStatus",
         changeisRead,
-        function(data) {
+        function (data) {
           console.log("changeIsReadStatus", data);
           if (data.value) {
             // if (modal) {
@@ -437,7 +437,7 @@ myApp.controller("ProductlistingCtrl", function(
     }
   };
 
-  $scope.askRegistration = function() {
+  $scope.askRegistration = function () {
     $scope.productCheck = $uibModal.open({
       animation: true,
       templateUrl: "views/modal/productCheck.html",
@@ -447,29 +447,28 @@ myApp.controller("ProductlistingCtrl", function(
     });
     $scope.yes = false;
   };
-  $scope.showText = function() {
+  $scope.showText = function () {
     console.log("Csacd");
     $scope.showContentText = true;
   };
 
   $scope.data = {};
-  $scope.yesno = function() {
+  $scope.yesno = function () {
     $scope.yes = true;
 
     var user = $.jStorage.get("userData")._id;
     NavigationService.apiCallWithData(
-      "Product/ticketNotGenerated",
-      {
+      "Product/ticketNotGenerated", {
         user: user
       },
-      function(data) {
+      function (data) {
         $scope.remainingProduct = data.data;
         console.log("hjhsakf", $scope.remainingProduct);
       }
     );
   };
 
-  $scope.deleteReminder = function(data) {
+  $scope.deleteReminder = function (data) {
     $scope.accordianNotification.close();
     $scope.delete = $uibModal.open({
       animation: true,
@@ -479,13 +478,13 @@ myApp.controller("ProductlistingCtrl", function(
       backdrop: "static"
     });
     $scope.accordianNotification.close();
-    $scope.confirmDelete = function() {
+    $scope.confirmDelete = function () {
       var changeStatusData = {};
       changeStatusData._id = data;
       NavigationService.apiCallWithData(
         "Reminder/delete",
         changeStatusData,
-        function(res) {
+        function (res) {
           if (res.value == true) {
             $state.reload();
           }
@@ -494,7 +493,7 @@ myApp.controller("ProductlistingCtrl", function(
     };
   };
 
-  $scope.notificationmodalOpen = function(notification, index, modal) {
+  $scope.notificationmodalOpen = function (notification, index, modal) {
     console.log("notification", notification);
     if (modal) {
       $scope.singleNotification = notification;
@@ -514,7 +513,7 @@ myApp.controller("ProductlistingCtrl", function(
       NavigationService.apiCallWithData(
         "Reminder/changeIsReadStatus",
         changeisRead,
-        function(data) {
+        function (data) {
           console.log("changeIsReadStatus", data);
           if (data.value) {
             if (modal) {
