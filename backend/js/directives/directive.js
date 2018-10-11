@@ -16,6 +16,7 @@ myApp.directive("dateModel", function($filter, $timeout) {
           );
           $scope.model = new Date($scope.model);
         }
+        $scope.model = new Date($scope.model);
       }, 100);
     }
   };
