@@ -1097,6 +1097,55 @@ var model = {
     }, {
       new: true
     }).exec(callback);
+  },
+
+
+  search: function (data, callback) {
+    var Model = this;
+    var Const = this(data);
+    var maxRow = Config.maxRow;
+
+    var page = 1;
+    if (data.page) {
+      page = data.page;
+    }
+    var field = data.field;
+    var options = {
+      field: data.field,
+      filters: {
+        keyword: {
+          fields: ['name'],
+          term: data.keyword
+        }
+      },
+      sort: {
+        asc: 'name'
+      },
+      start: (page - 1) * maxRow,
+      count: maxRow
+    };
+
+    if (defaultSort) {
+      if (defaultSortOrder && defaultSortOrder === "desc") {
+        options.sort = {
+          desc: defaultSort
+        };
+      } else {
+        options.sort = {
+          asc: defaultSort
+        };
+      }
+    }
+
+    var Search = Model.find(data.filter)
+
+      .order(options).sort({
+        createdAt: -1
+      })
+      .deepPopulate(deepSearch)
+      .keyword(options)
+      .page(options, callback);
+
   }
 };
 module.exports = _.assign(module.exports, exports, model);
