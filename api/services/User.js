@@ -1100,19 +1100,20 @@ var model = {
   },
 
 
-  search: function (data, callback) {
+  searchUsers: function (data, callback) {
     var Model = this;
     var Const = this(data);
     var maxRow = Config.maxRow;
-
+    if (data.keyword) {} else {
+      data.keyword = "";
+    }
     var page = 1;
     if (data.page) {
       page = data.page;
     }
-    var field = data.field;
     var options = {
-      field: data.field,
       filters: {
+        field: data.fields,
         keyword: {
           fields: ['name'],
           term: data.keyword
@@ -1124,28 +1125,18 @@ var model = {
       start: (page - 1) * maxRow,
       count: maxRow
     };
-
-    if (defaultSort) {
-      if (defaultSortOrder && defaultSortOrder === "desc") {
-        options.sort = {
-          desc: defaultSort
-        };
-      } else {
-        options.sort = {
-          asc: defaultSort
-        };
+    _.each(data.filter, function (n, key) {
+      if (_.isEmpty(n)) {
+        n = undefined;
       }
-    }
-
-    var Search = Model.find(data.filter)
-
-      .order(options).sort({
+    });
+    var Search = Model.find(data.filter).sort({
         createdAt: -1
       })
-      .deepPopulate(deepSearch)
+      .field(options)
+      .order(options)
       .keyword(options)
       .page(options, callback);
-
   }
 };
 module.exports = _.assign(module.exports, exports, model);
