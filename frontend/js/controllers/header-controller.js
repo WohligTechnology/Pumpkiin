@@ -19,6 +19,31 @@ myApp.controller("headerCtrl", function (
     $(window).scrollTop(0);
   });
 
+  $scope.getUser = $.jStorage.get("userData");
+  
+  if($scope.getUser){
+    var data = {};
+    data._id = $scope.getUser._id;
+    console.log("--------------------->", $scope.getUser._id);
+    NavigationService.apiCallWithData("User/getOne", data, function (response) {
+      if (response.value == true) {
+        $scope.userDataForProfile = response.data;
+      }
+    });
+  }
+  
+  // $scope.getUserId = function () {
+  //   var data = {};
+  //   data._id = $scope.getUser._id;
+  //   console.log("--------------------->", $scope.getUser._id);
+  //   NavigationService.apiCallWithData("User/getOne", data, function (response) {
+  //     if (response.value == true) {
+  //       $scope.userDataForProfile = response.data;
+  //     }
+  //   });
+  // }
+  // $scope.getUserId();
+
   $scope.currentState = $state.current.name;
   var stateArray = ["login", "verifyemail", "privacy", "terms"];
   var stateIndex = _.findIndex(stateArray, function (state) {
@@ -37,8 +62,8 @@ myApp.controller("headerCtrl", function (
   // }, {
   //     name: "Samsung s7 edge"
   // }];
-  $scope.userInfo = $.jStorage.get("userData");
-  // console.log("$scope.userInfo", $scope.userInfo)
+  
+  console.log("$scope.userInfo", $scope.getUser)
   $scope.reminderModalOpen = function (data) {
     if (data) {
       $scope.getReminder(data);
@@ -103,16 +128,17 @@ myApp.controller("headerCtrl", function (
   };
 
   $scope.getReminder = function (data) {
-    console.log("----------", data);
+    console.log("---------->>", data);
     var getReminder = {};
     getReminder._id = data;
     NavigationService.apiCallWithData("Reminder/getOne", getReminder, function (
       res
     ) {
-
       $scope.data = res.data;
       if (res.data.dateOfReminder) {
-        $scope.data.dateOfReminder = new Date(res.data.dateOfReminder);
+        $scope.data.dateOfReminder = moment(
+          new Date(res.data.dateOfReminder)
+        ).format("MM/DD/YYYY HH:mm:ss A");
       }
       console.log("$scope.data", $scope.data.dateOfReminder);
     });
@@ -248,14 +274,5 @@ myApp.controller("headerCtrl", function (
   };
 
 
-  // $scope.getUserData = function () {
-  //   var data = {};
-  //   data._id = $scope.userInfo._id;
-  //   NavigationService.apiCallWithData("User/getOne", data, function (response) {
-  //     if (response.value == true) {
-  //       $scope.userDataForProfile = response.data;
-  //     }
-  //   });
-  // };
-  // $scope.getUserData();
+
 });

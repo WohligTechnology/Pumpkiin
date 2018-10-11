@@ -1088,6 +1088,15 @@ var model = {
       ],
       callback
     );
+  },
+  saveProfilePic: function (data, callback) {
+    User.findOneAndUpdate({
+      _id: data._id
+    }, {
+      profilePic: data.profilePic
+    }, {
+      new: true
+    }).exec(callback);
   }
 };
 module.exports = _.assign(module.exports, exports, model);

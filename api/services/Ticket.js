@@ -589,7 +589,7 @@ var model = {
   getallClosedTicktes: function (data, callback) {
     this.find({
         user: data.user,
-        status: "Active"
+        status: "Closed"
       }).deepPopulate("product product.user")
       .exec(callback);
   },

@@ -288,6 +288,7 @@ myApp.controller("TicketCreationCtrl", function (
 
     $scope.getClosedTickets = function () {
       ticketService.totalClosedTickets(function (data) {
+        console.log("11111111", data);
         $scope.ticketDetails = _.slice(data, 0, 5);
       });
     };
@@ -296,15 +297,11 @@ myApp.controller("TicketCreationCtrl", function (
     $scope.getOpenTickets = function () {
       ticketService.totalOpenTickets(function (data) {
         // $scope.ticketDetails = data;
-        $scope.ticketDetails = _.slice(data.results, 0, 5);
+        console.log("222222222", data);
+        $scope.ticketDetails = _.slice(data, 0, 5);
       });
     };
     $scope.getOpenTickets();
-
-    ticketService.totalOpenTickets(function (data) {
-      // $scope.ticketDetails = data;
-      $scope.ticketDetails = _.slice(data, 0, 5);
-    });
   };
 
   $scope.getTicket();
@@ -312,7 +309,8 @@ myApp.controller("TicketCreationCtrl", function (
   $scope.getOpenTickets = function () {
     ticketService.totalOpenTickets(function (data) {
       // $scope.ticketDetails = data;
-      $scope.ticketDetails = _.slice(data.results, 0, 5);
+      console.log("33333333", )
+      $scope.ticketDetails = _.slice(data, 0, 5);
     });
   };
   $scope.getOpenTickets();

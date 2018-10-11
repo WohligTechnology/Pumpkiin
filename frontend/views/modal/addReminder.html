@@ -9,25 +9,26 @@
         <div class="form-group">
             <label for="title">Add Title *</label>
             <input class="form-control form-control-sm" type="text" name="title" ng-model="data.title" required>
-            <span class="error" ng-show="reminder.title.$invalid && reminder.title.$touched"> Please, enter reminder
-                title</span>
+            <span class="error" ng-show="reminder.title.$invalid && reminder.title.$touched"> Please, enter reminder title
+            </span>
         </div>
         <div class="form-group">
             <label for="title">Add Description * </label>
             <input class="form-control form-control-sm" type="text" name="description" ng-model="data.description" required>
-            <span class="error" ng-show="reminder.description.$invalid && reminder.description.$touched"> Please, enter
-                reminder description</span>
+            <span class="error" ng-show="reminder.description.$invalid && reminder.description.$touched"> Please, enter reminder description</span>
         </div>
         <div class="form-group">
             <label for="title">Select Date & Time * </label>
-            <input name="remdate" ng-model="data.dateOfReminder" class="form-control form-control-sm" moment-picker="data.dateOfReminder"
-                start-view="year" min-view="year" max-view="minute" required>
-            <span class="error" ng-show="reminder.remdate.$invalid && reminder.remdate.$touched"> Please, enter
-                reminder date and time</span>
+            <!-- <input name="remdate" ng-model="data.dateOfReminder" moment-picker="data.dateOfReminder" start-view="year" min-view="year"
+                max-view="minute" required> -->
+            <span moment-picker="data.dateOfReminder" ng-model="data.dateOfReminder">
+                {{ data.dateOfReminder || 'Click here to select a date' }}
+            </span>
+            <span class="error" ng-show="reminder.remdate.$invalid && reminder.remdate.$touched"> Please, enter reminder date and time</span>
         </div>
         <div class="text-center">
-            <button type="submit" class="btn w-md-50 form-control reminder-btn" ng-click="saveReminder(data)" ng-disabled="!(data.title && data.description && data.dateOfReminder)">Save
-                Reminder</button>
+            <button type="submit" class="btn w-md-50 form-control reminder-btn" ng-click="saveReminder(data)" ng-disabled="!(data.title && data.description && data.dateOfReminder)">Save Reminder
+            </button>
         </div>
     </form>
 </div>

@@ -99,7 +99,8 @@
                                         </div>
                                         <div class="mr-2 px-3 py-1 chat-content" ng-if="chat.comment">{{chat.comment}}</div>
                                         <div ng-if="chat.file">
-                                            <!-- <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt=""> -->
+                                            <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
+                                                alt="">
                                             <a ng-href="{{chat.file|serverimage}}" target="blank">
                                                 <i class="fas fa-file-download" style="font-size: 40px"></i>
                                             </a>

@@ -209,7 +209,7 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
     var dataForReminderInsurance = {};
 
     $scope.addProduct = function () {
-        // console.log("$scope.accessoriesMain", $scope.accessoriesMain);
+        console.log("$scope.accessoriesMain >>>>>>", $scope.warrantyExpDate, $scope.insuranceExpDate);
         var accessoriesToSave = {};
         accessoriesToSave._id = $scope.product_id;
         accessoriesToSave.productAccessory = $scope.accessoriesMain;
@@ -232,16 +232,18 @@ myApp.controller('ProductRegistrationCtrl', function ($scope, TemplateService, $
             console.log("   dataForReminderWarranty  1 ", dataForReminderWarranty);
             NavigationService.apiCallWithData("Reminder/reminderMail", dataForReminderWarranty, function (res) {});
 
-            dataForReminderInsurance.user = $scope.jstrgValue._id;
-            dataForReminderWarranty.email = $scope.jstrgValue.email;
-            dataForReminderWarranty.name = $scope.jstrgValue.name;
-            dataForReminderInsurance.title = "Insurance expiry";
-            dataForReminderInsurance.status = "Pending";
-            dataForReminderInsurance.description = "End of insurance period";
-            dataForReminderInsurance.dateOfReminder = $scope.insuranceExpDate;
-            console.log("   dataForReminderInsurance  2 ", dataForReminderInsurance);
+            if ($scope.insuranceExpDate != undefined) {
+                dataForReminderInsurance.user = $scope.jstrgValue._id;
+                dataForReminderWarranty.email = $scope.jstrgValue.email;
+                dataForReminderWarranty.name = $scope.jstrgValue.name;
+                dataForReminderInsurance.title = "Insurance expiry";
+                dataForReminderInsurance.status = "Pending";
+                dataForReminderInsurance.description = "End of insurance period";
+                dataForReminderInsurance.dateOfReminder = $scope.insuranceExpDate;
+                console.log("   dataForReminderInsurance  2 ", dataForReminderInsurance);
 
-            NavigationService.apiCallWithData("Reminder/reminderMail", dataForReminderInsurance, function (res) {});
+                NavigationService.apiCallWithData("Reminder/reminderMail", dataForReminderInsurance, function (res) {});
+            }
 
             if (!(_.isEmpty(accessoriesToSave.productAccessory))) {
                 toastr.success("Accessory added successfully");

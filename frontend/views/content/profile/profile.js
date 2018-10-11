@@ -35,7 +35,11 @@ myApp.controller("ProfileCtrl", function (
   $scope.saveImage = function () {
     $scope.jstrgValue.photo = null;
     $.jStorage.set("userData", $scope.jstrgValue);
-    NavigationService.apiCallWithData("User/save", $scope.jstrgValue, function (
+    var data = {};
+    data._id = $scope.jstrgValue._id;
+    data.profilePic = $scope.jstrgValue.profilePic;
+
+    NavigationService.apiCallWithData("User/saveProfilePic", data, function (
       response
     ) {
       if (response.value == true) {

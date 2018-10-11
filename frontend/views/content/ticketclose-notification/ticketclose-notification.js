@@ -112,21 +112,21 @@ myApp.controller("TicketcloseNotificationCtrl", function(
     $scope.getClosedTickets = function() {
       ticketService.totalClosedTickets(function(data) {
         $scope.ticketDetails = data;
-        console.log("getClosedTickets", data.results);
-        $scope.ticketDetails = _.slice(data.results, 0, 5);
+        console.log("getClosedTickets", data);
+        $scope.ticketDetails = _.slice(data, 0, 5);
       });
     };
 
     ticketService.totalOpenTickets(function(data) {
       $scope.ticketDetails = data;
       // console.log("----109----", data.results);
-      $scope.ticketDetails = _.slice(data.results, 0, 5);
+      $scope.ticketDetails = _.slice(data, 0, 5);
     });
     $scope.getOpenTickets = function() {
       ticketService.totalOpenTickets(function(data) {
         $scope.ticketDetails = data;
         // console.log("----109----", data.results);
-        $scope.ticketDetails = _.slice(data.results, 0, 5);
+        $scope.ticketDetails = _.slice(data, 0, 5);
       });
     };
   };

@@ -72,7 +72,7 @@ myApp.controller("NotificationCtrl", function (
         console.log("2", $scope.showLessReminders);
       });
     };
-    
+
     $scope.completedReminders = function (data) {
       $scope.showGreenImage = true;
       reminderService.findReminderOfCompletedByUser(function (data) {
@@ -84,7 +84,7 @@ myApp.controller("NotificationCtrl", function (
     $scope.pendingReminders();
 
   } else {
-    
+
     $scope.pendingReminders = function (data) {
       $scope.showGreenImage = false;
       reminderService.findReminderOfPendingSnoozeByUser(function (data) {
@@ -93,7 +93,7 @@ myApp.controller("NotificationCtrl", function (
         console.log("4", $scope.showLessReminders);
       });
     };
-    
+
 
     $scope.completedReminders = function (data) {
       $scope.showGreenImage = true;
@@ -114,7 +114,7 @@ myApp.controller("NotificationCtrl", function (
   $scope.callTickets = function () {
     ticketService.totalOpenTickets(function (data) {
       // $scope.ticketDetails = data;
-      $scope.ticketDetails = _.slice(data.results, 0, 5);
+      $scope.ticketDetails = _.slice(data, 0, 5);
       console.log(" $scope.ticketDetails --", $scope.ticketDetails);
     });
 
@@ -148,7 +148,7 @@ myApp.controller("NotificationCtrl", function (
       ticketService.totalOpenTickets(function (data) {
         // $scope.ticketDetails = data;
         // console.log("----109----", data.results);
-        $scope.ticketDetails = _.slice(data.results, 0, 5);
+        $scope.ticketDetails = _.slice(data, 0, 5);
       });
     };
   };

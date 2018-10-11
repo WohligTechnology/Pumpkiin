@@ -18,22 +18,36 @@ var schema = new Schema({
     type: String,
     enum: ["Completed", "Pending", "Snooze"]
   },
-  reminderMailSent: {
+  reminderMailSent1: {
     type: Boolean,
     default: false
   },
-  warrantyRemindermail: {
+  reminderMailSent2: {
     type: Boolean,
     default: false
   },
-  insurranceRemindermail: {
+  warrantyRemindermail1: {
     type: Boolean,
     default: false
   },
+  warrantyRemindermail2: {
+    type: Boolean,
+    default: false
+  },
+  insurranceRemindermail1: {
+    type: Boolean,
+    default: false
+  },
+  insurranceRemindermail2: {
+    type: Boolean,
+    default: false
+  },
+
   reminderCount: {
     type: Number,
     default: 0
   },
+
   warrantyReminderCount: {
     type: Number,
     default: 0
@@ -234,7 +248,13 @@ var model = {
 
   sendReminderMail: function () {
     Reminder.find({
-        reminderMailSent: false
+        $or: [{
+            reminderMailSent1: false
+          },
+          {
+            reminderMailSent2: false
+          }
+        ]
       })
       .populate("user")
       .exec(function (err, data) {
@@ -244,41 +264,37 @@ var model = {
           function (singelData, callback) {
             var reminderDate = moment(singelData.dateOfReminder);
             var currentDate = moment(new Date());
-            // console.log(
-            //   "reminderDate",
-            //   reminderDate,
-            //   "currentDate",
-            //   currentDate,
-            //   "new Date().getHours();",
-            //   new Date().getHours()
-            // );
-            // console.log("singelData", singelData);
+            var flag = false;
 
-            var day = reminderDate.diff(currentDate, "minutes");
-            // console.log("------------>>", day);
+            var minutes = reminderDate.diff(currentDate, "minutes");
+            console.log("------------>>", minutes);
             var reminderTime = new moment(singelData.dateOfReminder).format(
               "HH:mm"
             );
             var currentTime = moment(new Date()).format("HH:mm");
             console.log("------------>>", reminderTime, currentTime);
-            if (day == 24 && currentTime == reminderTime) {
-              // console.log("hey --");
-            }
-            // console.log("day-->", day, reminderTime, currentTime);
-            if (
-              (singelData &&
-                singelData.user &&
-                singelData.user.email &&
-                day == 0) ||
-              (day == 0 && currentTime == reminderTime)
-            ) {
-              console.log("@@@@@ MAIL SENT  @@@@@");
+            if (minutes < 1440 && !singelData.reminderMailSent1) {
+              flag = true;
               Reminder.update({
                 _id: singelData._id
               }, {
-                reminderMailSent: true
+                reminderMailSent1: true
               }).exec(function (err, data3) {});
+            }
+            if (minutes < 1440 && (currentTime == reminderTime && !singelData.reminderMailSent2)) {
+              console.log("@@@@@ ELSE  @@@@@");
+              flag = true;
 
+              Reminder.update({
+                _id: singelData._id
+              }, {
+                reminderMailSent2: true
+              }).exec(function (err, data3) {});
+            }
+
+
+            if (flag) {
+              console.log("In Flag");
               var emailData = {};
               var time = new Date().getHours();
               var greeting;
@@ -301,15 +317,14 @@ var model = {
                 "";
               emailData.filename = "Reminder";
               emailData.subject = "Reminder Notification";
-              // console.log("emailData", emailData);
+              console.log("emailData", emailData);
               Config.email(emailData, function (err, emailRespo) {
                 // console.log("err", err);
-                // console.log("emailRespo", emailRespo);
+                console.log("emailRespo", emailRespo);
                 callback(null, emailRespo);
               });
-            } else {
-              callback();
             }
+
           },
           function (err, data2) {
             if (err) {
@@ -323,159 +338,205 @@ var model = {
   },
   sendWarrantyReminderMail: function () {
     Reminder.find({
-        warrantyRemindermail: false,
-        user: "5ba9d658803f451b9ccffc6a"
+        $or: [{
+            warrantyRemindermail1: false
+          },
+          {
+            warrantyRemindermail2: false
+          }
+        ]
       })
       .populate("user")
       .exec(function (err, data) {
-        if (err || _.isEmpty(data)) {} else {
-          console.log("2----", data[25]);
-          async.eachSeries(
-            data,
-            function (singelData, callback) {
-              console.log("3----", singelData);
-              var reminderDate = moment(singelData.dateOfReminder);
-              var currentDate = moment(new Date());
-              // console.log("reminderDate", reminderDate, "currentDate", currentDate);
-              var day = reminderDate.diff(currentDate, "days");
-              if (
-                (singelData.email && day == 0) ||
-                (singelData.email && day == 29)
-              ) {
-                Reminder.update({
-                  _id: singelData._id
-                }, {
-                  warrantyRemindermail: true
-                }).exec(function (err, data3) {});
+        // console.log("1----", data);
+        async.eachSeries(
+          data,
+          function (singelData, callback) {
+            var reminderDate = moment(singelData.dateOfReminder);
+            var currentDate = moment(new Date());
+            var flag = false;
 
-                var emailData = {};
-                var time = new Date().getHours();
-                var greeting;
-                if (time < 10) {
-                  greeting = "Good morning";
-                } else if (time < 17) {
-                  greeting = "Good Afternoon";
-                } else {
-                  greeting = "Good evening";
-                }
-                emailData.from = "sahil@pumpkiin.com";
-                emailData.name = singelData.user.name ?
-                  singelData.user.name :
-                  "";
-                emailData.email = singelData.user.email;
-                emailData.greeting = greeting;
-                emailData.title = singelData.title ? singelData.title : "";
-                emailData.description = singelData.description ?
-                  singelData.description :
-                  "";
-                emailData.filename = "warrantyReminder";
-                emailData.subject = "Reminder Notification";
-                Config.email(emailData, function (err, emailRespo) {
-                  console.log("err", err);
-                  console.log("emailRespo", emailRespo);
-                  callback(null, emailRespo);
-                });
-              }
-            },
-            function (err, data2) {
-              if (err) {
-                console.log("In Err");
-              } else {
-                console.log("In HERE ");
-              }
+            var minutes = reminderDate.diff(currentDate, "minutes");
+            console.log("------------>>", minutes);
+            var reminderTime = new moment(singelData.dateOfReminder).format(
+              "HH:mm"
+            );
+            var currentTime = moment(new Date()).format("HH:mm");
+            console.log("------------>>", reminderTime, currentTime);
+            if (minutes < 43200 && !singelData.warrantyRemindermail1) {
+              flag = true;
+              Reminder.update({
+                _id: singelData._id
+              }, {
+                warrantyRemindermail1: true
+              }).exec(function (err, data3) {});
             }
-          );
-        }
+            if (minutes < 1440 && (currentTime == "10:00" && !singelData.warrantyRemindermail2)) {
+              console.log("@@@@@ ELSE  @@@@@");
+              flag = true;
+
+              Reminder.update({
+                _id: singelData._id
+              }, {
+                warrantyRemindermail2: true
+              }).exec(function (err, data3) {});
+            }
+
+
+            if (flag) {
+              console.log("In Flag");
+              var emailData = {};
+              var time = new Date().getHours();
+              var greeting;
+              if (time < 10) {
+                greeting = "Good morning";
+              } else if (time < 17) {
+                greeting = "Good Afternoon";
+              } else {
+                greeting = "Good evening";
+              }
+              emailData.from = "sahil@pumpkiin.com";
+              emailData.name = singelData.user.name ? singelData.user.name : "";
+              emailData.email = singelData.user.email ?
+                singelData.user.email :
+                "";
+              emailData.greeting = greeting;
+              emailData.title = singelData.title ? singelData.title : "";
+              emailData.description = singelData.description ?
+                singelData.description :
+                "";
+              emailData.filename = "Reminder";
+              emailData.subject = "Reminder Notification";
+              console.log("emailData", emailData);
+              Config.email(emailData, function (err, emailRespo) {
+                // console.log("err", err);
+                console.log("emailRespo", emailRespo);
+                callback(null, emailRespo);
+              });
+            }
+
+          },
+          function (err, data2) {
+            if (err) {
+              console.log("In Err");
+            } else {
+              console.log("In HERE ");
+            }
+          }
+        );
       });
   },
   sendInsuranceReminderMail: function () {
     Reminder.find({
-        insurranceRemindermail: false,
-        user: "5ba9d658803f451b9ccffc6a"
+        $or: [{
+            insurranceRemindermail1: false
+          },
+          {
+            insurranceRemindermail2: false
+          }
+        ]
       })
       .populate("user")
       .exec(function (err, data) {
-        if (err || _.isEmpty(data)) {} else {
-          console.log("2----", data[25]);
-          async.eachSeries(
-            data,
-            function (singelData, callback) {
-              console.log("3----", singelData);
-              var reminderDate = moment(singelData.dateOfReminder);
-              var currentDate = moment(new Date());
-              // console.log("reminderDate", reminderDate, "currentDate", currentDate);
-              var day = reminderDate.diff(currentDate, "days");
-              if (
-                (singelData.email && day == 1) ||
-                (singelData.email && day == 30)
-              ) {
-                Reminder.update({
-                  _id: singelData._id
-                }, {
-                  insurranceRemindermail: true
-                }).exec(function (err, data3) {});
+        // console.log("1----", data);
+        async.eachSeries(
+          data,
+          function (singelData, callback) {
+            var reminderDate = moment(singelData.dateOfReminder);
+            var currentDate = moment(new Date());
+            var flag = false;
 
-                var emailData = {};
-                var time = new Date().getHours();
-                var greeting;
-                if (time < 10) {
-                  greeting = "Good morning";
-                } else if (time < 17) {
-                  greeting = "Good Afternoon";
-                } else {
-                  greeting = "Good evening";
-                }
-                emailData.from = "sahil@pumpkiin.com";
-                emailData.name = singelData.user.name ?
-                  singelData.user.name :
-                  "";
-                emailData.email = singelData.user.email;
-                emailData.greeting = greeting;
-                emailData.title = singelData.title ? singelData.title : "";
-                emailData.description = singelData.description ?
-                  singelData.description :
-                  "";
-                emailData.filename = "warrantyReminder";
-                emailData.subject = "Reminder Notification";
-                Config.email(emailData, function (err, emailRespo) {
-                  console.log("err", err);
-                  console.log("emailRespo", emailRespo);
-                  callback(null, emailRespo);
-                });
-              }
-            },
-            function (err, data2) {
-              if (err) {
-                console.log("In Err");
-              } else {
-                console.log("In HERE ");
-              }
+            var minutes = reminderDate.diff(currentDate, "minutes");
+            console.log("------------>>", minutes);
+            var reminderTime = new moment(singelData.dateOfReminder).format(
+              "HH:mm"
+            );
+            var currentTime = moment(new Date()).format("HH:mm");
+            console.log("------------>>", reminderTime, currentTime);
+            if (minutes < 43200 && !singelData.insurranceRemindermail1) {
+              flag = true;
+              Reminder.update({
+                _id: singelData._id
+              }, {
+                insurranceRemindermail1: true
+              }).exec(function (err, data3) {});
             }
-          );
-        }
+            if (minutes < 1440 && (currentTime == "13:04" && !singelData.insurranceRemindermail2)) {
+              console.log("@@@@@ ELSE  @@@@@");
+              flag = true;
+
+              Reminder.update({
+                _id: singelData._id
+              }, {
+                insurranceRemindermail2: true
+              }).exec(function (err, data3) {});
+            }
+
+
+            if (flag) {
+              console.log("In Flag");
+              var emailData = {};
+              var time = new Date().getHours();
+              var greeting;
+              if (time < 10) {
+                greeting = "Good morning";
+              } else if (time < 17) {
+                greeting = "Good Afternoon";
+              } else {
+                greeting = "Good evening";
+              }
+              emailData.from = "sahil@pumpkiin.com";
+              emailData.name = singelData.user.name ? singelData.user.name : "";
+              emailData.email = singelData.user.email ?
+                singelData.user.email :
+                "";
+              emailData.greeting = greeting;
+              emailData.title = singelData.title ? singelData.title : "";
+              emailData.description = singelData.description ?
+                singelData.description :
+                "";
+              emailData.filename = "Reminder";
+              emailData.subject = "Reminder Notification";
+              console.log("emailData", emailData);
+              Config.email(emailData, function (err, emailRespo) {
+                // console.log("err", err);
+                console.log("emailRespo", emailRespo);
+                callback(null, emailRespo);
+              });
+            }
+
+          },
+          function (err, data2) {
+            if (err) {
+              console.log("In Err");
+            } else {
+              console.log("In HERE ");
+            }
+          }
+        );
       });
   }
 };
 
-// sails.on("ready", function () {
-//   cron.schedule("*/1 * * * *", function () {
-//     Reminder.sendReminderMail({});
-//     console.log("===================================");
-//   });
-// });
+sails.on("ready", function () {
+  cron.schedule("*/5 * * * *", function () {
+    Reminder.sendReminderMail({});
+    console.log("===================================");
+  });
+});
 
-// sails.on("ready", function () {
-//   cron.schedule("*/5 * * * *", function () {
-//     Reminder.sendWarrantyReminderMail({});
-//     console.log("===================================");
-//   });
-// });
+sails.on("ready", function () {
+  cron.schedule("*/5 * * * *", function () {
+    Reminder.sendWarrantyReminderMail({});
+    console.log("===================================");
+  });
+});
 
-// sails.on("ready", function () {
-//   cron.schedule("*/5 * * * *", function () {
-//     Reminder.sendInsuranceReminderMail({});
-//     console.log("===================================");
-//   });
-// });
+sails.on("ready", function () {
+  cron.schedule("*/5 * * * *", function () {
+    Reminder.sendInsuranceReminderMail({});
+    console.log("===================================");
+  });
+});
 
 module.exports = _.assign(module.exports, exports, model);
