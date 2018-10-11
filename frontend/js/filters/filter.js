@@ -39,6 +39,7 @@ myApp.filter('uploadpath', function () {
     }
   };
 });
+
 myApp.filter('indianCurrency', function () {
   return function (getNumber) {
     if (!isNaN(getNumber)) {

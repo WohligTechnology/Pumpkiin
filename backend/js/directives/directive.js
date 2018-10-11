@@ -1,11 +1,11 @@
-myApp.directive("dateModel", function($filter, $timeout) {
+myApp.directive("dateModel", function ($filter, $timeout) {
   return {
     scope: {
       model: "=ngModel"
     },
-    link: function($scope, element, attrs) {
+    link: function ($scope, element, attrs) {
       console.log("in date model");
-      $timeout(function() {
+      $timeout(function () {
         if (_.isEmpty($scope.model)) {
           $scope.model = "";
         } else {
@@ -17,18 +17,18 @@ myApp.directive("dateModel", function($filter, $timeout) {
   };
 });
 
-myApp.directive("imageonload", function() {
+myApp.directive("imageonload", function () {
   return {
     restrict: "A",
-    link: function(scope, element, attrs) {
-      element.bind("load", function() {
+    link: function (scope, element, attrs) {
+      element.bind("load", function () {
         scope.$apply(attrs.imageonload);
       });
     }
   };
 });
 
-myApp.directive("uploadImage", function($http, $filter, $timeout) {
+myApp.directive("uploadImage", function ($http, $filter, $timeout) {
   return {
     templateUrl: "views/directive/uploadFile.html",
     scope: {
@@ -36,11 +36,12 @@ myApp.directive("uploadImage", function($http, $filter, $timeout) {
       type: "@type",
       callback: "&ngCallback",
       imagesrc: "@imageSrc",
-      imageclass: "@imageClass"
+      imageclass: "@imageClass",
+      hideStatus: "@hideStatus"
     },
-    link: function($scope, element, attrs) {
+    link: function ($scope, element, attrs) {
       console.log($scope.imagesrc, $scope.imageclass);
-      $scope.showImage = function() {};
+      $scope.showImage = function () {};
       $scope.check = true;
       if (!$scope.type) {
         $scope.type = "image";
@@ -66,14 +67,14 @@ myApp.directive("uploadImage", function($http, $filter, $timeout) {
       // } else {
       //     $scope.required = false;
       // }
-      $scope.$watch("image", function(newVal, oldVal) {
+      $scope.$watch("image", function (newVal, oldVal) {
         isArr = _.isArray(newVal);
 
         if (!isArr && newVal && newVal.file) {
           $scope.uploadNow(newVal);
         } else if (isArr && newVal.length > 0 && newVal[0].file) {
-          $timeout(function() {
-            _.each(newVal, function(newV, key) {
+          $timeout(function () {
+            _.each(newVal, function (newV, key) {
               if (newV && newV.file) {
                 $scope.uploadNow(newV);
               }
@@ -85,7 +86,7 @@ myApp.directive("uploadImage", function($http, $filter, $timeout) {
       if ($scope.model) {
         if (_.isArray($scope.model)) {
           $scope.image = [];
-          _.each($scope.model, function(n) {
+          _.each($scope.model, function (n) {
             $scope.image.push({
               url: n
             });
@@ -99,10 +100,10 @@ myApp.directive("uploadImage", function($http, $filter, $timeout) {
       if (attrs.inobj || attrs.inobj === "") {
         $scope.inObject = true;
       }
-      $scope.clearOld = function() {
+      $scope.clearOld = function () {
         $scope.model = [];
       };
-      $scope.uploadNow = function(image) {
+      $scope.uploadNow = function (image) {
         $scope.uploadStatus = "uploading";
         var Template = this;
         image.hide = true;
@@ -116,7 +117,7 @@ myApp.directive("uploadImage", function($http, $filter, $timeout) {
             },
             transformRequest: angular.identity
           })
-          .then(function(data) {
+          .then(function (data) {
             data = data.data;
             $scope.uploadStatus = "uploaded";
             if ($scope.isMultiple) {
@@ -144,7 +145,7 @@ myApp.directive("uploadImage", function($http, $filter, $timeout) {
               $scope.model = data.data[0];
               // console.log($scope.model, 'model means blob');
             }
-            $timeout(function() {
+            $timeout(function () {
               $scope.callback();
             }, 100);
           });
@@ -153,11 +154,11 @@ myApp.directive("uploadImage", function($http, $filter, $timeout) {
   };
 });
 
-myApp.directive("onlyDigits", function() {
+myApp.directive("onlyDigits", function () {
   return {
     require: "ngModel",
     restrict: "A",
-    link: function(scope, element, attr, ctrl) {
+    link: function (scope, element, attr, ctrl) {
       var digits;
 
       function inputValue(val) {
@@ -182,16 +183,16 @@ myApp.directive("onlyDigits", function() {
   };
 });
 
-myApp.directive("img", function($compile, $parse) {
+myApp.directive("img", function ($compile, $parse) {
   return {
     restrict: "E",
     replace: false,
-    link: function($scope, element, attrs) {
+    link: function ($scope, element, attrs) {
       var $element = $(element);
       if (!attrs.noloading) {
         $element.after("<img src='img/loading.gif' class='loading' />");
         var $loading = $element.next(".loading");
-        $element.load(function() {
+        $element.load(function () {
           $loading.remove();
           $(this).addClass("doneLoading");
         });
@@ -202,11 +203,11 @@ myApp.directive("img", function($compile, $parse) {
   };
 });
 
-myApp.directive("fancyboxBox", function($document) {
+myApp.directive("fancyboxBox", function ($document) {
   return {
     restrict: "EA",
     replace: false,
-    link: function(scope, element, attr) {
+    link: function (scope, element, attr) {
       var $element = $(element);
       var target;
       if (attr.rel) {
@@ -227,13 +228,13 @@ myApp.directive("fancyboxBox", function($document) {
   };
 });
 
-myApp.directive("menuOptions", function($document) {
+myApp.directive("menuOptions", function ($document) {
   return {
     restrict: "C",
     replace: false,
-    link: function(scope, element, attr) {
+    link: function (scope, element, attr) {
       var $element = $(element);
-      $(element).on("click", function() {
+      $(element).on("click", function () {
         $(".side-header.opened-menu").toggleClass("slide-menu");
         $(".main-content").toggleClass("wide-content");
         $("footer").toggleClass("wide-footer");
@@ -243,13 +244,13 @@ myApp.directive("menuOptions", function($document) {
   };
 });
 
-myApp.directive("oI", function($document) {
+myApp.directive("oI", function ($document) {
   return {
     restrict: "C",
     replace: false,
-    link: function(scope, element, attr) {
+    link: function (scope, element, attr) {
       var $element = $(element);
-      $element.click(function() {
+      $element.click(function () {
         $element
           .parent()
           .siblings()
@@ -269,11 +270,11 @@ myApp.directive("oI", function($document) {
     }
   };
 });
-myApp.directive("slimscroll", function($document) {
+myApp.directive("slimscroll", function ($document) {
   return {
     restrict: "EA",
     replace: false,
-    link: function(scope, element, attr) {
+    link: function (scope, element, attr) {
       var $element = $(element);
       $element.slimScroll({
         height: "400px",
@@ -284,7 +285,7 @@ myApp.directive("slimscroll", function($document) {
   };
 });
 
-myApp.directive("addressForm", function($document) {
+myApp.directive("addressForm", function ($document) {
   return {
     templateUrl: "views/directive/address-form.html",
     scope: {
@@ -293,10 +294,10 @@ myApp.directive("addressForm", function($document) {
     },
     restrict: "EA",
     replace: false,
-    controller: function($scope, NgMap, NavigationService) {
+    controller: function ($scope, NgMap, NavigationService) {
       $scope.map = {};
-      $scope.change = function() {
-        NgMap.getMap().then(function(map) {
+      $scope.change = function () {
+        NgMap.getMap().then(function (map) {
           var latLng = {
             lat: map.markers[0].position.lat(),
             lng: map.markers[0].position.lng()
@@ -305,8 +306,8 @@ myApp.directive("addressForm", function($document) {
         });
       };
       var LatLongi = 0;
-      $scope.getLatLng = function(address) {
-        NavigationService.getLatLng(address, ++LatLongi, function(data, i) {
+      $scope.getLatLng = function (address) {
+        NavigationService.getLatLng(address, ++LatLongi, function (data, i) {
           if (i == LatLongi) {
             $scope.formData = _.assign(
               $scope.formData,
@@ -366,7 +367,7 @@ myApp.directive("addressForm", function($document) {
 // });
 
 var aa = {};
-myApp.directive("multipleSelect", function($document, $timeout) {
+myApp.directive("multipleSelect", function ($document, $timeout) {
   return {
     templateUrl: "views/directive/multiple-select.html",
     scope: {
@@ -383,7 +384,7 @@ myApp.directive("multipleSelect", function($document, $timeout) {
     restrict: "EA",
     replace: false,
     controller: "MultipleSelectCtrl",
-    link: function(scope, element, attr, NavigationService) {
+    link: function (scope, element, attr, NavigationService) {
       var $element = $(element);
       scope.activeKey = 0;
       scope.isRequired = true;
@@ -395,8 +396,8 @@ myApp.directive("multipleSelect", function($document, $timeout) {
       aa = $element;
       var maxItemLength = 40;
       var maxBoxLength = 200;
-      $timeout(function() {
-        $element.find(".typeText").keyup(function(event) {
+      $timeout(function () {
+        $element.find(".typeText").keyup(function (event) {
           var scrollTop = $element.find("ul.allOptions").scrollTop();
           var optionLength = $element.find("ul.allOptions li").length;
           if (event.keyCode == 40) {
@@ -434,19 +435,19 @@ myApp.directive("multipleSelect", function($document, $timeout) {
   };
 });
 
-myApp.directive("viewField", function($http, $filter) {
+myApp.directive("viewField", function ($http, $filter) {
   return {
     templateUrl: "views/directive/viewField.html",
     scope: {
       type: "=type",
       value: "=value"
     },
-    link: function($scope, element, attrs) {
+    link: function ($scope, element, attrs) {
       if (!$scope.type.type) {
         $scope.type.type = "text";
       }
       $scope.form = {};
-      $scope.objectDepth = function() {
+      $scope.objectDepth = function () {
         if (_.isObjectLike($scope.storeObj)) {
           if ($scope.storeValue[$scope.storeObj.field]) {
             $scope.form.model =
@@ -473,18 +474,18 @@ myApp.directive("viewField", function($http, $filter) {
     }
   };
 });
-myApp.directive("dateForm", function() {
+myApp.directive("dateForm", function () {
   return {
     scope: {
       ngModel: "=ngModel"
     },
-    link: function($scope, element, attrs) {
+    link: function ($scope, element, attrs) {
       console.log($scope.ngModel);
     }
   };
 });
 
-myApp.directive("detailField", function($http, $filter, JsonService) {
+myApp.directive("detailField", function ($http, $filter, JsonService) {
   return {
     templateUrl: "views/directive/detailField.html",
     scope: {
@@ -494,6 +495,6 @@ myApp.directive("detailField", function($http, $filter, JsonService) {
       formData: "=data"
     },
     controller: "DetailFieldCtrl",
-    link: function($scope, element, attrs) {}
+    link: function ($scope, element, attrs) {}
   };
 });

@@ -361,6 +361,7 @@ myApp.controller("TicketCreationCtrl", function (
         dataToSend,
         function (data) {
           if (data.value == true) {
+            $(".circle1").addClass("timeline-active");
             $scope.ticketId = data.data._id;
             // $scope.ticketDetails = data.data;
             $scope.chatData.comment = null;
