@@ -248,14 +248,14 @@ myApp.controller("headerCtrl", function (
   };
 
 
-  $scope.getUserData = function () {
-    var data = {};
-    data._id = $scope.userInfo._id;
-    NavigationService.apiCallWithData("User/getOne", data, function (response) {
-      if (response.value == true) {
-        $scope.userDataForProfile = response.data;
-      }
-    });
-  };
-  $scope.getUserData();
+  // $scope.getUserData = function () {
+  //   var data = {};
+  //   data._id = $scope.userInfo._id;
+  //   NavigationService.apiCallWithData("User/getOne", data, function (response) {
+  //     if (response.value == true) {
+  //       $scope.userDataForProfile = response.data;
+  //     }
+  //   });
+  // };
+  // $scope.getUserData();
 });
