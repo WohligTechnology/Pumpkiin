@@ -55,7 +55,7 @@
       "tableRef": "dob",
       "placeholder": "Enter Date Of Birth",
       "id": "emdobail",
-      "validation": ["", "trim", ""],
+      "validation": ["required", "trim", ""],
       "url": ""
     },
     {
