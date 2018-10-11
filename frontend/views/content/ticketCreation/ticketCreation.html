@@ -272,11 +272,17 @@
                                     </div>
                                     <div class="ml-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
                                     <div ng-if="chat.file">
-                                        <a ng-href="{{chat.file|serverimage}}" target="blank">
-                                            <i class="fas fa-file-download" style="font-size: 40px"></i>
-                                        </a>
-                                        <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
-                                            alt="">
+                                        <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)=='pdf'">
+                                            <a ng-href="{{chat.file|serverimage}}" target="blank">
+                                                <i class="fas fa-file-download" style="font-size: 40px"></i>
+                                            </a>
+                                        </span>
+                                        <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)!='pdf'">
+                                            <a ng-href="{{chat.file|serverimage}}" target="blank">
+                                                <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
+                                                    alt="">
+                                            </a>
+                                        </span>
                                     </div>
                                     <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact
                                         Person:{{chat.pickUpDetails.contactPerson}}
@@ -291,11 +297,17 @@
                                     </div>
                                     <div class="mr-2 px-3 py-1 chat-content" ng-if="chat.comment">{{chat.comment}}</div>
                                     <div ng-if="chat.file">
-                                        <!-- <a ng-href="{{chat.file|serverimage}}" target="blank">
-                                            <i class="fas fa-file-download" style="font-size: 40px"></i>
-                                        </a> -->
-                                        <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
-                                            alt="">
+                                        <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)=='pdf'">
+                                            <a ng-href="{{chat.file|serverimage}}" target="blank">
+                                                <i class="fas fa-file-download" style="font-size: 40px"></i>
+                                            </a>
+                                        </span>
+                                        <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)!='pdf'">
+                                            <a ng-href="{{chat.file|serverimage}}" target="blank">
+                                                <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
+                                                    alt="">
+                                            </a>
+                                        </span>
                                     </div>
                                     <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact
                                         Person:{{chat.pickUpDetails.contactPerson}}
