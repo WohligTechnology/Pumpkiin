@@ -1137,12 +1137,10 @@ var model = {
       }
     }
 
-    var Search = Model.find(data.filter)
-
-      .order(options).sort({
+    var Search = Model.find(data.filter).sort({
         createdAt: -1
       })
-      .deepPopulate(deepSearch)
+      .order(options)
       .keyword(options)
       .page(options, callback);
 
