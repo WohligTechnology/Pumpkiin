@@ -22,6 +22,7 @@ myApp.controller("headerCtrl", function (
   $scope.userInfo = $.jStorage.get("userData");
 
   if ($scope.userInfo) {
+    $scope.jstrgValue = $scope.userInfo;
     var data = {};
     data._id = $scope.userInfo._id;
     console.log("--------------------->", $scope.userInfo._id);
