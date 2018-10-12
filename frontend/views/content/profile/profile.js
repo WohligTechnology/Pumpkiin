@@ -20,6 +20,7 @@ myApp.controller("ProfileCtrl", function (
   $scope.profileAddress = {};
   $scope.userRel = {};
   $scope.addressIndex = -1;
+  $scope.profileDetails;
   // console.log("$scope.jstrgValue", $scope.jstrgValue);
 
   $scope.relation = [{
@@ -169,7 +170,9 @@ myApp.controller("ProfileCtrl", function (
     });
   };
 
+
   $scope.changeInfo = function () {
+    console.log("Change Info", $scope.userDataForProfile);
     if (
       $scope.userDataForProfile.lastMobile !== $scope.userDataForProfile.mobile
     ) {
@@ -358,4 +361,20 @@ myApp.controller("ProfileCtrl", function (
       $scope.addNewUser.close();
     });
   };
+
+  $scope.resendOtp = function (info) {
+    console.log("aaaaaaaa", info);
+    if (info) {
+      var sendData = {};
+      sendData.mobile = info.mobile;
+      NavigationService.apiCallWithData("User/sendOtp", sendData, function (res1) {
+        // console.log("res1", res1);
+        if (res1.value == true) {
+          toastr.success('Check The Otp');
+        } else {
+          toastr.warning('Please Check Mobile Number');
+        }
+      });
+    }
+  }
 });

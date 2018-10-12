@@ -10783,6 +10783,8 @@ svg {
   .openticket .content {
     min-height: calc(100vh - 8vh);
     padding-top: 35px; }
+  .openticket-circle:hover {
+    display: none; }
   .registration .content,
   .unregistration .content {
     min-height: calc(100vh - 9.5vh); }
@@ -11079,7 +11081,7 @@ svg {
   .purchase-section .add-user-purchase .social-text {
     width: 275px; }
   .profile-page-subsection .social .social-text {
-    width: 55%; }
+    width: 125px; }
   .product-search input {
     width: 330px !important; }
   .menu-circle {
