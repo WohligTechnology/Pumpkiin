@@ -69,6 +69,9 @@
                 <!-- asdads {{productList.length}} -->
                 <div class="product" ng-repeat="product in productList | filter:productSearch track by $index" ui-sref="productdetailregistered({id: product._id})">{{product.productName}}
                     <!-- <img ng-src="{{product.img}}" ng-if="product.img"> -->
+                    <img ng-if="!product.ribbon" src="img/ticketCreation/warranty.png">
+
+                    <img ng-if="product.ribbon" src="img/ticketCreation/red_warranty.png">
                 </div>
             </div>
         </form>
