@@ -256,8 +256,8 @@
                                 </div>
                             </uib-accordion-heading>
                             <div class="my-5 support-timeline">
-                                <div class="circle circle1 timeline - active"></div>
-                                <div class="circle circle{{$index+2}} {{subStatus.activeClass}}" ng-repeat="subStatus in statusArray track by $index"></div>
+                                <div class="circle circle1" data-before-content="{{ticketDetails1.createdAt|date:'dd/MM/yyyy'}}"></div>
+                                <div class="circle circle{{$index+2}} {{subStatus.activeClass}}" ng-repeat="subStatus in statusArray track by $index" data-before-content="{{subStatus.statusDate}}"></div>
                             </div>
                         </div>
                     </uib-accordion>
