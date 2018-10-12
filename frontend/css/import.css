@@ -2532,6 +2532,15 @@ button.swiper-pagination-bullet {
 /* Bootstrap Variables Goes Here */
 /**************/
 /*******************/
+@media (hover: none) {
+  /* No hover support */ }
+
+@media (hover: on-demand) {
+  /* Touch screen devices */ }
+
+@media (hover: hover) {
+  /* Mouse devices */ }
+
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -10783,8 +10792,6 @@ svg {
   .openticket .content {
     min-height: calc(100vh - 8vh);
     padding-top: 35px; }
-  .openticket-circle:hover {
-    display: none; }
   .registration .content,
   .unregistration .content {
     min-height: calc(100vh - 9.5vh); }
