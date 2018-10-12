@@ -82,6 +82,7 @@ var model = {
       .exec(callback);
   },
 
+
   totalNumberOfPendingReminders: function (data, callback) {
     this.find({
         user: data.user,
@@ -178,7 +179,11 @@ var model = {
             $regex: data.keyword,
             $options: "i"
           },
-          status: "Completed",
+          $or: [{
+            status: "Pending"
+          }, {
+            status: "Snooze"
+          }],
           user: ObjectId(data.user)
         }
       }],
@@ -200,7 +205,11 @@ var model = {
             $regex: data.keyword,
             $options: "i"
           },
-          status: "Pending",
+          $or: [{
+            status: "Pending"
+          }, {
+            status: "Snooze"
+          }],
           user: ObjectId(data.user)
         }
       }],
