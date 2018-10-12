@@ -77,14 +77,23 @@
                                 <div ng-repeat="chat in ticketData.customerChat">
                                     <div class="d-flex align-items-center mb-2 you " ng-if="chat.user!=jstrgData._id">
                                         <div class="img-fluid image ">
-                                            <img src="img/profile.jpeg ">
+                                            <!-- <img src="img/profile.jpeg "> -->
+                                            <img src="{{ticketData.user.profilePic |serverimage}}">
+
                                         </div>
                                         <div class="ml-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
                                         <div ng-if="chat.file">
-                                            <!-- <img class="img-thumbnail w-25" ng-src="{{chat.file | serverimage}}" alt=""> -->
-                                            <a ng-href="{{chat.file|serverimage}}" target="blank">
-                                                <i class="fas fa-file-download" style="font-size: 40px"></i>
-                                            </a>
+                                            <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)=='pdf'">
+                                                <a ng-href="{{chat.file|serverimage}}" target="blank">
+                                                    <i class="fas fa-file-download" style="font-size: 40px"></i>
+                                                </a>
+                                            </span>
+                                            <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)!='pdf'">
+                                                <a ng-href="{{chat.file|serverimage}}" target="blank">
+                                                    <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
+                                                        alt="">
+                                                </a>
+                                            </span>
                                         </div>
                                         <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact
                                             Person:{{chat.pickUpDetails.contactPerson}}
@@ -96,14 +105,21 @@
                                     <div class="d-flex align-items-center mb-2 flex-row-reverse me " ng-if="chat.user==jstrgData._id">
                                         <div class="img-fluid image ">
                                             <img src="img/profile.jpeg ">
+                                            <!-- <img src="{{ticketData.user.profilePic |serverimage}}"> -->
                                         </div>
                                         <div class="mr-2 px-3 py-1 chat-content" ng-if="chat.comment">{{chat.comment}}</div>
                                         <div ng-if="chat.file">
-                                            <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
-                                                alt="">
-                                            <a ng-href="{{chat.file|serverimage}}" target="blank">
-                                                <i class="fas fa-file-download" style="font-size: 40px"></i>
-                                            </a>
+                                            <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)=='pdf'">
+                                                <a ng-href="{{chat.file|serverimage}}" target="blank">
+                                                    <i class="fas fa-file-download" style="font-size: 40px"></i>
+                                                </a>
+                                            </span>
+                                            <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)!='pdf'">
+                                                <a ng-href="{{chat.file|serverimage}}" target="blank">
+                                                    <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
+                                                        alt="">
+                                                </a>
+                                            </span>
                                         </div>
                                         <div class="mr-2 px-3 py-1 chat-content" ng-if="chat.pickUpDetails">Contact
                                             Person:{{chat.pickUpDetails.contactPerson}}
@@ -136,7 +152,7 @@
                                 </div>
                                 <div class="scrollbar-tcreation">
                                     <upload-image ng-model="chatData.image" image-src="../img/attachment.png"
-                                        image-class="attachment" no-view></upload-image>
+                                        image-class="attachment" no-view hide-status="{{sentValue}}"></upload-image>
                                 </div>
                                 <!-- <div class="attachment">
                                     <img class=" " src="img/ticketCreation/attachment.png ">

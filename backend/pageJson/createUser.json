@@ -50,12 +50,12 @@
       "dropDown": ["Female", "Male"]
     },
     {
-      "name": "Date Of Birth (MM/DD/YYYY)",
+      "name": "Date Of Birth",
       "type": "date",
       "tableRef": "dob",
       "placeholder": "Enter Date Of Birth",
       "id": "emdobail",
-      "validation": ["", "trim", ""],
+      "validation": ["required", "trim", ""],
       "url": ""
     },
     {

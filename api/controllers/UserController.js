@@ -413,6 +413,18 @@ var controller = {
         }
       });
     }
+  },
+  searchUsers: function (req, res) {
+    if (req.body) {
+      User.searchUsers(req.body, res.callback);
+    } else {
+      res.json({
+        value: false,
+        data: {
+          message: "Invalid Request"
+        }
+      });
+    }
   }
 
   // verifyEmail: function (req, res) {

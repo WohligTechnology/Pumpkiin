@@ -1144,15 +1144,9 @@ myApp
     }
     // BOX
     if ($scope.type.type == "date") {
-      if (
-        $scope.formData[$scope.type.tableRef] == undefined ||
-        _.isEmpty($scope.formData[$scope.type.tableRef])
-      ) {
-      } else {
-        $scope.formData[$scope.type.tableRef] = moment(
-          $scope.formData[$scope.type.tableRef]
-        ).toDate();
-      }
+      $scope.formData[$scope.type.tableRef] = moment(
+        $scope.formData[$scope.type.tableRef]
+      ).toDate();
     }
     if ($scope.type.type == "password") {
       $scope.formData[$scope.type.tableRef] = "";
@@ -2151,6 +2145,7 @@ myApp
         if (data.value == true) {
           $scope.chatData.comment = null;
           $scope.chatData.image = null;
+          $scope.sentValue = true;
           $scope.getTicket();
         }
       });

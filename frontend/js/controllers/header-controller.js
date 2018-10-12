@@ -19,30 +19,20 @@ myApp.controller("headerCtrl", function (
     $(window).scrollTop(0);
   });
 
-  $scope.getUser = $.jStorage.get("userData");
-  
-  if($scope.getUser){
+  $scope.userInfo = $.jStorage.get("userData");
+
+  if ($scope.userInfo) {
+    $scope.jstrgValue = $scope.userInfo;
     var data = {};
-    data._id = $scope.getUser._id;
-    console.log("--------------------->", $scope.getUser._id);
+    data._id = $scope.userInfo._id;
+    console.log("--------------------->", $scope.userInfo._id);
     NavigationService.apiCallWithData("User/getOne", data, function (response) {
       if (response.value == true) {
         $scope.userDataForProfile = response.data;
       }
     });
   }
-  
-  // $scope.getUserId = function () {
-  //   var data = {};
-  //   data._id = $scope.getUser._id;
-  //   console.log("--------------------->", $scope.getUser._id);
-  //   NavigationService.apiCallWithData("User/getOne", data, function (response) {
-  //     if (response.value == true) {
-  //       $scope.userDataForProfile = response.data;
-  //     }
-  //   });
-  // }
-  // $scope.getUserId();
+
 
   $scope.currentState = $state.current.name;
   var stateArray = ["login", "verifyemail", "privacy", "terms"];
@@ -62,8 +52,7 @@ myApp.controller("headerCtrl", function (
   // }, {
   //     name: "Samsung s7 edge"
   // }];
-  
-  console.log("$scope.userInfo", $scope.getUser)
+
   $scope.reminderModalOpen = function (data) {
     if (data) {
       $scope.getReminder(data);

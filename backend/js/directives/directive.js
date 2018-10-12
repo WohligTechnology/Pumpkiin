@@ -4,14 +4,10 @@ myApp.directive("dateModel", function($filter, $timeout) {
       model: "=ngModel"
     },
     link: function($scope, element, attrs) {
-      console.log("in date model");
+      console.log("in date model", $scope.model);
       $timeout(function() {
-        if (_.isEmpty($scope.model)) {
-          $scope.model = "";
-        } else {
-          console.log($filter("date")(new Date($scope.model), "dd/MM/yyyy"));
-          $scope.model = new Date($scope.model);
-        }
+        console.log($filter("date")(new Date($scope.model), "dd/MM/yyyy"));
+        $scope.model = new Date($scope.model);
       }, 100);
     }
   };
@@ -36,7 +32,8 @@ myApp.directive("uploadImage", function($http, $filter, $timeout) {
       type: "@type",
       callback: "&ngCallback",
       imagesrc: "@imageSrc",
-      imageclass: "@imageClass"
+      imageclass: "@imageClass",
+      hideStatus: "@hideStatus"
     },
     link: function($scope, element, attrs) {
       console.log($scope.imagesrc, $scope.imageclass);

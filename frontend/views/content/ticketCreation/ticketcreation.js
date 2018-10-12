@@ -105,6 +105,9 @@ myApp.controller("TicketCreationCtrl", function (
           ticketData,
           function (res) {
             $scope.ticketDetails1 = res.data;
+            if ($scope.ticketDetails1.ticketNumber) {
+              $(".circle1").addClass("timeline-active");
+            }
             establishSocket();
             console.log("check -------------------->>", $scope.newTicketId);
             //timeline
@@ -210,6 +213,14 @@ myApp.controller("TicketCreationCtrl", function (
         }
 
         //timeline
+        $scope.tickitNumber = function (data) {
+          console.log("data----> 214", data);
+          if (data) {
+            return "circle circle1 timeline - active";
+          } else {
+            return "circle circle1";
+          }
+        };
 
         $scope.statusArray = [{
             status: "Repair/ Maintenance",
@@ -354,6 +365,7 @@ myApp.controller("TicketCreationCtrl", function (
       dataToSend.user = $scope.jstrgValue._id;
       dataToSend.product = $stateParams.id;
       dataToSend.productName = productName;
+      dataToSend.firstStage = $(".circle1").addClass("timeline-active");
       dataToSend.name = $.jStorage.get("userData").name;
       dataToSend.email = $.jStorage.get("userData").email;
       NavigationService.apiCallWithData(
@@ -361,6 +373,7 @@ myApp.controller("TicketCreationCtrl", function (
         dataToSend,
         function (data) {
           if (data.value == true) {
+            $(".circle1").addClass("timeline-active")
             $scope.ticketId = data.data._id;
             // $scope.ticketDetails = data.data;
             $scope.chatData.comment = null;
@@ -384,6 +397,7 @@ myApp.controller("TicketCreationCtrl", function (
         $scope.ticketDetails1,
         function (data) {
           console.log("-----------------$scope.chatData--------", $scope.chatData);
+          $(".circle1").addClass("timeline-active")
           delete $scope.chatData.comment;
           delete $scope.chatData.image;
           $scope.sentValue = true;

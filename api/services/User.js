@@ -501,6 +501,7 @@ var model = {
 
   addRelation: function (data, callback) {
     var newuserData;
+    var oldUserName;
     async.waterfall(
       [
         function (callback) {
@@ -524,7 +525,8 @@ var model = {
           }
         },
         function (oldUserData, callback) {
-          // console.log("oldUserData", oldUserData);
+          oldUserName = oldUserData.name;
+          console.log("oldUserData", oldUserData);
           var sendData = {};
           sendData = oldUserData;
           var arrData = [];
@@ -536,7 +538,61 @@ var model = {
           arrData.push(sendData1);
           sendData.relations = arrData;
           // console.log("arrData---------", arrData);
-          User.saveData(sendData, callback);
+          User.saveData(sendData, function (err, result) {
+            if (err) {
+              callback(err, null);
+            } else {
+              callback(null, result);
+            }
+          });
+        },
+        function (data2, callback) {
+          console.log("family Member", data)
+          var emailData = {};
+          var time = new Date().getHours();
+          var greeting;
+          if (time < 10) {
+            greeting = "Good morning";
+          } else if (time < 17) {
+            greeting = "Good Afternoon";
+          } else {
+            greeting = "Good evening";
+          }
+          emailData.from = "sahil@pumpkiin.com";
+          emailData.user = data.name;
+          emailData.name = oldUserName;
+          emailData.email = data.email;
+          emailData.relation = data.relation;
+          emailData.greeting = greeting;
+          emailData.filename = "addFamilyMemberMail";
+          emailData.subject = "Family member added successfully!";
+          // console.log("emailData---------", emailData)
+          var email = {};
+          email = emailData.email;
+          Config.sendEmail({
+              //from
+              email: "sahil@pumpkiin.com",
+              name: "Sahil"
+            },
+            //to
+            //emailData,
+            [{
+              email
+            }],
+            //subject
+            emailData.subject,
+            "",
+            emailData,
+            function (err, emailResp) {
+              if (err) {
+                console.log("err", err);
+                callback("canNotSendMail", null);
+              } else {
+                console.log("err", emailResp);
+                callback(null, "mailSent");
+              }
+            }
+          );
         }
       ],
       callback
@@ -1097,6 +1153,46 @@ var model = {
     }, {
       new: true
     }).exec(callback);
+  },
+
+
+  searchUsers: function (data, callback) {
+    var Model = this;
+    var Const = this(data);
+    var maxRow = Config.maxRow;
+    if (data.keyword) {} else {
+      data.keyword = "";
+    }
+    var page = 1;
+    if (data.page) {
+      page = data.page;
+    }
+    var options = {
+      filters: {
+        field: data.fields,
+        keyword: {
+          fields: ['name'],
+          term: data.keyword
+        }
+      },
+      sort: {
+        asc: 'name'
+      },
+      start: (page - 1) * maxRow,
+      count: maxRow
+    };
+    _.each(data.filter, function (n, key) {
+      if (_.isEmpty(n)) {
+        n = undefined;
+      }
+    });
+    var Search = Model.find(data.filter).sort({
+        createdAt: -1
+      })
+      .field(options)
+      .order(options)
+      .keyword(options)
+      .page(options, callback);
   }
 };
 module.exports = _.assign(module.exports, exports, model);
