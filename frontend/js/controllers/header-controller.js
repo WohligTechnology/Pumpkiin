@@ -6,7 +6,7 @@ myApp.controller("headerCtrl", function (
   NavigationService,
   $timeout,
   toastr,
-  $http, ticketService, $window
+  $http, ticketService, reminderService, $window
 ) {
   $scope.template = TemplateService;
   $scope.$on("$stateChangeSuccess", function (
@@ -20,6 +20,7 @@ myApp.controller("headerCtrl", function (
   });
 
   $scope.userInfo = $.jStorage.get("userData");
+  var windowscreen = $window;
 
   if ($scope.userInfo) {
     $scope.jstrgValue = $scope.userInfo;
@@ -81,41 +82,101 @@ myApp.controller("headerCtrl", function (
     );
   };
 
+  //call reminders
+
+  // $scope.pendingReminders = function (data) {
+  //   $scope.showGreenImage = false;
+  //   reminderService.findReminderOfPendingSnoozeByUser(function (data) {
+  //     $scope.showLessReminders = data;
+  //     console.log("2", $scope.showLessReminders);
+  //   });
+  // };
+  // $scope.completedReminders = function (data) {
+  //   $scope.showGreenImage = true;
+  //   reminderService.findReminderOfCompletedByUser(function (data) {
+  //     $scope.showLessReminders = data;
+  //     console.log("1", $scope.showLessReminders);
+  //   });
+  // };
+
+  $scope.completedReminders = function () {
+    $scope.showGreenImage = true;
+    reminderService.findReminderOfCompletedByUser(function (data) {
+      if (windowscreen.screen.width < 768) {
+        $scope.showLessReminders = data;
+      } else {
+        $scope.showLessReminders = _.slice(data, 0, 5);
+      }
+    });
+  };
+
+  $scope.pendingReminders = function () {
+    reminderService.findReminderOfPendingSnoozeByUser(function (data) {
+      $scope.showGreenImage = false;
+      if (windowscreen.screen.width < 768) {
+        $scope.showLessReminders = data;
+      } else {
+        $scope.showLessReminders = _.slice(data, 0, 5);
+      }
+    });
+  };
+
+  $scope.getOpenTickets = function () {
+    ticketService.totalOpenTickets(function (data) {
+      if (windowscreen.screen.width < 768) {
+        $scope.ticketDetails = data;
+      } else {
+        $scope.ticketDetails = _.slice(data, 0, 5);
+      }
+    });
+  };
+
+
+
   $scope.searchForReminderData = function (data, data1) {
     var dataToSend = {};
-    // if (data.length > 0) {
-    if (data1 == "open") {
-      dataToSend.user = $.jStorage.get("userData")._id;
-      dataToSend.keyword = data;
-      NavigationService.apiCallWithData(
-        "Reminder/searchOpenReminders",
-        dataToSend,
-        function (response) {
-          if (response.value) {
-            $scope.allReminders = response.data;
-            $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+    console.log("data -->", data,"data1", data1);
+    if (data.length > 0) {
+      if (data1 == "open") {
+        console.log("IN IFFFF");
+        dataToSend.user = $.jStorage.get("userData")._id;
+        dataToSend.keyword = data;
+        NavigationService.apiCallWithData(
+          "Reminder/searchOpenReminders",
+          dataToSend,
+          function (response) {
+            if (response.value) {
+              $scope.allReminders = response.data;
+              $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+            }
           }
-        }
-      );
-    } else {
-      dataToSend.keyword = data;
-      dataToSend.user = $.jStorage.get("userData")._id;
-      NavigationService.apiCallWithData(
-        "Reminder/searchClosedReminders",
-        dataToSend,
-        function (response) {
-          console.log(" response", response);
+        );
+      } else {
+        console.log("IN Else");
+        dataToSend.keyword = data;
+        dataToSend.user = $.jStorage.get("userData")._id;
+        NavigationService.apiCallWithData(
+          "Reminder/searchClosedReminders",
+          dataToSend,
+          function (response) {
+            console.log(" response", response);
 
-          if (response.value) {
-            $scope.allReminders = response.data;
-            $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+            if (response.value) {
+              $scope.allReminders = response.data;
+              $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+            }
           }
-        }
-      );
+        );
+      }
+    } else {
+      if (data1 == "closed") {
+        $scope.completedReminders();
+      } else {
+        $scope.pendingReminders();
+      }
     }
-    // }
   };
-  var windowscreen = $window;
+
   $scope.getReminder = function (data) {
     console.log("---------->>", data);
     var getReminder = {};
@@ -132,15 +193,13 @@ myApp.controller("headerCtrl", function (
       console.log("$scope.data", $scope.data.dateOfReminder);
     });
   };
+
   $scope.getClosedTickets = function () {
     ticketService.totalClosedTickets(function (data) {
-      console.log("dtttttt", data);
       if (windowscreen.screen.width < 768) {
         $scope.ticketDetails = data;
-        console.log(" if responsive ", $scope.ticketDetails);
       } else {
         $scope.ticketDetails = _.slice(data, 0, 5);
-        console.log(" if desktop ", $scope.ticketDetails);
       }
     });
   };
@@ -149,10 +208,8 @@ myApp.controller("headerCtrl", function (
     ticketService.totalOpenTickets(function (data) {
       if (windowscreen.screen.width < 768) {
         $scope.ticketDetails = data;
-        console.log(" if responsive ", $scope.ticketDetails);
       } else {
         $scope.ticketDetails = _.slice(data, 0, 5);
-        console.log(" if desktop ", $scope.ticketDetails);
       }
     });
   };
