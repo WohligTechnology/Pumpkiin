@@ -6,7 +6,7 @@ myApp.controller("headerCtrl", function (
   NavigationService,
   $timeout,
   toastr,
-  $http
+  $http, ticketService, $window
 ) {
   $scope.template = TemplateService;
   $scope.$on("$stateChangeSuccess", function (
@@ -115,7 +115,7 @@ myApp.controller("headerCtrl", function (
     }
     // }
   };
-
+  var windowscreen = $window;
   $scope.getReminder = function (data) {
     console.log("---------->>", data);
     var getReminder = {};
@@ -132,10 +132,36 @@ myApp.controller("headerCtrl", function (
       console.log("$scope.data", $scope.data.dateOfReminder);
     });
   };
+  $scope.getClosedTickets = function () {
+    ticketService.totalClosedTickets(function (data) {
+      console.log("dtttttt", data);
+      if (windowscreen.screen.width < 768) {
+        $scope.ticketDetails = data;
+        console.log(" if responsive ", $scope.ticketDetails);
+      } else {
+        $scope.ticketDetails = _.slice(data, 0, 5);
+        console.log(" if desktop ", $scope.ticketDetails);
+      }
+    });
+  };
+
+  $scope.getOpenTickets = function () {
+    ticketService.totalOpenTickets(function (data) {
+      if (windowscreen.screen.width < 768) {
+        $scope.ticketDetails = data;
+        console.log(" if responsive ", $scope.ticketDetails);
+      } else {
+        $scope.ticketDetails = _.slice(data, 0, 5);
+        console.log(" if desktop ", $scope.ticketDetails);
+      }
+    });
+  };
 
   $scope.searchForTicketData = function (data, data1) {
+    console.log("Hi In Here------------->>>>>>>", data, data1);
     var dataToSend = {};
     if (data.length > 0) {
+      console.log("Here");
       if (data1 == "open") {
         dataToSend.user = $.jStorage.get("userData")._id;
         dataToSend.keyword = data;
@@ -145,7 +171,6 @@ myApp.controller("headerCtrl", function (
           function (response) {
             if (response.value) {
               $scope.ticketDetails = response.data;
-              console.log(" $scope.ticketDetails", $scope.ticketDetails);
             }
           }
         );
@@ -166,6 +191,16 @@ myApp.controller("headerCtrl", function (
           }
         );
       }
+    } else {
+      // API For Normal Search of Ticket
+
+      console.log("data1", data1);
+      if (data1 == "closed") {
+        $scope.getClosedTickets();
+      } else {
+        $scope.getOpenTickets();
+      }
+
     }
   };
 

@@ -35,9 +35,9 @@
                 <div class="search-btn" id="search_submit" value="" ng-click="showHide()"></div>
             </form>
             <form class="position-relative" ng-if="ticketDetails[0].status=='Closed'">
-                <input id="search" name="search" type="text" placeholder="">
-                <div class="search-btn" id="search_submit" value="" ng-click="showHide()" ng-change="searchForTicketData(ticketSearch,'closed')"
-                    ng-model="ticketSearch"></div>
+                <input id="search" name="search" type="text" placeholder="" ng-change="searchForTicketData(ticketSearch,'closed')"
+                    ng-model="ticketSearch">
+                <div class="search-btn" id="search_submit" value="" ng-click="showHide()"></div>
             </form>
         </div>
     </div>

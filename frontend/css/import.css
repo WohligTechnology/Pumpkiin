@@ -10496,12 +10496,6 @@ fieldset:disabled {
   font-size: 1.2rem;
   border: 1px solid #142c5b; }
 
-.card-head-padding .card-header {
-  padding: 0.75rem 0; }
-
-.card-head-padding .status {
-  width: 95px; }
-
 .pac-container {
   z-index: 1051 !important; }
 
@@ -11980,8 +11974,7 @@ svg {
       left: 45%; }
   .productreg .status {
     font-size: 12px;
-    color: #657D95;
-    margin-left: -30px; }
+    color: #657D95; }
   .clock {
     display: none; }
   .circle10:before {
@@ -11989,7 +11982,13 @@ svg {
     right: initial;
     text-align: left; }
   .search-reminders input[type="text"]:focus {
-    width: 120px !important; } }
+    width: 120px !important; }
+  .card-head-padding .card-header {
+    padding: 0.75rem 0; }
+  .card-head-padding .ticket-opened {
+    width: 25px; }
+  .card-head-padding .other-status {
+    width: 95px; } }
 
 /* Breakpoint for medium viewport */
 @media (max-width: 767.98px) {

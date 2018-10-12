@@ -229,7 +229,7 @@
 
             <div class="bg-white mt-2 p-4 border-rounded productreg">
                 <!-- {{statusArray[1].statusDate}} -->
-                <h6 class="fontRobotoLight d-inline font-mob">SUPPORT TIMELINE </h6>
+                <h6 class="fontRobotoLight d-inline font-mob">SUPPORT TIMELINE {{ticketDetails1.substat.length}}</h6>
                 <h6 class="fontRobotoLight d-inline orange-color float-right font-mob" ng-if="ticketDetails1.status">SUPPORT
                     STATUS: {{ticketDetails1.status}}</h6>
                 <h6 class="fontRobotoLight d-inline orange-color float-right font-mob" ng-if="!ticketDetails1.status">SUPPORT
@@ -244,10 +244,14 @@
                         <div uib-accordion-group class="panel-default" is-open="status.open">
                             <uib-accordion-heading id="accordian-head" class="bg-white border-0">
                                 <div class="accor-status"></div>
-                                <!-- <span class="status">Status
-                                    <br>12/9/2018
-                                </span> -->
-                                <span class="status">{{ticketDetails1.substat[ticketDetails1.substat.length-1].status}}
+                                <span class="status" ng-if="!ticketDetails1.ticketNumber ">Status
+                                </span>
+
+                                <span class="status ticket-opened" ng-if="ticketDetails1.ticketNumber && ticketDetails1.substat.length==0">Ticket
+                                    Opened
+                                    <br>{{ticketDetails1.createdAt|date:'dd/MM/yyyy'}}
+                                </span>
+                                <span class="status other-status">{{ticketDetails1.substat[ticketDetails1.substat.length-1].status}}
                                     <br>{{ticketDetails1.substat[ticketDetails1.substat.length-1].statusDate|date:'dd/MM/yyyy'}}
                                 </span>
                                 <div class="accor-head font-color">
@@ -257,7 +261,8 @@
                             </uib-accordion-heading>
                             <div class="my-5 support-timeline">
                                 <div class="circle circle1" data-before-content="{{ticketDetails1.createdAt|date:'dd/MM/yyyy'}}"></div>
-                                <div class="circle circle{{$index+2}} {{subStatus.activeClass}}" ng-repeat="subStatus in statusArray track by $index" data-before-content="{{subStatus.statusDate}}"></div>
+                                <div class="circle circle{{$index+2}} {{subStatus.activeClass}}" ng-repeat="subStatus in statusArray track by $index"
+                                    data-before-content="{{subStatus.statusDate}}"></div>
                             </div>
                         </div>
                     </uib-accordion>
