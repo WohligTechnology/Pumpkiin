@@ -135,7 +135,7 @@ myApp.controller("headerCtrl", function (
 
   $scope.searchForReminderData = function (data, data1) {
     var dataToSend = {};
-    console.log("data -->", data,"data1", data1);
+    console.log("data -->", data, "data1", data1);
     if (data.length > 0) {
       if (data1 == "open") {
         console.log("IN IFFFF");
@@ -176,7 +176,7 @@ myApp.controller("headerCtrl", function (
       }
     }
   };
-
+  $scope.current = new Date();
   $scope.getReminder = function (data) {
     console.log("---------->>", data);
     var getReminder = {};

@@ -107,20 +107,23 @@
                         <div class="pt-0 px-4 pb-4 ">
                             <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat ">SUPPORT CHAT</h6>
                             <div class="chat my-2 ">
-                                <div class="d-flex align-items-center mb-2 you ">
-                                    <div class="img-fluid image ">
-                                        <img src="img/ticketCreation/profile.jpeg ">
+                                <div ng-repeat="chat in ticketData.customerChat">
+                                    <div class="d-flex align-items-center mb-2 you " ng-if="chat.user!=jstrgData._id">
+                                        <div class="img-fluid image ">
+                                            <!-- <img src="img/ticketCreation/profile.jpeg "> -->
+                                            <img src="{{ticketData.user.profilePic |serverimage}}">
+                                        </div>
+                                        <div class="ml-2 px-3 py-1 chat-content ">{{chat.comment}}</div>
                                     </div>
-                                    <div class="ml-2 px-3 py-1 chat-content ">{{chat.comment}}</div>
-                                </div>
-                                <div class="text-center gray-color font14 mt-3 ">{{chat.date | date}}</div>
-                                <div class="d-flex align-items-center mb-2 flex-row-reverse me " ng-repeat="chat in ticketData.customerChat">
-                                    <div class="img-fluid image ">
-                                        <img src="img/profile.jpeg ">
+                                    <div class="text-center gray-color font14 mt-3 ">{{chat.date | date}}</div>
+                                    <div class="d-flex align-items-center mb-2 flex-row-reverse me " ng-if="chat.user==jstrgData._id">
+                                        <div class="img-fluid image ">
+                                            <img src="img/profile.jpeg ">
+                                        </div>
+                                        <div class="mr-2 px-3 py-1 chat-content ">{{chat.comment}}</div>
                                     </div>
-                                    <div class="mr-2 px-3 py-1 chat-content ">{{chat.comment}}</div>
                                 </div>
-                                <div class="text-center gray-color font14 mt-3 ">{{chat.date | date}}</div>
+                                <!-- <div class="text-center gray-color font14 mt-3 ">{{chat.date | date}}</div> -->
                                 <!-- <div class="d-flex align-items-center mb-2 you ">
                                     <div class="img-fluid image ">
                                         <img src="img/ticketCreation/profile.jpeg ">
