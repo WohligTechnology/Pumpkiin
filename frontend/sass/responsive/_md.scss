@@ -14,12 +14,11 @@
             min-height: calc(100vh - 8vh);
             padding-top: 35px;
         }
-    }
-    .openticket-circle {
-        &:hover {
-            display: none;
-        }
-    }
+    } // .openticket-circle {
+    //     &:hover {
+    //         display: none;
+    //     }
+    // }
     .registration,
     .unregistration {
         .content {
