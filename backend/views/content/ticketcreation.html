@@ -9,11 +9,11 @@
                                 <div class="col-lg-3">
                                     <div class="media chat">
                                         <div class="img-fluid image d-inline-block">
-                                            <img class="align-self-center mr-3" src="img/profile.jpeg">
+                                            <img src="{{ticketData.user.profilePic |serverimage}}">
                                         </div>
                                         <div class="media-body">
                                             <h6 class="m-0">Name OF Person</h6>
-                                            <p class="m-0">{{jstrgData.name}}</p>
+                                            <p class="m-0">{{ticketData.user.name}}</p>
                                         </div>
                                     </div>
                                 </div>
