@@ -228,7 +228,7 @@
             </div>
 
             <div class="bg-white mt-2 p-4 border-rounded productreg">
-                {{statusArray[1].statusDate}}
+                <!-- {{statusArray[1].statusDate}} -->
                 <h6 class="fontRobotoLight d-inline font-mob">SUPPORT TIMELINE </h6>
                 <h6 class="fontRobotoLight d-inline orange-color float-right font-mob" ng-if="ticketDetails1.status">SUPPORT
                     STATUS: {{ticketDetails1.status}}</h6>
@@ -239,13 +239,16 @@
                     <div class="circle circle{{$index+2}} {{subStatus.activeClass}}" ng-repeat="subStatus in statusArray track by $index"
                         data-before-content="{{subStatus.statusDate}}"></div>
                 </div>
-                <div class="position-relative d-lg-none">
+                <div class="position-relative d-lg-none card-head-padding">
                     <uib-accordion>
                         <div uib-accordion-group class="panel-default" is-open="status.open">
                             <uib-accordion-heading id="accordian-head" class="bg-white border-0">
                                 <div class="accor-status"></div>
-                                <span class="status">Status
+                                <!-- <span class="status">Status
                                     <br>12/9/2018
+                                </span> -->
+                                <span class="status">{{ticketDetails1.substat[ticketDetails1.substat.length-1].status}}
+                                    <br>{{ticketDetails1.substat[ticketDetails1.substat.length-1].statusDate|date:'dd/MM/yyyy'}}
                                 </span>
                                 <div class="accor-head font-color">
                                     View Timeline
