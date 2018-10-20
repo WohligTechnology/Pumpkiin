@@ -25,19 +25,21 @@
                     <h5 class="d-inline cursor-point" ui-sref="notification">Reminders</h5>
                     <span class="badge badge-style ml-auto">{{totalReminders}}</span>
                     <div class="float-right search-reminders">
-                        <form class="position-relative" ng-if="ticketDetails[0].status!='Closed'">
-                            <input id="search" name="search" type="text" placeholder="" ng-change="searchForReminderData(reminderSearch,'open')" ng-model="reminderSearch">
+                        <form class="position-relative" ng-if="showLessReminders[0].status!='Completed'">
+                            <input id="search" name="search" type="text" placeholder="" ng-change="searchForReminderData(reminderSearch,'open')"
+                                ng-model="reminderSearch">
                             <div class="search-btn" id="search_submit" value="" ng-click="showHide()"></div>
                         </form>
-                        <form class="position-relative" ng-if="ticketDetails[0].status=='Closed'">
-                            <input id="search" name="search" type="text" placeholder="">
-                            <div class="search-btn" id="search_submit" value="" ng-click="showHide()" ng-change="searchForReminderData(reminderSearch,'closed')"
-                                ng-model="reminderSearch"></div>
+                        <form class="position-relative" ng-if="showLessReminders[0].status=='Completed'">
+                            <input id="search" name="search" type="text" placeholder="" ng-change="searchForReminderData(reminderSearch,'closed')"
+                                ng-model="reminderSearch">
+                            <div class="search-btn" id="search_submit" value="" ng-click="showHide()"></div>
                         </form>
                     </div>
                 </div>
                 <div class="border-top listed-openTickets openticket">
-                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="reminders in showLessReminders track by $index" ng-click="notificationmodalOpen(reminders,$index, 'modal');">
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="reminders in showLessReminders track by $index"
+                        ng-click="notificationmodalOpen(reminders,$index, 'modal');">
                         <div class="bullet" ng-if="!reminders.isRead"></div>
                         <div class="d-block pl-4">
                             <div class="product-title text-truncate">{{reminders.title}}</div>
@@ -61,14 +63,16 @@
                     <h6 ng-if="showGreenImage" class="fontRobotoBold blue-color mb-4 text-uppercase">Closed Reminders</h6>
                     <div class="ml-auto">
 
-                        <a role="button" class="button  px-3 py-1 fontRobotoBold text-center completed-color" ng-if="!showGreenImage" ng-click="multiCompleted();">Completed</a>
+                        <a role="button" class="button  px-3 py-1 fontRobotoBold text-center completed-color" ng-if="!showGreenImage"
+                            ng-click="multiCompleted();">Completed</a>
                         <a role="button" class="button  px-3 py-1 fontRobotoBold text-center delete-btn" ng-click="deleteMultipleReminder(reminders._id);">Delete</a>
                     </div>
                 </div>
                 <uib-accordion close-others="true">
                     <div ng-repeat="reminders in showLessReminders track by $index" class="notification-accordions">
                         <div ng-click="checkCircle(reminders._id)" ng-class="getClass(reminders._id)"></div>
-                        <div uib-accordion-group class="panel-default reminder-body" is-open="statuses[$index].isOpen" is-disabled="disabled">
+                        <div uib-accordion-group class="panel-default reminder-body" is-open="statuses[$index].isOpen"
+                            is-disabled="disabled">
                             <uib-accordion-heading>
                                 <div class="pl-4" ng-click="statuses[$index].isOpen = !statuses[$index].isOpen">
                                     <div class="d-flex align-items-center" ng-click="notificationmodalOpen(reminders,$index, null);">
@@ -87,13 +91,15 @@
                             <div class="pt-0 px-4 pb-4">
                                 <p>{{reminders.description}}</p>
                                 <div class="text-right">
-                                    <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center snooze-color" ng-click="reminderModalOpen(reminders._id);"
-                                        ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Snooze / Edit
+                                    <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center snooze-color"
+                                        ng-click="reminderModalOpen(reminders._id);" ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Snooze
+                                        / Edit
                                     </a>
-                                    <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center completed-color" ng-click="chnageStatus(reminders._id);"
-                                        ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Completed
+                                    <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center completed-color"
+                                        ng-click="chnageStatus(reminders._id);" ng-if="reminders.status=='Pending' || reminders.status=='Snooze'">Completed
                                     </a>
-                                    <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center delete-btn" ng-click="deleteReminder(reminders._id, $index);">Delete
+                                    <a role="button" class="button  px-3 py-1 mx-2  fontRobotoBold text-center delete-btn"
+                                        ng-click="deleteReminder(reminders._id, $index);">Delete
                                     </a>
                                 </div>
                             </div>
@@ -104,8 +110,9 @@
             </div>
             <div class="float-right">
                 <nav aria-label="..." ng-if="(allReminders.length / maxRow) >1">
-                    <ul ng-change="changePage(currentPage); " uib-pagination total-items="allReminders.length" items-per-page="maxRow" ng-model="currentPage"
-                        max-size="10" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
+                    <ul ng-change="changePage(currentPage); " uib-pagination total-items="allReminders.length"
+                        items-per-page="maxRow" ng-model="currentPage" max-size="10" class="pagination-sm"
+                        boundary-links="true" force-ellipses="true"></ul>
                 </nav>
             </div>
             <a role="button" class="button w-25 py-1 float-right fontRobotoBold text-center orange-btn" ng-click="reminderModalOpen()"

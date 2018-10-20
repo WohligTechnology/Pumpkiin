@@ -23,6 +23,7 @@ myApp.controller("TicketCreationCtrl", function (
   $scope.isReadonly = false;
   $scope.jstrgValue = $.jStorage.get("userData");
   $scope.showGreenImage = false;
+
   // $scope.ticketDetails = [];
   // $scope.ticketDetails[0] = {
   //   status: "Open"
@@ -98,13 +99,17 @@ myApp.controller("TicketCreationCtrl", function (
         // ticketData.ticketId = $scope.ticketId;
         ticketData.user = $scope.jstrgValue._id;
         ticketData.product = $stateParams.id;
-        // console.log("$scope.ticketData-----------", ticketData);
+        console.log("$scope.ticketData-----------", ticketData);
         NavigationService.apiCallWithData(
           "Ticket/findActiveTicketOfUser",
           ticketData,
           function (res) {
             $scope.ticketDetails1 = res.data;
-
+            if ($scope.ticketDetails1.ticketNumber) {
+              $(".circle1").addClass("timeline-active");
+            }
+            establishSocket();
+            console.log("check -------------------->>", $scope.newTicketId);
             //timeline
 
             $scope.statusArray = [{
@@ -208,6 +213,14 @@ myApp.controller("TicketCreationCtrl", function (
         }
 
         //timeline
+        $scope.tickitNumber = function (data) {
+          console.log("data----> 214", data);
+          if (data) {
+            return "circle circle1 timeline - active";
+          } else {
+            return "circle circle1";
+          }
+        };
 
         $scope.statusArray = [{
             status: "Repair/ Maintenance",
@@ -286,6 +299,7 @@ myApp.controller("TicketCreationCtrl", function (
 
     $scope.getClosedTickets = function () {
       ticketService.totalClosedTickets(function (data) {
+        console.log("11111111", data);
         $scope.ticketDetails = _.slice(data, 0, 5);
       });
     };
@@ -294,15 +308,11 @@ myApp.controller("TicketCreationCtrl", function (
     $scope.getOpenTickets = function () {
       ticketService.totalOpenTickets(function (data) {
         // $scope.ticketDetails = data;
-        $scope.ticketDetails = _.slice(data.results, 0, 5);
+        console.log("222222222", data);
+        $scope.ticketDetails = _.slice(data, 0, 5);
       });
     };
     $scope.getOpenTickets();
-
-    ticketService.totalOpenTickets(function (data) {
-      // $scope.ticketDetails = data;
-      $scope.ticketDetails = _.slice(data, 0, 5);
-    });
   };
 
   $scope.getTicket();
@@ -310,7 +320,8 @@ myApp.controller("TicketCreationCtrl", function (
   $scope.getOpenTickets = function () {
     ticketService.totalOpenTickets(function (data) {
       // $scope.ticketDetails = data;
-      $scope.ticketDetails = _.slice(data.results, 0, 5);
+      console.log("33333333", )
+      $scope.ticketDetails = _.slice(data, 0, 5);
     });
   };
   $scope.getOpenTickets();
@@ -326,9 +337,13 @@ myApp.controller("TicketCreationCtrl", function (
   };
 
   $scope.ticketChatSocket();
-  io.socket.on("ticketChat", $scope.ticketChatSocket);
+  console.log("---------------->>>>>>>Kishori Rocks", $scope.newTicketId);
 
- 
+  function establishSocket() {
+    io.socket.on("ticketChat" + $scope.ticketDetails1._id, $scope.ticketChatSocket);
+  }
+
+
 
   $scope.addComment = function (data) {
     console.log("data", data);
@@ -350,6 +365,7 @@ myApp.controller("TicketCreationCtrl", function (
       dataToSend.user = $scope.jstrgValue._id;
       dataToSend.product = $stateParams.id;
       dataToSend.productName = productName;
+      dataToSend.firstStage = $(".circle1").addClass("timeline-active");
       dataToSend.name = $.jStorage.get("userData").name;
       dataToSend.email = $.jStorage.get("userData").email;
       NavigationService.apiCallWithData(
@@ -357,6 +373,7 @@ myApp.controller("TicketCreationCtrl", function (
         dataToSend,
         function (data) {
           if (data.value == true) {
+            $(".circle1").addClass("timeline-active")
             $scope.ticketId = data.data._id;
             // $scope.ticketDetails = data.data;
             $scope.chatData.comment = null;
@@ -380,6 +397,7 @@ myApp.controller("TicketCreationCtrl", function (
         $scope.ticketDetails1,
         function (data) {
           console.log("-----------------$scope.chatData--------", $scope.chatData);
+          $(".circle1").addClass("timeline-active")
           delete $scope.chatData.comment;
           delete $scope.chatData.image;
           $scope.sentValue = true;

@@ -146,7 +146,7 @@
                     </div>
                     <div class="media-body pl-4 text-white ">
                         <h5 class="mt-0 fontRobotoMedium font20 position-relative" ng-click="modelNo=! modelNo">
-                            <div ng-if="ticketDetails1.ticketNumber">Support ID:{{ticketDetails1.ticketNumber}}
+                            <div ng-if="ticketDetails1.ticketNumber">Support ID : {{ticketDetails1.ticketNumber}}
                             </div>
                             <div ng-if="!ticketDetails1.ticketNumber">Support ID: ---</div>
                             <div class="position-absolute clock" ng-if="ticketDetails1.ticketNumber">
@@ -228,24 +228,31 @@
             </div>
 
             <div class="bg-white mt-2 p-4 border-rounded productreg">
-                {{statusArray[1].statusDate}}
-                <h6 class="fontRobotoLight d-inline font-mob">SUPPORT TIMELINE </h6>
+                <!-- {{statusArray[1].statusDate}} -->
+                <h6 class="fontRobotoLight d-inline font-mob">SUPPORT TIMELINE</h6>
                 <h6 class="fontRobotoLight d-inline orange-color float-right font-mob" ng-if="ticketDetails1.status">SUPPORT
                     STATUS: {{ticketDetails1.status}}</h6>
                 <h6 class="fontRobotoLight d-inline orange-color float-right font-mob" ng-if="!ticketDetails1.status">SUPPORT
                     STATUS: Ticket Not Generated</h6>
                 <div class="my-5 support-timeline d-none d-lg-block">
-                    <div class="circle circle1 timeline-active" data-before-content="{{ticketDetails1.createdAt|date:'dd/MM/yyyy'}}"></div>
+                    <div class="circle circle1" data-before-content="{{ticketDetails1.createdAt|date:'dd/MM/yyyy'}}"></div>
                     <div class="circle circle{{$index+2}} {{subStatus.activeClass}}" ng-repeat="subStatus in statusArray track by $index"
                         data-before-content="{{subStatus.statusDate}}"></div>
                 </div>
-                <div class="position-relative d-lg-none">
+                <div class="position-relative d-lg-none card-head-padding">
                     <uib-accordion>
                         <div uib-accordion-group class="panel-default" is-open="status.open">
                             <uib-accordion-heading id="accordian-head" class="bg-white border-0">
                                 <div class="accor-status"></div>
-                                <span class="status">Status
-                                    <br>12/9/2018
+                                <span class="status" ng-if="!ticketDetails1.ticketNumber ">Status
+                                </span>
+
+                                <span class="status ticket-opened" ng-if="ticketDetails1.ticketNumber && ticketDetails1.substat.length==0">Ticket
+                                    Opened
+                                    <br>{{ticketDetails1.createdAt|date:'dd/MM/yyyy'}}
+                                </span>
+                                <span class="status other-status">{{ticketDetails1.substat[ticketDetails1.substat.length-1].status}}
+                                    <br>{{ticketDetails1.substat[ticketDetails1.substat.length-1].statusDate|date:'dd/MM/yyyy'}}
                                 </span>
                                 <div class="accor-head font-color">
                                     View Timeline
@@ -253,8 +260,9 @@
                                 </div>
                             </uib-accordion-heading>
                             <div class="my-5 support-timeline">
-                                <div class="circle circle1 timeline-active"></div>
-                                <div class="circle circle{{$index+2}} {{subStatus.activeClass}}" ng-repeat="subStatus in statusArray track by $index"></div>
+                                <div class="circle circle1" data-before-content="{{ticketDetails1.createdAt|date:'dd/MM/yyyy'}}"></div>
+                                <div class="circle circle{{$index+2}} {{subStatus.activeClass}}" ng-repeat="subStatus in statusArray track by $index"
+                                    data-before-content="{{subStatus.statusDate}}"></div>
                             </div>
                         </div>
                     </uib-accordion>
@@ -272,11 +280,17 @@
                                     </div>
                                     <div class="ml-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
                                     <div ng-if="chat.file">
-                                        <a ng-href="{{chat.file|serverimage}}" target="blank">
-                                            <i class="fas fa-file-download" style="font-size: 40px"></i>
-                                        </a>
-                                        <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
-                                            alt="">
+                                        <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)=='pdf'">
+                                            <a ng-href="{{chat.file|serverimage}}" target="blank">
+                                                <i class="fas fa-file-download" style="font-size: 40px"></i>
+                                            </a>
+                                        </span>
+                                        <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)!='pdf'">
+                                            <a ng-href="{{chat.file|serverimage}}" target="blank">
+                                                <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
+                                                    alt="">
+                                            </a>
+                                        </span>
                                     </div>
                                     <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact
                                         Person:{{chat.pickUpDetails.contactPerson}}
@@ -291,11 +305,17 @@
                                     </div>
                                     <div class="mr-2 px-3 py-1 chat-content" ng-if="chat.comment">{{chat.comment}}</div>
                                     <div ng-if="chat.file">
-                                        <!-- <a ng-href="{{chat.file|serverimage}}" target="blank">
-                                            <i class="fas fa-file-download" style="font-size: 40px"></i>
-                                        </a> -->
-                                        <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
-                                            alt="">
+                                        <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)=='pdf'">
+                                            <a ng-href="{{chat.file|serverimage}}" target="blank">
+                                                <i class="fas fa-file-download" style="font-size: 40px"></i>
+                                            </a>
+                                        </span>
+                                        <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)!='pdf'">
+                                            <a ng-href="{{chat.file|serverimage}}" target="blank">
+                                                <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
+                                                    alt="">
+                                            </a>
+                                        </span>
                                     </div>
                                     <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact
                                         Person:{{chat.pickUpDetails.contactPerson}}

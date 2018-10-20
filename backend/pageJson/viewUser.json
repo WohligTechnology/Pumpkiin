@@ -47,7 +47,7 @@
         "action": "createUser"
     }],
     "apiCall": {
-        "url": "User/search",
+        "url": "User/searchUsers",
         "params": "_id"
     }
 }

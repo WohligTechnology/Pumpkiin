@@ -140,6 +140,18 @@ $dropdown-bg: $white !default;
 $dropdown-border-color: rgba($black, 0.15) !default;
 $dropdown-box-shadow: 0 0.5rem 1rem rgba($black, 0.175) !default;
 // @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+@media (hover: none) {
+  /* No hover support */
+}
+
+@media (hover:on-demand) {
+  /* Touch screen devices */
+}
+
+@media (hover:hover) {
+  /* Mouse devices */
+}
+
 @import "../../bower_components/bootstrap/scss/bootstrap";
 @import "other/font-fix";
 @font-face {
@@ -1133,4 +1145,8 @@ fieldset:disabled {
 //map
 .pac-container {
   z-index: 1051 !important;
+}
+
+.upload-text {
+  line-height: 12px;
 }

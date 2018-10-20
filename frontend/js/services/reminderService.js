@@ -1,12 +1,13 @@
 myApp.service('reminderService', function (NavigationService) {
 
 
-    var presentUser = $.jStorage.get("userData");
+    // var presentUser = $.jStorage.get("userData");
 
     var reminderData = {};
-    reminderData.user = presentUser._id;
+
 
     this.totalNumberOfReminders = function (callback) {
+        reminderData.user = $.jStorage.get("userData")._id;
         NavigationService.apiCallWithData("Reminder/totalNumberOfReminders", reminderData, function (res) {
             if (res.value == true) {
                 callback(res.data);
@@ -15,6 +16,7 @@ myApp.service('reminderService', function (NavigationService) {
     };
 
     this.totalNumberOfCompletedReminders = function (callback) {
+        reminderData.user = $.jStorage.get("userData")._id;
         NavigationService.apiCallWithData("Reminder/totalNumberOfCompletedReminders", reminderData, function (res) {
             if (res.value == true) {
                 callback(res.data);
@@ -23,6 +25,7 @@ myApp.service('reminderService', function (NavigationService) {
     };
 
     this.totalNumberOfPendingReminders = function (callback) {
+        reminderData.user = $.jStorage.get("userData")._id;
         NavigationService.apiCallWithData("Reminder/totalNumberOfPendingReminders", reminderData, function (res) {
             if (res.value == true) {
                 callback(res.data);
@@ -31,6 +34,7 @@ myApp.service('reminderService', function (NavigationService) {
     };
 
     this.findReminderOfPendingSnoozeByUser = function (callback) {
+        reminderData.user = $.jStorage.get("userData")._id;
         NavigationService.apiCallWithData("Reminder/findReminderOfPendingSnoozeByUser", reminderData, function (res) {
             if (res.value == true) {
                 callback(res.data);
@@ -39,6 +43,7 @@ myApp.service('reminderService', function (NavigationService) {
     };
 
     this.findReminderOfCompletedByUser = function (callback) {
+        reminderData.user = $.jStorage.get("userData")._id;
         NavigationService.apiCallWithData("Reminder/findReminderOfCompletedByUser", reminderData, function (res) {
             if (res.value == true) {
                 callback(res.data);

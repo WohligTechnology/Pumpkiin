@@ -8,13 +8,16 @@
     <form name="address">
         <div class="form-group">
             <label for="title"> Address Title ( Home / Work ) * </label>
-            <input class="form-control form-control-sm" type="text" name="addressName" ng-model="profileAddress.title" required>
-            <span class="error" ng-show="address.addressName.$invalid && address.addressName.$touched"> Please, enter address title</span>
+            <input class="form-control form-control-sm" type="text" name="addressName" ng-model="profileAddress.title"
+                required>
+            <span class="error" ng-show="address.addressName.$invalid && address.addressName.$touched"> Please, enter
+                address title</span>
         </div>
         <div class="form-group">
             <label for="fulladd">Full Address * </label>
             <!-- <input class="form-control form-control-sm" type="text" name="address" required ng-model="profileAddress.addressLine" required> -->
-            <input places-auto-complete ng-model="profileAddress.address" class="form-control form-control-sm " types="{{types}}" on-place-changed="placeChanged()">
+            <input places-auto-complete ng-model="profileAddress.address" class="form-control form-control-sm " types="{{types}}"
+                on-place-changed="placeChanged()">
 
             <!-- <span class="error" ng-show="address.address.$invalid && address.address.$touched"> Please, enter address</span> -->
         </div>

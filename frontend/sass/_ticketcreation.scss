@@ -137,6 +137,8 @@
     }
 
     .image {
+        min-width: 40px;
+        margin-left: 10px;
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -339,7 +341,7 @@
     font-family: Roboto-Medium;
 
     .submit-button {
-        padding: 4px 10px;
+        padding: 4px 10px !important;
     }
 
     .close-icon {

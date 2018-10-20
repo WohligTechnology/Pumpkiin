@@ -194,7 +194,6 @@ var model = {
   },
 
   findClosedTicketOfUser: function (data, callback) {
-    console.log("--------", data);
     this.findOne({
         _id: data.ticketId,
         user: data.user
@@ -207,7 +206,6 @@ var model = {
     async.waterfall(
       [
         function (callback) {
-          console.log("-------------------------", data);
           Product.findOneAndUpdate({
             _id: data.product
           }, {
@@ -217,15 +215,21 @@ var model = {
           }).exec(callback);
         },
         function (ticketData, callback) {
-          console.log("----------", ticketData);
+          console.log("----------Manish Rocks>>>>>>>", ticketData);
           Ticket.TicketIdGenerate(function (err, data2) {
             data.ticketNumber = data2;
             console.log("data", data);
             Ticket.saveData(data, function (err, data) {
-              sails.sockets.blast("ticketChat", {
-                ticketChatData: data
-              });
-              callback(err, data);
+              if (err) {
+                callback(err, null)
+              } else {
+                console.log("ticketChat" + data._id);
+                sails.sockets.blast("ticketChat" + data._id, {
+                  ticketChatData: data
+                });
+                callback(null, data);
+              }
+
             });
           });
         },
@@ -246,7 +250,7 @@ var model = {
           emailData.greeting = greeting;
           emailData.productName = data.productName;
           emailData.ticketID = finalData.ticketNumber;
-          emailData.filename = "ticketcreation.ejs";
+          emailData.filename = "ticketcreation";
           emailData.subject = "Ticket Creation";
           // console.log("emailData", emailData);
           Config.email(emailData, function (err, emailRespo) {
@@ -292,7 +296,7 @@ var model = {
             emailData.productName = finalData.product.productName;
             emailData.ticketID = finalData.ticketNumber;
             emailData.statusMsg = finalData.subStatus;
-            emailData.filename = "Ticketstatus.ejs";
+            emailData.filename = "Ticketstatus";
             emailData.subject = "Ticket Status Changed";
             // console.log("emailData", emailData);
             Config.email(emailData, function (err, emailRespo) {
@@ -313,7 +317,7 @@ var model = {
             emailData.email = finalData.user.email;
             emailData.greeting = greeting;
             emailData.ticketID = finalData.ticketNumber;
-            emailData.filename = "ticket-closure.ejs";
+            emailData.filename = "ticket-closure";
             emailData.subject = "Ticket closure email";
             // console.log("emailData", emailData);
             Config.email(emailData, function (err, emailRespo) {
@@ -388,7 +392,7 @@ var model = {
           Ticket.findOne({
             _id: data._id
           }).exec(function (err, data) {
-            sails.sockets.blast("ticketChat", {
+            sails.sockets.blast("ticketChat" + data._id, {
               ticketChatData: data
             });
             callback(err, data);
@@ -568,15 +572,26 @@ var model = {
     }, {
       new: true
     }).exec(function (err, data) {
-      console.log("data111111", data);
       if (err || _.isEmpty(data)) {
-        console.log("err------", err);
         callback(err, "Error");
       } else {
-        console.log("data", data);
         callback(null, data);
       }
     });
+  },
+  getallOpenTicktes: function (data, callback) {
+    this.find({
+        user: data.user,
+        status: "Active"
+      }).deepPopulate("product product.user")
+      .exec(callback);
+  },
+  getallClosedTicktes: function (data, callback) {
+    this.find({
+        user: data.user,
+        status: "Closed"
+      }).deepPopulate("product product.user")
+      .exec(callback);
   },
   searchOnListPage: function (data, callback) {
     if (data.page == undefined) {

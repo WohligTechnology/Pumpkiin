@@ -1,6 +1,6 @@
 module.exports = _.cloneDeep(require("sails-wohlig-controller"));
 var controller = {
-  getOneUser: function(req, res) {
+  getOneUser: function (req, res) {
     if (req.body) {
       User.getOneUser(req.body, res.callback);
     } else {
@@ -12,7 +12,7 @@ var controller = {
       });
     }
   },
-  saveUser: function(req, res) {
+  saveUser: function (req, res) {
     if (req.body) {
       User.saveUser(req.body, res.callback);
     } else {
@@ -24,19 +24,18 @@ var controller = {
       });
     }
   },
-  index: function(req, res) {
+  index: function (req, res) {
     res.json({
       name: "Hello World"
     });
   },
 
-  loginFacebook: function(req, res) {
+  loginFacebook: function (req, res) {
     if (req.query.returnUrl) {
       req.session.returnUrl = req.query.returnUrl;
     }
     passport.authenticate(
-      "facebook",
-      {
+      "facebook", {
         scope: ["public_profile", "email"],
         successRedirect: "/",
         failureRedirect: "/"
@@ -44,7 +43,7 @@ var controller = {
       res.socialLoginFacebook
     )(req, res);
   },
-  loginGoogle: function(req, res) {
+  loginGoogle: function (req, res) {
     if (req.query.returnUrl) {
       req.session.returnUrl = req.query.returnUrl;
     }
@@ -54,8 +53,7 @@ var controller = {
     console.log(verifiedUrl);
     if (!verifiedUrl) {
       passport.authenticate(
-        "google",
-        {
+        "google", {
           scope: ["openid", "profile", "email"],
           failureRedirect: "/"
         },
@@ -63,8 +61,7 @@ var controller = {
       )(req, res);
     } else {
       passport.authenticate(
-        "google",
-        {
+        "google", {
           scope: ["openid", "profile", "email"],
           failureRedirect: "/"
         },
@@ -73,7 +70,7 @@ var controller = {
     }
   },
 
-  profile: function(req, res) {
+  profile: function (req, res) {
     if (req.body && req.body.accessToken) {
       User.profile(req.body, res.callback);
     } else {
@@ -81,7 +78,7 @@ var controller = {
     }
   },
 
-  pdf: function(req, res) {
+  pdf: function (req, res) {
     var html = fs.readFileSync("./views/pdf/demo.ejs", "utf8");
     var options = {
       format: "A4"
@@ -91,31 +88,31 @@ var controller = {
     var writestream = gfs.createWriteStream({
       filename: newFilename
     });
-    writestream.on("finish", function() {
+    writestream.on("finish", function () {
       res.callback(null, {
         name: newFilename
       });
     });
-    pdf.create(html).toStream(function(err, stream) {
+    pdf.create(html).toStream(function (err, stream) {
       stream.pipe(writestream);
     });
   },
-  backupDatabase: function(req, res) {
+  backupDatabase: function (req, res) {
     res.connection.setTimeout(200000000);
     req.connection.setTimeout(200000000);
     var q = req.host.search("127.0.0.1");
     if (q >= 0) {
-      _.times(20, function(n) {
+      _.times(20, function (n) {
         var name = moment()
           .subtract(5 + n, "days")
           .format("ddd-Do-MMM-YYYY");
-        exec("cd backup && rm -rf " + name + "*", function(
+        exec("cd backup && rm -rf " + name + "*", function (
           err,
           stdout,
           stderr
         ) {});
       });
-      var jagz = _.map(mongoose.models, function(Model, key) {
+      var jagz = _.map(mongoose.models, function (Model, key) {
         var name = Model.collection.collectionName;
         return {
           key: key,
@@ -123,16 +120,13 @@ var controller = {
         };
       });
       res.json("Files deleted and new has to be created.");
-      jagz.push(
-        {
-          key: "fs.chunks",
-          name: "fs.chunks"
-        },
-        {
-          key: "fs.files",
-          name: "fs.files"
-        }
-      );
+      jagz.push({
+        key: "fs.chunks",
+        name: "fs.chunks"
+      }, {
+        key: "fs.files",
+        name: "fs.files"
+      });
       var isBackup = fs.existsSync("./backup");
       if (!isBackup) {
         fs.mkdirSync("./backup");
@@ -143,18 +137,18 @@ var controller = {
       fs.mkdirSync(folderName);
       async.eachSeries(
         jagz,
-        function(obj, callback) {
+        function (obj, callback) {
           exec(
             "mongoexport --db " +
-              database +
-              " --collection " +
-              obj.name +
-              " --out " +
-              folderName +
-              "/" +
-              obj.name +
-              ".json",
-            function(data1, data2, data3) {
+            database +
+            " --collection " +
+            obj.name +
+            " --out " +
+            folderName +
+            "/" +
+            obj.name +
+            ".json",
+            function (data1, data2, data3) {
               retVal.push(
                 data3 + " VALUES OF " + obj.name + " MODEL NAME " + obj.key
               );
@@ -162,7 +156,7 @@ var controller = {
             }
           );
         },
-        function() {
+        function () {
           // res.json(retVal);
         }
       );
@@ -170,10 +164,10 @@ var controller = {
       res.callback("Access Denied for Database Backup");
     }
   },
-  getAllMedia: function(req, res) {
+  getAllMedia: function (req, res) {
     Media.getAllMedia(req.body, res.callback);
   },
-  sendmail: function(req, res) {
+  sendmail: function (req, res) {
     Config.sendEmail(
       "chintan@wohlig.com",
       "jagruti@wohlig.com",
@@ -182,7 +176,7 @@ var controller = {
       "<html><body>dome content</body></html>"
     );
   },
-  removeUserRelationMember: function(req, res) {
+  removeUserRelationMember: function (req, res) {
     if (req.body) {
       User.removeUserRelationMember(
         req.body.userId,
@@ -198,7 +192,7 @@ var controller = {
       });
     }
   },
-  verifyUserWithOtpWhileSignUP: function(req, res) {
+  verifyUserWithOtpWhileSignUP: function (req, res) {
     if (req.body) {
       User.verifyUserWithOtpWhileSignUP(
         req.body.mobile,
@@ -216,7 +210,7 @@ var controller = {
       });
     }
   },
-  verifyUserWithOtp: function(req, res) {
+  verifyUserWithOtp: function (req, res) {
     if (req.body) {
       User.verifyUserWithOtp(req.body, res.callback);
     } else {
@@ -228,7 +222,7 @@ var controller = {
       });
     }
   },
-  verifyUser: function(req, res) {
+  verifyUser: function (req, res) {
     if (req.body) {
       User.verifyUser(req.body.mobile, res.callback);
     } else {
@@ -241,7 +235,7 @@ var controller = {
     }
   },
 
-  sendOtp: function(req, res) {
+  sendOtp: function (req, res) {
     if (req.body) {
       User.sendOtp(req.body, res.callback);
     } else {
@@ -254,7 +248,7 @@ var controller = {
     }
   },
 
-  sendOtpTest: function(req, res) {
+  sendOtpTest: function (req, res) {
     if (req.body) {
       User.sendOtpTest(req.body, res.callback);
     } else {
@@ -267,7 +261,7 @@ var controller = {
     }
   },
 
-  addUserRelationMember: function(req, res) {
+  addUserRelationMember: function (req, res) {
     if (req.body) {
       User.addUserRelationMember(req.body, res.callback);
     } else {
@@ -280,7 +274,7 @@ var controller = {
     }
   },
 
-  addRelation: function(req, res) {
+  addRelation: function (req, res) {
     if (req.body) {
       User.addRelation(req.body, res.callback);
     } else {
@@ -293,7 +287,7 @@ var controller = {
     }
   },
 
-  getAllMembersForSearch: function(req, res) {
+  getAllMembersForSearch: function (req, res) {
     if (req.body) {
       User.getAllMembersForSearch(req.body, res.callback);
     } else {
@@ -306,11 +300,11 @@ var controller = {
     }
   },
 
-  getConfig: function(req, res) {
+  getConfig: function (req, res) {
     res.json(env);
   },
 
-  sendMobileOtp: function(req, res) {
+  sendMobileOtp: function (req, res) {
     if (req.body) {
       User.sendMobileOtp(req.body, res.callback);
     } else {
@@ -323,7 +317,7 @@ var controller = {
     }
   },
 
-  verifyMobileOtp: function(req, res) {
+  verifyMobileOtp: function (req, res) {
     if (req.body) {
       User.verifyMobileOtp(req.body, res.callback);
     } else {
@@ -336,7 +330,7 @@ var controller = {
     }
   },
 
-  searchUser: function(req, res) {
+  searchUser: function (req, res) {
     if (req.body) {
       User.searchUser(req.body, res.callback);
     } else {
@@ -348,7 +342,7 @@ var controller = {
       });
     }
   },
-  saveUpdatedData: function(req, res) {
+  saveUpdatedData: function (req, res) {
     if (req.body) {
       User.saveUpdatedData(req.body, res.callback);
     } else {
@@ -360,7 +354,7 @@ var controller = {
       });
     }
   },
-  verifyEmail: function(req, res) {
+  verifyEmail: function (req, res) {
     if (req.body) {
       User.verifyEmail(req.body, res.callback);
     } else {
@@ -372,7 +366,7 @@ var controller = {
       });
     }
   },
-  addressEditEmail: function(req, res) {
+  addressEditEmail: function (req, res) {
     if (req.body) {
       User.addressEditEmail(req.body, res.callback);
     } else {
@@ -384,7 +378,7 @@ var controller = {
       });
     }
   },
-  sendEmailToFamily: function(req, res) {
+  sendEmailToFamily: function (req, res) {
     if (req.body) {
       User.sendEmailToFamily(req.body, res.callback);
     } else {
@@ -396,9 +390,33 @@ var controller = {
       });
     }
   },
-  saveEditedUSer: function(req, res) {
+  saveEditedUSer: function (req, res) {
     if (req.body) {
       User.saveEditedUSer(req.body, res.callback);
+    } else {
+      res.json({
+        value: false,
+        data: {
+          message: "Invalid Request"
+        }
+      });
+    }
+  },
+  saveProfilePic: function (req, res) {
+    if (req.body) {
+      User.saveProfilePic(req.body, res.callback);
+    } else {
+      res.json({
+        value: false,
+        data: {
+          message: "Invalid Request"
+        }
+      });
+    }
+  },
+  searchUsers: function (req, res) {
+    if (req.body) {
+      User.searchUsers(req.body, res.callback);
     } else {
       res.json({
         value: false,

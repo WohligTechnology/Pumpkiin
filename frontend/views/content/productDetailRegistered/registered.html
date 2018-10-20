@@ -336,17 +336,17 @@
                 </div>
                 <div class="support-chat-history mb-5 ">
                     <h6 class="fontRobotoBold blue-color my-4 ">SUPPORT CHAT HISTORY</h6>
-                    <div class="bg-white border-rounded p-4 my-2 " ng-repeat="tickets in ticketData" ui-sref="ticketcreation">
+                    <div class="bg-white border-rounded p-4 my-2 " ui-sref="ticketcreation({id:ticketData.product})">
                         <div class="d-flex align-items-center ">
                             <div class="blue-circle "></div>
-                            <h6 class="fontRobotoBold font14 ml-2 mb-0 ">{{tickets.ticketNumber}}</h6>
+                            <h6 class="fontRobotoBold font14 ml-2 mb-0 ">{{ticketData.ticketNumber}}</h6>
                             <!-- <span class="font12 font-color ml-2 d-inline-block w-25 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span> -->
                             <div class="ml-auto date-supportchat ">
-                                <span class="font12 ">{{tickets.issueReported | date}}</span>
+                                <span class="font12 ">{{ticketData.issueReported | date}}</span>
                             </div>
                             <div class="ml-auto green-color ">
-                                <span class="font12 " ng-if="tickets.status=='Active'">Open</span>
-                                <span class="font12 " ng-if="tickets.status=='Closed'">Closed</span>
+                                <span class="font12 " ng-if="ticketData.status=='Active'">Open</span>
+                                <span class="font12 " ng-if="ticketData.status=='Closed'">Closed</span>
 
                             </div>
                         </div>

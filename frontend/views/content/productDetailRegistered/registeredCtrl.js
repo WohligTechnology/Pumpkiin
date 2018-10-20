@@ -46,8 +46,22 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
     ticketDataToSend.user = $scope.jstrgValue._id;
     NavigationService.apiCallWithData("Ticket/getAllTickets", ticketDataToSend, function (res) {
         if (res.value == true) {
-            $scope.ticketData = res.data;
-            // console.log("$scope.ticketData-----", $scope.ticketData);
+            // var data = res.data;
+            // _.each(data, function (n) {
+
+            //     if (n.product == $stateParams._id) {
+            //         $scope.ticketData = n;
+            //     }
+
+            // })
+            $scope.ticketData = _.find(res.data, function (o) {
+                if (o.product == $stateParams.id) {
+                    console.log(o)
+                    return o;
+                }
+
+            });
+            console.log("$scope.ticketData-----", $scope.ticketData);
         }
     });
 

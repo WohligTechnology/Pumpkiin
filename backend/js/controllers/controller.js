@@ -2130,7 +2130,7 @@ myApp
       }
     };
     $scope.ticketChatSocket();
-    io.socket.on("ticketChat", $scope.ticketChatSocket);
+    io.socket.on("ticketChat" + $stateParams.id, $scope.ticketChatSocket);
 
     $scope.addComment = function(data) {
       console.log($scope.jstrgData);
@@ -2145,6 +2145,7 @@ myApp
         if (data.value == true) {
           $scope.chatData.comment = null;
           $scope.chatData.image = null;
+          $scope.sentValue = true;
           $scope.getTicket();
         }
       });

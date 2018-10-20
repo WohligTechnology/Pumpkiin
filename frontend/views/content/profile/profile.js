@@ -20,6 +20,7 @@ myApp.controller("ProfileCtrl", function (
   $scope.profileAddress = {};
   $scope.userRel = {};
   $scope.addressIndex = -1;
+  $scope.profileDetails;
   // console.log("$scope.jstrgValue", $scope.jstrgValue);
 
   $scope.relation = [{
@@ -35,7 +36,11 @@ myApp.controller("ProfileCtrl", function (
   $scope.saveImage = function () {
     $scope.jstrgValue.photo = null;
     $.jStorage.set("userData", $scope.jstrgValue);
-    NavigationService.apiCallWithData("User/save", $scope.jstrgValue, function (
+    var data = {};
+    data._id = $scope.jstrgValue._id;
+    data.profilePic = $scope.jstrgValue.profilePic;
+
+    NavigationService.apiCallWithData("User/saveProfilePic", data, function (
       response
     ) {
       if (response.value == true) {
@@ -165,7 +170,9 @@ myApp.controller("ProfileCtrl", function (
     });
   };
 
+
   $scope.changeInfo = function () {
+    console.log("Change Info", $scope.userDataForProfile);
     if (
       $scope.userDataForProfile.lastMobile !== $scope.userDataForProfile.mobile
     ) {
@@ -262,43 +269,39 @@ myApp.controller("ProfileCtrl", function (
     }
   };
 
-  // NavigationService.apiCallWithoutData("Ticket/getAllStatesOfIndia", function(
-  //   response
-  // ) {
-  //   console.log("response of State", response);
-  //   $scope.states = response.data;
-  // });
-
   $scope.trustAsHtml = function (value) {
     return $sce.trustAsHtml(value);
   };
 
-  // $scope.updateState = function(data) {
-  //   NavigationService.apiCallWithData("Ticket/getCity", data, function(
-  //     response
-  //   ) {
-  //     $scope.cities = response.data;
-  //     console.log("response of City", response);
-  //   });
-  // };
+
   $scope.placeChanged = function () {
     var place = this.getPlace();
     $scope.formattedAddress = place.formatted_address;
+    console.log("ABC-->", $scope.formattedAddress);
   };
 
   $scope.saveAddressData = function (data) {
-    console.log("-------------", data);
-    data.address = $scope.formattedAddress;
+    console.log("-------------", data, $scope.formattedAddress);
+    if (_.isEmpty(data.address)) {
+      console.log("1");
+      delete data.address;
+    }
+    // data.address = $scope.formattedAddress;
     var addData = {};
+
     var add = $scope.userDataForProfile.address;
     if ($scope.addressIndex != -1) {
+      console.log("2", data);
       add[$scope.addressIndex] = data;
     } else {
+      console.log("3", data);
       add.push(data);
     }
     addData._id = $scope.jstrgValue._id;
     addData.address = add;
+
     console.log("add data >>>>>>>", add);
+    console.log("add data >>>>>>>", addData);
     NavigationService.apiCallWithData("user/save", addData, function (response) {
       var mailThisAddress = {};
       mailThisAddress.user = $scope.userDataForProfile.name;
@@ -358,4 +361,20 @@ myApp.controller("ProfileCtrl", function (
       $scope.addNewUser.close();
     });
   };
+
+  $scope.resendOtp = function (info) {
+    console.log("aaaaaaaa", info);
+    if (info) {
+      var sendData = {};
+      sendData.mobile = info.mobile;
+      NavigationService.apiCallWithData("User/sendOtp", sendData, function (res1) {
+        // console.log("res1", res1);
+        if (res1.value == true) {
+          toastr.success('Check The Otp');
+        } else {
+          toastr.warning('Please Check Mobile Number');
+        }
+      });
+    }
+  }
 });
