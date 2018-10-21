@@ -8,8 +8,7 @@ var schema = new Schema({
     ref: "User"
   },
   issueReported: {
-    type: Date,
-    default: Date.now()
+    type: Date
   },
   isRead: {
     type: Boolean,
@@ -24,29 +23,32 @@ var schema = new Schema({
   subStatus: String,
   elapsedTime: Date,
   customerCommunicationHistory: String,
-  customerChat: [{
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "User"
-    },
-    comment: String,
-    file: String,
-    date: {
-      type: Date,
-      default: Date.now()
-    },
-    pickUpDetails: Schema.Types.Mixed
-  }],
+  customerChat: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+      },
+      comment: String,
+      file: String,
+      date: {
+        type: Date
+      },
+      pickUpDetails: Schema.Types.Mixed
+    }
+  ],
   closureDate: Date,
   closureCommentPumpkin: String,
   closureCommentCustomer: String,
   rating: String,
   cost: Number,
   repairRecepit: [String],
-  substat: [{
-    statusDate: Date,
-    status: String
-  }],
+  substat: [
+    {
+      statusDate: Date,
+      status: String
+    }
+  ],
   feedbackStatus: {
     tyoe: Boolean,
     default: false
@@ -78,15 +80,15 @@ var exports = _.cloneDeep(
   )
 );
 var model = {
-  totalNumberOfTickets: function (data, callback) {
+  totalNumberOfTickets: function(data, callback) {
     this.find({
-        user: data.user
-      })
+      user: data.user
+    })
       .count()
       .exec(callback);
   },
 
-  totalOpenTickets: function (data, callback) {
+  totalOpenTickets: function(data, callback) {
     //take the page in data
     var page = 1;
     // var Model = this;
@@ -113,16 +115,16 @@ var model = {
     };
 
     this.find({
-        user: data.user,
-        status: "Active"
-      })
+      user: data.user,
+      status: "Active"
+    })
       .deepPopulate("product product.user")
       .order(options)
       .keyword(options)
       .page(options, callback);
   },
 
-  totalClosedTickets1: function (data, callback) {
+  totalClosedTickets1: function(data, callback) {
     var page = 1;
     // var Model = this;
     // var Const = this(data);
@@ -147,81 +149,85 @@ var model = {
       count: maxRow
     };
     this.find({
-        user: data.user,
-        status: "Closed"
-      })
+      user: data.user,
+      status: "Closed"
+    })
       .deepPopulate("product product.user")
       .order(options)
       .keyword(options)
       .page(options, callback);
   },
 
-  totalClosedTickets: function (data, callback) {
+  totalClosedTickets: function(data, callback) {
     this.find({
-        user: data.user,
-        status: "Closed"
-      })
+      user: data.user,
+      status: "Closed"
+    })
       .deepPopulate("product product.user")
       .exec(callback);
   },
 
-  totalNumberOfOpenTickets: function (data, callback) {
+  totalNumberOfOpenTickets: function(data, callback) {
     this.find({
-        user: data.user,
-        status: "Active"
-      })
+      user: data.user,
+      status: "Active"
+    })
       .count()
       .exec(callback);
   },
 
-  totalNumberOfClosedTickets: function (data, callback) {
+  totalNumberOfClosedTickets: function(data, callback) {
     this.find({
-        user: data.user,
-        status: "Closed"
-      })
+      user: data.user,
+      status: "Closed"
+    })
       .count()
       .exec(callback);
   },
 
-  findActiveTicketOfUser: function (data, callback) {
+  findActiveTicketOfUser: function(data, callback) {
     this.findOne({
-        product: data.product,
-        user: data.user,
-        status: "Active"
-      })
+      product: data.product,
+      user: data.user,
+      status: "Active"
+    })
       .deepPopulate("product product.user")
       .exec(callback);
   },
 
-  findClosedTicketOfUser: function (data, callback) {
+  findClosedTicketOfUser: function(data, callback) {
     this.findOne({
-        _id: data.ticketId,
-        user: data.user
-      })
+      _id: data.ticketId,
+      user: data.user
+    })
       .deepPopulate("product product.user")
       .exec(callback);
   },
 
-  createNewTicket: function (data, callback) {
+  createNewTicket: function(data, callback) {
     async.waterfall(
       [
-        function (callback) {
-          Product.findOneAndUpdate({
-            _id: data.product
-          }, {
-            ticketGenerated: true
-          }, {
-            new: true
-          }).exec(callback);
+        function(callback) {
+          Product.findOneAndUpdate(
+            {
+              _id: data.product
+            },
+            {
+              ticketGenerated: true
+            },
+            {
+              new: true
+            }
+          ).exec(callback);
         },
-        function (ticketData, callback) {
+        function(ticketData, callback) {
           console.log("----------Manish Rocks>>>>>>>", ticketData);
-          Ticket.TicketIdGenerate(function (err, data2) {
+          Ticket.TicketIdGenerate(function(err, data2) {
             data.ticketNumber = data2;
             console.log("data", data);
-            Ticket.saveData(data, function (err, data) {
+            Ticket.saveData(data, function(err, data) {
               if (err) {
-                callback(err, null)
+                callback(err, null);
               } else {
                 console.log("ticketChat" + data._id);
                 sails.sockets.blast("ticketChat" + data._id, {
@@ -229,11 +235,10 @@ var model = {
                 });
                 callback(null, data);
               }
-
             });
           });
         },
-        function (finalData, callback) {
+        function(finalData, callback) {
           var emailData = {};
           var time = new Date().getHours();
           var greeting;
@@ -253,7 +258,7 @@ var model = {
           emailData.filename = "ticketcreation";
           emailData.subject = "Ticket Creation";
           // console.log("emailData", emailData);
-          Config.email(emailData, function (err, emailRespo) {
+          Config.email(emailData, function(err, emailRespo) {
             // console.log("err", err);
             // console.log("emailRespo", emailRespo);
             callback(null, emailRespo);
@@ -264,20 +269,20 @@ var model = {
     );
   },
 
-  changeTicketStatus: function (data, callback) {
+  changeTicketStatus: function(data, callback) {
     async.waterfall(
       [
-        function (callback) {
+        function(callback) {
           Ticket.saveData(data, callback);
         },
-        function (ticketData, callback) {
+        function(ticketData, callback) {
           Ticket.findOne({
-              _id: data._id
-            })
+            _id: data._id
+          })
             .deepPopulate("user product")
             .exec(callback);
         },
-        function (finalData, callback) {
+        function(finalData, callback) {
           var emailData = {};
           var time = new Date().getHours();
           var greeting;
@@ -299,7 +304,7 @@ var model = {
             emailData.filename = "Ticketstatus";
             emailData.subject = "Ticket Status Changed";
             // console.log("emailData", emailData);
-            Config.email(emailData, function (err, emailRespo) {
+            Config.email(emailData, function(err, emailRespo) {
               // console.log("err", err);
               // console.log("emailRespo", emailRespo);
               callback(null, emailRespo);
@@ -320,7 +325,7 @@ var model = {
             emailData.filename = "ticket-closure";
             emailData.subject = "Ticket closure email";
             // console.log("emailData", emailData);
-            Config.email(emailData, function (err, emailRespo) {
+            Config.email(emailData, function(err, emailRespo) {
               // console.log("err", err);
               // console.log("emailRespo", emailRespo);
               callback(null, emailRespo);
@@ -332,13 +337,13 @@ var model = {
     );
   },
 
-  TicketIdGenerate: function (callback) {
+  TicketIdGenerate: function(callback) {
     Ticket.find({})
       .sort({
         createdAt: -1
       })
       .limit(1)
-      .exec(function (err, found) {
+      .exec(function(err, found) {
         if (err) {
           callback(err, null);
         } else {
@@ -375,23 +380,23 @@ var model = {
             } else if (m == 2) {
               var ticketNumber = "T" + year + month + "-" + nextNum;
             }
-            console.log("ticketNumber", ticketNumber)
+            console.log("ticketNumber", ticketNumber);
             callback(null, ticketNumber);
           }
         }
       });
   },
 
-  addToChat: function (data, callback) {
+  addToChat: function(data, callback) {
     async.waterfall(
       [
-        function (callback) {
+        function(callback) {
           Ticket.saveData(data, callback);
         },
-        function (newUserData, callback) {
+        function(newUserData, callback) {
           Ticket.findOne({
             _id: data._id
-          }).exec(function (err, data) {
+          }).exec(function(err, data) {
             sails.sockets.blast("ticketChat" + data._id, {
               ticketChatData: data
             });
@@ -403,12 +408,13 @@ var model = {
     );
   },
 
-  getAllStatesOfIndia: function (data, callback) {
+  getAllStatesOfIndia: function(data, callback) {
     var options = {
       method: "GET",
-      url: "http://battuta.medunes.net/api/region/in/all/?key=dc633d8b43c95bc4ef251dc2dbd8ada0"
+      url:
+        "http://battuta.medunes.net/api/region/in/all/?key=dc633d8b43c95bc4ef251dc2dbd8ada0"
     };
-    request(options, function (err, response, body) {
+    request(options, function(err, response, body) {
       // console.log("body", body);
       // console.log("------------", typeof (body));
       var myJSON = JSON.parse(body);
@@ -416,14 +422,15 @@ var model = {
     });
   },
 
-  getCity: function (data, callback) {
+  getCity: function(data, callback) {
     var options = {
       method: "GET",
-      url: "http://battuta.medunes.net/api/city/in/search/?region=" +
+      url:
+        "http://battuta.medunes.net/api/city/in/search/?region=" +
         data.region +
         "&key=dc633d8b43c95bc4ef251dc2dbd8ada0"
     };
-    request(options, function (err, response, body) {
+    request(options, function(err, response, body) {
       // console.log("body", body);
       var myJSON = JSON.parse(body);
       callback(null, myJSON);
@@ -432,15 +439,16 @@ var model = {
 
   //getAllTickets oF user For edit Product Page
 
-  getAllTickets: function (data, callback) {
+  getAllTickets: function(data, callback) {
     this.find({
       user: data.user
     }).exec(callback);
   },
 
-  searchClosedTickets: function (data, callback) {
+  searchClosedTickets: function(data, callback) {
     Ticket.aggregate(
-      [{
+      [
+        {
           $match: {
             user: ObjectId(data.user)
           }
@@ -474,7 +482,7 @@ var model = {
           }
         }
       ],
-      function (err, found) {
+      function(err, found) {
         if (err) {
           callback(err, null);
         } else {
@@ -484,9 +492,10 @@ var model = {
     );
   },
 
-  searchOpenTickets: function (data, callback) {
+  searchOpenTickets: function(data, callback) {
     Ticket.aggregate(
-      [{
+      [
+        {
           $match: {
             user: ObjectId(data.user)
           }
@@ -520,7 +529,7 @@ var model = {
           }
         }
       ],
-      function (err, found) {
+      function(err, found) {
         if (err) {
           callback(err, null);
         } else {
@@ -530,7 +539,7 @@ var model = {
     );
   },
 
-  searchTickets: function (data, callback) {
+  searchTickets: function(data, callback) {
     console.log("searchTickets", data);
     //take the page in data
     var page = 1;
@@ -563,15 +572,19 @@ var model = {
       .keyword(options)
       .page(options, callback);
   },
-  changeIsReadStatus: function (data, callback) {
+  changeIsReadStatus: function(data, callback) {
     console.log("-----------", data);
-    Ticket.findOneAndUpdate({
-      _id: data.id
-    }, {
-      isRead: data.isRead
-    }, {
-      new: true
-    }).exec(function (err, data) {
+    Ticket.findOneAndUpdate(
+      {
+        _id: data.id
+      },
+      {
+        isRead: data.isRead
+      },
+      {
+        new: true
+      }
+    ).exec(function(err, data) {
       if (err || _.isEmpty(data)) {
         callback(err, "Error");
       } else {
@@ -579,26 +592,29 @@ var model = {
       }
     });
   },
-  getallOpenTicktes: function (data, callback) {
+  getallOpenTicktes: function(data, callback) {
     this.find({
-        user: data.user,
-        status: "Active"
-      }).deepPopulate("product product.user")
+      user: data.user,
+      status: "Active"
+    })
+      .deepPopulate("product product.user")
       .exec(callback);
   },
-  getallClosedTicktes: function (data, callback) {
+  getallClosedTicktes: function(data, callback) {
     this.find({
-        user: data.user,
-        status: "Closed"
-      }).deepPopulate("product product.user")
+      user: data.user,
+      status: "Closed"
+    })
+      .deepPopulate("product product.user")
       .exec(callback);
   },
-  searchOnListPage: function (data, callback) {
+  searchOnListPage: function(data, callback) {
     if (data.page == undefined) {
       data.page = 1;
     }
     var pagestartfrom = (data.page - 1) * 10;
-    var aggArr = [{
+    var aggArr = [
+      {
         $lookup: {
           from: "products",
           localField: "product",
@@ -640,7 +656,8 @@ var model = {
       },
       {
         $match: {
-          $or: [{
+          $or: [
+            {
               ticketNumber: {
                 $regex: data.keyword,
                 $options: "i"
@@ -688,8 +705,8 @@ var model = {
     async.parallel(
       [
         //Start
-        function (callback) {
-          var Search = Ticket.aggregate(aggArr, function (err, data1) {
+        function(callback) {
+          var Search = Ticket.aggregate(aggArr, function(err, data1) {
             if (err) {
               callback(err, null);
             } else {
@@ -698,9 +715,10 @@ var model = {
           });
         },
 
-        function (callback) {
+        function(callback) {
           var Search = Ticket.aggregate(
-            [{
+            [
+              {
                 $lookup: {
                   from: "products",
                   localField: "product",
@@ -742,7 +760,8 @@ var model = {
               },
               {
                 $match: {
-                  $or: [{
+                  $or: [
+                    {
                       ticketNumber: {
                         $regex: data.keyword,
                         $options: "i"
@@ -790,7 +809,7 @@ var model = {
                 }
               }
             ],
-            function (err, data2) {
+            function(err, data2) {
               if (err) {
                 callback(err, null);
               } else {
@@ -802,7 +821,7 @@ var model = {
 
         //end
       ],
-      function (err, data4) {
+      function(err, data4) {
         var data5 = {};
         if (err) {
           callback(err, null);
