@@ -297,7 +297,6 @@ body.compensate-for-scrollbar {
   height: 44px;
   margin: 0;
   padding: 10px;
-  position: relative;
   -webkit-transition: color .2s;
   transition: color .2s;
   vertical-align: top;

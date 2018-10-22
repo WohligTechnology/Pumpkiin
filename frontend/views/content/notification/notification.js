@@ -395,7 +395,7 @@ myApp.controller("NotificationCtrl", function (
 
     var user = $.jStorage.get("userData")._id;
     NavigationService.apiCallWithData(
-      "Product/ticketNotGenerated", {
+      "Product/getAllProducts", {
         user: user
       },
       function (data) {
