@@ -89,6 +89,12 @@
     }
     .custom-input {
         width: 100% !important;
+        word-wrap: break-word;
+    }
+    .profile-mobile-email {
+        display: block !important;
+        width: 100% !important;
+        word-wrap: break-word;
     }
     .support-timeline {
         transform: rotate(90deg);
@@ -107,6 +113,12 @@
     }
     .purchase-section .add-user-purchase .social-text {
         width: 275px;
+    }
+    .profile-page {
+        .profile-image {
+            width: 100px;
+            max-height: 100px;
+        }
     }
     .profile-page-subsection .social .social-text {
         width: 125px;
