@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="menu-new d-lg-none" ng-class="{'show': showMenu == true}">
-            <div class="d-flex align-items-center pl-2 pb-3 profile-border">
+            <div class="d-flex align-items-center pl-2 pb-3 profile-border" ui-sref="profile">
                 <div class="user-profile rounded-circle">
                     <img ng-src="{{jstrgValue.profilePic | serverimage}}" alt="Ticket_circle-icon" width="100%" ng-if="jstrgValue.profilePic">
                     <img ng-src="{{jstrgValue.photo}}" alt="Ticket_circle-icon" width="100%" ng-if="jstrgValue.photo && !jstrgValue.profilePic">

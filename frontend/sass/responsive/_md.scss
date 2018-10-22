@@ -306,7 +306,9 @@
         }
     }
     .clock {
-        display: none;
+        top: 85px;
+        left: -100px;
+        font-size: 14px;
     }
     .circle10 {
         &:before {
