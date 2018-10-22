@@ -102,10 +102,14 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Purchase Date * </label>
-                    <input ng-model="data.purchaseDate" name="date" class="form-control form-control-sm" type="date"
-                        required ng-if="!checkmark1" readonly>
-                    <input ng-model="data.purchaseDate" name="date" class="form-control form-control-sm" type="date"
-                        required ng-if="checkmark1">
+                    <!-- <input ng-model="data.purchaseDate" name="date" class="form-control form-control-sm" type="date" required ng-if="!checkmark1"
+                        min="{{currentDate}}" readonly>
+                    <input ng-model="data.purchaseDate" name="date" class="form-control form-control-sm" type="date" required ng-if="checkmark1"
+                        min="{{currentDate}}"> -->
+                    <input type="date" id="exampleInput" name="input" class="form-control form-control-sm" ng-model="data.purchaseDate" placeholder="yyyy-MM-dd"
+                        max="{{currentDate | date: 'yyyy-MM-dd'}}" ng-if="!checkmark1" required />
+                    <input type="date" id="exampleInput" name="input" class="form-control form-control-sm" ng-model="data.purchaseDate" placeholder="yyyy-MM-dd"
+                        max="{{currentDate | date: 'yyyy-MM-dd'}}" ng-if="checkmark1" required />
                     <span class="error" ng-show="purchase.date.$invalid && purchase.date.$touched" ng-if="checkmark1">
                         Please, enter purchase date</span>
                 </div>
