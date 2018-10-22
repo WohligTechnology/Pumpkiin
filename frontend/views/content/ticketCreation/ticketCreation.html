@@ -151,7 +151,7 @@
                             <div ng-if="!ticketDetails1.ticketNumber">Support ID: ---</div>
                             <div class="position-absolute clock" ng-if="ticketDetails1.ticketNumber">
                                 <!-- <i class="far fa-clock"></i> -->
-                                </i>{{ticketDetails1.issueReported | date}}
+                                </i>{{ticketDetails1.createdAt | date}}
                             </div>
                             <div>
                                 <span class="float-right orange-color cursor-point">
