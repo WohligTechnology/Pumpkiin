@@ -93,92 +93,94 @@ myApp.controller("TicketCreationCtrl", function (
     ticketService.totalOpenTickets(function (data) {
       $scope.totalOpenTickets = data;
       $scope.showLessOpenTickets = _.slice($scope.totalOpenTickets, 0, 5);
-      // console.log("res---totalOpenTickets--", data);
       if (!_.isEmpty($stateParams.id)) {
         var ticketData = {};
-        // ticketData.ticketId = $scope.ticketId;
         ticketData.user = $scope.jstrgValue._id;
         ticketData.product = $stateParams.id;
-        console.log("$scope.ticketData-----------", ticketData);
-        NavigationService.apiCallWithData(
-          "Ticket/findActiveTicketOfUser",
-          ticketData,
-          function (res) {
-            $scope.ticketDetails1 = res.data;
-            if ($scope.ticketDetails1.ticketNumber) {
-              $(".circle1").addClass("timeline-active");
-            }
-            establishSocket();
-            console.log("check -------------------->>", $scope.newTicketId);
-            //timeline
-
-            $scope.statusArray = [{
-                status: "Repair/ Maintenance",
-                activeClass: ""
-              },
-              {
-                status: "Scheduling service with customer",
-                activeClass: ""
-              },
-              {
-                status: "Coordinating with the service provider",
-                activeClass: ""
-              },
-              {
-                status: "Service confirmed",
-                activeClass: ""
-              },
-              {
-                status: "Service completed",
-                activeClass: ""
-              },
-              {
-                status: "Appliance picked up",
-                activeClass: ""
-              },
-              {
-                status: "Appliance returned",
-                activeClass: ""
-              },
-              {
-                status: "Awaiting feedback",
-                activeClass: ""
-              },
-              {
-                status: "Completed",
-                activeClass: ""
+        ticketData._id = $stateParams.ticketId;
+        console.log("$scope.ticketData-----------", $stateParams.new);
+        if ($stateParams.new == "") {
+          console.log("HI");
+          NavigationService.apiCallWithData(
+            "Ticket/findActiveTicketOfUser",
+            ticketData,
+            function (res) {
+              $scope.ticketDetails1 = res.data;
+              if ($scope.ticketDetails1.ticketNumber) {
+                $(".circle1").addClass("timeline-active");
               }
-            ];
+              establishSocket();
 
-            _.each($scope.statusArray, function (x) {
-              // console.log("++++++++++++", x);
-              _.each($scope.ticketDetails1.substat, function (y) {
-                // console.log("===========", y)
-                if (y.status == x.status) {
-                  // console.log("-", _.findIndex($scope.statusArray, function (o) {
-                  //     return o == x;
-                  // }))
-                  var index = _.findIndex($scope.statusArray, function (o) {
-                    return o.status == x.status;
-                  });
-                  $scope.statusArray[index].activeClass = "timeline-active";
-                  $scope.statusArray[index].statusDate = moment(
-                    y.statusDate
-                  ).format("DD/MM/YYYY");
+              //timeline
 
-                  // $(".circle6").addClass("timeline-active");
+              $scope.statusArray = [{
+                  status: "Repair/ Maintenance",
+                  activeClass: ""
+                },
+                {
+                  status: "Scheduling service with customer",
+                  activeClass: ""
+                },
+                {
+                  status: "Coordinating with the service provider",
+                  activeClass: ""
+                },
+                {
+                  status: "Service confirmed",
+                  activeClass: ""
+                },
+                {
+                  status: "Service completed",
+                  activeClass: ""
+                },
+                {
+                  status: "Appliance picked up",
+                  activeClass: ""
+                },
+                {
+                  status: "Appliance returned",
+                  activeClass: ""
+                },
+                {
+                  status: "Awaiting feedback",
+                  activeClass: ""
+                },
+                {
+                  status: "Completed",
+                  activeClass: ""
                 }
+              ];
+
+              _.each($scope.statusArray, function (x) {
+                // console.log("++++++++++++", x);
+                _.each($scope.ticketDetails1.substat, function (y) {
+                  // console.log("===========", y)
+                  if (y.status == x.status) {
+                    // console.log("-", _.findIndex($scope.statusArray, function (o) {
+                    //     return o == x;
+                    // }))
+                    var index = _.findIndex($scope.statusArray, function (o) {
+                      return o.status == x.status;
+                    });
+                    $scope.statusArray[index].activeClass = "timeline-active";
+                    $scope.statusArray[index].statusDate = moment(
+                      y.statusDate
+                    ).format("DD/MM/YYYY");
+
+                    // $(".circle6").addClass("timeline-active");
+                  }
+                });
               });
-            });
 
-            ticketService.totalOpenTickets(function (data) {
-              // $scope.ticketDetails = data;
-              // $scope.ticketDetails1 = _.slice(data.results, 0, 5);
-            });
+              ticketService.totalOpenTickets(function (data) {
+                // $scope.ticketDetails = data;
+                // $scope.ticketDetails1 = _.slice(data.results, 0, 5);
+              });
 
-            //timeline end
-          }
-        );
+              //timeline end
+            }
+          );
+        }
 
         productData._id = $stateParams.id;
         NavigationService.apiCallWithData(
@@ -187,15 +189,11 @@ myApp.controller("TicketCreationCtrl", function (
           function (res) {
             $scope.productDetails = res.data;
             productName = $scope.productDetails.productName;
-            console.log(
-              "$scope.productDetails-----------",
-              $scope.productDetails
-            );
+
           }
         );
       } else {
         if ($scope.totalOpenTickets[0]) {
-          console.log("res---totalOpenTickets--", $scope.totalOpenTickets[0]);
           $scope.ticketDetails1 = $scope.totalOpenTickets[0];
           productData._id = $scope.totalOpenTickets[0].product._id;
           NavigationService.apiCallWithData(
@@ -204,17 +202,13 @@ myApp.controller("TicketCreationCtrl", function (
             function (res) {
               $scope.productDetails = res.data;
               productName = $scope.productDetails.productName;
-              console.log(
-                "$scope.productDetails-----------",
-                $scope.productDetails
-              );
+
             }
           );
         }
 
         //timeline
         $scope.tickitNumber = function (data) {
-          console.log("data----> 214", data);
           if (data) {
             return "circle circle1 timeline - active";
           } else {
@@ -284,12 +278,11 @@ myApp.controller("TicketCreationCtrl", function (
 
     ticketService.totalNumberOfTickets(function (data) {
       $scope.totalNumberOfTickets = data;
-      console.log("res--totalNumberOfTickets---", data);
+
     });
 
     ticketService.totalNumberOfOpenTickets(function (data) {
       $scope.totalNumberOfOpenTickets = data;
-      console.log("res---totalNumberOfOpenTickets--", data);
     });
 
     ticketService.totalNumberOfClosedTickets(function (data) {
@@ -299,7 +292,6 @@ myApp.controller("TicketCreationCtrl", function (
 
     $scope.getClosedTickets = function () {
       ticketService.totalClosedTickets(function (data) {
-        console.log("11111111", data);
         $scope.ticketDetails = _.slice(data, 0, 5);
       });
     };
@@ -308,7 +300,6 @@ myApp.controller("TicketCreationCtrl", function (
     $scope.getOpenTickets = function () {
       ticketService.totalOpenTickets(function (data) {
         // $scope.ticketDetails = data;
-        console.log("222222222", data);
         $scope.ticketDetails = _.slice(data, 0, 5);
       });
     };
@@ -319,8 +310,6 @@ myApp.controller("TicketCreationCtrl", function (
 
   $scope.getOpenTickets = function () {
     ticketService.totalOpenTickets(function (data) {
-      // $scope.ticketDetails = data;
-      console.log("33333333");
       $scope.ticketDetails = _.slice(data, 0, 5);
     });
   };
@@ -346,18 +335,15 @@ myApp.controller("TicketCreationCtrl", function (
   }
 
   $scope.addComment = function (data) {
-    console.log("data", data);
-    // console.log("  $.jStorage.get", $.jStorage.get("userData"));
-    console.log("$scope.ticketDetails1-----------", $scope.ticketDetails1);
-    // console.log("$scope.ticketDetails-----------", _.isEmpty($scope.ticketDetails));
 
     var formData = {};
     var dataToSend = {};
     dataToSend.customerChat = [];
-    if (
-      !_.isEmpty($.jStorage.get("userData")) &&
-      $scope.ticketDetails1 == "No Data Found"
-    ) {
+    if ((
+        !_.isEmpty($.jStorage.get("userData")) &&
+        $scope.ticketDetails1 == "No Data Found"
+      ) || ($stateParams.new && $scope.ticketDetails1 == undefined)) {
+
       console.log("In Here After Ticket Creation");
       formData.user = $.jStorage.get("userData")._id;
       formData.comment = data.comment;
@@ -381,7 +367,12 @@ myApp.controller("TicketCreationCtrl", function (
             // $scope.ticketDetails = data.data;
             $scope.chatData.comment = null;
             $scope.chatData.image = null;
-            $scope.getTicket();
+            console.log("ticketId", data, "_id", $stateParams.id);
+            $state.go("ticketcreation", {
+              ticketId: data.data,
+              id: $stateParams.id,
+              new: ""
+            });
           }
         }
       );
@@ -390,6 +381,7 @@ myApp.controller("TicketCreationCtrl", function (
       formData.comment = data.comment;
       formData.file = data.image;
       formData.date = Date.now();
+      console.log("ABC", $scope.ticketDetails1);
       if (!$scope.ticketDetails1.customerChat) {
         $scope.ticketDetails1.customerChat = [];
       }

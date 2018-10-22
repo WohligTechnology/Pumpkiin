@@ -57,6 +57,7 @@ myApp.service('ticketService', function (NavigationService) {
             ticketData.page = data;
         }
         ticketData.user = $.jStorage.get("userData")._id;
+        console.log("------->>>>>>>>>>>>>>>>>", ticketData);
         NavigationService.apiCallWithData("Ticket/totalClosedTickets1", ticketData, function (res) {
             if (res.value == true) {
                 console.log("----------------res----", res);

@@ -118,6 +118,18 @@ var controller = {
             });
         }
     },
+    totalClosedTickets1: function (req, res) {
+        if (req.body) {
+            Ticket.totalClosedTickets(req.body, res.callback);
+        } else {
+            res.json({
+                value: false,
+                data: {
+                    message: "Invalid Request"
+                }
+            });
+        }
+    },
 
     addToChat: function (req, res) {
         if (req.body) {

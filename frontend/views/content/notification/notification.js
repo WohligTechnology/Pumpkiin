@@ -50,15 +50,13 @@ myApp.controller("NotificationCtrl", function (
       $scope.totalReminders = data;
     });
 
-    reminderService.totalNumberOfCompletedReminders(function (data) {
-      $scope.totalCompletedReminder = data;
-    });
-
     reminderService.totalNumberOfPendingReminders(function (data) {
       $scope.totalPendingReminders = data;
     });
 
-
+    reminderService.totalNumberOfCompletedReminders(function (data) {
+      $scope.totalCompletedReminder = data;
+    });
   };
   $scope.getReminder();
 
