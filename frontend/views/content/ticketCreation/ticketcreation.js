@@ -419,6 +419,7 @@ myApp.controller("TicketCreationCtrl", function (
   };
 
   $scope.openmodalOpen = function (tickets, index) {
+    console.log("open>>>>>>>>>>>>>>>>>>>>>>>>>>>", tickets);
     $scope.singleTicket = tickets;
     $scope.openTicket = $uibModal.open({
       animation: true,

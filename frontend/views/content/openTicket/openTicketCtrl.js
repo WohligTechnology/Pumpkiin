@@ -22,7 +22,7 @@ myApp.controller('OpenTicketCtrl', function ($scope, TemplateService, Navigation
         $scope.yes = true;
 
         var user = $.jStorage.get("userData")._id;
-        NavigationService.apiCallWithData("Product/ticketNotGenerated", {
+        NavigationService.apiCallWithData("Product/getAllProducts", {
             user: user
         }, function (data) {
             $scope.remainingProduct = data.data;

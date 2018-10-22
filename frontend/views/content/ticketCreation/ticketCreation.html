@@ -85,7 +85,8 @@
                     <h5 class="d-inline cursor-point" ui-sref="ticketclose-notification" ng-if="ticketDetails[0].status=='Closed'">Closed
                         Tickets
                     </h5>
-                    <span class="badge badge-style">{{totalNumberOfTickets}}</span>
+                    <span class="badge badge-style" ng-if="ticketDetails[0].status!='Closed'">{{totalNumberOfOpenTickets}}</span>
+                    <span class="badge badge-style" ng-if="ticketDetails[0].status=='Closed'">{{totalNumberOfClosedTickets}}</span>
                     <div class="float-right search-reminders">
                         <form class="position-relative" ng-if="ticketDetails[0].status!='Closed'">
                             <input id="search" name="search" type="text" placeholder="" ng-change="searchForTicketData(ticketSearch,'open')"
@@ -104,7 +105,8 @@
                         ng-click="openmodalOpen(tickets, $index);" ng-if="ticketDetails[0].status == 'Active'">
                         <div class="bullet" ng-if="!tickets.isRead"></div>
                         <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
-                            <div class="product-title text-truncate">{{tickets.product.productName}}</div>
+                            <div class="product-title text-truncate">{{tickets.product.productName}} -
+                                {{tickets.ticketNumber}}</div>
                             <div class="date ">{{tickets.issueReported | date}}</div>
                         </div>
                     </div>
@@ -113,7 +115,8 @@
                         ng-if="ticketDetails[0].status == 'Closed'" ui-sref="closedTicketcreation({id:tickets._id})">
                         <div class="bullet" ng-if="!tickets.isRead"></div>
                         <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
-                            <div class="product-title text-truncate">{{tickets.product.productName}}</div>
+                            <div class="product-title text-truncate">{{tickets.product.productName}} -
+                                {{tickets.ticketNumber}}</div>
                             <div class="date ">{{tickets.issueReported | date}}</div>
                         </div>
                     </div>
