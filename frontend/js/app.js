@@ -16,7 +16,7 @@ var myApp = angular.module("myApp", [
 ]);
 
 // Define all the routes below
-myApp.config(function(
+myApp.config(function (
   $stateProvider,
   $urlRouterProvider,
   $httpProvider,
@@ -96,9 +96,12 @@ myApp.config(function(
       controller: "ProductlistingCtrl"
     })
     .state("ticketcreation", {
-      url: "/ticketcreation/:id",
+      url: "/ticketcreation/:id/{new:.*}/:ticketId",
       templateUrl: tempateURL,
-      controller: "TicketCreationCtrl"
+      controller: "TicketCreationCtrl",
+      params: {
+        new: ""
+      }
     })
     .state("closedTicketcreation", {
       url: "/closedTicketcreation/:id",
@@ -150,7 +153,7 @@ myApp.config(function(
 });
 
 // For Language JS
-myApp.config(function($translateProvider) {
+myApp.config(function ($translateProvider) {
   $translateProvider.translations("en", LanguageEnglish);
   $translateProvider.translations("hi", LanguageHindi);
   $translateProvider.preferredLanguage("en");
