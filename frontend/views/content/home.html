@@ -12,7 +12,7 @@
                                 {{product1}}
                             </span>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" ng-class="{show:showClass1}">
-                                <a ng-repeat="pro in product | orderBy : '-name'" class="dropdown-item" ng-click="$parent.product1 = pro.name">{{pro.name}}</a>
+                                <a ng-repeat="pro in product | orderBy : '-name'" class="dropdown-item" ng-click="$parent.product1 = pro.name;toggleClass(1);">{{pro.name}}</a>
                             </div>
                         </div>
                     </div>, needs
@@ -24,7 +24,7 @@
                                 {{product2}}
                             </span>
                             <div class="dropdown-menu" ng-class="{show:showClass2}">
-                                <a ng-repeat="ser in service | orderBy : '-name'" class="dropdown-item" ng-click="$parent.product2 = ser.name">{{ser.name
+                                <a ng-repeat="ser in service | orderBy : '-name'" class="dropdown-item" ng-click="$parent.product2 = ser.name;toggleClass(2);">{{ser.name
                                     }}</a>
                             </div>
                         </div>
