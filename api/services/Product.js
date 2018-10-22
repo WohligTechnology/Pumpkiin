@@ -155,7 +155,7 @@ var model = {
     });
   },
 
-  getAllProducts: function (data, callback) {
+  getAllProducts: function (data, callback) { 
     Product.find({
         status: "Confirmed",
         user: data.user

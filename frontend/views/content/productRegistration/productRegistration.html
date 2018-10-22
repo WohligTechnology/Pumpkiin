@@ -34,14 +34,15 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Product Name * </label>
-                    <input ng-model="data.productName" class="form-control form-control-sm" type="text" name="productName" placeholder="Product Name"
-                        required>
-                    <span class="error" ng-show="product.productName.$invalid && product.productName.$touched"> Please, enter product name</span>
+                    <input ng-model="data.productName" class="form-control form-control-sm" type="text" name="productName"
+                        placeholder="Product Name" required>
+                    <span class="error" ng-show="product.productName.$invalid && product.productName.$touched"> Please,
+                        enter product name</span>
                 </div>
                 <div class="col-12 col-md-6 brand-div">
                     <label class="mb-0">Brand Name * </label>
-                    <input ng-model="data.brand" class="form-control form-control-sm" type="text" name="brandName" placeholder="Enter Brand Name"
-                        required>
+                    <input ng-model="data.brand" class="form-control form-control-sm" type="text" name="brandName"
+                        placeholder="Enter Brand Name" required>
                     <!-- <ui-select name="brandSelect" ng-model="data.brand" theme="selectize" ng-disabled="ctrl.disabled"
                         title="Choose a brand" ng-required="true">
                         <ui-select-match class="selected-tags" placeholder="Select a brand from the list...">{{$select.selected.name}}</ui-select-match>
@@ -50,22 +51,25 @@
                         </ui-select-choices>
                     </ui-select> -->
                     <!-- <input ng-model="data.brand" class="form-control form-control-sm" type="text" name="brandSelect" placeholder="Brand Name" required> -->
-                    <span class="error" ng-show="product.brandSelect.$invalid && product.brandSelect.$touched"> Please, enter brand name</span>
+                    <span class="error" ng-show="product.brandSelect.$invalid && product.brandSelect.$touched"> Please,
+                        enter brand name</span>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Serial Number * </label>
-                    <input ng-model="data.serialNo" class="form-control form-control-sm" type="text" name="srno" placeholder="Serial Number"
-                        required>
-                    <span class="error" ng-show="product.srno.$invalid && product.srno.$touched"> Please, enter serial number
+                    <input ng-model="data.serialNo" class="form-control form-control-sm" type="text" name="srno"
+                        placeholder="Serial Number" required>
+                    <span class="error" ng-show="product.srno.$invalid && product.srno.$touched"> Please, enter serial
+                        number
                     </span>
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Model Number * </label>
-                    <input ng-model="data.modelNo" class="form-control form-control-sm" type="text" name="modelno" placeholder="Model Number"
-                        required>
-                    <span class="error" ng-show="product.modelno.$invalid && product.modelno.$touched"> Please, enter model number</span>
+                    <input ng-model="data.modelNo" class="form-control form-control-sm" type="text" name="modelno"
+                        placeholder="Model Number" required>
+                    <span class="error" ng-show="product.modelno.$invalid && product.modelno.$touched"> Please, enter
+                        model number</span>
                 </div>
             </div>
             <div class="row form-group">
@@ -111,9 +115,10 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Purchase Price (Rupees) * </label>
-                    <input ng-model="data.purchasePrice" name="price" class="form-control form-control-sm" type="text" required only-digits ng-if="!checkmark1"
-                        readonly>
-                    <input ng-model="data.purchasePrice" name="price" class="form-control form-control-sm" type="text" required only-digits ng-if="checkmark1">
+                    <input ng-model="data.purchasePrice" name="price" class="form-control form-control-sm" type="text"
+                        required only-digits ng-if="!checkmark1" readonly>
+                    <input ng-model="data.purchasePrice" name="price" class="form-control form-control-sm" type="text"
+                        required only-digits ng-if="checkmark1">
                     <span class="error" ng-show="purchase.price.$invalid && purchase.price.$touched" ng-if="checkmark1">
                         Please, enter purchase price</span>
                 </div>
@@ -121,9 +126,10 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Retailer * </label>
-                    <input ng-model="data.retailer" name="retailer" class="form-control form-control-sm" type="text" required ng-if="!checkmark1"
-                        readonly>
-                    <input ng-model="data.retailer" name="retailer" class="form-control form-control-sm" type="text" required ng-if="checkmark1">
+                    <input ng-model="data.retailer" name="retailer" class="form-control form-control-sm" type="text"
+                        required ng-if="!checkmark1" readonly>
+                    <input ng-model="data.retailer" name="retailer" class="form-control form-control-sm" type="text"
+                        required ng-if="checkmark1">
                     <span class="error" ng-show="purchase.retailer.$invalid && purchase.retailer.$touched" ng-if="checkmark1">
                         Please, enter retailer</span>
                 </div>
@@ -145,9 +151,9 @@
             </h6>
             <div class="row form-group">
                 <div class="col-12 col-md-6">
-                    <label class="mb-0">Search for existing user * </label>
-                    <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="data.Users" theme="bootstrap" sortable="true"
-                        ng-disabled="ctrl.disabled" title="Choose a user" ng-required="true">
+                    <label class="mb-0">Search for existing user </label>
+                    <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="data.Users" theme="bootstrap"
+                        sortable="true" ng-disabled="ctrl.disabled" title="Choose a user" ng-required="true">
                         <ui-select-match class="selected-tags" placeholder="Select users">
                             <span ng-if="$item.user.name"> {{$item.user.name}}</span>
                             <span ng-if="!$item.user.name"> {{$item}}</span>
@@ -175,23 +181,25 @@
         <h6 class="text-uppercase fontRobotoBold pt-3 border-dashed">ADD NEW USER</h6>
         <div class="row form-group">
             <div class="col-12 col-md-6">
-                <label class="mb-0">Name * </label>
-                <input ng-model="userData.name" name="username" class="form-control form-control-sm" type="text" only-letters-input required>
+                <label class="mb-0">Name </label>
+                <input ng-model="userData.name" name="username" class="form-control form-control-sm" type="text"
+                    only-letters-input required>
                 <!-- <span class="error" ng-show="adduser.username.$invalid && adduser.username.$touched"> Please, enter name
                 </span> -->
             </div>
             <div class="col-12 col-md-6">
-                <label class="mb-0">Email * </label>
-                <input name="useremail" ng-model="userData.email" class="form-control form-control-sm" type="email" required>
+                <label class="mb-0">Email </label>
+                <input name="useremail" ng-model="userData.email" class="form-control form-control-sm" type="email"
+                    required>
                 <!-- <span class="error" ng-show="adduser.useremail.$invalid && adduser.useremail.$touched"> Please, enter email
                 </span> -->
             </div>
         </div>
         <div class="row form-group">
             <div class="col-12 col-md-6">
-                <label class="mb-0">Mobile Number * </label>
-                <input name="mobile" ng-model="userData.mobile" class="form-control form-control-sm" type="text" maxlength="10" required
-                    only-digits>
+                <label class="mb-0">Mobile Number </label>
+                <input name="mobile" ng-model="userData.mobile" class="form-control form-control-sm" type="text"
+                    maxlength="10" required only-digits>
                 <!-- <span class="error" ng-show="adduser.mobile.$invalid && adduser.mobile.$touched"> Please, enter contact</span> -->
             </div>
             <div class="col-12 col-md-6">
@@ -201,8 +209,9 @@
         </div>
         <div class="row form-group">
             <div class="col-12 col-md-6">
-                <label class="mb-0">Relationship * </label>
-                <select class="form-control cursor-point" id="sel1" name="sellist1" ng-model="userData.relation" required>
+                <label class="mb-0">Relationship </label>
+                <select class="form-control cursor-point" id="sel1" name="sellist1" ng-model="userData.relation"
+                    required>
                     <option class="cursor-point" ng-repeat="relations in relationsForUser">{{relations}}</option>
                 </select>
                 <!-- <span class="error" ng-show="adduser.sellist1.$invalid && adduser.sellist1.$touched"> Please, select relationship
@@ -218,13 +227,13 @@
             </div>
         </button>
     </form>
-    </div>
-    <fieldset class="d-flex social mx-auto m-md-3 my-3 save ml-auto" ng-click="savepurchaseDetails(data)" ng-disabled="!(data.purchaseDate && data.purchasePrice && data.retailer )">
-        <span class="social_icon">
-            <i class="fas fa-save"></i>
-        </span>
-        <div class="social-text">Save and Continue</div>
-    </fieldset>
+</div>
+<fieldset class="d-flex social mx-auto m-md-3 my-3 save ml-auto" ng-click="savepurchaseDetails(data)" ng-disabled="!(data.purchaseDate && data.purchasePrice && data.retailer )">
+    <span class="social_icon">
+        <i class="fas fa-save"></i>
+    </span>
+    <div class="social-text">Save and Continue</div>
+</fieldset>
 </div>
 
 <div class="container my-1" ng-if="activePage=='circle3'">
@@ -241,9 +250,10 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Expiry Date * </label>
-                    <input name="warrdate" ng-model="data.warrantyExpDate" class="form-control form-control-sm" type="date" required ng-if="!checkmark2"
-                        readonly>
-                    <input name="warrdate" ng-model="data.warrantyExpDate" class="form-control form-control-sm" type="date" required ng-if="checkmark2">
+                    <input name="warrdate" ng-model="data.warrantyExpDate" class="form-control form-control-sm" type="date"
+                        required ng-if="!checkmark2" readonly>
+                    <input name="warrdate" ng-model="data.warrantyExpDate" class="form-control form-control-sm" type="date"
+                        required ng-if="checkmark2">
                     <span class="error" ng-show="Warranty.warrdate.$invalid && Warranty.warrdate.$touched" ng-if="checkmark2">
                         Please, select warranty expiry date</span>
                 </div>
@@ -272,9 +282,10 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0">Expiry Date</label>
-                    <input name="expdate" ng-model="data.insuranceExpDate" class="form-control form-control-sm" type="date" ng-if="!checkmark2"
-                        readonly>
-                    <input name="expdate" ng-model="data.insuranceExpDate" class="form-control form-control-sm" type="date" ng-if="checkmark2">
+                    <input name="expdate" ng-model="data.insuranceExpDate" class="form-control form-control-sm" type="date"
+                        ng-if="!checkmark2" readonly>
+                    <input name="expdate" ng-model="data.insuranceExpDate" class="form-control form-control-sm" type="date"
+                        ng-if="checkmark2">
                 </div>
             </div>
             <div class="row form-group">
