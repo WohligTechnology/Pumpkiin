@@ -233,7 +233,7 @@
                                 readonly="readonly " ng-readonly="!warranty ">
                         </div>
                     </div>
-                    <span class="green-color" ng-if="productDetails.warrantyCardImage">({{productDetails.warrantyCardImage.length}})</span>
+                    <span class="green-color" ng-if="productDetails.warrantyCardImage[0]">({{productDetails.warrantyCardImage.length}})</span>
                     <div class="scrollbar d-flex">
                         <div class="" id="scrollbar" ng-if="warranty">
                             <div class="mt-2">
@@ -270,7 +270,7 @@
                                 ng-readonly="!insurance">
                         </div>
                     </div>
-                    <span class="green-color" ng-if="productDetails.insuranceProofImage">({{productDetails.insuranceProofImage.length}})</span>
+                    <span class="green-color" ng-if="productDetails.insuranceProofImage[0]">({{productDetails.insuranceProofImage.length}})</span>
                     <div class="scrollbar d-flex">
                         <div class="" id="scrollbar" ng-if="insurance">
                             <div class="mt-2">

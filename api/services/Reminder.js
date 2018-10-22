@@ -92,7 +92,8 @@ var model = {
           {
             status: "Snooze"
           }
-        ]
+        ],
+        isRead: false
       })
       .count()
       .exec(callback);
