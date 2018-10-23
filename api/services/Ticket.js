@@ -166,7 +166,8 @@ var model = {
   totalNumberOfOpenTickets: function (data, callback) {
     this.find({
         user: data.user,
-        status: "Active"
+        status: "Active",
+        isRead: false
       })
       .count()
       .exec(callback);

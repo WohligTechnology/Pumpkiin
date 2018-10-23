@@ -16,6 +16,8 @@ myApp.service('ticketService', function (NavigationService) {
         NavigationService.apiCallWithData("Ticket/totalNumberOfOpenTickets", ticketData, function (res) {
             if (res.value == true) {
                 callback(res.data);
+            }else{
+                callback(null);
             }
         });
     };
@@ -37,7 +39,7 @@ myApp.service('ticketService', function (NavigationService) {
         ticketData.user = $.jStorage.get("userData")._id;
         NavigationService.apiCallWithData("Ticket/totalOpenTickets", ticketData, function (res) {
             if (res.value == true) {
-                console.log("----------------res----", res);
+                // console.log("----------------res----", res);
                 callback(res.data);
             }
         });

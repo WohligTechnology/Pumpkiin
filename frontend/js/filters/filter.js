@@ -17,6 +17,12 @@ myApp.filter('checkimage', function () {
     return _.split(input, '.')[1];
   }
 });
+myApp.filter('isReadDefault', function () {
+  return function (input) {
+    console.log("---->",input);
+    return input;
+  }
+});
 myApp.filter('uploadpath', function () {
   return function (input, width, height, style) {
     console.log(input);

@@ -13,12 +13,12 @@
                         <img ng-if="ticketDetails[0].status!='Closed'" src="img/ticketCreation/green-ticket-01.png">
                         <img ng-if="ticketDetails[0].status=='Closed'" src="img/ticketCreation/green-ticket-02.png">
                         <!-- <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div> -->
-                        <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
+                        <!-- <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div> -->
                     </div>
                     <div class="closed-text cursor-point" ng-if="!totalNumberOfClosedTickets">
                         <img src="{{img/ticketCreation/closedTicket.png}}">
                         <!-- <div class="notification" ng-if="!totalNumberOfClosedTickets">0</div> -->
-                        <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div>
+                        <!-- <div class="notification" ng-if="totalNumberOfClosedTickets">{{totalNumberOfClosedTickets}}</div> -->
                     </div>
                     <div class="cursor-point" ng-click="askRegistration()">
                         <img src="img/ticketCreation/addButton.png ">
@@ -50,7 +50,8 @@
                         ng-click="openmodalOpen(tickets, $index);" ng-if="ticketDetails[0].status == 'Active'">
                         <div class="bullet" ng-if="!tickets.isRead"></div>
                         <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
-                            <div class="product-title text-truncate">{{tickets.product.productName}}</div>
+                            <div class="product-title text-truncate">{{tickets.product.productName}} -
+                                {{tickets.ticketNumber}}</div>
                             <div class="date ">{{tickets.issueReported | date}}</div>
                         </div>
                     </div>
@@ -60,7 +61,8 @@
                         ng-if="ticketDetails[0].status == 'Closed'" ui-sref="closedTicketcreation({id:tickets._id})">
                         <div class="bullet" ng-if="!tickets.isRead"></div>
                         <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
-                            <div class="product-title text-truncate">{{tickets.product.productName}}</div>
+                            <div class="product-title text-truncate">{{tickets.product.productName}} -
+                                {{tickets.ticketNumber}}</div>
                             <div class="date ">{{tickets.issueReported | date}}</div>
                         </div>
                     </div>

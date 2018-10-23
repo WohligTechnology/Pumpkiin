@@ -116,6 +116,10 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
 
         $scope.getProduct();
 
+        $scope.reloadPage = function(){
+            $state.reload();
+          }
+
 
         $scope.addUser = function (data) {
             data._id = $scope.jstrgValue._id;

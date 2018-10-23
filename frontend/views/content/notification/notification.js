@@ -51,7 +51,12 @@ myApp.controller("NotificationCtrl", function (
     });
 
     reminderService.totalNumberOfPendingReminders(function (data) {
-      $scope.totalPendingReminders = data;
+      if (data.value) {
+        $scope.totalPendingReminders = data.data;
+      } else {
+        $scope.totalPendingReminders = 0;
+      }
+
     });
 
     reminderService.totalNumberOfCompletedReminders(function (data) {
@@ -62,27 +67,21 @@ myApp.controller("NotificationCtrl", function (
 
   var windowscreen = $window;
   if (windowscreen.screen.width < 768) {
-
     $scope.pendingReminders = function (data) {
       $scope.showGreenImage = false;
       reminderService.findReminderOfPendingSnoozeByUser(function (data) {
         $scope.showLessReminders = data;
-        console.log("2", $scope.showLessReminders);
       });
     };
-
     $scope.completedReminders = function (data) {
       $scope.showGreenImage = true;
       reminderService.findReminderOfCompletedByUser(function (data) {
         $scope.showLessReminders = data;
-        console.log("1", $scope.showLessReminders);
       });
     };
-    $scope.completedReminders();
     $scope.pendingReminders();
 
   } else {
-
     $scope.pendingReminders = function (data) {
       $scope.showGreenImage = false;
       reminderService.findReminderOfPendingSnoozeByUser(function (data) {
@@ -91,8 +90,6 @@ myApp.controller("NotificationCtrl", function (
         console.log("4", $scope.showLessReminders);
       });
     };
-
-
     $scope.completedReminders = function (data) {
       $scope.showGreenImage = true;
       reminderService.findReminderOfCompletedByUser(function (data) {
@@ -101,7 +98,7 @@ myApp.controller("NotificationCtrl", function (
         console.log("3", $scope.showLessReminders);
       });
     };
-    $scope.completedReminders();
+    // $scope.completedReminders();
     $scope.pendingReminders();
 
   }
@@ -126,8 +123,11 @@ myApp.controller("NotificationCtrl", function (
     });
 
     ticketService.totalNumberOfOpenTickets(function (data) {
-      $scope.totalNumberOfOpenTickets = data;
-      // console.log("res---totalNumberOfOpenTickets--", data);
+      if (data) {
+        $scope.totalNumberOfOpenTickets = data;
+      } else {
+        $scope.totalNumberOfOpenTickets = 0;
+      }
     });
 
     ticketService.totalNumberOfClosedTickets(function (data) {
@@ -209,16 +209,14 @@ myApp.controller("NotificationCtrl", function (
         changeStatusData,
         function (res) {
           if (res.value == true) {
-
             $scope.showGreenImage = true;
             reminderService.findReminderOfCompletedByUser(function (data) {
               $scope.allReminders = data;
               $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
             });
-
+            $state.reload();
 
             $scope.delete.close();
-
             if (index) {
               $scope.statuses[$scope.deleteIndex].isOpen = false;
             }
@@ -330,6 +328,12 @@ myApp.controller("NotificationCtrl", function (
         function (data) {
           console.log("changeIsReadStatus", data);
           if (data.value) {
+            console.log("/////////////////////////////////", data.value);
+            $scope.getReminder();
+            reminderService.totalNumberOfPendingReminders(function (data) {
+              $scope.totalPendingReminders = data.data;
+              console.log("hey there", data);
+            });
             if (modal) {
               $scope.getReminder();
             } else {
@@ -364,6 +368,10 @@ myApp.controller("NotificationCtrl", function (
         function (data) {
           console.log("changeIsReadStatus", data);
           if (data.value) {
+            reminderService.totalNumberOfPendingReminders(function (data) {
+              $scope.totalPendingReminders = data.data;
+              console.log("hey there", data);
+            });
             // if (modal) {
             $scope.callTickets();
             // } else {

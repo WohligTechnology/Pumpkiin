@@ -62,7 +62,11 @@ myApp.controller("TicketCreationCtrl", function (
     });
 
     reminderService.totalNumberOfPendingReminders(function (data) {
-      $scope.totalPendingReminders = data;
+      if (data.value) {
+        $scope.totalPendingReminders = data.data;
+      } else {
+        $scope.totalPendingReminders = 0;
+      }
       // console.log("$scope.totalPendingReminders--", $scope.totalPendingReminders);
     });
 
@@ -282,7 +286,11 @@ myApp.controller("TicketCreationCtrl", function (
     });
 
     ticketService.totalNumberOfOpenTickets(function (data) {
-      $scope.totalNumberOfOpenTickets = data;
+      if (data) {
+        $scope.totalNumberOfOpenTickets = data;
+      } else {
+        $scope.totalNumberOfOpenTickets = 0;
+      }
     });
 
     ticketService.totalNumberOfClosedTickets(function (data) {
@@ -308,8 +316,9 @@ myApp.controller("TicketCreationCtrl", function (
 
   $scope.getTicket();
 
-  $scope.getOpenTickets = function () {
+  $scope.getOpenTickets = function () {   
     ticketService.totalOpenTickets(function (data) {
+      $scope.countOpenTickets = data.length;
       $scope.ticketDetails = _.slice(data, 0, 5);
     });
   };
@@ -525,4 +534,8 @@ myApp.controller("TicketCreationCtrl", function (
       );
     }
   };
+
+  $scope.reloadPage = function(){
+    $state.reload();
+  }
 });

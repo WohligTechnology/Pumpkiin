@@ -42,8 +42,11 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
 
 
     reminderService.totalNumberOfPendingReminders(function (data) {
-        $scope.totalPendingReminders = data;
-        console.log("$scope.totalPendingReminders--", $scope.totalPendingReminders);
+        if (data.value) {
+            $scope.totalPendingReminders = data.data;
+          } else {
+            $scope.totalPendingReminders = 0;
+          }
     });
 
 
@@ -87,8 +90,11 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
         });
 
         ticketService.totalNumberOfOpenTickets(function (data) {
-            $scope.totalNumberOfOpenTickets = data;
-            // console.log("res---totalNumberOfOpenTickets--", data);
+            if (data) {
+                $scope.totalNumberOfOpenTickets = data;
+              } else {
+                $scope.totalNumberOfOpenTickets = 0;
+              }
         });
 
         ticketService.totalNumberOfClosedTickets(function (data) {
