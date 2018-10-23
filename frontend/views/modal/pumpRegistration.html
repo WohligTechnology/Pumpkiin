@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body fontRobotoLight invoicewarranty" id="modal-body">
     <div class="mb-0 mb-md-1 fontRobotoRegular upload-text">Upload Product Invoice*
-        <span class="green-color" ng-if="data.productInvoicePR">({{data.productInvoicePR.length}})</span>
+        <span class="green-color" ng-if="data.productInvoicePR[0]">({{data.productInvoicePR.length}})</span>
     </div>
 
     <div class="scrollbar">
@@ -16,7 +16,7 @@
         error
     </div> -->
     <div class="mb-md-1 mt-md-1 mt-0 mb-0 fontRobotoRegular upload-text">Upload Warranty Card
-        <span class="green-color" ng-if="data.warrantyCardPR">({{data.warrantyCardPR.length}})</span>
+        <span class="green-color" ng-if="data.warrantyCardPR[0]">({{data.warrantyCardPR.length}})</span>
     </div>
     <div class="scrollbar">
         <upload-image multiple ng-model="data.warrantyCardPR" no-status="true"></upload-image>

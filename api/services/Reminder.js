@@ -141,7 +141,7 @@ var model = {
         },
         function (finalData, callback) {
           var emailData = {};
-          var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+          var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
           var greeting;
           if (time < 12) {
             greeting = "Good morning";
@@ -156,6 +156,7 @@ var model = {
           emailData.greeting = greeting;
           emailData.title = data.title;
           emailData.description = data.description;
+          emailData.date = moment(data.dateOfReminder).format("DD/MM/YYYY");
           emailData.filename = "Reminder";
           emailData.subject = "Reminder Notification";
           console.log("emailData in reminder mail", emailData);
@@ -306,7 +307,7 @@ var model = {
             if (flag) {
               console.log("In Flag");
               var emailData = {};
-              var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+              var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
               var greeting;
               if (time < 12) {
                 greeting = "Good morning";
@@ -396,7 +397,7 @@ var model = {
             if (flag) {
               console.log("In Flag");
               var emailData = {};
-              var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+              var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
               var greeting;
               if (time < 12) {
                 greeting = "Good morning";
@@ -486,7 +487,7 @@ var model = {
             if (flag) {
               console.log("In Flag");
               var emailData = {};
-              var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+              var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
               var greeting;
               if (time < 12) {
                 greeting = "Good morning";

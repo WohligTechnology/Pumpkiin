@@ -48,12 +48,15 @@ myApp.service('ticketService', function (NavigationService) {
     };
 
     this.totalOpenTickets = function (callback) {
-        ticketData.user = $.jStorage.get("userData")._id;
-        NavigationService.apiCallWithData("Ticket/getallOpenTicktes", ticketData, function (res) {
-            if (res.value == true) {
-                callback(res.data);
-            }
-        });
+        if ($.jStorage.get("userData")) {
+            ticketData.user = $.jStorage.get("userData")._id;
+            NavigationService.apiCallWithData("Ticket/getallOpenTicktes", ticketData, function (res) {
+                if (res.value == true) {
+                    callback(res.data);
+                }
+            });
+        }
+
     };
 
     this.totalClosedTickets1 = function (data, callback) {
