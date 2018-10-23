@@ -154,9 +154,8 @@ myApp.controller("headerCtrl", function (
     $scope.changeTicketName = false;
     $scope.openTickets();
 
-
     ticketService.totalOpenTickets(function (data) {
-      // console.log("get Open tickets", data);
+      console.log("get Open tickets", data);
       $scope.countOpenTickets = data.length;
       if (windowscreen.screen.width < 768) {
         $scope.ticketDetails = data;
@@ -165,6 +164,9 @@ myApp.controller("headerCtrl", function (
       }
     });
   };
+
+ 
+
 
   //closed ticket pagenation
   $scope.getTickets = function () {
@@ -194,6 +196,7 @@ myApp.controller("headerCtrl", function (
     }
   };
   $scope.openTickets();
+  $scope.getOpenTickets();  
 
   $scope.getClosedTickets = function () {
     $scope.changeTicketName = true;

@@ -115,6 +115,7 @@ myApp.controller('ClosedTicketcreationCtrl', function ($scope, TemplateService, 
 
         $scope.getOpenTickets = function () {
             ticketService.totalOpenTickets(function (data) {
+                $scope.countOpenTickets = data.length;
                 // $scope.ticketDetails = data;
                 console.log("----109----", data);
                 $scope.ticketDetails = _.slice(data, 0, 5);

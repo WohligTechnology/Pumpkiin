@@ -307,6 +307,7 @@ myApp.controller("TicketCreationCtrl", function (
 
     $scope.getOpenTickets = function () {
       ticketService.totalOpenTickets(function (data) {
+        $scope.countOpenTickets = data.length;
         // $scope.ticketDetails = data;
         $scope.ticketDetails = _.slice(data, 0, 5);
       });
