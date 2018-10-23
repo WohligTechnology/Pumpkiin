@@ -293,7 +293,7 @@ var model = {
         },
         function (finalData, callback) {
           var emailData = {};
-          var time = new Date().getHours();
+          var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
           var greeting;
           if (finalData.status == "Active") {
             if (time < 10) {

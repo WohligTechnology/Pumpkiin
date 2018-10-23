@@ -141,7 +141,7 @@ var model = {
         },
         function (finalData, callback) {
           var emailData = {};
-          var time = new Date().getHours();
+          var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
           var greeting;
           if (time < 10) {
             greeting = "Good morning";
@@ -306,7 +306,7 @@ var model = {
             if (flag) {
               console.log("In Flag");
               var emailData = {};
-              var time = new Date().getHours();
+              var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
               var greeting;
               if (time < 10) {
                 greeting = "Good morning";
@@ -396,7 +396,7 @@ var model = {
             if (flag) {
               console.log("In Flag");
               var emailData = {};
-              var time = new Date().getHours();
+              var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
               var greeting;
               if (time < 10) {
                 greeting = "Good morning";
@@ -486,7 +486,7 @@ var model = {
             if (flag) {
               console.log("In Flag");
               var emailData = {};
-              var time = new Date().getHours();
+              var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
               var greeting;
               if (time < 10) {
                 greeting = "Good morning";
