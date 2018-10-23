@@ -1,4 +1,4 @@
-myApp.controller("ProductRegistrationCtrl", function(
+myApp.controller("ProductRegistrationCtrl", function (
   $scope,
   TemplateService,
   $uibModal,
@@ -28,7 +28,7 @@ myApp.controller("ProductRegistrationCtrl", function(
   $scope.checkmark2 = false;
   $scope.checkmark3 = false;
 
-  $scope.makeActive = function(click) {
+  $scope.makeActive = function (click) {
     // console.log("click", click);
     $("." + click).addClass("timeline-active");
     $scope.activePage = click;
@@ -62,7 +62,7 @@ myApp.controller("ProductRegistrationCtrl", function(
     backdrop: "static"
   });
 
-  $scope.pumpkinRegistration = function() {
+  $scope.pumpkinRegistration = function () {
     $scope.pumpRegistration = $uibModal.open({
       animation: true,
       templateUrl: "views/modal/pumpRegistration.html",
@@ -73,14 +73,14 @@ myApp.controller("ProductRegistrationCtrl", function(
     $scope.registration.close();
   };
 
-  NavigationService.apiCallWithoutData("Brand/getAllBrand", function(res) {
+  NavigationService.apiCallWithoutData("Brand/getAllBrand", function (res) {
     if (res.value == true) {
       $scope.brandsData = res.data;
       // console.log("$scope.brandsData-----", $scope.brandsData)
     }
   });
 
-  NavigationService.apiCallWithoutData("Retailer/getAllRetailer", function(
+  NavigationService.apiCallWithoutData("Retailer/getAllRetailer", function (
     res
   ) {
     if (res.value == true) {
@@ -91,10 +91,10 @@ myApp.controller("ProductRegistrationCtrl", function(
 
   // if ($scope.jstrgValue._id) {
 
-  $scope.getUserData = function() {
+  $scope.getUserData = function () {
     var data = {};
     data._id = $scope.jstrgValue._id;
-    NavigationService.apiCallWithData("User/getOne", data, function(response) {
+    NavigationService.apiCallWithData("User/getOne", data, function (response) {
       if (response.value == true) {
         $scope.userDataForRegist = response.data;
         // console.log("$scope.userDataForRegist ", $scope.userDataForRegist);
@@ -104,7 +104,7 @@ myApp.controller("ProductRegistrationCtrl", function(
 
   $scope.getUserData();
 
-  $scope.saveProduct = function(product) {
+  $scope.saveProduct = function (product) {
     // $scope.product_id = {};
 
     // console.log("saveProduct-------------------", product)
@@ -119,7 +119,7 @@ myApp.controller("ProductRegistrationCtrl", function(
       NavigationService.apiCallWithData(
         "Product/saveProduct",
         product,
-        function(res) {
+        function (res) {
           $scope.product_id = res.data._id;
           //     console.log("if", res.data);
           // $scope.activePage = 'circle2';
@@ -128,7 +128,7 @@ myApp.controller("ProductRegistrationCtrl", function(
         }
       );
     } else {
-      NavigationService.apiCallWithData("Product/save", product, function(res) {
+      NavigationService.apiCallWithData("Product/save", product, function (res) {
         console.log("else", res);
         $scope.product_id = res.data._id;
         console.log("res.data", res.data);
@@ -139,7 +139,7 @@ myApp.controller("ProductRegistrationCtrl", function(
     }
   };
 
-  $scope.addUser = function() {
+  $scope.addUser = function () {
     // console.log("$scope.product_id", $scope.product_id);
     $scope.userData._id = $scope.jstrgValue._id;
     console.log("datae", $scope.userData);
@@ -148,7 +148,7 @@ myApp.controller("ProductRegistrationCtrl", function(
     NavigationService.apiCallWithData(
       "User/addRelation",
       $scope.userData,
-      function(response) {
+      function (response) {
         delete $scope.userData;
         console.log("response", response);
         if (response.value == true) {
@@ -161,7 +161,7 @@ myApp.controller("ProductRegistrationCtrl", function(
     );
   };
 
-  $scope.savepurchaseDetails = function(purchase) {
+  $scope.savepurchaseDetails = function (purchase) {
     if (purchase) {
       purchase.relatedUser = [];
       console.log("purchase.Users----", purchase.Users);
@@ -179,7 +179,7 @@ myApp.controller("ProductRegistrationCtrl", function(
       NavigationService.apiCallWithData(
         "Product/saveProduct",
         purchase,
-        function(res) {
+        function (res) {
           console.log("savepurchaseDetails---", res);
           $scope.makeActive("circle3");
           $scope.checkmark2 = true;
@@ -190,11 +190,11 @@ myApp.controller("ProductRegistrationCtrl", function(
   $scope.warrantyExpDate = {};
   $scope.insuranceExpDate = {};
 
-  $scope.goToNxtTab = function(data) {
+  $scope.goToNxtTab = function (data) {
     console.log("data---------", data);
     if ($scope.product_id) {
       data._id = $scope.product_id;
-      NavigationService.apiCallWithData("Product/saveProduct", data, function(
+      NavigationService.apiCallWithData("Product/saveProduct", data, function (
         res
       ) {
         console.log("res.data", res.data);
@@ -232,7 +232,7 @@ myApp.controller("ProductRegistrationCtrl", function(
   $scope.accessoriesMain = [];
   $scope.formData = {};
 
-  $scope.addAccessories = function(data) {
+  $scope.addAccessories = function (data) {
     console.log(data);
     if (data.accessories) {
       $scope.accessoriesMain.push(data.accessories);
@@ -240,14 +240,14 @@ myApp.controller("ProductRegistrationCtrl", function(
     }
   };
 
-  $scope.remove = function(index) {
+  $scope.remove = function (index) {
     $scope.accessoriesMain.splice(index, 1);
   };
 
   var dataForReminderWarranty = {};
   var dataForReminderInsurance = {};
 
-  $scope.addProduct = function() {
+  $scope.addProduct = function () {
     console.log(
       "$scope.accessoriesMain >>>>>>",
       $scope.warrantyExpDate,
@@ -263,7 +263,7 @@ myApp.controller("ProductRegistrationCtrl", function(
     NavigationService.apiCallWithData(
       "Product/saveFinalProduct",
       accessoriesToSave,
-      function(res) {
+      function (res) {
         if (res.value) {
           console.log("true");
         }
@@ -276,11 +276,11 @@ myApp.controller("ProductRegistrationCtrl", function(
         dataForReminderWarranty.description = "End of warranty period";
         dataForReminderWarranty.dateOfReminder = $scope.warrantyExpDate;
         console.log("   dataForReminderWarranty  1 ", dataForReminderWarranty);
-        NavigationService.apiCallWithData(
-          "Reminder/reminderMail",
-          dataForReminderWarranty,
-          function(res) {}
-        );
+        // NavigationService.apiCallWithData(
+        //   "Reminder/reminderMail",
+        //   dataForReminderWarranty,
+        //   function(res) {}
+        // );
 
         if ($scope.insuranceExpDate != undefined) {
           dataForReminderInsurance.user = $scope.jstrgValue._id;
@@ -298,7 +298,7 @@ myApp.controller("ProductRegistrationCtrl", function(
           NavigationService.apiCallWithData(
             "Reminder/reminderMail",
             dataForReminderInsurance,
-            function(res) {}
+            function (res) {}
           );
         }
 
@@ -311,13 +311,13 @@ myApp.controller("ProductRegistrationCtrl", function(
     );
   };
 
-  $scope.callProduct = function() {
+  $scope.callProduct = function () {
     $scope.dataToGet = {};
     $scope.dataToGet._id = $scope.product_id;
     NavigationService.apiCallWithData(
       "Product/getOne",
       $scope.dataToGet,
-      function(res) {
+      function (res) {
         $scope.data = res.data;
         console.log("$scope.data", $scope.data, res.data);
         if (res.data.purchaseDate) {
@@ -339,12 +339,12 @@ myApp.controller("ProductRegistrationCtrl", function(
     );
   };
 
-  $scope.submitDocuments = function(docs) {
+  $scope.submitDocuments = function (docs) {
     $scope.productInvoicePRError = false;
     if (docs.productInvoicePR) {
       // console.log("*************", docs);
       docs.status = "Pending";
-      NavigationService.apiCallWithData("Product/save", docs, function(res) {
+      NavigationService.apiCallWithData("Product/save", docs, function (res) {
         // console.log("inside submit documents api", res);
         $scope.pumpRegistration.close();
         $scope.thanks = $uibModal.open({

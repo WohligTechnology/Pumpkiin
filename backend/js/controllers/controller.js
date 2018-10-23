@@ -2189,7 +2189,7 @@ myApp
           }
         );
       } else {
-        var formData;
+        var formData = {};
         $scope.ticketData.subStatus = data;
         var arr = {};
         arr.status = data;
@@ -2198,7 +2198,7 @@ myApp
           $scope.ticketData.feedbackStatus = true;
           formData.user = $scope.jstrgData._id;
           formData.comment = "Dear Manish Patil, Thank you for providing us with the opportunity to serve you. We hope we were able to do so with satisfaction. Request if you could kindly provide us with your valuable feedback below. This will greatly help us improve our service. Thank you, Team Pumpkiin";
-          
+
           $scope.ticketData.customerChat.push(formData);
 
         } else {
