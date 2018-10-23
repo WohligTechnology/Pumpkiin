@@ -412,4 +412,9 @@ myApp.controller("NotificationCtrl", function (
       }
     );
   };
+
+
+  $scope.reloadPage = function () {
+    $state.reload();
+  }
 });
