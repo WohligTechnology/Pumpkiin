@@ -241,7 +241,7 @@ var model = {
         },
         function (finalData, callback) {
           var emailData = {};
-          var time = new Date().getHours();
+          var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
           console.log("_______Time________>>>>", time);
           var greeting;
           if (time < 10) {
