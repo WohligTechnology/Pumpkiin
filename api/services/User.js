@@ -549,9 +549,9 @@ var model = {
         function (data2, callback) {
           console.log("family Member", data)
           var emailData = {};
-          var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+          var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
           var greeting;
-          if (time < 10) {
+          if (time < 12) {
             greeting = "Good morning";
           } else if (time < 17) {
             greeting = "Good Afternoon";
@@ -791,9 +791,9 @@ var model = {
           delete data3.forgotPassword;
           delete data3.otp;
           var emailData = {};
-          var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+          var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
           var greeting;
-          if (time < 10) {
+          if (time < 12) {
             greeting = "Good morning";
           } else if (time < 17) {
             greeting = "Good Afternoon";
@@ -921,9 +921,9 @@ var model = {
         callback(err, null);
       } else {
         var emailData = {};
-        var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+        var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
         var greeting;
-        if (time < 10) {
+        if (time < 12) {
           greeting = "Good morning";
         } else if (time < 17) {
           greeting = "Good Afternoon";
@@ -986,9 +986,9 @@ var model = {
   sendIntroEmail: function (data, callback, sendVerification) {
     global.red(data);
     var emailData = {};
-    var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+    var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
     var greeting;
-    if (time < 10) {
+    if (time < 12) {
       greeting = "Good morning";
     } else if (time < 17) {
       greeting = "Good Afternoon";
@@ -1018,9 +1018,9 @@ var model = {
   addressEditEmail: function (data, callback) {
     console.log("address --- ", data);
     var emailData = {};
-    var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+    var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
     var greeting;
-    if (time < 10) {
+    if (time < 12) {
       greeting = "Good morning";
     } else if (time < 17) {
       greeting = "Good Afternoon";
@@ -1069,9 +1069,9 @@ var model = {
   sendEmailToFamily: function (data, callback) {
     console.log("address --- ", data);
     var emailData = {};
-    var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+    var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
     var greeting;
-    if (time < 10) {
+    if (time < 12) {
       greeting = "Good morning";
     } else if (time < 17) {
       greeting = "Good Afternoon";

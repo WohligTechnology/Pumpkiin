@@ -9087,6 +9087,9 @@ input[type="number"]::-webkit-outer-spin-button {
 .fontRobotoLight, .home-footer, .product-desc input, .addpromain .addproducttext, .addedpromain .addedproducttext .product {
   font-family: Roboto-Light; }
 
+.font10 {
+  font-size: 10px; }
+
 .font12 {
   font-size: 12px; }
 
