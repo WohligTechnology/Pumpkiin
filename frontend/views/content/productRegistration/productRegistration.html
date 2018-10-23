@@ -106,7 +106,7 @@
                         min="{{currentDate}}" readonly>
                     <input ng-model="data.purchaseDate" name="date" class="form-control form-control-sm" type="date" required ng-if="checkmark1"
                         min="{{currentDate}}"> -->
-                    <input type="date" id="exampleInput" name="date" class="form-control form-control-sm" ng-model="data.purchaseDate" placeholder="yyyy-MM-dd"
+                    <input type="date" id="exampleInput" class="form-control form-control-sm" ng-model="data.purchaseDate" placeholder="yyyy-MM-dd"
                         max="{{currentDate | date: 'yyyy-MM-dd'}}" ng-if="!checkmark1" required readonly/>
                     <input type="date" id="exampleInput" name="date" class="form-control form-control-sm" ng-model="data.purchaseDate" placeholder="yyyy-MM-dd"
                         max="{{currentDate | date: 'yyyy-MM-dd'}}" ng-if="checkmark1" required />
@@ -150,8 +150,8 @@
             <div class="row form-group">
                 <div class="col-12 col-md-6">
                     <label class="mb-0"> </label>
-                    <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="data.Users" theme="bootstrap"
-                        sortable="true" ng-disabled="ctrl.disabled" title="Choose a user" ng-required="true">
+                    <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="data.Users" theme="bootstrap" sortable="true"
+                        ng-disabled="ctrl.disabled" title="Choose a user" ng-required="true">
                         <ui-select-match class="selected-tags" placeholder="Select users">
                             <span ng-if="$item.user.name"> {{$item.user.name}}</span>
                             <span ng-if="!$item.user.name"> {{$item}}</span>
