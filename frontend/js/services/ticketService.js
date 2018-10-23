@@ -36,14 +36,15 @@ myApp.service('ticketService', function (NavigationService) {
         if (data) {
             ticketData.page = data;
         }
-        if()
-        ticketData.user = $.jStorage.get("userData")._id;
-        NavigationService.apiCallWithData("Ticket/totalOpenTickets", ticketData, function (res) {
-            if (res.value == true) {
-                // console.log("----------------res----", res);
-                callback(res.data);
-            }
-        });
+        if ($.jStorage.get("userData")) {
+            ticketData.user = $.jStorage.get("userData")._id;
+            NavigationService.apiCallWithData("Ticket/totalOpenTickets", ticketData, function (res) {
+                if (res.value == true) {
+                    // console.log("----------------res----", res);
+                    callback(res.data);
+                }
+            });
+        }
     };
 
     this.totalOpenTickets = function (callback) {
