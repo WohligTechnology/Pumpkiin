@@ -242,7 +242,7 @@ myApp.controller("TicketopenNotificationCtrl", function (
     });
   };
 
-  $scope.getClosedTickets();
+  // $scope.getClosedTickets();
 
 
   $scope.openTickets = function () {

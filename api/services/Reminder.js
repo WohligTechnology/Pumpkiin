@@ -143,7 +143,7 @@ var model = {
           var emailData = {};
           var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
           var greeting;
-          if (time < 10) {
+          if (time < 12) {
             greeting = "Good morning";
           } else if (time < 17) {
             greeting = "Good Afternoon";
@@ -308,7 +308,7 @@ var model = {
               var emailData = {};
               var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
               var greeting;
-              if (time < 10) {
+              if (time < 12) {
                 greeting = "Good morning";
               } else if (time < 17) {
                 greeting = "Good Afternoon";
@@ -398,7 +398,7 @@ var model = {
               var emailData = {};
               var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
               var greeting;
-              if (time < 10) {
+              if (time < 12) {
                 greeting = "Good morning";
               } else if (time < 17) {
                 greeting = "Good Afternoon";
@@ -488,7 +488,7 @@ var model = {
               var emailData = {};
               var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
               var greeting;
-              if (time < 10) {
+              if (time < 12) {
                 greeting = "Good morning";
               } else if (time < 17) {
                 greeting = "Good Afternoon";
