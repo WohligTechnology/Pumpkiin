@@ -2197,7 +2197,7 @@ myApp
         if (data == "Awaiting feedback") {
           $scope.ticketData.feedbackStatus = true;
           formData.user = $scope.jstrgData._id;
-          formData.comment = "Dear " + formData.user.name + ", Thank you for providing us with the opportunity to serve you. We hope we were able to do so with satisfaction. Request if you could kindly provide us with your valuable feedback below. This will greatly help us improve our service. Thank you, Team Pumpkiin";
+          formData.comment = "Dear " + $scope.ticketData.user.name + ", Thank you for providing us with the opportunity to serve you. We hope we were able to do so with satisfaction. Request if you could kindly provide us with your valuable feedback below. This will greatly help us improve our service. Thank you, Team Pumpkiin";
 
           $scope.ticketData.customerChat.push(formData);
 
