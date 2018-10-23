@@ -36,6 +36,7 @@ myApp.service('ticketService', function (NavigationService) {
         if (data) {
             ticketData.page = data;
         }
+        if()
         ticketData.user = $.jStorage.get("userData")._id;
         NavigationService.apiCallWithData("Ticket/totalOpenTickets", ticketData, function (res) {
             if (res.value == true) {

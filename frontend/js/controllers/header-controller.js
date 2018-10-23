@@ -193,7 +193,7 @@ myApp.controller("headerCtrl", function (
       });
     }
   };
-  $scope.openTickets();
+  // $scope.openTickets();
 
   $scope.getClosedTickets = function () {
     $scope.changeTicketName = true;
