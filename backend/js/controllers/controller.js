@@ -2189,6 +2189,8 @@ myApp
           }
         );
       } else {
+        console.log("1", $scope.ticketData);
+        console.log("2", $scope.jstrgData);
         var formData = {};
         $scope.ticketData.subStatus = data;
         var arr = {};
