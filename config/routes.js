@@ -79,7 +79,7 @@ module.exports.routes = {
     controller: "WebController",
     action: "index"
   },
-  "GET /ticketcreation/:id": {
+  "GET /ticketcreation/:id/{new:.*}/:ticketId": {
     controller: "WebController",
     action: "index"
   },
