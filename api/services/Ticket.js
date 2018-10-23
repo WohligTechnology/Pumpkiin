@@ -242,6 +242,7 @@ var model = {
         function (finalData, callback) {
           var emailData = {};
           var time = new Date().getHours();
+          console.log("_______Time________>>>>", time);
           var greeting;
           if (time < 10) {
             greeting = "Good morning";
