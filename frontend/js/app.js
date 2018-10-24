@@ -7,7 +7,7 @@ var myApp = angular.module("myApp", [
   "imageupload",
   "ui.bootstrap",
   // 'ngAnimate',
-  'ngSanitize',
+  // 'ngSanitize',
   "angularPromiseButtons",
   "toastr",
   "ui.select",
