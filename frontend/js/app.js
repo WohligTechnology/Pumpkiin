@@ -12,11 +12,14 @@ var myApp = angular.module("myApp", [
   "toastr",
   "ui.select",
   "moment-picker",
-  "ngMap"
+  "ngMap",
+  "ngAria",
+  "ngMaterial",
+  "ngMaterialDatePicker"
 ]);
 
 // Define all the routes below
-myApp.config(function (
+myApp.config(function(
   $stateProvider,
   $urlRouterProvider,
   $httpProvider,
@@ -153,7 +156,7 @@ myApp.config(function (
 });
 
 // For Language JS
-myApp.config(function ($translateProvider) {
+myApp.config(function($translateProvider) {
   $translateProvider.translations("en", LanguageEnglish);
   $translateProvider.translations("hi", LanguageHindi);
   $translateProvider.preferredLanguage("en");

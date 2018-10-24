@@ -21,9 +21,11 @@
             <label for="title">Select Date & Time * </label>
             <!-- <input name="remdate" ng-model="data.dateOfReminder" moment-picker="data.dateOfReminder" start-view="year" min-view="year"
                 max-view="minute" required> -->
-            <span moment-picker="data.dateOfReminder" ng-model="data.dateOfReminder" min-date="current" format="LL LT">
+            <!-- <span moment-picker="data.dateOfReminder" ng-model="data.dateOfReminder" min-date="current" format="LL LT">
                 {{ data.dateOfReminder || 'Click here to select a date' }}
-            </span>
+            </span> -->
+            <input mdc-datetime-picker="" date="true" time="true" type="text" id="datetime" placeholder="Date" min-date="date" ng-model="data.dateOfReminder"
+                class=" md-input">
             <span class="error" ng-show="reminder.remdate.$invalid && reminder.remdate.$touched"> Please, enter reminder date and time</span>
         </div>
         <div class="text-center">
