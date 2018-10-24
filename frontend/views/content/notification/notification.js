@@ -235,6 +235,7 @@ myApp.controller("NotificationCtrl", function(
       function(res) {
         if (res.value == true) {
           $scope.getReminder();
+          $state.reload();
           $scope.selectedReminders = [];
         }
       }
@@ -267,6 +268,7 @@ myApp.controller("NotificationCtrl", function(
             } else {
               $scope.pendingReminders();
             }
+            $state.reload();
 
             $scope.delete.close();
             if (index) {
