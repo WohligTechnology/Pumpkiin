@@ -276,11 +276,11 @@ myApp.controller("ProductRegistrationCtrl", function (
         dataForReminderWarranty.description = "End of warranty period";
         dataForReminderWarranty.dateOfReminder = $scope.warrantyExpDate;
         console.log("   dataForReminderWarranty  1 ", dataForReminderWarranty);
-        // NavigationService.apiCallWithData(
-        //   "Reminder/reminderMail",
-        //   dataForReminderWarranty,
-        //   function(res) {}
-        // );
+        NavigationService.apiCallWithData(
+          "Reminder/reminderMail",
+          dataForReminderWarranty,
+          function (res) {}
+        );
 
         if ($scope.insuranceExpDate != undefined) {
           dataForReminderInsurance.user = $scope.jstrgValue._id;

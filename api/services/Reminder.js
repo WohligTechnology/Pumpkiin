@@ -328,6 +328,7 @@ var model = {
                 "";
               emailData.filename = "Reminder";
               emailData.subject = "Reminder Notification";
+              emailData.date = moment(data.dateOfReminder).format("DD/MM/YYYY");
               console.log("emailData", emailData);
               Config.email(emailData, function (err, emailRespo) {
                 // console.log("err", err);
@@ -418,6 +419,7 @@ var model = {
                 "";
               emailData.filename = "Reminder";
               emailData.subject = "Reminder Notification";
+              emailData.date = moment(data.dateOfReminder).format("DD/MM/YYYY");
               console.log("emailData", emailData);
               Config.email(emailData, function (err, emailRespo) {
                 // console.log("err", err);
@@ -508,6 +510,7 @@ var model = {
                 "";
               emailData.filename = "Reminder";
               emailData.subject = "Reminder Notification";
+              emailData.date = moment(data.dateOfReminder).format("DD/MM/YYYY");
               console.log("emailData", emailData);
               Config.email(emailData, function (err, emailRespo) {
                 // console.log("err", err);

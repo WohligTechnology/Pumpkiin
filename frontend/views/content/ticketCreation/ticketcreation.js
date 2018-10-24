@@ -93,6 +93,44 @@ myApp.controller("TicketCreationCtrl", function (
 
   //for ticket block
 
+  $scope.statusArray = [{
+      status: "Repair/ Maintenance",
+      activeClass: ""
+    },
+    {
+      status: "Scheduling service with customer",
+      activeClass: ""
+    },
+    {
+      status: "Coordinating with the service provider",
+      activeClass: ""
+    },
+    {
+      status: "Service confirmed",
+      activeClass: ""
+    },
+    {
+      status: "Service completed",
+      activeClass: ""
+    },
+    {
+      status: "Appliance picked up",
+      activeClass: ""
+    },
+    {
+      status: "Appliance returned",
+      activeClass: ""
+    },
+    {
+      status: "Awaiting feedback",
+      activeClass: ""
+    },
+    {
+      status: "Completed",
+      activeClass: ""
+    }
+  ];
+
   $scope.getTicket = function () {
     ticketService.totalOpenTickets(function (data) {
       $scope.totalOpenTickets = data;
@@ -317,7 +355,7 @@ myApp.controller("TicketCreationCtrl", function (
 
   $scope.getTicket();
 
-  $scope.getOpenTickets = function () {   
+  $scope.getOpenTickets = function () {
     ticketService.totalOpenTickets(function (data) {
       $scope.countOpenTickets = data.length;
       $scope.ticketDetails = _.slice(data, 0, 5);
@@ -335,7 +373,6 @@ myApp.controller("TicketCreationCtrl", function (
   };
 
   $scope.ticketChatSocket();
-  console.log("---------------->>>>>>>Kishori Rocks", $scope.newTicketId);
 
   function establishSocket() {
     io.socket.on(
@@ -383,6 +420,7 @@ myApp.controller("TicketCreationCtrl", function (
               id: $stateParams.id,
               new: ""
             });
+            $scope.getTicket();
           }
         }
       );
@@ -536,7 +574,7 @@ myApp.controller("TicketCreationCtrl", function (
     }
   };
 
-  $scope.reloadPage = function(){
+  $scope.reloadPage = function () {
     $state.reload();
   }
 });
