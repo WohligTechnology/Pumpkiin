@@ -22,7 +22,7 @@ myApp.controller("headerCtrl", function(
     $(window).scrollTop(0);
   });
   $scope.data = {};
-  $scope.data.dateOfReminder = moment().toDate();
+  // $scope.data.dateOfReminder = moment().toDate();
   $scope.userInfo = $.jStorage.get("userData");
   var windowscreen = $window;
   $scope.changeTicketName = false;
