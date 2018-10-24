@@ -9325,6 +9325,9 @@ fieldset:disabled {
       .home-section .home-section-content .select-box .dropdown-item:focus {
         background: transparent; }
 
+.add-user-purchase {
+  width: 150px !important; }
+
 .ui-select-choices-row:hover {
   background-color: transparent !important; }
 
@@ -11313,5 +11316,3 @@ svg {
     font-family: "Roboto-Bold";
     text-transform: uppercase;
     color: #657d95; }
-
-/*# sourceMappingURL=import.css.map */
