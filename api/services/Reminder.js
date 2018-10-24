@@ -156,7 +156,7 @@ var model = {
           emailData.greeting = greeting;
           emailData.title = data.title;
           emailData.description = data.description;
-          emailData.date = moment(data.dateOfReminder).format("DD/MM/YYYY");
+          emailData.date = moment(data.dateOfReminder).add(5, "hours").add(30, "minutes").format("DD/MM/YYYY");
           emailData.filename = "Reminder";
           emailData.subject = "Reminder Notification";
           console.log("emailData in reminder mail", emailData);
@@ -328,7 +328,7 @@ var model = {
                 "";
               emailData.filename = "Reminder";
               emailData.subject = "Reminder Notification";
-              emailData.date = moment(data.dateOfReminder).format("DD/MM/YYYY");
+              emailData.date = moment(data.dateOfReminder).add(5, "hours").add(30, "minutes").format("DD/MM/YYYY");
               console.log("emailData", emailData);
               Config.email(emailData, function (err, emailRespo) {
                 // console.log("err", err);
@@ -419,7 +419,7 @@ var model = {
                 "";
               emailData.filename = "Reminder";
               emailData.subject = "Reminder Notification";
-              emailData.date = moment(data.dateOfReminder).format("DD/MM/YYYY");
+              emailData.date = moment(data.dateOfReminder).add(5, "hours").add(30, "minutes").format("DD/MM/YYYY");
               console.log("emailData", emailData);
               Config.email(emailData, function (err, emailRespo) {
                 // console.log("err", err);
@@ -510,7 +510,7 @@ var model = {
                 "";
               emailData.filename = "Reminder";
               emailData.subject = "Reminder Notification";
-              emailData.date = moment(data.dateOfReminder).format("DD/MM/YYYY");
+              emailData.date = moment(data.dateOfReminder).add(5, "hours").add(30, "minutes").format("DD/MM/YYYY");
               console.log("emailData", emailData);
               Config.email(emailData, function (err, emailRespo) {
                 // console.log("err", err);
