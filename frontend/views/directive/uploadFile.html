@@ -25,7 +25,6 @@
         <img ng-src="{{model|uploadpath}}" class="img-fluid uploadingImage" ng-if="type=='image'" />
         <iframe src="{{model|uploadpath}}" style="width:400px; height:400px;" frameborder="0" ng-if="type=='pdf'"></iframe>
     </div>
-    <div ng-if="uploadStatus == 'uploading'">uploading</div>
     <div class="d-flex mt-3" ng-if="model && isMultiple" ng-hide="noShow">
         <div class="img-box mr-1" ng-repeat="sImage in model track by $index">
             <div class="show-full-image">
@@ -45,6 +44,7 @@
                 </div>
             </div>
         </div>
+        <div class="text-success font10 p-2" ng-if="uploadStatus == 'uploading'">uploading....</div>
     </div>
 
     <!-- <div class="btn-upload btn btn-primary btn-outline btn-small create-btn">

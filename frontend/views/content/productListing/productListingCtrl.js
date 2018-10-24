@@ -117,7 +117,11 @@ myApp.controller("ProductlistingCtrl", function (
     });
 
     reminderService.totalNumberOfPendingReminders(function (data) {
-      $scope.totalPendingReminders = data;
+      if (data.value) {
+        $scope.totalPendingReminders = data.data;
+      } else {
+        $scope.totalPendingReminders = 0;
+      }
     });
 
     $scope.completedReminders = function (data) {
@@ -153,8 +157,11 @@ myApp.controller("ProductlistingCtrl", function (
     });
 
     ticketService.totalNumberOfOpenTickets(function (data) {
-      $scope.totalNumberOfOpenTickets = data;
-      console.log("res---totalNumberOfOpenTickets--", data);
+      if (data) {
+        $scope.totalNumberOfOpenTickets = data;
+      } else {
+        $scope.totalNumberOfOpenTickets = 0;
+      }
     });
 
     ticketService.totalNumberOfClosedTickets(function (data) {
@@ -526,4 +533,8 @@ myApp.controller("ProductlistingCtrl", function (
       );
     }
   };
+
+  $scope.reloadPage = function(){
+    $state.reload();
+  }
 });

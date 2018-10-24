@@ -25,11 +25,13 @@ myApp.service('reminderService', function (NavigationService) {
     };
 
     this.totalNumberOfPendingReminders = function (callback) {
+        console.log("adadgsagsdasdg");
         reminderData.user = $.jStorage.get("userData")._id;
         NavigationService.apiCallWithData("Reminder/totalNumberOfPendingReminders", reminderData, function (res) {
-            if (res.value == true) {
-                callback(res.data);
-            }
+            console.log("resss", res);
+
+            callback(res);
+
         });
     };
 

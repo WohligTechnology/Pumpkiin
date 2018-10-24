@@ -14,7 +14,7 @@
                         <!-- <img src="img/ticketCreation/Notification_circle-icon-green.png"> -->
                         <img ng-if="showGreenImage" src="img/ticketCreation/pmkn-01.png">
                         <img ng-if="!showGreenImage" src="img/ticketCreation/pmkn-04.png">
-                        <div class="notification" ng-if="totalCompletedReminder">{{totalCompletedReminder}}</div>
+                        <!-- <div class="notification" ng-if="totalCompletedReminder"></div> -->
                         <!-- <div class="notification" ng-if="!totalCompletedReminder">0</div> -->
                     </div>
                     <div class="cursor-point" ng-click="reminderModalOpen()">
@@ -65,7 +65,7 @@
 
                         <a role="button" class="button  px-3 py-1 fontRobotoBold text-center completed-color" ng-if="!showGreenImage"
                             ng-click="multiCompleted();">Completed</a>
-                        <a role="button" class="button  px-3 py-1 fontRobotoBold text-center delete-btn" ng-click="deleteMultipleReminder(reminders._id);">Delete</a>
+                        <a role="button" class="button  px-3 py-1 fontRobotoBold text-center delete-btn" ng-click="deleteMultipleReminder(reminders._id, showGreenImage);">Delete</a>
                     </div>
                 </div>
                 <uib-accordion close-others="true">

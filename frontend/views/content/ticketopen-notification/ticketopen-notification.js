@@ -25,6 +25,7 @@ myApp.controller("TicketopenNotificationCtrl", function (
   $scope.jstrgValue = $.jStorage.get('userData');
   $scope.pageNumber = 1;
   $scope.showGreenImage = false;
+  // $scope.changeTicketName = false;
   var windowscreen = $window;
   // $scope.maxRow = 5;
 
@@ -137,7 +138,11 @@ myApp.controller("TicketopenNotificationCtrl", function (
     });
 
     reminderService.totalNumberOfPendingReminders(function (data) {
-      $scope.totalPendingReminders = data;
+      if (data.value) {
+        $scope.totalPendingReminders = data.data;
+      } else {
+        $scope.totalPendingReminders = 0;
+      }
     });
 
     $scope.completedReminders = function (data) {
@@ -164,21 +169,26 @@ myApp.controller("TicketopenNotificationCtrl", function (
 
   $scope.callTickets = function () {
     ticketService.totalOpenTickets(function (data) {
-      // $scope.ticketDetails = data;
-      // $scope.ticketDetails = _.slice(data.results, 0, 5);
+      $scope.ticketDetails = data;
+      $scope.ticketDetails = _.slice(data.results, 0, 5);
     });
 
-    // ticketService.totalClosedTickets(function (data) {
-    //     $scope.ticketDetails = data;
-    // });
+    ticketService.totalClosedTickets(function (data) {
+      console.log("getallClosedTicktes", data)
+      $scope.ticketDetails = data;
+    });
 
     ticketService.totalNumberOfTickets(function (data) {
       $scope.totalNumberOfTickets = data;
     });
 
     ticketService.totalNumberOfOpenTickets(function (data) {
-      $scope.totalNumberOfOpenTickets = data;
-      // console.log("res---totalNumberOfOpenTickets--", data);
+      console.log("data>>>>>>", data);
+      if (data) {
+        $scope.totalNumberOfOpenTickets = data;
+      } else {
+        $scope.totalNumberOfOpenTickets = 0;
+      }
     });
 
     ticketService.totalNumberOfClosedTickets(function (data) {
@@ -190,8 +200,24 @@ myApp.controller("TicketopenNotificationCtrl", function (
   };
   $scope.callTickets();
 
+  $scope.getTickets = function () {
+    var pageData = $scope.pageNumber;
+    console.log("pageData", pageData);
+    ticketService.totalClosedTickets1(pageData, function (data) {
+      console.log("ticketData", data);
+      $scope.ticketData = data.results;
+      $scope.ticketDetails = _.slice(data.results, 0, 5);
+      $scope.totalitems = data.total;
+      $scope.maxRow = data.options.count;
+      // $scope.callTickets();
+    });
+  };
+  $scope.getTickets();
+
   $scope.getClosedTickets = function () {
+    $scope.changeTicketName = true;
     ticketService.totalClosedTickets(function (data) {
+      $scope.getTickets();
       console.log("dtttttt", data)
 
       if (windowscreen.screen.width < 768) {
@@ -206,20 +232,20 @@ myApp.controller("TicketopenNotificationCtrl", function (
 
   $scope.getOpenTickets = function () {
     ticketService.totalOpenTickets(function (data) {
+      console.log("-------------------------->>>>>>>>>>>>>>", data);
+      $scope.countOpenTickets = data.length;
       if (windowscreen.screen.width < 768) {
         $scope.ticketDetails = data;
-        console.log(" if responsive ", $scope.ticketDetails);
       } else {
         $scope.ticketDetails = _.slice(data, 0, 5);
-        console.log(" if desktop ", $scope.ticketDetails);
       }
     });
   };
-  $scope.getOpenTickets();
-  $scope.getClosedTickets();
+
+  // $scope.getClosedTickets();
 
 
-  $scope.getTickets = function () {
+  $scope.openTickets = function () {
     // if (!pageData) {
     //     pageData = undefined;
     // }
@@ -233,7 +259,8 @@ myApp.controller("TicketopenNotificationCtrl", function (
       });
     }
   };
-  $scope.getTickets();
+  // $scope.getTickets();
+  $scope.getOpenTickets();
 
   $scope.openmodalOpen = function (tickets, index) {
     $scope.singleTicket = tickets;
@@ -256,7 +283,7 @@ myApp.controller("TicketopenNotificationCtrl", function (
         function (data) {
           if (data.value) {
             // if (modal) {
-            $scope.callTickets();
+            $scope.getOpenTickets();
             // } else {
             //     $scope.showLessReminders[index].isRead = true;
             // }
@@ -323,6 +350,10 @@ myApp.controller("TicketopenNotificationCtrl", function (
       );
     }
   };
+
+  $scope.reloadPage = function(){
+    $state.reload();
+  }
 
   //for ticket block end
   // $scope.checkifRead = function (data) {

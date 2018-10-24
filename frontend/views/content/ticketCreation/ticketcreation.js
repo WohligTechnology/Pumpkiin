@@ -62,7 +62,11 @@ myApp.controller("TicketCreationCtrl", function (
     });
 
     reminderService.totalNumberOfPendingReminders(function (data) {
-      $scope.totalPendingReminders = data;
+      if (data.value) {
+        $scope.totalPendingReminders = data.data;
+      } else {
+        $scope.totalPendingReminders = 0;
+      }
       // console.log("$scope.totalPendingReminders--", $scope.totalPendingReminders);
     });
 
@@ -99,7 +103,7 @@ myApp.controller("TicketCreationCtrl", function (
         ticketData.product = $stateParams.id;
         ticketData._id = $stateParams.ticketId;
         console.log("$scope.ticketData-----------", $stateParams.new);
-        if ($stateParams.new == "") {
+        if ($stateParams.new == "" || $stateParams.new) {
           console.log("HI");
           NavigationService.apiCallWithData(
             "Ticket/findActiveTicketOfUser",
@@ -282,7 +286,11 @@ myApp.controller("TicketCreationCtrl", function (
     });
 
     ticketService.totalNumberOfOpenTickets(function (data) {
-      $scope.totalNumberOfOpenTickets = data;
+      if (data) {
+        $scope.totalNumberOfOpenTickets = data;
+      } else {
+        $scope.totalNumberOfOpenTickets = 0;
+      }
     });
 
     ticketService.totalNumberOfClosedTickets(function (data) {
@@ -299,6 +307,7 @@ myApp.controller("TicketCreationCtrl", function (
 
     $scope.getOpenTickets = function () {
       ticketService.totalOpenTickets(function (data) {
+        $scope.countOpenTickets = data.length;
         // $scope.ticketDetails = data;
         $scope.ticketDetails = _.slice(data, 0, 5);
       });
@@ -310,6 +319,7 @@ myApp.controller("TicketCreationCtrl", function (
 
   $scope.getOpenTickets = function () {
     ticketService.totalOpenTickets(function (data) {
+      $scope.countOpenTickets = data.length;
       $scope.ticketDetails = _.slice(data, 0, 5);
     });
   };
@@ -325,7 +335,6 @@ myApp.controller("TicketCreationCtrl", function (
   };
 
   $scope.ticketChatSocket();
-  console.log("---------------->>>>>>>Kishori Rocks", $scope.newTicketId);
 
   function establishSocket() {
     io.socket.on(
@@ -373,6 +382,7 @@ myApp.controller("TicketCreationCtrl", function (
               id: $stateParams.id,
               new: ""
             });
+            $scope.getTicket();
           }
         }
       );
@@ -525,4 +535,8 @@ myApp.controller("TicketCreationCtrl", function (
       );
     }
   };
+
+  $scope.reloadPage = function () {
+    $state.reload();
+  }
 });

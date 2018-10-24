@@ -120,7 +120,7 @@ var controller = {
     },
     totalClosedTickets1: function (req, res) {
         if (req.body) {
-            Ticket.totalClosedTickets(req.body, res.callback);
+            Ticket.totalClosedTickets1(req.body, res.callback);
         } else {
             res.json({
                 value: false,
