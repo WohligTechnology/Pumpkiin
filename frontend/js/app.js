@@ -12,10 +12,7 @@ var myApp = angular.module("myApp", [
   "toastr",
   "ui.select",
   "moment-picker",
-  "ngMap",
-  "ngAria",
-  "ngMaterial",
-  "ngMaterialDatePicker"
+  "ngMap"
 ]);
 
 // Define all the routes below

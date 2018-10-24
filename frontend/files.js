@@ -29,9 +29,6 @@ module.exports = [
   "bower_components/jStorage/jstorage.min.js",
   "bower_components/angular-moment-picker/dist/angular-moment-picker.js",
   "bower_components/ngmap/build/scripts/ng-map.min.js",
-  "bower_components/angular-aria/angular-aria.min.js",
-  "bower_components/angular-material/angular-material.js",
-  "bower_components/extended-datetimepicker/js/angular-material-datetimepicker.min.js",
   //App.js
   "frontend/js/app.js",
 
