@@ -23,7 +23,7 @@
 <div class="form-group">
     <label>{{type.name}} <span ng-show="type.required">*</span></label>
     
-    <ui-select class="ui-select-border" multiple tagging="tagTransform" tagging-label="(press enter to add new)" on-remove="tagClicked($select.selected)"
+    <ui-select class="ui-select-border  border rounded" multiple tagging="tagTransform" tagging-label="(press enter to add new)" on-remove="tagClicked($select.selected)"
         name="{{type.tableRef}}" ng-model="formData[type.tableRef]" theme="bootstrap" ng-required="type.required" ng-if="type.dropDownType == 'multiple'"
         ng-disabled="type.disabled">
         <ui-select-match placeholder="{{type.placeholder}}">
@@ -36,7 +36,7 @@
         </ui-select-choices>
     </ui-select>
     
-    <ui-select class="ui-select-border" name="{{type.tableRef}}" ng-model="formData[type.tableRef]" theme="bootstrap" ng-required="type.required" ng-if="type.dropDownType == 'single'">
+    <ui-select class="ui-select-border  border rounded" name="{{type.tableRef}}" ng-model="formData[type.tableRef]" theme="bootstrap" ng-required="type.required" ng-if="type.dropDownType == 'single'">
         <ui-select-match placeholder="{{type.placeholder}}">
             <span ng-if="type.dropDownField==''">{{$select.selected}}</span>
             <span ng-if="type.dropDownField!=''">{{$select.selected[type.dropDownField]}}</span>
