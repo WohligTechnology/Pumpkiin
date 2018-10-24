@@ -910,7 +910,7 @@ var model = {
     User.findOneAndUpdate({
       _id: data._id
     }, {
-      dob: parseInt(moment(data.dob).add(5, "hours").add(30, "minutes").format("HH")),
+      dob: moment(data.dob).add(5, "hours").add(30, "minutes"),
       gender: data.gender,
       mobile: data.mobile,
       email: data.email
