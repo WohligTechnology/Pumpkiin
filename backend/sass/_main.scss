@@ -16,17 +16,10 @@ $body-color-font: #505050;
 @import "template/main";
 @import "template/responsive";
 @import "custom-switch";
-
 @font-face {
   font-family: "Glyphicons Halflings";
   src: url("../fonts/glyphicons-halflings-regular.eot");
-  src: url("../fonts/glyphicons-halflings-regular.eot?#iefix")
-      format("embedded-opentype"),
-    url("../fonts/glyphicons-halflings-regular.woff2") format("woff2"),
-    url("../fonts/glyphicons-halflings-regular.woff") format("woff"),
-    url("../fonts/glyphicons-halflings-regular.ttf") format("truetype"),
-    url("../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular")
-      format("svg");
+  src: url("../fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 
 @font-face {
@@ -108,7 +101,6 @@ a,
 [ui-sref] {
   cursor: pointer;
   transition: all ease 300ms;
-
   &:focus {
     outline: none !important;
   }
@@ -207,7 +199,6 @@ a,
 
 .who-post-this {
   position: relative;
-
   .house {
     position: absolute;
     width: auto;
@@ -345,7 +336,6 @@ $trans-black: rgba(black, 0.15);
     height: 101px;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
-
     -ms-border-radius: 100%;
     border-radius: 100%;
   }
@@ -648,7 +638,6 @@ input[type="number"]::-webkit-outer-spin-button {
   left: 0;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);
   border: 1px solid #ccc;
-
   z-index: 9;
   max-height: 200px;
   overflow-x: hidden;
@@ -705,7 +694,6 @@ form.search-form {
 
 .form-group {
   position: relative;
-
   .error-msg {
     position: absolute;
     right: 0;
@@ -739,7 +727,6 @@ form.search-form {
 // .form-control,
 // .table td {
 // text-transform: capitalize;
-}
 
 .text-upper {
   text-transform: uppercase;
@@ -1223,7 +1210,6 @@ body {
   position: relative;
   .send img {
     position: absolute;
-
     right: 0;
     width: 30px;
     margin: 6px;
@@ -1501,7 +1487,9 @@ body {
 .support-chat {
   @extend .border-dashed-bottom;
 }
-.chat {
+
+.chat,
+.admin-details-page {
   // height: 70vh;
   .image {
     min-width: 40px;
@@ -1531,7 +1519,6 @@ body {
       background-color: rgba(20, 193, 119, 0.5);
     }
   }
-
   .me {
     .chat-content {
       border-top-right-radius: 0;
@@ -1827,7 +1814,6 @@ svg {
     border-bottom: 1px solid #bbb;
     cursor: text;
   }
-
   .search-btn {
     height: 27px;
     width: 23px;
@@ -1871,7 +1857,6 @@ svg {
   background-color: #f6a244;
   border: solid 5px #ecf0f2;
   border-radius: 50%;
-
   .fa-sort-down {
     color: white;
     vertical-align: 0;
