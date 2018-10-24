@@ -210,10 +210,11 @@ myApp.controller("NotificationCtrl", function (
         function (res) {
           if (res.value == true) {
             $scope.showGreenImage = true;
-            reminderService.findReminderOfCompletedByUser(function (data) {
-              $scope.allReminders = data;
-              $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
-            });
+            // reminderService.findReminderOfCompletedByUser(function (data) {
+            //   $scope.allReminders = data;
+            //   $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
+            // });
+            $scope.completedReminders();
             $state.reload();
 
             $scope.delete.close();
@@ -240,7 +241,7 @@ myApp.controller("NotificationCtrl", function (
       }
     );
   };
-  $scope.deleteMultipleReminder = function () {
+  $scope.deleteMultipleReminder = function (id, value) {
     console.log("HIIIII");
     $scope.delete = $uibModal.open({
       animation: true,
@@ -252,13 +253,22 @@ myApp.controller("NotificationCtrl", function (
     $scope.confirmDelete = function () {
       var changeStatusData = {};
       changeStatusData.data = $scope.selectedReminders;
-      console.log("changeStatusData", changeStatusData);
+      console.log("changeStatusData", value);
       NavigationService.apiCallWithData(
         "Reminder/deleteMultiple",
         changeStatusData,
         function (res) {
           if (res.value == true) {
             $scope.getReminder();
+            if (value) {
+              console.log("completedReminders>>>>>>>>>>>>>");
+              $scope.completedReminders()
+              console.log("REmindetrrrrrr", $scope.showLessReminders);
+              $scope.showLessReminders = $scope.showLessReminders;
+            } else {
+              $scope.pendingReminders();
+            }
+
             $scope.delete.close();
             if (index) {
               $scope.statuses[$scope.deleteIndex].isOpen = false;
