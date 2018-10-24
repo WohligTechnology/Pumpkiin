@@ -59,24 +59,11 @@ $link-hover-decoration: underline !default;
 // Fonts
 //
 // Font, line-height, and color for body text, headings, and more.
-$font-family-sans-serif: -apple-system,
-system-ui,
-BlinkMacSystemFont,
-"Segoe UI",
-Roboto,
-"Helvetica Neue",
-Arial,
-sans-serif !default;
-$font-family-serif: Georgia,
-"Times New Roman",
-Times,
-serif !default;
-$font-family-monospace: Menlo,
-Monaco,
-Consolas,
-"Liberation Mono",
-"Courier New",
-monospace !default;
+$font-family-sans-serif: -apple-system, system-ui, BlinkMacSystemFont,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$font-family-serif: Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono",
+  "Courier New", monospace !default;
 $font-family-base: $font-family-sans-serif !default;
 $header-text: 0.9375rem !default; //added 15px for header
 $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
@@ -119,8 +106,7 @@ $btn-padding-x: 1rem !default;
 $btn-padding-y: 0.5rem !default;
 $btn-line-height: 1.25 !default;
 $btn-font-weight: $font-weight-normal !default;
-$btn-box-shadow: inset 0 1px 0 rgba($white, 0.15),
-0 1px 1px rgba($black, 0.075) !default;
+$btn-box-shadow: inset 0 1px 0 rgba($white, 0.15), 0 1px 1px rgba($black, 0.075) !default;
 $btn-focus-box-shadow: 0 0 0 2px rgba($brand-primary, 0.25) !default;
 $btn-active-box-shadow: inset 0 3px 5px rgba($black, 0.125) !default;
 // Forms
@@ -144,11 +130,11 @@ $dropdown-box-shadow: 0 0.5rem 1rem rgba($black, 0.175) !default;
   /* No hover support */
 }
 
-@media (hover:on-demand) {
+@media (hover: on-demand) {
   /* Touch screen devices */
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   /* Mouse devices */
 }
 
@@ -277,9 +263,9 @@ footer {
 //end of footer
 //bootstrap forms
 .input-lg,
-.input-group-lg>.form-control,
-.input-group-lg>.input-group-addon,
-.input-group-lg>.input-group-btn>.btn,
+.input-group-lg > .form-control,
+.input-group-lg > .input-group-addon,
+.input-group-lg > .input-group-btn > .btn,
 .btn,
 .form-control {
   border-radius: 0;
@@ -788,12 +774,12 @@ fieldset:disabled {
   background-color: transparent !important;
 }
 
-.selectize-control>.selectize-dropdown {
+.selectize-control > .selectize-dropdown {
   background: transparent !important;
   color: white;
 }
 
-.selectize-control.single>.selectize-input>input {
+.selectize-control.single > .selectize-input > input {
   color: white;
   border-width: 1px;
   border-color: #ced4da;
@@ -1093,7 +1079,7 @@ fieldset:disabled {
 }
 
 //accordian in notification page
-.selected {
+.choice {
   background-color: white !important;
   border: solid 1px #142c5b;
   transition: ease all 500ms;
@@ -1149,4 +1135,8 @@ fieldset:disabled {
 
 .upload-text {
   line-height: 12px;
+}
+
+.md-dialog-container {
+  z-index: 9999;
 }
