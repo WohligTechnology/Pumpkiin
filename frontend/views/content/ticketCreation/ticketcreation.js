@@ -93,6 +93,44 @@ myApp.controller("TicketCreationCtrl", function (
 
   //for ticket block
 
+  $scope.statusArray = [{
+      status: "Repair/ Maintenance",
+      activeClass: ""
+    },
+    {
+      status: "Scheduling service with customer",
+      activeClass: ""
+    },
+    {
+      status: "Coordinating with the service provider",
+      activeClass: ""
+    },
+    {
+      status: "Service confirmed",
+      activeClass: ""
+    },
+    {
+      status: "Service completed",
+      activeClass: ""
+    },
+    {
+      status: "Appliance picked up",
+      activeClass: ""
+    },
+    {
+      status: "Appliance returned",
+      activeClass: ""
+    },
+    {
+      status: "Awaiting feedback",
+      activeClass: ""
+    },
+    {
+      status: "Completed",
+      activeClass: ""
+    }
+  ];
+
   $scope.getTicket = function () {
     ticketService.totalOpenTickets(function (data) {
       $scope.totalOpenTickets = data;
@@ -103,7 +141,7 @@ myApp.controller("TicketCreationCtrl", function (
         ticketData.product = $stateParams.id;
         ticketData._id = $stateParams.ticketId;
         console.log("$scope.ticketData-----------", $stateParams.new);
-        if ($stateParams.new == "" || $stateParams.new) {
+        if ($stateParams.new == "") {
           console.log("HI");
           NavigationService.apiCallWithData(
             "Ticket/findActiveTicketOfUser",
