@@ -9,14 +9,14 @@
                 <div class="d-flex bg-white border-rounded">
                     <div class="w-15 border-right more-images">
                         <div class="p-2" ng-repeat="productImg in productDetails.productImages">
-                            <img class="img-thumbnail" ng-src="{{productImg | serverimage}}" alt="" ng-click="setImage(productImg)" ng-if="(productImg|checkimage) !='pdf'">
+                            <img class="img-fluid" ng-src="{{productImg | serverimage}}" alt="" ng-click="setImage(productImg)" ng-if="(productImg|checkimage) !='pdf'">
                             <a fancybox-box data-fancybox="gallery" ng-href="{{productImg|uploadpath}}" ng-if="(productImg|checkimage) =='pdf'" rel="gal">
                                 <i class="fas fa-file-pdf fa-2x"></i>
                             </a>
                         </div>
                     </div>
                     <div class="w-85 p-3 float-right position-relative">
-                        <img class="img-thumbnail" ng-src="{{setImg | serverimage}}" alt="" ng-if="(setImg|checkimage) !='pdf'">
+                        <img class="img-fluid" ng-src="{{setImg | serverimage}}" alt="" ng-if="(setImg|checkimage) !='pdf'">
                         <a fancybox-box data-fancybox="gallery" ng-href="{{setImg|uploadpath}}" ng-if="(setImg|checkimage) =='pdf'" rel="gal">
                             <i class="fas fa-file-pdf fa-4x"></i>
                         </a>
@@ -32,7 +32,7 @@
             </div>
             <div class="col-12 col-md-8">
                 <div class="bg-white p-4 border-rounded fontRobotoRegular font14">
-                    <h6 class="fontRobotoBold blue-color mb-2">PRODUCT INFORMATION{{personalInfo}}
+                    <h6 class="fontRobotoBold blue-color mb-2">PRODUCT INFORMATION
                         <span class="float-right info-icon" ng-click="personalInfo=!personalInfo;">
                             <i class="fas fa-pencil-alt fa-xs cursor-point"></i>
                         </span>

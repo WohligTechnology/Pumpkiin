@@ -386,8 +386,7 @@ myApp.controller("TicketCreationCtrl", function (
     var formData = {};
     var dataToSend = {};
     dataToSend.customerChat = [];
-    if ((
-        !_.isEmpty($.jStorage.get("userData")) &&
+    if ((!_.isEmpty($.jStorage.get("userData")) &&
         $scope.ticketDetails1 == "No Data Found"
       ) || ($stateParams.new && $scope.ticketDetails1 == undefined)) {
 
@@ -573,7 +572,9 @@ myApp.controller("TicketCreationCtrl", function (
       );
     }
   };
-
+  $(".chat").animate({
+    scrollTop: $('.chat').prop("scrollHeight")
+  }, 1000);
   $scope.reloadPage = function () {
     $state.reload();
   }
