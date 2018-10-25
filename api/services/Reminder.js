@@ -300,7 +300,6 @@ var model = {
         var minTime = moment().add();
         var maxTime = moment().add().add(5, "minutes");
         sendReminderEmails = _.filter(reminders, function (n) {
-          console.log(moment(n.dateOfReminder), minTime, maxTime, moment(n.dateOfReminder).isBetween(minTime, maxTime))
           return moment(n.dateOfReminder).isBetween(minTime, maxTime);
         });
         async.concatLimit(sendReminderEmails, 10, function (singleData, callback) {
@@ -323,7 +322,7 @@ var model = {
   },
   createEmail: function (singleData) {
     var emailData = {};
-    var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+    var time = parseInt(moment().add(5, "hours").add(30, "minutes").format("HH"));
     var greeting;
     if (time < 12) {
       greeting = "Good morning";
