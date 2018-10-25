@@ -127,6 +127,8 @@ global.GoogleStrategy = require('passport-google-auth').Strategy;
 global.jsFiles = require("../frontend/files.js");
 global.jsFilesBackend = require("../backend/files.js");
 
+global.cron = require("node-cron");
+
 //colored console
 global.blue = function (data) {
     console.log(chalk.blue(data));

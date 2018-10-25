@@ -1,4 +1,3 @@
-var cron = require("node-cron");
 var schema = new Schema({
   // brand: {
   //     type: Schema.Types.ObjectId,
@@ -115,7 +114,7 @@ var model = {
         callback(err, null);
       } else if (data.user.name) {
         var emailData = {};
-        var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+        var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
         var greeting;
         if (time < 12) {
           greeting = "Good morning";
@@ -155,7 +154,7 @@ var model = {
     });
   },
 
-  getAllProducts: function (data, callback) { 
+  getAllProducts: function (data, callback) {
     Product.find({
         status: "Confirmed",
         user: data.user
@@ -228,7 +227,7 @@ var model = {
         },
         function (finalData, callback) {
           var emailData = {};
-          var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+          var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
           var greeting;
           if (time < 12) {
             greeting = "Good morning";
