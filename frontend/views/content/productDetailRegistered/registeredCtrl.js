@@ -54,14 +54,15 @@ myApp.controller('ProductDetailRegisteredCtrl', function ($scope, TemplateServic
             //     }
 
             // })
-            $scope.ticketData = _.find(res.data, function (o) {
-                if (o.product == $stateParams.id) {
-                    console.log(o)
-                    return o;
-                }
+            $scope.ticketData = res.data
+            // $scope.ticketData = _.find(res.data, function (o) {
+            //     if (o.product == $stateParams.id) {
+            //         console.log(o)
+            //         return o;
+            //     }
 
-            });
-            console.log("$scope.ticketData-----", $scope.ticketData);
+            // });
+            console.log("$scope.ticketData-----", res.data);
         }
     });
 
