@@ -98,22 +98,22 @@
                     </div>
                 </div>
                 <div class="border-top listed-openTickets openticket">
-                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails track by $index"
-                        ng-click="openmodalOpen(tickets, $index);" ng-if="ticketDetails[0].status == 'Active'">
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails track by $index" ng-click="openmodalOpen(tickets, $index);"
+                        ng-if="ticketDetails[0].status == 'Active'">
                         <div class="bullet" ng-if="!tickets.isRead  && tickets.status == 'Active'"></div>
                         <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
-                            <div class="product-title text-truncate">{{tickets.product.productName}} -
-                                {{tickets.ticketNumber}}</div>
+                            <div class="product-title text-truncate">{{tickets.product.productName}} - {{tickets.ticketNumber}}
+                            </div>
                             <div class="date ">{{tickets.issueReported | date}}</div>
                         </div>
                     </div>
 
-                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails track by $index"
-                        ng-if="ticketDetails[0].status == 'Closed'" ui-sref="closedTicketcreation({id:tickets._id})">
+                    <div class="d-flex py-1 element-list cursor-point" ng-repeat="tickets in ticketDetails track by $index" ng-if="ticketDetails[0].status == 'Closed'"
+                        ui-sref="closedTicketcreation({id:tickets._id})">
                         <div class="bullet" ng-if="!tickets.isRead && tickets.status == 'Active'"></div>
                         <div class="d-block pl-4 cursor-point" ng-click="checkifRead()">
-                            <div class="product-title text-truncate">{{tickets.product.productName}} -
-                                {{tickets.ticketNumber}}</div>
+                            <div class="product-title text-truncate">{{tickets.product.productName}} - {{tickets.ticketNumber}}
+                            </div>
                             <div class="date ">{{tickets.issueReported | date}}</div>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
             <reminders></reminders>
         </div>
         <div class="col col-md-9 " ng-init="modelNo=false ">
-            <div class="background-blue border-rounded p-4">
+            <div class="background-blue border-rounded pb-5 pb-md-4 p-4 mt-3 mt-md-0">
                 <div class="media">
                     <div class="img-div ">
 
@@ -156,7 +156,7 @@
                                     <span ng-show="modelNo">
                                         <i class="fas fa-angle-up"></i>
                                     </span>
-                                    <span ng-show="!modelNo">
+                                <span ng-show="!modelNo">
                                         <i class="fas fa-angle-down"></i>
                                     </span>
                                 </span>
@@ -210,10 +210,10 @@
                                         <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-2 ">{{relatives.relationType}}
                                             <!-- <i class="fas fa-times "></i> -->
                                         </span>
-                                        <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
+                                    <!-- <span class="d-inline-block bg-white blue-color border-rounded px-2 mb-2 mr-3 ">Mother
                                             <i class="fas fa-times "></i>
                                         </span> -->
-                                        <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
+                                    <!-- <button class="border-rounded background-orange border-0 text-white " ng-click="newUserModalOpen();">Add New User
                                             <i class="fas fa-plus "></i>
                                         </button> -->
                                     </span>
