@@ -1,4 +1,4 @@
-myApp.controller("headerCtrl", function(
+myApp.controller("headerCtrl", function (
   $scope,
   TemplateService,
   $uibModal,
@@ -12,7 +12,7 @@ myApp.controller("headerCtrl", function(
   $window
 ) {
   $scope.template = TemplateService;
-  $scope.$on("$stateChangeSuccess", function(
+  $scope.$on("$stateChangeSuccess", function (
     event,
     toState,
     toParams,
@@ -32,7 +32,7 @@ myApp.controller("headerCtrl", function(
     var data = {};
     data._id = $scope.userInfo._id;
     // console.log("--------------------->", $scope.userInfo._id);
-    NavigationService.apiCallWithData("User/getOne", data, function(response) {
+    NavigationService.apiCallWithData("User/getOne", data, function (response) {
       if (response.value == true) {
         $scope.userDataForProfile = response.data;
       }
@@ -41,7 +41,7 @@ myApp.controller("headerCtrl", function(
 
   $scope.currentState = $state.current.name;
   var stateArray = ["login", "verifyemail", "privacy", "terms"];
-  var stateIndex = _.findIndex(stateArray, function(state) {
+  var stateIndex = _.findIndex(stateArray, function (state) {
     return state == $scope.currentState;
   });
   if (_.isEmpty($.jStorage.get("userData")) && stateIndex == -1) {
@@ -57,7 +57,7 @@ myApp.controller("headerCtrl", function(
   //     name: "Samsung s7 edge"
   // }];
 
-  $scope.reminderModalOpen = function(data) {
+  $scope.reminderModalOpen = function (data) {
     if (data) {
       $scope.getReminder(data);
     }
@@ -69,7 +69,7 @@ myApp.controller("headerCtrl", function(
     });
   };
 
-  $scope.chnageStatus = function(data) {
+  $scope.chnageStatus = function (data) {
     console.log("data", data);
     var changeStatusData = {};
     changeStatusData.status = "Completed";
@@ -77,7 +77,7 @@ myApp.controller("headerCtrl", function(
     NavigationService.apiCallWithData(
       "Reminder/save",
       changeStatusData,
-      function(res) {
+      function (res) {
         if (res.value == true) {
           $state.reload();
         }
@@ -85,7 +85,7 @@ myApp.controller("headerCtrl", function(
     );
   };
 
-  $scope.changePageTickets = function(pageno) {
+  $scope.changePageTickets = function (pageno) {
     $scope.currentPage = pageno;
 
     var start = (pageno - 1) * $scope.maxRow;
@@ -129,9 +129,9 @@ myApp.controller("headerCtrl", function(
   //   });
   // };
 
-  $scope.completedReminders = function() {
+  $scope.completedReminders = function () {
     $scope.showGreenImage = true;
-    reminderService.findReminderOfCompletedByUser(function(data) {
+    reminderService.findReminderOfCompletedByUser(function (data) {
       if (windowscreen.screen.width < 768) {
         $scope.showLessReminders = data;
       } else {
@@ -140,8 +140,8 @@ myApp.controller("headerCtrl", function(
     });
   };
 
-  $scope.pendingReminders = function() {
-    reminderService.findReminderOfPendingSnoozeByUser(function(data) {
+  $scope.pendingReminders = function () {
+    reminderService.findReminderOfPendingSnoozeByUser(function (data) {
       $scope.showGreenImage = false;
       if (windowscreen.screen.width < 768) {
         $scope.showLessReminders = data;
@@ -151,11 +151,11 @@ myApp.controller("headerCtrl", function(
     });
   };
 
-  $scope.getOpenTickets = function() {
+  $scope.getOpenTickets = function () {
     $scope.changeTicketName = false;
     $scope.openTickets();
 
-    ticketService.totalOpenTickets(function(data) {
+    ticketService.totalOpenTickets(function (data) {
       console.log("get Open tickets", data);
       $scope.countOpenTickets = data.length;
       if (windowscreen.screen.width < 768) {
@@ -167,10 +167,10 @@ myApp.controller("headerCtrl", function(
   };
 
   //closed ticket pagenation
-  $scope.getTickets = function() {
+  $scope.getTickets = function () {
     var pageData = $scope.pageNumber;
     console.log("pageData", pageData);
-    ticketService.totalClosedTickets1(pageData, function(data) {
+    ticketService.totalClosedTickets1(pageData, function (data) {
       console.log("ticketData", data);
       $scope.ticketData = data.results;
       $scope.ticketDetails = _.slice(data.results, 0, 5);
@@ -181,11 +181,11 @@ myApp.controller("headerCtrl", function(
   };
 
   //open ticket pagenation
-  $scope.openTickets = function() {
+  $scope.openTickets = function () {
     // console.log("opentickets");
     if (windowscreen.screen.width > 768) {
       var pageData = $scope.pageNumber;
-      ticketService.totalOpenTickets1(pageData, function(data) {
+      ticketService.totalOpenTickets1(pageData, function (data) {
         $scope.ticketData = data.results;
         $scope.ticketDetails = _.slice(data.results, 0, 5);
         $scope.totalitems = data.total;
@@ -196,10 +196,10 @@ myApp.controller("headerCtrl", function(
   $scope.openTickets();
   $scope.getOpenTickets();
 
-  $scope.getClosedTickets = function() {
+  $scope.getClosedTickets = function () {
     $scope.changeTicketName = true;
     $scope.getTickets();
-    ticketService.totalClosedTickets(function(data) {
+    ticketService.totalClosedTickets(function (data) {
       if (windowscreen.screen.width < 768) {
         $scope.ticketDetails = data;
       } else {
@@ -208,7 +208,7 @@ myApp.controller("headerCtrl", function(
     });
   };
 
-  $scope.searchForReminderData = function(data, data1) {
+  $scope.searchForReminderData = function (data, data1) {
     var dataToSend = {};
     console.log("data -->", data, "data1", data1);
     if (data.length > 0) {
@@ -219,7 +219,7 @@ myApp.controller("headerCtrl", function(
         NavigationService.apiCallWithData(
           "Reminder/searchOpenReminders",
           dataToSend,
-          function(response) {
+          function (response) {
             if (response.value) {
               $scope.allReminders = response.data;
               $scope.showLessReminders = _.slice($scope.allReminders, 0, 5);
@@ -233,7 +233,7 @@ myApp.controller("headerCtrl", function(
         NavigationService.apiCallWithData(
           "Reminder/searchClosedReminders",
           dataToSend,
-          function(response) {
+          function (response) {
             console.log(" response", response);
 
             if (response.value) {
@@ -252,11 +252,11 @@ myApp.controller("headerCtrl", function(
     }
   };
   $scope.current = new Date();
-  $scope.getReminder = function(data) {
+  $scope.getReminder = function (data) {
     console.log("---------->>", data);
     var getReminder = {};
     getReminder._id = data;
-    NavigationService.apiCallWithData("Reminder/getOne", getReminder, function(
+    NavigationService.apiCallWithData("Reminder/getOne", getReminder, function (
       res
     ) {
       $scope.data = res.data;
@@ -279,7 +279,7 @@ myApp.controller("headerCtrl", function(
   //   });
   // };
 
-  $scope.searchForTicketData = function(data, data1) {
+  $scope.searchForTicketData = function (data, data1) {
     console.log("Hi In Here------------->>>>>>>", data, data1);
     var dataToSend = {};
     if (data.length > 0) {
@@ -290,7 +290,7 @@ myApp.controller("headerCtrl", function(
         NavigationService.apiCallWithData(
           "Ticket/searchOpenTickets",
           dataToSend,
-          function(response) {
+          function (response) {
             if (response.value) {
               $scope.ticketDetails = response.data;
             }
@@ -303,7 +303,7 @@ myApp.controller("headerCtrl", function(
         NavigationService.apiCallWithData(
           "Ticket/searchClosedTickets",
           dataToSend,
-          function(response) {
+          function (response) {
             console.log(" response", response);
 
             if (response.value) {
@@ -325,15 +325,22 @@ myApp.controller("headerCtrl", function(
     }
   };
 
-  $scope.saveReminder = function(data) {
+  $scope.saveReminder = function (data) {
+    console.log("hey >>>>>>>>>>>>>>>>>>>>>>>", $scope.data);
     data.user = $.jStorage.get("userData")._id;
     if (data._id) {
       data.status = "Snooze";
     } else {
       data.status = "Pending";
     }
+    console.log("Reminder", $scope.data.dateOfReminder);
+    console.log(_.isObject($scope.data.dateOfReminder));
+    if (!_.isDate($scope.data.dateOfReminder)) {
+      $scope.data.dateOfReminder = moment($scope.data.dateOfReminder, "MM/DD/YYYY hh:mm:ss a").toDate();
+    }
 
-    NavigationService.apiCallWithData("Reminder/save", $scope.data, function(
+
+    NavigationService.apiCallWithData("Reminder/save", $scope.data, function (
       res
     ) {
       if (data._id) {
@@ -362,7 +369,7 @@ myApp.controller("headerCtrl", function(
     //   );
   };
 
-  $scope.searchData = function(data) {
+  $scope.searchData = function (data) {
     $scope.productList = [];
     if (data.length > 0) {
       var dataToSend = {};
@@ -371,10 +378,10 @@ myApp.controller("headerCtrl", function(
       NavigationService.apiCallWithData(
         "Product/getSearchProductAndBrand",
         dataToSend,
-        function(response) {
+        function (response) {
           console.log("Search data", response.data);
           if (response.value) {
-            _.each(response.data, function(n) {
+            _.each(response.data, function (n) {
               var now = moment(new Date()),
                 end = moment(n.warrantyExpDate),
                 months = end.diff(now, "months");
@@ -396,26 +403,25 @@ myApp.controller("headerCtrl", function(
     }
   };
 
-  $scope.logout = function(data) {
+  $scope.logout = function (data) {
     $.jStorage.flush();
     $state.go("home");
   };
 
   //for footer
-  $scope.scrollTop = function() {
-    $("html, body").animate(
-      {
+  $scope.scrollTop = function () {
+    $("html, body").animate({
         scrollTop: $("body,html").offset().top - 100
       },
       1000
     );
   };
   $scope.showMenu = false;
-  $scope.toggleMenu = function() {
+  $scope.toggleMenu = function () {
     $scope.showMenu = !$scope.showMenu;
     console.log("inside menu");
   };
-  $scope.closeMenu = function() {
+  $scope.closeMenu = function () {
     $scope.showMenu = false;
   };
 });
