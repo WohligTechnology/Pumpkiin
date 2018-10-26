@@ -1,4 +1,3 @@
-var cron = require("node-cron");
 var schema = new Schema({
   // brand: {
   //     type: Schema.Types.ObjectId,
@@ -115,7 +114,7 @@ var model = {
         callback(err, null);
       } else if (data.user.name) {
         var emailData = {};
-        var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+        var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
         var greeting;
         if (time < 12) {
           greeting = "Good morning";
@@ -132,9 +131,7 @@ var model = {
         emailData.brand = data.brand;
         emailData.serialNo = data.serialNo;
         emailData.modelNo = data.modelNo;
-        emailData.purchaseDate = moment(data.purchaseDate).format(
-          "MMM-DD-YYYY"
-        );
+        emailData.purchaseDate = moment(data.purchaseDate).add(5, "hours").add(30, "minutes").format("DD/MM/YYYY");
         emailData.purchasePrice = data.purchasePrice;
         emailData.retailer = data.retailer;
         // _.forEach(data.user.relations, function(relation, index) {
@@ -155,7 +152,7 @@ var model = {
     });
   },
 
-  getAllProducts: function (data, callback) { 
+  getAllProducts: function (data, callback) {
     Product.find({
         status: "Confirmed",
         user: data.user
@@ -228,7 +225,7 @@ var model = {
         },
         function (finalData, callback) {
           var emailData = {};
-          var time =  parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
+          var time = parseInt(moment(new Date()).add(5, "hours").add(30, "minutes").format("HH"));
           var greeting;
           if (time < 12) {
             greeting = "Good morning";
@@ -441,6 +438,43 @@ var model = {
       })
       .exec(callback);
   },
+  // sortFunction: function (data, callback) {
+  //   // console.log("sortFunction", data);
+  //   var name = data.name;
+  //   // console.log("name ", name);
+  //   var pipeline = [
+  //     // Stage 1
+  //     {
+  //       $match: {
+  //         user: data.user,
+  //         status: "Confirmed"
+  //       }
+  //     },
+
+  //     // Stage 2
+  //     {
+  //       $project: {
+  //         _id: "$_id",
+  //         productName: "$productName",
+  //         productImages: "$productImages",
+  //         warrantyExpDate: "$warrantyExpDate",
+  //         caseInsensitive: {
+  //           "$toLower": "$productName"
+  //         }
+  //       }
+  //     }
+  //   ]
+
+  //   if (data.isSort) {
+  //     pipeline.push({
+  //       $sort: {
+  //         caseInsensitive: 1
+  //       }
+  //     })
+  //   }
+  //   Product.aggregate(pipeline)
+  //     .exec(callback);
+  // },
 
   sortByProducts: function (data, callback) {
     Product.find({
@@ -488,9 +522,9 @@ var model = {
         obj["Retailer"] = mainData.retailer;
         obj["Model No"] = mainData.modelNo;
         obj["Purchase Price"] = mainData.purchasePrice;
-        obj["Purchase Date"] = mainData.purchaseDate;
-        obj["Insurance Exp Date"] = mainData.insuranceExpDate;
-        obj["Warranty Exp Date"] = mainData.warrantyExpDate;
+        obj["Purchase Date"] = moment(mainData.purchaseDate).add(5, "hours").add(30, "minutes").format("DD/MM/YYYY");
+        obj["Insurance Exp Date"] = moment(mainData.insuranceExpDate).add(5, "hours").add(30, "minutes").format("DD/MM/YYYY");
+        obj["Warranty Exp Date"] = moment(mainData.warrantyExpDate).add(5, "hours").add(30, "minutes").format("DD/MM/YYYY");
         obj["Accessories"] = mainData.productAccessory;
         // obj["Relations"] = mainData.user.relations;
 

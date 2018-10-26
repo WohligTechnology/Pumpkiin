@@ -326,12 +326,19 @@ myApp.controller("headerCtrl", function (
   };
 
   $scope.saveReminder = function (data) {
+    console.log("hey >>>>>>>>>>>>>>>>>>>>>>>", $scope.data);
     data.user = $.jStorage.get("userData")._id;
     if (data._id) {
       data.status = "Snooze";
     } else {
       data.status = "Pending";
     }
+    console.log("Reminder", $scope.data.dateOfReminder);
+    console.log(_.isObject($scope.data.dateOfReminder));
+    if (!_.isDate($scope.data.dateOfReminder)) {
+      $scope.data.dateOfReminder = moment($scope.data.dateOfReminder, "MM/DD/YYYY hh:mm:ss a").toDate();
+    }
+
 
     NavigationService.apiCallWithData("Reminder/save", $scope.data, function (
       res

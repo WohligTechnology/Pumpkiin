@@ -346,7 +346,7 @@ myApp.controller("ProductlistingCtrl", function (
                  console.log("  $scope.allProducts", $scope.allProducts);
              }
          }); */
-
+    dataToSend.isSort = true;
     NavigationService.apiCallWithData(
       "Product/sortFunction",
       dataToSend,
@@ -534,7 +534,7 @@ myApp.controller("ProductlistingCtrl", function (
     }
   };
 
-  $scope.reloadPage = function(){
+  $scope.reloadPage = function () {
     $state.reload();
   }
 });
