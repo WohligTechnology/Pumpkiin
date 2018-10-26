@@ -131,9 +131,7 @@ var model = {
         emailData.brand = data.brand;
         emailData.serialNo = data.serialNo;
         emailData.modelNo = data.modelNo;
-        emailData.purchaseDate = moment(data.purchaseDate).format(
-          "MMM-DD-YYYY"
-        );
+        emailData.purchaseDate = moment(data.purchaseDate).add(5, "hours").add(30, "minutes").format("DD/MM/YYYY");
         emailData.purchasePrice = data.purchasePrice;
         emailData.retailer = data.retailer;
         // _.forEach(data.user.relations, function(relation, index) {
@@ -427,17 +425,54 @@ var model = {
             .page(options, callback);
     }, */
 
+  // sortFunction: function (data, callback) {
+  //   // console.log("sortFunction", data);
+  //   var name = data.name;
+  //   // console.log("name ", name);
+  //   Product.find({
+  //       user: data.user,
+  //       status: "Confirmed"
+  //     })
+  //     .sort({
+  //       [name]: 1
+  //     })
+  //     .exec(callback);
+  // },
   sortFunction: function (data, callback) {
     // console.log("sortFunction", data);
     var name = data.name;
     // console.log("name ", name);
-    Product.find({
-        user: data.user,
-        status: "Confirmed"
+    var pipeline = [
+      // Stage 1
+      {
+        $match: {
+          user: ObjectId("5ba9d658803f451b9ccffc6a"),
+          status: "Confirmed"
+        }
+      },
+
+      // Stage 2
+      {
+        $project: {
+          _id: "$_id",
+          productName: "$productName",
+          productImages: "$productImages",
+          warrantyExpDate: "$warrantyExpDate",
+          caseInsensitive: {
+            "$toLower": "$productName"
+          }
+        }
+      }
+    ]
+
+    if (data.isSort) {
+      pipeline.push({
+        $sort: {
+          caseInsensitive: 1
+        }
       })
-      .sort({
-        [name]: 1
-      })
+    }
+    Product.aggregate(pipeline)
       .exec(callback);
   },
 
@@ -487,9 +522,9 @@ var model = {
         obj["Retailer"] = mainData.retailer;
         obj["Model No"] = mainData.modelNo;
         obj["Purchase Price"] = mainData.purchasePrice;
-        obj["Purchase Date"] = mainData.purchaseDate;
-        obj["Insurance Exp Date"] = mainData.insuranceExpDate;
-        obj["Warranty Exp Date"] = mainData.warrantyExpDate;
+        obj["Purchase Date"] = moment(mainData.purchaseDate).add(5, "hours").add(30, "minutes").format("DD/MM/YYYY");
+        obj["Insurance Exp Date"] = moment(mainData.insuranceExpDate).add(5, "hours").add(30, "minutes").format("DD/MM/YYYY");
+        obj["Warranty Exp Date"] = moment(mainData.warrantyExpDate).add(5, "hours").add(30, "minutes").format("DD/MM/YYYY");
         obj["Accessories"] = mainData.productAccessory;
         // obj["Relations"] = mainData.user.relations;
 

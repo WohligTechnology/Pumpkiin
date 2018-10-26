@@ -256,20 +256,24 @@ var model = {
     }).exec(callback);
   },
   sendReminderOneDayEarlyReminders: function (callback) {
+    var minTime = moment().add(1, "day");
+    var maxTime = moment().add(1, "day").add(5, "minutes");
     var sendReminderEmails;
     async.waterfall([
       function (callback) {
         Reminder.find({
           reminderMailSent1: false,
+          $and: {
+            dateOfReminder: {
+              $gte: minTime.toDate()
+            },
+            dateOfReminder: {
+              $lte: maxTime.toDate()
+            }
+          }
         }).populate("user").exec(callback)
       },
-      function (reminders, callback) {
-        var minTime = moment().add(1, "day");
-        var maxTime = moment().add(1, "day").add(5, "minutes");
-        sendReminderEmails = _.filter(reminders, function (n) {
-          console.log(moment(n.dateOfReminder), minTime, maxTime, moment(n.dateOfReminder).isBetween(minTime, maxTime))
-          return moment(n.dateOfReminder).isBetween(minTime, maxTime);
-        });
+      function (sendReminderEmails, callback) {
         async.concatLimit(sendReminderEmails, 10, function (singleData, callback) {
           emailData = Reminder.createEmail(singleData);
           async.waterfall([
@@ -373,7 +377,7 @@ var model = {
             );
             var currentTime = moment(new Date()).format("HH:mm");
             console.log("------------>>", reminderTime, currentTime);
-            if (minutes < 43200 && !singelData.warrantyRemindermail1) {
+            if (minutes < 43200 && !singelData.warrantyRemindermail1 && singelData.title == "Warranty expiry") {
               flag = true;
               Reminder.update({
                 _id: singelData._id
@@ -381,7 +385,7 @@ var model = {
                 warrantyRemindermail1: true
               }).exec(function (err, data3) {});
             }
-            if (minutes < 1440 && (currentTime == "10:00" && !singelData.warrantyRemindermail2)) {
+            if (minutes < 1440 && (currentTime == "10:00" && !singelData.warrantyRemindermail2 && singelData.title == "Warranty expiry")) {
               console.log("@@@@@ ELSE  @@@@@");
               flag = true;
 
@@ -464,7 +468,7 @@ var model = {
             );
             var currentTime = moment(new Date()).format("HH:mm");
             console.log("------------>>", reminderTime, currentTime);
-            if (minutes < 43200 && !singelData.insurranceRemindermail1) {
+            if (minutes < 43200 && !singelData.insurranceRemindermail1 && singelData.title == "Warranty expiry") {
               flag = true;
               Reminder.update({
                 _id: singelData._id
@@ -472,7 +476,7 @@ var model = {
                 insurranceRemindermail1: true
               }).exec(function (err, data3) {});
             }
-            if (minutes < 1440 && (currentTime == "13:04" && !singelData.insurranceRemindermail2)) {
+            if (minutes < 1440 && (currentTime == "13:04" && !singelData.insurranceRemindermail2 && singelData.title == "Warranty expiry")) {
               console.log("@@@@@ ELSE  @@@@@");
               flag = true;
 
