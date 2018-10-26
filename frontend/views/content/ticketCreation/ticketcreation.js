@@ -455,11 +455,9 @@ myApp.controller("TicketCreationCtrl", function (
       );
     }
   };
-  $(window).load(function () {
-    $('#chat').animate({
-      scrollTop: $('#chat').get(0).scrollHeight
-    }, 1000);
-  });
+  $timeout(function () {
+    $('#chat').scrollTop($('#chat')[0].scrollHeight);
+  }, 2000);
   $scope.askRegistration = function () {
     $scope.productCheck = $uibModal.open({
       animation: true,
