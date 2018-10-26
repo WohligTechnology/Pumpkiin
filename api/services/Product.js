@@ -425,56 +425,56 @@ var model = {
             .page(options, callback);
     }, */
 
-  // sortFunction: function (data, callback) {
-  //   // console.log("sortFunction", data);
-  //   var name = data.name;
-  //   // console.log("name ", name);
-  //   Product.find({
-  //       user: data.user,
-  //       status: "Confirmed"
-  //     })
-  //     .sort({
-  //       [name]: 1
-  //     })
-  //     .exec(callback);
-  // },
   sortFunction: function (data, callback) {
     // console.log("sortFunction", data);
     var name = data.name;
     // console.log("name ", name);
-    var pipeline = [
-      // Stage 1
-      {
-        $match: {
-          user: ObjectId("5ba9d658803f451b9ccffc6a"),
-          status: "Confirmed"
-        }
-      },
-
-      // Stage 2
-      {
-        $project: {
-          _id: "$_id",
-          productName: "$productName",
-          productImages: "$productImages",
-          warrantyExpDate: "$warrantyExpDate",
-          caseInsensitive: {
-            "$toLower": "$productName"
-          }
-        }
-      }
-    ]
-
-    if (data.isSort) {
-      pipeline.push({
-        $sort: {
-          caseInsensitive: 1
-        }
+    Product.find({
+        user: data.user,
+        status: "Confirmed"
       })
-    }
-    Product.aggregate(pipeline)
+      .sort({
+        [name]: 1
+      })
       .exec(callback);
   },
+  // sortFunction: function (data, callback) {
+  //   // console.log("sortFunction", data);
+  //   var name = data.name;
+  //   // console.log("name ", name);
+  //   var pipeline = [
+  //     // Stage 1
+  //     {
+  //       $match: {
+  //         user: ObjectId("5ba9d658803f451b9ccffc6a"),
+  //         status: "Confirmed"
+  //       }
+  //     },
+
+  //     // Stage 2
+  //     {
+  //       $project: {
+  //         _id: "$_id",
+  //         productName: "$productName",
+  //         productImages: "$productImages",
+  //         warrantyExpDate: "$warrantyExpDate",
+  //         caseInsensitive: {
+  //           "$toLower": "$productName"
+  //         }
+  //       }
+  //     }
+  //   ]
+
+  //   if (data.isSort) {
+  //     pipeline.push({
+  //       $sort: {
+  //         caseInsensitive: 1
+  //       }
+  //     })
+  //   }
+  //   Product.aggregate(pipeline)
+  //     .exec(callback);
+  // },
 
   sortByProducts: function (data, callback) {
     Product.find({
