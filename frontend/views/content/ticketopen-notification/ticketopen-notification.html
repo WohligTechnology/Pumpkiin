@@ -10,7 +10,7 @@
                 <h6 ng-if="!changeTicketName" class="fontRobotoBold blue-color mb-4 text-uppercase">Open Tickets</h6>
                 <h6 ng-if="changeTicketName" class="fontRobotoBold blue-color mb-4 text-uppercase">Closed Tickets
                 </h6>
-                <div class="bg-white border-rounded p-4 my-2" ng-repeat="tickets in ticketData track by $index" ui-sref="ticketcreation({id:tickets.product._id})">
+                <div class="bg-white border-rounded p-4 my-2" ng-repeat="tickets in ticketData track by $index" ui-sref="ticketcreation({id:tickets._id})">
                     <div class="d-flex align-items-center ">
                         <div class="blue-circle"></div>
                         <h6 class="fontRobotoBold font14 ml-2 mb-0 ">{{tickets.ticketNumber}}</h6>

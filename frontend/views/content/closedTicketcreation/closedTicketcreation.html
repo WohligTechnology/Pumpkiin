@@ -31,7 +31,7 @@
                     <h5 class="d-inline cursor-point" ui-sref="ticketclose-notification" ng-if="ticketDetails[0].status=='Closed'">Closed
                         Tickets
                     </h5>
-                    <span class="badge badge-style">{{totalNumberOfTickets}}</span>
+                    <span class="badge badge-style">{{tickets.ticketNumber}}</span>
                     <div class="float-right search-reminders">
                         <form class="position-relative" ng-if="ticketDetails[0].status!='Closed'">
                             <input id="search" name="search" type="text" placeholder="" ng-change="searchForTicketData(ticketSearch,'open')"
