@@ -337,7 +337,7 @@
                 <div class="support-chat-history mb-5 " ng-if="ticketData[0]">
                     <h6 class="fontRobotoBold blue-color my-4 ">SUPPORT CHAT HISTORY</h6>
                     <div class="bg-white border-rounded p-4 my-2 " ui-sref="ticketcreation({id:ticket.product, ticketId:ticket._id})"
-                        ng-repeat="ticket in ticketData">
+                        ng-repeat="ticket in ticketData" ng-if="ticketData[0].status=='Active'">
                         <div class="d-flex align-items-center ">
                             <div class="blue-circle "></div>
 
@@ -349,6 +349,22 @@
 
                             <div class="ml-auto green-color ">
                                 <span class="font12 " ng-if="ticket.status=='Active'">Open</span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white border-rounded p-4 my-2 " ui-sref="closedTicketcreation({id:ticket._id})"
+                        ng-repeat="ticket in ticketData" ng-if="ticketData[0].status=='Closed'">
+                        <div class="d-flex align-items-center ">
+                            <div class="blue-circle "></div>
+
+                            <h6 class="fontRobotoBold font14 ml-2 mb-0 ">{{ticket.ticketNumber}}</h6>
+                            <!-- <span class="font12 font-color ml-2 d-inline-block w-25 text-truncate ">Dear Support Team, Maecenas faucibus mollis interdum. Etiam porta sem malesuada...</span> -->
+                            <div class="ml-auto date-supportchat ">
+                                <span class="font12 ">{{ticket.issueReported | date}}</span>
+                            </div>
+
+                            <div class="ml-auto green-color ">
                                 <span class="font12 " ng-if="ticket.status=='Closed'">Closed</span>
 
                             </div>

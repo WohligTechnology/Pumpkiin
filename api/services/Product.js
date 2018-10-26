@@ -425,56 +425,63 @@ var model = {
             .page(options, callback);
     }, */
 
-  sortFunction: function (data, callback) {
-    // console.log("sortFunction", data);
-    var name = data.name;
-    // console.log("name ", name);
-    Product.find({
-        user: data.user,
-        status: "Confirmed"
-      })
-      .sort({
-        [name]: 1
-      })
-      .exec(callback);
-  },
   // sortFunction: function (data, callback) {
   //   // console.log("sortFunction", data);
-  //   var name = data.name;
+  //   // var name = data.name;
   //   // console.log("name ", name);
-  //   var pipeline = [
-  //     // Stage 1
-  //     {
-  //       $match: {
-  //         user: data.user,
-  //         status: "Confirmed"
-  //       }
-  //     },
-
-  //     // Stage 2
-  //     {
-  //       $project: {
-  //         _id: "$_id",
-  //         productName: "$productName",
-  //         productImages: "$productImages",
-  //         warrantyExpDate: "$warrantyExpDate",
-  //         caseInsensitive: {
-  //           "$toLower": "$productName"
-  //         }
-  //       }
-  //     }
-  //   ]
-
-  //   if (data.isSort) {
-  //     pipeline.push({
-  //       $sort: {
-  //         caseInsensitive: 1
-  //       }
+  //   Product.find({
+  //       user: data.user,
+  //       status: "Confirmed"
   //     })
-  //   }
-  //   Product.aggregate(pipeline)
+  //     .sort({
+  //       productName: 1
+  //     })
   //     .exec(callback);
   // },
+  sortFunction: function (data, callback) {
+    console.log("sortFunction ---->>>>", data);
+    var user = ObjectId(data.user);
+    // console.log("name ", name);
+    var pipeline = [
+      // Stage 1
+      {
+        $match: {
+          user: user,
+          status: "Confirmed"
+        }
+      },
+
+      // Stage 2
+      {
+        $project: {
+          _id: "$_id",
+          productName: "$productName",
+          productImages: "$productImages",
+          warrantyExpDate: "$warrantyExpDate",
+          caseInsensitive: {
+            "$toLower": "$productName"
+          }
+        }
+      }
+    ]
+
+    if (data.isSort) {
+      pipeline.push({
+        $sort: {
+          caseInsensitive: 1
+        }
+      })
+    }
+    Product.aggregate(pipeline)
+      .exec(function (err, data) {
+        if (err) {
+          console.log("Sorting ERROR >>>>>>>", data);
+        } else {
+          console.log("Sorting Result >>>>>>>", data);
+          callback(null, data);
+        }
+      });
+  },
 
   sortByProducts: function (data, callback) {
     Product.find({
