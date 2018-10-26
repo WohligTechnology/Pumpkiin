@@ -45,8 +45,10 @@
                                 <br>
                                 <img ng-if="!product.ribbon" src="img/ticketCreation/warranty.png">
                                 <font ng-if="!product.ribbon" class="font12 green-color">Warranty exp in {{product.months}} months</font>
-                                <img ng-if="product.ribbon" src="img/ticketCreation/red_warranty.png">
-                                <font ng-if="product.ribbon" class="font12" color="red">Warranty exp in {{product.daysLeft}} days</font>
+                                <img ng-if="product.ribbon && product.daysLeft >= 0" src="img/ticketCreation/red_warranty.png">
+                                <font ng-if="product.ribbon && product.daysLeft >= 0" class="font12" color="red">Warranty exp in {{product.daysLeft}} days</font>
+                                <img ng-if="product.ribbon & product.daysLeft < 0 " src="img/ticketCreation/red_warranty.png">
+                                <font ng-if="product.daysLeft < 0" class="font12" color="red">Warranty Expired</font>
 
                                 <span class="expiry">{{product.warranty}}</span>
                             </div>
