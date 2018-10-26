@@ -9538,6 +9538,9 @@ fieldset:disabled {
     border: 1px solid #d9534f;
     transition: ease all 300ms; }
 
+.my-disable {
+  pointer-events: none; }
+
 .selected-tags .btn {
   padding: 0.2rem 0.3rem !important; }
 
@@ -9557,8 +9560,7 @@ fieldset:disabled {
 
 .privacy a,
 .terms a {
-  text-decoration: none;
-  color: red; }
+  color: inherit; }
 
 .choice {
   background-color: white !important;
@@ -10549,7 +10551,7 @@ svg {
   height: 27px;
   font-size: 18px;
   display: inline-block;
-  font-family: "Lato";
+  font-family: "Roboto-Regular";
   font-weight: 100;
   border: none;
   outline: none;

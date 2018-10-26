@@ -423,6 +423,7 @@ myApp.controller("TicketCreationCtrl", function (
           }
         }
       );
+      $('#chat').scrollTop($('#chat')[0].scrollHeight);
     } else {
       formData.user = $.jStorage.get("userData")._id;
       formData.comment = data.comment;
@@ -449,11 +450,16 @@ myApp.controller("TicketCreationCtrl", function (
           if (data.value == true) {
             $scope.getTicket();
           }
+          $('#chat').scrollTop($('#chat')[0].scrollHeight);
         }
       );
     }
   };
-
+  $(window).load(function () {
+    $('#chat').animate({
+      scrollTop: $('#chat').get(0).scrollHeight
+    }, 1000);
+  });
   $scope.askRegistration = function () {
     $scope.productCheck = $uibModal.open({
       animation: true,
@@ -464,7 +470,6 @@ myApp.controller("TicketCreationCtrl", function (
     });
     $scope.yes = false;
   };
-
   $scope.openmodalOpen = function (tickets, index) {
     console.log("open>>>>>>>>>>>>>>>>>>>>>>>>>>>", tickets);
     $scope.singleTicket = tickets;
@@ -572,9 +577,6 @@ myApp.controller("TicketCreationCtrl", function (
       );
     }
   };
-  $(".chat").animate({
-    scrollTop: $('.chat').prop("scrollHeight")
-  }, 1000);
   $scope.reloadPage = function () {
     $state.reload();
   }

@@ -143,7 +143,7 @@ myApp.controller("ProductRegistrationCtrl", function (
   };
 
   $scope.addUser = function () {
-    // console.log("$scope.product_id", $scope.product_id);
+    console.log("$scope.product_id", $scope.jstrgValue._id);
     $scope.userData._id = $scope.jstrgValue._id;
     console.log("datae", $scope.userData);
 

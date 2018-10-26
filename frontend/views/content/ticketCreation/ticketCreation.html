@@ -132,11 +132,10 @@
             <reminders></reminders>
         </div>
         <div class="col col-md-9 " ng-init="modelNo=false ">
+            <h6 class="fontRobotoBold blue-color mb-4 text-uppercase ng-scope">Open Tickets</h6>
             <div class="background-blue border-rounded pb-5 pb-md-4 p-4 mt-3 mt-md-0">
                 <div class="media">
                     <div class="img-div ">
-
-
                         <img src="{{ticketDetails1.product.productImages[0] | serverimage}} " class="img-fluid large-img ">
                         <!-- <div class="d-flex align-items-center justify-content-center small-img ">
                             <img src="img/ticketCreation/mobile.png " width="10 ">
@@ -264,7 +263,7 @@
                 <div class="bg-white mt-2 border-rounded productreg">
                     <div class="p-4">
                         <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat ">SUPPORT CHAT</h6>
-                        <div class="chat my-2">
+                        <div class="chat my-2" id="chat">
                             <div ng-repeat="chat in ticketDetails1.customerChat">
                                 <div class="d-flex align-items-center mb-2 you" ng-if="chat.user!=jstrgValue._id">
                                     <div class="img-fluid image ">
@@ -318,7 +317,7 @@
                             </div>
                         </div>
                         <div class="message-send-input">
-                            <div class="send">
+                            <div class="send" ng-class="{'my-disable':!chatData.comment || !chatData.image}">
                                 <img src="img/ticketCreation/submit.png " ng-click="addComment(chatData)">
                             </div>
                             <div class="scrollbar-tcreation">
