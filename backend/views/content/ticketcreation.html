@@ -73,7 +73,7 @@
 
                         <div class="p-4">
                             <h6 class="pb-3 pt-2 fontRobotoBold blue-color space-letter support-chat ">SUPPORT CHAT</h6>
-                            <div class="chat my-2 ">
+                            <div class="chat my-2">
                                 <div ng-repeat="chat in ticketData.customerChat">
                                     <div class="d-flex align-items-center mb-2 you " ng-if="chat.user!=jstrgData._id">
                                         <div class="img-fluid image ">
@@ -143,7 +143,7 @@
                                 <input class="form-control message mt-5 " type="text " placeholder="Type your message ... ">
                             </div> -->
                             <div class="message-send-input">
-                                <div class="send">
+                                <div class="send" ng-class="{'my-disable':!chatData.comment || !chatData.image}">
                                     <img src="img/submit.png " ng-click="addComment(chatData)">
                                 </div>
                                 <div class="scrollbar-tcreation">
