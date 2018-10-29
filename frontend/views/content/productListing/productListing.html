@@ -57,9 +57,9 @@
                         <button class="my-3 addedsupport-btn" ui-sref="ticketcreation({id: product._id})"> SUPPORT</button>
                     </div>
                 </div>
-            </div>
+            </div>{{allProducts.length}}
             <div class="float-right mr-2">
-                <nav ng-if="(allProducts.length / maxRow) >1">
+                <nav ng-if="allProducts.length >7">
                     <ul ng-change="changePage(currentPage);" uib-pagination total-items="allProducts.length" items-per-page="maxRow" ng-model="currentPage"
                         max-size="10" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
                 </nav>
