@@ -383,6 +383,7 @@ myApp.controller("TicketCreationCtrl", function(
 
   $scope.addComment = function(data) {
     if (_.isEmpty(data.comment) && _.isEmpty(data.image)) {
+      var a = data;
     } else {
       var formData = {};
       var dataToSend = {};
