@@ -2134,6 +2134,7 @@ myApp
 
     $scope.addComment = function(data) {
       if (_.isEmpty(data.comment) && _.isEmpty(data.image)) {
+        toastr.warning("Please fill the message field");
       } else {
         formData.user = $scope.jstrgData._id;
         formData.comment = data.comment;
