@@ -1681,7 +1681,6 @@ myApp
     };
 
     $scope.addElements = function (moddata) {
-
       if ($scope.modalIndex !== "") {
         $scope.wholeObj[$scope.modalIndex] = moddata;
       } else {
