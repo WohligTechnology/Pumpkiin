@@ -79,6 +79,9 @@
                                         <div class="img-fluid image ">
                                             <!-- <img src="img/profile.jpeg "> -->
                                             {{ticketData.user.profilePic}}
+                                            <div ng-if="{{ticketData.user.profilePic |serverimage}}=='img/logo.png'">
+                                                <img src="{{ticketData.user.profilePic |serverimage}}">
+                                            </div>
                                             <img src="{{ticketData.user.profilePic |serverimage}}">
                                         </div>
                                         <div class="ml-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
