@@ -75101,11 +75101,11 @@ myApp
       if (_.isEmpty(data.comment) && _.isEmpty(data.image)) {
         toastr.warning("Please fill the message field");
       } else {
-        console.log($scope.jstrgData);
         formData.user = $scope.jstrgData._id;
         formData.comment = data.comment;
         formData.file = data.image;
-        formData.date = new Date();
+        formData.date = Date.now();
+        console.log("formData--->", formData);
         $scope.ticketData.customerChat.push(formData);
         NavigationService.apiCall(
           "Ticket/addToChat",
