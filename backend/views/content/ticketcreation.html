@@ -26,8 +26,8 @@
                                                 </a>
                                             </div> -->
                                             <label>Current Status : </label>
-                                            <select ng-model="ticketData.subStatus" ng-change="updateStatus(ticketData.subStatus)" ng-options="x for x in statusArr"
-                                                ng-selected="ticketData.subStatus">
+                                            <select ng-model="ticketData.subStatus" ng-change="updateStatus(ticketData.subStatus)"
+                                                ng-options="x for x in statusArr" ng-selected="ticketData.subStatus">
                                             </select>
                                             <!-- <select class="ml-5">
                                                 <option value="8">Repair (Off-site)</option>
@@ -79,9 +79,6 @@
                                         <div class="img-fluid image ">
                                             <!-- <img src="img/profile.jpeg "> -->
                                             {{ticketData.user.profilePic}}
-                                            <div ng-if="{{ticketData.user.profilePic |serverimage}}=='img/logo.png'">
-                                                <img src="{{ticketData.user.profilePic |serverimage}}">
-                                            </div>
                                             <img src="{{ticketData.user.profilePic |serverimage}}">
                                         </div>
                                         <div class="ml-2 px-3 py-1 chat-content " ng-if="chat.comment">{{chat.comment}}</div>
@@ -93,11 +90,13 @@
                                             </span>
                                             <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)!='pdf'">
                                                 <a ng-href="{{chat.file|serverimage}}" target="blank">
-                                                    <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt="">
+                                                    <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
+                                                        alt="">
                                                 </a>
                                             </span>
                                         </div>
-                                        <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact Person:{{chat.pickUpDetails.contactPerson}}
+                                        <div class="mr-2 px-3 py-1 chat-content " ng-if="chat.pickUpDetails">Contact
+                                            Person:{{chat.pickUpDetails.contactPerson}}
                                             <br>Contact Number:{{chat.pickUpDetails.contactNumber}}
                                             <br> Address:{{chat.pickUpDetails.pickUpAddress}}
                                         </div>
@@ -117,11 +116,13 @@
                                             </span>
                                             <span ng-if="chat.file.slice(chat.file.length-3,chat.file.length)!='pdf'">
                                                 <a ng-href="{{chat.file|serverimage}}" target="blank">
-                                                    <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}" alt="">
+                                                    <img class="img-thumbnail w-25 float-right" ng-src="{{chat.file | serverimage}}"
+                                                        alt="">
                                                 </a>
                                             </span>
                                         </div>
-                                        <div class="mr-2 px-3 py-1 chat-content" ng-if="chat.pickUpDetails">Contact Person:{{chat.pickUpDetails.contactPerson}}
+                                        <div class="mr-2 px-3 py-1 chat-content" ng-if="chat.pickUpDetails">Contact
+                                            Person:{{chat.pickUpDetails.contactPerson}}
                                             <br>Contact Number:{{chat.pickUpDetails.contactNumber}}
                                             <br> Address:{{chat.pickUpDetails.pickUpAddress}}
                                         </div>
@@ -150,7 +151,8 @@
                                     <img src="img/submit.png " ng-click="addComment(chatData)">
                                 </div>
                                 <div class="scrollbar-tcreation">
-                                    <upload-image ng-model="chatData.image" image-src="../img/attachment.png" image-class="attachment" no-view hide-status="{{sentValue}}"></upload-image>
+                                    <upload-image ng-model="chatData.image" image-src="../img/attachment.png"
+                                        image-class="attachment" no-view hide-status="{{sentValue}}"></upload-image>
                                 </div>
                                 <!-- <div class="attachment">
                                     <img class=" " src="img/ticketCreation/attachment.png ">
@@ -159,13 +161,14 @@
                                 <!-- <input class="form-control message mt-5 " type="text " placeholder="Type your message ... "
                                     ng-model="chatData.comment"> -->
                                 <form ng-submit="addComment(chatData)">
-                                    <input type="text" class="form-control message mt-5" placeholder="Type your message ... " ng-model="chatData.comment" required>
+                                    <input type="text" class="form-control message mt-5" placeholder="Type your message ... "
+                                        ng-model="chatData.comment" required>
                                 </form>
                             </div>
                         </div>
 
                     </div>
             </form>
-            </div>
         </div>
     </div>
+</div>
