@@ -8845,7 +8845,6 @@ h2 {
   font-size: 2.3rem; }
 
 body {
-  padding-top: 52px;
   background-color: #ecf0f2; }
 
 img.loading {
@@ -9242,9 +9241,9 @@ fieldset:disabled {
   padding-right: 0px !important; }
 
 .home-section {
-  height: 93vh; }
+  height: 100vh; }
   .home-section .img-section {
-    width: 62vh; }
+    width: 66vh; }
   .home-section .home-section-content {
     font-size: 40px;
     font-family: Roboto-Bold; }

@@ -57,7 +57,7 @@ myApp.config(function(
   $stateProvider
     .state("home", {
       url: "/",
-      templateUrl: tempateURL,
+      templateUrl: "views/template/underConstruction.html",
       controller: "HomeCtrl"
     })
     .state("profile", {
