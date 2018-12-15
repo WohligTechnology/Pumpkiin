@@ -20,7 +20,6 @@ myApp
     //     dropupAuto: false
     // });
 
-    // console.log("hey")
     $scope.toggleClass = function(val) {
       if (val == 1) {
         $scope.showClass1 = !$scope.showClass1;
