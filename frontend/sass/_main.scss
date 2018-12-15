@@ -139,6 +139,7 @@ $dropdown-margin-top: 0.125rem !default;
 $dropdown-bg: $white !default;
 $dropdown-border-color: rgba($black, 0.15) !default;
 $dropdown-box-shadow: 0 0.5rem 1rem rgba($black, 0.175) !default;
+
 // @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @media (hover: none) {
   /* No hover support */
@@ -154,6 +155,7 @@ $dropdown-box-shadow: 0 0.5rem 1rem rgba($black, 0.175) !default;
 
 @import "../../bower_components/bootstrap/scss/bootstrap";
 @import "other/font-fix";
+
 @font-face {
   font-family: "Roboto-Regular";
   src: url("../fonts/Roboto-Regular.ttf");
@@ -179,7 +181,7 @@ h2 {
 }
 
 body {
-  padding-top: 52px;
+  // padding-top: 52px;
   background-color: $gray-lighter;
 }
 
@@ -231,12 +233,14 @@ footer {
   p {
     margin: 0;
   }
+
   .up-arrow {
     border: 0;
     bottom: 8px;
     font-size: 30px;
     padding: 5px 0;
     cursor: pointer;
+
     svg {
       @extend .rotate-180;
     }
@@ -247,18 +251,22 @@ footer {
   left: 2%;
   bottom: 50px;
   width: 60px;
+
   .displaydefault {
     display: block;
   }
+
   .displayclick {
     display: none;
   }
+
   &:hover,
   &:active,
   &:focus {
     .displaydefault {
       display: none;
     }
+
     .displayclick {
       display: block;
     }
@@ -298,9 +306,11 @@ footer {
 
 .form-invalid {
   color: $brand-danger;
+
   .form-control {
     border-color: $brand-danger;
     color: $brand-danger;
+
     &::-webkit-input-placeholder {
       color: $brand-danger;
     }
@@ -327,9 +337,11 @@ footer {
   a {
     height: auto;
   }
+
   .flex-prev {
     left: 10px !important;
   }
+
   .flex-next {
     right: 10px !important;
   }
@@ -386,6 +398,7 @@ header {
     border: 1px solid #dee2e6;
     border-radius: 0.25rem;
     position: relative;
+
     .img-delete {
       position: absolute;
       top: -12px;
@@ -397,6 +410,7 @@ header {
       cursor: pointer;
     }
   }
+
   .img-thumbnail {
     border: 0;
   }
@@ -415,6 +429,7 @@ header {
 
 .header-text {
   font-size: $header-text;
+
   a {
     text-decoration: none;
     color: #66686e;
@@ -444,13 +459,16 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 100%;
     border-width: 1px;
     border: solid 1px #ced4da;
+
     &:focus {
       outline: none;
     }
   }
+
   input[readonly="readonly"] {
     border: 0px;
   }
+
   input[disabled] {
     background: none;
     border: none;
@@ -625,6 +643,7 @@ fieldset:disabled {
 .orange-btn {
   background-color: #ffa345;
   border: solid 1px #ffa345;
+
   &:hover {
     color: #ffa345 !important;
     border: solid 1px #ffa345;
@@ -635,6 +654,7 @@ fieldset:disabled {
 
 .green-btn {
   background-color: $green;
+
   &:hover {
     color: $green !important;
     border: solid 1px $green;
@@ -655,6 +675,7 @@ fieldset:disabled {
   position: relative;
   text-align: center;
   cursor: pointer;
+
   .social_icon {
     text-align: center;
     border-radius: 50%;
@@ -664,6 +685,7 @@ fieldset:disabled {
     left: -2px;
     top: -1px;
   }
+
   .social-text {
     padding: 8px 10px;
     color: white;
@@ -712,59 +734,73 @@ fieldset:disabled {
 
 //scss for home page
 .home-section {
-  height: 93vh;
+  //height: 93vh;
+  height: 100vh;
+
   .img-section {
-    width: 62vh;
+    // width: 62vh;
+    width: 66vh;
   }
+
   .home-section-content {
     font-size: 40px;
     font-family: Roboto-Bold;
+
     .select-box {
       position: relative;
       font-size: 40px;
       line-height: 1;
       display: inline-block;
+
       .ui-select-icon {
         position: absolute;
         right: 5px;
         bottom: 0px;
       }
+
       ::-webkit-input-placeholder {
         /* Chrome/Opera/Safari */
         color: white;
         font-size: 40px;
         line-height: 1;
       }
+
       ::-moz-placeholder {
         /* Firefox 19+ */
         color: white;
         font-size: 40px;
         line-height: 1;
       }
+
       :-ms-input-placeholder {
         /* IE 10+ */
         color: white;
         font-size: 40px;
         line-height: 1;
       }
+
       :-moz-placeholder {
         /* Firefox 18- */
         color: white;
         font-size: 40px;
         line-height: 1;
       }
+
       input:focus,
       input:active {
         color: white;
       }
+
       .dropdown-toggle {
         border-bottom: solid 2px white;
+
         &:after {
           background-color: transparent;
           margin-left: 0.55em;
           border: 0; // border-bottom: solid 2px white;
         }
       }
+
       .dropdown-menu {
         transform: rotate(180deg) !important;
         top: 50px !important;
@@ -772,14 +808,17 @@ fieldset:disabled {
         background: #142c5b;
         color: white;
         border: 0;
+
         a {
           transform: rotate(180deg);
+
           &:hover {
             background-color: white;
             color: #142c5b;
           }
         }
       }
+
       .dropdown-item:hover,
       .dropdown-item:focus {
         background: transparent;
@@ -807,6 +846,7 @@ fieldset:disabled {
   border-color: #ced4da;
   border-top: solid 1px #ced4da;
   border-left: solid 1px #ced4da;
+
   &::-webkit-input-placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #9ba1a6;
@@ -814,10 +854,12 @@ fieldset:disabled {
     opacity: 1;
     /* Firefox */
   }
+
   :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
     color: #9ba1a6;
   }
+
   ::-ms-input-placeholder {
     /* Microsoft Edge */
     color: #9ba1a6;
@@ -836,10 +878,12 @@ fieldset:disabled {
     opacity: 1;
     /* Firefox */
   }
+
   :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
     color: #9ba1a6;
   }
+
   ::-ms-input-placeholder {
     /* Microsoft Edge */
     color: #9ba1a6;
@@ -852,18 +896,22 @@ fieldset:disabled {
   background-repeat: no-repeat;
   background-position: center center;
   height: 100vh;
+
   .about-pumpkin {
     padding: 200px 0;
+
     .about-content {
       width: 50%;
       margin: 0 auto;
       font-family: Roboto-Light;
+
       a {
         text-decoration: none;
         color: #333;
       }
     }
   }
+
   .heading-fontsize {
     font-size: 1.3em;
   }
@@ -873,15 +921,18 @@ fieldset:disabled {
   @extend .fontRobotoRegular;
   box-shadow: 0 -6px 0 #fff, 0 1px 6px rgba(0, 0, 0, 0.35);
   min-height: 107px;
+
   .customer-care-img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
+
     img {
       width: 80px;
       border-radius: 50%;
     }
   }
+
   .media-body {
     p {
       display: -webkit-box;
@@ -901,9 +952,11 @@ fieldset:disabled {
 
 .pumpkin-plans {
   background-color: #f9f9f9;
+
   .plans-list {
     min-height: 100px;
   }
+
   .card-image {
     height: 100px;
     max-height: 100px;
@@ -912,6 +965,7 @@ fieldset:disabled {
 
 .card-home {
   transition: transform 1s;
+
   &:hover {
     -ms-transform: scale(1.1);
     /* IE 9 */
@@ -929,13 +983,16 @@ fieldset:disabled {
   color: #222129;
   @extend .fontRobotoLight;
   font-size: 14px;
+
   li {
     cursor: pointer;
+
     &:after {
       content: "|";
       padding-left: 15px;
     }
   }
+
   li:last-child {
     &:after {
       display: none;
@@ -947,20 +1004,24 @@ fieldset:disabled {
   position: relative;
   width: 800px;
   margin: 0 auto;
+
   .swiper-button-prev,
   .swiper-button-next {
     height: 20px;
     width: 50px;
     margin-top: -15px;
+
     &:focus {
       outline: none;
     }
   }
+
   .swiper-button-prev,
   .swiper-container-rtl .swiper-button-next {
     background-image: url("../img/left-arrow.png");
     left: -45px;
   }
+
   .swiper-button-next,
   .swiper-container-rtl .swiper-button-prev {
     background-image: url("../img/right-arrow.png");
@@ -1016,6 +1077,7 @@ fieldset:disabled {
   background-color: #f6a244;
   border: solid 5px #ecf0f2;
   border-radius: 50%;
+
   .fa-sort-down {
     color: white;
     vertical-align: 0;
@@ -1035,6 +1097,7 @@ fieldset:disabled {
 .snooze-color {
   background: #142c5c;
   border: 1px solid #142c5c;
+
   &:hover {
     color: #142c5c !important;
     border: 1px solid #142c5c;
@@ -1046,6 +1109,7 @@ fieldset:disabled {
 .completed-color {
   background: #14c177;
   border: 1px solid #14c177;
+
   &:hover {
     color: #14c177 !important;
     border: 1px solid #14c177;
@@ -1057,6 +1121,7 @@ fieldset:disabled {
 .delete-btn {
   background: #d9534f;
   border: 1px solid #d9534f;
+
   &:hover {
     background: white;
     color: #d9534f !important;
@@ -1075,6 +1140,7 @@ fieldset:disabled {
     @extend .text-white;
     @extend .rounded;
   }
+
   .btn {
     padding: 0.2rem 0.3rem !important;
   }
@@ -1092,12 +1158,15 @@ fieldset:disabled {
 .privacy,
 .terms {
   @extend .font14;
+
   h5 {
     font-family: Roboto-Bold;
   }
+
   p {
     text-align: justify;
   }
+
   a {
     color: inherit;
   }
@@ -1108,6 +1177,7 @@ fieldset:disabled {
   background-color: white !important;
   border: solid 1px #142c5b;
   transition: ease all 500ms;
+
   &:after {
     content: url("../img/bluetick.png"); // background: url("img/bluetick.png");
     background-repeat: no-repeat;
